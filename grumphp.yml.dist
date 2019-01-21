@@ -5,3 +5,5 @@ parameters:
     - vendor/
   tasks.phpcs.triggered_by:
     - php
+  tasks.phpmd.exclude:
+    - src/Type/
