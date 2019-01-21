@@ -1,0 +1,33 @@
+{
+    "name": "openeuropa/epoetry-client",
+    "description": "PHP client for the ePoetry service.",
+    "type": "library",
+    "license": "EUPL-1.2",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "ext-soap": "*",
+        "php": "^7.1",
+        "phpro/soap-client": "^0.7.11"
+    },
+    "require-dev": {
+        "openeuropa/code-review": "^1.0@alpha",
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenEuropa\\EPoetry\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OpenEuropa\\EPoetry\\Tests\\": "./tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.9"
+        }
+    }
+}
