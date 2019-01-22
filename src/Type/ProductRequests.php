@@ -7,14 +7,27 @@ namespace OpenEuropa\EPoetry\Type;
 class ProductRequests
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequest
+     * @var \OpenEuropa\EPoetry\Type\ProductRequest[]
      */
     private $productRequest;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ProductRequest
+     * @param \OpenEuropa\EPoetry\Type\ProductRequest $productRequest
+     *
+     * @return $this
      */
-    public function getProductRequest(): ProductRequest
+    public function addProductRequest(ProductRequest $productRequest): self
+    {
+        $this->productRequest = \is_array($this->productRequest) ? $this->productRequest : [];
+        $this->productRequest[] = $productRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\ProductRequest[]
+     */
+    public function getProductRequest(): array
     {
         return $this->productRequest;
     }

@@ -9,14 +9,27 @@ use Phpro\SoapClient\Type\ResultInterface;
 class CreateRequestsResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequest
+     * @var \OpenEuropa\EPoetry\Type\LinguisticRequest[]
      */
     private $return;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticRequest
+     * @param \OpenEuropa\EPoetry\Type\LinguisticRequest $return
+     *
+     * @return $this
      */
-    public function getReturn(): LinguisticRequest
+    public function addReturn(LinguisticRequest $return): self
+    {
+        $this->return = \is_array($this->return) ? $this->return : [];
+        $this->return[] = $return;
+
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\LinguisticRequest[]
+     */
+    public function getReturn(): array
     {
         return $this->return;
     }

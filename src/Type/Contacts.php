@@ -7,16 +7,16 @@ namespace OpenEuropa\EPoetry\Type;
 class Contacts
 {
     /**
-     * @var array
+     * @var \OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    private $contact = [];
+    private $contact;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact
      *
      * @return $this
      */
-    public function addContact(ContactPerson $contact)
+    public function addContact(ContactPerson $contact): self
     {
         $this->contact = \is_array($this->contact) ? $this->contact : [];
         $this->contact[] = $contact;
@@ -25,9 +25,9 @@ class Contacts
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ContactPerson
+     * @return \OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    public function getContact(): ContactPerson
+    public function getContact(): array
     {
         return $this->contact;
     }

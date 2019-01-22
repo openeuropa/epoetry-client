@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Type;
 class CreateRequests
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
     private $linguisticRequest;
 
@@ -22,9 +22,22 @@ class CreateRequests
     private $templateName;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
+     *
+     * @return $this
      */
-    public function getLinguisticRequest(): LinguisticRequestIn
+    public function addLinguisticRequest(LinguisticRequestIn $linguisticRequest): self
+    {
+        $this->linguisticRequest = \is_array($this->linguisticRequest) ? $this->linguisticRequest : [];
+        $this->linguisticRequest[] = $linguisticRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
+     */
+    public function getLinguisticRequest(): array
     {
         return $this->linguisticRequest;
     }

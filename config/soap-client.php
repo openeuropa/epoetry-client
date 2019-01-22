@@ -58,8 +58,13 @@ return Config::create()
     ->addRule(new Rules\AssembleRule(new OpenEuropa\Assembler\FluentAdderAssembler(
         (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
             ->withTypeHints()
-            ->withProperties([
-                'Contacts' => ['contact'],
-            ])
+            ->withReturnType()
+            ->generateAdderForProperty('ReceiveNotificationsResponse', 'return')
+            ->generateAdderForProperty('LinguisticSections', 'linguisticSection')
+            ->generateAdderForProperty('Contacts', 'contact')
+            ->generateAdderForProperty('ProductRequests', 'productRequest')
+            ->generateAdderForProperty('AuxiliaryDocuments', 'auxiliaryDocument')
+            ->generateAdderForProperty('CreateRequestsResponse', 'return')
+            ->generateAdderForProperty('CreateRequests', 'linguisticRequest')
     )))
 ;

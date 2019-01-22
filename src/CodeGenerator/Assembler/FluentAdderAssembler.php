@@ -11,7 +11,6 @@ use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
 use Phpro\SoapClient\Exception\AssemblerException;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\MethodGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 use Zend\Code\Generator\PropertyValueGenerator;
 use Zend\Code\Generator\ValueGenerator;
 
@@ -43,7 +42,6 @@ class FluentAdderAssembler implements AssemblerInterface
     public function assemble(ContextInterface $context)
     {
         $class = $context->getClass();
-
         $property = $context->getProperty();
 
         try {
@@ -51,6 +49,8 @@ class FluentAdderAssembler implements AssemblerInterface
             if ($this->options->useTypeHints()) {
                 $parameterOptions['type'] = $property->getType();
             }
+
+            // Add "adder" method.
             $methodName = Normalizer::generatePropertyMethod('add', $property->getName());
             $class->removeMethod($methodName);
             $class->addMethodFromGenerator(
@@ -59,6 +59,7 @@ class FluentAdderAssembler implements AssemblerInterface
                         'name' => $methodName,
                         'parameters' => [$parameterOptions],
                         'visibility' => MethodGenerator::VISIBILITY_PUBLIC,
+                        'returntype' => $this->options->useReturnType() ? $class->getNamespaceName().'\\'.$class->getName() : null,
                         'body' => sprintf(
                             '$this->%1$s = is_array($this->%1$s) ? $this->%1$s : [];%2$s$this->%1$s[] = $%1$s;%2$sreturn $this;',
                             $property->getName(),
@@ -81,23 +82,33 @@ class FluentAdderAssembler implements AssemblerInterface
                     ]
                 )
             );
-            $class->removeProperty($property->getName());
-            $class->addPropertyFromGenerator(
-                PropertyGenerator::fromArray([
-                    'name' => $property->getName(),
-                    'defaultvalue' => new PropertyValueGenerator([], ValueGenerator::TYPE_ARRAY_SHORT, ValueGenerator::OUTPUT_SINGLE_LINE),
-                    'visibility' => PropertyGenerator::VISIBILITY_PRIVATE,
-                    'omitdefaultvalue' => false,
-                    'docblock' => DocBlockGenerator::fromArray([
-                        'tags' => [
-                            [
-                                'name' => 'var',
-                                'description' => 'array',
-                            ],
+
+            // If property is available update its dockblock and default value.
+            if ($class->hasProperty($property->getName())) {
+                $class->getProperty($property->getName())->setDocBlock(DocBlockGenerator::fromArray([
+                    'tags' => [
+                        [
+                            'name' => 'var',
+                            'description' => $property->getType().'[]',
                         ],
-                    ]),
-                ])
-            );
+                    ],
+                ]));
+                $class->getProperty($property->getName())->setDefaultValue(new PropertyValueGenerator([], ValueGenerator::TYPE_ARRAY_SHORT, ValueGenerator::OUTPUT_SINGLE_LINE));
+            }
+
+            // If setter is available update its dockblock and return value.
+            $getterMethodName = Normalizer::generatePropertyMethod('get', $property->getName());
+            if ($class->hasMethod($getterMethodName)) {
+                $class->getMethod($getterMethodName)->setReturnType('array');
+                $class->getMethod($getterMethodName)->setDocBlock(DocBlockGenerator::fromArray([
+                    'tags' => [
+                        [
+                            'name' => 'return',
+                            'description' => $property->getType().'[]',
+                        ],
+                    ],
+                ]));
+            }
         } catch (\Exception $e) {
             throw AssemblerException::fromException($e);
         }
