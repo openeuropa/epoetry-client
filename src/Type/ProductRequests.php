@@ -27,7 +27,4 @@ class ProductRequests
         $this->productRequest = $productRequest;
         return $this;
     }
-
-
 }
-

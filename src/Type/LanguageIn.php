@@ -27,7 +27,4 @@ class LanguageIn
         $this->code = $code;
         return $this;
     }
-
-
 }
-

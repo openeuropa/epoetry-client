@@ -6,7 +6,4 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class CorrectTranslationResponse implements ResultInterface
 {
-
-
 }
-

@@ -167,7 +167,4 @@ class ProductRequest implements RequestInterface
         $this->internalProductReference = $internalProductReference;
         return $this;
     }
-
-
 }
-

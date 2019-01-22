@@ -6,9 +6,9 @@ class Contacts
 {
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ContactPerson
+     * @var array
      */
-    private $contact;
+    private $contact = [];
 
     /**
      * @return \OpenEuropa\EPoetry\Type\ContactPerson
@@ -28,6 +28,14 @@ class Contacts
         return $this;
     }
 
-
+    /**
+     * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact
+     * @return $this
+     */
+    public function addContact(\OpenEuropa\EPoetry\Type\ContactPerson $contact)
+    {
+        $this->contact = is_array($this->contact) ? $this->contact : [];
+        $this->contact[] = $contact;
+        return $this;
+    }
 }
-

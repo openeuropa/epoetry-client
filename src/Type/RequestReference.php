@@ -211,7 +211,4 @@ class RequestReference
         $this->requesterCode = $requesterCode;
         return $this;
     }
-
-
 }
-

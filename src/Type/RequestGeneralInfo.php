@@ -372,7 +372,4 @@ class RequestGeneralInfo
         $this->serviceOfOrigin = $serviceOfOrigin;
         return $this;
     }
-
-
 }
-

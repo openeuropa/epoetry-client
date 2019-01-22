@@ -52,7 +52,4 @@ class OriginalDocumentIn extends DgtDocumentIn
         $this->trackChanges = $trackChanges;
         return $this;
     }
-
-
 }
-

@@ -50,7 +50,4 @@ class ProductNotFoundException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

@@ -75,7 +75,4 @@ class OriginalDocument extends DgtDocument
         $this->pages = $pages;
         return $this;
     }
-
-
 }
-

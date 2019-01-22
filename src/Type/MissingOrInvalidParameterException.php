@@ -50,7 +50,4 @@ class MissingOrInvalidParameterException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

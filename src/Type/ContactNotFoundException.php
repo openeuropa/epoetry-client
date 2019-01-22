@@ -50,7 +50,4 @@ class ContactNotFoundException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

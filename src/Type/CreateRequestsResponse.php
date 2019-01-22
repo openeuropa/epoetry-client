@@ -29,7 +29,4 @@ class CreateRequestsResponse implements ResultInterface
         $this->return = $return;
         return $this;
     }
-
-
 }
-

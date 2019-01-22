@@ -29,7 +29,4 @@ class AuxiliaryDocument extends DgtDocument
         $this->language = $language;
         return $this;
     }
-
-
 }
-

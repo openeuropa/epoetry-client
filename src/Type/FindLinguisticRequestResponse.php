@@ -29,7 +29,4 @@ class FindLinguisticRequestResponse implements ResultInterface
         $this->return = $return;
         return $this;
     }
-
-
 }
-

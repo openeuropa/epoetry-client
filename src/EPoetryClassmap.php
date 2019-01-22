@@ -8,7 +8,6 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class EPoetryClassmap
 {
-
     public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection([
@@ -60,7 +59,4 @@ class EPoetryClassmap
             new ClassMap('contactPersonIn', Type\ContactPersonIn::class),
         ]);
     }
-
-
 }
-

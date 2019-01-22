@@ -50,7 +50,4 @@ class InternalTechnicalErrorException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

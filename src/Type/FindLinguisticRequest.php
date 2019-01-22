@@ -121,7 +121,4 @@ class FindLinguisticRequest implements RequestInterface
         $this->productCode = $productCode;
         return $this;
     }
-
-
 }
-

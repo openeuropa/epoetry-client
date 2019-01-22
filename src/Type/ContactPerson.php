@@ -119,7 +119,4 @@ class ContactPerson
         $this->roleCode = $roleCode;
         return $this;
     }
-
-
 }
-

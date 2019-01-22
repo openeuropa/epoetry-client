@@ -1,6 +1,7 @@
 <?php
 
 use Phpro\SoapClient\CodeGenerator\Assembler;
+use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 
@@ -52,4 +53,11 @@ return Config::create()
             '/^(Auxiliary|Original)DocumentIn$/'
         )
     )
+    ->addRule(new Rules\AssembleRule(new OpenEuropa\Assembler\FluentAdderAssembler(
+        (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
+            ->withTypeHints()
+            ->withProperties([
+                'Contacts' => ['contact'],
+            ])
+    )))
 ;

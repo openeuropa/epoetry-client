@@ -96,7 +96,4 @@ class ProductRequestIn
         $this->trackChanges = $trackChanges;
         return $this;
     }
-
-
 }
-

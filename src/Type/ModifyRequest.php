@@ -75,7 +75,4 @@ class ModifyRequest implements RequestInterface
         $this->templateName = $templateName;
         return $this;
     }
-
-
 }
-

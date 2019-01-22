@@ -27,7 +27,4 @@ class AuxiliaryDocuments
         $this->auxiliaryDocument = $auxiliaryDocument;
         return $this;
     }
-
-
 }
-

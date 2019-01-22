@@ -326,7 +326,4 @@ class RequestGeneralInfoIn
         $this->accessibleTo = $accessibleTo;
         return $this;
     }
-
-
 }
-

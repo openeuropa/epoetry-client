@@ -50,7 +50,4 @@ class RequestReferenceIn
         $this->internalTechnicalId = $internalTechnicalId;
         return $this;
     }
-
-
 }
-

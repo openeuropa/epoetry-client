@@ -27,7 +27,4 @@ class LinguisticSection
         $this->language = $language;
         return $this;
     }
-
-
 }
-

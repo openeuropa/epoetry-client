@@ -50,7 +50,4 @@ class ContactPersonIn
         $this->roleCode = $roleCode;
         return $this;
     }
-
-
 }
-

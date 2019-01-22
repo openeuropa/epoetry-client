@@ -119,7 +119,4 @@ class LinguisticRequestIn
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
     }
-
-
 }
-

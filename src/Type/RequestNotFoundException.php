@@ -50,7 +50,4 @@ class RequestNotFoundException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

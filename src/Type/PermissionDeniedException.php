@@ -50,7 +50,4 @@ class PermissionDeniedException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

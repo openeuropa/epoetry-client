@@ -73,7 +73,4 @@ class CreateRequests
         $this->templateName = $templateName;
         return $this;
     }
-
-
 }
-

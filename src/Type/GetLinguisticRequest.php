@@ -29,7 +29,4 @@ class GetLinguisticRequest implements RequestInterface
         $this->request = $request;
         return $this;
     }
-
-
 }
-

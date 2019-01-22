@@ -9,7 +9,6 @@ use Phpro\SoapClient\ClientBuilder;
 
 class EPoetryClientFactory
 {
-
     public static function factory(string $wsdl) : \OpenEuropa\EPoetry\EPoetryClient
     {
         $clientFactory = new PhproClientFactory(EPoetryClient::class);

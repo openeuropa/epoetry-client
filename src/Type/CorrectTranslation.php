@@ -50,7 +50,4 @@ class CorrectTranslation
         $this->correction = $correction;
         return $this;
     }
-
-
 }
-

@@ -50,7 +50,4 @@ class TemplateNotFoundException
         $this->uid = $uid;
         return $this;
     }
-
-
 }
-

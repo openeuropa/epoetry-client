@@ -167,7 +167,4 @@ class LinguisticRequest implements RequestInterface
         $this->statusCode = $statusCode;
         return $this;
     }
-
-
 }
-

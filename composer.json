@@ -11,7 +11,7 @@
         "phpro/soap-client": "dev-OPENEUROPA-1332 as 0.7.11"
     },
     "require-dev": {
-        "openeuropa/code-review": "^1.0@alpha",
+        "openeuropa/code-review": "dev-49-use-phpcsfixer as 2.0.0",
         "phpunit/phpunit": "~6.0",
         "zendframework/zend-code": "^3.1.0"
     },

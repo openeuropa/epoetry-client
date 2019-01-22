@@ -6,7 +6,4 @@ use \OpenEuropa\EPoetry\Type\DgtDocument;
 
 class CorrectionDocument extends DgtDocument
 {
-
-
 }
-

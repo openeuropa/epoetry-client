@@ -96,7 +96,4 @@ class DgtDocumentIn
         $this->name = $name;
         return $this;
     }
-
-
 }
-

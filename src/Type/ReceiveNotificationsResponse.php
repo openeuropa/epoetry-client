@@ -29,7 +29,4 @@ class ReceiveNotificationsResponse implements ResultInterface
         $this->return = $return;
         return $this;
     }
-
-
 }
-
