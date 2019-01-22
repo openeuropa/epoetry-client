@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class RequestReferenceIn
 {
-
     /**
      * @var int
      */
@@ -18,36 +19,40 @@ class RequestReferenceIn
     /**
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId(int $id) : \OpenEuropa\EPoetry\Type\RequestReferenceIn
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getInternalTechnicalId() : string
+    public function getInternalTechnicalId(): string
     {
         return $this->internalTechnicalId;
     }
 
     /**
-     * @param string $internalTechnicalId
+     * @param int $id
+     *
      * @return $this
      */
-    public function setInternalTechnicalId(string $internalTechnicalId) : \OpenEuropa\EPoetry\Type\RequestReferenceIn
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $internalTechnicalId
+     *
+     * @return $this
+     */
+    public function setInternalTechnicalId(string $internalTechnicalId): self
     {
         $this->internalTechnicalId = $internalTechnicalId;
+
         return $this;
     }
 }

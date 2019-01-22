@@ -1,12 +1,11 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Type;
+declare(strict_types = 1);
 
-use \OpenEuropa\EPoetry\Type\DgtDocumentIn;
+namespace OpenEuropa\EPoetry\Type;
 
 class OriginalDocumentIn extends DgtDocumentIn
 {
-
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
      */
@@ -20,36 +19,40 @@ class OriginalDocumentIn extends DgtDocumentIn
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Type\LinguisticSections
+    public function getLinguisticSections(): LinguisticSections
     {
         return $this->linguisticSections;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
-     * @return $this
-     */
-    public function setLinguisticSections($linguisticSections) : \OpenEuropa\EPoetry\Type\OriginalDocumentIn
-    {
-        $this->linguisticSections = $linguisticSections;
-        return $this;
-    }
-
-    /**
      * @return bool
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges(): bool
     {
         return $this->trackChanges;
     }
 
     /**
-     * @param bool $trackChanges
+     * @param \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
+     *
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Type\OriginalDocumentIn
+    public function setLinguisticSections($linguisticSections): self
+    {
+        $this->linguisticSections = $linguisticSections;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $trackChanges
+     *
+     * @return $this
+     */
+    public function setTrackChanges(bool $trackChanges): self
     {
         $this->trackChanges = $trackChanges;
+
         return $this;
     }
 }

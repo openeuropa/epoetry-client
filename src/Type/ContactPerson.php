@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class ContactPerson
 {
+    /**
+     * @var string
+     */
+    private $email;
 
     /**
      * @var string
@@ -18,7 +24,7 @@ class ContactPerson
     /**
      * @var string
      */
-    private $email;
+    private $roleCode;
 
     /**
      * @var string
@@ -26,97 +32,102 @@ class ContactPerson
     private $userId;
 
     /**
-     * @var string
-     */
-    private $roleCode;
-
-    /**
      * @return string
      */
-    public function getFirstName() : string
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string $firstName
-     * @return $this
-     */
-    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Type\ContactPerson
-    {
-        $this->firstName = $firstName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName() : string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     * @return $this
-     */
-    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Type\ContactPerson
-    {
-        $this->lastName = $lastName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
-     * @return $this
+     * @return string
      */
-    public function setEmail(string $email) : \OpenEuropa\EPoetry\Type\ContactPerson
+    public function getFirstName(): string
     {
-        $this->email = $email;
-        return $this;
+        return $this->firstName;
     }
 
     /**
      * @return string
      */
-    public function getUserId() : string
+    public function getLastName(): string
     {
-        return $this->userId;
-    }
-
-    /**
-     * @param string $userId
-     * @return $this
-     */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Type\ContactPerson
-    {
-        $this->userId = $userId;
-        return $this;
+        return $this->lastName;
     }
 
     /**
      * @return string
      */
-    public function getRoleCode() : string
+    public function getRoleCode(): string
     {
         return $this->roleCode;
     }
 
     /**
-     * @param string $roleCode
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param string $email
+     *
      * @return $this
      */
-    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Type\ContactPerson
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @param string $firstName
+     *
+     * @return $this
+     */
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $lastName
+     *
+     * @return $this
+     */
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $roleCode
+     *
+     * @return $this
+     */
+    public function setRoleCode(string $roleCode): self
     {
         $this->roleCode = $roleCode;
+
+        return $this;
+    }
+
+    /**
+     * @param string $userId
+     *
+     * @return $this
+     */
+    public function setUserId(string $userId): self
+    {
+        $this->userId = $userId;
+
         return $this;
     }
 }

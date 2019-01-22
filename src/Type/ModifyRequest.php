@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
 class ModifyRequest implements RequestInterface
 {
+    /**
+     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+     */
+    private $linguisticRequest;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
@@ -13,66 +19,67 @@ class ModifyRequest implements RequestInterface
     private $requestReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
-     */
-    private $linguisticRequest;
-
-    /**
      * @var string
      */
     private $templateName;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
-     */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Type\RequestReferenceIn
-    {
-        return $this->requestReference;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\RequestReferenceIn $requestReference
-     * @return $this
-     */
-    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Type\ModifyRequest
-    {
-        $this->requestReference = $requestReference;
-        return $this;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+    public function getLinguisticRequest(): LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
-     * @return $this
+     * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    public function setLinguisticRequest($linguisticRequest) : \OpenEuropa\EPoetry\Type\ModifyRequest
+    public function getRequestReference(): RequestReferenceIn
     {
-        $this->linguisticRequest = $linguisticRequest;
-        return $this;
+        return $this->requestReference;
     }
 
     /**
      * @return string
      */
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return $this->templateName;
     }
 
     /**
-     * @param string $templateName
+     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
+     *
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Type\ModifyRequest
+    public function setLinguisticRequest($linguisticRequest): self
+    {
+        $this->linguisticRequest = $linguisticRequest;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\RequestReferenceIn $requestReference
+     *
+     * @return $this
+     */
+    public function setRequestReference($requestReference): self
+    {
+        $this->requestReference = $requestReference;
+
+        return $this;
+    }
+
+    /**
+     * @param string $templateName
+     *
+     * @return $this
+     */
+    public function setTemplateName(string $templateName): self
     {
         $this->templateName = $templateName;
+
         return $this;
     }
 }

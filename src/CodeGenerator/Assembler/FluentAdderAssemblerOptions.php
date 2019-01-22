@@ -1,37 +1,37 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
- * Class FluentAdderAssemblerOptions
+ * Class FluentAdderAssemblerOptions.
  */
 class FluentAdderAssemblerOptions
 {
+    private $properties = [];
+
     /**
      * @var bool
      */
     private $typeHints = false;
 
-    private $properties = [];
-
     /**
      * @return FluentAdderAssemblerOptions
      */
-    public static function create(): FluentAdderAssemblerOptions
+    public static function create(): self
     {
         return new self();
     }
 
-    /**
-     * @param bool $typeHints
-     *
-     * @return FluentAdderAssemblerOptions
-     */
-    public function withTypeHints(bool $typeHints = true): FluentAdderAssemblerOptions
+    public function getProperties()
     {
-        $this->typeHints = $typeHints;
+        return $this->properties;
+    }
 
-        return $this;
+    public function hasProperty(string $name, string $property): bool
+    {
+        return isset($this->properties[$name]) && \in_array($property, $this->properties[$name], true);
     }
 
     /**
@@ -42,19 +42,22 @@ class FluentAdderAssemblerOptions
         return $this->typeHints;
     }
 
-    public function getProperties()
-    {
-        return $this->properties;
-    }
-
     public function withProperties(array $properties)
     {
         $this->properties = $properties;
+
         return $this;
     }
 
-    public function hasProperty(string $name, string $property): bool
+    /**
+     * @param bool $typeHints
+     *
+     * @return FluentAdderAssemblerOptions
+     */
+    public function withTypeHints(bool $typeHints = true): self
     {
-        return isset($this->properties[$name]) && in_array($property, $this->properties[$name]);
+        $this->typeHints = $typeHints;
+
+        return $this;
     }
 }

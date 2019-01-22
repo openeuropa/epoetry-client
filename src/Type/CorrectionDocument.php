@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Type;
+declare(strict_types = 1);
 
-use \OpenEuropa\EPoetry\Type\DgtDocument;
+namespace OpenEuropa\EPoetry\Type;
 
 class CorrectionDocument extends DgtDocument
 {

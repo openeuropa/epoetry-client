@@ -1,12 +1,11 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Type;
+declare(strict_types = 1);
 
-use \OpenEuropa\EPoetry\Type\DgtDocument;
+namespace OpenEuropa\EPoetry\Type;
 
 class AuxiliaryDocument extends DgtDocument
 {
-
     /**
      * @var string
      */
@@ -15,18 +14,20 @@ class AuxiliaryDocument extends DgtDocument
     /**
      * @return string
      */
-    public function getLanguage() : string
+    public function getLanguage(): string
     {
         return $this->language;
     }
 
     /**
      * @param string $language
+     *
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Type\AuxiliaryDocument
+    public function setLanguage(string $language): self
     {
         $this->language = $language;
+
         return $this;
     }
 }

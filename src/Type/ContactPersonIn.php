@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class ContactPersonIn
 {
+    /**
+     * @var string
+     */
+    private $roleCode;
 
     /**
      * @var string
@@ -11,43 +17,42 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var string
-     */
-    private $roleCode;
-
-    /**
      * @return string
      */
-    public function getUserId() : string
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param string $userId
-     * @return $this
-     */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Type\ContactPersonIn
-    {
-        $this->userId = $userId;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoleCode() : string
+    public function getRoleCode(): string
     {
         return $this->roleCode;
     }
 
     /**
+     * @return string
+     */
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    /**
      * @param string $roleCode
+     *
      * @return $this
      */
-    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Type\ContactPersonIn
+    public function setRoleCode(string $roleCode): self
     {
         $this->roleCode = $roleCode;
+
+        return $this;
+    }
+
+    /**
+     * @param string $userId
+     *
+     * @return $this
+     */
+    public function setUserId(string $userId): self
+    {
+        $this->userId = $userId;
+
         return $this;
     }
 }

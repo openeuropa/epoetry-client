@@ -1,26 +1,27 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
 class LinguisticRequest implements RequestInterface
 {
-
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReference
+     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
-    private $reference;
-
-    /**
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo
-     */
-    private $generalInfo;
+    private $auxiliaryDocuments;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\Contacts
      */
     private $contacts;
+
+    /**
+     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+     */
+    private $generalInfo;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\OriginalDocument
@@ -33,9 +34,9 @@ class LinguisticRequest implements RequestInterface
     private $productRequests;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @var \OpenEuropa\EPoetry\Type\RequestReference
      */
-    private $auxiliaryDocuments;
+    private $reference;
 
     /**
      * @var string
@@ -43,128 +44,142 @@ class LinguisticRequest implements RequestInterface
     private $statusCode;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\RequestReference
-     */
-    public function getReference() : \OpenEuropa\EPoetry\Type\RequestReference
-    {
-        return $this->reference;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\RequestReference $reference
-     * @return $this
-     */
-    public function setReference($reference) : \OpenEuropa\EPoetry\Type\LinguisticRequest
-    {
-        $this->reference = $reference;
-        return $this;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\RequestGeneralInfo
-     */
-    public function getGeneralInfo() : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
-    {
-        return $this->generalInfo;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\RequestGeneralInfo $generalInfo
-     * @return $this
-     */
-    public function setGeneralInfo($generalInfo) : \OpenEuropa\EPoetry\Type\LinguisticRequest
-    {
-        $this->generalInfo = $generalInfo;
-        return $this;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\Contacts
-     */
-    public function getContacts() : \OpenEuropa\EPoetry\Type\Contacts
-    {
-        return $this->contacts;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\Contacts $contacts
-     * @return $this
-     */
-    public function setContacts($contacts) : \OpenEuropa\EPoetry\Type\LinguisticRequest
-    {
-        $this->contacts = $contacts;
-        return $this;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\OriginalDocument
-     */
-    public function getOriginalDocument() : \OpenEuropa\EPoetry\Type\OriginalDocument
-    {
-        return $this->originalDocument;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\OriginalDocument $originalDocument
-     * @return $this
-     */
-    public function setOriginalDocument($originalDocument) : \OpenEuropa\EPoetry\Type\LinguisticRequest
-    {
-        $this->originalDocument = $originalDocument;
-        return $this;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\ProductRequests
-     */
-    public function getProductRequests() : \OpenEuropa\EPoetry\Type\ProductRequests
-    {
-        return $this->productRequests;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\ProductRequests $productRequests
-     * @return $this
-     */
-    public function setProductRequests($productRequests) : \OpenEuropa\EPoetry\Type\LinguisticRequest
-    {
-        $this->productRequests = $productRequests;
-        return $this;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
-    public function getAuxiliaryDocuments() : \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+    public function getAuxiliaryDocuments(): AuxiliaryDocuments
     {
         return $this->auxiliaryDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments
-     * @return $this
+     * @return \OpenEuropa\EPoetry\Type\Contacts
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Type\LinguisticRequest
+    public function getContacts(): Contacts
     {
-        $this->auxiliaryDocuments = $auxiliaryDocuments;
-        return $this;
+        return $this->contacts;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+     */
+    public function getGeneralInfo(): RequestGeneralInfo
+    {
+        return $this->generalInfo;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\OriginalDocument
+     */
+    public function getOriginalDocument(): OriginalDocument
+    {
+        return $this->originalDocument;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\ProductRequests
+     */
+    public function getProductRequests(): ProductRequests
+    {
+        return $this->productRequests;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Type\RequestReference
+     */
+    public function getReference(): RequestReference
+    {
+        return $this->reference;
     }
 
     /**
      * @return string
      */
-    public function getStatusCode() : string
+    public function getStatusCode(): string
     {
         return $this->statusCode;
     }
 
     /**
-     * @param string $statusCode
+     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments
+     *
      * @return $this
      */
-    public function setStatusCode(string $statusCode) : \OpenEuropa\EPoetry\Type\LinguisticRequest
+    public function setAuxiliaryDocuments($auxiliaryDocuments): self
+    {
+        $this->auxiliaryDocuments = $auxiliaryDocuments;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\Contacts $contacts
+     *
+     * @return $this
+     */
+    public function setContacts($contacts): self
+    {
+        $this->contacts = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\RequestGeneralInfo $generalInfo
+     *
+     * @return $this
+     */
+    public function setGeneralInfo($generalInfo): self
+    {
+        $this->generalInfo = $generalInfo;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\OriginalDocument $originalDocument
+     *
+     * @return $this
+     */
+    public function setOriginalDocument($originalDocument): self
+    {
+        $this->originalDocument = $originalDocument;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\ProductRequests $productRequests
+     *
+     * @return $this
+     */
+    public function setProductRequests($productRequests): self
+    {
+        $this->productRequests = $productRequests;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\RequestReference $reference
+     *
+     * @return $this
+     */
+    public function setReference($reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * @param string $statusCode
+     *
+     * @return $this
+     */
+    public function setStatusCode(string $statusCode): self
     {
         $this->statusCode = $statusCode;
+
         return $this;
     }
 }

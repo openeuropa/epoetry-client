@@ -1,22 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
 class ProductRequest implements RequestInterface
 {
-
-    /**
-     * @var \OpenEuropa\EPoetry\Type\Language
-     */
-    private $language;
-
-    /**
-     * @var \DateTime
-     */
-    private $requestedDeadline;
-
     /**
      * @var \DateTime
      */
@@ -30,6 +21,21 @@ class ProductRequest implements RequestInterface
     /**
      * @var string
      */
+    private $internalProductReference;
+
+    /**
+     * @var \OpenEuropa\EPoetry\Type\Language
+     */
+    private $language;
+
+    /**
+     * @var \DateTime
+     */
+    private $requestedDeadline;
+
+    /**
+     * @var string
+     */
     private $statusCode;
 
     /**
@@ -38,133 +44,142 @@ class ProductRequest implements RequestInterface
     private $trackChanges;
 
     /**
-     * @var string
-     */
-    private $internalProductReference;
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\Language
-     */
-    public function getLanguage() : \OpenEuropa\EPoetry\Type\Language
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\Language $language
-     * @return $this
-     */
-    public function setLanguage($language) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
-    public function getRequestedDeadline() : \DateTime
-    {
-        return $this->requestedDeadline;
-    }
-
-    /**
-     * @param \DateTime $requestedDeadline
-     * @return $this
-     */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->requestedDeadline = $requestedDeadline;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getAcceptedDeadline() : \DateTime
+    public function getAcceptedDeadline(): \DateTime
     {
         return $this->acceptedDeadline;
     }
 
     /**
-     * @param \DateTime $acceptedDeadline
-     * @return $this
-     */
-    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->acceptedDeadline = $acceptedDeadline;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getFormatCode() : string
+    public function getFormatCode(): string
     {
         return $this->formatCode;
     }
 
     /**
-     * @param string $formatCode
-     * @return $this
-     */
-    public function setFormatCode(string $formatCode) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->formatCode = $formatCode;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getStatusCode() : string
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @param string $statusCode
-     * @return $this
-     */
-    public function setStatusCode(string $statusCode) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->statusCode = $statusCode;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isTrackChanges() : bool
-    {
-        return $this->trackChanges;
-    }
-
-    /**
-     * @param bool $trackChanges
-     * @return $this
-     */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Type\ProductRequest
-    {
-        $this->trackChanges = $trackChanges;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInternalProductReference() : string
+    public function getInternalProductReference(): string
     {
         return $this->internalProductReference;
     }
 
     /**
-     * @param string $internalProductReference
+     * @return \OpenEuropa\EPoetry\Type\Language
+     */
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRequestedDeadline(): \DateTime
+    {
+        return $this->requestedDeadline;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusCode(): string
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTrackChanges(): bool
+    {
+        return $this->trackChanges;
+    }
+
+    /**
+     * @param \DateTime $acceptedDeadline
+     *
      * @return $this
      */
-    public function setInternalProductReference(string $internalProductReference) : \OpenEuropa\EPoetry\Type\ProductRequest
+    public function setAcceptedDeadline($acceptedDeadline): self
+    {
+        $this->acceptedDeadline = $acceptedDeadline;
+
+        return $this;
+    }
+
+    /**
+     * @param string $formatCode
+     *
+     * @return $this
+     */
+    public function setFormatCode(string $formatCode): self
+    {
+        $this->formatCode = $formatCode;
+
+        return $this;
+    }
+
+    /**
+     * @param string $internalProductReference
+     *
+     * @return $this
+     */
+    public function setInternalProductReference(string $internalProductReference): self
     {
         $this->internalProductReference = $internalProductReference;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\Language $language
+     *
+     * @return $this
+     */
+    public function setLanguage($language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTime $requestedDeadline
+     *
+     * @return $this
+     */
+    public function setRequestedDeadline($requestedDeadline): self
+    {
+        $this->requestedDeadline = $requestedDeadline;
+
+        return $this;
+    }
+
+    /**
+     * @param string $statusCode
+     *
+     * @return $this
+     */
+    public function setStatusCode(string $statusCode): self
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $trackChanges
+     *
+     * @return $this
+     */
+    public function setTrackChanges(bool $trackChanges): self
+    {
+        $this->trackChanges = $trackChanges;
+
         return $this;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 use Phpro\SoapClient\CodeGenerator\Assembler\AssemblerInterface;
@@ -14,7 +16,7 @@ use Zend\Code\Generator\PropertyValueGenerator;
 use Zend\Code\Generator\ValueGenerator;
 
 /**
- * Class AdderAssembler
+ * Class AdderAssembler.
  */
 class FluentAdderAssembler implements AssemblerInterface
 {
@@ -34,21 +36,6 @@ class FluentAdderAssembler implements AssemblerInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function canAssemble(ContextInterface $context): bool
-    {
-        if (!$context instanceof PropertyContext) {
-            return false;
-        }
-
-        $class = $context->getClass();
-        $property = $context->getProperty();
-
-        return $this->options->hasProperty($class->getName(), $property->getName());
-    }
-
-    /**
      * @param ContextInterface|PropertyContext $context
      *
      * @throws AssemblerException
@@ -58,6 +45,7 @@ class FluentAdderAssembler implements AssemblerInterface
         $class = $context->getClass();
 
         $property = $context->getProperty();
+
         try {
             $parameterOptions = ['name' => $property->getName()];
             if ($this->options->useTypeHints()) {
@@ -84,7 +72,7 @@ class FluentAdderAssembler implements AssemblerInterface
                                         'description' => sprintf('%s $%s', $property->getType(), $property->getName()),
                                     ],
                                     [
-                                        'name'        => 'return',
+                                        'name' => 'return',
                                         'description' => '$this',
                                     ],
                                 ],
@@ -103,15 +91,30 @@ class FluentAdderAssembler implements AssemblerInterface
                     'docblock' => DocBlockGenerator::fromArray([
                         'tags' => [
                             [
-                                'name'        => 'var',
+                                'name' => 'var',
                                 'description' => 'array',
                             ],
-                        ]
-                    ])
+                        ],
+                    ]),
                 ])
             );
         } catch (\Exception $e) {
             throw AssemblerException::fromException($e);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function canAssemble(ContextInterface $context): bool
+    {
+        if (!$context instanceof PropertyContext) {
+            return false;
+        }
+
+        $class = $context->getClass();
+        $property = $context->getProperty();
+
+        return $this->options->hasProperty($class->getName(), $property->getName());
     }
 }

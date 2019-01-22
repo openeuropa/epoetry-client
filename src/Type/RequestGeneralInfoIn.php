@@ -1,14 +1,35 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class RequestGeneralInfoIn
 {
+    /**
+     * @var string
+     */
+    private $accessibleTo;
 
     /**
      * @var string
      */
-    private $title;
+    private $comment;
+
+    /**
+     * @var string
+     */
+    private $decideReference;
+
+    /**
+     * @var string
+     */
+    private $destinationCode;
+
+    /**
+     * @var bool
+     */
+    private $documentToBeAdopted;
 
     /**
      * @var string
@@ -19,6 +40,11 @@ class RequestGeneralInfoIn
      * @var string
      */
     private $internalTechnicalId;
+
+    /**
+     * @var string
+     */
+    private $onBehalfOf;
 
     /**
      * @var \DateTime
@@ -33,22 +59,7 @@ class RequestGeneralInfoIn
     /**
      * @var bool
      */
-    private $documentToBeAdopted;
-
-    /**
-     * @var string
-     */
-    private $decideReference;
-
-    /**
-     * @var bool
-     */
     private $sentViaRUE;
-
-    /**
-     * @var string
-     */
-    private $destinationCode;
 
     /**
      * @var string
@@ -63,267 +74,285 @@ class RequestGeneralInfoIn
     /**
      * @var string
      */
-    private $comment;
-
-    /**
-     * @var string
-     */
-    private $onBehalfOf;
-
-    /**
-     * @var string
-     */
-    private $accessibleTo;
+    private $title;
 
     /**
      * @return string
      */
-    public function getTitle() : string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
-     * @return $this
-     */
-    public function setTitle(string $title) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInternalReference() : string
-    {
-        return $this->internalReference;
-    }
-
-    /**
-     * @param string $internalReference
-     * @return $this
-     */
-    public function setInternalReference(string $internalReference) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->internalReference = $internalReference;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInternalTechnicalId() : string
-    {
-        return $this->internalTechnicalId;
-    }
-
-    /**
-     * @param string $internalTechnicalId
-     * @return $this
-     */
-    public function setInternalTechnicalId(string $internalTechnicalId) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->internalTechnicalId = $internalTechnicalId;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getRequestedDeadline() : \DateTime
-    {
-        return $this->requestedDeadline;
-    }
-
-    /**
-     * @param \DateTime $requestedDeadline
-     * @return $this
-     */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->requestedDeadline = $requestedDeadline;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSensitive() : bool
-    {
-        return $this->sensitive;
-    }
-
-    /**
-     * @param bool $sensitive
-     * @return $this
-     */
-    public function setSensitive(bool $sensitive) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->sensitive = $sensitive;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDocumentToBeAdopted() : bool
-    {
-        return $this->documentToBeAdopted;
-    }
-
-    /**
-     * @param bool $documentToBeAdopted
-     * @return $this
-     */
-    public function setDocumentToBeAdopted(bool $documentToBeAdopted) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->documentToBeAdopted = $documentToBeAdopted;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDecideReference() : string
-    {
-        return $this->decideReference;
-    }
-
-    /**
-     * @param string $decideReference
-     * @return $this
-     */
-    public function setDecideReference(string $decideReference) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->decideReference = $decideReference;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSentViaRUE() : bool
-    {
-        return $this->sentViaRUE;
-    }
-
-    /**
-     * @param bool $sentViaRUE
-     * @return $this
-     */
-    public function setSentViaRUE(bool $sentViaRUE) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->sentViaRUE = $sentViaRUE;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDestinationCode() : string
-    {
-        return $this->destinationCode;
-    }
-
-    /**
-     * @param string $destinationCode
-     * @return $this
-     */
-    public function setDestinationCode(string $destinationCode) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->destinationCode = $destinationCode;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlaAnnex() : string
-    {
-        return $this->slaAnnex;
-    }
-
-    /**
-     * @param string $slaAnnex
-     * @return $this
-     */
-    public function setSlaAnnex(string $slaAnnex) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->slaAnnex = $slaAnnex;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlaCommitment() : string
-    {
-        return $this->slaCommitment;
-    }
-
-    /**
-     * @param string $slaCommitment
-     * @return $this
-     */
-    public function setSlaCommitment(string $slaCommitment) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->slaCommitment = $slaCommitment;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getComment() : string
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param string $comment
-     * @return $this
-     */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->comment = $comment;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOnBehalfOf() : string
-    {
-        return $this->onBehalfOf;
-    }
-
-    /**
-     * @param string $onBehalfOf
-     * @return $this
-     */
-    public function setOnBehalfOf(string $onBehalfOf) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
-    {
-        $this->onBehalfOf = $onBehalfOf;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccessibleTo() : string
+    public function getAccessibleTo(): string
     {
         return $this->accessibleTo;
     }
 
     /**
+     * @return string
+     */
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDecideReference(): string
+    {
+        return $this->decideReference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestinationCode(): string
+    {
+        return $this->destinationCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInternalReference(): string
+    {
+        return $this->internalReference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInternalTechnicalId(): string
+    {
+        return $this->internalTechnicalId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOnBehalfOf(): string
+    {
+        return $this->onBehalfOf;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRequestedDeadline(): \DateTime
+    {
+        return $this->requestedDeadline;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlaAnnex(): string
+    {
+        return $this->slaAnnex;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlaCommitment(): string
+    {
+        return $this->slaCommitment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDocumentToBeAdopted(): bool
+    {
+        return $this->documentToBeAdopted;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSensitive(): bool
+    {
+        return $this->sensitive;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSentViaRUE(): bool
+    {
+        return $this->sentViaRUE;
+    }
+
+    /**
      * @param string $accessibleTo
+     *
      * @return $this
      */
-    public function setAccessibleTo(string $accessibleTo) : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
+    public function setAccessibleTo(string $accessibleTo): self
     {
         $this->accessibleTo = $accessibleTo;
+
+        return $this;
+    }
+
+    /**
+     * @param string $comment
+     *
+     * @return $this
+     */
+    public function setComment(string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * @param string $decideReference
+     *
+     * @return $this
+     */
+    public function setDecideReference(string $decideReference): self
+    {
+        $this->decideReference = $decideReference;
+
+        return $this;
+    }
+
+    /**
+     * @param string $destinationCode
+     *
+     * @return $this
+     */
+    public function setDestinationCode(string $destinationCode): self
+    {
+        $this->destinationCode = $destinationCode;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $documentToBeAdopted
+     *
+     * @return $this
+     */
+    public function setDocumentToBeAdopted(bool $documentToBeAdopted): self
+    {
+        $this->documentToBeAdopted = $documentToBeAdopted;
+
+        return $this;
+    }
+
+    /**
+     * @param string $internalReference
+     *
+     * @return $this
+     */
+    public function setInternalReference(string $internalReference): self
+    {
+        $this->internalReference = $internalReference;
+
+        return $this;
+    }
+
+    /**
+     * @param string $internalTechnicalId
+     *
+     * @return $this
+     */
+    public function setInternalTechnicalId(string $internalTechnicalId): self
+    {
+        $this->internalTechnicalId = $internalTechnicalId;
+
+        return $this;
+    }
+
+    /**
+     * @param string $onBehalfOf
+     *
+     * @return $this
+     */
+    public function setOnBehalfOf(string $onBehalfOf): self
+    {
+        $this->onBehalfOf = $onBehalfOf;
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTime $requestedDeadline
+     *
+     * @return $this
+     */
+    public function setRequestedDeadline($requestedDeadline): self
+    {
+        $this->requestedDeadline = $requestedDeadline;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $sensitive
+     *
+     * @return $this
+     */
+    public function setSensitive(bool $sensitive): self
+    {
+        $this->sensitive = $sensitive;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $sentViaRUE
+     *
+     * @return $this
+     */
+    public function setSentViaRUE(bool $sentViaRUE): self
+    {
+        $this->sentViaRUE = $sentViaRUE;
+
+        return $this;
+    }
+
+    /**
+     * @param string $slaAnnex
+     *
+     * @return $this
+     */
+    public function setSlaAnnex(string $slaAnnex): self
+    {
+        $this->slaAnnex = $slaAnnex;
+
+        return $this;
+    }
+
+    /**
+     * @param string $slaCommitment
+     *
+     * @return $this
+     */
+    public function setSlaCommitment(string $slaCommitment): self
+    {
+        $this->slaCommitment = $slaCommitment;
+
+        return $this;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return $this
+     */
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
         return $this;
     }
 }

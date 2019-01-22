@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\EPoetryClient;
-use OpenEuropa\EPoetry\EPoetryClassmap;
-use Phpro\SoapClient\ClientFactory as PhproClientFactory;
 use Phpro\SoapClient\ClientBuilder;
+use Phpro\SoapClient\ClientFactory as PhproClientFactory;
 
 class EPoetryClientFactory
 {
-    public static function factory(string $wsdl) : \OpenEuropa\EPoetry\EPoetryClient
+    public static function factory(string $wsdl): EPoetryClient
     {
         $clientFactory = new PhproClientFactory(EPoetryClient::class);
         $clientBuilder = new ClientBuilder($clientFactory, $wsdl, []);

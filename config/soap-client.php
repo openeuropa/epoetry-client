@@ -1,9 +1,11 @@
 <?php
 
-use Phpro\SoapClient\CodeGenerator\Assembler;
+declare(strict_types = 1);
+
 use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
-use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
+use Phpro\SoapClient\CodeGenerator\Rules;
 
 return Config::create()
     ->setWsdl('resources/dgtServiceWSDL.xml')

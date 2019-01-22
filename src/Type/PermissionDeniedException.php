@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class PermissionDeniedException
 {
-
     /**
      * @var string
      */
@@ -18,36 +19,40 @@ class PermissionDeniedException
     /**
      * @return string
      */
-    public function getMessage() : string
+    public function getMessage(): string
     {
         return $this->message;
     }
 
     /**
-     * @param string $message
-     * @return $this
-     */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Type\PermissionDeniedException
-    {
-        $this->message = $message;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getUid() : string
+    public function getUid(): string
     {
         return $this->uid;
     }
 
     /**
-     * @param string $uid
+     * @param string $message
+     *
      * @return $this
      */
-    public function setUid(string $uid) : \OpenEuropa\EPoetry\Type\PermissionDeniedException
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * @param string $uid
+     *
+     * @return $this
+     */
+    public function setUid(string $uid): self
     {
         $this->uid = $uid;
+
         return $this;
     }
 }

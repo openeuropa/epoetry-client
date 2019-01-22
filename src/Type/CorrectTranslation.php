@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class CorrectTranslation
 {
+    /**
+     * @var \OpenEuropa\EPoetry\Type\CorrectionDocument
+     */
+    private $correction;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\ProductReference
@@ -11,43 +17,42 @@ class CorrectTranslation
     private $product;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\CorrectionDocument
-     */
-    private $correction;
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\ProductReference
-     */
-    public function getProduct() : \OpenEuropa\EPoetry\Type\ProductReference
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Type\ProductReference $product
-     * @return $this
-     */
-    public function setProduct($product) : \OpenEuropa\EPoetry\Type\CorrectTranslation
-    {
-        $this->product = $product;
-        return $this;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\CorrectionDocument
      */
-    public function getCorrection() : \OpenEuropa\EPoetry\Type\CorrectionDocument
+    public function getCorrection(): CorrectionDocument
     {
         return $this->correction;
     }
 
     /**
+     * @return \OpenEuropa\EPoetry\Type\ProductReference
+     */
+    public function getProduct(): ProductReference
+    {
+        return $this->product;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Type\CorrectionDocument $correction
+     *
      * @return $this
      */
-    public function setCorrection($correction) : \OpenEuropa\EPoetry\Type\CorrectTranslation
+    public function setCorrection($correction): self
     {
         $this->correction = $correction;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\ProductReference $product
+     *
+     * @return $this
+     */
+    public function setProduct($product): self
+    {
+        $this->product = $product;
+
         return $this;
     }
 }

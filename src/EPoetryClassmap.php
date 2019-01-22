@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Type;
-use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Phpro\SoapClient\Soap\ClassMap\ClassMap;
+use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 
 class EPoetryClassmap
 {
-    public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
+    public static function getCollection(): ClassMapCollection
     {
         return new ClassMapCollection([
             new ClassMap('receiveNotificationsResponse', Type\ReceiveNotificationsResponse::class),

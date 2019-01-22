@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry\Type;
 
 class CreateRequests
 {
-
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
@@ -23,54 +24,60 @@ class CreateRequests
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+    public function getLinguisticRequest(): LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
-     * @return $this
-     */
-    public function setLinguisticRequest($linguisticRequest) : \OpenEuropa\EPoetry\Type\CreateRequests
-    {
-        $this->linguisticRequest = $linguisticRequest;
-        return $this;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    public function getRelatedRequest() : \OpenEuropa\EPoetry\Type\RequestReferenceIn
+    public function getRelatedRequest(): RequestReferenceIn
     {
         return $this->relatedRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\RequestReferenceIn $relatedRequest
-     * @return $this
-     */
-    public function setRelatedRequest($relatedRequest) : \OpenEuropa\EPoetry\Type\CreateRequests
-    {
-        $this->relatedRequest = $relatedRequest;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return $this->templateName;
     }
 
     /**
-     * @param string $templateName
+     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
+     *
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Type\CreateRequests
+    public function setLinguisticRequest($linguisticRequest): self
+    {
+        $this->linguisticRequest = $linguisticRequest;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\RequestReferenceIn $relatedRequest
+     *
+     * @return $this
+     */
+    public function setRelatedRequest($relatedRequest): self
+    {
+        $this->relatedRequest = $relatedRequest;
+
+        return $this;
+    }
+
+    /**
+     * @param string $templateName
+     *
+     * @return $this
+     */
+    public function setTemplateName(string $templateName): self
     {
         $this->templateName = $templateName;
+
         return $this;
     }
 }

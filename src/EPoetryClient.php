@@ -1,72 +1,84 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Type;
+use Phpro\SoapClient\Exception\SoapException;
 use Phpro\SoapClient\Type\RequestInterface;
 use Phpro\SoapClient\Type\ResultInterface;
-use Phpro\SoapClient\Exception\SoapException;
 
 class EPoetryClient extends \Phpro\SoapClient\Client
 {
-
-    /**
-     * @param RequestInterface|Type\FindLinguisticRequest $parameters
-     * @return ResultInterface|Type\FindLinguisticRequestResponse
-     * @throws SoapException
-     */
-    public function findLinguisticRequest(\OpenEuropa\EPoetry\Type\FindLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Type\FindLinguisticRequestResponse
-    {
-        return $this->call('findLinguisticRequest', $parameters);
-    }
-
-    /**
-     * @param RequestInterface|Type\ModifyRequest $parameters
-     * @return ResultInterface|Type\ModifyRequestResponse
-     * @throws SoapException
-     */
-    public function modifyRequest(\OpenEuropa\EPoetry\Type\ModifyRequest $parameters) : \OpenEuropa\EPoetry\Type\ModifyRequestResponse
-    {
-        return $this->call('modifyRequest', $parameters);
-    }
-
     /**
      * @param RequestInterface|Type\CorrectTranslation $parameters
-     * @return ResultInterface|Type\CorrectTranslationResponse
+     *
      * @throws SoapException
+     *
+     * @return ResultInterface|Type\CorrectTranslationResponse
      */
-    public function correctTranslation(\OpenEuropa\EPoetry\Type\CorrectTranslation $parameters) : \OpenEuropa\EPoetry\Type\CorrectTranslationResponse
+    public function correctTranslation(Type\CorrectTranslation $parameters): Type\CorrectTranslationResponse
     {
         return $this->call('correctTranslation', $parameters);
     }
 
     /**
-     * @param RequestInterface|Type\ReceiveNotifications $parameters
-     * @return ResultInterface|Type\ReceiveNotificationsResponse
+     * @param RequestInterface|Type\CreateRequests $parameters
+     *
      * @throws SoapException
+     *
+     * @return ResultInterface|Type\CreateRequestsResponse
      */
-    public function receiveNotifications(\OpenEuropa\EPoetry\Type\ReceiveNotifications $parameters) : \OpenEuropa\EPoetry\Type\ReceiveNotificationsResponse
+    public function createRequests(Type\CreateRequests $parameters): Type\CreateRequestsResponse
     {
-        return $this->call('receiveNotifications', $parameters);
+        return $this->call('createRequests', $parameters);
+    }
+
+    /**
+     * @param RequestInterface|Type\FindLinguisticRequest $parameters
+     *
+     * @throws SoapException
+     *
+     * @return ResultInterface|Type\FindLinguisticRequestResponse
+     */
+    public function findLinguisticRequest(Type\FindLinguisticRequest $parameters): Type\FindLinguisticRequestResponse
+    {
+        return $this->call('findLinguisticRequest', $parameters);
     }
 
     /**
      * @param RequestInterface|Type\GetLinguisticRequest $parameters
-     * @return ResultInterface|Type\GetLinguisticRequestResponse
+     *
      * @throws SoapException
+     *
+     * @return ResultInterface|Type\GetLinguisticRequestResponse
      */
-    public function getLinguisticRequest(\OpenEuropa\EPoetry\Type\GetLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Type\GetLinguisticRequestResponse
+    public function getLinguisticRequest(Type\GetLinguisticRequest $parameters): Type\GetLinguisticRequestResponse
     {
         return $this->call('getLinguisticRequest', $parameters);
     }
 
     /**
-     * @param RequestInterface|Type\CreateRequests $parameters
-     * @return ResultInterface|Type\CreateRequestsResponse
+     * @param RequestInterface|Type\ModifyRequest $parameters
+     *
      * @throws SoapException
+     *
+     * @return ResultInterface|Type\ModifyRequestResponse
      */
-    public function createRequests(\OpenEuropa\EPoetry\Type\CreateRequests $parameters) : \OpenEuropa\EPoetry\Type\CreateRequestsResponse
+    public function modifyRequest(Type\ModifyRequest $parameters): Type\ModifyRequestResponse
     {
-        return $this->call('createRequests', $parameters);
+        return $this->call('modifyRequest', $parameters);
+    }
+
+    /**
+     * @param RequestInterface|Type\ReceiveNotifications $parameters
+     *
+     * @throws SoapException
+     *
+     * @return ResultInterface|Type\ReceiveNotificationsResponse
+     */
+    public function receiveNotifications(Type\ReceiveNotifications $parameters): Type\ReceiveNotificationsResponse
+    {
+        return $this->call('receiveNotifications', $parameters);
     }
 }

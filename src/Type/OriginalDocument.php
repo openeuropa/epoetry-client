@@ -1,21 +1,15 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Type;
+declare(strict_types = 1);
 
-use \OpenEuropa\EPoetry\Type\DgtDocument;
+namespace OpenEuropa\EPoetry\Type;
 
 class OriginalDocument extends DgtDocument
 {
-
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
      */
     private $linguisticSections;
-
-    /**
-     * @var bool
-     */
-    private $trackChanges;
 
     /**
      * @var float
@@ -23,56 +17,67 @@ class OriginalDocument extends DgtDocument
     private $pages;
 
     /**
+     * @var bool
+     */
+    private $trackChanges;
+
+    /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Type\LinguisticSections
+    public function getLinguisticSections(): LinguisticSections
     {
         return $this->linguisticSections;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
-     * @return $this
-     */
-    public function setLinguisticSections($linguisticSections) : \OpenEuropa\EPoetry\Type\OriginalDocument
-    {
-        $this->linguisticSections = $linguisticSections;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isTrackChanges() : bool
-    {
-        return $this->trackChanges;
-    }
-
-    /**
-     * @param bool $trackChanges
-     * @return $this
-     */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Type\OriginalDocument
-    {
-        $this->trackChanges = $trackChanges;
-        return $this;
-    }
-
-    /**
      * @return float
      */
-    public function getPages() : float
+    public function getPages(): float
     {
         return $this->pages;
     }
 
     /**
-     * @param float $pages
+     * @return bool
+     */
+    public function isTrackChanges(): bool
+    {
+        return $this->trackChanges;
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
+     *
      * @return $this
      */
-    public function setPages(float $pages) : \OpenEuropa\EPoetry\Type\OriginalDocument
+    public function setLinguisticSections($linguisticSections): self
+    {
+        $this->linguisticSections = $linguisticSections;
+
+        return $this;
+    }
+
+    /**
+     * @param float $pages
+     *
+     * @return $this
+     */
+    public function setPages(float $pages): self
     {
         $this->pages = $pages;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $trackChanges
+     *
+     * @return $this
+     */
+    public function setTrackChanges(bool $trackChanges): self
+    {
+        $this->trackChanges = $trackChanges;
+
         return $this;
     }
 }
