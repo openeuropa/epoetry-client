@@ -33,24 +33,6 @@ class FindLinguisticRequest implements RequestInterface
     private $productCode;
 
     /**
-     * Constructor
-     *
-     * @var string $requesterCode
-     * @var int $year
-     * @var int $number
-     * @var int $part
-     * @var string $productCode
-     */
-    public function __construct(string $requesterCode, int $year, int $number, int $part, string $productCode)
-    {
-        $this->requesterCode = $requesterCode;
-        $this->year = $year;
-        $this->number = $number;
-        $this->part = $part;
-        $this->productCode = $productCode;
-    }
-
-    /**
      * @return string
      */
     public function getRequesterCode() : string
@@ -139,4 +121,7 @@ class FindLinguisticRequest implements RequestInterface
         $this->productCode = $productCode;
         return $this;
     }
+
+
 }
+

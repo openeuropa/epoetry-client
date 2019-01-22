@@ -16,18 +16,6 @@ class RequestReferenceIn
     private $internalTechnicalId;
 
     /**
-     * Constructor
-     *
-     * @var int $id
-     * @var string $internalTechnicalId
-     */
-    public function __construct(int $id, string $internalTechnicalId)
-    {
-        $this->id = $id;
-        $this->internalTechnicalId = $internalTechnicalId;
-    }
-
-    /**
      * @return int
      */
     public function getId() : int
@@ -62,4 +50,7 @@ class RequestReferenceIn
         $this->internalTechnicalId = $internalTechnicalId;
         return $this;
     }
+
+
 }
+

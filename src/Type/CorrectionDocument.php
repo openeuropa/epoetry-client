@@ -2,13 +2,11 @@
 
 namespace OpenEuropa\EPoetry\Type;
 
-class CorrectionDocument
+use \OpenEuropa\EPoetry\Type\DgtDocument;
+
+class CorrectionDocument extends DgtDocument
 {
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
+
 }
+

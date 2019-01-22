@@ -26,22 +26,6 @@ class ProductRequestIn
     private $trackChanges;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LanguageIn $language
-     * @var \DateTime $requestedDeadline
-     * @var string $internalProductReference
-     * @var bool $trackChanges
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LanguageIn $language, \DateTime $requestedDeadline, string $internalProductReference, bool $trackChanges)
-    {
-        $this->language = $language;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->internalProductReference = $internalProductReference;
-        $this->trackChanges = $trackChanges;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LanguageIn
      */
     public function getLanguage() : \OpenEuropa\EPoetry\Type\LanguageIn
@@ -112,4 +96,7 @@ class ProductRequestIn
         $this->trackChanges = $trackChanges;
         return $this;
     }
+
+
 }
+

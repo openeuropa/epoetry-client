@@ -13,16 +13,6 @@ class GetLinguisticRequest implements RequestInterface
     private $request;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn $request
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\RequestReferenceIn $request)
-    {
-        $this->request = $request;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     public function getRequest() : \OpenEuropa\EPoetry\Type\RequestReferenceIn
@@ -39,4 +29,7 @@ class GetLinguisticRequest implements RequestInterface
         $this->request = $request;
         return $this;
     }
+
+
 }
+

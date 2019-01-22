@@ -11,16 +11,6 @@ class Language
     private $code;
 
     /**
-     * Constructor
-     *
-     * @var string $code
-     */
-    public function __construct(string $code)
-    {
-        $this->code = $code;
-    }
-
-    /**
      * @return string
      */
     public function getCode() : string
@@ -37,4 +27,7 @@ class Language
         $this->code = $code;
         return $this;
     }
+
+
 }
+

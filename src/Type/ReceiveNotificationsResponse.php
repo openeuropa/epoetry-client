@@ -13,16 +13,6 @@ class ReceiveNotificationsResponse implements ResultInterface
     private $return;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\DgtNotification $return
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\DgtNotification $return)
-    {
-        $this->return = $return;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\DgtNotification
      */
     public function getReturn() : \OpenEuropa\EPoetry\Type\DgtNotification
@@ -39,4 +29,7 @@ class ReceiveNotificationsResponse implements ResultInterface
         $this->return = $return;
         return $this;
     }
+
+
 }
+

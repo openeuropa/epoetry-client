@@ -6,35 +6,28 @@ class LanguageIn
 {
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\LanguageCode
+     * @var string
      */
     private $code;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LanguageCode $code
+     * @return string
      */
-    public function __construct(\OpenEuropa\EPoetry\Type\LanguageCode $code)
-    {
-        $this->code = $code;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\LanguageCode
-     */
-    public function getCode() : \OpenEuropa\EPoetry\Type\LanguageCode
+    public function getCode() : string
     {
         return $this->code;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LanguageCode $code
+     * @param string $code
      * @return $this
      */
-    public function setCode($code) : \OpenEuropa\EPoetry\Type\LanguageIn
+    public function setCode(string $code) : \OpenEuropa\EPoetry\Type\LanguageIn
     {
         $this->code = $code;
         return $this;
     }
+
+
 }
+

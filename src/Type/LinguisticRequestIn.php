@@ -31,24 +31,6 @@ class LinguisticRequestIn
     private $auxiliaryDocuments;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn $generalInfo
-     * @var \OpenEuropa\EPoetry\Type\Contacts $contacts
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocumentIn $originalDocument
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests $productRequests
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\RequestGeneralInfoIn $generalInfo, \OpenEuropa\EPoetry\Type\Contacts $contacts, \OpenEuropa\EPoetry\Type\OriginalDocumentIn $originalDocument, \OpenEuropa\EPoetry\Type\ProductRequests $productRequests, \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments)
-    {
-        $this->generalInfo = $generalInfo;
-        $this->contacts = $contacts;
-        $this->originalDocument = $originalDocument;
-        $this->productRequests = $productRequests;
-        $this->auxiliaryDocuments = $auxiliaryDocuments;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
      */
     public function getGeneralInfo() : \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
@@ -137,4 +119,7 @@ class LinguisticRequestIn
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
     }
+
+
 }
+

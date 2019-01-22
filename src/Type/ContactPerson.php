@@ -26,27 +26,9 @@ class ContactPerson
     private $userId;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ContactRole
+     * @var string
      */
     private $roleCode;
-
-    /**
-     * Constructor
-     *
-     * @var string $firstName
-     * @var string $lastName
-     * @var string $email
-     * @var string $userId
-     * @var \OpenEuropa\EPoetry\Type\ContactRole $roleCode
-     */
-    public function __construct(string $firstName, string $lastName, string $email, string $userId, \OpenEuropa\EPoetry\Type\ContactRole $roleCode)
-    {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->userId = $userId;
-        $this->roleCode = $roleCode;
-    }
 
     /**
      * @return string
@@ -121,20 +103,23 @@ class ContactPerson
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ContactRole
+     * @return string
      */
-    public function getRoleCode() : \OpenEuropa\EPoetry\Type\ContactRole
+    public function getRoleCode() : string
     {
         return $this->roleCode;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ContactRole $roleCode
+     * @param string $roleCode
      * @return $this
      */
-    public function setRoleCode($roleCode) : \OpenEuropa\EPoetry\Type\ContactPerson
+    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Type\ContactPerson
     {
         $this->roleCode = $roleCode;
         return $this;
     }
+
+
 }
+

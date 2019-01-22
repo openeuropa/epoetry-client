@@ -11,16 +11,6 @@ class AuxiliaryDocuments
     private $auxiliaryDocument;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument)
-    {
-        $this->auxiliaryDocument = $auxiliaryDocument;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocument
      */
     public function getAuxiliaryDocument() : \OpenEuropa\EPoetry\Type\AuxiliaryDocument
@@ -37,4 +27,7 @@ class AuxiliaryDocuments
         $this->auxiliaryDocument = $auxiliaryDocument;
         return $this;
     }
+
+
 }
+

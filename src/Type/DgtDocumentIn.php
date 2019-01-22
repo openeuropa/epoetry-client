@@ -6,17 +6,17 @@ class DgtDocumentIn
 {
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Base64Binary
+     * @var string
      */
     private $file;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\DocumentFormat
+     * @var string
      */
     private $format;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\DocumentTypeIn
+     * @var string
      */
     private $type;
 
@@ -26,70 +26,54 @@ class DgtDocumentIn
     private $name;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\Base64Binary $file
-     * @var \OpenEuropa\EPoetry\Type\DocumentFormat $format
-     * @var \OpenEuropa\EPoetry\Type\DocumentTypeIn $type
-     * @var string $name
+     * @return string
      */
-    public function __construct(\OpenEuropa\EPoetry\Type\Base64Binary $file, \OpenEuropa\EPoetry\Type\DocumentFormat $format, \OpenEuropa\EPoetry\Type\DocumentTypeIn $type, string $name)
-    {
-        $this->file = $file;
-        $this->format = $format;
-        $this->type = $type;
-        $this->name = $name;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\Base64Binary
-     */
-    public function getFile() : \OpenEuropa\EPoetry\Type\Base64Binary
+    public function getFile() : string
     {
         return $this->file;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\Base64Binary $file
+     * @param string $file
      * @return $this
      */
-    public function setFile($file) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
+    public function setFile(string $file) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
     {
         $this->file = $file;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\DocumentFormat
+     * @return string
      */
-    public function getFormat() : \OpenEuropa\EPoetry\Type\DocumentFormat
+    public function getFormat() : string
     {
         return $this->format;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DocumentFormat $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat($format) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\DocumentTypeIn
+     * @return string
      */
-    public function getType() : \OpenEuropa\EPoetry\Type\DocumentTypeIn
+    public function getType() : string
     {
         return $this->type;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DocumentTypeIn $type
+     * @param string $type
      * @return $this
      */
-    public function setType($type) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
+    public function setType(string $type) : \OpenEuropa\EPoetry\Type\DgtDocumentIn
     {
         $this->type = $type;
         return $this;
@@ -112,4 +96,7 @@ class DgtDocumentIn
         $this->name = $name;
         return $this;
     }
+
+
 }
+

@@ -43,28 +43,6 @@ class LinguisticRequest implements RequestInterface
     private $statusCode;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\RequestReference $reference
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo $generalInfo
-     * @var \OpenEuropa\EPoetry\Type\Contacts $contacts
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocument $originalDocument
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests $productRequests
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments
-     * @var string $statusCode
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\RequestReference $reference, \OpenEuropa\EPoetry\Type\RequestGeneralInfo $generalInfo, \OpenEuropa\EPoetry\Type\Contacts $contacts, \OpenEuropa\EPoetry\Type\OriginalDocument $originalDocument, \OpenEuropa\EPoetry\Type\ProductRequests $productRequests, \OpenEuropa\EPoetry\Type\AuxiliaryDocuments $auxiliaryDocuments, string $statusCode)
-    {
-        $this->reference = $reference;
-        $this->generalInfo = $generalInfo;
-        $this->contacts = $contacts;
-        $this->originalDocument = $originalDocument;
-        $this->productRequests = $productRequests;
-        $this->auxiliaryDocuments = $auxiliaryDocuments;
-        $this->statusCode = $statusCode;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\RequestReference
      */
     public function getReference() : \OpenEuropa\EPoetry\Type\RequestReference
@@ -189,4 +167,7 @@ class LinguisticRequest implements RequestInterface
         $this->statusCode = $statusCode;
         return $this;
     }
+
+
 }
+

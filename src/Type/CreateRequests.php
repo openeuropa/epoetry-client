@@ -21,20 +21,6 @@ class CreateRequests
     private $templateName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn $relatedRequest
-     * @var string $templateName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest, \OpenEuropa\EPoetry\Type\RequestReferenceIn $relatedRequest, string $templateName)
-    {
-        $this->linguisticRequest = $linguisticRequest;
-        $this->relatedRequest = $relatedRequest;
-        $this->templateName = $templateName;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
     public function getLinguisticRequest() : \OpenEuropa\EPoetry\Type\LinguisticRequestIn
@@ -87,4 +73,7 @@ class CreateRequests
         $this->templateName = $templateName;
         return $this;
     }
+
+
 }
+

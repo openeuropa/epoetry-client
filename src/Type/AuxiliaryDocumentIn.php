@@ -2,39 +2,34 @@
 
 namespace OpenEuropa\EPoetry\Type;
 
-class AuxiliaryDocumentIn
+use \OpenEuropa\EPoetry\Type\DgtDocumentIn;
+
+class AuxiliaryDocumentIn extends DgtDocumentIn
 {
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\LanguageCode
+     * @var string
      */
     private $language;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LanguageCode $language
+     * @return string
      */
-    public function __construct(\OpenEuropa\EPoetry\Type\LanguageCode $language)
-    {
-        $this->language = $language;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\LanguageCode
-     */
-    public function getLanguage() : \OpenEuropa\EPoetry\Type\LanguageCode
+    public function getLanguage() : string
     {
         return $this->language;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LanguageCode $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage($language) : \OpenEuropa\EPoetry\Type\AuxiliaryDocumentIn
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Type\AuxiliaryDocumentIn
     {
         $this->language = $language;
         return $this;
     }
+
+
 }
+

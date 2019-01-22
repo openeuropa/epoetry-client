@@ -13,16 +13,6 @@ class ModifyRequestResponse implements ResultInterface
     private $return;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequest $return
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LinguisticRequest $return)
-    {
-        $this->return = $return;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequest
      */
     public function getReturn() : \OpenEuropa\EPoetry\Type\LinguisticRequest
@@ -39,4 +29,7 @@ class ModifyRequestResponse implements ResultInterface
         $this->return = $return;
         return $this;
     }
+
+
 }
+

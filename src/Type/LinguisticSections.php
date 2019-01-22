@@ -11,16 +11,6 @@ class LinguisticSections
     private $linguisticSection;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSection $linguisticSection
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LinguisticSection $linguisticSection)
-    {
-        $this->linguisticSection = $linguisticSection;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSection
      */
     public function getLinguisticSection() : \OpenEuropa\EPoetry\Type\LinguisticSection
@@ -37,4 +27,7 @@ class LinguisticSections
         $this->linguisticSection = $linguisticSection;
         return $this;
     }
+
+
 }
+

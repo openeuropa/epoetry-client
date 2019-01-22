@@ -11,16 +11,6 @@ class LinguisticSectionIn
     private $language;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LanguageIn $language
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LanguageIn $language)
-    {
-        $this->language = $language;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\LanguageIn
      */
     public function getLanguage() : \OpenEuropa\EPoetry\Type\LanguageIn
@@ -37,4 +27,7 @@ class LinguisticSectionIn
         $this->language = $language;
         return $this;
     }
+
+
 }
+

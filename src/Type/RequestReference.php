@@ -51,32 +51,6 @@ class RequestReference
     private $requesterCode;
 
     /**
-     * Constructor
-     *
-     * @var int $year
-     * @var int $number
-     * @var int $part
-     * @var int $version
-     * @var int $id
-     * @var string $internalReference
-     * @var string $internalTechnicalId
-     * @var string $productType
-     * @var string $requesterCode
-     */
-    public function __construct(int $year, int $number, int $part, int $version, int $id, string $internalReference, string $internalTechnicalId, string $productType, string $requesterCode)
-    {
-        $this->year = $year;
-        $this->number = $number;
-        $this->part = $part;
-        $this->version = $version;
-        $this->id = $id;
-        $this->internalReference = $internalReference;
-        $this->internalTechnicalId = $internalTechnicalId;
-        $this->productType = $productType;
-        $this->requesterCode = $requesterCode;
-    }
-
-    /**
      * @return int
      */
     public function getYear() : int
@@ -237,4 +211,7 @@ class RequestReference
         $this->requesterCode = $requesterCode;
         return $this;
     }
+
+
 }
+

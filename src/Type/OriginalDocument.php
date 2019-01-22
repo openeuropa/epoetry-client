@@ -2,7 +2,9 @@
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocument
+use \OpenEuropa\EPoetry\Type\DgtDocument;
+
+class OriginalDocument extends DgtDocument
 {
 
     /**
@@ -19,20 +21,6 @@ class OriginalDocument
      * @var float
      */
     private $pages;
-
-    /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
-     * @var bool $trackChanges
-     * @var float $pages
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections, bool $trackChanges, float $pages)
-    {
-        $this->linguisticSections = $linguisticSections;
-        $this->trackChanges = $trackChanges;
-        $this->pages = $pages;
-    }
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections
@@ -87,4 +75,7 @@ class OriginalDocument
         $this->pages = $pages;
         return $this;
     }
+
+
 }
+

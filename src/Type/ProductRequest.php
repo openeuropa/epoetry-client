@@ -43,28 +43,6 @@ class ProductRequest implements RequestInterface
     private $internalProductReference;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\Language $language
-     * @var \DateTime $requestedDeadline
-     * @var \DateTime $acceptedDeadline
-     * @var string $formatCode
-     * @var string $statusCode
-     * @var bool $trackChanges
-     * @var string $internalProductReference
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\Language $language, \DateTime $requestedDeadline, \DateTime $acceptedDeadline, string $formatCode, string $statusCode, bool $trackChanges, string $internalProductReference)
-    {
-        $this->language = $language;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->acceptedDeadline = $acceptedDeadline;
-        $this->formatCode = $formatCode;
-        $this->statusCode = $statusCode;
-        $this->trackChanges = $trackChanges;
-        $this->internalProductReference = $internalProductReference;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\Language
      */
     public function getLanguage() : \OpenEuropa\EPoetry\Type\Language
@@ -189,4 +167,7 @@ class ProductRequest implements RequestInterface
         $this->internalProductReference = $internalProductReference;
         return $this;
     }
+
+
 }
+

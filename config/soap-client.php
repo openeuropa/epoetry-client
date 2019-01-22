@@ -23,11 +23,6 @@ return Config::create()
         (new Assembler\SetterAssemblerOptions())
             ->withTypeHints()
     )))
-    ->addRule(new Rules\AssembleRule(new Assembler\ConstructorAssembler(
-        (new Assembler\ConstructorAssemblerOptions())
-            ->withTypeHints()
-            ->withDocBlocks()
-    )))
     ->addRule(new Rules\AssembleRule(new Assembler\FluentSetterAssembler(
         (new Assembler\FluentSetterAssemblerOptions())
             ->withTypeHints()
@@ -43,6 +38,18 @@ return Config::create()
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
             '/Request$/'
+        )
+    )
+    ->addRule(
+        new Rules\TypenameMatchesRule(
+            new Rules\AssembleRule(new Assembler\ExtendAssembler('\OpenEuropa\EPoetry\Type\DgtDocument')),
+            '/^(Auxiliary|Correction|Original)Document$/'
+        )
+    )
+    ->addRule(
+        new Rules\TypenameMatchesRule(
+            new Rules\AssembleRule(new Assembler\ExtendAssembler('\OpenEuropa\EPoetry\Type\DgtDocumentIn')),
+            '/^(Auxiliary|Original)DocumentIn$/'
         )
     )
 ;

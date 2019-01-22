@@ -16,18 +16,6 @@ class RequestNotFoundException
     private $uid;
 
     /**
-     * Constructor
-     *
-     * @var string $message
-     * @var string $uid
-     */
-    public function __construct(string $message, string $uid)
-    {
-        $this->message = $message;
-        $this->uid = $uid;
-    }
-
-    /**
      * @return string
      */
     public function getMessage() : string
@@ -62,4 +50,7 @@ class RequestNotFoundException
         $this->uid = $uid;
         return $this;
     }
+
+
 }
+

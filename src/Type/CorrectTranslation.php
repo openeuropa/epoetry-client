@@ -16,18 +16,6 @@ class CorrectTranslation
     private $correction;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\ProductReference $product
-     * @var \OpenEuropa\EPoetry\Type\CorrectionDocument $correction
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\ProductReference $product, \OpenEuropa\EPoetry\Type\CorrectionDocument $correction)
-    {
-        $this->product = $product;
-        $this->correction = $correction;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\ProductReference
      */
     public function getProduct() : \OpenEuropa\EPoetry\Type\ProductReference
@@ -62,4 +50,7 @@ class CorrectTranslation
         $this->correction = $correction;
         return $this;
     }
+
+
 }
+

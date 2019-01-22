@@ -11,16 +11,6 @@ class ProductRequests
     private $productRequest;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\ProductRequest $productRequest
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\ProductRequest $productRequest)
-    {
-        $this->productRequest = $productRequest;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\ProductRequest
      */
     public function getProductRequest() : \OpenEuropa\EPoetry\Type\ProductRequest
@@ -37,4 +27,7 @@ class ProductRequests
         $this->productRequest = $productRequest;
         return $this;
     }
+
+
 }
+

@@ -2,7 +2,9 @@
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocumentIn
+use \OpenEuropa\EPoetry\Type\DgtDocumentIn;
+
+class OriginalDocumentIn extends DgtDocumentIn
 {
 
     /**
@@ -14,18 +16,6 @@ class OriginalDocumentIn
      * @var bool
      */
     private $trackChanges;
-
-    /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections
-     * @var bool $trackChanges
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\LinguisticSections $linguisticSections, bool $trackChanges)
-    {
-        $this->linguisticSections = $linguisticSections;
-        $this->trackChanges = $trackChanges;
-    }
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections
@@ -62,4 +52,7 @@ class OriginalDocumentIn
         $this->trackChanges = $trackChanges;
         return $this;
     }
+
+
 }
+

@@ -6,12 +6,12 @@ class DgtDocument
 {
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\DocumentFormat
+     * @var string
      */
     private $format;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\DocumentType
+     * @var string
      */
     private $type;
 
@@ -21,50 +21,36 @@ class DgtDocument
     private $name;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\DocumentFormat $format
-     * @var \OpenEuropa\EPoetry\Type\DocumentType $type
-     * @var string $name
+     * @return string
      */
-    public function __construct(\OpenEuropa\EPoetry\Type\DocumentFormat $format, \OpenEuropa\EPoetry\Type\DocumentType $type, string $name)
-    {
-        $this->format = $format;
-        $this->type = $type;
-        $this->name = $name;
-    }
-
-    /**
-     * @return \OpenEuropa\EPoetry\Type\DocumentFormat
-     */
-    public function getFormat() : \OpenEuropa\EPoetry\Type\DocumentFormat
+    public function getFormat() : string
     {
         return $this->format;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DocumentFormat $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat($format) : \OpenEuropa\EPoetry\Type\DgtDocument
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Type\DgtDocument
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\DocumentType
+     * @return string
      */
-    public function getType() : \OpenEuropa\EPoetry\Type\DocumentType
+    public function getType() : string
     {
         return $this->type;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DocumentType $type
+     * @param string $type
      * @return $this
      */
-    public function setType($type) : \OpenEuropa\EPoetry\Type\DgtDocument
+    public function setType(string $type) : \OpenEuropa\EPoetry\Type\DgtDocument
     {
         $this->type = $type;
         return $this;
@@ -87,4 +73,7 @@ class DgtDocument
         $this->name = $name;
         return $this;
     }
+
+
 }
+

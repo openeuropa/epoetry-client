@@ -46,12 +46,12 @@ class RequestGeneralInfo
     private $sentViaRUE;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Destination
+     * @var string
      */
     private $destinationCode;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\SlaAnnex
+     * @var string
      */
     private $slaAnnex;
 
@@ -71,7 +71,7 @@ class RequestGeneralInfo
     private $onBehalfOf;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\AccessLevel
+     * @var string
      */
     private $accessibleTo;
 
@@ -84,46 +84,6 @@ class RequestGeneralInfo
      * @var string
      */
     private $serviceOfOrigin;
-
-    /**
-     * Constructor
-     *
-     * @var string $title
-     * @var string $internalReference
-     * @var string $internalTechnicalId
-     * @var \DateTime $requestedDeadline
-     * @var bool $sensitive
-     * @var bool $documentToBeAdopted
-     * @var string $decideReference
-     * @var bool $sentViaRUE
-     * @var \OpenEuropa\EPoetry\Type\Destination $destinationCode
-     * @var \OpenEuropa\EPoetry\Type\SlaAnnex $slaAnnex
-     * @var string $slaCommitment
-     * @var string $comment
-     * @var string $onBehalfOf
-     * @var \OpenEuropa\EPoetry\Type\AccessLevel $accessibleTo
-     * @var string $requestingService
-     * @var string $serviceOfOrigin
-     */
-    public function __construct(string $title, string $internalReference, string $internalTechnicalId, \DateTime $requestedDeadline, bool $sensitive, bool $documentToBeAdopted, string $decideReference, bool $sentViaRUE, \OpenEuropa\EPoetry\Type\Destination $destinationCode, \OpenEuropa\EPoetry\Type\SlaAnnex $slaAnnex, string $slaCommitment, string $comment, string $onBehalfOf, \OpenEuropa\EPoetry\Type\AccessLevel $accessibleTo, string $requestingService, string $serviceOfOrigin)
-    {
-        $this->title = $title;
-        $this->internalReference = $internalReference;
-        $this->internalTechnicalId = $internalTechnicalId;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->sensitive = $sensitive;
-        $this->documentToBeAdopted = $documentToBeAdopted;
-        $this->decideReference = $decideReference;
-        $this->sentViaRUE = $sentViaRUE;
-        $this->destinationCode = $destinationCode;
-        $this->slaAnnex = $slaAnnex;
-        $this->slaCommitment = $slaCommitment;
-        $this->comment = $comment;
-        $this->onBehalfOf = $onBehalfOf;
-        $this->accessibleTo = $accessibleTo;
-        $this->requestingService = $requestingService;
-        $this->serviceOfOrigin = $serviceOfOrigin;
-    }
 
     /**
      * @return string
@@ -270,36 +230,36 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\Destination
+     * @return string
      */
-    public function getDestinationCode() : \OpenEuropa\EPoetry\Type\Destination
+    public function getDestinationCode() : string
     {
         return $this->destinationCode;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\Destination $destinationCode
+     * @param string $destinationCode
      * @return $this
      */
-    public function setDestinationCode($destinationCode) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+    public function setDestinationCode(string $destinationCode) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
     {
         $this->destinationCode = $destinationCode;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\SlaAnnex
+     * @return string
      */
-    public function getSlaAnnex() : \OpenEuropa\EPoetry\Type\SlaAnnex
+    public function getSlaAnnex() : string
     {
         return $this->slaAnnex;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\SlaAnnex $slaAnnex
+     * @param string $slaAnnex
      * @return $this
      */
-    public function setSlaAnnex($slaAnnex) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+    public function setSlaAnnex(string $slaAnnex) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
     {
         $this->slaAnnex = $slaAnnex;
         return $this;
@@ -360,18 +320,18 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\AccessLevel
+     * @return string
      */
-    public function getAccessibleTo() : \OpenEuropa\EPoetry\Type\AccessLevel
+    public function getAccessibleTo() : string
     {
         return $this->accessibleTo;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AccessLevel $accessibleTo
+     * @param string $accessibleTo
      * @return $this
      */
-    public function setAccessibleTo($accessibleTo) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+    public function setAccessibleTo(string $accessibleTo) : \OpenEuropa\EPoetry\Type\RequestGeneralInfo
     {
         $this->accessibleTo = $accessibleTo;
         return $this;
@@ -412,4 +372,7 @@ class RequestGeneralInfo
         $this->serviceOfOrigin = $serviceOfOrigin;
         return $this;
     }
+
+
 }
+

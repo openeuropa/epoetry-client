@@ -8,7 +8,7 @@
     "require": {
         "ext-soap": "*",
         "php": "^7.1",
-        "phpro/soap-client": "^0.7.11"
+        "phpro/soap-client": "dev-OPENEUROPA-1332 as 0.7.11"
     },
     "require-dev": {
         "openeuropa/code-review": "^1.0@alpha",
@@ -25,6 +25,12 @@
             "OpenEuropa\\EPoetry\\Tests\\": "./tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/soap-client"
+        }
+    ],
     "config": {
         "sort-packages": true,
         "platform": {

@@ -23,20 +23,6 @@ class ModifyRequest implements RequestInterface
     private $templateName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn $requestReference
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
-     * @var string $templateName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Type\RequestReferenceIn $requestReference, \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest, string $templateName)
-    {
-        $this->requestReference = $requestReference;
-        $this->linguisticRequest = $linguisticRequest;
-        $this->templateName = $templateName;
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     public function getRequestReference() : \OpenEuropa\EPoetry\Type\RequestReferenceIn
@@ -89,4 +75,7 @@ class ModifyRequest implements RequestInterface
         $this->templateName = $templateName;
         return $this;
     }
+
+
 }
+
