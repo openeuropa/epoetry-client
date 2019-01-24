@@ -59,7 +59,7 @@ class FluentAdderAssembler implements AssemblerInterface
                         'name' => $methodName,
                         'parameters' => [$parameterOptions],
                         'visibility' => MethodGenerator::VISIBILITY_PUBLIC,
-                        'returntype' => $this->options->useReturnType() ? $class->getNamespaceName().'\\'.$class->getName() : null,
+                        'returntype' => $this->options->useReturnType() ? $class->getNamespaceName() . '\\' . $class->getName() : null,
                         'body' => sprintf(
                             '$this->%1$s = is_array($this->%1$s) ? $this->%1$s : [];%2$s$this->%1$s[] = $%1$s;%2$sreturn $this;',
                             $property->getName(),
@@ -89,7 +89,7 @@ class FluentAdderAssembler implements AssemblerInterface
                     'tags' => [
                         [
                             'name' => 'var',
-                            'description' => $property->getType().'[]',
+                            'description' => $property->getType() . '[]',
                         ],
                     ],
                 ]));
@@ -104,7 +104,7 @@ class FluentAdderAssembler implements AssemblerInterface
                     'tags' => [
                         [
                             'name' => 'return',
-                            'description' => $property->getType().'[]',
+                            'description' => $property->getType() . '[]',
                         ],
                     ],
                 ]));

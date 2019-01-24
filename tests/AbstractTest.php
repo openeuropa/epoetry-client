@@ -14,9 +14,9 @@ abstract class AbstractTest extends TestCase
     public $clientFactory;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->clientFactory = $this->createClientFactory();
         parent::setUp();
@@ -26,6 +26,7 @@ abstract class AbstractTest extends TestCase
     {
         $wsdl = 'resources/dgtServiceWSDL.xml';
         $httpClient = new Client();
+
         return new EPoetryClientFactory($wsdl, $httpClient);
     }
 }

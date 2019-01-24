@@ -66,5 +66,4 @@ return Config::create()
             ->generateAdderForProperty('AuxiliaryDocuments', 'auxiliaryDocument')
             ->generateAdderForProperty('CreateRequestsResponse', 'return')
             ->generateAdderForProperty('CreateRequests', 'linguisticRequest')
-    )))
-;
+    )));

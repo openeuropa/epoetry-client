@@ -38,7 +38,7 @@ final class RequestTest extends AbstractTest
             ->setComment('')
             ->setOnBehalfOf('')
             ->setAccessibleTo('');
-        $this->assertEquals($generalInfo->getTitle(), $title);
+        $this->assertSame($generalInfo->getTitle(), $title);
 
         // Generate Contacts.
         $contacts = new Contacts();
@@ -50,6 +50,6 @@ final class RequestTest extends AbstractTest
         $contact->setUserId('2');
         $contact->setRoleCode('EDITOR');
         $contacts = $contacts->addContact($contact);
-        $this->assertEquals($contacts->getContact()[0]->getUserId(), '1');
+        $this->assertSame($contacts->getContact()[0]->getUserId(), '1');
     }
 }
