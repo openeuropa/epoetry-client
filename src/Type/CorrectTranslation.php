@@ -37,7 +37,7 @@ class CorrectTranslation
      *
      * @return $this
      */
-    public function setCorrection($correction): self
+    public function setCorrection($correction): CorrectTranslation
     {
         $this->correction = $correction;
 
@@ -49,7 +49,7 @@ class CorrectTranslation
      *
      * @return $this
      */
-    public function setProduct($product): self
+    public function setProduct($product): CorrectTranslation
     {
         $this->product = $product;
 

@@ -16,7 +16,7 @@ class ProductRequests
      *
      * @return $this
      */
-    public function addProductRequest(ProductRequest $productRequest): self
+    public function addProductRequest(ProductRequest $productRequest): ProductRequests
     {
         $this->productRequest = \is_array($this->productRequest) ? $this->productRequest : [];
         $this->productRequest[] = $productRequest;
@@ -37,7 +37,7 @@ class ProductRequests
      *
      * @return $this
      */
-    public function setProductRequest($productRequest): self
+    public function setProductRequest($productRequest): ProductRequests
     {
         $this->productRequest = $productRequest;
 

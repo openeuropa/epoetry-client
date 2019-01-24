@@ -37,7 +37,7 @@ class ProductNotFoundException
      *
      * @return $this
      */
-    public function setMessage(string $message): self
+    public function setMessage(string $message): ProductNotFoundException
     {
         $this->message = $message;
 
@@ -49,7 +49,7 @@ class ProductNotFoundException
      *
      * @return $this
      */
-    public function setUid(string $uid): self
+    public function setUid(string $uid): ProductNotFoundException
     {
         $this->uid = $uid;
 

@@ -63,7 +63,7 @@ class ProductRequestIn
      *
      * @return $this
      */
-    public function setInternalProductReference(string $internalProductReference): self
+    public function setInternalProductReference(string $internalProductReference): ProductRequestIn
     {
         $this->internalProductReference = $internalProductReference;
 
@@ -75,7 +75,7 @@ class ProductRequestIn
      *
      * @return $this
      */
-    public function setLanguage($language): self
+    public function setLanguage($language): ProductRequestIn
     {
         $this->language = $language;
 
@@ -87,7 +87,7 @@ class ProductRequestIn
      *
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline): self
+    public function setRequestedDeadline($requestedDeadline): ProductRequestIn
     {
         $this->requestedDeadline = $requestedDeadline;
 
@@ -99,7 +99,7 @@ class ProductRequestIn
      *
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges): self
+    public function setTrackChanges(bool $trackChanges): ProductRequestIn
     {
         $this->trackChanges = $trackChanges;
 

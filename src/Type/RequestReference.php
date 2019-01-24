@@ -128,7 +128,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setId(int $id): self
+    public function setId(int $id): RequestReference
     {
         $this->id = $id;
 
@@ -140,7 +140,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setInternalReference(string $internalReference): self
+    public function setInternalReference(string $internalReference): RequestReference
     {
         $this->internalReference = $internalReference;
 
@@ -152,7 +152,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setInternalTechnicalId(string $internalTechnicalId): self
+    public function setInternalTechnicalId(string $internalTechnicalId): RequestReference
     {
         $this->internalTechnicalId = $internalTechnicalId;
 
@@ -164,7 +164,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setNumber(int $number): self
+    public function setNumber(int $number): RequestReference
     {
         $this->number = $number;
 
@@ -176,7 +176,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setPart(int $part): self
+    public function setPart(int $part): RequestReference
     {
         $this->part = $part;
 
@@ -188,7 +188,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setProductType(string $productType): self
+    public function setProductType(string $productType): RequestReference
     {
         $this->productType = $productType;
 
@@ -200,7 +200,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode): self
+    public function setRequesterCode(string $requesterCode): RequestReference
     {
         $this->requesterCode = $requesterCode;
 
@@ -212,7 +212,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setVersion(int $version): self
+    public function setVersion(int $version): RequestReference
     {
         $this->version = $version;
 
@@ -224,7 +224,7 @@ class RequestReference
      *
      * @return $this
      */
-    public function setYear(int $year): self
+    public function setYear(int $year): RequestReference
     {
         $this->year = $year;
 

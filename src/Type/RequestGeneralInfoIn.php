@@ -193,7 +193,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setAccessibleTo(string $accessibleTo): self
+    public function setAccessibleTo(string $accessibleTo): RequestGeneralInfoIn
     {
         $this->accessibleTo = $accessibleTo;
 
@@ -205,7 +205,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setComment(string $comment): self
+    public function setComment(string $comment): RequestGeneralInfoIn
     {
         $this->comment = $comment;
 
@@ -217,7 +217,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setDecideReference(string $decideReference): self
+    public function setDecideReference(string $decideReference): RequestGeneralInfoIn
     {
         $this->decideReference = $decideReference;
 
@@ -229,7 +229,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setDestinationCode(string $destinationCode): self
+    public function setDestinationCode(string $destinationCode): RequestGeneralInfoIn
     {
         $this->destinationCode = $destinationCode;
 
@@ -241,7 +241,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setDocumentToBeAdopted(bool $documentToBeAdopted): self
+    public function setDocumentToBeAdopted(bool $documentToBeAdopted): RequestGeneralInfoIn
     {
         $this->documentToBeAdopted = $documentToBeAdopted;
 
@@ -253,7 +253,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setInternalReference(string $internalReference): self
+    public function setInternalReference(string $internalReference): RequestGeneralInfoIn
     {
         $this->internalReference = $internalReference;
 
@@ -265,7 +265,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setInternalTechnicalId(string $internalTechnicalId): self
+    public function setInternalTechnicalId(string $internalTechnicalId): RequestGeneralInfoIn
     {
         $this->internalTechnicalId = $internalTechnicalId;
 
@@ -277,7 +277,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setOnBehalfOf(string $onBehalfOf): self
+    public function setOnBehalfOf(string $onBehalfOf): RequestGeneralInfoIn
     {
         $this->onBehalfOf = $onBehalfOf;
 
@@ -289,7 +289,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline): self
+    public function setRequestedDeadline($requestedDeadline): RequestGeneralInfoIn
     {
         $this->requestedDeadline = $requestedDeadline;
 
@@ -301,7 +301,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setSensitive(bool $sensitive): self
+    public function setSensitive(bool $sensitive): RequestGeneralInfoIn
     {
         $this->sensitive = $sensitive;
 
@@ -313,7 +313,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setSentViaRUE(bool $sentViaRUE): self
+    public function setSentViaRUE(bool $sentViaRUE): RequestGeneralInfoIn
     {
         $this->sentViaRUE = $sentViaRUE;
 
@@ -325,7 +325,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setSlaAnnex(string $slaAnnex): self
+    public function setSlaAnnex(string $slaAnnex): RequestGeneralInfoIn
     {
         $this->slaAnnex = $slaAnnex;
 
@@ -337,7 +337,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setSlaCommitment(string $slaCommitment): self
+    public function setSlaCommitment(string $slaCommitment): RequestGeneralInfoIn
     {
         $this->slaCommitment = $slaCommitment;
 
@@ -349,7 +349,7 @@ class RequestGeneralInfoIn
      *
      * @return $this
      */
-    public function setTitle(string $title): self
+    public function setTitle(string $title): RequestGeneralInfoIn
     {
         $this->title = $title;
 

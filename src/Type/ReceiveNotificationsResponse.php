@@ -18,7 +18,7 @@ class ReceiveNotificationsResponse implements ResultInterface
      *
      * @return $this
      */
-    public function addReturn(DgtNotification $return): self
+    public function addReturn(DgtNotification $return): ReceiveNotificationsResponse
     {
         $this->return = \is_array($this->return) ? $this->return : [];
         $this->return[] = $return;
@@ -39,7 +39,7 @@ class ReceiveNotificationsResponse implements ResultInterface
      *
      * @return $this
      */
-    public function setReturn($return): self
+    public function setReturn($return): ReceiveNotificationsResponse
     {
         $this->return = $return;
 

@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class ContactPersonIn
+use OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface;
+
+class ContactPersonIn implements \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
 {
     /**
      * @var string
@@ -35,9 +37,9 @@ class ContactPersonIn
     /**
      * @param string $roleCode
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setRoleCode(string $roleCode): self
+    public function setRoleCode(string $roleCode): ContactPersonInterface
     {
         $this->roleCode = $roleCode;
 
@@ -47,9 +49,9 @@ class ContactPersonIn
     /**
      * @param string $userId
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setUserId(string $userId): self
+    public function setUserId(string $userId): ContactPersonInterface
     {
         $this->userId = $userId;
 

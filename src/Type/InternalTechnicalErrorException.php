@@ -37,7 +37,7 @@ class InternalTechnicalErrorException
      *
      * @return $this
      */
-    public function setMessage(string $message): self
+    public function setMessage(string $message): InternalTechnicalErrorException
     {
         $this->message = $message;
 
@@ -49,7 +49,7 @@ class InternalTechnicalErrorException
      *
      * @return $this
      */
-    public function setUid(string $uid): self
+    public function setUid(string $uid): InternalTechnicalErrorException
     {
         $this->uid = $uid;
 

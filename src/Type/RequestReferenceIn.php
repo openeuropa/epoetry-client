@@ -37,7 +37,7 @@ class RequestReferenceIn
      *
      * @return $this
      */
-    public function setId(int $id): self
+    public function setId(int $id): RequestReferenceIn
     {
         $this->id = $id;
 
@@ -49,7 +49,7 @@ class RequestReferenceIn
      *
      * @return $this
      */
-    public function setInternalTechnicalId(string $internalTechnicalId): self
+    public function setInternalTechnicalId(string $internalTechnicalId): RequestReferenceIn
     {
         $this->internalTechnicalId = $internalTechnicalId;
 

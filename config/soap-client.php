@@ -55,10 +55,27 @@ return Config::create()
             '/^(Auxiliary|Original)DocumentIn$/'
         )
     )
+    ->addRule(
+        new Rules\TypenameMatchesRule(
+            new Rules\AssembleRule(new Assembler\InterfaceAssembler('\OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface')),
+            '/^ContactPerson/'
+        )
+    )
+    ->addRule(
+        new Rules\TypenameMatchesRule(
+            new Rules\AssembleRule(new OpenEuropa\Assembler\InterfaceReplacementAssembler(
+                (new OpenEuropa\Assembler\InterfaceReplacementAssemblerOptions())
+                    ->withTypeHints()
+                    ->withReturnType()
+            )),
+            '/^ContactPerson/'
+        )
+    )
     ->addRule(new Rules\AssembleRule(new OpenEuropa\Assembler\FluentAdderAssembler(
         (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
             ->withTypeHints()
             ->withReturnType()
+            ->withTypeInterfaceReplacement()
             ->generateAdderForProperty('ReceiveNotificationsResponse', 'return')
             ->generateAdderForProperty('LinguisticSections', 'linguisticSection')
             ->generateAdderForProperty('Contacts', 'contact')

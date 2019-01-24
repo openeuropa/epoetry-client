@@ -45,9 +45,17 @@ class FluentAdderAssembler implements AssemblerInterface
         $property = $context->getProperty();
 
         try {
+            $typeToAdd = $property->getType();
+            if ($this->options->useTypeInterfaceReplacement() && class_exists($typeToAdd)) {
+                $typeInterface = class_implements($typeToAdd);
+                if (\count($typeInterface) === 1) {
+                    $typeToAdd = current($typeInterface);
+                }
+            }
+
             $parameterOptions = ['name' => $property->getName()];
             if ($this->options->useTypeHints()) {
-                $parameterOptions['type'] = $property->getType();
+                $parameterOptions['type'] = $typeToAdd;
             }
 
             // Add "adder" method.
@@ -70,7 +78,7 @@ class FluentAdderAssembler implements AssemblerInterface
                                 'tags' => [
                                     [
                                         'name' => 'param',
-                                        'description' => sprintf('%s $%s', $property->getType(), $property->getName()),
+                                        'description' => sprintf('%s $%s', $typeToAdd, $property->getName()),
                                     ],
                                     [
                                         'name' => 'return',

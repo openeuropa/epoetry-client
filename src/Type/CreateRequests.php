@@ -26,7 +26,7 @@ class CreateRequests
      *
      * @return $this
      */
-    public function addLinguisticRequest(LinguisticRequestIn $linguisticRequest): self
+    public function addLinguisticRequest(LinguisticRequestIn $linguisticRequest): CreateRequests
     {
         $this->linguisticRequest = \is_array($this->linguisticRequest) ? $this->linguisticRequest : [];
         $this->linguisticRequest[] = $linguisticRequest;
@@ -63,7 +63,7 @@ class CreateRequests
      *
      * @return $this
      */
-    public function setLinguisticRequest($linguisticRequest): self
+    public function setLinguisticRequest($linguisticRequest): CreateRequests
     {
         $this->linguisticRequest = $linguisticRequest;
 
@@ -75,7 +75,7 @@ class CreateRequests
      *
      * @return $this
      */
-    public function setRelatedRequest($relatedRequest): self
+    public function setRelatedRequest($relatedRequest): CreateRequests
     {
         $this->relatedRequest = $relatedRequest;
 
@@ -87,7 +87,7 @@ class CreateRequests
      *
      * @return $this
      */
-    public function setTemplateName(string $templateName): self
+    public function setTemplateName(string $templateName): CreateRequests
     {
         $this->templateName = $templateName;
 

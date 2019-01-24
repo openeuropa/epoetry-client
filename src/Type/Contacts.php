@@ -12,11 +12,11 @@ class Contacts
     private $contact;
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact
+     * @param OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface $contact
      *
      * @return $this
      */
-    public function addContact(ContactPerson $contact): self
+    public function addContact(\OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface $contact): Contacts
     {
         $this->contact = \is_array($this->contact) ? $this->contact : [];
         $this->contact[] = $contact;
@@ -37,7 +37,7 @@ class Contacts
      *
      * @return $this
      */
-    public function setContact($contact): self
+    public function setContact($contact): Contacts
     {
         $this->contact = $contact;
 

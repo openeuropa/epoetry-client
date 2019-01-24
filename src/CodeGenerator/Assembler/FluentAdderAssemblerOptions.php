@@ -25,6 +25,11 @@ class FluentAdderAssemblerOptions
     private $typeHints = false;
 
     /**
+     * @var bool
+     */
+    private $typeInterfaceReplacement = false;
+
+    /**
      * @return FluentAdderAssemblerOptions
      */
     public static function create(): self
@@ -81,6 +86,14 @@ class FluentAdderAssemblerOptions
     }
 
     /**
+     * @return bool
+     */
+    public function useTypeInterfaceReplacement(): bool
+    {
+        return $this->typeInterfaceReplacement;
+    }
+
+    /**
      * @param bool $returnType
      *
      * @return FluentAdderAssemblerOptions
@@ -100,6 +113,18 @@ class FluentAdderAssemblerOptions
     public function withTypeHints(bool $typeHints = true): self
     {
         $this->typeHints = $typeHints;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $typeInterfaceReplacement
+     *
+     * @return FluentAdderAssemblerOptions
+     */
+    public function withTypeInterfaceReplacement(bool $typeInterfaceReplacement = true): self
+    {
+        $this->typeInterfaceReplacement = $typeInterfaceReplacement;
 
         return $this;
     }

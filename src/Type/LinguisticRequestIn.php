@@ -76,7 +76,7 @@ class LinguisticRequestIn
      *
      * @return $this
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments): self
+    public function setAuxiliaryDocuments($auxiliaryDocuments): LinguisticRequestIn
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
 
@@ -88,7 +88,7 @@ class LinguisticRequestIn
      *
      * @return $this
      */
-    public function setContacts($contacts): self
+    public function setContacts($contacts): LinguisticRequestIn
     {
         $this->contacts = $contacts;
 
@@ -100,7 +100,7 @@ class LinguisticRequestIn
      *
      * @return $this
      */
-    public function setGeneralInfo($generalInfo): self
+    public function setGeneralInfo($generalInfo): LinguisticRequestIn
     {
         $this->generalInfo = $generalInfo;
 
@@ -112,7 +112,7 @@ class LinguisticRequestIn
      *
      * @return $this
      */
-    public function setOriginalDocument($originalDocument): self
+    public function setOriginalDocument($originalDocument): LinguisticRequestIn
     {
         $this->originalDocument = $originalDocument;
 
@@ -124,7 +124,7 @@ class LinguisticRequestIn
      *
      * @return $this
      */
-    public function setProductRequests($productRequests): self
+    public function setProductRequests($productRequests): LinguisticRequestIn
     {
         $this->productRequests = $productRequests;
 

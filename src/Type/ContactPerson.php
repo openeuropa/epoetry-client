@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class ContactPerson
+use OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface;
+
+class ContactPerson implements \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
 {
     /**
      * @var string
@@ -74,9 +76,9 @@ class ContactPerson
     /**
      * @param string $email
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setEmail(string $email): self
+    public function setEmail(string $email): ContactPersonInterface
     {
         $this->email = $email;
 
@@ -86,9 +88,9 @@ class ContactPerson
     /**
      * @param string $firstName
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName): ContactPersonInterface
     {
         $this->firstName = $firstName;
 
@@ -98,9 +100,9 @@ class ContactPerson
     /**
      * @param string $lastName
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName): ContactPersonInterface
     {
         $this->lastName = $lastName;
 
@@ -110,9 +112,9 @@ class ContactPerson
     /**
      * @param string $roleCode
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setRoleCode(string $roleCode): self
+    public function setRoleCode(string $roleCode): ContactPersonInterface
     {
         $this->roleCode = $roleCode;
 
@@ -122,9 +124,9 @@ class ContactPerson
     /**
      * @param string $userId
      *
-     * @return $this
+     * @return \OpenEuropa\EPoetry\TypeInterface\ContactPersonInterface
      */
-    public function setUserId(string $userId): self
+    public function setUserId(string $userId): ContactPersonInterface
     {
         $this->userId = $userId;
 

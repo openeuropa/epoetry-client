@@ -16,7 +16,7 @@ class LinguisticSections
      *
      * @return $this
      */
-    public function addLinguisticSection(LinguisticSection $linguisticSection): self
+    public function addLinguisticSection(LinguisticSection $linguisticSection): LinguisticSections
     {
         $this->linguisticSection = \is_array($this->linguisticSection) ? $this->linguisticSection : [];
         $this->linguisticSection[] = $linguisticSection;
@@ -37,7 +37,7 @@ class LinguisticSections
      *
      * @return $this
      */
-    public function setLinguisticSection($linguisticSection): self
+    public function setLinguisticSection($linguisticSection): LinguisticSections
     {
         $this->linguisticSection = $linguisticSection;
 

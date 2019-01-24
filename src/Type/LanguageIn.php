@@ -24,7 +24,7 @@ class LanguageIn
      *
      * @return $this
      */
-    public function setCode(string $code): self
+    public function setCode(string $code): LanguageIn
     {
         $this->code = $code;
 
