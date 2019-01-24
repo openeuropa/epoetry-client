@@ -4,11 +4,28 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
+use Http\Mock\Client;
+use OpenEuropa\EPoetry\EPoetryClientFactory;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractTest extends TestCase
 {
-    protected function createClient()
+    /** @var EPoetryClientFactory */
+    public $clientFactory;
+
+    /**
+     * @inheritDoc
+     */
+    public function setUp()
     {
+        $this->clientFactory = $this->createClientFactory();
+        parent::setUp();
+    }
+
+    protected function createClientFactory(): EPoetryClientFactory
+    {
+        $wsdl = 'resources/dgtServiceWSDL.xml';
+        $httpClient = new Client();
+        return new EPoetryClientFactory($wsdl, $httpClient);
     }
 }
