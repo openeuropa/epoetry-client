@@ -24,7 +24,7 @@ class OriginalDocument extends DgtDocument
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    public function getLinguisticSections(): LinguisticSections
+    public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -32,7 +32,7 @@ class OriginalDocument extends DgtDocument
     /**
      * @return float
      */
-    public function getPages(): float
+    public function getPages(): ?float
     {
         return $this->pages;
     }
@@ -40,7 +40,7 @@ class OriginalDocument extends DgtDocument
     /**
      * @return bool
      */
-    public function isTrackChanges(): bool
+    public function isTrackChanges(): ?bool
     {
         return $this->trackChanges;
     }

@@ -31,7 +31,7 @@ return Config::create()
             ]
         )
     )
-    ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(
+    ->addRule(new Rules\AssembleRule(new OpenEuropa\Assembler\NullableGetterAssembler(
         (new Assembler\GetterAssemblerOptions())
             ->withReturnType()
             ->withBoolGetters()

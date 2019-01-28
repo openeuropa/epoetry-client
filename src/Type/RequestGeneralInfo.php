@@ -89,7 +89,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getAccessibleTo(): string
+    public function getAccessibleTo(): ?string
     {
         return $this->accessibleTo;
     }
@@ -97,7 +97,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -105,7 +105,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getDecideReference(): string
+    public function getDecideReference(): ?string
     {
         return $this->decideReference;
     }
@@ -113,7 +113,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getDestinationCode(): string
+    public function getDestinationCode(): ?string
     {
         return $this->destinationCode;
     }
@@ -121,7 +121,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getInternalReference(): string
+    public function getInternalReference(): ?string
     {
         return $this->internalReference;
     }
@@ -129,7 +129,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getInternalTechnicalId(): string
+    public function getInternalTechnicalId(): ?string
     {
         return $this->internalTechnicalId;
     }
@@ -137,7 +137,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getOnBehalfOf(): string
+    public function getOnBehalfOf(): ?string
     {
         return $this->onBehalfOf;
     }
@@ -145,7 +145,7 @@ class RequestGeneralInfo
     /**
      * @return \DateTime
      */
-    public function getRequestedDeadline(): \DateTime
+    public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
     }
@@ -153,7 +153,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getRequestingService(): string
+    public function getRequestingService(): ?string
     {
         return $this->requestingService;
     }
@@ -161,7 +161,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getServiceOfOrigin(): string
+    public function getServiceOfOrigin(): ?string
     {
         return $this->serviceOfOrigin;
     }
@@ -169,7 +169,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getSlaAnnex(): string
+    public function getSlaAnnex(): ?string
     {
         return $this->slaAnnex;
     }
@@ -177,7 +177,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getSlaCommitment(): string
+    public function getSlaCommitment(): ?string
     {
         return $this->slaCommitment;
     }
@@ -185,7 +185,7 @@ class RequestGeneralInfo
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -193,7 +193,7 @@ class RequestGeneralInfo
     /**
      * @return bool
      */
-    public function isDocumentToBeAdopted(): bool
+    public function isDocumentToBeAdopted(): ?bool
     {
         return $this->documentToBeAdopted;
     }
@@ -201,7 +201,7 @@ class RequestGeneralInfo
     /**
      * @return bool
      */
-    public function isSensitive(): bool
+    public function isSensitive(): ?bool
     {
         return $this->sensitive;
     }
@@ -209,7 +209,7 @@ class RequestGeneralInfo
     /**
      * @return bool
      */
-    public function isSentViaRUE(): bool
+    public function isSentViaRUE(): ?bool
     {
         return $this->sentViaRUE;
     }

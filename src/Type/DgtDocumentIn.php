@@ -29,7 +29,7 @@ class DgtDocumentIn
     /**
      * @return string
      */
-    public function getFile(): string
+    public function getFile(): ?string
     {
         return $this->file;
     }
@@ -37,7 +37,7 @@ class DgtDocumentIn
     /**
      * @return string
      */
-    public function getFormat(): string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -45,7 +45,7 @@ class DgtDocumentIn
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -53,7 +53,7 @@ class DgtDocumentIn
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

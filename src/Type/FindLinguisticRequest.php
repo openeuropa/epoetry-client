@@ -36,7 +36,7 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @return int
      */
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
@@ -44,7 +44,7 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @return int
      */
-    public function getPart(): int
+    public function getPart(): ?int
     {
         return $this->part;
     }
@@ -52,7 +52,7 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getProductCode(): string
+    public function getProductCode(): ?string
     {
         return $this->productCode;
     }
@@ -60,7 +60,7 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getRequesterCode(): string
+    public function getRequesterCode(): ?string
     {
         return $this->requesterCode;
     }
@@ -68,7 +68,7 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @return int
      */
-    public function getYear(): int
+    public function getYear(): ?int
     {
         return $this->year;
     }

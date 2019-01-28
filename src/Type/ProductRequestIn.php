@@ -29,7 +29,7 @@ class ProductRequestIn
     /**
      * @return string
      */
-    public function getInternalProductReference(): string
+    public function getInternalProductReference(): ?string
     {
         return $this->internalProductReference;
     }
@@ -37,7 +37,7 @@ class ProductRequestIn
     /**
      * @return \OpenEuropa\EPoetry\Type\LanguageIn
      */
-    public function getLanguage(): LanguageIn
+    public function getLanguage(): ?\OpenEuropa\EPoetry\Type\LanguageIn
     {
         return $this->language;
     }
@@ -45,7 +45,7 @@ class ProductRequestIn
     /**
      * @return \DateTime
      */
-    public function getRequestedDeadline(): \DateTime
+    public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
     }
@@ -53,7 +53,7 @@ class ProductRequestIn
     /**
      * @return bool
      */
-    public function isTrackChanges(): bool
+    public function isTrackChanges(): ?bool
     {
         return $this->trackChanges;
     }

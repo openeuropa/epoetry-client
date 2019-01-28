@@ -19,7 +19,7 @@ class ContactPersonIn
     /**
      * @return string
      */
-    public function getRoleCode(): string
+    public function getRoleCode(): ?string
     {
         return $this->roleCode;
     }
@@ -27,7 +27,7 @@ class ContactPersonIn
     /**
      * @return string
      */
-    public function getUserId(): string
+    public function getUserId(): ?string
     {
         return $this->userId;
     }

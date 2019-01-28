@@ -79,7 +79,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getAccessibleTo(): string
+    public function getAccessibleTo(): ?string
     {
         return $this->accessibleTo;
     }
@@ -87,7 +87,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -95,7 +95,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getDecideReference(): string
+    public function getDecideReference(): ?string
     {
         return $this->decideReference;
     }
@@ -103,7 +103,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getDestinationCode(): string
+    public function getDestinationCode(): ?string
     {
         return $this->destinationCode;
     }
@@ -111,7 +111,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getInternalReference(): string
+    public function getInternalReference(): ?string
     {
         return $this->internalReference;
     }
@@ -119,7 +119,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getInternalTechnicalId(): string
+    public function getInternalTechnicalId(): ?string
     {
         return $this->internalTechnicalId;
     }
@@ -127,7 +127,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getOnBehalfOf(): string
+    public function getOnBehalfOf(): ?string
     {
         return $this->onBehalfOf;
     }
@@ -135,7 +135,7 @@ class RequestGeneralInfoIn
     /**
      * @return \DateTime
      */
-    public function getRequestedDeadline(): \DateTime
+    public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
     }
@@ -143,7 +143,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getSlaAnnex(): string
+    public function getSlaAnnex(): ?string
     {
         return $this->slaAnnex;
     }
@@ -151,7 +151,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getSlaCommitment(): string
+    public function getSlaCommitment(): ?string
     {
         return $this->slaCommitment;
     }
@@ -159,7 +159,7 @@ class RequestGeneralInfoIn
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -167,7 +167,7 @@ class RequestGeneralInfoIn
     /**
      * @return bool
      */
-    public function isDocumentToBeAdopted(): bool
+    public function isDocumentToBeAdopted(): ?bool
     {
         return $this->documentToBeAdopted;
     }
@@ -175,7 +175,7 @@ class RequestGeneralInfoIn
     /**
      * @return bool
      */
-    public function isSensitive(): bool
+    public function isSensitive(): ?bool
     {
         return $this->sensitive;
     }
@@ -183,7 +183,7 @@ class RequestGeneralInfoIn
     /**
      * @return bool
      */
-    public function isSentViaRUE(): bool
+    public function isSentViaRUE(): ?bool
     {
         return $this->sentViaRUE;
     }

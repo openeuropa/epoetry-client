@@ -26,7 +26,7 @@ class ModifyRequest implements RequestInterface
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
-    public function getLinguisticRequest(): LinguisticRequestIn
+    public function getLinguisticRequest(): ?\OpenEuropa\EPoetry\Type\LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
@@ -34,7 +34,7 @@ class ModifyRequest implements RequestInterface
     /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    public function getRequestReference(): RequestReferenceIn
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -42,7 +42,7 @@ class ModifyRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getTemplateName(): string
+    public function getTemplateName(): ?string
     {
         return $this->templateName;
     }

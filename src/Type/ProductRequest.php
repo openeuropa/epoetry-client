@@ -46,7 +46,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return \DateTime
      */
-    public function getAcceptedDeadline(): \DateTime
+    public function getAcceptedDeadline(): ?\DateTime
     {
         return $this->acceptedDeadline;
     }
@@ -54,7 +54,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getFormatCode(): string
+    public function getFormatCode(): ?string
     {
         return $this->formatCode;
     }
@@ -62,7 +62,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getInternalProductReference(): string
+    public function getInternalProductReference(): ?string
     {
         return $this->internalProductReference;
     }
@@ -70,7 +70,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return \OpenEuropa\EPoetry\Type\Language
      */
-    public function getLanguage(): Language
+    public function getLanguage(): ?\OpenEuropa\EPoetry\Type\Language
     {
         return $this->language;
     }
@@ -78,7 +78,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return \DateTime
      */
-    public function getRequestedDeadline(): \DateTime
+    public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
     }
@@ -86,7 +86,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return string
      */
-    public function getStatusCode(): string
+    public function getStatusCode(): ?string
     {
         return $this->statusCode;
     }
@@ -94,7 +94,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return bool
      */
-    public function isTrackChanges(): bool
+    public function isTrackChanges(): ?bool
     {
         return $this->trackChanges;
     }

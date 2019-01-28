@@ -19,7 +19,7 @@ class RequestReferenceIn
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -27,7 +27,7 @@ class RequestReferenceIn
     /**
      * @return string
      */
-    public function getInternalTechnicalId(): string
+    public function getInternalTechnicalId(): ?string
     {
         return $this->internalTechnicalId;
     }

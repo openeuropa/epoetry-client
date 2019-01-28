@@ -46,7 +46,7 @@ class CreateRequests implements RequestInterface
     /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    public function getRelatedRequest(): RequestReferenceIn
+    public function getRelatedRequest(): ?\OpenEuropa\EPoetry\Type\RequestReferenceIn
     {
         return $this->relatedRequest;
     }
@@ -54,7 +54,7 @@ class CreateRequests implements RequestInterface
     /**
      * @return string
      */
-    public function getTemplateName(): string
+    public function getTemplateName(): ?string
     {
         return $this->templateName;
     }

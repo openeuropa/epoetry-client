@@ -14,7 +14,7 @@ class AuxiliaryDocumentIn extends DgtDocumentIn
     /**
      * @return string
      */
-    public function getLanguage(): string
+    public function getLanguage(): ?string
     {
         return $this->language;
     }

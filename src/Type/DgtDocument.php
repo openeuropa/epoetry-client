@@ -24,7 +24,7 @@ class DgtDocument
     /**
      * @return string
      */
-    public function getFormat(): string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -32,7 +32,7 @@ class DgtDocument
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -40,7 +40,7 @@ class DgtDocument
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

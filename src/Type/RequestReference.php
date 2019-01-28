@@ -54,7 +54,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -62,7 +62,7 @@ class RequestReference
     /**
      * @return string
      */
-    public function getInternalReference(): string
+    public function getInternalReference(): ?string
     {
         return $this->internalReference;
     }
@@ -70,7 +70,7 @@ class RequestReference
     /**
      * @return string
      */
-    public function getInternalTechnicalId(): string
+    public function getInternalTechnicalId(): ?string
     {
         return $this->internalTechnicalId;
     }
@@ -78,7 +78,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
@@ -86,7 +86,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getPart(): int
+    public function getPart(): ?int
     {
         return $this->part;
     }
@@ -94,7 +94,7 @@ class RequestReference
     /**
      * @return string
      */
-    public function getProductType(): string
+    public function getProductType(): ?string
     {
         return $this->productType;
     }
@@ -102,7 +102,7 @@ class RequestReference
     /**
      * @return string
      */
-    public function getRequesterCode(): string
+    public function getRequesterCode(): ?string
     {
         return $this->requesterCode;
     }
@@ -110,7 +110,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion(): ?int
     {
         return $this->version;
     }
@@ -118,7 +118,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getYear(): int
+    public function getYear(): ?int
     {
         return $this->year;
     }
