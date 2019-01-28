@@ -10,23 +10,36 @@ use PHPUnit\Framework\TestCase;
 
 abstract class AbstractTest extends TestCase
 {
-    /** @var EPoetryClientFactory */
+    const FIXTURE_DIR = __DIR__ . '/fixtures';
+
+    /**
+     * @var EPoetryClientFactory
+     */
     public $clientFactory;
+
+    /**
+     * @var \Http\Mock\Client
+     */
+    public $httpClient;
 
     /**
      * {@inheritdoc}
      */
     protected function setUp()
     {
-        $this->clientFactory = $this->createClientFactory();
+        $this->httpClient = new Client();
         parent::setUp();
     }
 
+    /**
+     * Setup ePoetry client factory using HTTP mock client.
+     *
+     * @return \OpenEuropa\EPoetry\EPoetryClientFactory
+     */
     protected function createClientFactory(): EPoetryClientFactory
     {
-        $wsdl = 'resources/dgtServiceWSDL.xml';
-        $httpClient = new Client();
+        $wsdl = __DIR__ . '/../resources/dgtServiceWSDL.xml';
 
-        return new EPoetryClientFactory($wsdl, $httpClient);
+        return new EPoetryClientFactory($wsdl, $this->httpClient);
     }
 }
