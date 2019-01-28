@@ -18,9 +18,8 @@ class CreateRequestsResponse implements ResultInterface
      *
      * @return $this
      */
-    public function addReturn(LinguisticRequest $return): self
+    public function addReturn($return): CreateRequestsResponse
     {
-        $this->return = \is_array($this->return) ? $this->return : [];
         $this->return[] = $return;
 
         return $this;

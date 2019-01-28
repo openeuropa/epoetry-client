@@ -16,9 +16,8 @@ class Contacts
      *
      * @return $this
      */
-    public function addContact(ContactPerson $contact): self
+    public function addContact($contact): Contacts
     {
-        $this->contact = \is_array($this->contact) ? $this->contact : [];
         $this->contact[] = $contact;
 
         return $this;

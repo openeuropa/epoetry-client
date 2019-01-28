@@ -16,9 +16,8 @@ class AuxiliaryDocuments
      *
      * @return $this
      */
-    public function addAuxiliaryDocument(AuxiliaryDocument $auxiliaryDocument): self
+    public function addAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
     {
-        $this->auxiliaryDocument = \is_array($this->auxiliaryDocument) ? $this->auxiliaryDocument : [];
         $this->auxiliaryDocument[] = $auxiliaryDocument;
 
         return $this;

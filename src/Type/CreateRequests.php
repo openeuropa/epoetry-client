@@ -28,9 +28,8 @@ class CreateRequests implements RequestInterface
      *
      * @return $this
      */
-    public function addLinguisticRequest(LinguisticRequestIn $linguisticRequest): self
+    public function addLinguisticRequest($linguisticRequest): CreateRequests
     {
-        $this->linguisticRequest = \is_array($this->linguisticRequest) ? $this->linguisticRequest : [];
         $this->linguisticRequest[] = $linguisticRequest;
 
         return $this;

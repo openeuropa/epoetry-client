@@ -46,9 +46,6 @@ class FluentAdderAssembler implements AssemblerInterface
 
         try {
             $parameterOptions = ['name' => $property->getName()];
-            if ($this->options->useTypeHints()) {
-                $parameterOptions['type'] = $property->getType();
-            }
 
             // Add "adder" method.
             $methodName = Normalizer::generatePropertyMethod('add', $property->getName());
@@ -61,7 +58,7 @@ class FluentAdderAssembler implements AssemblerInterface
                         'visibility' => MethodGenerator::VISIBILITY_PUBLIC,
                         'returntype' => $this->options->useReturnType() ? $class->getNamespaceName() . '\\' . $class->getName() : null,
                         'body' => sprintf(
-                            '$this->%1$s = is_array($this->%1$s) ? $this->%1$s : [];%2$s$this->%1$s[] = $%1$s;%2$sreturn $this;',
+                            '$this->%1$s[] = $%1$s;%2$sreturn $this;',
                             $property->getName(),
                             $class::LINE_FEED
                         ),
