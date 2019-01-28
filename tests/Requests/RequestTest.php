@@ -5,8 +5,12 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
 use GuzzleHttp\Psr7\Response;
+use OpenEuropa\EPoetry\Type\ContactPersonIn;
+use OpenEuropa\EPoetry\Type\Contacts;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use OpenEuropa\EPoetry\Type\CreateRequestsResponse;
+use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
+use OpenEuropa\EPoetry\Type\RequestGeneralInfoIn;
 
 /**
  * @internal
@@ -15,7 +19,64 @@ use OpenEuropa\EPoetry\Type\CreateRequestsResponse;
 final class RequestTest extends AbstractTest
 {
     /**
-     * Test response parsing.
+     * Test a SOAP request.
+     */
+    public function testRequestSending()
+    {
+        // Generate General Info.
+        $generalInfo = new RequestGeneralInfoIn();
+
+        $generalInfo->setTitle('Test')
+            ->setInternalReference('1')
+            ->setInternalTechnicalId('1')
+            ->setRequestedDeadline(new \DateTime('2020-02-02'))
+            ->setSensitive(false)
+            ->setDocumentToBeAdopted(true)
+            ->setDecideReference('decideReference')
+            ->setSentViaRUE(true)
+            ->setDestinationCode('PUBLIC')
+            ->setSlaAnnex('')
+            ->setSlaCommitment('')
+            ->setComment('')
+            ->setOnBehalfOf('')
+            ->setAccessibleTo('');
+
+        // Generate Contacts.
+        $contacts = new Contacts();
+
+        $contact = new ContactPersonIn();
+        $contact->setUserId('1');
+        $contact->setRoleCode('AUTHOR');
+        $contacts->addContact($contact);
+
+        $contact = new ContactPersonIn();
+        $contact->setUserId('2');
+        $contact->setRoleCode('EDITOR');
+        $contacts->addContact($contact);
+
+        $linguisticRequestIn = new LinguisticRequestIn();
+        $linguisticRequestIn->setContacts($contacts)
+            ->setGeneralInfo($generalInfo);
+
+        $createRequests = new CreateRequests();
+        $createRequests->setLinguisticRequest($linguisticRequestIn);
+
+        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
+        $response = new Response(200, [], $content);
+        $this->httpClient->addResponse($response);
+
+        $client = $this->createClientFactory()->getClient();
+        $client->createRequests($createRequests);
+
+        $request = $client->debugLastSoapRequest()['request'];
+
+        $this->assertContains('<title>Test</title>', $request['body']);
+        $this->assertContains('<contact userId="1" roleCode="AUTHOR"/>', $request['body']);
+        $this->assertContains('<contact userId="2" roleCode="EDITOR"/>', $request['body']);
+    }
+
+    /**
+     * Test parsing a SOAP response.
      */
     public function testResponseParsing()
     {
@@ -23,10 +84,10 @@ final class RequestTest extends AbstractTest
         $response = new Response(200, [], $content);
         $this->httpClient->addResponse($response);
 
-        $correctTranslation = new CreateRequests();
+        $createRequests = new CreateRequests();
         $response = $this->createClientFactory()
             ->getClient()
-            ->createRequests($correctTranslation);
+            ->createRequests($createRequests);
 
         $this->assertInstanceOf(CreateRequestsResponse::class, $response);
         $this->assertCount(2, $response->getReturn());
