@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class CorrectTranslation
+use Phpro\SoapClient\Type\RequestInterface;
+
+class CorrectTranslation implements RequestInterface
 {
     /**
      * @var \OpenEuropa\EPoetry\Type\CorrectionDocument

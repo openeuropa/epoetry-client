@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class ReceiveNotifications
+use Phpro\SoapClient\Type\RequestInterface;
+
+class ReceiveNotifications implements RequestInterface
 {
 }

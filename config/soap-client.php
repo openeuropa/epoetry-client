@@ -37,10 +37,21 @@ return Config::create()
             '/Response$/'
         )
     )
+    // Generate SOAP request classes.
+    //
+    // Request objects must implement \Phpro\SoapClient\Type\RequestInterface
+    // The rule matches the following SOAP types:
+    //
+    // - correctTranslation
+    // - createRequests
+    // - findLinguisticRequest
+    // - getLinguisticRequest
+    // - modifyRequest
+    // - receiveNotifications
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
-            '/Request$/'
+            '/(CorrectTranslation|CreateRequests|ReceiveNotifications|Request)$/'
         )
     )
     ->addRule(

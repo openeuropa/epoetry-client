@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class CreateRequests
+use Phpro\SoapClient\Type\RequestInterface;
+
+class CreateRequests implements RequestInterface
 {
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
