@@ -39,7 +39,7 @@ class ReceiveNotificationsResponse implements ResultInterface
      *
      * @return $this
      */
-    public function setReturn($return): self
+    public function setReturn($return): ReceiveNotificationsResponse
     {
         $this->return = $return;
 

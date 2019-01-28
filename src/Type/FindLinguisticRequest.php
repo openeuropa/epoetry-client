@@ -78,7 +78,7 @@ class FindLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setNumber(int $number): self
+    public function setNumber(int $number): FindLinguisticRequest
     {
         $this->number = $number;
 
@@ -90,7 +90,7 @@ class FindLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setPart(int $part): self
+    public function setPart(int $part): FindLinguisticRequest
     {
         $this->part = $part;
 
@@ -102,7 +102,7 @@ class FindLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setProductCode(string $productCode): self
+    public function setProductCode(string $productCode): FindLinguisticRequest
     {
         $this->productCode = $productCode;
 
@@ -114,7 +114,7 @@ class FindLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode): self
+    public function setRequesterCode(string $requesterCode): FindLinguisticRequest
     {
         $this->requesterCode = $requesterCode;
 
@@ -126,7 +126,7 @@ class FindLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setYear(int $year): self
+    public function setYear(int $year): FindLinguisticRequest
     {
         $this->year = $year;
 

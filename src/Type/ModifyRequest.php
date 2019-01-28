@@ -52,7 +52,7 @@ class ModifyRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setLinguisticRequest($linguisticRequest): self
+    public function setLinguisticRequest($linguisticRequest): ModifyRequest
     {
         $this->linguisticRequest = $linguisticRequest;
 
@@ -64,7 +64,7 @@ class ModifyRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setRequestReference($requestReference): self
+    public function setRequestReference($requestReference): ModifyRequest
     {
         $this->requestReference = $requestReference;
 
@@ -76,7 +76,7 @@ class ModifyRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setTemplateName(string $templateName): self
+    public function setTemplateName(string $templateName): ModifyRequest
     {
         $this->templateName = $templateName;
 

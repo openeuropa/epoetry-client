@@ -37,7 +37,7 @@ class AuxiliaryDocuments
      *
      * @return $this
      */
-    public function setAuxiliaryDocument($auxiliaryDocument): self
+    public function setAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
     {
         $this->auxiliaryDocument = $auxiliaryDocument;
 

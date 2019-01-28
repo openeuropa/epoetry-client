@@ -76,7 +76,7 @@ class ContactPerson
      *
      * @return $this
      */
-    public function setEmail(string $email): self
+    public function setEmail(string $email): ContactPerson
     {
         $this->email = $email;
 
@@ -88,7 +88,7 @@ class ContactPerson
      *
      * @return $this
      */
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName): ContactPerson
     {
         $this->firstName = $firstName;
 
@@ -100,7 +100,7 @@ class ContactPerson
      *
      * @return $this
      */
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName): ContactPerson
     {
         $this->lastName = $lastName;
 
@@ -112,7 +112,7 @@ class ContactPerson
      *
      * @return $this
      */
-    public function setRoleCode(string $roleCode): self
+    public function setRoleCode(string $roleCode): ContactPerson
     {
         $this->roleCode = $roleCode;
 
@@ -124,7 +124,7 @@ class ContactPerson
      *
      * @return $this
      */
-    public function setUserId(string $userId): self
+    public function setUserId(string $userId): ContactPerson
     {
         $this->userId = $userId;
 

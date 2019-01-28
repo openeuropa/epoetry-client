@@ -50,7 +50,7 @@ class OriginalDocument extends DgtDocument
      *
      * @return $this
      */
-    public function setLinguisticSections($linguisticSections): self
+    public function setLinguisticSections($linguisticSections): OriginalDocument
     {
         $this->linguisticSections = $linguisticSections;
 
@@ -62,7 +62,7 @@ class OriginalDocument extends DgtDocument
      *
      * @return $this
      */
-    public function setPages(float $pages): self
+    public function setPages(float $pages): OriginalDocument
     {
         $this->pages = $pages;
 
@@ -74,7 +74,7 @@ class OriginalDocument extends DgtDocument
      *
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges): self
+    public function setTrackChanges(bool $trackChanges): OriginalDocument
     {
         $this->trackChanges = $trackChanges;
 

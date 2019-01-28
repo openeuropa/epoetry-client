@@ -24,7 +24,7 @@ class AuxiliaryDocumentIn extends DgtDocumentIn
      *
      * @return $this
      */
-    public function setLanguage(string $language): self
+    public function setLanguage(string $language): AuxiliaryDocumentIn
     {
         $this->language = $language;
 

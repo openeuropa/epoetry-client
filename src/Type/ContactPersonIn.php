@@ -37,7 +37,7 @@ class ContactPersonIn
      *
      * @return $this
      */
-    public function setRoleCode(string $roleCode): self
+    public function setRoleCode(string $roleCode): ContactPersonIn
     {
         $this->roleCode = $roleCode;
 
@@ -49,7 +49,7 @@ class ContactPersonIn
      *
      * @return $this
      */
-    public function setUserId(string $userId): self
+    public function setUserId(string $userId): ContactPersonIn
     {
         $this->userId = $userId;
 

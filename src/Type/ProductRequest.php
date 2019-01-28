@@ -104,7 +104,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setAcceptedDeadline($acceptedDeadline): self
+    public function setAcceptedDeadline($acceptedDeadline): ProductRequest
     {
         $this->acceptedDeadline = $acceptedDeadline;
 
@@ -116,7 +116,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setFormatCode(string $formatCode): self
+    public function setFormatCode(string $formatCode): ProductRequest
     {
         $this->formatCode = $formatCode;
 
@@ -128,7 +128,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setInternalProductReference(string $internalProductReference): self
+    public function setInternalProductReference(string $internalProductReference): ProductRequest
     {
         $this->internalProductReference = $internalProductReference;
 
@@ -140,7 +140,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setLanguage($language): self
+    public function setLanguage($language): ProductRequest
     {
         $this->language = $language;
 
@@ -152,7 +152,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline): self
+    public function setRequestedDeadline($requestedDeadline): ProductRequest
     {
         $this->requestedDeadline = $requestedDeadline;
 
@@ -164,7 +164,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setStatusCode(string $statusCode): self
+    public function setStatusCode(string $statusCode): ProductRequest
     {
         $this->statusCode = $statusCode;
 
@@ -176,7 +176,7 @@ class ProductRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges): self
+    public function setTrackChanges(bool $trackChanges): ProductRequest
     {
         $this->trackChanges = $trackChanges;
 

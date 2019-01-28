@@ -37,7 +37,7 @@ class OriginalDocumentIn extends DgtDocumentIn
      *
      * @return $this
      */
-    public function setLinguisticSections($linguisticSections): self
+    public function setLinguisticSections($linguisticSections): OriginalDocumentIn
     {
         $this->linguisticSections = $linguisticSections;
 
@@ -49,7 +49,7 @@ class OriginalDocumentIn extends DgtDocumentIn
      *
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges): self
+    public function setTrackChanges(bool $trackChanges): OriginalDocumentIn
     {
         $this->trackChanges = $trackChanges;
 

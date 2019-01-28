@@ -26,7 +26,7 @@ class GetLinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setRequest($request): self
+    public function setRequest($request): GetLinguisticRequest
     {
         $this->request = $request;
 

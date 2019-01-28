@@ -37,7 +37,7 @@ class ProductRequests
      *
      * @return $this
      */
-    public function setProductRequest($productRequest): self
+    public function setProductRequest($productRequest): ProductRequests
     {
         $this->productRequest = $productRequest;
 

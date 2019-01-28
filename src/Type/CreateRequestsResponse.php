@@ -39,7 +39,7 @@ class CreateRequestsResponse implements ResultInterface
      *
      * @return $this
      */
-    public function setReturn($return): self
+    public function setReturn($return): CreateRequestsResponse
     {
         $this->return = $return;
 

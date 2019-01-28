@@ -37,7 +37,7 @@ class LinguisticSections
      *
      * @return $this
      */
-    public function setLinguisticSection($linguisticSection): self
+    public function setLinguisticSection($linguisticSection): LinguisticSections
     {
         $this->linguisticSection = $linguisticSection;
 

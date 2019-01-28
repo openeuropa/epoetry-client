@@ -63,7 +63,7 @@ class DgtDocumentIn
      *
      * @return $this
      */
-    public function setFile(string $file): self
+    public function setFile(string $file): DgtDocumentIn
     {
         $this->file = $file;
 
@@ -75,7 +75,7 @@ class DgtDocumentIn
      *
      * @return $this
      */
-    public function setFormat(string $format): self
+    public function setFormat(string $format): DgtDocumentIn
     {
         $this->format = $format;
 
@@ -87,7 +87,7 @@ class DgtDocumentIn
      *
      * @return $this
      */
-    public function setName(string $name): self
+    public function setName(string $name): DgtDocumentIn
     {
         $this->name = $name;
 
@@ -99,7 +99,7 @@ class DgtDocumentIn
      *
      * @return $this
      */
-    public function setType(string $type): self
+    public function setType(string $type): DgtDocumentIn
     {
         $this->type = $type;
 

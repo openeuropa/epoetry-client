@@ -104,7 +104,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments): self
+    public function setAuxiliaryDocuments($auxiliaryDocuments): LinguisticRequest
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
 
@@ -116,7 +116,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setContacts($contacts): self
+    public function setContacts($contacts): LinguisticRequest
     {
         $this->contacts = $contacts;
 
@@ -128,7 +128,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setGeneralInfo($generalInfo): self
+    public function setGeneralInfo($generalInfo): LinguisticRequest
     {
         $this->generalInfo = $generalInfo;
 
@@ -140,7 +140,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setOriginalDocument($originalDocument): self
+    public function setOriginalDocument($originalDocument): LinguisticRequest
     {
         $this->originalDocument = $originalDocument;
 
@@ -152,7 +152,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setProductRequests($productRequests): self
+    public function setProductRequests($productRequests): LinguisticRequest
     {
         $this->productRequests = $productRequests;
 
@@ -164,7 +164,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setReference($reference): self
+    public function setReference($reference): LinguisticRequest
     {
         $this->reference = $reference;
 
@@ -176,7 +176,7 @@ class LinguisticRequest implements RequestInterface
      *
      * @return $this
      */
-    public function setStatusCode(string $statusCode): self
+    public function setStatusCode(string $statusCode): LinguisticRequest
     {
         $this->statusCode = $statusCode;
 

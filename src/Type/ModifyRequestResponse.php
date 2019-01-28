@@ -26,7 +26,7 @@ class ModifyRequestResponse implements ResultInterface
      *
      * @return $this
      */
-    public function setReturn($return): self
+    public function setReturn($return): ModifyRequestResponse
     {
         $this->return = $return;
 

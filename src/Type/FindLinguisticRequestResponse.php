@@ -26,7 +26,7 @@ class FindLinguisticRequestResponse implements ResultInterface
      *
      * @return $this
      */
-    public function setReturn($return): self
+    public function setReturn($return): FindLinguisticRequestResponse
     {
         $this->return = $return;
 

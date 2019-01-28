@@ -37,7 +37,7 @@ class Contacts
      *
      * @return $this
      */
-    public function setContact($contact): self
+    public function setContact($contact): Contacts
     {
         $this->contact = $contact;
 
