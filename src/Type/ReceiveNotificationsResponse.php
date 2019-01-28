@@ -11,7 +11,7 @@ class ReceiveNotificationsResponse implements ResultInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\DgtNotification[]
      */
-    private $return;
+    protected $return;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\DgtNotification $return

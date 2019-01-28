@@ -9,7 +9,7 @@ class Contacts
     /**
      * @var \OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    private $contact;
+    protected $contact;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact

@@ -9,12 +9,12 @@ class PermissionDeniedException
     /**
      * @var string
      */
-    private $message;
+    protected $message;
 
     /**
      * @var string
      */
-    private $uid;
+    protected $uid;
 
     /**
      * @return string

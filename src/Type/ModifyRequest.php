@@ -11,17 +11,17 @@ class ModifyRequest implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
-    private $linguisticRequest;
+    protected $linguisticRequest;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    private $requestReference;
+    protected $requestReference;
 
     /**
      * @var string
      */
-    private $templateName;
+    protected $templateName;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn

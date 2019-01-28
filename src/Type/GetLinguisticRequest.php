@@ -11,7 +11,7 @@ class GetLinguisticRequest implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    private $request;
+    protected $request;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn

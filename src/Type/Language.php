@@ -9,7 +9,7 @@ class Language
     /**
      * @var string
      */
-    private $code;
+    protected $code;
 
     /**
      * @return string

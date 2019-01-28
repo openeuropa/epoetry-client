@@ -11,37 +11,37 @@ class ProductRequest implements RequestInterface
     /**
      * @var \DateTime
      */
-    private $acceptedDeadline;
+    protected $acceptedDeadline;
 
     /**
      * @var string
      */
-    private $formatCode;
+    protected $formatCode;
 
     /**
      * @var string
      */
-    private $internalProductReference;
+    protected $internalProductReference;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\Language
      */
-    private $language;
+    protected $language;
 
     /**
      * @var \DateTime
      */
-    private $requestedDeadline;
+    protected $requestedDeadline;
 
     /**
      * @var string
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @var bool
      */
-    private $trackChanges;
+    protected $trackChanges;
 
     /**
      * @return \DateTime

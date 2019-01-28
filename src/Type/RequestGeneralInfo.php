@@ -9,82 +9,82 @@ class RequestGeneralInfo
     /**
      * @var string
      */
-    private $accessibleTo;
+    protected $accessibleTo;
 
     /**
      * @var string
      */
-    private $comment;
+    protected $comment;
 
     /**
      * @var string
      */
-    private $decideReference;
+    protected $decideReference;
 
     /**
      * @var string
      */
-    private $destinationCode;
+    protected $destinationCode;
 
     /**
      * @var bool
      */
-    private $documentToBeAdopted;
+    protected $documentToBeAdopted;
 
     /**
      * @var string
      */
-    private $internalReference;
+    protected $internalReference;
 
     /**
      * @var string
      */
-    private $internalTechnicalId;
+    protected $internalTechnicalId;
 
     /**
      * @var string
      */
-    private $onBehalfOf;
+    protected $onBehalfOf;
 
     /**
      * @var \DateTime
      */
-    private $requestedDeadline;
+    protected $requestedDeadline;
 
     /**
      * @var string
      */
-    private $requestingService;
+    protected $requestingService;
 
     /**
      * @var bool
      */
-    private $sensitive;
+    protected $sensitive;
 
     /**
      * @var bool
      */
-    private $sentViaRUE;
+    protected $sentViaRUE;
 
     /**
      * @var string
      */
-    private $serviceOfOrigin;
+    protected $serviceOfOrigin;
 
     /**
      * @var string
      */
-    private $slaAnnex;
+    protected $slaAnnex;
 
     /**
      * @var string
      */
-    private $slaCommitment;
+    protected $slaCommitment;
 
     /**
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
      * @return string

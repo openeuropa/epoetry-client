@@ -9,7 +9,7 @@ class AuxiliaryDocument extends DgtDocument
     /**
      * @var string
      */
-    private $language;
+    protected $language;
 
     /**
      * @return string

@@ -9,22 +9,22 @@ class DgtDocumentIn
     /**
      * @var string
      */
-    private $file;
+    protected $file;
 
     /**
      * @var string
      */
-    private $format;
+    protected $format;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      * @return string

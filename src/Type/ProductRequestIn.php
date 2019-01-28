@@ -9,22 +9,22 @@ class ProductRequestIn
     /**
      * @var string
      */
-    private $internalProductReference;
+    protected $internalProductReference;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\LanguageIn
      */
-    private $language;
+    protected $language;
 
     /**
      * @var \DateTime
      */
-    private $requestedDeadline;
+    protected $requestedDeadline;
 
     /**
      * @var bool
      */
-    private $trackChanges;
+    protected $trackChanges;
 
     /**
      * @return string

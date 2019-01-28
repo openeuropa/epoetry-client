@@ -9,17 +9,17 @@ class DgtDocument
     /**
      * @var string
      */
-    private $format;
+    protected $format;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      * @return string

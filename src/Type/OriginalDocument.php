@@ -9,17 +9,17 @@ class OriginalDocument extends DgtDocument
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    private $linguisticSections;
+    protected $linguisticSections;
 
     /**
      * @var float
      */
-    private $pages;
+    protected $pages;
 
     /**
      * @var bool
      */
-    private $trackChanges;
+    protected $trackChanges;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections

@@ -9,12 +9,12 @@ class RequestReferenceIn
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $internalTechnicalId;
+    protected $internalTechnicalId;
 
     /**
      * @return int

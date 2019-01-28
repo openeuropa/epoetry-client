@@ -11,17 +11,17 @@ class CreateRequests implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
-    private $linguisticRequest;
+    protected $linguisticRequest;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
-    private $relatedRequest;
+    protected $relatedRequest;
 
     /**
      * @var string
      */
-    private $templateName;
+    protected $templateName;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest

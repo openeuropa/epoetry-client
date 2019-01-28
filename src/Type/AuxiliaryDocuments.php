@@ -9,7 +9,7 @@ class AuxiliaryDocuments
     /**
      * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
      */
-    private $auxiliaryDocument;
+    protected $auxiliaryDocument;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument

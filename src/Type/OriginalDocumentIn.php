@@ -9,12 +9,12 @@ class OriginalDocumentIn extends DgtDocumentIn
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    private $linguisticSections;
+    protected $linguisticSections;
 
     /**
      * @var bool
      */
-    private $trackChanges;
+    protected $trackChanges;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticSections

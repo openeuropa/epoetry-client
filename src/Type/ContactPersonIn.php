@@ -9,12 +9,12 @@ class ContactPersonIn
     /**
      * @var string
      */
-    private $roleCode;
+    protected $roleCode;
 
     /**
      * @var string
      */
-    private $userId;
+    protected $userId;
 
     /**
      * @return string

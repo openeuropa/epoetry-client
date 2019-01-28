@@ -9,47 +9,47 @@ class RequestReference
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $internalReference;
+    protected $internalReference;
 
     /**
      * @var string
      */
-    private $internalTechnicalId;
+    protected $internalTechnicalId;
 
     /**
      * @var int
      */
-    private $number;
+    protected $number;
 
     /**
      * @var int
      */
-    private $part;
+    protected $part;
 
     /**
      * @var string
      */
-    private $productType;
+    protected $productType;
 
     /**
      * @var string
      */
-    private $requesterCode;
+    protected $requesterCode;
 
     /**
      * @var int
      */
-    private $version;
+    protected $version;
 
     /**
      * @var int
      */
-    private $year;
+    protected $year;
 
     /**
      * @return int

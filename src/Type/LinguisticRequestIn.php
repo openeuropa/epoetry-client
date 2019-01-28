@@ -9,27 +9,27 @@ class LinguisticRequestIn
     /**
      * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
-    private $auxiliaryDocuments;
+    protected $auxiliaryDocuments;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\Contacts
      */
-    private $contacts;
+    protected $contacts;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
      */
-    private $generalInfo;
+    protected $generalInfo;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\OriginalDocumentIn
      */
-    private $originalDocument;
+    protected $originalDocument;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\ProductRequests
      */
-    private $productRequests;
+    protected $productRequests;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocuments

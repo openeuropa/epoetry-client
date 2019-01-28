@@ -11,7 +11,7 @@ class GetLinguisticRequestResponse implements ResultInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequest
      */
-    private $return;
+    protected $return;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\LinguisticRequest

@@ -11,37 +11,37 @@ class LinguisticRequest implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
-    private $auxiliaryDocuments;
+    protected $auxiliaryDocuments;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\Contacts
      */
-    private $contacts;
+    protected $contacts;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo
      */
-    private $generalInfo;
+    protected $generalInfo;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\OriginalDocument
      */
-    private $originalDocument;
+    protected $originalDocument;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\ProductRequests
      */
-    private $productRequests;
+    protected $productRequests;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReference
      */
-    private $reference;
+    protected $reference;
 
     /**
      * @var string
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocuments

@@ -11,7 +11,7 @@ class CreateRequestsResponse implements ResultInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequest[]
      */
-    private $return;
+    protected $return;
 
     /**
      * @param \OpenEuropa\EPoetry\Type\LinguisticRequest $return

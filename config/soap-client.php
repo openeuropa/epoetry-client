@@ -6,6 +6,7 @@ use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Phpro\SoapClient\CodeGenerator\Rules;
+use Zend\Code\Generator\PropertyGenerator;
 
 return Config::create()
     ->setWsdl('resources/dgtServiceWSDL.xml')
@@ -17,6 +18,19 @@ return Config::create()
     ->setClassMapDestination('src')
     ->setClassMapName('EPoetryClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry')
+    // Set all property visibility to "protected".
+    //
+    // We have to do this as the SOAP handler will erroneously create duplicate
+    // public properties when a value object extends another one with those
+    // same properties marked as "private".
+    ->setRuleSet(
+        new Rules\RuleSet(
+            [
+                new Rules\AssembleRule(new Assembler\PropertyAssembler(PropertyGenerator::VISIBILITY_PROTECTED)),
+                new Rules\AssembleRule(new Assembler\ClassMapAssembler()),
+            ]
+        )
+    )
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(
         (new Assembler\GetterAssemblerOptions())
             ->withReturnType()

@@ -11,12 +11,12 @@ class CorrectTranslation implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\CorrectionDocument
      */
-    private $correction;
+    protected $correction;
 
     /**
      * @var \OpenEuropa\EPoetry\Type\ProductReference
      */
-    private $product;
+    protected $product;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\CorrectionDocument

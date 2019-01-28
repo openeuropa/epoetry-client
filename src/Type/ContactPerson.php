@@ -9,27 +9,27 @@ class ContactPerson
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @var string
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @var string
      */
-    private $roleCode;
+    protected $roleCode;
 
     /**
      * @var string
      */
-    private $userId;
+    protected $userId;
 
     /**
      * @return string

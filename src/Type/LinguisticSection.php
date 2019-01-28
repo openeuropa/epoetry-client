@@ -9,7 +9,7 @@ class LinguisticSection
     /**
      * @var \OpenEuropa\EPoetry\Type\Language
      */
-    private $language;
+    protected $language;
 
     /**
      * @return \OpenEuropa\EPoetry\Type\Language

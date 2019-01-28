@@ -11,27 +11,27 @@ class FindLinguisticRequest implements RequestInterface
     /**
      * @var int
      */
-    private $number;
+    protected $number;
 
     /**
      * @var int
      */
-    private $part;
+    protected $part;
 
     /**
      * @var string
      */
-    private $productCode;
+    protected $productCode;
 
     /**
      * @var string
      */
-    private $requesterCode;
+    protected $requesterCode;
 
     /**
      * @var int
      */
-    private $year;
+    protected $year;
 
     /**
      * @return int
