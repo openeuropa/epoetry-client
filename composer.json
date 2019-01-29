@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "cweagans/composer-patches": "^1.6",
-        "openeuropa/code-review": "dev-49-use-phpcsfixer as 2.0.0",
+        "openeuropa/code-review": "dev-master",
         "php-http/mock-client": "^1.0",
         "phpunit/phpunit": "~6.0",
         "zendframework/zend-code": "^3.1.0"

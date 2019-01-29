@@ -18,11 +18,11 @@ return Config::create()
     ->setClassMapDestination('src')
     ->setClassMapName('EPoetryClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry')
-// Set all property visibility to "protected".
-//
-// We have to do this as the SOAP handler will erroneously create duplicate
-// public properties when a value object extends another one with those
-// same properties marked as "private".
+    // Set all property visibility to "protected".
+    //
+    // We have to do this as the SOAP handler will erroneously create duplicate
+    // public properties when a value object extends another one with those
+    // same properties marked as "private".
     ->setRuleSet(
         new Rules\RuleSet(
             [
@@ -51,17 +51,17 @@ return Config::create()
             '/Response$/'
         )
     )
-// Generate SOAP request classes.
-//
-// Request objects must implement \Phpro\SoapClient\Type\RequestInterface
-// The rule matches the following SOAP types:
-//
-// - correctTranslation
-// - createRequests
-// - findLinguisticRequest
-// - getLinguisticRequest
-// - modifyRequest
-// - receiveNotifications
+    // Generate SOAP request classes.
+    //
+    // Request objects must implement \Phpro\SoapClient\Type\RequestInterface
+    // The rule matches the following SOAP types:
+    //
+    // - correctTranslation
+    // - createRequests
+    // - findLinguisticRequest
+    // - getLinguisticRequest
+    // - modifyRequest
+    // - receiveNotifications
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
