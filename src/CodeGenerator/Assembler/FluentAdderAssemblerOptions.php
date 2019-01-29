@@ -27,7 +27,7 @@ class FluentAdderAssemblerOptions
     /**
      * @return FluentAdderAssemblerOptions
      */
-    public static function create(): self
+    public static function create(): FluentAdderAssemblerOptions
     {
         return new self();
     }
@@ -38,7 +38,7 @@ class FluentAdderAssemblerOptions
      *
      * @return \OpenEuropa\EPoetry\CodeGenerator\Assembler\FluentAdderAssemblerOptions
      */
-    public function generateAdderForProperty(string $className, string $propertyName): self
+    public function generateAdderForProperty(string $className, string $propertyName): FluentAdderAssemblerOptions
     {
         $this->properties[$className][] = $propertyName;
 
@@ -85,7 +85,7 @@ class FluentAdderAssemblerOptions
      *
      * @return FluentAdderAssemblerOptions
      */
-    public function withReturnType(bool $returnType = true): self
+    public function withReturnType(bool $returnType = true): FluentAdderAssemblerOptions
     {
         $this->returnType = $returnType;
 
@@ -97,7 +97,7 @@ class FluentAdderAssemblerOptions
      *
      * @return FluentAdderAssemblerOptions
      */
-    public function withTypeHints(bool $typeHints = true): self
+    public function withTypeHints(bool $typeHints = true): FluentAdderAssemblerOptions
     {
         $this->typeHints = $typeHints;
 
