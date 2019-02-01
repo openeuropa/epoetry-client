@@ -5,3 +5,4 @@ behat.yml
 .idea
 phpunit.xml
 docker-compose.*.yml
+*.backup

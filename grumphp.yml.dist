@@ -3,5 +3,8 @@ imports:
 parameters:
   tasks.phpcs.ignore_patterns:
     - vendor/
+    - config/soap-client.php
   tasks.phpcs.triggered_by:
     - php
+  tasks.phpmd.exclude:
+    - src/Type/
