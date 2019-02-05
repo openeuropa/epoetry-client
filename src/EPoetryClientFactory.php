@@ -5,11 +5,13 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\HttpClient;
+use OpenEuropa\EPoetry\Plugin\ePoetryLogPlugin;
 use Phpro\SoapClient\ClientBuilder;
 use Phpro\SoapClient\ClientFactory;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -17,6 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class EPoetryClientFactory
 {
+
     /**
      * Event dispatcher instance.
      *
@@ -37,6 +40,12 @@ class EPoetryClientFactory
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
+
+    /**
+     * Level of severity of the events to be logged.
+     * @var bool | string
+     */
+    protected $logLevel = false;
 
     /**
      * List of Phpro\SoapClient middlewares.
@@ -107,6 +116,14 @@ class EPoetryClientFactory
         $clientBuilder = new ClientBuilder($clientFactory, $this->wsdl, $this->options);
         $clientBuilder->withClassMaps(EPoetryClassmap::getCollection());
 
+        if ($this->logger) {
+            $logPlugin = new ePoetryLogPlugin($this->logger, $this->logLevel);
+            if (!$this->eventDispatcher) {
+                $this->eventDispatcher = new EventDispatcher();
+            }
+            $this->eventDispatcher->addSubscriber($logPlugin);
+        }
+
         if ($this->eventDispatcher) {
             $clientBuilder->withEventDispatcher($this->eventDispatcher);
         }
@@ -155,6 +172,13 @@ class EPoetryClientFactory
     public function setLogger(LoggerInterface $logger): EPoetryClientFactory
     {
         $this->logger = $logger;
+
+        return $this;
+    }
+
+    public function setLogLevel($log_level)
+    {
+        $this->logLevel = $log_level;
 
         return $this;
     }
