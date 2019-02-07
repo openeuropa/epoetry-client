@@ -57,7 +57,7 @@ class LoggerSubscriber implements EventSubscriberInterface
     public function onClientFault(FaultEvent $event): void
     {
         $this->logError(sprintf(
-            '[phpro/soap-client] fault "%s" for request "%s" with params %s',
+            '[epoetry] fault "%s" for request "%s" with params %s',
             $event->getSoapException()->getMessage(),
             $event->getRequestEvent()->getMethod(),
             print_r($event->getRequestEvent()->getRequest(), true)
@@ -70,7 +70,7 @@ class LoggerSubscriber implements EventSubscriberInterface
     public function onClientRequest(RequestEvent $event): void
     {
         $this->logInfo(sprintf(
-            '[phpro/soap-client] request: call "%s" with params %s',
+            '[epoetry] request: call "%s" with params %s',
             $event->getMethod(),
             print_r($event->getRequest(), true)
         ));
@@ -82,7 +82,7 @@ class LoggerSubscriber implements EventSubscriberInterface
     public function onClientResponse(ResponseEvent $event): void
     {
         $this->logInfo(sprintf(
-            '[phpro/soap-client] response: %s',
+            '[epoetry] response: %s',
             print_r($event->getResponse(), true)
         ));
     }
@@ -107,7 +107,9 @@ class LoggerSubscriber implements EventSubscriberInterface
             LogLevel::EMERGENCY,
         ];
         $key = array_search($this->logLevel, $levels, true);
-        $levels = \array_slice($levels, $key);
+        if ($key) {
+            $levels = \array_slice($levels, $key);
+        }
 
         return ($this->logLevel !== false) && \in_array($level, $levels, true);
     }
