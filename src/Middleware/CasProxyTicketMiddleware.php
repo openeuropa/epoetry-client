@@ -23,7 +23,7 @@ class CasProxyTicketMiddleware extends Middleware implements MiddlewareInterface
      *
      * @param string $proxyTicket
      */
-    public function __construct(string $proxyTicket)
+    public function __construct(string $proxyTicket = '')
     {
         $this->proxyTicket = $proxyTicket;
     }
@@ -39,5 +39,16 @@ class CasProxyTicketMiddleware extends Middleware implements MiddlewareInterface
     public function getName(): string
     {
         return 'cas_proxy_ticket_middleware';
+    }
+
+    /**
+     * Set the Proxy Ticket.
+     *
+     * @param string $proxyTicket
+     *    The Proxy Ticket
+     */
+    public function setProxyTicket(string $proxyTicket)
+    {
+        $this->proxyTicket = $proxyTicket;
     }
 }

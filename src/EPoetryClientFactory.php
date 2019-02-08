@@ -139,6 +139,17 @@ class EPoetryClientFactory
     }
 
     /**
+     * Get the HTTP Client.
+     *
+     * @return httpClient
+     *    The HTTP Client
+     */
+    public function getHttpCLient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
      * Set event dispatcher instance.
      *
      * Pass here an external application event dispatcher to be able to
