@@ -8,30 +8,36 @@ use Http\Promise\Promise;
 use Phpro\SoapClient\Middleware\Middleware;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Psr\Http\Message\RequestInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class CasProxyTicketSessionMiddleware.
+ */
 class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareInterface
 {
-    private const PGT_ATTRIBUTE = 'cas_pgt';
+    public const PGT_ATTRIBUTE = 'cas_pgt';
 
     /**
-     * The user session.
+     * The session.
      *
-     * @var Symfony\Component\HttpFoundation\Session\Session
+     * @var SessionInterface
      */
     protected $session;
 
     /**
      * CasProxyTicketMiddleware constructor.
      *
-     * @param session $session
-     *   The user session
+     * @param $session SessionInterface
+     *   The session
      */
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function beforeRequest(callable $handler, RequestInterface $request): Promise
     {
         $proxyTicket = $this->getProxyTicket();
@@ -45,11 +51,20 @@ class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareIn
         return $handler($request);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
         return 'cas_proxy_ticket_session_middleware';
     }
 
+    /**
+     * Get the Proxy Ticket.
+     *
+     * @return string
+     *   The Proxy Ticket
+     */
     public function getProxyTicket()
     {
         return $this->session->get(self::PGT_ATTRIBUTE);
