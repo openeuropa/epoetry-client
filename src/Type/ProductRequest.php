@@ -70,7 +70,7 @@ class ProductRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\Language
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Type\Language
+    public function getLanguage(): ?Language
     {
         return $this->language;
     }
