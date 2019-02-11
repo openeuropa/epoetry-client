@@ -30,6 +30,12 @@ $factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
+## Authentication
+
+Access to ePoetry web services requires your application to be
+configured as a [cas proxy](https://webgate.ec.europa.eu/CITnet/confluence/display/IAM/Proxy+Tickets).
+
+When authenticated, a session needs to be provided having the attribute `cas_pgt`.
 
 ## Logging
 

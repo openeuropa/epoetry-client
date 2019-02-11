@@ -10,8 +10,6 @@ use OpenEuropa\EPoetry\Tests\Middleware\MockMiddleware;
 use OpenEuropa\EPoetry\Middleware\CasProxyTicketMiddleware;
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 use OpenEuropa\EPoetry\Type\CreateRequests;
-use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
-use OpenEuropa\EPoetry\Type\RequestGeneralInfoIn;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
@@ -26,14 +24,6 @@ final class MiddlewareTest extends AbstractTest
      */
     public function testNoProxyTicketException()
     {
-        // Generate request.
-        $generalInfo = new RequestGeneralInfoIn();
-        $generalInfo->setTitle('Test');
-        $linguisticRequestIn = new LinguisticRequestIn();
-        $linguisticRequestIn->setGeneralInfo($generalInfo);
-        $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest($linguisticRequestIn);
-
         // Generate response.
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
@@ -47,22 +37,14 @@ final class MiddlewareTest extends AbstractTest
 
         // Try to perform the request but expect an exception.
         $this->expectExceptionMessage('[epoetry] session has no proxy ticket.');
-        $client->createRequests($createRequests);
+        $client->createRequests(new CreateRequests());
     }
 
     /**
      * Test Proxy Ticket in request.
      */
-    public function testProxyTicketFromMainMiddleware()
+    public function testProxyTicket()
     {
-        // Generate request.
-        $generalInfo = new RequestGeneralInfoIn();
-        $generalInfo->setTitle('Test');
-        $linguisticRequestIn = new LinguisticRequestIn();
-        $linguisticRequestIn->setGeneralInfo($generalInfo);
-        $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest($linguisticRequestIn);
-
         // Generate response.
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
@@ -74,12 +56,11 @@ final class MiddlewareTest extends AbstractTest
         $middleware = new CasProxyTicketSessionMiddleware($session);
         $clientFactory->addMiddleware($middleware);
         $client = $clientFactory->getClient();
-        $client->createRequests($createRequests);
+        $client->createRequests(new CreateRequests());
 
         // Perform request.
         $request = $client->debugLastSoapRequest()['request'];
 
-        $this->assertContains('<title>Test</title>', $request['body']);
         $this->assertContains('ecas:ProxyTicket: DESKTOP_PT-21-9fp9', $request['headers'], 'Request XML header malformed, missing proxy ticket.');
     }
 
@@ -88,14 +69,6 @@ final class MiddlewareTest extends AbstractTest
      */
     public function testProxyTicketFromTestMiddleware()
     {
-        // Generate request.
-        $generalInfo = new RequestGeneralInfoIn();
-        $generalInfo->setTitle('Test');
-        $linguisticRequestIn = new LinguisticRequestIn();
-        $linguisticRequestIn->setGeneralInfo($generalInfo);
-        $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest($linguisticRequestIn);
-
         // Generate response.
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
@@ -104,12 +77,11 @@ final class MiddlewareTest extends AbstractTest
         $clientFactory = $this->createClientFactory();
         $clientFactory->addMiddleware(new MockMiddleware());
         $client = $clientFactory->getClient();
-        $client->createRequests($createRequests);
+        $client->createRequests(new CreateRequests());
 
         // Perform request.
         $request = $client->debugLastSoapRequest()['request'];
 
-        $this->assertContains('<title>Test</title>', $request['body']);
         $this->assertContains('ecas:ProxyTicket: DESKTOP_PT-21-9fp9', $request['headers'], 'Request XML header malformed, missing proxy ticket.');
     }
 }
