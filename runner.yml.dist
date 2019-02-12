@@ -1,5 +1,0 @@
-commands:
-  generate:types:
-    - { task: "remove", file: "src/Type" }
-    - "./vendor/bin/soap-client generate:types -o --config=$(pwd)/config/soap-client.php"
-    - "./vendor/bin/php-cs-fixer --allow-risky=yes --config=./vendor/openeuropa/code-review/resources/php-cs-fixer/php_cs_fixer.library.php --using-cache=no --verbose fix"

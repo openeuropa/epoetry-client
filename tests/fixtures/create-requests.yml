@@ -1,16 +1,28 @@
-create-requests:
-  requestGeneralInfoIn:
-    title: 'title'
-    internalReference: '1'
-    internalTechnicalId: '1'
-    requestedDeadline: '2020-02-02'
-    sensitive: 'false'
-    documentToBeAdopted: 'true'
-    decideReference: 'decideReference'
-    sentViaRUE: 'true'
-    destinationCode: 'PUBLIC'
-    slaAnnex: ''
-    slaCommitment : ''
-    comment: ''
-    onBehalfOf: ''
-    accessibleTo: ''
+request:
+  linguisticRequest:
+    -
+      contacts:
+        contact:
+          -
+            UserId: '1'
+            RoleCode: AUTHOR
+          -
+            UserId: '2'
+            RoleCode: EDITOR
+      generalInfo:
+        Title: Test
+        InternalReference: '1'
+        InternalTechnicalId: '1'
+        RequestedDeadline:
+          time: '2020-02-02'
+          timezone: null
+        Sensitive: false
+        DocumentToBeAdopted: true
+        DecideReference: decideReference
+        SentViaRUE: true
+        DestinationCode: PUBLIC
+        SlaAnnex: ''
+        SlaCommitment: ''
+        Comment: ''
+        OnBehalfOf: ''
+        AccessibleTo: ''

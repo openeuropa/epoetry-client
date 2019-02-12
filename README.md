@@ -83,4 +83,10 @@ $factory->setLogger($logger);
 
 // Set your log level. In this case we only want ERROR level logs or lower.
 $factory->setLogLevel(LogLevel::ERROR);
+
+## Commands
+
+To send a createRequest by TaskRunner use the command:
+```bash
+./vendor/bin/run epoetry:create-requests --wsdl-endpoint=http://europa.eu/epoetry.wsdl --request-yml=./tests/fixtures/create-requests.yml
 ```
