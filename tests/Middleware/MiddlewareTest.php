@@ -6,8 +6,6 @@ namespace OpenEuropa\EPoetry\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
 use OpenEuropa\EPoetry\Middleware\CasProxyTicketSessionMiddleware;
-use OpenEuropa\EPoetry\Tests\Middleware\MockMiddleware;
-use OpenEuropa\EPoetry\Middleware\CasProxyTicketMiddleware;
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use Symfony\Component\HttpFoundation\Session\Session;

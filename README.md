@@ -37,7 +37,6 @@ configured as a [cas proxy](https://webgate.ec.europa.eu/CITnet/confluence/displ
 
 When authenticated, a session needs to be provided having the attribute `cas_pgt`.
 
-
 This can be done in code.
 An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Requests/MiddlewareTest.php):
 
@@ -47,7 +46,7 @@ $session->set('cas_pgt', 'DESKTOP_PT-21-9fp9');
 $clientFactory->addMiddleware(new CasProxyTicketSessionMiddleware($session));
 ```
 
-An another option is to enable a service for the EPoetry client that calls the `addMiddleware` method:
+Another option is to enable a service for the ePoetry client that calls the `addMiddleware` method:
 
 ```yaml
 services:
@@ -60,7 +59,7 @@ services:
     calls:
       - method: 'addMiddleware'
         arguments:
-          - '@example.epoetry_cas_proxy_ticket_session'
+          - '@your.session.service'
 ```
 
 ## Logging
