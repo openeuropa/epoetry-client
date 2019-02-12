@@ -45,7 +45,7 @@ final class LoggerTest extends AbstractTest
         $this->assertCount(0, $infoLogs);
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
         $this->assertCount(1, $errorLogs);
-        $this->assertContains('[epoetry] fault', reset($errorLogs));
+        $this->assertContains('[ePoetry] Fault', reset($errorLogs));
     }
 
     /**
@@ -73,10 +73,10 @@ final class LoggerTest extends AbstractTest
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
         $this->assertCount(1, $infoLogs);
-        $this->assertContains('[epoetry] request', reset($infoLogs));
+        $this->assertContains('[ePoetry] Request', reset($infoLogs));
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
         $this->assertCount(1, $errorLogs);
-        $this->assertContains('[epoetry] fault', reset($errorLogs));
+        $this->assertContains('[ePoetry] Fault', reset($errorLogs));
     }
 
     /**
