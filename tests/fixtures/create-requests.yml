@@ -1,0 +1,16 @@
+create-requests:
+  requestGeneralInfoIn:
+    title: 'title'
+    internalReference: '1'
+    internalTechnicalId: '1'
+    requestedDeadline: '2020-02-02'
+    sensitive: 'false'
+    documentToBeAdopted: 'true'
+    decideReference: 'decideReference'
+    sentViaRUE: 'true'
+    destinationCode: 'PUBLIC'
+    slaAnnex: ''
+    slaCommitment : ''
+    comment: ''
+    onBehalfOf: ''
+    accessibleTo: ''
