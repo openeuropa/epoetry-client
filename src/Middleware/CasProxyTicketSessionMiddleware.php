@@ -12,10 +12,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class CasProxyTicketSessionMiddleware.
+ *
+ * This middleware should adds the Cas Proxy Granting Ticket into the request,
+ * to be added into the XML header and allow authentication in ePoetry.
  */
 class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareInterface
 {
-    public const PGT_ATTRIBUTE = 'cas_pgt';
+    protected const PGT_ATTRIBUTE = 'cas_pgt';
 
     /**
      * The session.
@@ -25,7 +28,7 @@ class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareIn
     protected $session;
 
     /**
-     * CasProxyTicketMiddleware constructor.
+     * CasProxyTicketSessionMiddleware constructor.
      *
      * @param $session SessionInterface
      *   The session

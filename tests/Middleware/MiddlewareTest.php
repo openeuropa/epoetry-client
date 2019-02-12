@@ -63,25 +63,4 @@ final class MiddlewareTest extends AbstractTest
 
         $this->assertContains('ecas:ProxyTicket: DESKTOP_PT-21-9fp9', $request['headers'], 'Request XML header malformed, missing proxy ticket.');
     }
-
-    /**
-     * Test Proxy Ticket in request using test middleware.
-     */
-    public function testProxyTicketFromTestMiddleware()
-    {
-        // Generate response.
-        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
-        $response = new Response(200, [], $content);
-        $this->httpClient->addResponse($response);
-
-        $clientFactory = $this->createClientFactory();
-        $clientFactory->addMiddleware(new MockMiddleware());
-        $client = $clientFactory->getClient();
-        $client->createRequests(new CreateRequests());
-
-        // Perform request.
-        $request = $client->debugLastSoapRequest()['request'];
-
-        $this->assertContains('ecas:ProxyTicket: DESKTOP_PT-21-9fp9', $request['headers'], 'Request XML header malformed, missing proxy ticket.');
-    }
 }
