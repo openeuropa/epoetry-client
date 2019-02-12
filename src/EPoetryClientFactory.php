@@ -179,14 +179,14 @@ class EPoetryClientFactory
     }
 
     /**
-     * Set level of severity of the events to be logged.
+     * Set minimum level of severity of the events to be logged.
      *
      * @param string $logLevel
      *    Log level string
      *
      * @return \OpenEuropa\EPoetry\EPoetryClientFactory
      */
-    public function setLogLevel($logLevel)
+    public function setLogLevel(string $logLevel): EPoetryClientFactory
     {
         $this->logLevel = $logLevel;
 

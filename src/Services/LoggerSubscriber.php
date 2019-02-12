@@ -8,6 +8,7 @@ use Phpro\SoapClient\Event\FaultEvent;
 use Phpro\SoapClient\Event\RequestEvent;
 use Phpro\SoapClient\Event\ResponseEvent;
 use Phpro\SoapClient\Events;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -16,16 +17,16 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class LoggerSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Services\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * Constructor.
      *
-     * @param Logger $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(Logger $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
@@ -47,12 +48,14 @@ class LoggerSubscriber implements EventSubscriberInterface
      */
     public function onClientFault(FaultEvent $event): void
     {
-        $this->logger->logInfo(sprintf(
-            '[epoetry] fault "%s" for request "%s" with params %s',
-            $event->getSoapException()->getMessage(),
-            $event->getRequestEvent()->getMethod(),
-            print_r($event->getRequestEvent()->getRequest(), true)
-        ));
+        $this->logger->error(
+            'Fault {message} for request {method} with params {request}',
+            [
+                'message' => $event->getSoapException()->getMessage(),
+                'method' => $event->getRequestEvent()->getMethod(),
+                'request' => $event->getRequestEvent()->getRequest(),
+            ]
+        );
     }
 
     /**
@@ -60,11 +63,13 @@ class LoggerSubscriber implements EventSubscriberInterface
      */
     public function onClientRequest(RequestEvent $event): void
     {
-        $this->logger->logInfo(sprintf(
-            '[epoetry] request: call "%s" with params %s',
-            $event->getMethod(),
-            print_r($event->getRequest(), true)
-        ));
+        $this->logger->info(
+            'Request: call {method} with params {request}',
+            [
+                'method' => $event->getMethod(),
+                'request' => $event->getRequest(),
+            ]
+        );
     }
 
     /**
@@ -72,9 +77,11 @@ class LoggerSubscriber implements EventSubscriberInterface
      */
     public function onClientResponse(ResponseEvent $event): void
     {
-        $this->logger->logInfo(sprintf(
-            '[epoetry] response: %s',
-            print_r($event->getResponse(), true)
-        ));
+        $this->logger->info(
+            'Response: {response}',
+            [
+                'response' => $event->getResponse(),
+            ]
+        );
     }
 }
