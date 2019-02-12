@@ -83,7 +83,7 @@ final class RequestTest extends AbstractRequestTest
     {
         $response = new Response(200, [], $this->getFixtureContent($response));
         $this->httpClient->addResponse($response);
-
+        
         $client = $this->createClientFactory()->getClient();
 
         $values = [
