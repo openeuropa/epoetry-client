@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Serializer;
 
 use OpenEuropa\EPoetry\PropertyInfo\Extractor\MappingReflectionExtractor;
+
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
