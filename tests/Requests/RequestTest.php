@@ -5,62 +5,39 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Tests\AbstractTest;
-use OpenEuropa\EPoetry\Type\ContactPersonIn;
-use OpenEuropa\EPoetry\Type\Contacts;
+use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use OpenEuropa\EPoetry\Type\CreateRequestsResponse;
-use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
-use OpenEuropa\EPoetry\Type\RequestGeneralInfoIn;
 
 /**
  * @internal
  * @coversNothing
  */
-final class RequestTest extends AbstractTest
+final class RequestTest extends AbstractRequestTest
 {
     /**
-     * Test a SOAP request.
+     * Data provider.
+     *
+     * @return mixed
      */
-    public function testRequestSending()
+    public function requestSendingCases()
     {
-        // Generate General Info.
-        $generalInfo = new RequestGeneralInfoIn();
+        return $this->getFixture('request-test.yml');
+    }
 
-        $generalInfo->setTitle('Test')
-            ->setInternalReference('1')
-            ->setInternalTechnicalId('1')
-            ->setRequestedDeadline(new \DateTime('2020-02-02'))
-            ->setSensitive(false)
-            ->setDocumentToBeAdopted(true)
-            ->setDecideReference('decideReference')
-            ->setSentViaRUE(true)
-            ->setDestinationCode('PUBLIC')
-            ->setSlaAnnex('')
-            ->setSlaCommitment('')
-            ->setComment('')
-            ->setOnBehalfOf('')
-            ->setAccessibleTo('');
-
-        // Generate Contacts.
-        $contacts = new Contacts();
-
-        $contact = new ContactPersonIn();
-        $contact->setUserId('1');
-        $contact->setRoleCode('AUTHOR');
-        $contacts->addContact($contact);
-
-        $contact = new ContactPersonIn();
-        $contact->setUserId('2');
-        $contact->setRoleCode('EDITOR');
-        $contacts->addContact($contact);
-
-        $linguisticRequestIn = new LinguisticRequestIn();
-        $linguisticRequestIn->setContacts($contacts)
-            ->setGeneralInfo($generalInfo);
-
-        $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest([$linguisticRequestIn]);
+    /**
+     * Test a SOAP request.
+     *
+     * @dataProvider requestSendingCases
+     *
+     * @param mixed $input
+     */
+    public function testRequestSending($input)
+    {
+        $createRequests = RequestsSerializer::fromArray(
+            $input['request'],
+            CreateRequests::class
+        );
 
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
@@ -78,14 +55,21 @@ final class RequestTest extends AbstractTest
 
     /**
      * Test parsing a SOAP response.
+     *
+     * @dataProvider requestSendingCases
+     *
+     * @param mixed $input
      */
-    public function testResponseParsing()
+    public function testResponseParsing($input)
     {
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
         $this->httpClient->addResponse($response);
 
-        $createRequests = new CreateRequests();
+        $createRequests = RequestsSerializer::fromArray(
+            $input['request'],
+            CreateRequests::class
+        );
         $response = $this->createClientFactory()
             ->getClient()
             ->createRequests($createRequests);
