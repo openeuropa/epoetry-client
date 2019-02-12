@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\HttpClient;
-use OpenEuropa\EPoetry\Services\Logger;
+use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientBuilder;
 use Phpro\SoapClient\ClientFactory;
@@ -117,17 +117,13 @@ class EPoetryClientFactory
         $clientBuilder = new ClientBuilder($clientFactory, $this->wsdl, $this->options);
         $clientBuilder->withClassMaps(EPoetryClassmap::getCollection());
 
-        if ($this->logger) {
-            $logger = new Logger($this->logger, $this->logLevel);
-            $logPlugin = new LoggerSubscriber($logger);
-            if (!$this->eventDispatcher) {
-                $this->eventDispatcher = new EventDispatcher();
-            }
-            $this->eventDispatcher->addSubscriber($logPlugin);
-        }
+        $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
+        $clientBuilder->withEventDispatcher($this->eventDispatcher);
 
-        if ($this->eventDispatcher) {
-            $clientBuilder->withEventDispatcher($this->eventDispatcher);
+        if ($this->logger) {
+            $logger = new LoggerDecorator($this->logger, $this->logLevel);
+            $logPlugin = new LoggerSubscriber($logger);
+            $this->eventDispatcher->addSubscriber($logPlugin);
         }
 
         $handler = HttPlugHandle::createForClient($this->httpClient);
