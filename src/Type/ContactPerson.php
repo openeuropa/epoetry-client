@@ -32,7 +32,7 @@ class ContactPerson
     protected $userId;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getEmail(): ?string
     {
@@ -40,7 +40,7 @@ class ContactPerson
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getFirstName(): ?string
     {
@@ -48,7 +48,7 @@ class ContactPerson
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getLastName(): ?string
     {
@@ -56,7 +56,7 @@ class ContactPerson
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getRoleCode(): ?string
     {
@@ -64,7 +64,7 @@ class ContactPerson
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getUserId(): ?string
     {

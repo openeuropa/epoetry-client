@@ -12,7 +12,7 @@ class LinguisticSectionIn
     protected $language;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LanguageIn
+     * @return null|\OpenEuropa\EPoetry\Type\LanguageIn
      */
     public function getLanguage(): ?\OpenEuropa\EPoetry\Type\LanguageIn
     {

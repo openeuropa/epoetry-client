@@ -52,7 +52,7 @@ class RequestReference
     protected $year;
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getId(): ?int
     {
@@ -60,7 +60,7 @@ class RequestReference
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalReference(): ?string
     {
@@ -68,7 +68,7 @@ class RequestReference
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalTechnicalId(): ?string
     {
@@ -76,7 +76,7 @@ class RequestReference
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getNumber(): ?int
     {
@@ -84,7 +84,7 @@ class RequestReference
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getPart(): ?int
     {
@@ -92,7 +92,7 @@ class RequestReference
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getProductType(): ?string
     {
@@ -100,7 +100,7 @@ class RequestReference
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getRequesterCode(): ?string
     {
@@ -108,7 +108,7 @@ class RequestReference
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getVersion(): ?int
     {
@@ -116,7 +116,7 @@ class RequestReference
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getYear(): ?int
     {

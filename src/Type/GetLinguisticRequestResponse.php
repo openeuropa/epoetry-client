@@ -14,7 +14,7 @@ class GetLinguisticRequestResponse implements ResultInterface
     protected $return;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticRequest
+     * @return null|\OpenEuropa\EPoetry\Type\LinguisticRequest
      */
     public function getReturn(): ?\OpenEuropa\EPoetry\Type\LinguisticRequest
     {

@@ -9,7 +9,7 @@ class LinguisticSections
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSection[]
      */
-    protected $linguisticSection;
+    protected $linguisticSection = [];
 
     /**
      * @param \OpenEuropa\EPoetry\Type\LinguisticSection $linguisticSection

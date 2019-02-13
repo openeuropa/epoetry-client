@@ -44,7 +44,7 @@ class LinguisticRequest implements RequestInterface
     protected $statusCode;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @return null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
     public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
     {
@@ -52,7 +52,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\Contacts
+     * @return null|\OpenEuropa\EPoetry\Type\Contacts
      */
     public function getContacts(): ?\OpenEuropa\EPoetry\Type\Contacts
     {
@@ -60,7 +60,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+     * @return null|\OpenEuropa\EPoetry\Type\RequestGeneralInfo
      */
     public function getGeneralInfo(): ?\OpenEuropa\EPoetry\Type\RequestGeneralInfo
     {
@@ -68,7 +68,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\OriginalDocument
+     * @return null|\OpenEuropa\EPoetry\Type\OriginalDocument
      */
     public function getOriginalDocument(): ?\OpenEuropa\EPoetry\Type\OriginalDocument
     {
@@ -76,7 +76,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ProductRequests
+     * @return null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
     public function getProductRequests(): ?\OpenEuropa\EPoetry\Type\ProductRequests
     {
@@ -84,7 +84,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\RequestReference
+     * @return null|\OpenEuropa\EPoetry\Type\RequestReference
      */
     public function getReference(): ?\OpenEuropa\EPoetry\Type\RequestReference
     {
@@ -92,7 +92,7 @@ class LinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getStatusCode(): ?string
     {

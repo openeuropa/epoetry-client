@@ -27,7 +27,7 @@ class DgtDocumentIn
     protected $type;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getFile(): ?string
     {
@@ -35,7 +35,7 @@ class DgtDocumentIn
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getFormat(): ?string
     {
@@ -43,7 +43,7 @@ class DgtDocumentIn
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getName(): ?string
     {
@@ -51,7 +51,7 @@ class DgtDocumentIn
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getType(): ?string
     {

@@ -11,7 +11,7 @@ class CreateRequests implements RequestInterface
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
-    protected $linguisticRequest;
+    protected $linguisticRequest = [];
 
     /**
      * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
@@ -44,7 +44,7 @@ class CreateRequests implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\RequestReferenceIn
+     * @return null|\OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     public function getRelatedRequest(): ?\OpenEuropa\EPoetry\Type\RequestReferenceIn
     {
@@ -52,7 +52,7 @@ class CreateRequests implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getTemplateName(): ?string
     {

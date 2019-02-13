@@ -87,7 +87,7 @@ class RequestGeneralInfo
     protected $title;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getAccessibleTo(): ?string
     {
@@ -95,7 +95,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getComment(): ?string
     {
@@ -103,7 +103,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getDecideReference(): ?string
     {
@@ -111,7 +111,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getDestinationCode(): ?string
     {
@@ -119,7 +119,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalReference(): ?string
     {
@@ -127,7 +127,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalTechnicalId(): ?string
     {
@@ -135,7 +135,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getOnBehalfOf(): ?string
     {
@@ -143,7 +143,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
     public function getRequestedDeadline(): ?\DateTime
     {
@@ -151,7 +151,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getRequestingService(): ?string
     {
@@ -159,7 +159,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getServiceOfOrigin(): ?string
     {
@@ -167,7 +167,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getSlaAnnex(): ?string
     {
@@ -175,7 +175,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getSlaCommitment(): ?string
     {
@@ -183,7 +183,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getTitle(): ?string
     {
@@ -191,7 +191,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isDocumentToBeAdopted(): ?bool
     {
@@ -199,7 +199,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isSensitive(): ?bool
     {
@@ -207,7 +207,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isSentViaRUE(): ?bool
     {
