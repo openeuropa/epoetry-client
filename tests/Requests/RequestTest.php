@@ -32,7 +32,7 @@ final class RequestTest extends AbstractRequestTest
      *
      * @param mixed $input
      */
-    public function testRequestSending($input)
+    public function testRequestSending(array $input)
     {
         $createRequests = RequestsSerializer::fromArray(
             $input['request'],
