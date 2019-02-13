@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class ePoetryLogPlugin.
+ * A subscriber class that will log events triggered by the Phpro Soap Client.
  */
 class LoggerSubscriber implements EventSubscriberInterface
 {

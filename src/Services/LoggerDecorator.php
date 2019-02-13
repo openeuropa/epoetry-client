@@ -100,32 +100,6 @@ class LoggerDecorator implements LoggerInterface
     }
 
     /**
-     * Log error messages.
-     *
-     * @param string $message
-     * @param array  $context
-     */
-    public function logError($message, array $context = []): void
-    {
-        if ($this->canLogLevel(LogLevel::ERROR)) {
-            $this->logger->error($message, $context);
-        }
-    }
-
-    /**
-     * Log info messages.
-     *
-     * @param string $message
-     * @param array  $context
-     */
-    public function logInfo($message, array $context = []): void
-    {
-        if ($this->canLogLevel(LogLevel::INFO)) {
-            $this->logger->info($message, $context);
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function notice($message, array $context = [])

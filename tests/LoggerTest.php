@@ -38,7 +38,8 @@ final class LoggerTest extends AbstractTest
         try {
             $client->createRequests($createRequests);
         } catch (\Exception $e) {
-            // Do nothing.
+            // Since we need to trigger some exceptions in order to log them
+            // as errors, catch them and do nothing to continue the test.
         }
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
@@ -68,7 +69,8 @@ final class LoggerTest extends AbstractTest
         try {
             $client->createRequests($createRequests);
         } catch (\Exception $e) {
-            // Do nothing.
+            // Since we need to trigger some exceptions in order to log them
+            // as errors, catch them and do nothing to continue the test.
         }
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
