@@ -23,12 +23,12 @@ class LoggerDecorator implements LoggerInterface
      * Constructor.
      *
      * @param LoggerInterface $logger
-     * @param string $log_level
+     * @param string $logLevel
      */
-    public function __construct(LoggerInterface $logger, string $log_level)
+    public function __construct(LoggerInterface $logger, string $logLevel)
     {
         $this->logger = $logger;
-        $this->logLevel = $log_level;
+        $this->logLevel = $logLevel;
     }
 
     /**
@@ -96,7 +96,7 @@ class LoggerDecorator implements LoggerInterface
      */
     public function log($level, $message, array $context = [])
     {
-        $this->logger->log('[ePoetry] ' . $message, $context);
+        $this->logger->log($level, '[ePoetry] ' . $message, $context);
     }
 
     /**
@@ -120,23 +120,23 @@ class LoggerDecorator implements LoggerInterface
     }
 
     /**
-     * Decide if the we can log a specific level.
+     * Assert if log level is low enough to be logged.
      *
      * @param string $level
      *
      * @return bool
      */
-    private function canLogLevel($level): bool
+    private function canLogLevel(string $level): bool
     {
         $levels = [
-            LogLevel::DEBUG,
-            LogLevel::INFO,
-            LogLevel::NOTICE,
-            LogLevel::WARNING,
-            LogLevel::ERROR,
-            LogLevel::CRITICAL,
-            LogLevel::ALERT,
             LogLevel::EMERGENCY,
+            LogLevel::ALERT,
+            LogLevel::CRITICAL,
+            LogLevel::ERROR,
+            LogLevel::WARNING,
+            LogLevel::NOTICE,
+            LogLevel::INFO,
+            LogLevel::DEBUG,
         ];
         $key = array_search($this->logLevel, $levels, true);
         if ($key) {

@@ -19,7 +19,7 @@ use Psr\Log\LogLevel;
 final class LoggerTest extends AbstractTest
 {
     /**
-     * Test logging only error events.
+     * Test logging info and error events.
      */
     public function testErrorLogging()
     {
@@ -43,14 +43,14 @@ final class LoggerTest extends AbstractTest
         }
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
-        $this->assertCount(0, $infoLogs);
+        $this->assertCount(1, $infoLogs);
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
         $this->assertCount(1, $errorLogs);
         $this->assertContains('[ePoetry] Fault', reset($errorLogs));
     }
 
     /**
-     * Test logging info and error events.
+     * Test logging only info events.
      */
     public function testInfoLogging()
     {
@@ -77,8 +77,7 @@ final class LoggerTest extends AbstractTest
         $this->assertCount(1, $infoLogs);
         $this->assertContains('[ePoetry] Request', reset($infoLogs));
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
-        $this->assertCount(1, $errorLogs);
-        $this->assertContains('[ePoetry] Fault', reset($errorLogs));
+        $this->assertCount(0, $errorLogs);
     }
 
     /**

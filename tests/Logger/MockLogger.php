@@ -34,7 +34,7 @@ class MockLogger extends AbstractLogger
      * @return array
      *   Property value
      */
-    public function getLogs()
+    public function getLogs(): array
     {
         return $this->logs;
     }

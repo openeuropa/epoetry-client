@@ -175,7 +175,7 @@ class EPoetryClientFactory
     }
 
     /**
-     * Set minimum level of severity of the events to be logged.
+     * Set maximum level of severity of the events to be logged.
      *
      * @param string $logLevel
      *    Log level string
