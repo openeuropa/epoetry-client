@@ -6,6 +6,7 @@ namespace OpenEuropa\EPoetry\Serializer;
 
 use OpenEuropa\EPoetry\PropertyInfo\Extractor\MappingReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -33,7 +34,7 @@ final class RequestsSerializer implements SerializerInterface
                 new ArrayDenormalizer(),
                 new ObjectNormalizer(
                     null,
-                    null,
+                    new CamelCaseToSnakeCaseNameConverter(),
                     null,
                     new MappingReflectionExtractor()
                 ),
