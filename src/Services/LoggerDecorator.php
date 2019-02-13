@@ -9,6 +9,8 @@ use Psr\Log\LogLevel;
 
 class LoggerDecorator implements LoggerInterface
 {
+    const LOG_MESSAGE_PREFIX = '[ePoetry] ';
+
     /**
      * @var string
      */
@@ -37,7 +39,7 @@ class LoggerDecorator implements LoggerInterface
     public function alert($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::ALERT)) {
-            $this->logger->alert('[ePoetry] ' . $message, $context);
+            $this->logger->alert(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -47,7 +49,7 @@ class LoggerDecorator implements LoggerInterface
     public function critical($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::CRITICAL)) {
-            $this->logger->critical('[ePoetry] ' . $message, $context);
+            $this->logger->critical(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -57,7 +59,7 @@ class LoggerDecorator implements LoggerInterface
     public function debug($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::DEBUG)) {
-            $this->logger->debug('[ePoetry] ' . $message, $context);
+            $this->logger->debug(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -67,7 +69,7 @@ class LoggerDecorator implements LoggerInterface
     public function emergency($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::EMERGENCY)) {
-            $this->logger->emergency('[ePoetry] ' . $message, $context);
+            $this->logger->emergency(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -77,7 +79,7 @@ class LoggerDecorator implements LoggerInterface
     public function error($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::ERROR)) {
-            $this->logger->error('[ePoetry] ' . $message, $context);
+            $this->logger->error(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -87,7 +89,7 @@ class LoggerDecorator implements LoggerInterface
     public function info($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::INFO)) {
-            $this->logger->info('[ePoetry] ' . $message, $context);
+            $this->logger->info(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -96,7 +98,7 @@ class LoggerDecorator implements LoggerInterface
      */
     public function log($level, $message, array $context = [])
     {
-        $this->logger->log($level, '[ePoetry] ' . $message, $context);
+        $this->logger->log($level, LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
     }
 
     /**
@@ -105,7 +107,7 @@ class LoggerDecorator implements LoggerInterface
     public function notice($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::NOTICE)) {
-            $this->logger->notice('[ePoetry] ' . $message, $context);
+            $this->logger->notice(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
@@ -115,7 +117,7 @@ class LoggerDecorator implements LoggerInterface
     public function warning($message, array $context = [])
     {
         if ($this->canLogLevel(LogLevel::WARNING)) {
-            $this->logger->warning('[ePoetry] ' . $message, $context);
+            $this->logger->warning(LoggerDecorator::LOG_MESSAGE_PREFIX . $message, $context);
         }
     }
 
