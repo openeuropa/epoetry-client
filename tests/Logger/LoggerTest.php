@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\EPoetry\Tests;
+namespace OpenEuropa\EPoetry\Tests\Logger;
 
-use OpenEuropa\EPoetry\Tests\Logger\MockLogger;
+use OpenEuropa\EPoetry\Tests\AbstractTest;
 use OpenEuropa\EPoetry\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Type\Contacts;
 use OpenEuropa\EPoetry\Type\CreateRequests;
