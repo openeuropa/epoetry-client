@@ -14,7 +14,7 @@ use Symfony\Component\Yaml\Yaml;
  * @internal
  * @coversNothing
  */
-final class EpoetryReflectionExtractorTest extends TestCase
+final class MappingReflectionExtractorTest extends TestCase
 {
     /**
      * Data provider.
@@ -23,7 +23,7 @@ final class EpoetryReflectionExtractorTest extends TestCase
      */
     public function getTypesCases()
     {
-        return $this->getFixture(__DIR__ . '/../../../fixtures/epoetry-reflection-extractor.yml');
+        return $this->getFixture(__DIR__ . '/../../../fixtures/PropertyInfo/Extractor/mapping-reflection-extractor.yml');
     }
 
     /**
