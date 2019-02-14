@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Middleware;
 
 use Http\Promise\Promise;
+use OpenEuropa\EPoetry\Exception\ClientException;
 use Phpro\SoapClient\Middleware\Middleware;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Psr\Http\Message\RequestInterface;
@@ -13,8 +14,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  * Class CasProxyTicketSessionMiddleware.
  *
- * This middleware should adds the Cas Proxy Granting Ticket into the request,
- * to be added into the XML header and allow authentication in ePoetry.
+ * This middleware adds the CAS Proxy Granting Ticket to the request object which, in turn,
+ * is added to the XML header allowing to authenticate on the ePoetry service.
  */
 class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareInterface
 {
@@ -45,7 +46,7 @@ class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareIn
     {
         $proxyTicket = $this->getProxyTicket();
         if (empty($proxyTicket)) {
-            throw new \Exception('[epoetry] session has no proxy ticket.');
+            throw new ClientException('[epoetry] session has no proxy ticket.');
         }
 
         // Add Proxy Ticket.
