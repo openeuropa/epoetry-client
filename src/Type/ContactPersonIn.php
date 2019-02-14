@@ -17,7 +17,7 @@ class ContactPersonIn
     protected $userId;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getRoleCode(): ?string
     {
@@ -25,7 +25,7 @@ class ContactPersonIn
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getUserId(): ?string
     {

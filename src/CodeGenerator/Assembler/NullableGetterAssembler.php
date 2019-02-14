@@ -59,7 +59,7 @@ class NullableGetterAssembler implements AssemblerInterface
                         'tags' => [
                             [
                                 'name' => 'return',
-                                'description' => $property->getType(),
+                                'description' => 'null|' . $property->getType(),
                             ],
                         ],
                     ]),

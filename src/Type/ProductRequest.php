@@ -44,7 +44,7 @@ class ProductRequest implements RequestInterface
     protected $trackChanges;
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
     public function getAcceptedDeadline(): ?\DateTime
     {
@@ -52,7 +52,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getFormatCode(): ?string
     {
@@ -60,7 +60,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalProductReference(): ?string
     {
@@ -68,7 +68,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\Language
+     * @return null|\OpenEuropa\EPoetry\Type\Language
      */
     public function getLanguage(): ?\OpenEuropa\EPoetry\Type\Language
     {
@@ -76,7 +76,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
     public function getRequestedDeadline(): ?\DateTime
     {
@@ -84,7 +84,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getStatusCode(): ?string
     {
@@ -92,7 +92,7 @@ class ProductRequest implements RequestInterface
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isTrackChanges(): ?bool
     {

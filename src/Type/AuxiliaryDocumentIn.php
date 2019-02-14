@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class AuxiliaryDocumentIn extends DgtDocumentIn
+class AuxiliaryDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
 {
     /**
      * @var string
@@ -12,7 +12,7 @@ class AuxiliaryDocumentIn extends DgtDocumentIn
     protected $language;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getLanguage(): ?string
     {

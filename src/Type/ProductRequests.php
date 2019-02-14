@@ -9,7 +9,7 @@ class ProductRequests
     /**
      * @var \OpenEuropa\EPoetry\Type\ProductRequest[]
      */
-    protected $productRequest;
+    protected $productRequest = [];
 
     /**
      * @param \OpenEuropa\EPoetry\Type\ProductRequest $productRequest

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocument extends DgtDocument
+class OriginalDocument extends \OpenEuropa\EPoetry\Type\DgtDocument
 {
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
@@ -22,7 +22,7 @@ class OriginalDocument extends DgtDocument
     protected $trackChanges;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticSections
+     * @return null|\OpenEuropa\EPoetry\Type\LinguisticSections
      */
     public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Type\LinguisticSections
     {
@@ -30,7 +30,7 @@ class OriginalDocument extends DgtDocument
     }
 
     /**
-     * @return float
+     * @return null|float
      */
     public function getPages(): ?float
     {
@@ -38,7 +38,7 @@ class OriginalDocument extends DgtDocument
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isTrackChanges(): ?bool
     {

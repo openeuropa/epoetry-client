@@ -12,7 +12,7 @@ class LanguageIn
     protected $code;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getCode(): ?string
     {

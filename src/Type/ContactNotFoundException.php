@@ -17,7 +17,7 @@ class ContactNotFoundException
     protected $uid;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getMessage(): ?string
     {
@@ -25,7 +25,7 @@ class ContactNotFoundException
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getUid(): ?string
     {

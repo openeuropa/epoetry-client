@@ -27,7 +27,7 @@ class ProductRequestIn
     protected $trackChanges;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalProductReference(): ?string
     {
@@ -35,7 +35,7 @@ class ProductRequestIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LanguageIn
+     * @return null|\OpenEuropa\EPoetry\Type\LanguageIn
      */
     public function getLanguage(): ?\OpenEuropa\EPoetry\Type\LanguageIn
     {
@@ -43,7 +43,7 @@ class ProductRequestIn
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
     public function getRequestedDeadline(): ?\DateTime
     {
@@ -51,7 +51,7 @@ class ProductRequestIn
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isTrackChanges(): ?bool
     {

@@ -34,7 +34,7 @@ class FindLinguisticRequest implements RequestInterface
     protected $year;
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getNumber(): ?int
     {
@@ -42,7 +42,7 @@ class FindLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getPart(): ?int
     {
@@ -50,7 +50,7 @@ class FindLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getProductCode(): ?string
     {
@@ -58,7 +58,7 @@ class FindLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getRequesterCode(): ?string
     {
@@ -66,7 +66,7 @@ class FindLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getYear(): ?int
     {

@@ -17,7 +17,7 @@ class RequestReferenceIn
     protected $internalTechnicalId;
 
     /**
-     * @return int
+     * @return null|int
      */
     public function getId(): ?int
     {
@@ -25,7 +25,7 @@ class RequestReferenceIn
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getInternalTechnicalId(): ?string
     {

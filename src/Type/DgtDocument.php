@@ -22,7 +22,7 @@ class DgtDocument
     protected $type;
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getFormat(): ?string
     {
@@ -30,7 +30,7 @@ class DgtDocument
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getName(): ?string
     {
@@ -38,7 +38,7 @@ class DgtDocument
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getType(): ?string
     {

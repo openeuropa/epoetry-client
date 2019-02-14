@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocumentIn extends DgtDocumentIn
+class OriginalDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
 {
     /**
      * @var \OpenEuropa\EPoetry\Type\LinguisticSections
@@ -17,7 +17,7 @@ class OriginalDocumentIn extends DgtDocumentIn
     protected $trackChanges;
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticSections
+     * @return null|\OpenEuropa\EPoetry\Type\LinguisticSections
      */
     public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Type\LinguisticSections
     {
@@ -25,7 +25,7 @@ class OriginalDocumentIn extends DgtDocumentIn
     }
 
     /**
-     * @return bool
+     * @return null|bool
      */
     public function isTrackChanges(): ?bool
     {
