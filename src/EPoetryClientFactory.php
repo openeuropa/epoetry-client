@@ -74,11 +74,17 @@ class EPoetryClientFactory
     /**
      * Factory constructor.
      */
-    public function __construct(string $wsdl, HttpClient $httpClient, array $options = [])
+    public function __construct(string $endpoint, HttpClient $httpClient, array $options = [])
     {
-        $this->wsdl = $wsdl;
+        $xsd = file_get_contents(__DIR__ . '/../resources/dgtServiceXSD.xml');
+        $content = file_get_contents(__DIR__ . '/../resources/dgtServiceWSDL.xml');
+        $content = str_replace('%ENDPOINT%', $endpoint, $content);
+        $content = str_replace('dgtServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $content);
+        $this->wsdl = 'data://text/plain;base64,' . base64_encode($content);
+
         $this->httpClient = $httpClient;
         $this->options = [
+            'stream_context' => stream_context_create(),
             'cache_wsdl' => WSDL_CACHE_NONE,
         ] + $options;
     }

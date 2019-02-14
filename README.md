@@ -88,5 +88,5 @@ $factory->setLogLevel(LogLevel::ERROR);
 
 To send a createRequest by TaskRunner use the command:
 ```bash
-./vendor/bin/run epoetry:create-requests --wsdl-endpoint=http://europa.eu/epoetry.wsdl --request-yml=./tests/fixtures/create-requests.yml
+php bin/epoetry create-requests --endpoint './resources/dgtServiceWSDL-test.xml' --in-format yml './tests/fixtures/create-requests.yml'
 ```
