@@ -35,6 +35,16 @@ final class RequestTest extends AbstractRequestTest
     }
 
     /**
+     * Data provider.
+     *
+     * @return mixed
+     */
+    public function responseParsingCases()
+    {
+        return $this->getFixture('response-parsing.yml');
+    }
+
+    /**
      * Test a SOAP request.
      *
      * @param string $response
