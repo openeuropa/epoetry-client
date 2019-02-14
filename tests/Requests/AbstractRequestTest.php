@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
+use OpenEuropa\EPoetry\Tests\AbstractTest;
 use Symfony\Component\Yaml\Yaml;
 
 /**

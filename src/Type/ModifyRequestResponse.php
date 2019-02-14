@@ -16,7 +16,7 @@ class ModifyRequestResponse implements ResultInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\LinguisticRequest
      */
-    public function getReturn(): ?LinguisticRequest
+    public function getReturn(): ?\OpenEuropa\EPoetry\Type\LinguisticRequest
     {
         return $this->return;
     }

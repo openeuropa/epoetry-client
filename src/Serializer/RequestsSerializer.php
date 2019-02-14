@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Serializer;
 
 use OpenEuropa\EPoetry\PropertyInfo\Extractor\MappingReflectionExtractor;
+use OpenEuropa\EPoetry\Type\CreateRequests;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
@@ -66,7 +67,7 @@ final class RequestsSerializer implements SerializerInterface
      * @return object
      *   The new object
      */
-    public static function fromArray(array $input, string $type)
+    public static function fromArray(array $input, string $type): CreateRequests
     {
         $instance = new self();
 
@@ -86,7 +87,7 @@ final class RequestsSerializer implements SerializerInterface
      * @return object
      *   The new object
      */
-    public static function fromFile(string $filepath, string $type, string $format)
+    public static function fromFile(string $filepath, string $type, string $format): CreateRequests
     {
         return self::fromString(file_get_contents($filepath), $type, $format);
     }
@@ -104,7 +105,7 @@ final class RequestsSerializer implements SerializerInterface
      * @return object
      *   The new object
      */
-    public static function fromString(string $data, string $type, string $format)
+    public static function fromString(string $data, string $type, string $format): CreateRequests
     {
         $instance = new self();
 

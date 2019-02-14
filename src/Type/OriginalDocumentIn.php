@@ -19,7 +19,7 @@ class OriginalDocumentIn extends DgtDocumentIn
     /**
      * @return null|\OpenEuropa\EPoetry\Type\LinguisticSections
      */
-    public function getLinguisticSections(): ?LinguisticSections
+    public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }

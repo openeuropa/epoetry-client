@@ -26,183 +26,94 @@ final class RequestTest extends AbstractRequestTest
     }
 
     /**
+     * Data provider.
+     *
+     * @return mixed
+     */
+    public function responseParsingCases()
+    {
+        return $this->getFixture('response-parsing.yml');
+    }
+
+    /**
      * Test a SOAP request.
      *
      * @dataProvider requestSendingCases
      *
      * @param mixed $input
      */
-    public function testRequestSending(array $input)
+    public function testRequestSending(array $input, array $expectations)
     {
         $createRequests = RequestsSerializer::fromArray(
             $input['request'],
             CreateRequests::class
         );
 
-        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
-        $response = new Response(200, [], $content);
+        $response = new Response(200, [], $input['response']);
         $this->httpClient->addResponse($response);
 
         $client = $this->createClientFactory()->getClient();
         $client->createRequests($createRequests);
 
-        $request = $client->debugLastSoapRequest()['request'];
+        $values = [
+            'request' => $client->debugLastSoapRequest()['request'],
+        ];
 
-        $this->assertContains('<title>Test</title>', $request['body']);
-        $this->assertContains('<contact userId="1" roleCode="AUTHOR"/>', $request['body']);
-        $this->assertContains('<contact userId="2" roleCode="EDITOR"/>', $request['body']);
+        foreach ($expectations['assertions'] as $type => $expectationsTypes) {
+            foreach ($expectationsTypes as $expression => $expectation) {
+                $this->{$type}(
+                    $expectation,
+                    $this->expressionLanguage->evaluate(
+                        $expression,
+                        $values
+                    )
+                );
+            }
+        }
     }
 
     /**
      * Test parsing a SOAP response.
      *
-     * @dataProvider requestSendingCases
+     * @dataProvider responseParsingCases
      *
      * @param mixed $input
+     * @param mixed $expectations
      */
-    public function testResponseParsing($input)
+    public function testResponseParsing($input, $expectations)
     {
-        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
-        $response = new Response(200, [], $content);
+        $response = new Response(200, [], $input['response']);
         $this->httpClient->addResponse($response);
 
-        $createRequests = RequestsSerializer::fromArray(
-            $input['request'],
-            CreateRequests::class
+        $client = $this->createClientFactory()->getClient();
+        $response = $client->createRequests(
+            RequestsSerializer::fromArray(
+                $input['request'],
+                CreateRequests::class
+            )
         );
-        $response = $this->createClientFactory()
-            ->getClient()
-            ->createRequests($createRequests);
 
+        // TODO: convert in Expression Language
+        //
+        // assertInstanceOf:
+        //   response: \\OpenEuropa\\EPoetry\\Type\\CreateRequestsResponse
+        //
         $this->assertInstanceOf(CreateRequestsResponse::class, $response);
-        $this->assertCount(2, $response->getReturn());
 
-        // Assert first linguistic request return.
-        $return = $response->getReturn()[0];
-        $this->assertSame('ENV', $return->getStatusCode());
+        $values = [
+            'response' => $response,
+        ];
 
-        // Assert auxiliary documents.
-        $auxiliaryDocuments = $return->getAuxiliaryDocuments()->getAuxiliaryDocument();
-        $this->assertCount(2, $auxiliaryDocuments);
-
-        $auxiliaryDocument = $auxiliaryDocuments[0];
-        $this->assertSame('RO', $auxiliaryDocument->getLanguage());
-        $this->assertSame('TXT', $auxiliaryDocument->getFormat());
-        $this->assertSame('REF', $auxiliaryDocument->getType());
-        $this->assertSame('test1.txt', $auxiliaryDocument->getName());
-
-        $auxiliaryDocument = $auxiliaryDocuments[1];
-        $this->assertSame('ML', $auxiliaryDocument->getLanguage());
-        $this->assertSame('TXT', $auxiliaryDocument->getFormat());
-        $this->assertSame('REF', $auxiliaryDocument->getType());
-        $this->assertSame('test1.txt', $auxiliaryDocument->getName());
-
-        // Assert contact persons.
-        $contacts = $return->getContacts()->getContact();
-        $this->assertCount(2, $contacts);
-
-        $contact = $contacts[0];
-        $this->assertSame('', $contact->getEmail());
-        $this->assertSame('Paolo', $contact->getFirstName());
-        $this->assertSame('Levi', $contact->getLastName());
-        $this->assertSame('REQUESTER', $contact->getRoleCode());
-        $this->assertSame('paolevi', $contact->getUserId());
-
-        $contact = $contacts[1];
-        $this->assertSame('', $contact->getEmail());
-        $this->assertSame('Angela', $contact->getFirstName());
-        $this->assertSame('Heda', $contact->getLastName());
-        $this->assertSame('AUTHOR', $contact->getRoleCode());
-        $this->assertSame('angheda', $contact->getUserId());
-
-        // Assert general info.
-        $generalInfo = $return->getGeneralInfo();
-        $this->assertSame('DIR', $generalInfo->getAccessibleTo());
-        $this->assertSame('comment', $generalInfo->getComment());
-        $this->assertNull($generalInfo->getDecideReference());
-        $this->assertSame('INTERNE', $generalInfo->getDestinationCode());
-        $this->assertSame('MYREF-DEF-123456', $generalInfo->getInternalReference());
-        $this->assertNull($generalInfo->getInternalTechnicalId());
-        $this->assertNull($generalInfo->getOnBehalfOf());
-        $this->assertNull($generalInfo->getRequestingService());
-        $this->assertNull($generalInfo->getServiceOfOrigin());
-        $this->assertSame('ANNEX8B', $generalInfo->getSlaAnnex());
-        $this->assertNull($generalInfo->getSlaCommitment());
-        $this->assertSame('Title of the Document', $generalInfo->getTitle());
-        $this->assertSame('2018-11-30', $generalInfo->getRequestedDeadline()->format('Y-m-j'));
-
-        // Assert original document.
-        $originalDocument = $return->getOriginalDocument();
-        // @todo: change getPages() return type to "int".
-        $this->assertSame(0, (int) $originalDocument->getPages());
-        $this->assertFalse($originalDocument->isTrackChanges());
-        $this->assertSame('TXT', $originalDocument->getFormat());
-        $this->assertSame('test1.txt', $originalDocument->getName());
-        $this->assertSame('ORI', $originalDocument->getType());
-
-        // Assert language sections.
-        $languageSections = $originalDocument->getLinguisticSections()->getLinguisticSection();
-        $this->assertCount(2, $languageSections);
-        $this->assertSame('FR', $languageSections[0]->getLanguage()->getCode());
-        $this->assertSame('EN', $languageSections[1]->getLanguage()->getCode());
-
-        // Assert product requests.
-        $productRequests = $return->getProductRequests()->getProductRequest();
-        $this->assertCount(5, $productRequests);
-
-        $this->assertNull($productRequests[0]->getAcceptedDeadline());
-        $this->assertSame('NA', $productRequests[0]->getFormatCode());
-        $this->assertNull($productRequests[0]->getInternalProductReference());
-        $this->assertSame('ENV', $productRequests[0]->getStatusCode());
-        $this->assertFalse($productRequests[0]->isTrackChanges());
-        $this->assertSame('EN', $productRequests[0]->getLanguage()->getCode());
-        $this->assertSame('2019-11-15', $productRequests[0]->getRequestedDeadline()->format('Y-m-j'));
-
-        $this->assertNull($productRequests[1]->getAcceptedDeadline());
-        $this->assertSame('NA', $productRequests[1]->getFormatCode());
-        $this->assertNull($productRequests[1]->getInternalProductReference());
-        $this->assertSame('ENV', $productRequests[1]->getStatusCode());
-        $this->assertFalse($productRequests[1]->isTrackChanges());
-        $this->assertSame('DE', $productRequests[1]->getLanguage()->getCode());
-        $this->assertSame('2019-11-15', $productRequests[1]->getRequestedDeadline()->format('Y-m-j'));
-
-        $this->assertNull($productRequests[2]->getAcceptedDeadline());
-        $this->assertSame('NA', $productRequests[2]->getFormatCode());
-        $this->assertNull($productRequests[2]->getInternalProductReference());
-        $this->assertSame('ENV', $productRequests[2]->getStatusCode());
-        $this->assertFalse($productRequests[2]->isTrackChanges());
-        $this->assertSame('CS', $productRequests[2]->getLanguage()->getCode());
-        $this->assertSame('2019-04-15', $productRequests[2]->getRequestedDeadline()->format('Y-m-j'));
-
-        $this->assertNull($productRequests[3]->getAcceptedDeadline());
-        $this->assertSame('NA', $productRequests[3]->getFormatCode());
-        $this->assertNull($productRequests[3]->getInternalProductReference());
-        $this->assertSame('ENV', $productRequests[3]->getStatusCode());
-        $this->assertFalse($productRequests[3]->isTrackChanges());
-        $this->assertSame('FR', $productRequests[3]->getLanguage()->getCode());
-        $this->assertSame('2019-11-15', $productRequests[3]->getRequestedDeadline()->format('Y-m-j'));
-
-        $this->assertNull($productRequests[4]->getAcceptedDeadline());
-        $this->assertSame('NA', $productRequests[4]->getFormatCode());
-        $this->assertNull($productRequests[4]->getInternalProductReference());
-        $this->assertSame('ENV', $productRequests[4]->getStatusCode());
-        $this->assertFalse($productRequests[4]->isTrackChanges());
-        $this->assertSame('BG', $productRequests[4]->getLanguage()->getCode());
-        $this->assertNull($productRequests[4]->getRequestedDeadline());
-
-        // Assert reference.
-        $reference = $return->getReference();
-        $this->assertSame(1738, $reference->getId());
-        $this->assertSame('MYREF-DEF-123456', $reference->getInternalReference());
-        $this->assertNull($reference->getInternalTechnicalId());
-        $this->assertSame(2249, $reference->getNumber());
-        $this->assertSame(0, $reference->getPart());
-        $this->assertSame('TRA', $reference->getProductType());
-        $this->assertSame('DGT', $reference->getRequesterCode());
-        $this->assertSame(0, $reference->getVersion());
-        $this->assertSame(2018, $reference->getYear());
-
-        // Assert status code.
-        $this->assertSame('ENV', $return->getStatusCode());
+        foreach ($expectations['assertions'] as $type => $expectationsTypes) {
+            foreach ($expectationsTypes as $expression => $expectation) {
+                $this->{$type}(
+                    $expectation,
+                    $this->expressionLanguage->evaluate(
+                        $expression,
+                        $values
+                    )
+                );
+            }
+        }
     }
 }

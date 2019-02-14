@@ -46,7 +46,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
-    public function getAuxiliaryDocuments(): ?AuxiliaryDocuments
+    public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
     {
         return $this->auxiliaryDocuments;
     }
@@ -54,7 +54,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\Contacts
      */
-    public function getContacts(): ?Contacts
+    public function getContacts(): ?\OpenEuropa\EPoetry\Type\Contacts
     {
         return $this->contacts;
     }
@@ -62,7 +62,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\RequestGeneralInfo
      */
-    public function getGeneralInfo(): ?RequestGeneralInfo
+    public function getGeneralInfo(): ?\OpenEuropa\EPoetry\Type\RequestGeneralInfo
     {
         return $this->generalInfo;
     }
@@ -70,7 +70,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\OriginalDocument
      */
-    public function getOriginalDocument(): ?OriginalDocument
+    public function getOriginalDocument(): ?\OpenEuropa\EPoetry\Type\OriginalDocument
     {
         return $this->originalDocument;
     }
@@ -78,7 +78,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
-    public function getProductRequests(): ?ProductRequests
+    public function getProductRequests(): ?\OpenEuropa\EPoetry\Type\ProductRequests
     {
         return $this->productRequests;
     }
@@ -86,7 +86,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Type\RequestReference
      */
-    public function getReference(): ?RequestReference
+    public function getReference(): ?\OpenEuropa\EPoetry\Type\RequestReference
     {
         return $this->reference;
     }

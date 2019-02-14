@@ -14,7 +14,7 @@ class LinguisticSection
     /**
      * @return null|\OpenEuropa\EPoetry\Type\Language
      */
-    public function getLanguage(): ?Language
+    public function getLanguage(): ?\OpenEuropa\EPoetry\Type\Language
     {
         return $this->language;
     }

@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Tests;
 use Http\Mock\Client;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 abstract class AbstractTest extends TestCase
 {
@@ -23,11 +24,17 @@ abstract class AbstractTest extends TestCase
     public $httpClient;
 
     /**
+     * @var ExpressionLanguage
+     */
+    protected $expressionLanguage;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp()
     {
         $this->httpClient = new Client();
+        $this->expressionLanguage = new ExpressionLanguage();
         parent::setUp();
     }
 
