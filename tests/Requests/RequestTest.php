@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
 use GuzzleHttp\Psr7\Response;
+use OpenEuropa\EPoetry\Tests\AbstractTest;
 use OpenEuropa\EPoetry\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Type\Contacts;
 use OpenEuropa\EPoetry\Type\CreateRequests;

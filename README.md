@@ -31,3 +31,25 @@ $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
 
+## Logging
+
+The ePoetry client is build on top of the [Phpro Soap Client](https://github.com/phpro/soap-client)
+and it allows to log in events that occur during any request process by using any logger
+that complies with the PSR-3 logger interface standard. 
+In order to do so simply call the "setLogger" method in your client factory and then set the maximum level
+of events that are going to be logged with the "setLogLevel" method. The log levels correspond to those defined
+by the [PSR-3 logger interface standard](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel)
+
+```php
+// Instantiate your logger.
+$logger = new LoggerClass();
+
+// Instantiate the client factory.
+$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
+
+// Set your logger.
+$factory->setLogger($logger);
+
+// Set your log level. In this case we only want ERROR level logs or lower.
+$factory->setLogLevel(LogLevel::ERROR);
+```

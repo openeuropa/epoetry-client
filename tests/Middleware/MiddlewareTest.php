@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\EPoetry\Tests\Requests;
+namespace OpenEuropa\EPoetry\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Tests\Middleware\MockMiddleware;
+use OpenEuropa\EPoetry\Tests\AbstractTest;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
 use OpenEuropa\EPoetry\Type\RequestGeneralInfoIn;

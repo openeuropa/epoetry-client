@@ -5,11 +5,14 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\HttpClient;
+use OpenEuropa\EPoetry\Services\LoggerDecorator;
+use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientBuilder;
 use Phpro\SoapClient\ClientFactory;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -37,6 +40,13 @@ class EPoetryClientFactory
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
+
+    /**
+     * Level of severity of the events to be logged.
+     *
+     * @var string
+     */
+    protected $logLevel = 'none';
 
     /**
      * List of Phpro\SoapClient middlewares.
@@ -107,8 +117,13 @@ class EPoetryClientFactory
         $clientBuilder = new ClientBuilder($clientFactory, $this->wsdl, $this->options);
         $clientBuilder->withClassMaps(EPoetryClassmap::getCollection());
 
-        if ($this->eventDispatcher) {
-            $clientBuilder->withEventDispatcher($this->eventDispatcher);
+        $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
+        $clientBuilder->withEventDispatcher($this->eventDispatcher);
+
+        if ($this->logger) {
+            $logger = new LoggerDecorator($this->logger, $this->logLevel);
+            $logPlugin = new LoggerSubscriber($logger);
+            $this->eventDispatcher->addSubscriber($logPlugin);
         }
 
         $handler = HttPlugHandle::createForClient($this->httpClient);
@@ -155,6 +170,21 @@ class EPoetryClientFactory
     public function setLogger(LoggerInterface $logger): EPoetryClientFactory
     {
         $this->logger = $logger;
+
+        return $this;
+    }
+
+    /**
+     * Set maximum level of severity of the events to be logged.
+     *
+     * @param string $logLevel
+     *    Log level string
+     *
+     * @return \OpenEuropa\EPoetry\EPoetryClientFactory
+     */
+    public function setLogLevel(string $logLevel): EPoetryClientFactory
+    {
+        $this->logLevel = $logLevel;
 
         return $this;
     }
