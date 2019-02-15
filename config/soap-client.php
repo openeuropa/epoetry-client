@@ -58,6 +58,8 @@ $fluentAdderAssembler = new OpenEuropa\Assembler\FluentAdderAssembler(
         ->filterBy($filters)
 );
 
+$hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
+
 return Config::create()
     ->setWsdl('resources/dgtServiceWSDL.xml')
     ->setTypeDestination('src/Type')
@@ -130,4 +132,6 @@ return Config::create()
     // Update getters and update only some of them.
     ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
     // Add adders only on some classes only.
-    ->addRule(new Rules\AssembleRule($fluentAdderAssembler));
+    ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
+    // Add has[Properties] only on some classes only.
+    ->addRule(new Rules\AssembleRule($hasPropertyAssembler));
