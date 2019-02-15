@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class AuxiliaryDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
+class AuxiliaryDocumentIn extends DgtDocumentIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $language;
 
@@ -17,6 +17,18 @@ class AuxiliaryDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
     public function getLanguage(): ?string
     {
         return $this->language;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        if (\is_array($this->language)) {
+            return !empty($this->language);
+        }
+
+        return isset($this->language);
     }
 
     /**

@@ -9,37 +9,37 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ProductRequest implements RequestInterface
 {
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $acceptedDeadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $formatCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalProductReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Language
+     * @var null|\OpenEuropa\EPoetry\Type\Language
      */
     protected $language;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $statusCode;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -89,6 +89,90 @@ class ProductRequest implements RequestInterface
     public function getStatusCode(): ?string
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcceptedDeadline(): bool
+    {
+        if (\is_array($this->acceptedDeadline)) {
+            return !empty($this->acceptedDeadline);
+        }
+
+        return isset($this->acceptedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFormatCode(): bool
+    {
+        if (\is_array($this->formatCode)) {
+            return !empty($this->formatCode);
+        }
+
+        return isset($this->formatCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalProductReference(): bool
+    {
+        if (\is_array($this->internalProductReference)) {
+            return !empty($this->internalProductReference);
+        }
+
+        return isset($this->internalProductReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        if (\is_array($this->language)) {
+            return !empty($this->language);
+        }
+
+        return isset($this->language);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        if (\is_array($this->requestedDeadline)) {
+            return !empty($this->requestedDeadline);
+        }
+
+        return isset($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasStatusCode(): bool
+    {
+        if (\is_array($this->statusCode)) {
+            return !empty($this->statusCode);
+        }
+
+        return isset($this->statusCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        if (\is_array($this->trackChanges)) {
+            return !empty($this->trackChanges);
+        }
+
+        return isset($this->trackChanges);
     }
 
     /**

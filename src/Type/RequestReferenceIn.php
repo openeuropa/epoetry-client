@@ -7,12 +7,12 @@ namespace OpenEuropa\EPoetry\Type;
 class RequestReferenceIn
 {
     /**
-     * @var int
+     * @var null|int
      */
     protected $id;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalTechnicalId;
 
@@ -30,6 +30,30 @@ class RequestReferenceIn
     public function getInternalTechnicalId(): ?string
     {
         return $this->internalTechnicalId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasId(): bool
+    {
+        if (\is_array($this->id)) {
+            return !empty($this->id);
+        }
+
+        return isset($this->id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalTechnicalId(): bool
+    {
+        if (\is_array($this->internalTechnicalId)) {
+            return !empty($this->internalTechnicalId);
+        }
+
+        return isset($this->internalTechnicalId);
     }
 
     /**

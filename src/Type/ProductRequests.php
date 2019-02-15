@@ -7,36 +7,50 @@ namespace OpenEuropa\EPoetry\Type;
 class ProductRequests
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequest[]
+     * @var null|\OpenEuropa\EPoetry\Type\ProductRequest[]
      */
-    protected $productRequest = [];
+    protected $productRequest;
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ProductRequest $productRequest
+     * @param ProductRequest ...$productRequests
      *
      * @return $this
      */
-    public function addProductRequest($productRequest): ProductRequests
+    public function addProductRequest(...$productRequests): ProductRequests
     {
-        $this->productRequest[] = $productRequest;
+        foreach ($productRequests as $productRequest) {
+            $this->productRequest[] = $productRequest;
+        }
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ProductRequest[]
+     * @return null|\OpenEuropa\EPoetry\Type\ProductRequest[]
      */
-    public function getProductRequest(): array
+    public function getProductRequest(): ?array
     {
         return $this->productRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ProductRequest $productRequest
+     * @return bool
+     */
+    public function hasProductRequest(): bool
+    {
+        if (\is_array($this->productRequest)) {
+            return !empty($this->productRequest);
+        }
+
+        return isset($this->productRequest);
+    }
+
+    /**
+     * @param ProductRequest[] $productRequest
      *
      * @return $this
      */
-    public function setProductRequest($productRequest): ProductRequests
+    public function setProductRequest(array $productRequest): ProductRequests
     {
         $this->productRequest = $productRequest;
 

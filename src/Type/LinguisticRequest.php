@@ -9,37 +9,37 @@ use Phpro\SoapClient\Type\RequestInterface;
 class LinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @var null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
     protected $auxiliaryDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Type\Contacts
      */
     protected $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+     * @var null|\OpenEuropa\EPoetry\Type\RequestGeneralInfo
      */
     protected $generalInfo;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocument
+     * @var null|\OpenEuropa\EPoetry\Type\OriginalDocument
      */
     protected $originalDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests
+     * @var null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
     protected $productRequests;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReference
+     * @var null|\OpenEuropa\EPoetry\Type\RequestReference
      */
     protected $reference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $statusCode;
 
@@ -97,6 +97,90 @@ class LinguisticRequest implements RequestInterface
     public function getStatusCode(): ?string
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAuxiliaryDocuments(): bool
+    {
+        if (\is_array($this->auxiliaryDocuments)) {
+            return !empty($this->auxiliaryDocuments);
+        }
+
+        return isset($this->auxiliaryDocuments);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasContacts(): bool
+    {
+        if (\is_array($this->contacts)) {
+            return !empty($this->contacts);
+        }
+
+        return isset($this->contacts);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGeneralInfo(): bool
+    {
+        if (\is_array($this->generalInfo)) {
+            return !empty($this->generalInfo);
+        }
+
+        return isset($this->generalInfo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOriginalDocument(): bool
+    {
+        if (\is_array($this->originalDocument)) {
+            return !empty($this->originalDocument);
+        }
+
+        return isset($this->originalDocument);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductRequests(): bool
+    {
+        if (\is_array($this->productRequests)) {
+            return !empty($this->productRequests);
+        }
+
+        return isset($this->productRequests);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasReference(): bool
+    {
+        if (\is_array($this->reference)) {
+            return !empty($this->reference);
+        }
+
+        return isset($this->reference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasStatusCode(): bool
+    {
+        if (\is_array($this->statusCode)) {
+            return !empty($this->statusCode);
+        }
+
+        return isset($this->statusCode);
     }
 
     /**

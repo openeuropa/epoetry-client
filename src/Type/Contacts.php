@@ -7,36 +7,50 @@ namespace OpenEuropa\EPoetry\Type;
 class Contacts
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\ContactPerson[]
+     * @var null|\OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    protected $contact = [];
+    protected $contact;
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact
+     * @param ContactPerson ...$contacts
      *
      * @return $this
      */
-    public function addContact($contact): Contacts
+    public function addContact(...$contacts): Contacts
     {
-        $this->contact[] = $contact;
+        foreach ($contacts as $contact) {
+            $this->contact[] = $contact;
+        }
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\ContactPerson[]
+     * @return null|\OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    public function getContact(): array
+    public function getContact(): ?array
     {
         return $this->contact;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\ContactPerson $contact
+     * @return bool
+     */
+    public function hasContact(): bool
+    {
+        if (\is_array($this->contact)) {
+            return !empty($this->contact);
+        }
+
+        return isset($this->contact);
+    }
+
+    /**
+     * @param ContactPerson[] $contact
      *
      * @return $this
      */
-    public function setContact($contact): Contacts
+    public function setContact(array $contact): Contacts
     {
         $this->contact = $contact;
 

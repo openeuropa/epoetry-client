@@ -9,7 +9,7 @@ use Phpro\SoapClient\Type\ResultInterface;
 class FindLinguisticRequestResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequest
+     * @var null|\OpenEuropa\EPoetry\Type\LinguisticRequest
      */
     protected $return;
 
@@ -19,6 +19,18 @@ class FindLinguisticRequestResponse implements ResultInterface
     public function getReturn(): ?\OpenEuropa\EPoetry\Type\LinguisticRequest
     {
         return $this->return;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasReturn(): bool
+    {
+        if (\is_array($this->return)) {
+            return !empty($this->return);
+        }
+
+        return isset($this->return);
     }
 
     /**

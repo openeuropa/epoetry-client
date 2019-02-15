@@ -4,15 +4,15 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
+class OriginalDocumentIn extends DgtDocumentIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSections
+     * @var null|\OpenEuropa\EPoetry\Type\LinguisticSections
      */
     protected $linguisticSections;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -22,6 +22,30 @@ class OriginalDocumentIn extends \OpenEuropa\EPoetry\Type\DgtDocumentIn
     public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Type\LinguisticSections
     {
         return $this->linguisticSections;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLinguisticSections(): bool
+    {
+        if (\is_array($this->linguisticSections)) {
+            return !empty($this->linguisticSections);
+        }
+
+        return isset($this->linguisticSections);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        if (\is_array($this->trackChanges)) {
+            return !empty($this->trackChanges);
+        }
+
+        return isset($this->trackChanges);
     }
 
     /**

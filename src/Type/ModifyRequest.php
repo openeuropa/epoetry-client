@@ -9,17 +9,17 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ModifyRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn
+     * @var null|\OpenEuropa\EPoetry\Type\LinguisticRequestIn
      */
     protected $linguisticRequest;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     protected $requestReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $templateName;
 
@@ -45,6 +45,42 @@ class ModifyRequest implements RequestInterface
     public function getTemplateName(): ?string
     {
         return $this->templateName;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLinguisticRequest(): bool
+    {
+        if (\is_array($this->linguisticRequest)) {
+            return !empty($this->linguisticRequest);
+        }
+
+        return isset($this->linguisticRequest);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestReference(): bool
+    {
+        if (\is_array($this->requestReference)) {
+            return !empty($this->requestReference);
+        }
+
+        return isset($this->requestReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTemplateName(): bool
+    {
+        if (\is_array($this->templateName)) {
+            return !empty($this->templateName);
+        }
+
+        return isset($this->templateName);
     }
 
     /**

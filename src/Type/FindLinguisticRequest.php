@@ -9,27 +9,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class FindLinguisticRequest implements RequestInterface
 {
     /**
-     * @var int
+     * @var null|int
      */
     protected $number;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $part;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $productCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $requesterCode;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $year;
 
@@ -71,6 +71,66 @@ class FindLinguisticRequest implements RequestInterface
     public function getYear(): ?int
     {
         return $this->year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNumber(): bool
+    {
+        if (\is_array($this->number)) {
+            return !empty($this->number);
+        }
+
+        return isset($this->number);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPart(): bool
+    {
+        if (\is_array($this->part)) {
+            return !empty($this->part);
+        }
+
+        return isset($this->part);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductCode(): bool
+    {
+        if (\is_array($this->productCode)) {
+            return !empty($this->productCode);
+        }
+
+        return isset($this->productCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequesterCode(): bool
+    {
+        if (\is_array($this->requesterCode)) {
+            return !empty($this->requesterCode);
+        }
+
+        return isset($this->requesterCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasYear(): bool
+    {
+        if (\is_array($this->year)) {
+            return !empty($this->year);
+        }
+
+        return isset($this->year);
     }
 
     /**

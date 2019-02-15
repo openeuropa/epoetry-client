@@ -7,47 +7,47 @@ namespace OpenEuropa\EPoetry\Type;
 class RequestReference
 {
     /**
-     * @var int
+     * @var null|int
      */
     protected $id;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalTechnicalId;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $number;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $part;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $productType;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $requesterCode;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $version;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $year;
 
@@ -121,6 +121,114 @@ class RequestReference
     public function getYear(): ?int
     {
         return $this->year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasId(): bool
+    {
+        if (\is_array($this->id)) {
+            return !empty($this->id);
+        }
+
+        return isset($this->id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalReference(): bool
+    {
+        if (\is_array($this->internalReference)) {
+            return !empty($this->internalReference);
+        }
+
+        return isset($this->internalReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalTechnicalId(): bool
+    {
+        if (\is_array($this->internalTechnicalId)) {
+            return !empty($this->internalTechnicalId);
+        }
+
+        return isset($this->internalTechnicalId);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNumber(): bool
+    {
+        if (\is_array($this->number)) {
+            return !empty($this->number);
+        }
+
+        return isset($this->number);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPart(): bool
+    {
+        if (\is_array($this->part)) {
+            return !empty($this->part);
+        }
+
+        return isset($this->part);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductType(): bool
+    {
+        if (\is_array($this->productType)) {
+            return !empty($this->productType);
+        }
+
+        return isset($this->productType);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequesterCode(): bool
+    {
+        if (\is_array($this->requesterCode)) {
+            return !empty($this->requesterCode);
+        }
+
+        return isset($this->requesterCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasVersion(): bool
+    {
+        if (\is_array($this->version)) {
+            return !empty($this->version);
+        }
+
+        return isset($this->version);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasYear(): bool
+    {
+        if (\is_array($this->year)) {
+            return !empty($this->year);
+        }
+
+        return isset($this->year);
     }
 
     /**

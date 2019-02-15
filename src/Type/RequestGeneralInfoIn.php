@@ -7,72 +7,72 @@ namespace OpenEuropa\EPoetry\Type;
 class RequestGeneralInfoIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $accessibleTo;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $comment;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $decideReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $destinationCode;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $documentToBeAdopted;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalTechnicalId;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $onBehalfOf;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $sensitive;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $sentViaRUE;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $slaAnnex;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $slaCommitment;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $title;
 
@@ -162,6 +162,174 @@ class RequestGeneralInfoIn
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccessibleTo(): bool
+    {
+        if (\is_array($this->accessibleTo)) {
+            return !empty($this->accessibleTo);
+        }
+
+        return isset($this->accessibleTo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasComment(): bool
+    {
+        if (\is_array($this->comment)) {
+            return !empty($this->comment);
+        }
+
+        return isset($this->comment);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDecideReference(): bool
+    {
+        if (\is_array($this->decideReference)) {
+            return !empty($this->decideReference);
+        }
+
+        return isset($this->decideReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDestinationCode(): bool
+    {
+        if (\is_array($this->destinationCode)) {
+            return !empty($this->destinationCode);
+        }
+
+        return isset($this->destinationCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDocumentToBeAdopted(): bool
+    {
+        if (\is_array($this->documentToBeAdopted)) {
+            return !empty($this->documentToBeAdopted);
+        }
+
+        return isset($this->documentToBeAdopted);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalReference(): bool
+    {
+        if (\is_array($this->internalReference)) {
+            return !empty($this->internalReference);
+        }
+
+        return isset($this->internalReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalTechnicalId(): bool
+    {
+        if (\is_array($this->internalTechnicalId)) {
+            return !empty($this->internalTechnicalId);
+        }
+
+        return isset($this->internalTechnicalId);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOnBehalfOf(): bool
+    {
+        if (\is_array($this->onBehalfOf)) {
+            return !empty($this->onBehalfOf);
+        }
+
+        return isset($this->onBehalfOf);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        if (\is_array($this->requestedDeadline)) {
+            return !empty($this->requestedDeadline);
+        }
+
+        return isset($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSensitive(): bool
+    {
+        if (\is_array($this->sensitive)) {
+            return !empty($this->sensitive);
+        }
+
+        return isset($this->sensitive);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSentViaRUE(): bool
+    {
+        if (\is_array($this->sentViaRUE)) {
+            return !empty($this->sentViaRUE);
+        }
+
+        return isset($this->sentViaRUE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSlaAnnex(): bool
+    {
+        if (\is_array($this->slaAnnex)) {
+            return !empty($this->slaAnnex);
+        }
+
+        return isset($this->slaAnnex);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSlaCommitment(): bool
+    {
+        if (\is_array($this->slaCommitment)) {
+            return !empty($this->slaCommitment);
+        }
+
+        return isset($this->slaCommitment);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTitle(): bool
+    {
+        if (\is_array($this->title)) {
+            return !empty($this->title);
+        }
+
+        return isset($this->title);
     }
 
     /**

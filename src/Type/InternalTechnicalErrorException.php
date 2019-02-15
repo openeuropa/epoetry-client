@@ -7,12 +7,12 @@ namespace OpenEuropa\EPoetry\Type;
 class InternalTechnicalErrorException
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $message;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $uid;
 
@@ -30,6 +30,30 @@ class InternalTechnicalErrorException
     public function getUid(): ?string
     {
         return $this->uid;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMessage(): bool
+    {
+        if (\is_array($this->message)) {
+            return !empty($this->message);
+        }
+
+        return isset($this->message);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUid(): bool
+    {
+        if (\is_array($this->uid)) {
+            return !empty($this->uid);
+        }
+
+        return isset($this->uid);
     }
 
     /**

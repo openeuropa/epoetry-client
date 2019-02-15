@@ -7,12 +7,12 @@ namespace OpenEuropa\EPoetry\Type;
 class ContactPersonIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $roleCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $userId;
 
@@ -30,6 +30,30 @@ class ContactPersonIn
     public function getUserId(): ?string
     {
         return $this->userId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRoleCode(): bool
+    {
+        if (\is_array($this->roleCode)) {
+            return !empty($this->roleCode);
+        }
+
+        return isset($this->roleCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUserId(): bool
+    {
+        if (\is_array($this->userId)) {
+            return !empty($this->userId);
+        }
+
+        return isset($this->userId);
     }
 
     /**

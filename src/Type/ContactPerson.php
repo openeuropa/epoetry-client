@@ -7,27 +7,27 @@ namespace OpenEuropa\EPoetry\Type;
 class ContactPerson
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $email;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $firstName;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $lastName;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $roleCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $userId;
 
@@ -69,6 +69,66 @@ class ContactPerson
     public function getUserId(): ?string
     {
         return $this->userId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasEmail(): bool
+    {
+        if (\is_array($this->email)) {
+            return !empty($this->email);
+        }
+
+        return isset($this->email);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFirstName(): bool
+    {
+        if (\is_array($this->firstName)) {
+            return !empty($this->firstName);
+        }
+
+        return isset($this->firstName);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLastName(): bool
+    {
+        if (\is_array($this->lastName)) {
+            return !empty($this->lastName);
+        }
+
+        return isset($this->lastName);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRoleCode(): bool
+    {
+        if (\is_array($this->roleCode)) {
+            return !empty($this->roleCode);
+        }
+
+        return isset($this->roleCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUserId(): bool
+    {
+        if (\is_array($this->userId)) {
+            return !empty($this->userId);
+        }
+
+        return isset($this->userId);
     }
 
     /**

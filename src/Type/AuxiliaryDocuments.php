@@ -7,36 +7,50 @@ namespace OpenEuropa\EPoetry\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
+     * @var null|\OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
      */
-    protected $auxiliaryDocument = [];
+    protected $auxiliaryDocument;
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument
+     * @param AuxiliaryDocument ...$auxiliaryDocuments
      *
      * @return $this
      */
-    public function addAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
+    public function addAuxiliaryDocument(...$auxiliaryDocuments): AuxiliaryDocuments
     {
-        $this->auxiliaryDocument[] = $auxiliaryDocument;
+        foreach ($auxiliaryDocuments as $auxiliaryDocument) {
+            $this->auxiliaryDocument[] = $auxiliaryDocument;
+        }
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
+     * @return null|\OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
      */
-    public function getAuxiliaryDocument(): array
+    public function getAuxiliaryDocument(): ?array
     {
         return $this->auxiliaryDocument;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument
+     * @return bool
+     */
+    public function hasAuxiliaryDocument(): bool
+    {
+        if (\is_array($this->auxiliaryDocument)) {
+            return !empty($this->auxiliaryDocument);
+        }
+
+        return isset($this->auxiliaryDocument);
+    }
+
+    /**
+     * @param AuxiliaryDocument[] $auxiliaryDocument
      *
      * @return $this
      */
-    public function setAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
+    public function setAuxiliaryDocument(array $auxiliaryDocument): AuxiliaryDocuments
     {
         $this->auxiliaryDocument = $auxiliaryDocument;
 

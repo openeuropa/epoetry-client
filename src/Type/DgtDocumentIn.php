@@ -7,22 +7,22 @@ namespace OpenEuropa\EPoetry\Type;
 class DgtDocumentIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $file;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $format;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $name;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $type;
 
@@ -56,6 +56,54 @@ class DgtDocumentIn
     public function getType(): ?string
     {
         return $this->type;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFile(): bool
+    {
+        if (\is_array($this->file)) {
+            return !empty($this->file);
+        }
+
+        return isset($this->file);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFormat(): bool
+    {
+        if (\is_array($this->format)) {
+            return !empty($this->format);
+        }
+
+        return isset($this->format);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasName(): bool
+    {
+        if (\is_array($this->name)) {
+            return !empty($this->name);
+        }
+
+        return isset($this->name);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasType(): bool
+    {
+        if (\is_array($this->type)) {
+            return !empty($this->type);
+        }
+
+        return isset($this->type);
     }
 
     /**

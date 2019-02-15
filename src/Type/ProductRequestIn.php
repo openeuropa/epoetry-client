@@ -7,22 +7,22 @@ namespace OpenEuropa\EPoetry\Type;
 class ProductRequestIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalProductReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\LanguageIn
+     * @var null|\OpenEuropa\EPoetry\Type\LanguageIn
      */
     protected $language;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -48,6 +48,54 @@ class ProductRequestIn
     public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalProductReference(): bool
+    {
+        if (\is_array($this->internalProductReference)) {
+            return !empty($this->internalProductReference);
+        }
+
+        return isset($this->internalProductReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        if (\is_array($this->language)) {
+            return !empty($this->language);
+        }
+
+        return isset($this->language);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        if (\is_array($this->requestedDeadline)) {
+            return !empty($this->requestedDeadline);
+        }
+
+        return isset($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        if (\is_array($this->trackChanges)) {
+            return !empty($this->trackChanges);
+        }
+
+        return isset($this->trackChanges);
     }
 
     /**

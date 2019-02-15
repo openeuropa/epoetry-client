@@ -7,27 +7,27 @@ namespace OpenEuropa\EPoetry\Type;
 class LinguisticRequestIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @var null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
     protected $auxiliaryDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Type\Contacts
      */
     protected $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
+     * @var null|\OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
      */
     protected $generalInfo;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocumentIn
+     * @var null|\OpenEuropa\EPoetry\Type\OriginalDocumentIn
      */
     protected $originalDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests
+     * @var null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
     protected $productRequests;
 
@@ -69,6 +69,66 @@ class LinguisticRequestIn
     public function getProductRequests(): ?\OpenEuropa\EPoetry\Type\ProductRequests
     {
         return $this->productRequests;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAuxiliaryDocuments(): bool
+    {
+        if (\is_array($this->auxiliaryDocuments)) {
+            return !empty($this->auxiliaryDocuments);
+        }
+
+        return isset($this->auxiliaryDocuments);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasContacts(): bool
+    {
+        if (\is_array($this->contacts)) {
+            return !empty($this->contacts);
+        }
+
+        return isset($this->contacts);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGeneralInfo(): bool
+    {
+        if (\is_array($this->generalInfo)) {
+            return !empty($this->generalInfo);
+        }
+
+        return isset($this->generalInfo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOriginalDocument(): bool
+    {
+        if (\is_array($this->originalDocument)) {
+            return !empty($this->originalDocument);
+        }
+
+        return isset($this->originalDocument);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductRequests(): bool
+    {
+        if (\is_array($this->productRequests)) {
+            return !empty($this->productRequests);
+        }
+
+        return isset($this->productRequests);
     }
 
     /**
