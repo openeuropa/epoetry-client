@@ -30,6 +30,37 @@ $factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
+## Authentication
+
+Access to ePoetry web services requires your application to be
+configured as a [cas proxy](https://webgate.ec.europa.eu/CITnet/confluence/display/IAM/Proxy+Tickets).
+
+When authenticated, a session needs to be provided having the attribute `cas_pgt`.
+
+This can be done in code.
+An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Requests/MiddlewareTest.php):
+
+```php
+$session = new Session(new MockArraySessionStorage());
+$session->set('cas_pgt', 'DESKTOP_PT-21-9fp9');
+$clientFactory->addMiddleware(new CasProxyTicketSessionMiddleware($session));
+```
+
+Another option is to enable a service for the ePoetry client that calls the `addMiddleware` method:
+
+```yaml
+services:
+  example.epoetry_client:
+    class: \OpenEuropa\EPoetry\EPoetryClientFactory
+    arguments: [
+      'resources/dgtServiceWSDL.xml',
+      '@http_client'
+    ]
+    calls:
+      - method: 'addMiddleware'
+        arguments:
+          - '@your.session.service'
+```
 
 ## Logging
 
