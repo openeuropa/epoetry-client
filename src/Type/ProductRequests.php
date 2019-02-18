@@ -7,9 +7,9 @@ namespace OpenEuropa\EPoetry\Type;
 class ProductRequests
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Type\ProductRequest[]
+     * @var array|\OpenEuropa\EPoetry\Type\ProductRequest[]
      */
-    protected $productRequest;
+    protected $productRequest = [];
 
     /**
      * @param ProductRequest ...$productRequests
@@ -18,17 +18,15 @@ class ProductRequests
      */
     public function addProductRequest(...$productRequests): ProductRequests
     {
-        foreach ($productRequests as $productRequest) {
-            $this->productRequest[] = $productRequest;
-        }
+        $this->productRequest = array_merge($this->productRequest, $productRequests);
 
         return $this;
     }
 
     /**
-     * @return null|\OpenEuropa\EPoetry\Type\ProductRequest[]
+     * @return array|\OpenEuropa\EPoetry\Type\ProductRequest[]
      */
-    public function getProductRequest(): ?array
+    public function getProductRequest(): array
     {
         return $this->productRequest;
     }

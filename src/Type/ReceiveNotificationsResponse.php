@@ -9,9 +9,9 @@ use Phpro\SoapClient\Type\ResultInterface;
 class ReceiveNotificationsResponse implements ResultInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Type\DgtNotification[]
+     * @var array|\OpenEuropa\EPoetry\Type\DgtNotification[]
      */
-    protected $return;
+    protected $return = [];
 
     /**
      * @param DgtNotification ...$returns
@@ -20,17 +20,15 @@ class ReceiveNotificationsResponse implements ResultInterface
      */
     public function addReturn(...$returns): ReceiveNotificationsResponse
     {
-        foreach ($returns as $return) {
-            $this->return[] = $return;
-        }
+        $this->return = array_merge($this->return, $returns);
 
         return $this;
     }
 
     /**
-     * @return null|\OpenEuropa\EPoetry\Type\DgtNotification[]
+     * @return array|\OpenEuropa\EPoetry\Type\DgtNotification[]
      */
-    public function getReturn(): ?array
+    public function getReturn(): array
     {
         return $this->return;
     }

@@ -7,9 +7,9 @@ namespace OpenEuropa\EPoetry\Type;
 class Contacts
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Type\ContactPerson[]
+     * @var array|\OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    protected $contact;
+    protected $contact = [];
 
     /**
      * @param ContactPerson ...$contacts
@@ -18,17 +18,15 @@ class Contacts
      */
     public function addContact(...$contacts): Contacts
     {
-        foreach ($contacts as $contact) {
-            $this->contact[] = $contact;
-        }
+        $this->contact = array_merge($this->contact, $contacts);
 
         return $this;
     }
 
     /**
-     * @return null|\OpenEuropa\EPoetry\Type\ContactPerson[]
+     * @return array|\OpenEuropa\EPoetry\Type\ContactPerson[]
      */
-    public function getContact(): ?array
+    public function getContact(): array
     {
         return $this->contact;
     }

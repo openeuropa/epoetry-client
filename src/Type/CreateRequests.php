@@ -9,9 +9,9 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateRequests implements RequestInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
+     * @var array|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
-    protected $linguisticRequest;
+    protected $linguisticRequest = [];
 
     /**
      * @var null|\OpenEuropa\EPoetry\Type\RequestReferenceIn
@@ -30,17 +30,15 @@ class CreateRequests implements RequestInterface
      */
     public function addLinguisticRequest(...$linguisticRequests): CreateRequests
     {
-        foreach ($linguisticRequests as $linguisticRequest) {
-            $this->linguisticRequest[] = $linguisticRequest;
-        }
+        $this->linguisticRequest = array_merge($this->linguisticRequest, $linguisticRequests);
 
         return $this;
     }
 
     /**
-     * @return null|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
+     * @return array|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
-    public function getLinguisticRequest(): ?array
+    public function getLinguisticRequest(): array
     {
         return $this->linguisticRequest;
     }
