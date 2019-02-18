@@ -10,7 +10,12 @@ use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Zend\Code\Generator\PropertyGenerator;
 
-$filters = [
+/**
+ * This variables holds a mapping of classes and properties that will receive
+ * a special treatment in the assemblers.
+ * Sometimes they are used as a whitelist, sometimes as blacklist.
+ */
+$specialClassesAndProperties = [
     'ReceiveNotificationsResponse' => ['return'],
     'LinguisticSections' => ['linguisticSection'],
     'Contacts' => ['contact'],
@@ -20,14 +25,21 @@ $filters = [
     'CreateRequests' => ['linguisticRequest'],
 ];
 
+// Set all property visibility to "protected".
+// We have to do this as the SOAP handler will erroneously create duplicate
+// public properties when a value object extends another one with those
+// same properties marked as "private".
 $defaultPropertyAssembler = new Assembler\PropertyAssembler(PropertyGenerator::VISIBILITY_PROTECTED);
 
 $arrayPropertyAssembler = new OpenEuropa\Assembler\ArrayPropertyAssembler(
     (new OpenEuropa\Assembler\ArrayPropertyAssemblerOptions())
-        ->filterBy($filters)
+        ->whitelist($specialClassesAndProperties)
 );
 
-$nullablePropertyAssembler = new OpenEuropa\Assembler\NullablePropertyAssembler();
+$nullablePropertyAssembler = new OpenEuropa\Assembler\NullablePropertyAssembler(
+    (new OpenEuropa\Assembler\NullablePropertyAssemblerOptions())
+        ->blacklist($specialClassesAndProperties)
+);
 
 $defaultSetterAssembler = new Assembler\FluentSetterAssembler(
     (new Assembler\FluentSetterAssemblerOptions())
@@ -37,7 +49,7 @@ $defaultSetterAssembler = new Assembler\FluentSetterAssembler(
 
 $arraySetterAssembler = new OpenEuropa\Assembler\ArraySetterAssembler(
     (new OpenEuropa\Assembler\ArraySetterAssemblerOptions())
-        ->filterBy($filters)
+        ->whitelist($specialClassesAndProperties)
 );
 
 $defaultGetterAssembler = new Assembler\GetterAssembler(
@@ -48,14 +60,17 @@ $defaultGetterAssembler = new Assembler\GetterAssembler(
 
 $arrayGetterAssembler = new OpenEuropa\Assembler\ArrayGetterAssembler(
     (new OpenEuropa\Assembler\ArrayGetterAssemblerOptions())
-        ->filterBy($filters)
+        ->whitelist($specialClassesAndProperties)
 );
 
-$nullableGetterAssembler = new OpenEuropa\Assembler\NullableGetterAssembler();
+$nullableGetterAssembler = new OpenEuropa\Assembler\NullableGetterAssembler(
+    (new OpenEuropa\Assembler\NullableGetterAssemblerOptions())
+        ->blacklist($specialClassesAndProperties)
+);
 
 $fluentAdderAssembler = new OpenEuropa\Assembler\FluentAdderAssembler(
     (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
-        ->filterBy($filters)
+        ->whitelist($specialClassesAndProperties)
 );
 
 $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
@@ -70,9 +85,6 @@ return Config::create()
     ->setClassMapDestination('src')
     ->setClassMapName('EPoetryClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry')
-    // We have to do this as the SOAP handler will erroneously create duplicate
-    // public properties when a value object extends another one with those
-    // same properties marked as "private".
     ->setRuleSet(
         new Rules\RuleSet(
             [
@@ -118,10 +130,10 @@ return Config::create()
     // Set the default property assembler and generate all properties.
     ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
     // Update properties and set them as 'nullable'
-    ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-    // Update properties and update only some of them.
     ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
     // Set the default setter assembler and generate all setters methods.
+    ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
+    // Update properties and update only some of them.
     ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
     // Update setters and update only some of them.
     ->addRule(new Rules\AssembleRule($arraySetterAssembler))
