@@ -15,6 +15,11 @@ use Phpro\SoapClient\CodeGenerator\Model\Property;
 abstract class AbstractAssembler implements AssemblerInterface
 {
     /**
+     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\AbstractAssemblerOptions
+     */
+    protected $options;
+
+    /**
      * {@inheritdoc}
      */
     public function canAssemble(ContextInterface $context): bool
@@ -30,10 +35,17 @@ abstract class AbstractAssembler implements AssemblerInterface
         $class = $context->getClass();
         $property = $context->getProperty();
 
-        return $this->options->isFiltered(
+        $isWhitelisted = $this->options->isWhitelisted(
             $class->getName(),
             $property->getName()
         );
+
+        $isBlacklisted = $this->options->isBlacklisted(
+            $class->getName(),
+            $property->getName()
+        );
+
+        return $isWhitelisted && !$isBlacklisted;
     }
 
     /**
@@ -44,8 +56,10 @@ abstract class AbstractAssembler implements AssemblerInterface
     protected function getPrefix(Property $property): string
     {
         if (isset($this->options)) {
-            if (!$this->options->useBoolGetters()) {
-                return 'get';
+            if (method_exists($this->options, 'useBoolGetters')) {
+                if (!$this->options->useBoolGetters()) {
+                    return 'get';
+                }
             }
         }
 
@@ -67,6 +81,6 @@ abstract class AbstractAssembler implements AssemblerInterface
     {
         $namespace = '\\' . trim($namespace, '\\') . '\\';
 
-        return str_replace($namespace, '', '\\' . ltrim($type, '\\'));
+        return trim(str_replace($namespace, '', '\\' . ltrim($type, '\\')), '\\');
     }
 }

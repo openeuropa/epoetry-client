@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
-use Phpro\SoapClient\CodeGenerator\Context\PropertyContext;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\PropertyGenerator;
 
@@ -14,6 +13,16 @@ use Zend\Code\Generator\PropertyGenerator;
  */
 class NullablePropertyAssembler extends AbstractAssembler
 {
+    /**
+     * NullablePropertyAssembler constructor.
+     *
+     * @param null|\OpenEuropa\EPoetry\CodeGenerator\Assembler\NullablePropertyAssemblerOptions $options
+     */
+    public function __construct(NullablePropertyAssemblerOptions $options = null)
+    {
+        $this->options = $options ?? new NullablePropertyAssemblerOptions();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -37,13 +46,5 @@ class NullablePropertyAssembler extends AbstractAssembler
                 ],
             ])
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function canAssemble(ContextInterface $context): bool
-    {
-        return $context instanceof PropertyContext;
     }
 }

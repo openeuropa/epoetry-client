@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
-use Phpro\SoapClient\CodeGenerator\Assembler\AssemblerInterface;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
 use Phpro\SoapClient\CodeGenerator\Context\PropertyContext;
 use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
@@ -16,7 +15,7 @@ use Zend\Code\Generator\PropertyGenerator;
 /**
  * Add methods to check if the object has a property.
  */
-class HasPropertyAssembler implements AssemblerInterface
+class HasPropertyAssembler extends AbstractAssembler
 {
     /**
      * {@inheritdoc}

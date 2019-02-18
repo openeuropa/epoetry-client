@@ -15,11 +15,6 @@ use Zend\Code\Generator\MethodGenerator;
 class ArraySetterAssembler extends AbstractAssembler
 {
     /**
-     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\ArraySetterAssemblerOptions
-     */
-    protected $options;
-
-    /**
      * ArraySetterAssembler constructor.
      *
      * @param null|\OpenEuropa\EPoetry\CodeGenerator\Assembler\ArraySetterAssemblerOptions $arraySetterAssemblerOptions
@@ -50,23 +45,23 @@ class ArraySetterAssembler extends AbstractAssembler
             ->setParameters($parameters);
 
         $tags = $methodObject->getDocBlock()->getTags();
+
+        $tags[0] = [
+            'name' => 'param',
+            'description' => str_replace(
+                $property->getType(),
+                $this->shortenNamespace(
+                    $property->getType(),
+                    $class->getNamespaceName()
+                ) . '[]',
+                $tags[0]->getDescription()
+            ),
+        ];
+
         $methodObject
             ->setDocBlock(
                 DocBlockGenerator::fromArray([
-                    'tags' => [
-                        [
-                            'name' => 'param',
-                            'description' => str_replace(
-                                $property->getType(),
-                                $this->shortenNamespace(
-                                    $property->getType(),
-                                    $class->getNamespaceName()
-                                ) . '[]',
-                                $tags[0]->getDescription()
-                            ),
-                        ],
-                        $tags[1],
-                    ],
+                    'tags' => $tags,
                 ])
             );
     }

@@ -12,26 +12,71 @@ abstract class AbstractAssemblerOptions
     /**
      * @var array
      */
-    protected $filter;
+    protected $blacklist;
+    /**
+     * @var array
+     */
+    protected $whitelist;
 
     /**
-     * @param array $filters
+     * @param array $blacklist
+     *
+     * @return \OpenEuropa\EPoetry\CodeGenerator\Assembler\AbstractAssemblerOptions
      */
-    public function filterBy(array $filters)
+    public function blacklist(array $blacklist): AbstractAssemblerOptions
     {
-        $this->filter = $filters;
+        $this->blacklist = $blacklist;
 
         return $this;
     }
 
     /**
      * @param string $className
-     * @param string $propertyName
+     * @param null|string $propertyName
      *
      * @return bool
      */
-    public function isFiltered(string $className, string $propertyName): bool
+    public function isBlacklisted(string $className, string $propertyName = null): bool
     {
-        return isset($this->filter[$className]) && \in_array($propertyName, $this->filter[$className], true);
+        if ($this->blacklist === null) {
+            return false;
+        }
+
+        if ($propertyName === null) {
+            return isset($this->blacklist[$className]);
+        }
+
+        return isset($this->blacklist[$className]) && \in_array($propertyName, $this->blacklist[$className], true);
+    }
+
+    /**
+     * @param string $className
+     * @param null|string $propertyName
+     *
+     * @return bool
+     */
+    public function isWhitelisted(string $className, string $propertyName = null): bool
+    {
+        if ($this->whitelist === null) {
+            return true;
+        }
+
+        if ($propertyName === null) {
+            return isset($this->whitelist[$className]);
+        }
+
+        return isset($this->whitelist[$className]) && \in_array($propertyName, $this->whitelist[$className], true);
+    }
+
+    /**
+     * @param array $whitelist
+     *
+     * @return \OpenEuropa\EPoetry\CodeGenerator\Assembler\AbstractAssemblerOptions
+     */
+    public function whitelist(array $whitelist): AbstractAssemblerOptions
+    {
+        $this->whitelist = $whitelist;
+
+        return $this;
     }
 }

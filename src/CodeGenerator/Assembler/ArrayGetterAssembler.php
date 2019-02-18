@@ -15,11 +15,6 @@ use Zend\Code\Generator\MethodGenerator;
 class ArrayGetterAssembler extends AbstractAssembler
 {
     /**
-     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssemblerOptions
-     */
-    protected $options;
-
-    /**
      * ArrayGetterAssembler constructor.
      *
      * @param null|\OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssemblerOptions $arrayGetterAssemblerOptions
@@ -43,7 +38,7 @@ class ArrayGetterAssembler extends AbstractAssembler
         $methodObject = $class->getMethod($methodName);
 
         $methodObject
-            ->setReturnType('?array');
+            ->setReturnType('array');
 
         $tags = $methodObject->getDocBlock()->getTags();
 
@@ -53,7 +48,7 @@ class ArrayGetterAssembler extends AbstractAssembler
                     'tags' => [
                         [
                             'name' => 'return',
-                            'description' => str_replace($property->getType(), $property->getType() . '[]', $tags[0]->getDescription()),
+                            'description' => str_replace($property->getType(), $property->getType() . '[]|array', $tags[0]->getDescription()),
                         ],
                     ],
                 ])

@@ -18,16 +18,11 @@ use Zend\Code\Generator\TypeGenerator;
 class FluentAdderAssembler extends AbstractAssembler
 {
     /**
-     * @var FluentAdderAssemblerOptions
-     */
-    protected $options;
-
-    /**
      * FluentAdderAssembler constructor.
      *
      * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\FluentAdderAssemblerOptions $options
      */
-    public function __construct(FluentAdderAssemblerOptions $options)
+    public function __construct(FluentAdderAssemblerOptions $options = null)
     {
         $this->options = $options ?? new FluentSetterAssemblerOptions();
     }
@@ -53,11 +48,8 @@ class FluentAdderAssembler extends AbstractAssembler
             $class->getNamespaceName() . '\\' . $class->getName()
         );
 
-        $methodBody = sprintf(
-            'foreach ($%ss as $%s) {$this->%s[] = $%s;}return $this;',
-            $property->getName(),
-            $property->getName(),
-            $property->getName(),
+        $methodBody = $methodBody = sprintf(
+            '$this->%1$s = array_merge($this->%1$s, $%1$ss);return $this;',
             $property->getName()
         );
 

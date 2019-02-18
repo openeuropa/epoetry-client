@@ -14,16 +14,11 @@ use Zend\Code\Generator\PropertyGenerator;
 class ArrayPropertyAssembler extends AbstractAssembler
 {
     /**
-     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayPropertyAssemblerOptions
-     */
-    protected $options;
-
-    /**
      * ArrayPropertyAssembler constructor.
      *
      * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayPropertyAssemblerOptions $options
      */
-    public function __construct(ArrayPropertyAssemblerOptions $options)
+    public function __construct(ArrayPropertyAssemblerOptions $options = null)
     {
         $this->options = $options ?? new ArrayPropertyAssemblerOptions();
     }
@@ -39,14 +34,20 @@ class ArrayPropertyAssembler extends AbstractAssembler
         /** @var PropertyGenerator $propertyObject */
         $propertyObject = $class->getProperty($property->getName());
 
+        $propertyObject->omitDefaultValue(false);
+        $propertyObject->setDefaultValue([], 'array', '[]');
+
         $tags = $propertyObject->getDocBlock()->getTags();
+
+        $description = $tags[0]->getDescription();
+        $description = str_replace($property->getType(), $property->getType() . '[]|array', $description);
 
         $propertyObject->setDocBlock(
             DocBlockGenerator::fromArray([
                 'tags' => [
                     [
                         'name' => 'var',
-                        'description' => str_replace($property->getType(), $property->getType() . '[]', $tags[0]->getDescription()),
+                        'description' => $description,
                     ],
                 ],
             ])

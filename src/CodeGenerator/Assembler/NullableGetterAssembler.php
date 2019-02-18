@@ -13,6 +13,16 @@ use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
 class NullableGetterAssembler extends AbstractAssembler
 {
     /**
+     * NullableGetterAssembler constructor.
+     *
+     * @param null|\OpenEuropa\EPoetry\CodeGenerator\Assembler\NullableGetterAssemblerOptions $options
+     */
+    public function __construct(NullableGetterAssemblerOptions $options = null)
+    {
+        $this->options = $options ?? new NullableGetterAssemblerOptions();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function assemble(ContextInterface $context)
@@ -27,8 +37,10 @@ class NullableGetterAssembler extends AbstractAssembler
             $property->getName()
         );
 
+        /** @var \Zend\Code\Generator\MethodGenerator $method */
         $method = $class->getMethod($getMethodName);
         $docblock = $method->getDocBlock();
+
         foreach ($docblock->getTags() as $tag) {
             $description = explode('|', (string) $tag->getDescription());
             if (!\in_array('null', $description, true)) {
