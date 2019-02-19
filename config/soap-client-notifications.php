@@ -73,14 +73,14 @@ $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
 
 return Config::create()
     ->setWsdl('resources/EpoetryNotificationReceiverService.xml')
-    ->setTypeDestination('src/Notification')
-    ->setTypeNamespace('OpenEuropa\EPoetry\Notification')
-    ->setClientDestination('src')
-    ->setClientName('EPoetryClient')
-    ->setClientNamespace('OpenEuropa\EPoetry')
-    ->setClassMapDestination('src')
-    ->setClassMapName('EPoetryClassmap')
-    ->setClassMapNamespace('OpenEuropa\EPoetry')
+    ->setTypeDestination('src/Notification/Type')
+    ->setTypeNamespace('OpenEuropa\EPoetry\Notification\Type')
+    ->setClientDestination('src/Notification/')
+    ->setClientName('EPoetryNotificationClient')
+    ->setClientNamespace('OpenEuropa\EPoetryNotification')
+    ->setClassMapDestination('src/Notification/')
+    ->setClassMapName('EPoetryNotificationClassmap')
+    ->setClassMapNamespace('OpenEuropa\EPoetry\Notification')
     // We have to do this as the SOAP handler will erroneously create duplicate
     // public properties when a value object extends another one with those
     // same properties marked as "private".
