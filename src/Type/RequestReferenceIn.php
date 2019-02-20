@@ -37,11 +37,7 @@ class RequestReferenceIn
      */
     public function hasId(): bool
     {
-        if (\is_array($this->id)) {
-            return !empty($this->id);
-        }
-
-        return isset($this->id);
+        return !empty($this->id);
     }
 
     /**
@@ -49,11 +45,7 @@ class RequestReferenceIn
      */
     public function hasInternalTechnicalId(): bool
     {
-        if (\is_array($this->internalTechnicalId)) {
-            return !empty($this->internalTechnicalId);
-        }
-
-        return isset($this->internalTechnicalId);
+        return !empty($this->internalTechnicalId);
     }
 
     /**

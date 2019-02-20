@@ -78,11 +78,7 @@ class FindLinguisticRequest implements RequestInterface
      */
     public function hasNumber(): bool
     {
-        if (\is_array($this->number)) {
-            return !empty($this->number);
-        }
-
-        return isset($this->number);
+        return !empty($this->number);
     }
 
     /**
@@ -90,11 +86,7 @@ class FindLinguisticRequest implements RequestInterface
      */
     public function hasPart(): bool
     {
-        if (\is_array($this->part)) {
-            return !empty($this->part);
-        }
-
-        return isset($this->part);
+        return !empty($this->part);
     }
 
     /**
@@ -102,11 +94,7 @@ class FindLinguisticRequest implements RequestInterface
      */
     public function hasProductCode(): bool
     {
-        if (\is_array($this->productCode)) {
-            return !empty($this->productCode);
-        }
-
-        return isset($this->productCode);
+        return !empty($this->productCode);
     }
 
     /**
@@ -114,11 +102,7 @@ class FindLinguisticRequest implements RequestInterface
      */
     public function hasRequesterCode(): bool
     {
-        if (\is_array($this->requesterCode)) {
-            return !empty($this->requesterCode);
-        }
-
-        return isset($this->requesterCode);
+        return !empty($this->requesterCode);
     }
 
     /**
@@ -126,11 +110,7 @@ class FindLinguisticRequest implements RequestInterface
      */
     public function hasYear(): bool
     {
-        if (\is_array($this->year)) {
-            return !empty($this->year);
-        }
-
-        return isset($this->year);
+        return !empty($this->year);
     }
 
     /**

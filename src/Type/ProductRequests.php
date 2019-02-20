@@ -36,11 +36,7 @@ class ProductRequests
      */
     public function hasProductRequest(): bool
     {
-        if (\is_array($this->productRequest)) {
-            return !empty($this->productRequest);
-        }
-
-        return isset($this->productRequest);
+        return !empty($this->productRequest);
     }
 
     /**

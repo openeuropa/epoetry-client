@@ -39,11 +39,7 @@ class CorrectTranslation implements RequestInterface
      */
     public function hasCorrection(): bool
     {
-        if (\is_array($this->correction)) {
-            return !empty($this->correction);
-        }
-
-        return isset($this->correction);
+        return !empty($this->correction);
     }
 
     /**
@@ -51,11 +47,7 @@ class CorrectTranslation implements RequestInterface
      */
     public function hasProduct(): bool
     {
-        if (\is_array($this->product)) {
-            return !empty($this->product);
-        }
-
-        return isset($this->product);
+        return !empty($this->product);
     }
 
     /**

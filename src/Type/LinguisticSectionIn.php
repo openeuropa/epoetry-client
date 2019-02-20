@@ -24,11 +24,7 @@ class LinguisticSectionIn
      */
     public function hasLanguage(): bool
     {
-        if (\is_array($this->language)) {
-            return !empty($this->language);
-        }
-
-        return isset($this->language);
+        return !empty($this->language);
     }
 
     /**

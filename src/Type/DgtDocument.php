@@ -50,11 +50,7 @@ class DgtDocument
      */
     public function hasFormat(): bool
     {
-        if (\is_array($this->format)) {
-            return !empty($this->format);
-        }
-
-        return isset($this->format);
+        return !empty($this->format);
     }
 
     /**
@@ -62,11 +58,7 @@ class DgtDocument
      */
     public function hasName(): bool
     {
-        if (\is_array($this->name)) {
-            return !empty($this->name);
-        }
-
-        return isset($this->name);
+        return !empty($this->name);
     }
 
     /**
@@ -74,11 +66,7 @@ class DgtDocument
      */
     public function hasType(): bool
     {
-        if (\is_array($this->type)) {
-            return !empty($this->type);
-        }
-
-        return isset($this->type);
+        return !empty($this->type);
     }
 
     /**

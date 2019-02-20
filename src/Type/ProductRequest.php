@@ -96,11 +96,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasAcceptedDeadline(): bool
     {
-        if (\is_array($this->acceptedDeadline)) {
-            return !empty($this->acceptedDeadline);
-        }
-
-        return isset($this->acceptedDeadline);
+        return !empty($this->acceptedDeadline);
     }
 
     /**
@@ -108,11 +104,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasFormatCode(): bool
     {
-        if (\is_array($this->formatCode)) {
-            return !empty($this->formatCode);
-        }
-
-        return isset($this->formatCode);
+        return !empty($this->formatCode);
     }
 
     /**
@@ -120,11 +112,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasInternalProductReference(): bool
     {
-        if (\is_array($this->internalProductReference)) {
-            return !empty($this->internalProductReference);
-        }
-
-        return isset($this->internalProductReference);
+        return !empty($this->internalProductReference);
     }
 
     /**
@@ -132,11 +120,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasLanguage(): bool
     {
-        if (\is_array($this->language)) {
-            return !empty($this->language);
-        }
-
-        return isset($this->language);
+        return !empty($this->language);
     }
 
     /**
@@ -144,11 +128,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasRequestedDeadline(): bool
     {
-        if (\is_array($this->requestedDeadline)) {
-            return !empty($this->requestedDeadline);
-        }
-
-        return isset($this->requestedDeadline);
+        return !empty($this->requestedDeadline);
     }
 
     /**
@@ -156,11 +136,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasStatusCode(): bool
     {
-        if (\is_array($this->statusCode)) {
-            return !empty($this->statusCode);
-        }
-
-        return isset($this->statusCode);
+        return !empty($this->statusCode);
     }
 
     /**
@@ -168,11 +144,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasTrackChanges(): bool
     {
-        if (\is_array($this->trackChanges)) {
-            return !empty($this->trackChanges);
-        }
-
-        return isset($this->trackChanges);
+        return !empty($this->trackChanges);
     }
 
     /**

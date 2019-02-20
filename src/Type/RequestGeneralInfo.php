@@ -195,11 +195,7 @@ class RequestGeneralInfo
      */
     public function hasAccessibleTo(): bool
     {
-        if (\is_array($this->accessibleTo)) {
-            return !empty($this->accessibleTo);
-        }
-
-        return isset($this->accessibleTo);
+        return !empty($this->accessibleTo);
     }
 
     /**
@@ -207,11 +203,7 @@ class RequestGeneralInfo
      */
     public function hasComment(): bool
     {
-        if (\is_array($this->comment)) {
-            return !empty($this->comment);
-        }
-
-        return isset($this->comment);
+        return !empty($this->comment);
     }
 
     /**
@@ -219,11 +211,7 @@ class RequestGeneralInfo
      */
     public function hasDecideReference(): bool
     {
-        if (\is_array($this->decideReference)) {
-            return !empty($this->decideReference);
-        }
-
-        return isset($this->decideReference);
+        return !empty($this->decideReference);
     }
 
     /**
@@ -231,11 +219,7 @@ class RequestGeneralInfo
      */
     public function hasDestinationCode(): bool
     {
-        if (\is_array($this->destinationCode)) {
-            return !empty($this->destinationCode);
-        }
-
-        return isset($this->destinationCode);
+        return !empty($this->destinationCode);
     }
 
     /**
@@ -243,11 +227,7 @@ class RequestGeneralInfo
      */
     public function hasDocumentToBeAdopted(): bool
     {
-        if (\is_array($this->documentToBeAdopted)) {
-            return !empty($this->documentToBeAdopted);
-        }
-
-        return isset($this->documentToBeAdopted);
+        return !empty($this->documentToBeAdopted);
     }
 
     /**
@@ -255,11 +235,7 @@ class RequestGeneralInfo
      */
     public function hasInternalReference(): bool
     {
-        if (\is_array($this->internalReference)) {
-            return !empty($this->internalReference);
-        }
-
-        return isset($this->internalReference);
+        return !empty($this->internalReference);
     }
 
     /**
@@ -267,11 +243,7 @@ class RequestGeneralInfo
      */
     public function hasInternalTechnicalId(): bool
     {
-        if (\is_array($this->internalTechnicalId)) {
-            return !empty($this->internalTechnicalId);
-        }
-
-        return isset($this->internalTechnicalId);
+        return !empty($this->internalTechnicalId);
     }
 
     /**
@@ -279,11 +251,7 @@ class RequestGeneralInfo
      */
     public function hasOnBehalfOf(): bool
     {
-        if (\is_array($this->onBehalfOf)) {
-            return !empty($this->onBehalfOf);
-        }
-
-        return isset($this->onBehalfOf);
+        return !empty($this->onBehalfOf);
     }
 
     /**
@@ -291,11 +259,7 @@ class RequestGeneralInfo
      */
     public function hasRequestedDeadline(): bool
     {
-        if (\is_array($this->requestedDeadline)) {
-            return !empty($this->requestedDeadline);
-        }
-
-        return isset($this->requestedDeadline);
+        return !empty($this->requestedDeadline);
     }
 
     /**
@@ -303,11 +267,7 @@ class RequestGeneralInfo
      */
     public function hasRequestingService(): bool
     {
-        if (\is_array($this->requestingService)) {
-            return !empty($this->requestingService);
-        }
-
-        return isset($this->requestingService);
+        return !empty($this->requestingService);
     }
 
     /**
@@ -315,11 +275,7 @@ class RequestGeneralInfo
      */
     public function hasSensitive(): bool
     {
-        if (\is_array($this->sensitive)) {
-            return !empty($this->sensitive);
-        }
-
-        return isset($this->sensitive);
+        return !empty($this->sensitive);
     }
 
     /**
@@ -327,11 +283,7 @@ class RequestGeneralInfo
      */
     public function hasSentViaRUE(): bool
     {
-        if (\is_array($this->sentViaRUE)) {
-            return !empty($this->sentViaRUE);
-        }
-
-        return isset($this->sentViaRUE);
+        return !empty($this->sentViaRUE);
     }
 
     /**
@@ -339,11 +291,7 @@ class RequestGeneralInfo
      */
     public function hasServiceOfOrigin(): bool
     {
-        if (\is_array($this->serviceOfOrigin)) {
-            return !empty($this->serviceOfOrigin);
-        }
-
-        return isset($this->serviceOfOrigin);
+        return !empty($this->serviceOfOrigin);
     }
 
     /**
@@ -351,11 +299,7 @@ class RequestGeneralInfo
      */
     public function hasSlaAnnex(): bool
     {
-        if (\is_array($this->slaAnnex)) {
-            return !empty($this->slaAnnex);
-        }
-
-        return isset($this->slaAnnex);
+        return !empty($this->slaAnnex);
     }
 
     /**
@@ -363,11 +307,7 @@ class RequestGeneralInfo
      */
     public function hasSlaCommitment(): bool
     {
-        if (\is_array($this->slaCommitment)) {
-            return !empty($this->slaCommitment);
-        }
-
-        return isset($this->slaCommitment);
+        return !empty($this->slaCommitment);
     }
 
     /**
@@ -375,11 +315,7 @@ class RequestGeneralInfo
      */
     public function hasTitle(): bool
     {
-        if (\is_array($this->title)) {
-            return !empty($this->title);
-        }
-
-        return isset($this->title);
+        return !empty($this->title);
     }
 
     /**

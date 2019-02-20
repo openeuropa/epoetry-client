@@ -37,11 +37,7 @@ class ContactPersonIn
      */
     public function hasRoleCode(): bool
     {
-        if (\is_array($this->roleCode)) {
-            return !empty($this->roleCode);
-        }
-
-        return isset($this->roleCode);
+        return !empty($this->roleCode);
     }
 
     /**
@@ -49,11 +45,7 @@ class ContactPersonIn
      */
     public function hasUserId(): bool
     {
-        if (\is_array($this->userId)) {
-            return !empty($this->userId);
-        }
-
-        return isset($this->userId);
+        return !empty($this->userId);
     }
 
     /**

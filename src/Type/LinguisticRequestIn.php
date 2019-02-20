@@ -76,11 +76,7 @@ class LinguisticRequestIn
      */
     public function hasAuxiliaryDocuments(): bool
     {
-        if (\is_array($this->auxiliaryDocuments)) {
-            return !empty($this->auxiliaryDocuments);
-        }
-
-        return isset($this->auxiliaryDocuments);
+        return !empty($this->auxiliaryDocuments);
     }
 
     /**
@@ -88,11 +84,7 @@ class LinguisticRequestIn
      */
     public function hasContacts(): bool
     {
-        if (\is_array($this->contacts)) {
-            return !empty($this->contacts);
-        }
-
-        return isset($this->contacts);
+        return !empty($this->contacts);
     }
 
     /**
@@ -100,11 +92,7 @@ class LinguisticRequestIn
      */
     public function hasGeneralInfo(): bool
     {
-        if (\is_array($this->generalInfo)) {
-            return !empty($this->generalInfo);
-        }
-
-        return isset($this->generalInfo);
+        return !empty($this->generalInfo);
     }
 
     /**
@@ -112,11 +100,7 @@ class LinguisticRequestIn
      */
     public function hasOriginalDocument(): bool
     {
-        if (\is_array($this->originalDocument)) {
-            return !empty($this->originalDocument);
-        }
-
-        return isset($this->originalDocument);
+        return !empty($this->originalDocument);
     }
 
     /**
@@ -124,11 +108,7 @@ class LinguisticRequestIn
      */
     public function hasProductRequests(): bool
     {
-        if (\is_array($this->productRequests)) {
-            return !empty($this->productRequests);
-        }
-
-        return isset($this->productRequests);
+        return !empty($this->productRequests);
     }
 
     /**

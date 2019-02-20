@@ -36,11 +36,7 @@ class AuxiliaryDocuments
      */
     public function hasAuxiliaryDocument(): bool
     {
-        if (\is_array($this->auxiliaryDocument)) {
-            return !empty($this->auxiliaryDocument);
-        }
-
-        return isset($this->auxiliaryDocument);
+        return !empty($this->auxiliaryDocument);
     }
 
     /**

@@ -37,11 +37,7 @@ class RequestNotFoundException
      */
     public function hasMessage(): bool
     {
-        if (\is_array($this->message)) {
-            return !empty($this->message);
-        }
-
-        return isset($this->message);
+        return !empty($this->message);
     }
 
     /**
@@ -49,11 +45,7 @@ class RequestNotFoundException
      */
     public function hasUid(): bool
     {
-        if (\is_array($this->uid)) {
-            return !empty($this->uid);
-        }
-
-        return isset($this->uid);
+        return !empty($this->uid);
     }
 
     /**

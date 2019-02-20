@@ -26,11 +26,7 @@ class GetLinguisticRequest implements RequestInterface
      */
     public function hasRequest(): bool
     {
-        if (\is_array($this->request)) {
-            return !empty($this->request);
-        }
-
-        return isset($this->request);
+        return !empty($this->request);
     }
 
     /**

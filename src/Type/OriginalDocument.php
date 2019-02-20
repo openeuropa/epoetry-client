@@ -42,11 +42,7 @@ class OriginalDocument extends DgtDocument
      */
     public function hasLinguisticSections(): bool
     {
-        if (\is_array($this->linguisticSections)) {
-            return !empty($this->linguisticSections);
-        }
-
-        return isset($this->linguisticSections);
+        return !empty($this->linguisticSections);
     }
 
     /**
@@ -54,11 +50,7 @@ class OriginalDocument extends DgtDocument
      */
     public function hasPages(): bool
     {
-        if (\is_array($this->pages)) {
-            return !empty($this->pages);
-        }
-
-        return isset($this->pages);
+        return !empty($this->pages);
     }
 
     /**
@@ -66,11 +58,7 @@ class OriginalDocument extends DgtDocument
      */
     public function hasTrackChanges(): bool
     {
-        if (\is_array($this->trackChanges)) {
-            return !empty($this->trackChanges);
-        }
-
-        return isset($this->trackChanges);
+        return !empty($this->trackChanges);
     }
 
     /**

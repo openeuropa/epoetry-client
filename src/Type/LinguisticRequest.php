@@ -104,11 +104,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasAuxiliaryDocuments(): bool
     {
-        if (\is_array($this->auxiliaryDocuments)) {
-            return !empty($this->auxiliaryDocuments);
-        }
-
-        return isset($this->auxiliaryDocuments);
+        return !empty($this->auxiliaryDocuments);
     }
 
     /**
@@ -116,11 +112,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasContacts(): bool
     {
-        if (\is_array($this->contacts)) {
-            return !empty($this->contacts);
-        }
-
-        return isset($this->contacts);
+        return !empty($this->contacts);
     }
 
     /**
@@ -128,11 +120,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasGeneralInfo(): bool
     {
-        if (\is_array($this->generalInfo)) {
-            return !empty($this->generalInfo);
-        }
-
-        return isset($this->generalInfo);
+        return !empty($this->generalInfo);
     }
 
     /**
@@ -140,11 +128,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasOriginalDocument(): bool
     {
-        if (\is_array($this->originalDocument)) {
-            return !empty($this->originalDocument);
-        }
-
-        return isset($this->originalDocument);
+        return !empty($this->originalDocument);
     }
 
     /**
@@ -152,11 +136,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasProductRequests(): bool
     {
-        if (\is_array($this->productRequests)) {
-            return !empty($this->productRequests);
-        }
-
-        return isset($this->productRequests);
+        return !empty($this->productRequests);
     }
 
     /**
@@ -164,11 +144,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasReference(): bool
     {
-        if (\is_array($this->reference)) {
-            return !empty($this->reference);
-        }
-
-        return isset($this->reference);
+        return !empty($this->reference);
     }
 
     /**
@@ -176,11 +152,7 @@ class LinguisticRequest implements RequestInterface
      */
     public function hasStatusCode(): bool
     {
-        if (\is_array($this->statusCode)) {
-            return !empty($this->statusCode);
-        }
-
-        return isset($this->statusCode);
+        return !empty($this->statusCode);
     }
 
     /**

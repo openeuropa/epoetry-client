@@ -63,11 +63,7 @@ class DgtDocumentIn
      */
     public function hasFile(): bool
     {
-        if (\is_array($this->file)) {
-            return !empty($this->file);
-        }
-
-        return isset($this->file);
+        return !empty($this->file);
     }
 
     /**
@@ -75,11 +71,7 @@ class DgtDocumentIn
      */
     public function hasFormat(): bool
     {
-        if (\is_array($this->format)) {
-            return !empty($this->format);
-        }
-
-        return isset($this->format);
+        return !empty($this->format);
     }
 
     /**
@@ -87,11 +79,7 @@ class DgtDocumentIn
      */
     public function hasName(): bool
     {
-        if (\is_array($this->name)) {
-            return !empty($this->name);
-        }
-
-        return isset($this->name);
+        return !empty($this->name);
     }
 
     /**
@@ -99,11 +87,7 @@ class DgtDocumentIn
      */
     public function hasType(): bool
     {
-        if (\is_array($this->type)) {
-            return !empty($this->type);
-        }
-
-        return isset($this->type);
+        return !empty($this->type);
     }
 
     /**

@@ -24,11 +24,7 @@ class LanguageIn
      */
     public function hasCode(): bool
     {
-        if (\is_array($this->code)) {
-            return !empty($this->code);
-        }
-
-        return isset($this->code);
+        return !empty($this->code);
     }
 
     /**

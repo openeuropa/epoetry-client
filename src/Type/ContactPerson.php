@@ -76,11 +76,7 @@ class ContactPerson
      */
     public function hasEmail(): bool
     {
-        if (\is_array($this->email)) {
-            return !empty($this->email);
-        }
-
-        return isset($this->email);
+        return !empty($this->email);
     }
 
     /**
@@ -88,11 +84,7 @@ class ContactPerson
      */
     public function hasFirstName(): bool
     {
-        if (\is_array($this->firstName)) {
-            return !empty($this->firstName);
-        }
-
-        return isset($this->firstName);
+        return !empty($this->firstName);
     }
 
     /**
@@ -100,11 +92,7 @@ class ContactPerson
      */
     public function hasLastName(): bool
     {
-        if (\is_array($this->lastName)) {
-            return !empty($this->lastName);
-        }
-
-        return isset($this->lastName);
+        return !empty($this->lastName);
     }
 
     /**
@@ -112,11 +100,7 @@ class ContactPerson
      */
     public function hasRoleCode(): bool
     {
-        if (\is_array($this->roleCode)) {
-            return !empty($this->roleCode);
-        }
-
-        return isset($this->roleCode);
+        return !empty($this->roleCode);
     }
 
     /**
@@ -124,11 +108,7 @@ class ContactPerson
      */
     public function hasUserId(): bool
     {
-        if (\is_array($this->userId)) {
-            return !empty($this->userId);
-        }
-
-        return isset($this->userId);
+        return !empty($this->userId);
     }
 
     /**

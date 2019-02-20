@@ -36,11 +36,7 @@ class Contacts
      */
     public function hasContact(): bool
     {
-        if (\is_array($this->contact)) {
-            return !empty($this->contact);
-        }
-
-        return isset($this->contact);
+        return !empty($this->contact);
     }
 
     /**

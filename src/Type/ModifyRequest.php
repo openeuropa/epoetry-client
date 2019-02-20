@@ -52,11 +52,7 @@ class ModifyRequest implements RequestInterface
      */
     public function hasLinguisticRequest(): bool
     {
-        if (\is_array($this->linguisticRequest)) {
-            return !empty($this->linguisticRequest);
-        }
-
-        return isset($this->linguisticRequest);
+        return !empty($this->linguisticRequest);
     }
 
     /**
@@ -64,11 +60,7 @@ class ModifyRequest implements RequestInterface
      */
     public function hasRequestReference(): bool
     {
-        if (\is_array($this->requestReference)) {
-            return !empty($this->requestReference);
-        }
-
-        return isset($this->requestReference);
+        return !empty($this->requestReference);
     }
 
     /**
@@ -76,11 +68,7 @@ class ModifyRequest implements RequestInterface
      */
     public function hasTemplateName(): bool
     {
-        if (\is_array($this->templateName)) {
-            return !empty($this->templateName);
-        }
-
-        return isset($this->templateName);
+        return !empty($this->templateName);
     }
 
     /**

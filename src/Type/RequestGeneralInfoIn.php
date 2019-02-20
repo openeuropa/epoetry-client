@@ -169,11 +169,7 @@ class RequestGeneralInfoIn
      */
     public function hasAccessibleTo(): bool
     {
-        if (\is_array($this->accessibleTo)) {
-            return !empty($this->accessibleTo);
-        }
-
-        return isset($this->accessibleTo);
+        return !empty($this->accessibleTo);
     }
 
     /**
@@ -181,11 +177,7 @@ class RequestGeneralInfoIn
      */
     public function hasComment(): bool
     {
-        if (\is_array($this->comment)) {
-            return !empty($this->comment);
-        }
-
-        return isset($this->comment);
+        return !empty($this->comment);
     }
 
     /**
@@ -193,11 +185,7 @@ class RequestGeneralInfoIn
      */
     public function hasDecideReference(): bool
     {
-        if (\is_array($this->decideReference)) {
-            return !empty($this->decideReference);
-        }
-
-        return isset($this->decideReference);
+        return !empty($this->decideReference);
     }
 
     /**
@@ -205,11 +193,7 @@ class RequestGeneralInfoIn
      */
     public function hasDestinationCode(): bool
     {
-        if (\is_array($this->destinationCode)) {
-            return !empty($this->destinationCode);
-        }
-
-        return isset($this->destinationCode);
+        return !empty($this->destinationCode);
     }
 
     /**
@@ -217,11 +201,7 @@ class RequestGeneralInfoIn
      */
     public function hasDocumentToBeAdopted(): bool
     {
-        if (\is_array($this->documentToBeAdopted)) {
-            return !empty($this->documentToBeAdopted);
-        }
-
-        return isset($this->documentToBeAdopted);
+        return !empty($this->documentToBeAdopted);
     }
 
     /**
@@ -229,11 +209,7 @@ class RequestGeneralInfoIn
      */
     public function hasInternalReference(): bool
     {
-        if (\is_array($this->internalReference)) {
-            return !empty($this->internalReference);
-        }
-
-        return isset($this->internalReference);
+        return !empty($this->internalReference);
     }
 
     /**
@@ -241,11 +217,7 @@ class RequestGeneralInfoIn
      */
     public function hasInternalTechnicalId(): bool
     {
-        if (\is_array($this->internalTechnicalId)) {
-            return !empty($this->internalTechnicalId);
-        }
-
-        return isset($this->internalTechnicalId);
+        return !empty($this->internalTechnicalId);
     }
 
     /**
@@ -253,11 +225,7 @@ class RequestGeneralInfoIn
      */
     public function hasOnBehalfOf(): bool
     {
-        if (\is_array($this->onBehalfOf)) {
-            return !empty($this->onBehalfOf);
-        }
-
-        return isset($this->onBehalfOf);
+        return !empty($this->onBehalfOf);
     }
 
     /**
@@ -265,11 +233,7 @@ class RequestGeneralInfoIn
      */
     public function hasRequestedDeadline(): bool
     {
-        if (\is_array($this->requestedDeadline)) {
-            return !empty($this->requestedDeadline);
-        }
-
-        return isset($this->requestedDeadline);
+        return !empty($this->requestedDeadline);
     }
 
     /**
@@ -277,11 +241,7 @@ class RequestGeneralInfoIn
      */
     public function hasSensitive(): bool
     {
-        if (\is_array($this->sensitive)) {
-            return !empty($this->sensitive);
-        }
-
-        return isset($this->sensitive);
+        return !empty($this->sensitive);
     }
 
     /**
@@ -289,11 +249,7 @@ class RequestGeneralInfoIn
      */
     public function hasSentViaRUE(): bool
     {
-        if (\is_array($this->sentViaRUE)) {
-            return !empty($this->sentViaRUE);
-        }
-
-        return isset($this->sentViaRUE);
+        return !empty($this->sentViaRUE);
     }
 
     /**
@@ -301,11 +257,7 @@ class RequestGeneralInfoIn
      */
     public function hasSlaAnnex(): bool
     {
-        if (\is_array($this->slaAnnex)) {
-            return !empty($this->slaAnnex);
-        }
-
-        return isset($this->slaAnnex);
+        return !empty($this->slaAnnex);
     }
 
     /**
@@ -313,11 +265,7 @@ class RequestGeneralInfoIn
      */
     public function hasSlaCommitment(): bool
     {
-        if (\is_array($this->slaCommitment)) {
-            return !empty($this->slaCommitment);
-        }
-
-        return isset($this->slaCommitment);
+        return !empty($this->slaCommitment);
     }
 
     /**
@@ -325,11 +273,7 @@ class RequestGeneralInfoIn
      */
     public function hasTitle(): bool
     {
-        if (\is_array($this->title)) {
-            return !empty($this->title);
-        }
-
-        return isset($this->title);
+        return !empty($this->title);
     }
 
     /**

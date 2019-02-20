@@ -29,11 +29,7 @@ class OriginalDocumentIn extends DgtDocumentIn
      */
     public function hasLinguisticSections(): bool
     {
-        if (\is_array($this->linguisticSections)) {
-            return !empty($this->linguisticSections);
-        }
-
-        return isset($this->linguisticSections);
+        return !empty($this->linguisticSections);
     }
 
     /**
@@ -41,11 +37,7 @@ class OriginalDocumentIn extends DgtDocumentIn
      */
     public function hasTrackChanges(): bool
     {
-        if (\is_array($this->trackChanges)) {
-            return !empty($this->trackChanges);
-        }
-
-        return isset($this->trackChanges);
+        return !empty($this->trackChanges);
     }
 
     /**

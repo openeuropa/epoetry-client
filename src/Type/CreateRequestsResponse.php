@@ -38,11 +38,7 @@ class CreateRequestsResponse implements ResultInterface
      */
     public function hasReturn(): bool
     {
-        if (\is_array($this->return)) {
-            return !empty($this->return);
-        }
-
-        return isset($this->return);
+        return !empty($this->return);
     }
 
     /**

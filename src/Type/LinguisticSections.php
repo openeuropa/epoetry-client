@@ -36,11 +36,7 @@ class LinguisticSections
      */
     public function hasLinguisticSection(): bool
     {
-        if (\is_array($this->linguisticSection)) {
-            return !empty($this->linguisticSection);
-        }
-
-        return isset($this->linguisticSection);
+        return !empty($this->linguisticSection);
     }
 
     /**
