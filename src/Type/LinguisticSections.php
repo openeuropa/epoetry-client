@@ -7,24 +7,24 @@ namespace OpenEuropa\EPoetry\Type;
 class LinguisticSections
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSection[]
+     * @var array|\OpenEuropa\EPoetry\Type\LinguisticSection[]
      */
     protected $linguisticSection = [];
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticSection $linguisticSection
+     * @param LinguisticSection ...$linguisticSections
      *
      * @return $this
      */
-    public function addLinguisticSection($linguisticSection): LinguisticSections
+    public function addLinguisticSection(...$linguisticSections): LinguisticSections
     {
-        $this->linguisticSection[] = $linguisticSection;
+        $this->linguisticSection = array_merge($this->linguisticSection, $linguisticSections);
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticSection[]
+     * @return array|\OpenEuropa\EPoetry\Type\LinguisticSection[]
      */
     public function getLinguisticSection(): array
     {
@@ -32,11 +32,19 @@ class LinguisticSections
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticSection $linguisticSection
+     * @return bool
+     */
+    public function hasLinguisticSection(): bool
+    {
+        return !empty($this->linguisticSection);
+    }
+
+    /**
+     * @param LinguisticSection[] $linguisticSection
      *
      * @return $this
      */
-    public function setLinguisticSection($linguisticSection): LinguisticSections
+    public function setLinguisticSection(array $linguisticSection): LinguisticSections
     {
         $this->linguisticSection = $linguisticSection;
 

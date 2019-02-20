@@ -7,24 +7,24 @@ namespace OpenEuropa\EPoetry\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
+     * @var array|\OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
      */
     protected $auxiliaryDocument = [];
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument
+     * @param AuxiliaryDocument ...$auxiliaryDocuments
      *
      * @return $this
      */
-    public function addAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
+    public function addAuxiliaryDocument(...$auxiliaryDocuments): AuxiliaryDocuments
     {
-        $this->auxiliaryDocument[] = $auxiliaryDocument;
+        $this->auxiliaryDocument = array_merge($this->auxiliaryDocument, $auxiliaryDocuments);
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
+     * @return array|\OpenEuropa\EPoetry\Type\AuxiliaryDocument[]
      */
     public function getAuxiliaryDocument(): array
     {
@@ -32,11 +32,19 @@ class AuxiliaryDocuments
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\AuxiliaryDocument $auxiliaryDocument
+     * @return bool
+     */
+    public function hasAuxiliaryDocument(): bool
+    {
+        return !empty($this->auxiliaryDocument);
+    }
+
+    /**
+     * @param AuxiliaryDocument[] $auxiliaryDocument
      *
      * @return $this
      */
-    public function setAuxiliaryDocument($auxiliaryDocument): AuxiliaryDocuments
+    public function setAuxiliaryDocument(array $auxiliaryDocument): AuxiliaryDocuments
     {
         $this->auxiliaryDocument = $auxiliaryDocument;
 

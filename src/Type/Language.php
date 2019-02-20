@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Type;
 class Language
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $code;
 
@@ -17,6 +17,14 @@ class Language
     public function getCode(): ?string
     {
         return $this->code;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCode(): bool
+    {
+        return !empty($this->code);
     }
 
     /**

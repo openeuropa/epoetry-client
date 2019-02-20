@@ -7,27 +7,27 @@ namespace OpenEuropa\EPoetry\Type;
 class ContactPerson
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $email;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $firstName;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $lastName;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $roleCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $userId;
 
@@ -69,6 +69,46 @@ class ContactPerson
     public function getUserId(): ?string
     {
         return $this->userId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasEmail(): bool
+    {
+        return !empty($this->email);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFirstName(): bool
+    {
+        return !empty($this->firstName);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLastName(): bool
+    {
+        return !empty($this->lastName);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRoleCode(): bool
+    {
+        return !empty($this->roleCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUserId(): bool
+    {
+        return !empty($this->userId);
     }
 
     /**

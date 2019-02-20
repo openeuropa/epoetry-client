@@ -9,34 +9,34 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateRequests implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
+     * @var array|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
     protected $linguisticRequest = [];
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     protected $relatedRequest;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $templateName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
+     * @param LinguisticRequestIn ...$linguisticRequests
      *
      * @return $this
      */
-    public function addLinguisticRequest($linguisticRequest): CreateRequests
+    public function addLinguisticRequest(...$linguisticRequests): CreateRequests
     {
-        $this->linguisticRequest[] = $linguisticRequest;
+        $this->linguisticRequest = array_merge($this->linguisticRequest, $linguisticRequests);
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
+     * @return array|\OpenEuropa\EPoetry\Type\LinguisticRequestIn[]
      */
     public function getLinguisticRequest(): array
     {
@@ -60,11 +60,35 @@ class CreateRequests implements RequestInterface
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\LinguisticRequestIn $linguisticRequest
+     * @return bool
+     */
+    public function hasLinguisticRequest(): bool
+    {
+        return !empty($this->linguisticRequest);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRelatedRequest(): bool
+    {
+        return !empty($this->relatedRequest);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTemplateName(): bool
+    {
+        return !empty($this->templateName);
+    }
+
+    /**
+     * @param LinguisticRequestIn[] $linguisticRequest
      *
      * @return $this
      */
-    public function setLinguisticRequest($linguisticRequest): CreateRequests
+    public function setLinguisticRequest(array $linguisticRequest): CreateRequests
     {
         $this->linguisticRequest = $linguisticRequest;
 

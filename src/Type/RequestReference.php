@@ -7,47 +7,47 @@ namespace OpenEuropa\EPoetry\Type;
 class RequestReference
 {
     /**
-     * @var int
+     * @var null|int
      */
     protected $id;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalTechnicalId;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $number;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $part;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $productType;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $requesterCode;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $version;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $year;
 
@@ -121,6 +121,78 @@ class RequestReference
     public function getYear(): ?int
     {
         return $this->year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasId(): bool
+    {
+        return !empty($this->id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalReference(): bool
+    {
+        return !empty($this->internalReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalTechnicalId(): bool
+    {
+        return !empty($this->internalTechnicalId);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNumber(): bool
+    {
+        return !empty($this->number);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPart(): bool
+    {
+        return !empty($this->part);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductType(): bool
+    {
+        return !empty($this->productType);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequesterCode(): bool
+    {
+        return !empty($this->requesterCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasVersion(): bool
+    {
+        return !empty($this->version);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasYear(): bool
+    {
+        return !empty($this->year);
     }
 
     /**

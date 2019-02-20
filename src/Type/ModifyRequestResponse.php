@@ -9,7 +9,7 @@ use Phpro\SoapClient\Type\ResultInterface;
 class ModifyRequestResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticRequest
+     * @var null|\OpenEuropa\EPoetry\Type\LinguisticRequest
      */
     protected $return;
 
@@ -19,6 +19,14 @@ class ModifyRequestResponse implements ResultInterface
     public function getReturn(): ?\OpenEuropa\EPoetry\Type\LinguisticRequest
     {
         return $this->return;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasReturn(): bool
+    {
+        return !empty($this->return);
     }
 
     /**

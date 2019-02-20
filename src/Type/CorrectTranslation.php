@@ -9,12 +9,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CorrectTranslation implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\CorrectionDocument
+     * @var null|\OpenEuropa\EPoetry\Type\CorrectionDocument
      */
     protected $correction;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductReference
+     * @var null|\OpenEuropa\EPoetry\Type\ProductReference
      */
     protected $product;
 
@@ -32,6 +32,22 @@ class CorrectTranslation implements RequestInterface
     public function getProduct(): ?\OpenEuropa\EPoetry\Type\ProductReference
     {
         return $this->product;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasCorrection(): bool
+    {
+        return !empty($this->correction);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProduct(): bool
+    {
+        return !empty($this->product);
     }
 
     /**

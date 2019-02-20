@@ -9,37 +9,37 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ProductRequest implements RequestInterface
 {
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $acceptedDeadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $formatCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalProductReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Language
+     * @var null|\OpenEuropa\EPoetry\Type\Language
      */
     protected $language;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $statusCode;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -89,6 +89,62 @@ class ProductRequest implements RequestInterface
     public function getStatusCode(): ?string
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAcceptedDeadline(): bool
+    {
+        return !empty($this->acceptedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFormatCode(): bool
+    {
+        return !empty($this->formatCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalProductReference(): bool
+    {
+        return !empty($this->internalProductReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        return !empty($this->language);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        return !empty($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasStatusCode(): bool
+    {
+        return !empty($this->statusCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        return !empty($this->trackChanges);
     }
 
     /**

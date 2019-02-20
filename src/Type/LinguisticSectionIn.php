@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Type;
 class LinguisticSectionIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LanguageIn
+     * @var null|\OpenEuropa\EPoetry\Type\LanguageIn
      */
     protected $language;
 
@@ -17,6 +17,14 @@ class LinguisticSectionIn
     public function getLanguage(): ?\OpenEuropa\EPoetry\Type\LanguageIn
     {
         return $this->language;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        return !empty($this->language);
     }
 
     /**

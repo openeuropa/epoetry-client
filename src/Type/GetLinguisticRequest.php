@@ -9,7 +9,7 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Type\RequestReferenceIn
      */
     protected $request;
 
@@ -19,6 +19,14 @@ class GetLinguisticRequest implements RequestInterface
     public function getRequest(): ?\OpenEuropa\EPoetry\Type\RequestReferenceIn
     {
         return $this->request;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequest(): bool
+    {
+        return !empty($this->request);
     }
 
     /**

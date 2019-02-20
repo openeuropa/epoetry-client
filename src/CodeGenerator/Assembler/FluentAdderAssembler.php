@@ -4,125 +4,80 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
-use Phpro\SoapClient\CodeGenerator\Assembler\AssemblerInterface;
+use Phpro\SoapClient\CodeGenerator\Assembler\FluentSetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
-use Phpro\SoapClient\CodeGenerator\Context\PropertyContext;
 use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
-use Phpro\SoapClient\Exception\AssemblerException;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\MethodGenerator;
-use Zend\Code\Generator\PropertyValueGenerator;
-use Zend\Code\Generator\ValueGenerator;
+use Zend\Code\Generator\ParameterGenerator;
+use Zend\Code\Generator\TypeGenerator;
 
 /**
- * Class AdderAssembler.
+ * Class FluentAdderAssembler.
+ *
+ * Custom assembler that add a new 'add[PROPERTY]' method for each properties.
  */
-class FluentAdderAssembler implements AssemblerInterface
+class FluentAdderAssembler extends AbstractAssembler
 {
     /**
-     * @var FluentAdderAssemblerOptions
-     */
-    private $options;
-
-    /**
-     * AdderAssembler constructor.
+     * FluentAdderAssembler constructor.
      *
-     * @param FluentAdderAssemblerOptions $options
+     * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\FluentAdderAssemblerOptions $options
      */
-    public function __construct(FluentAdderAssemblerOptions $options)
+    public function __construct(FluentAdderAssemblerOptions $options = null)
     {
-        $this->options = $options;
+        $this->options = $options ?? new FluentSetterAssemblerOptions();
     }
 
     /**
-     * @param ContextInterface|PropertyContext $context
-     *
-     * @throws AssemblerException
+     * {@inheritdoc}
      */
     public function assemble(ContextInterface $context)
     {
         $class = $context->getClass();
         $property = $context->getProperty();
 
-        try {
-            $parameterOptions = ['name' => $property->getName()];
+        $type = $this->shortenNamespace(
+            $property->getType(),
+            $class->getNamespaceName()
+        );
 
-            // Add "adder" method.
-            $methodName = Normalizer::generatePropertyMethod('add', $property->getName());
-            $class->removeMethod($methodName);
-            $class->addMethodFromGenerator(
-                MethodGenerator::fromArray(
+        $nameParameter = ParameterGenerator::fromArray([
+            'name' => $property->getName() . 's',
+        ])->setVariadic(true);
+
+        $returnType = TypeGenerator::fromTypeString(
+            $class->getNamespaceName() . '\\' . $class->getName()
+        );
+
+        $methodBody = $methodBody = sprintf(
+            '$this->%1$s = array_merge($this->%1$s, $%1$ss);return $this;',
+            $property->getName()
+        );
+
+        $addMethodData = [
+            'name' => Normalizer::generatePropertyMethod('add', $property->getName()),
+            'parameters' => [$nameParameter],
+            'visibility' => MethodGenerator::VISIBILITY_PUBLIC,
+            'returntype' => $returnType,
+            'body' => $methodBody,
+            'docblock' => DocBlockGenerator::fromArray([
+                'tags' => [
                     [
-                        'name' => $methodName,
-                        'parameters' => [$parameterOptions],
-                        'visibility' => MethodGenerator::VISIBILITY_PUBLIC,
-                        'returntype' => $this->options->useReturnType() ? $class->getNamespaceName() . '\\' . $class->getName() : null,
-                        'body' => sprintf(
-                            '$this->%1$s[] = $%1$s;%2$sreturn $this;',
-                            $property->getName(),
-                            $class::LINE_FEED
-                        ),
-                        'docblock' => DocBlockGenerator::fromArray(
-                            [
-                                'tags' => [
-                                    [
-                                        'name' => 'param',
-                                        'description' => sprintf('%s $%s', $property->getType(), $property->getName()),
-                                    ],
-                                    [
-                                        'name' => 'return',
-                                        'description' => '$this',
-                                    ],
-                                ],
-                            ]
-                        ),
-                    ]
-                )
+                        'name' => 'param',
+                        'description' => sprintf('%s ...$%ss', $type, $property->getName()),
+                    ],
+                    [
+                        'name' => 'return',
+                        'description' => '$this',
+                    ],
+                ],
+            ]),
+        ];
+
+        $class
+            ->addMethodFromGenerator(
+                MethodGenerator::fromArray($addMethodData)
             );
-
-            // If property is available update its dockblock and default value.
-            if ($class->hasProperty($property->getName())) {
-                $class->getProperty($property->getName())->setDocBlock(DocBlockGenerator::fromArray([
-                    'tags' => [
-                        [
-                            'name' => 'var',
-                            'description' => $property->getType() . '[]',
-                        ],
-                    ],
-                ]));
-                $class->getProperty($property->getName())->setDefaultValue(new PropertyValueGenerator([], ValueGenerator::TYPE_ARRAY_SHORT, ValueGenerator::OUTPUT_SINGLE_LINE));
-            }
-
-            // If setter is available update its dockblock and return value.
-            $getterMethodName = Normalizer::generatePropertyMethod('get', $property->getName());
-            if ($class->hasMethod($getterMethodName)) {
-                $class->getMethod($getterMethodName)->setReturnType('array');
-                $class->getMethod($getterMethodName)->setDocBlock(DocBlockGenerator::fromArray([
-                    'tags' => [
-                        [
-                            'name' => 'return',
-                            'description' => $property->getType() . '[]',
-                        ],
-                    ],
-                ]));
-            }
-        } catch (\Exception $e) {
-            throw AssemblerException::fromException($e);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function canAssemble(ContextInterface $context): bool
-    {
-        if (!$context instanceof PropertyContext) {
-            return false;
-        }
-
-        $class = $context->getClass();
-        $property = $context->getProperty();
-
-        return $this->options->hasProperty($class->getName(), $property->getName());
     }
 }

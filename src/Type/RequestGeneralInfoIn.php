@@ -7,72 +7,72 @@ namespace OpenEuropa\EPoetry\Type;
 class RequestGeneralInfoIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $accessibleTo;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $comment;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $decideReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $destinationCode;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $documentToBeAdopted;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalTechnicalId;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $onBehalfOf;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $sensitive;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $sentViaRUE;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $slaAnnex;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $slaCommitment;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $title;
 
@@ -162,6 +162,118 @@ class RequestGeneralInfoIn
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccessibleTo(): bool
+    {
+        return !empty($this->accessibleTo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasComment(): bool
+    {
+        return !empty($this->comment);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDecideReference(): bool
+    {
+        return !empty($this->decideReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDestinationCode(): bool
+    {
+        return !empty($this->destinationCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDocumentToBeAdopted(): bool
+    {
+        return !empty($this->documentToBeAdopted);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalReference(): bool
+    {
+        return !empty($this->internalReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalTechnicalId(): bool
+    {
+        return !empty($this->internalTechnicalId);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOnBehalfOf(): bool
+    {
+        return !empty($this->onBehalfOf);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        return !empty($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSensitive(): bool
+    {
+        return !empty($this->sensitive);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSentViaRUE(): bool
+    {
+        return !empty($this->sentViaRUE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSlaAnnex(): bool
+    {
+        return !empty($this->slaAnnex);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSlaCommitment(): bool
+    {
+        return !empty($this->slaCommitment);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTitle(): bool
+    {
+        return !empty($this->title);
     }
 
     /**

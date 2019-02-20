@@ -7,22 +7,22 @@ namespace OpenEuropa\EPoetry\Type;
 class ProductRequestIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     protected $internalProductReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\LanguageIn
+     * @var null|\OpenEuropa\EPoetry\Type\LanguageIn
      */
     protected $language;
 
     /**
-     * @var \DateTime
+     * @var null|\DateTime
      */
     protected $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -48,6 +48,38 @@ class ProductRequestIn
     public function getRequestedDeadline(): ?\DateTime
     {
         return $this->requestedDeadline;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInternalProductReference(): bool
+    {
+        return !empty($this->internalProductReference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLanguage(): bool
+    {
+        return !empty($this->language);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequestedDeadline(): bool
+    {
+        return !empty($this->requestedDeadline);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        return !empty($this->trackChanges);
     }
 
     /**

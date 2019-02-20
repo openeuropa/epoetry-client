@@ -9,27 +9,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class FindLinguisticRequest implements RequestInterface
 {
     /**
-     * @var int
+     * @var null|int
      */
     protected $number;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $part;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $productCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $requesterCode;
 
     /**
-     * @var int
+     * @var null|int
      */
     protected $year;
 
@@ -71,6 +71,46 @@ class FindLinguisticRequest implements RequestInterface
     public function getYear(): ?int
     {
         return $this->year;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNumber(): bool
+    {
+        return !empty($this->number);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPart(): bool
+    {
+        return !empty($this->part);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductCode(): bool
+    {
+        return !empty($this->productCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequesterCode(): bool
+    {
+        return !empty($this->requesterCode);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasYear(): bool
+    {
+        return !empty($this->year);
     }
 
     /**

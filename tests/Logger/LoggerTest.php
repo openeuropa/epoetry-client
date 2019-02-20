@@ -132,7 +132,7 @@ final class LoggerTest extends AbstractTest
             ->setGeneralInfo($generalInfo);
 
         $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest($linguisticRequestIn);
+        $createRequests->setLinguisticRequest([$linguisticRequestIn]);
 
         return $createRequests;
     }

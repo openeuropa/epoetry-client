@@ -4,20 +4,20 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Type;
 
-class OriginalDocument extends \OpenEuropa\EPoetry\Type\DgtDocument
+class OriginalDocument extends DgtDocument
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\LinguisticSections
+     * @var null|\OpenEuropa\EPoetry\Type\LinguisticSections
      */
     protected $linguisticSections;
 
     /**
-     * @var float
+     * @var null|float
      */
     protected $pages;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     protected $trackChanges;
 
@@ -35,6 +35,30 @@ class OriginalDocument extends \OpenEuropa\EPoetry\Type\DgtDocument
     public function getPages(): ?float
     {
         return $this->pages;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLinguisticSections(): bool
+    {
+        return !empty($this->linguisticSections);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPages(): bool
+    {
+        return !empty($this->pages);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTrackChanges(): bool
+    {
+        return !empty($this->trackChanges);
     }
 
     /**

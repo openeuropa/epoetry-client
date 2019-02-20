@@ -7,27 +7,27 @@ namespace OpenEuropa\EPoetry\Type;
 class LinguisticRequestIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @var null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
     protected $auxiliaryDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Type\Contacts
      */
     protected $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
+     * @var null|\OpenEuropa\EPoetry\Type\RequestGeneralInfoIn
      */
     protected $generalInfo;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocumentIn
+     * @var null|\OpenEuropa\EPoetry\Type\OriginalDocumentIn
      */
     protected $originalDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests
+     * @var null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
     protected $productRequests;
 
@@ -69,6 +69,46 @@ class LinguisticRequestIn
     public function getProductRequests(): ?\OpenEuropa\EPoetry\Type\ProductRequests
     {
         return $this->productRequests;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAuxiliaryDocuments(): bool
+    {
+        return !empty($this->auxiliaryDocuments);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasContacts(): bool
+    {
+        return !empty($this->contacts);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGeneralInfo(): bool
+    {
+        return !empty($this->generalInfo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOriginalDocument(): bool
+    {
+        return !empty($this->originalDocument);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductRequests(): bool
+    {
+        return !empty($this->productRequests);
     }
 
     /**

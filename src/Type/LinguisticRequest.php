@@ -9,37 +9,37 @@ use Phpro\SoapClient\Type\RequestInterface;
 class LinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\AuxiliaryDocuments
+     * @var null|\OpenEuropa\EPoetry\Type\AuxiliaryDocuments
      */
     protected $auxiliaryDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Type\Contacts
      */
     protected $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestGeneralInfo
+     * @var null|\OpenEuropa\EPoetry\Type\RequestGeneralInfo
      */
     protected $generalInfo;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\OriginalDocument
+     * @var null|\OpenEuropa\EPoetry\Type\OriginalDocument
      */
     protected $originalDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\ProductRequests
+     * @var null|\OpenEuropa\EPoetry\Type\ProductRequests
      */
     protected $productRequests;
 
     /**
-     * @var \OpenEuropa\EPoetry\Type\RequestReference
+     * @var null|\OpenEuropa\EPoetry\Type\RequestReference
      */
     protected $reference;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $statusCode;
 
@@ -97,6 +97,62 @@ class LinguisticRequest implements RequestInterface
     public function getStatusCode(): ?string
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAuxiliaryDocuments(): bool
+    {
+        return !empty($this->auxiliaryDocuments);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasContacts(): bool
+    {
+        return !empty($this->contacts);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGeneralInfo(): bool
+    {
+        return !empty($this->generalInfo);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOriginalDocument(): bool
+    {
+        return !empty($this->originalDocument);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasProductRequests(): bool
+    {
+        return !empty($this->productRequests);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasReference(): bool
+    {
+        return !empty($this->reference);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasStatusCode(): bool
+    {
+        return !empty($this->statusCode);
     }
 
     /**

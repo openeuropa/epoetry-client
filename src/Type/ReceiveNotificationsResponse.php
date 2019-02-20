@@ -9,24 +9,24 @@ use Phpro\SoapClient\Type\ResultInterface;
 class ReceiveNotificationsResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Type\DgtNotification[]
+     * @var array|\OpenEuropa\EPoetry\Type\DgtNotification[]
      */
     protected $return = [];
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DgtNotification $return
+     * @param DgtNotification ...$returns
      *
      * @return $this
      */
-    public function addReturn($return): ReceiveNotificationsResponse
+    public function addReturn(...$returns): ReceiveNotificationsResponse
     {
-        $this->return[] = $return;
+        $this->return = array_merge($this->return, $returns);
 
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Type\DgtNotification[]
+     * @return array|\OpenEuropa\EPoetry\Type\DgtNotification[]
      */
     public function getReturn(): array
     {
@@ -34,11 +34,19 @@ class ReceiveNotificationsResponse implements ResultInterface
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Type\DgtNotification $return
+     * @return bool
+     */
+    public function hasReturn(): bool
+    {
+        return !empty($this->return);
+    }
+
+    /**
+     * @param DgtNotification[] $return
      *
      * @return $this
      */
-    public function setReturn($return): ReceiveNotificationsResponse
+    public function setReturn(array $return): ReceiveNotificationsResponse
     {
         $this->return = $return;
 

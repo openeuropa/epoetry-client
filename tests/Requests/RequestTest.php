@@ -60,7 +60,7 @@ final class RequestTest extends AbstractTest
             ->setGeneralInfo($generalInfo);
 
         $createRequests = new CreateRequests();
-        $createRequests->setLinguisticRequest($linguisticRequestIn);
+        $createRequests->setLinguisticRequest([$linguisticRequestIn]);
 
         $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
         $response = new Response(200, [], $content);
