@@ -26,9 +26,7 @@ class HasPropertyAssembler extends AbstractAssembler
         $class = $context->getClass();
 
         $body = sprintf(
-            'if (is_array($this->%s)) {return !empty($this->%s);} return isset($this->%s);',
-            $property->getName(),
-            $property->getName(),
+            'return !empty($this->%s);',
             $property->getName()
         );
 

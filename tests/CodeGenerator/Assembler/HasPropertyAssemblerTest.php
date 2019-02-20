@@ -39,7 +39,7 @@ class MyType
      */
     public function hasProp1() : bool
     {
-        if (is_array($this->prop1)) {return !empty($this->prop1);} return isset($this->prop1);
+        return !empty($this->prop1);
     }
 
 
