@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
  * Class ArraySetterAssemblerOptions.
+ *
+ * Custom assemblers options used by the custom ArraySetterAssembler.
  */
 class ArraySetterAssemblerOptions extends AbstractAssemblerOptions
 {

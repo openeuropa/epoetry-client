@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
  * Class NullablePropertyAssemblerOptions.
+ *
+ * Custom assemblers options used by the custom NullablePropertyAssembler.
  */
 class NullablePropertyAssemblerOptions extends AbstractAssemblerOptions
 {

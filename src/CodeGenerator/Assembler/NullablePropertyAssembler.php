@@ -10,6 +10,10 @@ use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Class NullablePropertyAssembler.
+ *
+ * Custom property assembler for specific properties.
+ *  - Update the property type and set it nullable.
+ *  - Update the docblock's tags.
  */
 class NullablePropertyAssembler extends AbstractAssembler
 {

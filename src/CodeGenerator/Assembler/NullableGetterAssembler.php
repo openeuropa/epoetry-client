@@ -9,6 +9,10 @@ use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
 
 /**
  * Add support for nullable return type declarations.
+ *
+ * Custom getter assembler for specific properties.
+ *  - Update the return type and set it nullable.
+ *  - Update the docblock's tags.
  */
 class NullableGetterAssembler extends AbstractAssembler
 {

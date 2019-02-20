@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
  * Class NullableGetterAssemblerOptions.
+ *
+ * Custom assemblers options used by the custom NullableGetterAssembler.
  */
 class NullableGetterAssemblerOptions extends AbstractAssemblerOptions
 {

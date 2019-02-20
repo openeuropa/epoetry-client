@@ -14,6 +14,8 @@ use Zend\Code\Generator\TypeGenerator;
 
 /**
  * Class FluentAdderAssembler.
+ *
+ * Custom assembler that add a new 'add[PROPERTY]' method for each properties.
  */
 class FluentAdderAssembler extends AbstractAssembler
 {

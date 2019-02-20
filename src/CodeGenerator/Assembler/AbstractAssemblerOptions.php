@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
  * Class AbstractAssemblerOptions.
+ *
+ * Base class for all the custom assemblers options used by custom assemblers.
  */
 abstract class AbstractAssemblerOptions
 {

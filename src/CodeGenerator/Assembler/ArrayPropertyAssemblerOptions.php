@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
  * Class PropertyAssemblerOptions.
+ *
+ * Custom assemblers options used by the custom ArrayPropertyAssembler.
  */
 class ArrayPropertyAssemblerOptions extends AbstractAssemblerOptions
 {

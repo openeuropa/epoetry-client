@@ -11,6 +11,10 @@ use Zend\Code\Generator\MethodGenerator;
 
 /**
  * Class ArrayGetterAssembler.
+ *
+ * Custom getter assembler for specific properties.
+ *  - Adds a return type to the original getter.
+ *  - Update the docblock's return tag.
  */
 class ArrayGetterAssembler extends AbstractAssembler
 {

@@ -11,6 +11,8 @@ use Phpro\SoapClient\CodeGenerator\Model\Property;
 
 /**
  * Class AbstractAssembler.
+ *
+ * Base class for all the custom assemblers used in this library.
  */
 abstract class AbstractAssembler implements AssemblerInterface
 {

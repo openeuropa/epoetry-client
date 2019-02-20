@@ -11,6 +11,10 @@ use Zend\Code\Generator\MethodGenerator;
 
 /**
  * Class ArraySetterAssembler.
+ *
+ * Custom setter assembler
+ *  - Update the docblock.
+ *  - Update the type.
  */
 class ArraySetterAssembler extends AbstractAssembler
 {

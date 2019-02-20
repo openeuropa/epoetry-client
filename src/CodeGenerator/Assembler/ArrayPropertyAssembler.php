@@ -10,6 +10,10 @@ use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Class ArrayPropertyAssembler.
+ *
+ * Custom property assembler for specific properties.
+ *  - Update the property type.
+ *  - Update the docblock's tags.
  */
 class ArrayPropertyAssembler extends AbstractAssembler
 {
