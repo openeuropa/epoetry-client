@@ -17,12 +17,7 @@ use Zend\Code\Generator\PropertyGenerator;
  */
 $specialClassesAndProperties = [
     'ReceiveNotificationsResponse' => ['return'],
-    'LinguisticSections' => ['linguisticSection'],
-    'Contacts' => ['contact'],
     'ProductRequests' => ['productRequest'],
-    'AuxiliaryDocuments' => ['auxiliaryDocument'],
-    'CreateRequestsResponse' => ['return'],
-    'CreateRequests' => ['linguisticRequest'],
 ];
 
 $defaultPropertyAssembler = new Assembler\PropertyAssembler(PropertyGenerator::VISIBILITY_PROTECTED);
@@ -81,9 +76,9 @@ return Config::create()
     ->setClassMapDestination('src/Notification/')
     ->setClassMapName('EPoetryNotificationClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry\Notification')
-    // We have to do this as the SOAP handler will erroneously create duplicate
-    // public properties when a value object extends another one with those
-    // same properties marked as "private".
+// We have to do this as the SOAP handler will erroneously create duplicate
+// public properties when a value object extends another one with those
+// same properties marked as "private".
     ->setRuleSet(
         new Rules\RuleSet(
             [
@@ -97,17 +92,17 @@ return Config::create()
             '/Response$/'
         )
     )
-    // Generate SOAP request classes.
-    //
-    // Request objects must implement \Phpro\SoapClient\Type\RequestInterface
-    // The rule matches the following SOAP types:
-    //
-    // - correctTranslation
-    // - createRequests
-    // - findLinguisticRequest
-    // - getLinguisticRequest
-    // - modifyRequest
-    // - receiveNotifications
+// Generate SOAP request classes.
+//
+// Request objects must implement \Phpro\SoapClient\Type\RequestInterface
+// The rule matches the following SOAP types:
+//
+// - correctTranslation
+// - createRequests
+// - findLinguisticRequest
+// - getLinguisticRequest
+// - modifyRequest
+// - receiveNotifications
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
@@ -126,23 +121,23 @@ return Config::create()
             '/^(Auxiliary|Original)DocumentIn$/'
         )
     )
-    // Set the default property assembler and generate all properties.
+// Set the default property assembler and generate all properties.
     ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
-    // Update properties and set them as 'nullable'
+// Update properties and set them as 'nullable'
     ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
-    // Set the default setter assembler and generate all setters methods.
+// Set the default setter assembler and generate all setters methods.
     ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-    // Update properties and update only some of them.
+// Update properties and update only some of them.
     ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
-    // Update setters and update only some of them.
+// Update setters and update only some of them.
     ->addRule(new Rules\AssembleRule($arraySetterAssembler))
-    // Set the default getter assembler and generate all getters methods.
+// Set the default getter assembler and generate all getters methods.
     ->addRule(new Rules\AssembleRule($defaultGetterAssembler))
-    // Update getters and set them as 'nullable'
+// Update getters and set them as 'nullable'
     ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
-    // Update getters and update only some of them.
+// Update getters and update only some of them.
     ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
-    // Add adders only on some classes only.
+// Add adders only on some classes only.
     ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
-    // Add has[Properties] only on some classes only.
+// Add has[Properties] only on some classes only.
     ->addRule(new Rules\AssembleRule($hasPropertyAssembler));
