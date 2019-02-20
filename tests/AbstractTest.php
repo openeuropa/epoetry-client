@@ -45,6 +45,25 @@ abstract class AbstractTest extends TestCase
     }
 
     /**
+     * Assert a list of Expression Language expressions.
+     *
+     * @param array $expressions
+     * @param array $values
+     */
+    protected function assertExpressionLanguageExpressions(array $expressions, array $values)
+    {
+        foreach ($expressions as $expression) {
+            $this->assertTrue(
+                $this->expressionLanguage->evaluate(
+                    $expression,
+                    $values
+                ),
+                sprintf('The expression [%s] failed to evaluate to true.', $expression)
+            );
+        }
+    }
+
+    /**
      * Setup ePoetry client factory using HTTP mock client.
      *
      * @return \OpenEuropa\EPoetry\EPoetryClientFactory

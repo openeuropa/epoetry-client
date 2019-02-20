@@ -46,9 +46,7 @@ final class MiddlewareTest extends AbstractMiddlewareTest
             'session' => $session,
         ];
 
-        foreach ($input['session'] as $expression) {
-            $this->expressionLanguage->evaluate($expression, $values);
-        }
+        $this->assertExpressionLanguageExpressions($input['session'], $values);
 
         $middleware = new CasProxyTicketSessionMiddleware($session);
         $clientFactory->addMiddleware($middleware);
@@ -62,14 +60,9 @@ final class MiddlewareTest extends AbstractMiddlewareTest
 
         $values['request'] = $client->debugLastSoapRequest()['request'];
 
-        foreach ($expectations['assertions'] as $expression) {
-            $this->assertTrue(
-                $this->expressionLanguage->evaluate(
-                    $expression,
-                    $values
-                ),
-                sprintf('The expression [%s] failed to evaluate to true.', $expression)
-            );
-        }
+        $this->assertExpressionLanguageExpressions(
+            $expectations['assertions'],
+            $values
+        );
     }
 }
