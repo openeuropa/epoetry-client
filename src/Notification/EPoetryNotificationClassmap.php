@@ -9,7 +9,6 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 
 class EPoetryNotificationClassmap
 {
-
     public static function getCollection(): ClassMapCollection
     {
         return new ClassMapCollection([
@@ -24,7 +23,4 @@ class EPoetryNotificationClassmap
             new ClassMap('receiveNotificationResponse', Type\ReceiveNotificationResponse::class),
         ]);
     }
-
-
 }
-
