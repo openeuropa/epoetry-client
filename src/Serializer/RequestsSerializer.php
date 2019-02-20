@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Serializer;
 use OpenEuropa\EPoetry\PropertyInfo\Extractor\MappingReflectionExtractor;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -15,6 +16,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class RequestsSerializer.
+ *
+ * This class is the default request serializer.
+ *
+ * By default you can serialize request from XML or YAML files.
+ *
+ * The class is final to ensure that you use composition over inheritance in
+ * your project.
  */
 final class RequestsSerializer implements SerializerInterface
 {
@@ -27,9 +35,18 @@ final class RequestsSerializer implements SerializerInterface
 
     /**
      * RequestsSerializer constructor.
+     *
+     * @param \Symfony\Component\Serializer\Encoder\EncoderInterface[] $encoders
      */
-    public function __construct()
+    public function __construct(array $encoders = [])
     {
+        if ($encoders === []) {
+            $encoders = [
+                new XmlEncoder(),
+                new YamlEncoder(),
+            ];
+        }
+
         $this->serializer = new Serializer(
             [
                 new ArrayDenormalizer(),
@@ -40,9 +57,7 @@ final class RequestsSerializer implements SerializerInterface
                     new MappingReflectionExtractor()
                 ),
             ],
-            [
-                new YamlEncoder(),
-            ]
+            $encoders
         );
     }
 
