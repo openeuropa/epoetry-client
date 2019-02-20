@@ -13,11 +13,21 @@ use Symfony\Component\PropertyInfo\Type;
 
 /**
  * Class MappingReflectionExtractor.
+ *
+ * Make sure that the ReflectionExtractor object used in the serializer is
+ * converting array of values into array of objects properly.
  */
 class MappingReflectionExtractor extends ReflectionExtractor
 {
     /**
-     * The mapping list.
+     * The properties mapping list.
+     *
+     * Contains the list of properties that needs to be updated into
+     * arrays of objects.
+     *
+     * The structure of the array is the following:
+     *
+     * $mapping[CLASS_NAME][PROPERTY => CLASS]
      *
      * @var array
      */

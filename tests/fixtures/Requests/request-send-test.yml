@@ -146,5 +146,6 @@
       </SOAP-ENV:Body>
       </SOAP-ENV:Envelope>
     assertions:
-      assertContains:
-        request['body']: "Test"
+      - strpos(request['body'], '<title>Test</title>') !== false
+      - strpos(request['body'], '<contact userId="1" roleCode="AUTHOR"/>') !== false
+      - strpos(request['body'], '<contact userId="2" roleCode="EDITOR"/>') !== false

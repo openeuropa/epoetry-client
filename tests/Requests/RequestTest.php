@@ -7,7 +7,6 @@ namespace OpenEuropa\EPoetry\Tests\Requests;
 use GuzzleHttp\Psr7\Response;
 use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
 use OpenEuropa\EPoetry\Type\CreateRequests;
-use OpenEuropa\EPoetry\Type\CreateRequestsResponse;
 
 /**
  * @internal
@@ -59,16 +58,14 @@ final class RequestTest extends AbstractRequestTest
             'request' => $client->debugLastSoapRequest()['request'],
         ];
 
-        foreach ($expectations['assertions'] as $type => $expectationsTypes) {
-            foreach ($expectationsTypes as $expression => $expectation) {
-                $this->{$type}(
-                    $expectation,
-                    $this->expressionLanguage->evaluate(
-                        $expression,
-                        $values
-                    )
-                );
-            }
+        foreach ($expectations['assertions'] as $expression) {
+            $this->assertTrue(
+                $this->expressionLanguage->evaluate(
+                    $expression,
+                    $values
+                ),
+                sprintf('The expression [%s] failed to evaluate to true.', $expression)
+            );
         }
     }
 
@@ -86,34 +83,24 @@ final class RequestTest extends AbstractRequestTest
         $this->httpClient->addResponse($response);
 
         $client = $this->createClientFactory()->getClient();
-        $response = $client->createRequests(
-            RequestsSerializer::fromArray(
-                $input['request'],
-                CreateRequests::class
-            )
-        );
-
-        // TODO: convert in Expression Language
-        //
-        // assertInstanceOf:
-        //   response: \\OpenEuropa\\EPoetry\\Type\\CreateRequestsResponse
-        //
-        $this->assertInstanceOf(CreateRequestsResponse::class, $response);
 
         $values = [
-            'response' => $response,
+            'response' => $client->createRequests(
+                RequestsSerializer::fromArray(
+                    $input['request'],
+                    CreateRequests::class
+                )
+            ),
         ];
 
-        foreach ($expectations['assertions'] as $type => $expectationsTypes) {
-            foreach ($expectationsTypes as $expression => $expectation) {
-                $this->{$type}(
-                    $expectation,
-                    $this->expressionLanguage->evaluate(
-                        $expression,
-                        $values
-                    )
-                );
-            }
+        foreach ($expectations['assertions'] as $expression) {
+            $this->assertTrue(
+                $this->expressionLanguage->evaluate(
+                    $expression,
+                    $values
+                ),
+                sprintf('The expression [%s] failed to evaluate to true.', $expression)
+            );
         }
     }
 }

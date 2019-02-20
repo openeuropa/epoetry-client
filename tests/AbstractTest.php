@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Tests;
 use Http\Mock\Client;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 abstract class AbstractTest extends TestCase
@@ -34,7 +35,12 @@ abstract class AbstractTest extends TestCase
     protected function setUp()
     {
         $this->httpClient = new Client();
+
         $this->expressionLanguage = new ExpressionLanguage();
+        $this->expressionLanguage->addFunction(ExpressionFunction::fromPhp('count'));
+        $this->expressionLanguage->addFunction(ExpressionFunction::fromPhp('is_a'));
+        $this->expressionLanguage->addFunction(ExpressionFunction::fromPhp('strpos'));
+
         parent::setUp();
     }
 
