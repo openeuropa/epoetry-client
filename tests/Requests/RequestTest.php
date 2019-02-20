@@ -22,7 +22,7 @@ final class RequestTest extends AbstractRequestTest
      */
     public function requestSendingCases()
     {
-        return $this->getFixture('request-test.yml');
+        return $this->getFixture('request-send-test.yml');
     }
 
     /**
@@ -32,7 +32,7 @@ final class RequestTest extends AbstractRequestTest
      */
     public function responseParsingCases()
     {
-        return $this->getFixture('response-parsing.yml');
+        return $this->getFixture('response-parse-test.yml');
     }
 
     /**

@@ -8,9 +8,9 @@ use OpenEuropa\EPoetry\Tests\AbstractTest;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class AbstractRequestTest.
+ * Class AbstractMiddlewareTest.
  */
-abstract class AbstractRequestTest extends AbstractTest
+abstract class AbstractMiddlewareTest extends AbstractTest
 {
     /**
      * @param string $filename
@@ -19,6 +19,6 @@ abstract class AbstractRequestTest extends AbstractTest
      */
     public function getFixture(string $filename)
     {
-        return Yaml::parseFile(__DIR__ . '/../fixtures/Requests/' . $filename);
+        return Yaml::parseFile(__DIR__ . '/../fixtures/Middleware/' . $filename);
     }
 }
