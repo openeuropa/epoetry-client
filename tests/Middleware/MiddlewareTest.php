@@ -29,14 +29,17 @@ final class MiddlewareTest extends AbstractMiddlewareTest
      * Test Proxy Ticket in request.
      *
      * @dataProvider proxyTicketCases
+     *
+     * @param string $ticket
+     * @param string $xml
+     * @param array $expectations
      */
-    public function testProxyTicket(array $input, array $expectations)
+    public function testProxyTicket(string $ticket, string $xml, array $expectations)
     {
-        $input += ['session' => []];
         $expectations += ['exceptions' => []];
 
         // Generate response.
-        $response = new Response(200, [], $input['xml']);
+        $response = new Response(200, [], $xml);
         $this->httpClient->addResponse($response);
 
         $clientFactory = $this->createClientFactory();
@@ -46,7 +49,9 @@ final class MiddlewareTest extends AbstractMiddlewareTest
             'session' => $session,
         ];
 
-        $this->assertExpressionLanguageExpressions($input['session'], $values);
+        if ($ticket !== '') {
+            $session->set('cas_pgt', $ticket);
+        }
 
         $middleware = new CasProxyTicketSessionMiddleware($session);
         $clientFactory->addMiddleware($middleware);

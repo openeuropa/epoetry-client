@@ -58,7 +58,10 @@ final class RequestTest extends AbstractRequestTest
             'request' => $client->debugLastSoapRequest()['request'],
         ];
 
-        $this->assertExpressionLanguageExpressions($expectations['assertions']);
+        $this->assertExpressionLanguageExpressions(
+            $expectations['assertions'],
+            $values
+        );
     }
 
     /**
