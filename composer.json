@@ -19,7 +19,7 @@
         "symfony/serializer": "^3.2 || ^4"
     },
     "require-dev": {
-        "cweagans/composer-patches": "^1.6",
+        "cweagans/composer-patches": "~1.6",
         "openeuropa/code-review": "dev-master",
         "openeuropa/task-runner": "^0.8.0",
         "php-http/mock-client": "^1.0",
