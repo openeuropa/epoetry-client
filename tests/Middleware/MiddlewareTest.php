@@ -31,15 +31,14 @@ final class MiddlewareTest extends AbstractMiddlewareTest
      * @dataProvider proxyTicketCases
      *
      * @param string $ticket
-     * @param string $xml
      * @param array $expectations
      */
-    public function testProxyTicket(string $ticket, string $xml, array $expectations)
+    public function testProxyTicket(string $ticket, array $expectations)
     {
         $expectations += ['exceptions' => []];
 
         // Generate response.
-        $response = new Response(200, [], $this->getFixtureContent($xml));
+        $response = new Response(200, [], $this->getXml());
         $this->httpClient->addResponse($response);
 
         $clientFactory = $this->createClientFactory();

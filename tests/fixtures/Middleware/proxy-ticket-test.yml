@@ -1,13 +1,11 @@
 -
   ticket: DESKTOP_PT-21-9fp9
-  xml: request-response.xml
   expectations:
     assertions:
       - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false
 
 -
   ticket: ''
-  xml: request-response.xml
   expectations:
     exceptions:
       - "[epoetry] session has no proxy ticket."
