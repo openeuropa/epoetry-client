@@ -17,9 +17,9 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Data provider.
      *
-     * @return mixed
+     * @return array
      */
-    public function requestSendingCases()
+    public function requestSendingCases(): array
     {
         return $this->getFixture('request-send-test.yml');
     }
@@ -27,9 +27,9 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Data provider.
      *
-     * @return mixed
+     * @return array
      */
-    public function responseParsingCases()
+    public function responseParsingCases(): array
     {
         return $this->getFixture('response-parse-test.yml');
     }
@@ -40,8 +40,9 @@ final class RequestTest extends AbstractRequestTest
      * @dataProvider requestSendingCases
      *
      * @param mixed $input
+     * @param array $expectations
      */
-    public function testRequestSending(array $input, array $expectations)
+    public function testRequestSending(array $input, array $expectations): void
     {
         $createRequests = RequestsSerializer::fromArray(
             $input['request'],
@@ -67,12 +68,12 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Test parsing a SOAP response.
      *
-     * @dataProvider responseParsingCases
-     *
      * @param mixed $input
      * @param mixed $expectations
+     *
+     * @dataProvider responseParsingCases
      */
-    public function testResponseParsing($input, $expectations)
+    public function testResponseParsing($input, $expectations): void
     {
         $response = new Response(200, [], $input['response']);
         $this->httpClient->addResponse($response);

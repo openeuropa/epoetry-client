@@ -21,7 +21,7 @@ final class MappingReflectionExtractorTest extends TestCase
      *
      * @return array
      */
-    public function getTypesCases()
+    public function getTypesCases(): array
     {
         return $this->getFixture(__DIR__ . '/../../../fixtures/PropertyInfo/Extractor/mapping-reflection-extractor.yml');
     }
@@ -31,7 +31,7 @@ final class MappingReflectionExtractorTest extends TestCase
      *
      * @param mixed $input
      */
-    public function testGetTypes($input)
+    public function testGetTypes($input): void
     {
         $reflectionExtractor = new MappingReflectionExtractor();
 
@@ -54,7 +54,7 @@ final class MappingReflectionExtractorTest extends TestCase
      * @return array
      *   The array
      */
-    private function getFixture(string $filename)
+    private function getFixture(string $filename): array
     {
         return Yaml::parseFile($filename);
     }
