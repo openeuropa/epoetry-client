@@ -134,17 +134,6 @@
             OnBehalfOf: ''
             AccessibleTo: ''
   expectations:
-    request: |
-      <?xml version="1.0" encoding="UTF-8"?>
-      <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry">
-      <SOAP-ENV:Body>
-      <ns1:createRequests>
-      <linguisticRequest><generalInfo><title>Test</title><internalReference>1</internalReference><internalTechnicalId>1</internalTechnicalId><requestedDeadline>2020-02-02T00:00:00+00:00</requestedDeadline><sensitive>false</sensitive><documentToBeAdopted>true</documentToBeAdopted><decideReference>decideReference</decideReference><sentViaRUE>true</sentViaRUE><destinationCode>PUBLIC</destinationCode><slaAnnex></slaAnnex><slaCommitment></slaCommitment><comment></comment><onBehalfOf></onBehalfOf><accessibleTo></accessibleTo></generalInfo>
-      <contacts><contact userId="1" roleCode="AUTHOR"/><contact userId="2" roleCode="EDITOR"/></contacts>
-      </linguisticRequest>
-      </ns1:createRequests>
-      </SOAP-ENV:Body>
-      </SOAP-ENV:Envelope>
     assertions:
       - strpos(request['body'], '<title>Test</title>') !== false
       - strpos(request['body'], '<contact userId="1" roleCode="AUTHOR"/>') !== false
