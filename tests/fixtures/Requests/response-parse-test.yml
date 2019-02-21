@@ -1,138 +1,30 @@
 -
-  input:
-    response: |
-      <?xml version='1.0' encoding='UTF-8'?>
-      <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-          <S:Body>
-              <ns0:createRequestsResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
-                  <return statusCode="ENV">
-                      <reference year="2018" number="2249" part="0" version="0" id="1738" internalReference="MYREF-DEF-123456" productType="TRA" requesterCode="DGT"/>
-                      <generalInfo>
-                          <title>Title of the Document</title>
-                          <internalReference>MYREF-DEF-123456</internalReference>
-                          <requestedDeadline>2018-11-30T12:00:00+01:00</requestedDeadline>
-                          <sensitive>false</sensitive>
-                          <documentToBeAdopted>false</documentToBeAdopted>
-                          <sentViaRUE>false</sentViaRUE>
-                          <destinationCode>INTERNE</destinationCode>
-                          <slaAnnex>ANNEX8B</slaAnnex>
-                          <comment>comment</comment>
-                          <accessibleTo>DIR</accessibleTo>
-                      </generalInfo>
-                      <contacts>
-                          <contact firstName="Paolo" lastName="Levi" email="" userId="paolevi" roleCode="REQUESTER"/>
-                          <contact firstName="Angela" lastName="Heda" email="" userId="angheda" roleCode="AUTHOR"/>
-                      </contacts>
-                      <originalDocument format="TXT" type="ORI" name="test1.txt" trackChanges="false" pages="0.0">
-                          <linguisticSections>
-                              <linguisticSection>
-                                  <language code="FR"/>
-                              </linguisticSection>
-                              <linguisticSection>
-                                  <language code="EN"/>
-                              </linguisticSection>
-                          </linguisticSections>
-                      </originalDocument>
-                      <productRequests>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="EN"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="DE"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-04-15T12:00:00+02:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="CS"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="FR"/>
-                          </productRequest>
-                          <productRequest formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="BG"/>
-                          </productRequest>
-                      </productRequests>
-                      <auxiliaryDocuments>
-                          <auxiliaryDocument format="TXT" type="REF" name="test1.txt" language="RO"/>
-                          <auxiliaryDocument format="TXT" type="REF" name="test1.txt" language="ML"/>
-                      </auxiliaryDocuments>
-                  </return>
-                  <return statusCode="ENV">
-                      <reference year="2018" number="2251" part="0" version="0" id="1739" internalReference="MYREF-DEF-123456" productType="TRA" requesterCode="DGT"/>
-                      <generalInfo>
-                          <title>Title of the Document vpi</title>
-                          <internalReference>MYREF-DEF-123456</internalReference>
-                          <requestedDeadline>2018-11-30T12:00:00+01:00</requestedDeadline>
-                          <sensitive>false</sensitive>
-                          <documentToBeAdopted>false</documentToBeAdopted>
-                          <sentViaRUE>false</sentViaRUE>
-                          <destinationCode>INTERNE</destinationCode>
-                          <slaAnnex>ANNEX8B</slaAnnex>
-                          <comment>comment</comment>
-                          <accessibleTo>DIR</accessibleTo>
-                      </generalInfo>
-                      <contacts>
-                          <contact firstName="Paolo" lastName="Levi" email="" userId="paolevi" roleCode="REQUESTER"/>
-                          <contact firstName="Angela" lastName="Heda" email="" userId="angheda" roleCode="AUTHOR"/>
-                      </contacts>
-                      <originalDocument format="TXT" type="ORI" name="test1.txt" trackChanges="false" pages="0.0">
-                          <linguisticSections>
-                              <linguisticSection>
-                                  <language code="FR"/>
-                              </linguisticSection>
-                              <linguisticSection>
-                                  <language code="EN"/>
-                              </linguisticSection>
-                          </linguisticSections>
-                      </originalDocument>
-                      <productRequests>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="FR"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="EN"/>
-                          </productRequest>
-                          <productRequest formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="BG"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-04-15T12:00:00+02:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="CS"/>
-                          </productRequest>
-                          <productRequest requestedDeadline="2019-11-15T12:00:00+01:00" formatCode="NA" statusCode="ENV" trackChanges="false">
-                              <language code="DE"/>
-                          </productRequest>
-                      </productRequests>
-                      <auxiliaryDocuments>
-                          <auxiliaryDocument format="TXT" type="REF" name="test1.txt" language="ML"/>
-                          <auxiliaryDocument format="TXT" type="REF" name="test1.txt" language="RO"/>
-                      </auxiliaryDocuments>
-                  </return>
-              </ns0:createRequestsResponse>
-          </S:Body>
-      </S:Envelope>
-    request:
-      linguisticRequest:
-        - contacts:
-            contact:
-              - UserId: '1'
-                RoleCode: AUTHOR
-              - UserId: '2'
-                RoleCode: EDITOR
-          generalInfo:
-            Title: Test
-            InternalReference: '1'
-            InternalTechnicalId: '1'
-            RequestedDeadline:
-              time: '2020-02-02'
-              timezone: null
-            Sensitive: false
-            DocumentToBeAdopted: true
-            DecideReference: decideReference
-            SentViaRUE: true
-            DestinationCode: PUBLIC
-            SlaAnnex: ''
-            SlaCommitment: ''
-            Comment: ''
-            OnBehalfOf: ''
-            AccessibleTo: ''
+  response: request-response.xml
+  request:
+    linguisticRequest:
+      - contacts:
+          contact:
+            - UserId: '1'
+              RoleCode: AUTHOR
+            - UserId: '2'
+              RoleCode: EDITOR
+        generalInfo:
+          Title: Test
+          InternalReference: '1'
+          InternalTechnicalId: '1'
+          RequestedDeadline:
+            time: '2020-02-02'
+            timezone: null
+          Sensitive: false
+          DocumentToBeAdopted: true
+          DecideReference: decideReference
+          SentViaRUE: true
+          DestinationCode: PUBLIC
+          SlaAnnex: ''
+          SlaCommitment: ''
+          Comment: ''
+          OnBehalfOf: ''
+          AccessibleTo: ''
   expectations:
     assertions:
       - is_a(response, "\\OpenEuropa\\EPoetry\\Type\\CreateRequestsResponse")

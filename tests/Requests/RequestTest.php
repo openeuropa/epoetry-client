@@ -37,19 +37,22 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Test a SOAP request.
      *
+     * @param string $response
+     * @param array $request
+     * @param array $expectations
+     *
      * @dataProvider requestSendingCases
      *
-     * @param mixed $input
-     * @param array $expectations
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function testRequestSending(array $input, array $expectations): void
+    public function testRequestSending(string $response, array $request, array $expectations): void
     {
         $createRequests = RequestsSerializer::fromArray(
-            $input['request'],
+            $request,
             CreateRequests::class
         );
 
-        $response = new Response(200, [], $input['response']);
+        $response = new Response(200, [], $this->getFixtureContent($response));
         $this->httpClient->addResponse($response);
 
         $client = $this->createClientFactory()->getClient();
@@ -68,14 +71,17 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Test parsing a SOAP response.
      *
-     * @param mixed $input
+     * @param string $response
+     * @param array $request
      * @param mixed $expectations
+     *
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      *
      * @dataProvider responseParsingCases
      */
-    public function testResponseParsing($input, $expectations): void
+    public function testResponseParsing(string $response, array $request, $expectations): void
     {
-        $response = new Response(200, [], $input['response']);
+        $response = new Response(200, [], $this->getFixtureContent($response));
         $this->httpClient->addResponse($response);
 
         $client = $this->createClientFactory()->getClient();
@@ -83,7 +89,7 @@ final class RequestTest extends AbstractRequestTest
         $values = [
             'response' => $client->createRequests(
                 RequestsSerializer::fromArray(
-                    $input['request'],
+                    $request,
                     CreateRequests::class
                 )
             ),

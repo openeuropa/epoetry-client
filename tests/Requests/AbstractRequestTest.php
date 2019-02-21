@@ -19,6 +19,16 @@ abstract class AbstractRequestTest extends AbstractTest
      */
     public function getFixture(string $filename)
     {
-        return Yaml::parseFile(__DIR__ . '/../fixtures/Requests/' . $filename);
+        return Yaml::parse($this->getFixtureContent($filename));
+    }
+
+    /**
+     * @param string $filename
+     *
+     * @return false|string
+     */
+    public function getFixtureContent(string $filename)
+    {
+        return file_get_contents(__DIR__ . '/../fixtures/Requests/' . $filename);
     }
 }
