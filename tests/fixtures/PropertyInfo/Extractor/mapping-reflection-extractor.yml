@@ -1,0 +1,10 @@
+-
+  input:
+    parent: "OpenEuropa\\EPoetry\\Type\\Contacts"
+    properties:
+      contact: "OpenEuropa\\EPoetry\\Type\\ContactPersonIn[]"
+-
+  input:
+    parent: "OpenEuropa\\EPoetry\\Type\\CreateRequests"
+    properties:
+      linguisticRequest: "OpenEuropa\\EPoetry\\Type\\LinguisticRequestIn[]"

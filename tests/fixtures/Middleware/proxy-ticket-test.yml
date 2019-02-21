@@ -1,0 +1,13 @@
+-
+  ticket: DESKTOP_PT-21-9fp9
+  expectations:
+    assertions:
+      - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false
+
+-
+  ticket: ''
+  expectations:
+    exceptions:
+      - "[epoetry] session has no proxy ticket."
+    assertions:
+      - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false

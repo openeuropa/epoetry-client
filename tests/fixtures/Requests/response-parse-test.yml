@@ -1,0 +1,116 @@
+-
+  response: request-response.xml
+  request:
+    linguisticRequest:
+      - contacts:
+          contact:
+            - UserId: '1'
+              RoleCode: AUTHOR
+            - UserId: '2'
+              RoleCode: EDITOR
+        generalInfo:
+          Title: Test
+          InternalReference: '1'
+          InternalTechnicalId: '1'
+          RequestedDeadline:
+            time: '2020-02-02'
+            timezone: null
+          Sensitive: false
+          DocumentToBeAdopted: true
+          DecideReference: decideReference
+          SentViaRUE: true
+          DestinationCode: PUBLIC
+          SlaAnnex: ''
+          SlaCommitment: ''
+          Comment: ''
+          OnBehalfOf: ''
+          AccessibleTo: ''
+  expectations:
+    assertions:
+      - is_a(response, "\\OpenEuropa\\EPoetry\\Type\\CreateRequestsResponse")
+      - count(response.getReturn()) === 2
+      - count(response.getReturn()[0].getContacts().getContact()) === 2
+      - count(response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()) === 2
+      - count(response.getReturn()[0].getOriginalDocument().getLinguisticSections().getLinguisticSection()) === 2
+      - count(response.getReturn()[0].getProductRequests().getProductRequest()) === 5
+      - response.getReturn()[0].getStatusCode() === "ENV"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[0].getLanguage() === "RO"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[0].getFormat() === "TXT"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[0].getType() === "REF"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[0].getName() === "test1.txt"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[1].getLanguage() === "ML"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[1].getFormat() === "TXT"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[1].getType() === "REF"
+      - response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()[1].getName() === "test1.txt"
+      - response.getReturn()[0].getContacts().getContact()[0].getEmail() === ''
+      - response.getReturn()[0].getContacts().getContact()[0].getFirstName() === 'Paolo'
+      - response.getReturn()[0].getContacts().getContact()[0].getLastName() === 'Levi'
+      - response.getReturn()[0].getContacts().getContact()[0].getRoleCode() === 'REQUESTER'
+      - response.getReturn()[0].getContacts().getContact()[0].getUserId() === 'paolevi'
+      - response.getReturn()[0].getContacts().getContact()[1].getEmail() === ''
+      - response.getReturn()[0].getContacts().getContact()[1].getFirstName() === 'Angela'
+      - response.getReturn()[0].getContacts().getContact()[1].getLastName() === 'Heda'
+      - response.getReturn()[0].getContacts().getContact()[1].getRoleCode() === 'AUTHOR'
+      - response.getReturn()[0].getContacts().getContact()[1].getUserId() === 'angheda'
+      - response.getReturn()[0].getGeneralInfo().getAccessibleTo() === "DIR"
+      - response.getReturn()[0].getGeneralInfo().getComment() === "comment"
+      - response.getReturn()[0].getGeneralInfo().getDestinationCode() === "INTERNE"
+      - response.getReturn()[0].getGeneralInfo().getInternalReference() === "MYREF-DEF-123456"
+      - response.getReturn()[0].getGeneralInfo().getSlaAnnex() === "ANNEX8B"
+      - response.getReturn()[0].getGeneralInfo().getRequestedDeadline().format('Y-m-j') === "2018-11-30"
+      - response.getReturn()[0].getOriginalDocument().getPages() === 0.0
+      - response.getReturn()[0].getOriginalDocument().getFormat() === "TXT"
+      - response.getReturn()[0].getOriginalDocument().getName() === "test1.txt"
+      - response.getReturn()[0].getOriginalDocument().getType() === "ORI"
+      - response.getReturn()[0].getOriginalDocument().getLinguisticSections().getLinguisticSection()[0].getLanguage().getCode() === "FR"
+      - response.getReturn()[0].getOriginalDocument().getLinguisticSections().getLinguisticSection()[1].getLanguage().getCode() === "EN"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].isTrackChanges() === false
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getStatusCode() === "ENV"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getFormatCode() === "NA"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getLanguage().getCode() === "EN"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getRequestedDeadline().format('Y-m-j') === "2019-11-15"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].isTrackChanges() === false
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getStatusCode() === "ENV"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getFormatCode() === "NA"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getLanguage().getCode() === "DE"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getRequestedDeadline().format('Y-m-j') === "2019-11-15"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].isTrackChanges() === false
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getStatusCode() === "ENV"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getFormatCode() === "NA"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getLanguage().getCode() === "CS"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getRequestedDeadline().format('Y-m-j') === "2019-04-15"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].isTrackChanges() === false
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getStatusCode() === "ENV"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getFormatCode() === "NA"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getLanguage().getCode() === "FR"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getRequestedDeadline().format('Y-m-j') === "2019-11-15"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].isTrackChanges() === false
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getStatusCode() === "ENV"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getFormatCode() === "NA"
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getLanguage().getCode() === "BG"
+      - response.getReturn()[0].getReference().getId() === 1738
+      - response.getReturn()[0].getReference().getInternalReference() === "MYREF-DEF-123456"
+      - response.getReturn()[0].getReference().getNumber() === 2249
+      - response.getReturn()[0].getReference().getPart() === 0
+      - response.getReturn()[0].getReference().getProductType() === "TRA"
+      - response.getReturn()[0].getReference().getRequesterCode() === "DGT"
+      - response.getReturn()[0].getReference().getVersion() === 0
+      - response.getReturn()[0].getReference().getYear() === 2018
+      - response.getReturn()[0].getGeneralInfo().getInternalTechnicalId() === null
+      - response.getReturn()[0].getGeneralInfo().getOnBehalfOf() === null
+      - response.getReturn()[0].getGeneralInfo().getRequestingService() === null
+      - response.getReturn()[0].getGeneralInfo().getServiceOfOrigin() === null
+      - response.getReturn()[0].getGeneralInfo().getDecideReference() === null
+      - response.getReturn()[0].getGeneralInfo().getSlaCommitment() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getAcceptedDeadline() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[0].getInternalProductReference() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getAcceptedDeadline() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[1].getInternalProductReference() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getAcceptedDeadline() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[2].getInternalProductReference() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getAcceptedDeadline() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[3].getInternalProductReference() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getAcceptedDeadline() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getInternalProductReference() === null
+      - response.getReturn()[0].getProductRequests().getProductRequest()[4].getRequestedDeadline() === null
+      - response.getReturn()[0].getReference().getInternalTechnicalId() === null

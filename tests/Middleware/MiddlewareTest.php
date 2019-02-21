@@ -6,7 +6,7 @@ namespace OpenEuropa\EPoetry\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
 use OpenEuropa\EPoetry\Middleware\CasProxyTicketSessionMiddleware;
-use OpenEuropa\EPoetry\Tests\AbstractTest;
+use OpenEuropa\EPoetry\Tests\Requests\AbstractMiddlewareTest;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
@@ -15,50 +15,58 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  * @internal
  * @coversNothing
  */
-final class MiddlewareTest extends AbstractTest
+final class MiddlewareTest extends AbstractMiddlewareTest
 {
     /**
-     * Test exception for missing Proxy Ticket in request.
+     * @return mixed
      */
-    public function testNoProxyTicketException()
+    public function proxyTicketCases(): array
     {
-        // Generate response.
-        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
-        $response = new Response(200, [], $content);
-        $this->httpClient->addResponse($response);
-
-        $clientFactory = $this->createClientFactory();
-        $session = new Session(new MockArraySessionStorage());
-        $middleware = new CasProxyTicketSessionMiddleware($session);
-        $clientFactory->addMiddleware($middleware);
-        $client = $clientFactory->getClient();
-
-        // Try to perform the request but expect an exception.
-        $this->expectExceptionMessage('[epoetry] session has no proxy ticket.');
-        $client->createRequests(new CreateRequests());
+        return $this->getFixture('proxy-ticket-test.yml');
     }
 
     /**
      * Test Proxy Ticket in request.
+     *
+     * @dataProvider proxyTicketCases
+     *
+     * @param string $ticket
+     * @param array $expectations
      */
-    public function testProxyTicket()
+    public function testProxyTicket(string $ticket, array $expectations)
     {
+        $expectations += ['exceptions' => []];
+
         // Generate response.
-        $content = file_get_contents(self::FIXTURE_DIR . '/create-requests-response.xml');
-        $response = new Response(200, [], $content);
+        $response = new Response(200, [], $this->getXml());
         $this->httpClient->addResponse($response);
 
         $clientFactory = $this->createClientFactory();
         $session = new Session(new MockArraySessionStorage());
-        $session->set('cas_pgt', 'DESKTOP_PT-21-9fp9');
+
+        $values = [
+            'session' => $session,
+        ];
+
+        if ($ticket !== '') {
+            $session->set('cas_pgt', $ticket);
+        }
+
         $middleware = new CasProxyTicketSessionMiddleware($session);
         $clientFactory->addMiddleware($middleware);
         $client = $clientFactory->getClient();
+
+        foreach ($expectations['exceptions'] as $expression) {
+            $this->expectExceptionMessage($expression);
+        }
+
         $client->createRequests(new CreateRequests());
 
-        // Perform request.
-        $request = $client->debugLastSoapRequest()['request'];
+        $values['request'] = $client->debugLastSoapRequest()['request'];
 
-        $this->assertContains('ecas:ProxyTicket: DESKTOP_PT-21-9fp9', $request['headers'], 'Request XML header malformed, missing proxy ticket.');
+        $this->assertExpressionLanguageExpressions(
+            $expectations['assertions'],
+            $values
+        );
     }
 }
