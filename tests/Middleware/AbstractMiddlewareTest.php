@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class AbstractMiddlewareTest.
@@ -13,12 +12,10 @@ use Symfony\Component\Yaml\Yaml;
 abstract class AbstractMiddlewareTest extends AbstractTest
 {
     /**
-     * @param string $filename
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function getFixture(string $filename)
+    public function getFixtureContent(string $filename): string
     {
-        return Yaml::parseFile(__DIR__ . '/../fixtures/Middleware/' . $filename);
+        return parent::getFixtureContent(__DIR__ . '/../fixtures/Middleware/' . $filename);
     }
 }

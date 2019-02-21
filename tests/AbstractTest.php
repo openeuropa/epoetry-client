@@ -9,6 +9,7 @@ use OpenEuropa\EPoetry\EPoetryClientFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Symfony\Component\Yaml\Yaml;
 
 abstract class AbstractTest extends TestCase
 {
@@ -42,6 +43,26 @@ abstract class AbstractTest extends TestCase
         $this->expressionLanguage->addFunction(ExpressionFunction::fromPhp('strpos'));
 
         parent::setUp();
+    }
+
+    /**
+     * @param string $filename
+     *
+     * @return array
+     */
+    public function getFixture(string $filename): array
+    {
+        return Yaml::parse($this->getFixtureContent($filename));
+    }
+
+    /**
+     * @param string $filename
+     *
+     * @return string
+     */
+    public function getFixtureContent(string $filename): string
+    {
+        return file_get_contents($filename);
     }
 
     /**

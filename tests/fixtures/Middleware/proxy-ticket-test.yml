@@ -1,27 +1,13 @@
 -
   ticket: DESKTOP_PT-21-9fp9
-  xml: |
-    <?xml version='1.0' encoding='UTF-8'?>
-    <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-        <S:Body>
-            <ns0:createRequestsResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
-            </ns0:createRequestsResponse>
-        </S:Body>
-    </S:Envelope>
+  xml: request-response.xml
   expectations:
     assertions:
       - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false
 
 -
   ticket: ''
-  xml: |
-    <?xml version='1.0' encoding='UTF-8'?>
-    <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-        <S:Body>
-            <ns0:createRequestsResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
-            </ns0:createRequestsResponse>
-        </S:Body>
-    </S:Envelope>
+  xml: request-response.xml
   expectations:
     exceptions:
       - "[epoetry] session has no proxy ticket."

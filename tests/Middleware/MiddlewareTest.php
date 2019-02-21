@@ -39,7 +39,7 @@ final class MiddlewareTest extends AbstractMiddlewareTest
         $expectations += ['exceptions' => []];
 
         // Generate response.
-        $response = new Response(200, [], $xml);
+        $response = new Response(200, [], $this->getFixtureContent($xml));
         $this->httpClient->addResponse($response);
 
         $clientFactory = $this->createClientFactory();
