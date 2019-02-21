@@ -79,7 +79,7 @@ final class RequestsSerializer implements SerializerInterface
      *
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      *
-     * @return object
+     * @return CreateRequests
      *   The new object
      */
     public static function fromArray(array $input, string $type): CreateRequests
@@ -99,7 +99,7 @@ final class RequestsSerializer implements SerializerInterface
      * @param string $format
      *   The string format (yml, json, xml...)
      *
-     * @return object
+     * @return CreateRequests
      *   The new object
      */
     public static function fromFile(string $filepath, string $type, string $format): CreateRequests
@@ -117,7 +117,7 @@ final class RequestsSerializer implements SerializerInterface
      * @param string $format
      *   The string format (yml, json, xml...)
      *
-     * @return object
+     * @return CreateRequests
      *   The new object
      */
     public static function fromString(string $data, string $type, string $format): CreateRequests
