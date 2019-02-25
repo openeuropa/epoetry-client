@@ -84,3 +84,9 @@ $factory->setLogger($logger);
 // Set your log level. In this case we only want ERROR level logs or lower.
 $factory->setLogLevel(LogLevel::ERROR);
 ```
+
+## Commands
+By command line, to build and send a CreateRequests to ePoetry, try :
+```bash
+php bin/epoetry create-requests [--endpoint ENDPOINT] [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <request-file>
+```
