@@ -52,11 +52,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasAcceptedDeadline(): bool
     {
-        if (\is_array($this->acceptedDeadline)) {
-            return !empty($this->acceptedDeadline);
-        }
-
-        return isset($this->acceptedDeadline);
+        return !empty($this->acceptedDeadline);
     }
 
     /**
@@ -64,11 +60,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasInternalProductReference(): bool
     {
-        if (\is_array($this->internalProductReference)) {
-            return !empty($this->internalProductReference);
-        }
-
-        return isset($this->internalProductReference);
+        return !empty($this->internalProductReference);
     }
 
     /**
@@ -76,11 +68,7 @@ class ProductRequest implements RequestInterface
      */
     public function hasLanguage(): bool
     {
-        if (\is_array($this->language)) {
-            return !empty($this->language);
-        }
-
-        return isset($this->language);
+        return !empty($this->language);
     }
 
     /**

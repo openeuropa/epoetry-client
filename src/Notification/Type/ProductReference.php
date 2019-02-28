@@ -63,11 +63,7 @@ class ProductReference
      */
     public function hasId(): bool
     {
-        if (\is_array($this->id)) {
-            return !empty($this->id);
-        }
-
-        return isset($this->id);
+        return !empty($this->id);
     }
 
     /**
@@ -75,11 +71,7 @@ class ProductReference
      */
     public function hasInternalProductReference(): bool
     {
-        if (\is_array($this->internalProductReference)) {
-            return !empty($this->internalProductReference);
-        }
-
-        return isset($this->internalProductReference);
+        return !empty($this->internalProductReference);
     }
 
     /**
@@ -87,11 +79,7 @@ class ProductReference
      */
     public function hasParentRequest(): bool
     {
-        if (\is_array($this->parentRequest)) {
-            return !empty($this->parentRequest);
-        }
-
-        return isset($this->parentRequest);
+        return !empty($this->parentRequest);
     }
 
     /**
@@ -99,11 +87,7 @@ class ProductReference
      */
     public function hasTargetLanguage(): bool
     {
-        if (\is_array($this->targetLanguage)) {
-            return !empty($this->targetLanguage);
-        }
-
-        return isset($this->targetLanguage);
+        return !empty($this->targetLanguage);
     }
 
     /**

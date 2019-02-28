@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Notification;
 
-use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
+use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class EPoetryNotificationClassmap
 {

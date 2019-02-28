@@ -50,11 +50,7 @@ class DGTNotificationException
      */
     public function hasErrorCode(): bool
     {
-        if (\is_array($this->errorCode)) {
-            return !empty($this->errorCode);
-        }
-
-        return isset($this->errorCode);
+        return !empty($this->errorCode);
     }
 
     /**
@@ -62,11 +58,7 @@ class DGTNotificationException
      */
     public function hasErrorDescription(): bool
     {
-        if (\is_array($this->errorDescription)) {
-            return !empty($this->errorDescription);
-        }
-
-        return isset($this->errorDescription);
+        return !empty($this->errorDescription);
     }
 
     /**
@@ -74,11 +66,7 @@ class DGTNotificationException
      */
     public function hasMessage(): bool
     {
-        if (\is_array($this->message)) {
-            return !empty($this->message);
-        }
-
-        return isset($this->message);
+        return !empty($this->message);
     }
 
     /**
