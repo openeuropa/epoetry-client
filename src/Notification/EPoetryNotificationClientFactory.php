@@ -74,8 +74,8 @@ class EPoetryNotificationClientFactory
         $this->wsdl = $wsdl;
         $this->httpClient = $httpClient;
         $this->options = [
-                'cache_wsdl' => WSDL_CACHE_NONE,
-            ] + $options;
+            'cache_wsdl' => WSDL_CACHE_NONE,
+        ] + $options;
     }
 
     public static function factory(string $wsdl): EPoetryNotificationClient
@@ -121,5 +121,4 @@ class EPoetryNotificationClientFactory
 
         return $clientBuilder->build();
     }
-
 }

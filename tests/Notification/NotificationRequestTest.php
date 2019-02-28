@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
-use OpenEuropa\EPoetry\Type\CreateRequests;
 
 /**
  * @internal
