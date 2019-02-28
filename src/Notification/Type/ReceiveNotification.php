@@ -24,11 +24,7 @@ class ReceiveNotification
      */
     public function hasNotification(): bool
     {
-        if (\is_array($this->notification)) {
-            return !empty($this->notification);
-        }
-
-        return isset($this->notification);
+        return !empty($this->notification);
     }
 
     /**

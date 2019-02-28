@@ -128,11 +128,7 @@ class RequestReference
      */
     public function hasId(): bool
     {
-        if (\is_array($this->id)) {
-            return !empty($this->id);
-        }
-
-        return isset($this->id);
+        return !empty($this->id);
     }
 
     /**
@@ -140,11 +136,7 @@ class RequestReference
      */
     public function hasInternalReference(): bool
     {
-        if (\is_array($this->internalReference)) {
-            return !empty($this->internalReference);
-        }
-
-        return isset($this->internalReference);
+        return !empty($this->internalReference);
     }
 
     /**
@@ -152,11 +144,7 @@ class RequestReference
      */
     public function hasInternalTechnicalId(): bool
     {
-        if (\is_array($this->internalTechnicalId)) {
-            return !empty($this->internalTechnicalId);
-        }
-
-        return isset($this->internalTechnicalId);
+        return !empty($this->internalTechnicalId);
     }
 
     /**
@@ -164,11 +152,7 @@ class RequestReference
      */
     public function hasNumber(): bool
     {
-        if (\is_array($this->number)) {
-            return !empty($this->number);
-        }
-
-        return isset($this->number);
+        return !empty($this->number);
     }
 
     /**
@@ -176,11 +160,7 @@ class RequestReference
      */
     public function hasPart(): bool
     {
-        if (\is_array($this->part)) {
-            return !empty($this->part);
-        }
-
-        return isset($this->part);
+        return !empty($this->part);
     }
 
     /**
@@ -188,11 +168,7 @@ class RequestReference
      */
     public function hasProductType(): bool
     {
-        if (\is_array($this->productType)) {
-            return !empty($this->productType);
-        }
-
-        return isset($this->productType);
+        return !empty($this->productType);
     }
 
     /**
@@ -200,11 +176,7 @@ class RequestReference
      */
     public function hasRequesterCode(): bool
     {
-        if (\is_array($this->requesterCode)) {
-            return !empty($this->requesterCode);
-        }
-
-        return isset($this->requesterCode);
+        return !empty($this->requesterCode);
     }
 
     /**
@@ -212,11 +184,7 @@ class RequestReference
      */
     public function hasVersion(): bool
     {
-        if (\is_array($this->version)) {
-            return !empty($this->version);
-        }
-
-        return isset($this->version);
+        return !empty($this->version);
     }
 
     /**
@@ -224,11 +192,7 @@ class RequestReference
      */
     public function hasYear(): bool
     {
-        if (\is_array($this->year)) {
-            return !empty($this->year);
-        }
-
-        return isset($this->year);
+        return !empty($this->year);
     }
 
     /**

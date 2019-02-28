@@ -141,11 +141,7 @@ class DgtNotification
      */
     public function hasId(): bool
     {
-        if (\is_array($this->id)) {
-            return !empty($this->id);
-        }
-
-        return isset($this->id);
+        return !empty($this->id);
     }
 
     /**
@@ -153,11 +149,7 @@ class DgtNotification
      */
     public function hasNewDeadline(): bool
     {
-        if (\is_array($this->newDeadline)) {
-            return !empty($this->newDeadline);
-        }
-
-        return isset($this->newDeadline);
+        return !empty($this->newDeadline);
     }
 
     /**
@@ -165,11 +157,7 @@ class DgtNotification
      */
     public function hasNewStatus(): bool
     {
-        if (\is_array($this->newStatus)) {
-            return !empty($this->newStatus);
-        }
-
-        return isset($this->newStatus);
+        return !empty($this->newStatus);
     }
 
     /**
@@ -177,11 +165,7 @@ class DgtNotification
      */
     public function hasNotificationType(): bool
     {
-        if (\is_array($this->notificationType)) {
-            return !empty($this->notificationType);
-        }
-
-        return isset($this->notificationType);
+        return !empty($this->notificationType);
     }
 
     /**
@@ -189,11 +173,7 @@ class DgtNotification
      */
     public function hasProduct(): bool
     {
-        if (\is_array($this->product)) {
-            return !empty($this->product);
-        }
-
-        return isset($this->product);
+        return !empty($this->product);
     }
 
     /**
@@ -201,11 +181,7 @@ class DgtNotification
      */
     public function hasProductFile(): bool
     {
-        if (\is_array($this->productFile)) {
-            return !empty($this->productFile);
-        }
-
-        return isset($this->productFile);
+        return !empty($this->productFile);
     }
 
     /**
@@ -213,11 +189,7 @@ class DgtNotification
      */
     public function hasProductFormat(): bool
     {
-        if (\is_array($this->productFormat)) {
-            return !empty($this->productFormat);
-        }
-
-        return isset($this->productFormat);
+        return !empty($this->productFormat);
     }
 
     /**
@@ -225,11 +197,7 @@ class DgtNotification
      */
     public function hasProductRequests(): bool
     {
-        if (\is_array($this->productRequests)) {
-            return !empty($this->productRequests);
-        }
-
-        return isset($this->productRequests);
+        return !empty($this->productRequests);
     }
 
     /**
@@ -237,11 +205,7 @@ class DgtNotification
      */
     public function hasRequest(): bool
     {
-        if (\is_array($this->request)) {
-            return !empty($this->request);
-        }
-
-        return isset($this->request);
+        return !empty($this->request);
     }
 
     /**
@@ -249,11 +213,7 @@ class DgtNotification
      */
     public function hasStatusMessage(): bool
     {
-        if (\is_array($this->statusMessage)) {
-            return !empty($this->statusMessage);
-        }
-
-        return isset($this->statusMessage);
+        return !empty($this->statusMessage);
     }
 
     /**
