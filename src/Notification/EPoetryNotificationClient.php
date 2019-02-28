@@ -15,11 +15,11 @@ use Phpro\SoapClient\Type\ResultInterface;
 class EPoetryNotificationClient extends \Phpro\SoapClient\Client
 {
     /**
-     * @param RequestInterface|CreateRequests $parameters
+     * @param CreateRequests|RequestInterface $parameters
      *
      * @throws SoapException
      *
-     * @return ResultInterface|CreateRequestsResponse
+     * @return CreateRequestsResponse|ResultInterface
      */
     public function receiveNotification(ReceiveNotification $parameters): ReceiveNotificationResponse
     {
