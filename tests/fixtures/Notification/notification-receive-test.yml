@@ -1,0 +1,5 @@
+-
+  notification: notification-status-change.xml
+  expectations:
+    assertions:
+      - notification.getNotificationType() === 'RequestStatusChange'

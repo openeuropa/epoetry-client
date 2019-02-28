@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\EPoetry\Tests\Requests;
+namespace OpenEuropa\EPoetry\Tests\Notification;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
 /**
  * Class AbstractNotificationRequestTest.
  */
-abstract class AbstractNotificationRequestTest extends AbstractTest
+abstract class AbstractNotificationTest extends AbstractTest
 {
     /**
      * {@inheritdoc}

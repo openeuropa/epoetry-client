@@ -4,18 +4,16 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Serializer;
 
-use OpenEuropa\EPoetry\Type\CreateRequests;
+use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Class RequestsSerializer.
- *
- * This class is the default request serializer.
+ * This class is the default notification serializer.
  *
  * The class is final to ensure that you use composition over inheritance in
  * your project.
  */
-final class RequestsSerializer extends AbstractSerializer implements SerializerInterface
+final class NotificationSerializer extends AbstractSerializer implements SerializerInterface
 {
     /**
      * Convert a PHP array into an object.
@@ -27,10 +25,10 @@ final class RequestsSerializer extends AbstractSerializer implements SerializerI
      *
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      *
-     * @return CreateRequests
+     * @return ReceiveNotification
      *   The new object
      */
-    public static function fromArray(array $input, string $type): CreateRequests
+    public static function fromArray(array $input, string $type): ReceiveNotification
     {
         $instance = new self();
 
@@ -47,10 +45,10 @@ final class RequestsSerializer extends AbstractSerializer implements SerializerI
      * @param string $format
      *   The string format (yml, json, xml...)
      *
-     * @return CreateRequests
+     * @return ReceiveNotification
      *   The new object
      */
-    public static function fromFile(string $filepath, string $type, string $format): CreateRequests
+    public static function fromFile(string $filepath, string $type, string $format): ReceiveNotification
     {
         return self::fromString(file_get_contents($filepath), $type, $format);
     }
@@ -65,10 +63,10 @@ final class RequestsSerializer extends AbstractSerializer implements SerializerI
      * @param string $format
      *   The string format (yml, json, xml...)
      *
-     * @return CreateRequests
+     * @return ReceiveNotification
      *   The new object
      */
-    public static function fromString(string $data, string $type, string $format): CreateRequests
+    public static function fromString(string $data, string $type, string $format): ReceiveNotification
     {
         $instance = new self();
 
