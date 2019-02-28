@@ -100,7 +100,7 @@ abstract class AbstractTest extends TestCase
     /**
      * Setup ePoetry notification client factory using HTTP mock client.
      *
-     * @return \OpenEuropa\EPoetryNotification\EPoetryNotificationClientFactory
+     * @return \OpenEuropa\EPoetry\Notification\EPoetryNotificationClientFactory
      */
     protected function createNotificationClientFactory(): EPoetryNotificationClientFactory
     {
