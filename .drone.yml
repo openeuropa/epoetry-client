@@ -4,14 +4,14 @@ workspace:
 
 services:
   web:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     environment:
       - DOCUMENT_ROOT=/test/epoetry-client
 
 pipeline:
   composer-install-lowest:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     volumes:
       - /cache:/cache
     commands:
@@ -28,7 +28,7 @@ pipeline:
 
   composer-install-highest:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     volumes:
       - /cache:/cache
     commands:
@@ -39,13 +39,13 @@ pipeline:
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     commands:
       - ./vendor/bin/phpunit
 
@@ -53,3 +53,6 @@ matrix:
   COMPOSER_BOUNDARY:
     - lowest
     - highest
+  PHP_VERSION:
+    - 7.1
+    - 7.2
