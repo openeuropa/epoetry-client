@@ -3,8 +3,6 @@
 declare(strict_types = 1);
 
 use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
-use OpenEuropa\EPoetry\Type\DgtDocument;
-use OpenEuropa\EPoetry\Type\DgtDocumentIn;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Phpro\SoapClient\CodeGenerator\Rules;
@@ -16,7 +14,6 @@ use Zend\Code\Generator\PropertyGenerator;
  * Sometimes they are used as a whitelist, sometimes as blacklist.
  */
 $specialClassesAndProperties = [
-    'ReceiveNotificationsResponse' => ['return'],
     'ProductRequests' => ['productRequest'],
 ];
 
@@ -97,28 +94,11 @@ return Config::create()
 // Request objects must implement \Phpro\SoapClient\Type\RequestInterface
 // The rule matches the following SOAP types:
 //
-// - correctTranslation
-// - createRequests
-// - findLinguisticRequest
-// - getLinguisticRequest
-// - modifyRequest
-// - receiveNotifications
+// - receiveNotification
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
-            '/(CorrectTranslation|CreateRequests|ReceiveNotifications|Request)$/'
-        )
-    )
-    ->addRule(
-        new Rules\TypenameMatchesRule(
-            new Rules\AssembleRule(new Assembler\ExtendAssembler(DgtDocument::class)),
-            '/^(Auxiliary|Correction|Original)Document$/'
-        )
-    )
-    ->addRule(
-        new Rules\TypenameMatchesRule(
-            new Rules\AssembleRule(new Assembler\ExtendAssembler(DgtDocumentIn::class)),
-            '/^(Auxiliary|Original)DocumentIn$/'
+            '/(ReceiveNotification)$/'
         )
     )
 // Set the default property assembler and generate all properties.

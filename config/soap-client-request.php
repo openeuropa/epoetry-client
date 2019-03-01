@@ -112,7 +112,7 @@ return Config::create()
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
-            '/(CorrectTranslation|CreateRequests|ReceiveNotifications|Request)$/'
+            '/(CorrectTranslation|CreateRequests|ReceiveNotifications|LinguisticRequest|ModifyRequest)$/'
         )
     )
     ->addRule(
