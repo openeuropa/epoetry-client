@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\EPoetry\Tests\Requests;
+namespace OpenEuropa\EPoetry\Tests\Request;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
