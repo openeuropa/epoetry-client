@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Requests;
 
-use InterNations\Component\HttpMock\PHPUnit\HttpMockTrait;
+use donatj\MockWebServer\MockWebServer;
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
 /**
@@ -12,30 +12,18 @@ use OpenEuropa\EPoetry\Tests\AbstractTest;
  */
 abstract class AbstractCommandTest extends AbstractTest
 {
-    use HttpMockTrait;
-
     /**
-     * {@inheritdoc}
+     * @var MockWebServer
      */
-    public static function setUpBeforeClass()
-    {
-        static::setUpHttpMockBeforeClass('8082', 'localhost');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tearDownAfterClass()
-    {
-        static::tearDownHttpMockAfterClass();
-    }
+    public $mockWebServer;
 
     /**
      * {@inheritdoc}
      */
     protected function setUp()
     {
-        $this->setUpHttpMock();
+        $this->mockWebServer = new MockWebServer(8082);
+        $this->mockWebServer->start();
     }
 
     /**
@@ -43,7 +31,7 @@ abstract class AbstractCommandTest extends AbstractTest
      */
     protected function tearDown()
     {
-        $this->tearDownHttpMock();
+        $this->mockWebServer->stop();
     }
 
     /**

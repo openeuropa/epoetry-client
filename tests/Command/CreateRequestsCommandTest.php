@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Command;
 
+use donatj\MockWebServer\Response;
 use OpenEuropa\EPoetry\Console\Application;
 use OpenEuropa\EPoetry\Tests\Requests\AbstractCommandTest;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -33,19 +34,14 @@ final class CreateRequestsCommandTest extends AbstractCommandTest
      */
     public function testExecute(array $input, array $expectations)
     {
-        $this->http->mock
-            ->when()
-            ->then()
-            ->body(file_get_contents($input['response']))
-            ->end();
-        $this->http->setUp();
+        $this->mockWebServer->setResponseOfPath('/foo', new Response(file_get_contents($input['response'])));
 
         $app = new Application();
         $command = $app->find($input['command']);
 
         $commandTester = new CommandTester($command);
         $commandTester->execute([
-            '--endpoint' => 'http://localhost:8082',
+            '--endpoint' => 'http://localhost:8082/foo',
             '--in-format' => $input['in-format'],
             '--out-format' => $input['out-format'],
             'request-file' => $input['request-file'],
