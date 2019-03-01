@@ -27,7 +27,7 @@
           AccessibleTo: ''
   expectations:
     assertions:
-      - is_a(response, "\\OpenEuropa\\EPoetry\\Type\\CreateRequestsResponse")
+      - is_a(response, "\\OpenEuropa\\EPoetry\\Request\\Type\\CreateRequestsResponse")
       - count(response.getReturn()) === 2
       - count(response.getReturn()[0].getContacts().getContact()) === 2
       - count(response.getReturn()[0].getAuxiliaryDocuments().getAuxiliaryDocument()) === 2

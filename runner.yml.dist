@@ -1,13 +1,10 @@
 commands:
-  generate:types:
-    - { task: "remove", file: "src/Type" }
-    - "./vendor/bin/soap-client generate:types -o --config=$(pwd)/config/soap-client.php"
+  generate:request:
+    - { task: "remove", file: "src/Request/Type" }
+    - "./vendor/bin/soap-client generate:types -o --config=$(pwd)/config/soap-client-request.php"
     - "./vendor/bin/php-cs-fixer --allow-risky=yes --config=./vendor/openeuropa/code-review/resources/php-cs-fixer/php_cs_fixer.library.php --using-cache=no --verbose fix"
 
-  generate:notifications:
-    - { task: "remove", file: "src/Notification" }
-    - "./vendor/bin/soap-client generate:types -o --config=$(pwd)/config/soap-client-notifications.php"
-    - "./vendor/bin/soap-client generate:client -o --config=$(pwd)/config/soap-client-notifications.php"
-    - "./vendor/bin/soap-client generate:clientfactory -o --config=$(pwd)/config/soap-client-notifications.php"
-    - "./vendor/bin/soap-client generate:classmap -o --config=$(pwd)/config/soap-client-notifications.php"
+  generate:notification:
+    - { task: "remove", file: "src/Notification/Type" }
+    - "./vendor/bin/soap-client generate:types -o --config=$(pwd)/config/soap-client-notification.php"
     - "./vendor/bin/php-cs-fixer --allow-risky=yes --config=./vendor/openeuropa/code-review/resources/php-cs-fixer/php_cs_fixer.library.php --using-cache=no --verbose fix"

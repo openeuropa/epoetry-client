@@ -7,4 +7,4 @@ parameters:
   tasks.phpcs.triggered_by:
     - php
   tasks.phpmd.exclude:
-    - src/Type/
+    - src/Request/Type/RequestGeneralInfo.php

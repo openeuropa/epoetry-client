@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Serializer;
 
-use OpenEuropa\EPoetry\Type\CreateRequests;
+use OpenEuropa\EPoetry\Request\Type\CreateRequests;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
