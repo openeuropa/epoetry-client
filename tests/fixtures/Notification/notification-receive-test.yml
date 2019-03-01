@@ -3,3 +3,5 @@
   expectations:
     assertions:
       - notification.getNotificationType() === 'RequestStatusChange'
+      - notification.getStatusMessage() === 'NO COMMENT YET'
+      - notification.getProductRequests().getProductRequest()[0]['language']['@code'] === 'SL'
