@@ -54,6 +54,7 @@
             "OpenEuropa\\EPoetry\\Tests\\": "./tests/"
         }
     },
+    "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
