@@ -8,19 +8,13 @@ use OpenEuropa\EPoetry\Console\Command\CreateRequestsCommand;
 use Symfony\Component\Console\Application as SymfonyApplication;
 
 /**
- * Class Application.
+ * This Application is the container for a collection of commands for ePoetry.
+ *
+ * It provides default commands to build and send requests.
+ * (e.g. CreateRequests)
  */
 class Application extends SymfonyApplication
 {
-    const APP_NAME = 'Epoetry';
-    const APP_VERSION = '0.0.1';
-    /**
-     * Set up application:.
-     */
-    public function __construct()
-    {
-        parent::__construct(self::APP_NAME, self::APP_VERSION);
-    }
     /**
      * {@inheritdoc}
      */

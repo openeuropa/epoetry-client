@@ -8,30 +8,28 @@ use donatj\MockWebServer\MockWebServer;
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
 /**
- * Class AbstractRequestTest.
+ * AbstractCommandTest allows to setup and start/stop a mock web server.
  */
 abstract class AbstractCommandTest extends AbstractTest
 {
-    /**
-     * @var MockWebServer
-     */
-    public $mockWebServer;
+    /** @var MockWebServer */
+    protected static $mockWebServer;
 
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    public static function setUpBeforeClass()
     {
-        $this->mockWebServer = new MockWebServer(8082);
-        $this->mockWebServer->start();
+        self::$mockWebServer = new MockWebServer();
+        self::$mockWebServer->start();
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    public static function tearDownAfterClass()
     {
-        $this->mockWebServer->stop();
+        self::$mockWebServer->stop();
     }
 
     /**

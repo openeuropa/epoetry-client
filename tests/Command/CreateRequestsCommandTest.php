@@ -20,28 +20,28 @@ final class CreateRequestsCommandTest extends AbstractCommandTest
      *
      * @return mixed
      */
-    public function createRequestsCases()
+    public function dataProvider()
     {
         return $this->getFixture('create-requests.yml');
     }
 
     /**
-     * Test Proxy Ticket in request.
+     * Test execution of commands.
      *
-     * @dataProvider createRequestsCases
+     * @dataProvider dataProvider
      *
      * @param mixed $input
      */
     public function testExecute(array $input, array $expectations)
     {
-        $this->mockWebServer->setResponseOfPath('/foo', new Response(file_get_contents($input['response'])));
+        self::$mockWebServer->setResponseOfPath('/foo', new Response(file_get_contents($input['response'])));
 
         $app = new Application();
         $command = $app->find($input['command']);
 
         $commandTester = new CommandTester($command);
         $commandTester->execute([
-            '--endpoint' => 'http://localhost:8082/foo',
+            '--endpoint' => self::$mockWebServer->getServerRoot() . '/foo',
             '--in-format' => $input['in-format'],
             '--out-format' => $input['out-format'],
             'request-file' => $input['request-file'],

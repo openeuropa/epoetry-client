@@ -18,6 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CreateRequestsCommand extends Command
 {
     protected static $defaultName = 'create-requests';
+
     /**
      * {@inheritdoc}
      */
@@ -33,6 +34,7 @@ class CreateRequestsCommand extends Command
 
             ->addArgument('request-file', InputArgument::REQUIRED, 'Path to a file containing the body of the request.');
     }
+
     /**
      * {@inheritdoc}
      */

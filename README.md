@@ -85,14 +85,40 @@ $factory->setLogger($logger);
 $factory->setLogLevel(LogLevel::ERROR);
 ```
 
-## Commands
-By command line, to build and send a CreateRequests to ePoetry, try :
-```bash
+## ePoetry Console
+
+The ePoetry library ships with a set of Symfony Console commands that developers can use to interact with a running ePoetry service instance.
+
+To list all available commands run:
+
+\```bash
+./vendor/bin/epoetry
+\```
+
+In order to use the ePoetry Console you need to require `"symfony/console": "^3.2 || ^4"`.
+
+## Performing a request
+
+At the moment only the `createRequests` request is supported, to perform it run:
+
+\```bash
 php bin/epoetry create-requests [--endpoint ENDPOINT] [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <request-file>
-```
+\```
 
-## Troubleshoot
+Where:
 
-### Symfony / Component / Serializer / Encoder / YamlEncoder
-YamlEncoder handles `yml` format, since the version 4.2 of `symfony/serializer`.
-See: https://github.com/symfony/symfony/pull/28815.
+- `--endpoint` is the ePoetry service endpoint, e.g. `http://my-epoetry-instance`
+- `--in-format` is the format of the input request file, only `xml` and `yml` are supported
+- `--out-format` is the format in which the service response will be printed out, only `xml` and `yml` are supported
+- `<request-file>` is a path to a file containing the service request, in the format specified in `--in-format`
+
+For example:
+
+\```bash
+./vendor/bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yml ./path/to/request
+\```
+
+## Troubleshooting
+
+- If you are using Symfony `^3.2` use `yml` as YAML in/out formats
+- If you are using Symfony `^4.2` use `yaml` as YAML in/out formats
