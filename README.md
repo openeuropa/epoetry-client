@@ -91,9 +91,9 @@ The ePoetry library ships with a set of Symfony Console commands that developers
 
 To list all available commands run:
 
-\```bash
+```bash
 ./vendor/bin/epoetry
-\```
+```
 
 In order to use the ePoetry Console you need to require `"symfony/console": "^3.2 || ^4"`.
 
@@ -101,9 +101,9 @@ In order to use the ePoetry Console you need to require `"symfony/console": "^3.
 
 At the moment only the `createRequests` request is supported, to perform it run:
 
-\```bash
+```bash
 php bin/epoetry create-requests [--endpoint ENDPOINT] [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <request-file>
-\```
+```
 
 Where:
 
@@ -114,9 +114,9 @@ Where:
 
 For example:
 
-\```bash
+```bash
 ./vendor/bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yml ./path/to/request
-\```
+```
 
 ## Troubleshooting
 
