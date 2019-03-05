@@ -90,3 +90,9 @@ By command line, to build and send a CreateRequests to ePoetry, try :
 ```bash
 php bin/epoetry create-requests [--endpoint ENDPOINT] [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <request-file>
 ```
+
+## Troubleshoot
+
+### Symfony / Component / Serializer / Encoder / YamlEncoder
+YamlEncoder handles `yml` format, since the version 4.2 of `symfony/serializer`.
+See: https://github.com/symfony/symfony/pull/28815.
