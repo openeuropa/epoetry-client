@@ -31,7 +31,7 @@
         "zendframework/zend-code": "~3.3"
     },
     "suggest": {
-        "symfony/console": "Allows use the command epoetry"
+        "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console."
     },
     "config": {
         "platform": {
