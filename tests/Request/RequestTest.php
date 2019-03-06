@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Request;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
 use OpenEuropa\EPoetry\Request\Type\CreateRequests;
+use OpenEuropa\EPoetry\Serializer\Serializer;
 
 /**
  * @internal
@@ -47,7 +47,7 @@ final class RequestTest extends AbstractRequestTest
      */
     public function testRequestSending(string $response, array $request, array $expectations): void
     {
-        $createRequests = RequestsSerializer::fromArray(
+        $createRequests = Serializer::fromArray(
             $request,
             CreateRequests::class
         );
@@ -88,7 +88,7 @@ final class RequestTest extends AbstractRequestTest
 
         $values = [
             'response' => $client->createRequests(
-                RequestsSerializer::fromArray(
+                Serializer::fromArray(
                     $request,
                     CreateRequests::class
                 )

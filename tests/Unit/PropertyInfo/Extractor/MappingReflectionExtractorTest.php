@@ -41,11 +41,6 @@ final class MappingReflectionExtractorTest extends TestCase
             /** @var \Symfony\Component\PropertyInfo\Type $type */
             $type = $reflectionExtractor->getTypes($parent, $property);
             $this->assertArrayHasKey(0, $type);
-
-            if (!$type[0]->getClassName()) {
-                $a = 1;
-            }
-
             $this->assertEquals($property_type, $type[0]->getClassName());
         }
     }

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Notification;
 
-use OpenEuropa\EPoetry\Serializer\NotificationSerializer;
+use OpenEuropa\EPoetry\Serializer\Serializer;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 
 /**
@@ -34,7 +34,7 @@ final class NotificationTest extends AbstractNotificationTest
     public function testResponseParsing(string $notification, $expectations): void
     {
         $notificationXml = $this->getFixtureContent($notification);
-        $notificationSerialized = NotificationSerializer::fromString(
+        $notificationSerialized = Serializer::fromString(
             $notificationXml,
             ReceiveNotification::class,
             'xml'

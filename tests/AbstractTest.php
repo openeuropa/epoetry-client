@@ -88,7 +88,7 @@ abstract class AbstractTest extends TestCase
     /**
      * Setup ePoetry client factory using HTTP mock client.
      *
-     * @return \OpenEuropa\EPoetry\Request\ClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
     protected function createClientFactory(): RequestClientFactory
     {
@@ -104,7 +104,7 @@ abstract class AbstractTest extends TestCase
      */
     protected function createNotificationClientFactory(): NotificationClientFactory
     {
-        $wsdl = __DIR__ . '/../resources/NotificationService.xml';
+        $wsdl = __DIR__ . '/../resources/NotificationServiceWSDL.xml';
 
         return new NotificationClientFactory($wsdl, $this->httpClient);
     }

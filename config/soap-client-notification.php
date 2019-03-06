@@ -64,7 +64,7 @@ $fluentAdderAssembler = new OpenEuropa\Assembler\FluentAdderAssembler(
 $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
 
 return Config::create()
-    ->setWsdl('resources/NotificationService.xml')
+    ->setWsdl('resources/NotificationServiceWSDL.xml')
     ->setTypeDestination('src/Notification/Type')
     ->setTypeNamespace('OpenEuropa\EPoetry\Notification\Type')
     ->setClientDestination('src/Notification/')
