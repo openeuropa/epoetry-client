@@ -51,4 +51,4 @@ matrix:
     - highest
   PHP_VERSION:
     - 7.1
-    - 7.2
+    # - 7.2
