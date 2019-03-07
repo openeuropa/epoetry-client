@@ -9,8 +9,16 @@ services:
       - DOCUMENT_ROOT=/test/epoetry-client
 
 pipeline:
-  composer-install-lowest:
+  composer-install:
     group: prepare
+    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
+    volumes:
+      - /cache:/cache
+    commands:
+      - composer install --ansi --no-suggest --no-progress
+
+  composer-install-lowest:
+    group: post-prepare
     image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
     volumes:
       - /cache:/cache
@@ -20,22 +28,10 @@ pipeline:
       # Todo: Remove the `composer install` when the composer bug is fixed.
       # Ref. https://github.com/composer/composer/issues/7542
       # Ref. https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-1234
-      - composer install --ansi --no-suggest --no-progress
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
       matrix:
         COMPOSER_BOUNDARY: lowest
-
-  composer-install-highest:
-    group: prepare
-    image: fpfis/httpd-php-dev:${PHP_VERSION=7.1}
-    volumes:
-      - /cache:/cache
-    commands:
-      - composer install --ansi --no-suggest --no-progress
-    when:
-      matrix:
-        COMPOSER_BOUNDARY: highest
 
   grumphp:
     group: test
