@@ -4,8 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Discovery\HttpClientDiscovery;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
 use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
 use OpenEuropa\EPoetry\Type\CreateRequests;
@@ -40,11 +39,8 @@ class CreateRequestsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $guzzle = new GuzzleClient();
-        $adapter = new GuzzleAdapter($guzzle);
-
         /** @var \OpenEuropa\EPoetry\EPoetryClientFactory $factory */
-        $factory = new EPoetryClientFactory($input->getOption('endpoint'), $adapter);
+        $factory = new EPoetryClientFactory($input->getOption('endpoint'), HttpClientDiscovery::find());
 
         /** @var \OpenEuropa\EPoetry\EPoetryClient $client */
         $client = $factory->getClient();

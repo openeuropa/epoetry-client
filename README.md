@@ -14,17 +14,12 @@ To create a client instance use the [`\OpenEuropa\EPoetry\EPoetryClientFactory`]
 
 ```php
 <?php
+use Http\Discovery\HttpClientDiscovery;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 
-// Instantiate HTTP client.
-$guzzle = new GuzzleClient();
-$adapter = new GuzzleAdapter($guzzle);
-
 // Instantiate the client factory.
-$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
+$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', HttpClientDiscovery::find());
 
 // Create request object and perform the request.
 $createRequests = new CreateRequests();
