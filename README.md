@@ -115,7 +115,7 @@ Where:
 For example:
 
 ```bash
-bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yaml ./path/to/request
+php bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yaml ./path/to/request
 ```
 
 ## Troubleshooting

@@ -31,6 +31,7 @@ final class CreateRequestsCommandTest extends AbstractCommandTest
      * @dataProvider dataProvider
      *
      * @param mixed $input
+     * @param array $expectations
      */
     public function testExecute(array $input, array $expectations)
     {
