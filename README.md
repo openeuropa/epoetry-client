@@ -14,14 +14,9 @@ To create a client instance use the [`\OpenEuropa\EPoetry\EPoetryClientFactory`]
 
 ```php
 <?php
+use Http\Discovery\HttpClientDiscovery;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use OpenEuropa\EPoetry\Type\CreateRequests;
-
-// Instantiate HTTP client.
-$guzzle = new GuzzleClient();
-$adapter = new GuzzleAdapter($guzzle);
 
 // Instantiate the client factory.
 $factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
@@ -30,6 +25,12 @@ $factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
+
+In order to use the EPoetryClientFactory you need to require a Http Client on your project,
+e.g. [guzzle6-adapter](https://github.com/php-http/guzzle6-adapter).
+
+See the documentation of [httplug](http://httplug.io) for more information.
+
 ## Authentication
 
 Access to ePoetry web services requires your application to be
@@ -84,3 +85,41 @@ $factory->setLogger($logger);
 // Set your log level. In this case we only want ERROR level logs or lower.
 $factory->setLogLevel(LogLevel::ERROR);
 ```
+
+## ePoetry Console
+
+The ePoetry library ships with a set of Symfony Console commands that developers can use to interact with a running ePoetry service instance.
+
+To list all available commands run:
+
+```bash
+./vendor/bin/epoetry
+```
+
+In order to use the ePoetry Console you need to require `"symfony/console": "^3.2 || ^4"`.
+
+## Performing a request
+
+At the moment only the `createRequests` request is supported, to perform it run:
+
+```bash
+php bin/epoetry create-requests [--endpoint ENDPOINT] [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <request-file>
+```
+
+Where:
+
+- `--endpoint` is the ePoetry service endpoint, e.g. `http://my-epoetry-instance`
+- `--in-format` is the format of the input request file, only `xml` and `yml` are supported
+- `--out-format` is the format in which the service response will be printed out, only `xml` and `yml` are supported
+- `<request-file>` is a path to a file containing the service request, in the format specified in `--in-format`
+
+For example:
+
+```bash
+php bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yaml ./path/to/request
+```
+
+## Troubleshooting
+
+- If you are using Symfony `^3.2` use `yml` as YAML in/out formats
+- If you are using Symfony `^4.2` use `yaml` as YAML in/out formats

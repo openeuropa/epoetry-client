@@ -74,11 +74,12 @@ class EPoetryClientFactory
     /**
      * Factory constructor.
      */
-    public function __construct(string $wsdl, HttpClient $httpClient, array $options = [])
+    public function __construct(string $endpoint, HttpClient $httpClient, array $options = [])
     {
-        $this->wsdl = $wsdl;
+        $this->wsdl = $this->buildWsdl($endpoint);
         $this->httpClient = $httpClient;
         $this->options = [
+            'stream_context' => stream_context_create(),
             'cache_wsdl' => WSDL_CACHE_NONE,
         ] + $options;
     }
@@ -187,5 +188,24 @@ class EPoetryClientFactory
         $this->logLevel = $logLevel;
 
         return $this;
+    }
+
+    /**
+     * Build the WSDL with file on resources.
+     *
+     * @param string $endpoint
+     *    Endpoint url
+     *
+     * @return string
+     */
+    private function buildWsdl(string $endpoint): string
+    {
+        $wsdl = file_get_contents(__DIR__ . '/../resources/dgtServiceWSDL.xml');
+        $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+
+        $xsd = file_get_contents(__DIR__ . '/../resources/dgtServiceXSD.xml');
+        $wsdl = str_replace('dgtServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $wsdl);
+
+        return 'data://text/plain;base64,' . base64_encode($wsdl);
     }
 }

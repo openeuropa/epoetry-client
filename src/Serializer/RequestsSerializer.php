@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 /**
  * Class RequestsSerializer.
@@ -104,6 +105,10 @@ final class RequestsSerializer implements SerializerInterface
      */
     public static function fromFile(string $filepath, string $type, string $format): CreateRequests
     {
+        if (!file_exists($filepath)) {
+            throw new NotFoundResourceException(sprintf('File "%s" not found.', $filepath));
+        }
+
         return self::fromString(file_get_contents($filepath), $type, $format);
     }
 

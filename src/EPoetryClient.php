@@ -17,7 +17,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\CorrectTranslationResponse
      */
-    public function correctTranslation(Type\CorrectTranslation $parameters): Type\CorrectTranslationResponse
+    public function correctTranslation(Type\CorrectTranslation $parameters)
     {
         return $this->call('correctTranslation', $parameters);
     }
@@ -29,7 +29,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\CreateRequestsResponse
      */
-    public function createRequests(Type\CreateRequests $parameters): Type\CreateRequestsResponse
+    public function createRequests(Type\CreateRequests $parameters)
     {
         return $this->call('createRequests', $parameters);
     }
@@ -41,7 +41,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\FindLinguisticRequestResponse
      */
-    public function findLinguisticRequest(Type\FindLinguisticRequest $parameters): Type\FindLinguisticRequestResponse
+    public function findLinguisticRequest(Type\FindLinguisticRequest $parameters)
     {
         return $this->call('findLinguisticRequest', $parameters);
     }
@@ -53,7 +53,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\GetLinguisticRequestResponse
      */
-    public function getLinguisticRequest(Type\GetLinguisticRequest $parameters): Type\GetLinguisticRequestResponse
+    public function getLinguisticRequest(Type\GetLinguisticRequest $parameters)
     {
         return $this->call('getLinguisticRequest', $parameters);
     }
@@ -65,7 +65,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\ModifyRequestResponse
      */
-    public function modifyRequest(Type\ModifyRequest $parameters): Type\ModifyRequestResponse
+    public function modifyRequest(Type\ModifyRequest $parameters)
     {
         return $this->call('modifyRequest', $parameters);
     }
@@ -77,7 +77,7 @@ class EPoetryClient extends \Phpro\SoapClient\Client
      *
      * @return ResultInterface|Type\ReceiveNotificationsResponse
      */
-    public function receiveNotifications(Type\ReceiveNotifications $parameters): Type\ReceiveNotificationsResponse
+    public function receiveNotifications(Type\ReceiveNotifications $parameters)
     {
         return $this->call('receiveNotifications', $parameters);
     }
