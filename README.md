@@ -19,12 +19,18 @@ use OpenEuropa\EPoetry\EPoetryClientFactory;
 use OpenEuropa\EPoetry\Type\CreateRequests;
 
 // Instantiate the client factory.
-$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', HttpClientDiscovery::find());
+$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 
 // Create request object and perform the request.
 $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
+
+In order to use the EPoetryClientFactory you need to require a Http Client on your project,
+e.g. [guzzle6-adapter](https://github.com/php-http/guzzle6-adapter).
+
+See the documentation of [httplug](http://httplug.io) for more information.
+
 ## Authentication
 
 Access to ePoetry web services requires your application to be

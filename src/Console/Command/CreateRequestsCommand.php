@@ -4,7 +4,8 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use Http\Discovery\HttpClientDiscovery;
+use GuzzleHttp\Client as GuzzleClient;
+use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use OpenEuropa\EPoetry\EPoetryClientFactory;
 use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
 use OpenEuropa\EPoetry\Type\CreateRequests;
@@ -25,12 +26,9 @@ class CreateRequestsCommand extends Command
     {
         $this
             ->setDescription('Build and send a CreateRequests to ePoetry.')
-            ->setHelp('')
-
             ->addOption('endpoint', null, InputOption::VALUE_REQUIRED, 'URL of the WSDL endpoint.', '')
             ->addOption('in-format', null, InputOption::VALUE_REQUIRED, 'Format for the input (e.g. xml, yaml).', 'xml')
             ->addOption('out-format', null, InputOption::VALUE_REQUIRED, 'Format for the output (e.g. xml, yaml).', 'xml')
-
             ->addArgument('request-file', InputArgument::REQUIRED, 'Path to a file containing the body of the request.');
     }
 
@@ -39,8 +37,12 @@ class CreateRequestsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Instantiate HTTP client.
+        $guzzle = new GuzzleClient();
+        $adapter = new GuzzleAdapter($guzzle);
+
         /** @var \OpenEuropa\EPoetry\EPoetryClientFactory $factory */
-        $factory = new EPoetryClientFactory($input->getOption('endpoint'), HttpClientDiscovery::find());
+        $factory = new EPoetryClientFactory($input->getOption('endpoint'), $adapter);
 
         /** @var \OpenEuropa\EPoetry\EPoetryClient $client */
         $client = $factory->getClient();
