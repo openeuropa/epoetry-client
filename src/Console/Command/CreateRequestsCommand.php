@@ -6,9 +6,9 @@ namespace OpenEuropa\EPoetry\Console\Command;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use OpenEuropa\EPoetry\EPoetryClientFactory;
-use OpenEuropa\EPoetry\Serializer\RequestsSerializer;
-use OpenEuropa\EPoetry\Type\CreateRequests;
+use OpenEuropa\EPoetry\Request\RequestClientFactory;
+use OpenEuropa\EPoetry\Serializer\Serializer;
+use OpenEuropa\EPoetry\Request\Type\CreateRequests;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -41,13 +41,13 @@ class CreateRequestsCommand extends Command
         $guzzle = new GuzzleClient();
         $adapter = new GuzzleAdapter($guzzle);
 
-        /** @var \OpenEuropa\EPoetry\EPoetryClientFactory $factory */
-        $factory = new EPoetryClientFactory($input->getOption('endpoint'), $adapter);
+        /** @var \OpenEuropa\EPoetry\Request\ClientFactory $factory */
+        $factory = new RequestClientFactory($input->getOption('endpoint'), $adapter);
 
         /** @var \OpenEuropa\EPoetry\EPoetryClient $client */
         $client = $factory->getClient();
 
-        $createRequests = RequestsSerializer::fromFile(
+        $createRequests = Serializer::fromFile(
             $input->getArgument('request-file'),
             CreateRequests::class,
             $input->getOption('in-format')
@@ -55,7 +55,7 @@ class CreateRequestsCommand extends Command
 
         $response = $client->createRequests($createRequests);
 
-        $return = (new RequestsSerializer())->serialize($response, $input->getOption('out-format'));
+        $return = (new Serializer())->serialize($response, $input->getOption('out-format'));
         $output->writeln($return);
     }
 }

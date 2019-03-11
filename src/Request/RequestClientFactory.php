@@ -200,10 +200,10 @@ class RequestClientFactory
      */
     private function buildWsdl(string $endpoint): string
     {
-        $wsdl = file_get_contents(__DIR__ . '/../resources/dgtServiceWSDL.xml');
+        $wsdl = file_get_contents(__DIR__ . '/../../resources/dgtServiceWSDL.xml');
         $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
 
-        $xsd = file_get_contents(__DIR__ . '/../resources/dgtServiceXSD.xml');
+        $xsd = file_get_contents(__DIR__ . '/../../resources/dgtServiceXSD.xml');
         $wsdl = str_replace('dgtServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $wsdl);
 
         return 'data://text/plain;base64,' . base64_encode($wsdl);

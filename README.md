@@ -31,7 +31,7 @@ $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
 
-In order to use the EPoetryClientFactory you need to require a Http Client on your project,
+In order to use the RequestClientFactory you need to require a Http Client on your project,
 e.g. [guzzle6-adapter](https://github.com/php-http/guzzle6-adapter).
 
 See the documentation of [httplug](http://httplug.io) for more information.
@@ -44,7 +44,7 @@ configured as a [cas proxy](https://webgate.ec.europa.eu/CITnet/confluence/displ
 When authenticated, a session needs to be provided having the attribute `cas_pgt`.
 
 This can be done in code.
-An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Requests/MiddlewareTest.php):
+An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Request/MiddlewareTest.php):
 
 ```php
 $session = new Session(new MockArraySessionStorage());

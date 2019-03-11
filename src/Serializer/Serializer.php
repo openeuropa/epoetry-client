@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer as SymfonySerializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 /**
  * Class AbstractSerializer.
@@ -50,6 +51,28 @@ class Serializer implements SerializerInterface
     /**
      * Convert a string into an object.
      *
+     * @param string $filepath
+     *   The file path
+     * @param string $type
+     *   The object type
+     * @param string $format
+     *   The string format (yml, json, xml...)
+     *
+     * @return RequestInterface
+     *   The new object
+     */
+    public static function fromFile(string $filepath, string $type, string $format)
+    {
+        if (!file_exists($filepath)) {
+            throw new FileNotFoundException(sprintf('File "%s" not found.', $filepath));
+        }
+
+        return self::fromString(file_get_contents($filepath), $type, $format);
+    }
+
+    /**
+     * Convert a string into an object.
+     *
      * @param string $data
      *   The input string
      * @param string $type
@@ -64,8 +87,9 @@ class Serializer implements SerializerInterface
     {
         return self::getSerializer()->deserialize($data, $type, $format);
     }
+
     /**
-     * RequestsSerializer constructor.
+     * Serializer constructor.
      *
      * @param \Symfony\Component\Serializer\Encoder\EncoderInterface[] $encoders
      *
