@@ -41,10 +41,10 @@ class CreateRequestsCommand extends Command
         $guzzle = new GuzzleClient();
         $adapter = new GuzzleAdapter($guzzle);
 
-        /** @var \OpenEuropa\EPoetry\Request\ClientFactory $factory */
+        /** @var \OpenEuropa\EPoetry\Request\RequestClientFactory $factory */
         $factory = new RequestClientFactory($input->getOption('endpoint'), $adapter);
 
-        /** @var \OpenEuropa\EPoetry\EPoetryClient $client */
+        /** @var \OpenEuropa\EPoetry\Request\RequestClient $client */
         $client = $factory->getClient();
 
         $createRequests = Serializer::fromFile(

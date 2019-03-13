@@ -95,7 +95,7 @@ class RequestClientFactory
      * @param \Phpro\SoapClient\Middleware\MiddlewareInterface $middleware
      *   Middleware instance
      *
-     * @return \OpenEuropa\EPoetryRequest\RequestClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
     public function addMiddleware(MiddlewareInterface $middleware): RequestClientFactory
     {
@@ -110,7 +110,7 @@ class RequestClientFactory
      * Make sure you set/add logger, event dispatcher and middlewares before
      * calling this method.
      *
-     * @return \OpenEuropa\EPoetry\RequestClient
+     * @return \OpenEuropa\EPoetry\Request\RequestClient
      */
     public function getClient(): RequestClient
     {
@@ -148,7 +148,7 @@ class RequestClientFactory
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
      *    Event dispatcher instance
      *
-     * @return \OpenEuropa\EPoetryRequest\RequestClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): RequestClientFactory
     {
@@ -166,7 +166,7 @@ class RequestClientFactory
      * @param \Psr\Log\LoggerInterface $logger
      *    PSR3-compatible logger instance
      *
-     * @return \OpenEuropa\EPoetryRequest\RequestClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
     public function setLogger(LoggerInterface $logger): RequestClientFactory
     {
@@ -181,7 +181,7 @@ class RequestClientFactory
      * @param string $logLevel
      *    Log level string
      *
-     * @return \OpenEuropa\EPoetryRequest\RequestClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
     public function setLogLevel(string $logLevel): RequestClientFactory
     {
