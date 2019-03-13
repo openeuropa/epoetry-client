@@ -29,7 +29,7 @@ class CreateRequestsCommand extends Command
             ->addOption('endpoint', null, InputOption::VALUE_REQUIRED, 'URL of the WSDL endpoint.', '')
             ->addOption('in-format', null, InputOption::VALUE_REQUIRED, 'Format for the input (e.g. xml, yaml).', 'xml')
             ->addOption('out-format', null, InputOption::VALUE_REQUIRED, 'Format for the output (e.g. xml, yaml).', 'xml')
-            ->addArgument('request-file', InputArgument::REQUIRED, 'Path to a file containing the body of the request.');
+            ->addArgument('file', InputArgument::REQUIRED, 'Path to a file containing the body of the request.');
     }
 
     /**
@@ -48,7 +48,7 @@ class CreateRequestsCommand extends Command
         $client = $factory->getClient();
 
         $createRequests = Serializer::fromFile(
-            $input->getArgument('request-file'),
+            $input->getArgument('file'),
             CreateRequests::class,
             $input->getOption('in-format')
         );

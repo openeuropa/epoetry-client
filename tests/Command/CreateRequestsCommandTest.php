@@ -44,7 +44,7 @@ final class CreateRequestsCommandTest extends AbstractCommandTest
             '--endpoint' => self::$mockWebServer->getServerRoot() . '/foo',
             '--in-format' => $input['in-format'],
             '--out-format' => $input['out-format'],
-            'request-file' => $input['request-file'],
+            'file' => $input['file'],
         ]);
 
         $output = $commandTester->getDisplay();
