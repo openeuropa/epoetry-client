@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Console;
 
 use OpenEuropa\EPoetry\Console\Command\CreateRequestsCommand;
+use OpenEuropa\EPoetry\Console\Command\ReceiveNotificationCommand;
 use Symfony\Component\Console\Application as SymfonyApplication;
 
 /**
@@ -22,6 +23,7 @@ class Application extends SymfonyApplication
     {
         $commands = parent::getDefaultCommands();
         $commands[] = new CreateRequestsCommand();
+        $commands[] = new ReceiveNotificationCommand();
 
         return $commands;
     }

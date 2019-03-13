@@ -124,6 +124,25 @@ For example:
 php bin/epoetry create-requests --endpoint=http://my-epoetry-instance --in-format=xml --out-format=yaml ./path/to/request
 ```
 
+## Performing a notification
+
+```bash
+php bin/epoetry receive-notification [--in-format [IN-FORMAT]] [--out-format [OUT-FORMAT]] [--] <notification-file>
+```
+
+Where:
+
+- `--endpoint` is the ePoetry Client endpoint, e.g. `http://my-epoetry-client-instance`
+- `--in-format` is the format of the input notification file, only `xml` and `yml` are supported
+- `--out-format` is the format in which the service response will be printed out, only `xml` and `yml` are supported
+- `<notification-file>` is a path to a file containing the notification, in the format specified in `--in-format`
+
+For example:
+
+```bash
+php bin/epoetry receive-notification --endpoint=http://my-epoetry-client-instance --in-format=xml --out-format=yaml ./path/to/notification
+```
+
 ## Troubleshooting
 
 - If you are using Symfony `^3.2` use `yml` as YAML in/out formats

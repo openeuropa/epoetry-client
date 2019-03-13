@@ -79,9 +79,9 @@ class NotificationClientFactory
      * @param HttpClient $httpClient
      * @param array $options
      */
-    public function __construct(string $wsdl, HttpClient $httpClient, array $options = [])
+    public function __construct(string $endpoint, HttpClient $httpClient, array $options = [])
     {
-        $this->wsdl = $wsdl;
+        $this->wsdl = $this->buildWsdl($endpoint);
         $this->httpClient = $httpClient;
         $this->options = [
             'cache_wsdl' => WSDL_CACHE_NONE,
@@ -123,7 +123,7 @@ class NotificationClientFactory
      * Make sure you set/add logger, event dispatcher and middlewares before
      * calling this method.
      *
-     * @return \OpenEuropa\EPoetry\RequestClient
+     * @return \OpenEuropa\EPoetry\Notification\NotificationClient
      */
     public function getClient(): NotificationClient
     {
@@ -202,4 +202,23 @@ class NotificationClientFactory
 
         return $this;
     }
+
+    /**
+     * Build the WSDL with file on resources.
+     *
+     * @param string $endpoint
+     *    Endpoint url
+     *
+     * @return string
+     */
+    private function buildWsdl(string $endpoint): string
+    {
+        $wsdl = file_get_contents(__DIR__ . '/../../resources/NotificationServiceWSDL.xml');
+        $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+
+        $xsd = file_get_contents(__DIR__ . '/../../resources/NotificationServiceXSD.xml');
+        $wsdl = str_replace('NotificationServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $wsdl);
+
+        return 'data://text/plain;base64,' . base64_encode($wsdl);
+      }
 }
