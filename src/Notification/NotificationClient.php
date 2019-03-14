@@ -15,9 +15,9 @@ class NotificationClient extends \Phpro\SoapClient\Client
      *
      * @throws SoapException
      *
-     * @return ReceiveNotificationResponse
+     * @return ReceiveNotificationResponse|ResultInterface
      */
-    public function receiveNotification(Type\ReceiveNotification $parameters): ReceiveNotificationResponse
+    public function receiveNotification(Type\ReceiveNotification $parameters)
     {
         return $this->call('receiveNotification', $parameters);
     }

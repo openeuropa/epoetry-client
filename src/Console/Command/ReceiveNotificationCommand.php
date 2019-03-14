@@ -4,8 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Discovery\HttpClientDiscovery;
 use OpenEuropa\EPoetry\Notification\NotificationClientFactory;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Serializer\Serializer;
@@ -37,23 +36,18 @@ class ReceiveNotificationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // Instantiate HTTP client.
-        $guzzle = new GuzzleClient();
-        $adapter = new GuzzleAdapter($guzzle);
-
-        /** @var \OpenEuropa\EPoetry\Notification\NotificationClientFactory $factory */
-        $factory = new NotificationClientFactory($input->getOption('endpoint'), $adapter);
-
-        /** @var \OpenEuropa\EPoetry\Notification\NotificationClient $client */
-        $client = $factory->getClient();
-
-        $notification = Serializer::fromFile(
+        /** @var \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification $receiveNotification */
+        $receiveNotification = Serializer::fromFile(
             $input->getArgument('file'),
             ReceiveNotification::class,
             $input->getOption('in-format')
         );
 
-        $response = $client->receiveNotification($notification);
+        $httpClient = HttpClientDiscovery::find();
+        $factory = new NotificationClientFactory($input->getOption('endpoint'), $httpClient);
+        $notificationClient = $factory->getClient();
+
+        $response = $notificationClient->receiveNotification($receiveNotification);
 
         $return = (new Serializer())->serialize($response, $input->getOption('out-format'));
         $output->writeln($return);

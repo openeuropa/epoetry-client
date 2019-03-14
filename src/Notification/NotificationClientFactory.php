@@ -75,7 +75,7 @@ class NotificationClientFactory
     /**
      * NotificationClientFactory constructor.
      *
-     * @param string $wsdl
+     * @param string $endpoint
      * @param HttpClient $httpClient
      * @param array $options
      */
@@ -220,5 +220,5 @@ class NotificationClientFactory
         $wsdl = str_replace('NotificationServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $wsdl);
 
         return 'data://text/plain;base64,' . base64_encode($wsdl);
-      }
+    }
 }

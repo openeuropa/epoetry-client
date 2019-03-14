@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <S:Body>
+        <ns0:receiveNotificationResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry" />
+    </S:Body>
+</S:Envelope>
