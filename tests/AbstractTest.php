@@ -17,11 +17,6 @@ abstract class AbstractTest extends TestCase
     const FIXTURE_DIR = __DIR__ . '/fixtures';
 
     /**
-     * @var RequestClientFactory
-     */
-    public $clientFactory;
-
-    /**
      * @var \Http\Mock\Client
      */
     public $httpClient;

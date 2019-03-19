@@ -5,14 +5,20 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Notification;
 
 use Http\Client\HttpClient;
+use OpenEuropa\EPoetry\Request\RequestClientFactory;
 use Phpro\SoapClient\ClientFactory as PhproClientFactory;
 use Phpro\SoapClient\ClientBuilder;
 use Phpro\SoapClient\ClientFactory;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
+use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class NotificationClientFactory.
+ */
 class NotificationClientFactory
 {
     /**
@@ -67,7 +73,11 @@ class NotificationClientFactory
     protected $wsdl;
 
     /**
-     * Factory constructor.
+     * NotificationClientFactory constructor.
+     *
+     * @param string $wsdl
+     * @param HttpClient $httpClient
+     * @param array $options
      */
     public function __construct(string $wsdl, HttpClient $httpClient, array $options = [])
     {
@@ -76,6 +86,26 @@ class NotificationClientFactory
         $this->options = [
             'cache_wsdl' => WSDL_CACHE_NONE,
         ] + $options;
+    }
+
+    /**
+     * List of Phpro\SoapClient middlewares.
+     *
+     * Middlewares will be executed by the library during while performing
+     * a request or handling a response.
+     *
+     * @see https://github.com/phpro/soap-client/blob/master/docs/middlewares.md
+     *
+     * @param \Phpro\SoapClient\Middleware\MiddlewareInterface $middleware
+     *   Middleware instance
+     *
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
+     */
+    public function addMiddleware(MiddlewareInterface $middleware): RequestClientFactory
+    {
+        $this->middlewares[] = $middleware;
+
+        return $this;
     }
 
     public static function factory(string $wsdl): NotificationClient
@@ -120,5 +150,56 @@ class NotificationClientFactory
         }
 
         return $clientBuilder->build();
+    }
+
+    /**
+     * Set event dispatcher instance.
+     *
+     * Pass here an external application event dispatcher to be able to
+     * subscribe to ePoetry events via the application's preferred methods.
+     *
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
+     *    Event dispatcher instance
+     *
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
+     */
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): RequestClientFactory
+    {
+        $this->eventDispatcher = $eventDispatcher;
+
+        return $this;
+    }
+
+    /**
+     * Set PSR3-compatible logger instance.
+     *
+     * Pass here an external application PSR3-compatible logger instance to be
+     * able to log ePoetry related messages within the application.
+     *
+     * @param \Psr\Log\LoggerInterface $logger
+     *    PSR3-compatible logger instance
+     *
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
+     */
+    public function setLogger(LoggerInterface $logger): RequestClientFactory
+    {
+        $this->logger = $logger;
+
+        return $this;
+    }
+
+    /**
+     * Set maximum level of severity of the events to be logged.
+     *
+     * @param string $logLevel
+     *    Log level string
+     *
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
+     */
+    public function setLogLevel(string $logLevel): RequestClientFactory
+    {
+        $this->logLevel = $logLevel;
+
+        return $this;
     }
 }
