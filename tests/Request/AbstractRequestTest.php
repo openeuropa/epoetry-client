@@ -6,9 +6,6 @@ namespace OpenEuropa\EPoetry\Tests\Request;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
-/**
- * Class AbstractRequestTest.
- */
 abstract class AbstractRequestTest extends AbstractTest
 {
     /**

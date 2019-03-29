@@ -6,9 +6,6 @@ namespace OpenEuropa\EPoetry\Tests\Notification;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
 
-/**
- * Class AbstractNotificationRequestTest.
- */
 abstract class AbstractNotificationTest extends AbstractTest
 {
     /**
