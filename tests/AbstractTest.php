@@ -5,7 +5,8 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests;
 
 use Http\Mock\Client;
-use OpenEuropa\EPoetry\EPoetryClientFactory;
+use OpenEuropa\EPoetry\Request\RequestClientFactory;
+use OpenEuropa\EPoetry\Notification\NotificationClientFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
@@ -14,11 +15,6 @@ use Symfony\Component\Yaml\Yaml;
 abstract class AbstractTest extends TestCase
 {
     const FIXTURE_DIR = __DIR__ . '/fixtures';
-
-    /**
-     * @var EPoetryClientFactory
-     */
-    public $clientFactory;
 
     /**
      * @var \Http\Mock\Client
@@ -87,12 +83,24 @@ abstract class AbstractTest extends TestCase
     /**
      * Setup ePoetry client factory using HTTP mock client.
      *
-     * @return \OpenEuropa\EPoetry\EPoetryClientFactory
+     * @return \OpenEuropa\EPoetry\Request\RequestClientFactory
      */
-    protected function createClientFactory(): EPoetryClientFactory
+    protected function createClientFactory(): RequestClientFactory
     {
         $wsdl = __DIR__ . '/../resources/dgtServiceWSDL.xml';
 
-        return new EPoetryClientFactory($wsdl, $this->httpClient);
+        return new RequestClientFactory($wsdl, $this->httpClient);
+    }
+
+    /**
+     * Setup ePoetry notification client factory using HTTP mock client.
+     *
+     * @return \OpenEuropa\EPoetry\Notification\NotificationClientFactory
+     */
+    protected function createNotificationClientFactory(): NotificationClientFactory
+    {
+        $wsdl = __DIR__ . '/../resources/NotificationServiceWSDL.xml';
+
+        return new NotificationClientFactory($wsdl, $this->httpClient);
     }
 }

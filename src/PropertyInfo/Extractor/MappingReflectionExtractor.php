@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\PropertyInfo\Extractor;
 
-use OpenEuropa\EPoetry\Type\ContactPersonIn;
-use OpenEuropa\EPoetry\Type\Contacts;
-use OpenEuropa\EPoetry\Type\CreateRequests;
-use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
+use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
+use OpenEuropa\EPoetry\Request\Type\Contacts;
+use OpenEuropa\EPoetry\Request\Type\CreateRequests;
+use OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\Type;
 

@@ -5,11 +5,11 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Logger;
 
 use OpenEuropa\EPoetry\Tests\AbstractTest;
-use OpenEuropa\EPoetry\Type\ContactPersonIn;
-use OpenEuropa\EPoetry\Type\Contacts;
-use OpenEuropa\EPoetry\Type\CreateRequests;
-use OpenEuropa\EPoetry\Type\LinguisticRequestIn;
-use OpenEuropa\EPoetry\Type\RequestGeneralInfoIn;
+use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
+use OpenEuropa\EPoetry\Request\Type\Contacts;
+use OpenEuropa\EPoetry\Request\Type\CreateRequests;
+use OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn;
+use OpenEuropa\EPoetry\Request\Type\RequestGeneralInfoIn;
 use Psr\Log\LogLevel;
 
 /**

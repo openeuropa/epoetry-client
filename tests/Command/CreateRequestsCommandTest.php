@@ -6,7 +6,6 @@ namespace OpenEuropa\EPoetry\Tests\Command;
 
 use donatj\MockWebServer\Response;
 use OpenEuropa\EPoetry\Console\Application;
-use OpenEuropa\EPoetry\Tests\Requests\AbstractCommandTest;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**

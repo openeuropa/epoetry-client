@@ -10,23 +10,28 @@ Install the library by running:
 composer require openeuropa/epoetry-client
 ```
 
-To create a client instance use the [`\OpenEuropa\EPoetry\EPoetryClientFactory`](./src/EPoetryClientFactory.php):
+To create a client instance use the [`\OpenEuropa\EPoetry\Request\ClientFactory`](src/Request/RequestClientFactory.php):
 
 ```php
 <?php
-use Http\Discovery\HttpClientDiscovery;
-use OpenEuropa\EPoetry\EPoetryClientFactory;
-use OpenEuropa\EPoetry\Type\CreateRequests;
+use GuzzleHttp\Client as GuzzleClient;
+use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use OpenEuropa\EPoetry\Request\ClientFactory;
+use OpenEuropa\EPoetry\Request\Type\CreateRequests;
+
+// Instantiate HTTP client.
+$guzzle = new GuzzleClient();
+$adapter = new GuzzleAdapter($guzzle);
 
 // Instantiate the client factory.
-$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
+$factory = new RequestClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 
 // Create request object and perform the request.
 $createRequests = new CreateRequests();
 $response = $factory->getClient()->createRequests($createRequests);
 ```
 
-In order to use the EPoetryClientFactory you need to require a Http Client on your project,
+In order to use the RequestClientFactory you need to require a Http Client on your project,
 e.g. [guzzle6-adapter](https://github.com/php-http/guzzle6-adapter).
 
 See the documentation of [httplug](http://httplug.io) for more information.
@@ -39,7 +44,7 @@ configured as a [cas proxy](https://webgate.ec.europa.eu/CITnet/confluence/displ
 When authenticated, a session needs to be provided having the attribute `cas_pgt`.
 
 This can be done in code.
-An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Requests/MiddlewareTest.php):
+An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Request/MiddlewareTest.php):
 
 ```php
 $session = new Session(new MockArraySessionStorage());
@@ -52,7 +57,7 @@ Another option is to enable a service for the ePoetry client that calls the `add
 ```yaml
 services:
   example.epoetry_client:
-    class: \OpenEuropa\EPoetry\EPoetryClientFactory
+    class: \OpenEuropa\EPoetry\Request\RequestClientFactory
     arguments: [
       'resources/dgtServiceWSDL.xml',
       '@http_client'
@@ -77,7 +82,7 @@ by the [PSR-3 logger interface standard](https://www.php-fig.org/psr/psr-3/#5-ps
 $logger = new LoggerClass();
 
 // Instantiate the client factory.
-$factory = new EPoetryClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
+$factory = new RequestClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
 
 // Set your logger.
 $factory->setLogger($logger);
