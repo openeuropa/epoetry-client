@@ -41,7 +41,6 @@ class CreateRequestsCommand extends Command
         $guzzle = new GuzzleClient();
         $adapter = new GuzzleAdapter($guzzle);
 
-        /** @var \OpenEuropa\EPoetry\Request\RequestClientFactory $factory */
         $factory = new RequestClientFactory($input->getOption('endpoint'), $adapter);
 
         /** @var \OpenEuropa\EPoetry\Request\RequestClient $client */
