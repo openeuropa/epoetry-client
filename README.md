@@ -16,7 +16,7 @@ To create a client instance use the [`\OpenEuropa\EPoetry\Request\ClientFactory`
 <?php
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use OpenEuropa\EPoetry\Request\ClientFactory;
+use OpenEuropa\EPoetry\Request\RequestClientFactory;
 use OpenEuropa\EPoetry\Request\Type\CreateRequests;
 
 // Instantiate HTTP client.
@@ -24,7 +24,7 @@ $guzzle = new GuzzleClient();
 $adapter = new GuzzleAdapter($guzzle);
 
 // Instantiate the client factory.
-$factory = new RequestClientFactory('http://europa.eu/epoetry.wsdl', $adapter);
+$factory = new RequestClientFactory('https://www.acceptance.cc.cec/epoetry/webservices/dgtService', $adapter);
 
 // Create request object and perform the request.
 $createRequests = new CreateRequests();
@@ -59,7 +59,7 @@ services:
   example.epoetry_client:
     class: \OpenEuropa\EPoetry\Request\RequestClientFactory
     arguments: [
-      'resources/dgtServiceWSDL.xml',
+      'https://www.acceptance.cc.cec/epoetry/webservices/dgtService',
       '@http_client'
     ]
     calls:
