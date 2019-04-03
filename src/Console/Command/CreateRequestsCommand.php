@@ -6,7 +6,7 @@ namespace OpenEuropa\EPoetry\Console\Command;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use OpenEuropa\EPoetry\Request\RequestClientFactory;
+use OpenEuropa\EPoetry\ClientFactory;
 use OpenEuropa\EPoetry\Serializer\Serializer;
 use OpenEuropa\EPoetry\Request\Type\CreateRequests;
 use Symfony\Component\Console\Command\Command;
@@ -41,10 +41,8 @@ class CreateRequestsCommand extends Command
         $guzzle = new GuzzleClient();
         $adapter = new GuzzleAdapter($guzzle);
 
-        $factory = new RequestClientFactory($input->getOption('endpoint'), $adapter);
-
-        /** @var \OpenEuropa\EPoetry\Request\RequestClient $client */
-        $client = $factory->getClient();
+        $factory = new ClientFactory($input->getOption('endpoint'), $adapter);
+        $client = $factory->getRequestClient();
 
         $createRequests = Serializer::fromFile(
             $input->getArgument('file'),

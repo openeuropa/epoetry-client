@@ -5,31 +5,35 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\HttpClient;
+use OpenEuropa\EPoetry\Notification\NotificationClassmap;
+use OpenEuropa\EPoetry\Notification\NotificationClient;
+use OpenEuropa\EPoetry\Request\RequestClassmap;
+use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientBuilder;
 use Phpro\SoapClient\ClientFactory as SoapClientFactory;
 use Phpro\SoapClient\ClientInterface;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
+use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Factory class for client of ePoetry SOAP service.
+ * Factory class for the ePoetry client.
  *
- * It can be used to get both Request or Notification clients.
+ * It can be used to get both Request and Notification clients.
  */
-abstract class ClientFactory
+class ClientFactory
 {
     /**
-     * Name of client class.
+     * Service endpoint.
      *
      * @var string
      */
-    protected $clientName;
-
+    protected $endpoint;
     /**
      * Event dispatcher instance.
      *
@@ -66,13 +70,6 @@ abstract class ClientFactory
     protected $middlewares = [];
 
     /**
-     * SOAP client factory.
-     *
-     * @var SoapClientFactory
-     */
-    protected $soapClientFactory;
-
-    /**
      * PHP SOAP client options.
      *
      * @see http://php.net/manual/en/soapclient.soapclient.php
@@ -82,43 +79,22 @@ abstract class ClientFactory
     protected $soapOptions = [];
 
     /**
-     * URI of the WSDL file.
-     *
-     * @var string
-     */
-    protected $wsdl;
-
-    /**
-     * Names of WSDL file in resources folder.
-     *
-     * @var string
-     */
-    protected $wsdlFile = '';
-
-    /**
-     * Names of XSD file in resources folder.
-     *
-     * @var string
-     */
-    protected $xsdFile = '';
-
-    /**
      * ClientFactory constructor.
      *
      * @param string $endpoint
      *   The endpoint to be used in WSDL.
      * @param HttpClient $httpClient
      *   An HTTP Client to be used by service.
+     * @param array $soapOptions
      */
-    public function __construct($endpoint, HttpClient $httpClient)
+    public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
     {
-        $this->soapClientFactory = new SoapClientFactory($this->clientName);
+        $this->endpoint = $endpoint;
         $this->httpClient = $httpClient;
-        $this->wsdl = $this->buildWsdl($endpoint);
         $this->soapOptions = [
             'stream_context' => stream_context_create(),
             'cache_wsdl' => WSDL_CACHE_NONE,
-        ];
+        ] + $soapOptions;
     }
 
     /**
@@ -142,37 +118,33 @@ abstract class ClientFactory
     }
 
     /**
-     * Construct and return an ePoetry client instance.
+     * Get a notification client instance.
      *
-     * Make sure you set/add logger, event dispatcher and middlewares before
-     * calling this method.
-     *
-     * @return ClientInterface
+     * @return \OpenEuropa\EPoetry\Notification\NotificationClient
      */
-    public function getClient(): ClientInterface
+    public function getNotificationClient(): ClientInterface
     {
-        $clientBuilder = new ClientBuilder($this->soapClientFactory, $this->wsdl, $this->soapOptions);
-        $clientBuilder->withClassMaps($this->getClassMapCollection());
+        return $this->buildClient(
+            NotificationClient::class,
+            'NotificationServiceWSDL.xml',
+            'NotificationServiceXSD.xml',
+            NotificationClassmap::getCollection()
+        );
+    }
 
-        $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
-        $clientBuilder->withEventDispatcher($this->eventDispatcher);
-
-        if ($this->logger) {
-            $logger = new LoggerDecorator($this->logger, $this->logLevel);
-            $logPlugin = new LoggerSubscriber($logger);
-            $this->eventDispatcher->addSubscriber($logPlugin);
-        }
-
-        $handler = HttPlugHandle::createForClient($this->httpClient);
-        $clientBuilder->withHandler($handler);
-
-        if ($this->middlewares) {
-            foreach ($this->middlewares as $middleware) {
-                $handler->addMiddleware($middleware);
-            }
-        }
-
-        return $clientBuilder->build();
+    /**
+     * Get a request client instance.
+     *
+     * @return \OpenEuropa\EPoetry\Request\RequestClient
+     */
+    public function getRequestClient(): ClientInterface
+    {
+        return $this->buildClient(
+            RequestClient::class,
+            'dgtServiceWSDL.xml',
+            'dgtServiceXSD.xml',
+            RequestClassmap::getCollection()
+        );
     }
 
     /**
@@ -227,14 +199,50 @@ abstract class ClientFactory
     }
 
     /**
-     * Set SOAP options.
+     * Build and return an ePoetry client instance.
      *
-     * @param array $soapOptions
-     *   The SOAP options.
+     * Make sure you set/add logger, event dispatcher and middlewares before
+     * calling this method.
+     *
+     * @param string $clientName
+     *    Client class name.
+     * @param string $wsdlFile
+     *    Location of the client's WSDL file.
+     * @param string $xsdFile
+     *    Location of the client's XSD file.
+     * @param \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection $classMap
+     *    SOAP class map collection.
+     *
+     * @return \Phpro\SoapClient\ClientInterface
+     *    Client instance.
      */
-    public function setSoapOptions($soapOptions)
+    protected function buildClient(string $clientName, string $wsdlFile, string $xsdFile, ClassMapCollection $classMap): ClientInterface
     {
-        $this->soapOptions += $soapOptions;
+        $wsdl = $this->buildWsdl($this->endpoint, $wsdlFile, $xsdFile);
+        $soapClientFactory = new SoapClientFactory($clientName);
+
+        $clientBuilder = new ClientBuilder($soapClientFactory, $wsdl, $this->soapOptions);
+        $clientBuilder->withClassMaps($classMap);
+
+        $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
+        $clientBuilder->withEventDispatcher($this->eventDispatcher);
+
+        if ($this->logger) {
+            $logger = new LoggerDecorator($this->logger, $this->logLevel);
+            $logPlugin = new LoggerSubscriber($logger);
+            $this->eventDispatcher->addSubscriber($logPlugin);
+        }
+
+        $handler = HttPlugHandle::createForClient($this->httpClient);
+        $clientBuilder->withHandler($handler);
+
+        if ($this->middlewares) {
+            foreach ($this->middlewares as $middleware) {
+                $handler->addMiddleware($middleware);
+            }
+        }
+
+        return $clientBuilder->build();
     }
 
     /**
@@ -245,13 +253,13 @@ abstract class ClientFactory
      *
      * @return string
      */
-    protected function buildWsdl(string $endpoint): string
+    protected function buildWsdl(string $endpoint, string $wsdlFile, string $xsdFile): string
     {
-        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
+        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $wsdlFile);
         $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
 
-        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
-        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
+        $xsd = file_get_contents(__DIR__ . '/../resources/' . $xsdFile);
+        $wsdl = str_replace($xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
 
         return 'data://text/plain;base64,' . base64_encode($wsdl);
     }

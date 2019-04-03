@@ -33,7 +33,7 @@ final class LoggerTest extends AbstractTest
         $clientFactory = $this->createClientFactory();
         $clientFactory->setLogger($logger);
         $clientFactory->setLogLevel(LogLevel::ERROR);
-        $client = $clientFactory->getClient();
+        $client = $clientFactory->getRequestClient();
 
         try {
             $client->createRequests($createRequests);
@@ -72,7 +72,7 @@ final class LoggerTest extends AbstractTest
         $clientFactory = $this->createClientFactory();
         $clientFactory->setLogger($logger);
         $clientFactory->setLogLevel(LogLevel::INFO);
-        $client = $clientFactory->getClient();
+        $client = $clientFactory->getRequestClient();
 
         try {
             $client->createRequests($createRequests);

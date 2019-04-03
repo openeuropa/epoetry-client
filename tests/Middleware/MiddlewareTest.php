@@ -54,7 +54,7 @@ final class MiddlewareTest extends AbstractMiddlewareTest
 
         $middleware = new CasProxyTicketSessionMiddleware($session);
         $clientFactory->addMiddleware($middleware);
-        $client = $clientFactory->getClient();
+        $client = $clientFactory->getRequestClient();
 
         foreach ($expectations['exceptions'] as $expression) {
             $this->expectExceptionMessage($expression);

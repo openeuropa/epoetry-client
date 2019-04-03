@@ -4,8 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use Http\Discovery\HttpClientDiscovery;
-use OpenEuropa\EPoetry\Notification\NotificationClientFactory;
+use GuzzleHttp\Client as GuzzleClient;
+use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use OpenEuropa\EPoetry\ClientFactory;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Serializer\Serializer;
 use Symfony\Component\Console\Command\Command;
@@ -43,9 +44,12 @@ class ReceiveNotificationCommand extends Command
             $input->getOption('in-format')
         );
 
-        $httpClient = HttpClientDiscovery::find();
-        $factory = new NotificationClientFactory($input->getOption('endpoint'), $httpClient);
-        $notificationClient = $factory->getClient();
+        // Instantiate HTTP client.
+        $guzzle = new GuzzleClient();
+        $adapter = new GuzzleAdapter($guzzle);
+
+        $factory = new ClientFactory($input->getOption('endpoint'), $adapter);
+        $notificationClient = $factory->getNotificationClient();
 
         $response = $notificationClient->receiveNotification($receiveNotification);
 
