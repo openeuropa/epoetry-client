@@ -247,12 +247,12 @@ abstract class ClientFactory
      */
     protected function buildWsdl(string $endpoint): string
     {
-      $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
-      $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
+        $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
 
-      $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
-      $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
+        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
+        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
 
-      return 'data://text/plain;base64,' . base64_encode($wsdl);
+        return 'data://text/plain;base64,' . base64_encode($wsdl);
     }
 }
