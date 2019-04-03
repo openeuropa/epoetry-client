@@ -89,6 +89,20 @@ abstract class ClientFactory
     protected $wsdl;
 
     /**
+     * Names of WSDL file in resources folder.
+     *
+     * @var string
+     */
+    protected $wsdlFile = '';
+
+    /**
+     * Names of XSD file in resources folder.
+     *
+     * @var string
+     */
+    protected $xsdFile = '';
+
+    /**
      * ClientFactory constructor.
      *
      * @param string $endpoint
@@ -221,5 +235,24 @@ abstract class ClientFactory
     public function setSoapOptions($soapOptions)
     {
         $this->soapOptions += $soapOptions;
+    }
+
+    /**
+     * Build the WSDL with file on resources.
+     *
+     * @param string $endpoint
+     *    Endpoint url
+     *
+     * @return string
+     */
+    protected function buildWsdl(string $endpoint): string
+    {
+      $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
+      $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+
+      $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
+      $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
+
+      return 'data://text/plain;base64,' . base64_encode($wsdl);
     }
 }

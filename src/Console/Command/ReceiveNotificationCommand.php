@@ -36,7 +36,7 @@ class ReceiveNotificationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification $receiveNotification */
+        /** @var ReceiveNotification $receiveNotification */
         $receiveNotification = Serializer::fromFile(
             $input->getArgument('file'),
             ReceiveNotification::class,

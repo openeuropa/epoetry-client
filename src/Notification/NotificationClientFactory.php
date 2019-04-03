@@ -20,23 +20,18 @@ class NotificationClientFactory extends ClientFactory
     protected $clientName = NotificationClient::class;
 
     /**
-     * Build the WSDL with file on resources.
+     * Names of WSDL file in resources folder.
      *
-     * @param string $endpoint
-     *    Endpoint url
-     *
-     * @return string
+     * @var string
      */
-    protected function buildWsdl(string $endpoint): string
-    {
-        $wsdl = file_get_contents(__DIR__ . '/../../resources/NotificationServiceWSDL.xml');
-        $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+    protected $wsdlFile = 'NotificationServiceWSDL.xml';
 
-        $xsd = file_get_contents(__DIR__ . '/../../resources/NotificationServiceXSD.xml');
-        $wsdl = str_replace('NotificationServiceXSD.xml', 'plain;base64,' . base64_encode($xsd), $wsdl);
-
-        return 'data://text/plain;base64,' . base64_encode($wsdl);
-    }
+    /**
+     * Names of XSD file in resources folder.
+     *
+     * @var string
+     */
+    protected $xsdFile = 'NotificationServiceXSD.xml';
 
     /**
      * Return client mapping.
