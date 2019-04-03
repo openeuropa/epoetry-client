@@ -55,7 +55,7 @@ final class RequestTest extends AbstractRequestTest
         $response = new Response(200, [], $this->getFixtureContent($response));
         $this->httpClient->addResponse($response);
 
-        $client = $this->createClientFactory()->getClient();
+        $client = $this->createClientFactory()->getRequestClient();
         $client->createRequests($createRequests);
 
         $values = [
@@ -84,7 +84,7 @@ final class RequestTest extends AbstractRequestTest
         $response = new Response(200, [], $this->getFixtureContent($response));
         $this->httpClient->addResponse($response);
 
-        $client = $this->createClientFactory()->getClient();
+        $client = $this->createClientFactory()->getRequestClient();
 
         $values = [
             'response' => $client->createRequests(

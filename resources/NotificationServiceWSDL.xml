@@ -47,7 +47,7 @@
     </binding>
     <service name="EpoetryNotificationReceiverService">
         <port name="EpoetryNotificationReceiverPort" binding="tns:EpoetryNotificationReceiverPortBinding">
-            <soap:address location="http://localhost:8001/dgt/epoetry-client/EpoetryNotificationReceiverService"/>
+            <soap:address location="%ENDPOINT%"/>
         </port>
     </service>
 </definitions>

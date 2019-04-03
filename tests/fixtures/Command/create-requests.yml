@@ -2,7 +2,7 @@
     command: 'create-requests'
     in-format: 'yaml'
     out-format: 'xml'
-    request-file: './tests/fixtures/Command/create-requests-sample.yml'
+    file: './tests/fixtures/Command/create-requests-sample.yml'
     response: './tests/fixtures/Command/create-requests-response.xml'
   expectations:
     response: |
@@ -12,7 +12,7 @@
     command: 'create-requests'
     in-format: 'yaml'
     out-format: 'yaml'
-    request-file: './tests/fixtures/Command/create-requests-sample.yml'
+    file: './tests/fixtures/Command/create-requests-sample.yml'
     response: './tests/fixtures/Command/create-requests-response.xml'
   expectations:
     response: |
@@ -21,7 +21,7 @@
     command: 'create-requests'
     in-format: 'xml'
     out-format: 'xml'
-    request-file: './tests/fixtures/Command/create-requests-sample.xml'
+    file: './tests/fixtures/Command/create-requests-sample.xml'
     response: './tests/fixtures/Command/create-requests-response.xml'
   expectations:
     response: |

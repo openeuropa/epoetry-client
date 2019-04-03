@@ -6,33 +6,35 @@ namespace OpenEuropa\EPoetry\Tests\Command;
 
 use donatj\MockWebServer\Response;
 use OpenEuropa\EPoetry\Console\Application;
+use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
+use OpenEuropa\EPoetry\Serializer\Serializer;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @internal
  * @coversNothing
  */
-final class CreateRequestsCommandTest extends AbstractCommandTest
+final class ReceiveNotificationCommandTest extends AbstractCommandTest
 {
     /**
      * Data provider.
      *
-     * @return mixed
+     * @return array
      */
-    public function dataProvider()
+    public function responseParsingCases(): array
     {
-        return $this->getFixture('create-requests.yml');
+        return $this->getFixture('receive-notification.yml');
     }
 
     /**
-     * Test execution of commands.
+     * Test parsing a SOAP notification.
      *
-     * @dataProvider dataProvider
+     * @param array $input
+     * @param mixed $expectations
      *
-     * @param mixed $input
-     * @param array $expectations
+     * @dataProvider responseParsingCases
      */
-    public function testExecute(array $input, array $expectations)
+    public function testReceiveNotificationCommand(array $input, $expectations): void
     {
         self::$mockWebServer->setResponseOfPath('/foo', new Response(file_get_contents($input['response'])));
 
@@ -52,5 +54,21 @@ final class CreateRequestsCommandTest extends AbstractCommandTest
         $output = preg_replace("/\r|\n/", '', $output);
         $expectationsOutput = preg_replace("/\r|\n/", '', $expectations['response']);
         $this->assertEquals($output, $expectationsOutput);
+
+        return;
+        $notificationSerialized = Serializer::fromString(
+            $notificationXml,
+            ReceiveNotification::class,
+            'xml'
+        );
+
+        $values = [
+            'notification' => $notificationSerialized->getNotification(),
+        ];
+
+        $this->assertExpressionLanguageExpressions(
+            $expectations['assertions'],
+            $values
+        );
     }
 }
