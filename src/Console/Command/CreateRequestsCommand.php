@@ -26,7 +26,7 @@ class CreateRequestsCommand extends Command
     {
         $this
             ->setDescription('Build and send a CreateRequests to ePoetry.')
-            ->addOption('endpoint', null, InputOption::VALUE_REQUIRED, 'URL of the WSDL endpoint.', '')
+            ->addOption('endpoint', null, InputOption::VALUE_REQUIRED, 'URL of the endpoint used in WSDL.', '')
             ->addOption('in-format', null, InputOption::VALUE_REQUIRED, 'Format for the input (e.g. xml, yaml).', 'xml')
             ->addOption('out-format', null, InputOption::VALUE_REQUIRED, 'Format for the output (e.g. xml, yaml).', 'xml')
             ->addArgument('file', InputArgument::REQUIRED, 'Path to a file containing the body of the request.');
