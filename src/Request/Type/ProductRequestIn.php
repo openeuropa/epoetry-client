@@ -17,7 +17,7 @@ class ProductRequestIn
     protected $language;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $requestedDeadline;
 
@@ -43,9 +43,9 @@ class ProductRequestIn
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getRequestedDeadline(): ?\DateTime
+    public function getRequestedDeadline(): ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -115,7 +115,7 @@ class ProductRequestIn
     }
 
     /**
-     * @param \DateTime $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      *
      * @return $this
      */

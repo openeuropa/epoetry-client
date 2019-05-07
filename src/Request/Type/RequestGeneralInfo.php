@@ -47,7 +47,7 @@ class RequestGeneralInfo
     protected $onBehalfOf;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $requestedDeadline;
 
@@ -143,9 +143,9 @@ class RequestGeneralInfo
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getRequestedDeadline(): ?\DateTime
+    public function getRequestedDeadline(): ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -439,7 +439,7 @@ class RequestGeneralInfo
     }
 
     /**
-     * @param \DateTime $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      *
      * @return $this
      */
