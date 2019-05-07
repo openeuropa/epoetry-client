@@ -88,8 +88,6 @@ final class RequestTest extends AbstractRequestTest
 
         $client = $this->createClientFactory()->getRequestClient();
 
-        // $request['linguisticRequest'][0]['generalInfo']['requestedDeadline'] = new \DateTimeImmutable('2025-05-05');
-
         $values = [
             'response' => $client->createRequests(
                 Serializer::fromArray(
