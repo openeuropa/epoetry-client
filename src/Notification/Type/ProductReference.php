@@ -45,7 +45,7 @@ class ProductReference
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getParentRequest(): ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getParentRequest(): ?RequestReference
     {
         return $this->parentRequest;
     }
@@ -53,7 +53,7 @@ class ProductReference
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\Language
      */
-    public function getTargetLanguage(): ?\OpenEuropa\EPoetry\Notification\Type\Language
+    public function getTargetLanguage(): ?Language
     {
         return $this->targetLanguage;
     }

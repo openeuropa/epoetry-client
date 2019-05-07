@@ -53,7 +53,7 @@ final class ReceiveNotificationCommandTest extends AbstractCommandTest
 
         $output = preg_replace("/\r|\n/", '', $output);
         $expectationsOutput = preg_replace("/\r|\n/", '', $expectations['response']);
-        $this->assertEquals($output, $expectationsOutput);
+        static::assertEquals($output, $expectationsOutput);
 
         return;
         $notificationSerialized = Serializer::fromString(

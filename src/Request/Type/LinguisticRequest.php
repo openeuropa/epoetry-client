@@ -46,7 +46,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
      */
-    public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function getAuxiliaryDocuments(): ?AuxiliaryDocuments
     {
         return $this->auxiliaryDocuments;
     }
@@ -54,7 +54,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    public function getContacts(): ?\OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts(): ?Contacts
     {
         return $this->contacts;
     }
@@ -62,7 +62,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\RequestGeneralInfo
      */
-    public function getGeneralInfo(): ?\OpenEuropa\EPoetry\Request\Type\RequestGeneralInfo
+    public function getGeneralInfo(): ?RequestGeneralInfo
     {
         return $this->generalInfo;
     }
@@ -70,7 +70,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\OriginalDocument
      */
-    public function getOriginalDocument(): ?\OpenEuropa\EPoetry\Request\Type\OriginalDocument
+    public function getOriginalDocument(): ?OriginalDocument
     {
         return $this->originalDocument;
     }
@@ -78,7 +78,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\ProductRequests
      */
-    public function getProductRequests(): ?\OpenEuropa\EPoetry\Request\Type\ProductRequests
+    public function getProductRequests(): ?ProductRequests
     {
         return $this->productRequests;
     }
@@ -86,7 +86,7 @@ class LinguisticRequest implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\RequestReference
      */
-    public function getReference(): ?\OpenEuropa\EPoetry\Request\Type\RequestReference
+    public function getReference(): ?RequestReference
     {
         return $this->reference;
     }

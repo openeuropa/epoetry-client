@@ -21,7 +21,7 @@ class CorrectTranslation implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\CorrectionDocument
      */
-    public function getCorrection(): ?\OpenEuropa\EPoetry\Request\Type\CorrectionDocument
+    public function getCorrection(): ?CorrectionDocument
     {
         return $this->correction;
     }
@@ -29,7 +29,7 @@ class CorrectTranslation implements RequestInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\ProductReference
      */
-    public function getProduct(): ?\OpenEuropa\EPoetry\Request\Type\ProductReference
+    public function getProduct(): ?ProductReference
     {
         return $this->product;
     }

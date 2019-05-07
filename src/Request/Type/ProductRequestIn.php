@@ -37,7 +37,7 @@ class ProductRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\LanguageIn
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Request\Type\LanguageIn
+    public function getLanguage(): ?LanguageIn
     {
         return $this->language;
     }

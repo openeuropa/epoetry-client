@@ -91,7 +91,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
-    public function getProduct(): ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProduct(): ?ProductReference
     {
         return $this->product;
     }
@@ -115,7 +115,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\ProductRequests
      */
-    public function getProductRequests(): ?\OpenEuropa\EPoetry\Notification\Type\ProductRequests
+    public function getProductRequests(): ?ProductRequests
     {
         return $this->productRequests;
     }
@@ -123,7 +123,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequest(): ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequest(): ?RequestReference
     {
         return $this->request;
     }

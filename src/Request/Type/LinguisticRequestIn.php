@@ -34,7 +34,7 @@ class LinguisticRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
      */
-    public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function getAuxiliaryDocuments(): ?AuxiliaryDocuments
     {
         return $this->auxiliaryDocuments;
     }
@@ -42,7 +42,7 @@ class LinguisticRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    public function getContacts(): ?\OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts(): ?Contacts
     {
         return $this->contacts;
     }
@@ -50,7 +50,7 @@ class LinguisticRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\RequestGeneralInfoIn
      */
-    public function getGeneralInfo(): ?\OpenEuropa\EPoetry\Request\Type\RequestGeneralInfoIn
+    public function getGeneralInfo(): ?RequestGeneralInfoIn
     {
         return $this->generalInfo;
     }
@@ -58,7 +58,7 @@ class LinguisticRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
      */
-    public function getOriginalDocument(): ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function getOriginalDocument(): ?OriginalDocumentIn
     {
         return $this->originalDocument;
     }
@@ -66,7 +66,7 @@ class LinguisticRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\ProductRequests
      */
-    public function getProductRequests(): ?\OpenEuropa\EPoetry\Request\Type\ProductRequests
+    public function getProductRequests(): ?ProductRequests
     {
         return $this->productRequests;
     }

@@ -12,9 +12,7 @@
           Title: Test
           InternalReference: '1'
           InternalTechnicalId: '1'
-          RequestedDeadline:
-            time: '2020-02-02'
-            timezone: null
+          RequestedDeadline: '2020-02-02'
           Sensitive: false
           DocumentToBeAdopted: true
           DecideReference: decideReference

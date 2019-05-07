@@ -63,12 +63,12 @@ class MyType
 
 CODE;
 
-        $this->assertEquals($expected, $context->getClass()->generate());
+        static::assertEquals($expected, $context->getClass()->generate());
     }
 
     public function testItCanAssemble()
     {
         $context = $this->createContext();
-        $this->assertTrue($this->assembler->canAssemble($context));
+        static::assertTrue($this->assembler->canAssemble($context));
     }
 }

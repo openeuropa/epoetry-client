@@ -69,7 +69,7 @@ abstract class AbstractTest extends TestCase
     protected function assertExpressionLanguageExpressions(array $expressions, array $values)
     {
         foreach ($expressions as $expression) {
-            $this->assertTrue(
+            static::assertTrue(
                 $this->expressionLanguage->evaluate(
                     $expression,
                     $values

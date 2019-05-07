@@ -40,7 +40,7 @@ class ProductRequest
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\Language
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Notification\Type\Language
+    public function getLanguage(): ?Language
     {
         return $this->language;
     }
