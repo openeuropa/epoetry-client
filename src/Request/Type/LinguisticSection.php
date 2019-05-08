@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticSection
 {
     /**
-     * @var null|string
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Language
      */
     protected $language;
 
@@ -28,11 +28,11 @@ class LinguisticSection
     }
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      *
      * @return $this
      */
-    public function setLanguage(string $language): LinguisticSection
+    public function setLanguage($language): LinguisticSection
     {
         $this->language = $language;
 
