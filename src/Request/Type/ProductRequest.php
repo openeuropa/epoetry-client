@@ -22,7 +22,7 @@ class ProductRequest
     protected $internalProductReference;
 
     /**
-     * @var null|string
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Language
      */
     protected $language;
 
@@ -190,11 +190,11 @@ class ProductRequest
     }
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      *
      * @return $this
      */
-    public function setLanguage(string $language): ProductRequest
+    public function setLanguage($language): ProductRequest
     {
         $this->language = $language;
 
