@@ -78,8 +78,6 @@ final class RequestTest extends AbstractRequestTest
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      *
      * @dataProvider responseParsingCases
-     *
-     * @group teste
      */
     public function testResponseParsing(string $responseFile, array $request, $expectations): void
     {
