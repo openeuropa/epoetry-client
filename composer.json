@@ -34,6 +34,10 @@
         },
         "sort-packages": true
     },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true
+    },
     "autoload": {
         "psr-4": {
             "OpenEuropa\\EPoetry\\": "./src/"
