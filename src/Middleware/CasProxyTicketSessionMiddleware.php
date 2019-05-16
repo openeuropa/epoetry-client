@@ -19,24 +19,32 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareInterface
 {
-    protected const PGT_ATTRIBUTE = 'cas_pgt';
-
     /**
-     * The session.
+     * The object to be used to get a Proxy Ticket.
      *
-     * @var SessionInterface
+     * @var string
      */
-    protected $session;
+    protected $proxyTicketObject;
+    /**
+     * The method to be called to get a Proxy Ticket.
+     *
+     * @var string
+     */
+    protected $proxyTicketMethod;
 
     /**
      * CasProxyTicketSessionMiddleware constructor.
      *
-     * @param $session SessionInterface
-     *   The session
+     * @param object $proxyTicketObject
+     *   The object to be used to get a Proxy Ticket.
+     *
+     * @param string $proxyTicketMethod
+     *   The method to be called to get a Proxy Ticket.
      */
-    public function __construct(SessionInterface $session)
+    public function __construct($proxyTicketObject, string $proxyTicketMethod)
     {
-        $this->session = $session;
+        $this->proxyTicketObject = $proxyTicketObject;
+        $this->proxyTicketMethod = $proxyTicketMethod;
     }
 
     /**
@@ -44,9 +52,19 @@ class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareIn
      */
     public function beforeRequest(callable $handler, RequestInterface $request): Promise
     {
-        $proxyTicket = $this->getProxyTicket();
+        if (empty($this->proxyTicketObject)) {
+            throw new ClientException('[epoetry] no proxy ticket object.');
+        }
+        if (empty($this->proxyTicketMethod)) {
+            throw new ClientException('[epoetry] no proxy ticket method.');
+        }
+
+        $object = $this->proxyTicketObject;
+        $method = $this->proxyTicketMethod;
+        $proxyTicket = $object->$method();
+
         if (empty($proxyTicket)) {
-            throw new ClientException('[epoetry] session has no proxy ticket.');
+            throw new ClientException('[epoetry] no proxy ticket.');
         }
 
         // Add Proxy Ticket.
@@ -61,16 +79,5 @@ class CasProxyTicketSessionMiddleware extends Middleware implements MiddlewareIn
     public function getName(): string
     {
         return 'cas_proxy_ticket_session_middleware';
-    }
-
-    /**
-     * Get the Proxy Ticket.
-     *
-     * @return string
-     *   The Proxy Ticket
-     */
-    public function getProxyTicket()
-    {
-        return $this->session->get(self::PGT_ATTRIBUTE);
     }
 }
