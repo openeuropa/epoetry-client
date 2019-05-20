@@ -7,7 +7,7 @@
         "php": "^7.1",
         "ext-soap": "*",
         "php-http/httplug": "^2.0",
-        "phpro/soap-client": "^1.0",
+        "phpro/soap-client": "^1.0.2",
         "psr/http-message": "^1.0",
         "symfony/property-access": "^3 || ^4",
         "symfony/property-info": "^3.2 || ^4",
