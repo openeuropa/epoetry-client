@@ -60,7 +60,7 @@ An example can be seen in [tests/Requests/MiddlewareTest.php](tests/Request/Midd
 ```php
 $session = new Session(new MockArraySessionStorage());
 $session->set('cas_pgt', 'DESKTOP_PT-21-9fp9');
-$clientFactory->addMiddleware(new CasProxyTicketSessionMiddleware($session));
+$clientFactory->addMiddleware(new CasProxyTicketMiddleware($session));
 ```
 
 ## Logging
