@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Middleware\CasProxyTicketSessionMiddleware;
+use OpenEuropa\EPoetry\Middleware\CasProxyTicketMiddleware;
 use OpenEuropa\EPoetry\Tests\Request\AbstractMiddlewareTest;
 use OpenEuropa\EPoetry\Request\Type\CreateRequests;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -52,7 +52,7 @@ final class MiddlewareTest extends AbstractMiddlewareTest
             $session->set('cas_pgt', $ticket);
         }
 
-        $middleware = new CasProxyTicketSessionMiddleware($session);
+        $middleware = new CasProxyTicketMiddleware($session);
         $clientFactory->addMiddleware($middleware);
         $client = $clientFactory->getRequestClient();
 

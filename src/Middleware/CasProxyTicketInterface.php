@@ -10,6 +10,7 @@ interface CasProxyTicketInterface {
      * Get Proxy Ticket from CAS service.
      *
      * @return string
+     *   The Proxy Ticket.
      */
     public function getProxyTicket(): string;
 }
