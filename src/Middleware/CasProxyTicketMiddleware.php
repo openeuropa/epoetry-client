@@ -10,7 +10,6 @@ use Phpro\SoapClient\Middleware\Middleware;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Xml\SoapXml;
 use Psr\Http\Message\RequestInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * This middleware adds the CAS Proxy Ticket to the request object which, in turn,
@@ -70,7 +69,8 @@ class CasProxyTicketMiddleware extends Middleware implements MiddlewareInterface
      * @return RequestInterface
      *    The PSR7 request with manipulated XML.
      */
-    private function addProxyTicket(RequestInterface $request, string $proxyTicket) {
+    private function addProxyTicket(RequestInterface $request, string $proxyTicket)
+    {
         /** @var \Phpro\SoapClient\Xml\SoapXml $xml */
         $xml = SoapXml::fromStream($request->getBody());
 

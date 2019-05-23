@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Middleware;
 
-interface CasProxyTicketInterface {
-
+interface CasProxyTicketInterface
+{
     /**
      * Get Proxy Ticket from CAS service.
      *
