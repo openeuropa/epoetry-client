@@ -12,7 +12,7 @@ class DgtNotification
     protected $id;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $newDeadline;
 
@@ -65,9 +65,9 @@ class DgtNotification
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getNewDeadline(): ?\DateTime
+    public function getNewDeadline(): ?\DateTimeInterface
     {
         return $this->newDeadline;
     }
@@ -229,7 +229,7 @@ class DgtNotification
     }
 
     /**
-     * @param \DateTime $newDeadline
+     * @param \DateTimeInterface $newDeadline
      *
      * @return $this
      */
