@@ -4,7 +4,7 @@
     "description": "PHP client for the ePoetry service.",
     "license": "EUPL-1.2",
     "require": {
-        "php": "^7.1",
+        "php": "~7.1.0",
         "ext-soap": "*",
         "php-http/httplug": "^2.0",
         "phpro/soap-client": "^1.0.3",
