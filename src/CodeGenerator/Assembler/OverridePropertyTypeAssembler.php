@@ -13,6 +13,12 @@ use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Allow to override the type of specific properties.
+ *
+ * This assembler will take care of overriding:
+ *
+ * - The property type and its docblock
+ * - Methods receiving the property as parameter and their docblock
+ * - The property getter and its docblock
  */
 class OverridePropertyTypeAssembler implements AssemblerInterface
 {
