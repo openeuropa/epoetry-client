@@ -98,7 +98,7 @@ class ProductRequest
      *
      * @return $this
      */
-    public function setLanguage($language): ProductRequest
+    public function setLanguage(Language $language): ProductRequest
     {
         $this->language = $language;
 

@@ -131,7 +131,7 @@ class ProductReference
      *
      * @return $this
      */
-    public function setTargetLanguage($targetLanguage): ProductReference
+    public function setTargetLanguage(Language $targetLanguage): ProductReference
     {
         $this->targetLanguage = $targetLanguage;
 

@@ -32,7 +32,7 @@ class LinguisticSection
      *
      * @return $this
      */
-    public function setLanguage($language): LinguisticSection
+    public function setLanguage(Language $language): LinguisticSection
     {
         $this->language = $language;
 
