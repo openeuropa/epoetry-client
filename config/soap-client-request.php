@@ -19,8 +19,16 @@ $specialClassesAndProperties = [
     'CreateRequestsResponse' => ['return'],
     'CreateRequests' => ['linguisticRequest'],
 ];
+$overridePropertyTypes = [
+    'LinguisticSection' => [
+        'language' => 'Language',
+    ],
+    'ProductRequest' => [
+        'language' => 'Language',
+    ],
+];
 
-return OpenEuropa\ConfigFactory::create($specialClassesAndProperties)
+return OpenEuropa\ConfigFactory::create($specialClassesAndProperties, $overridePropertyTypes)
     ->setEngine(ExtSoapEngineFactory::fromOptions(
         ExtSoapOptions::defaults('resources/dgtServiceWSDL.xml', [])
             ->disableWsdlCache()

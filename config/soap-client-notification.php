@@ -11,8 +11,16 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 $specialClassesAndProperties = [
     'ProductRequests' => ['productRequest'],
 ];
+$overridePropertyTypes = [
+    'ProductReference' => [
+        'targetLanguage' => 'Language',
+    ],
+    'ProductRequest' => [
+        'language' => 'Language',
+    ],
+];
 
-return OpenEuropa\ConfigFactory::create($specialClassesAndProperties)
+return OpenEuropa\ConfigFactory::create($specialClassesAndProperties, $overridePropertyTypes)
     ->setEngine(ExtSoapEngineFactory::fromOptions(
         ExtSoapOptions::defaults('resources/NotificationServiceWSDL.xml', [])
             ->disableWsdlCache()
