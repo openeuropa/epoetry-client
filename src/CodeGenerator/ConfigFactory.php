@@ -102,10 +102,10 @@ class ConfigFactory
             ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
         // Add adders only on some classes only.
             ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
-            // Override property and method types.
+        // Override property and method types.
             ->addRule(new Rules\AssembleRule(
-                new OpenEuropa\Assembler\OverrideTypeAssembler(
-                    (new OpenEuropa\Assembler\OverrideTypeAssemblerOptions())
+                new OpenEuropa\Assembler\OverridePropertyTypeAssembler(
+                    (new OpenEuropa\Assembler\OverridePropertyTypeAssemblerOptions())
                         ->setPropertyTypeMapping($overridePropertyTypes)
                 )
             ))

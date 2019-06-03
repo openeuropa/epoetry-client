@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
 /**
- * Custom assemblers options used by the custom OverrideTypeAssembler.
+ * Options for OverridePropertyTypeAssembler.
  */
-class OverrideTypeAssemblerOptions
+class OverridePropertyTypeAssemblerOptions
 {
     /**
      * @var array
@@ -39,9 +39,9 @@ class OverrideTypeAssemblerOptions
     /**
      * @param array $propertyMapping
      *
-     * @return OverrideTypeAssemblerOptions
+     * @return OverridePropertyTypeAssemblerOptions
      */
-    public function setPropertyTypeMapping(array $propertyMapping): OverrideTypeAssemblerOptions
+    public function setPropertyTypeMapping(array $propertyMapping): OverridePropertyTypeAssemblerOptions
     {
         $this->propertyMapping = $propertyMapping;
 

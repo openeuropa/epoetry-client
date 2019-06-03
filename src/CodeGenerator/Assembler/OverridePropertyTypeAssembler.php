@@ -14,19 +14,19 @@ use Zend\Code\Generator\PropertyGenerator;
 /**
  * Allow to override the type of specific properties.
  */
-class OverrideTypeAssembler implements AssemblerInterface
+class OverridePropertyTypeAssembler implements AssemblerInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\OverrideTypeAssemblerOptions
+     * @var \OpenEuropa\EPoetry\CodeGenerator\Assembler\OverridePropertyTypeAssemblerOptions
      */
     protected $options;
 
     /**
      * OverrideTypePropertyAssembler constructor.
      *
-     * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\OverrideTypeAssemblerOptions $options
+     * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\OverridePropertyTypeAssemblerOptions $options
      */
-    public function __construct(OverrideTypeAssemblerOptions $options)
+    public function __construct(OverridePropertyTypeAssemblerOptions $options)
     {
         $this->options = $options;
     }
