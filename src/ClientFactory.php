@@ -14,8 +14,11 @@ use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientInterface;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapDriver;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
+use Phpro\SoapClient\Soap\Engine\DriverInterface;
+use Phpro\SoapClient\Soap\Engine\Engine;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -139,6 +142,19 @@ class ClientFactory
     }
 
     /**
+     * Build the driver for engine.
+     *
+     * @return DriverInterface
+     */
+    public function buildDriver()
+    {
+        $options = ExtSoapOptions::defaults($this->buildWsdl(), [])
+            ->withClassMap($this->mapCollection);
+
+        return ExtSoapDriver::createFromOptions($options);
+    }
+
+    /**
      * Get a notification client instance.
      *
      * @return NotificationClient
@@ -215,22 +231,30 @@ class ClientFactory
 
     /**
      * Set notification data for client.
+     *
+     * @return $this
      */
-    public function setNotificationData(): void
+    public function setNotificationData()
     {
         $this->wsdlFile = 'NotificationServiceWSDL.xml';
         $this->xsdFile = 'NotificationServiceXSD.xml';
         $this->mapCollection = NotificationClassmap::getCollection();
+
+        return $this;
     }
 
     /**
      * Set request data for client.
+     *
+     * @return $this
      */
-    public function setRequestData(): void
+    public function setRequestData()
     {
         $this->wsdlFile = 'dgtServiceWSDL.xml';
         $this->xsdFile = 'dgtServiceXSD.xml';
         $this->mapCollection = RequestClassmap::getCollection();
+
+        return $this;
     }
 
     /**
@@ -241,14 +265,8 @@ class ClientFactory
      *
      * @param string $clientName
      *    Client class name.
-     * @param string $wsdlFile
-     *    Location of the client's WSDL file.
-     * @param string $xsdFile
-     *    Location of the client's XSD file.
-     * @param \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection $classMap
-     *    SOAP class map collection.
      *
-     * @return \Phpro\SoapClient\ClientInterface
+     * @return ClientInterface
      *    Client instance.
      */
     protected function buildClient(string $clientName): ClientInterface
