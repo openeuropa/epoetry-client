@@ -63,6 +63,13 @@ class ClientFactory
     protected $logLevel = 'none';
 
     /**
+     * SOAP class map collection.
+     *
+     * @var ClassMapCollection
+     */
+    protected $mapCollection;
+
+    /**
      * List of Phpro\SoapClient middlewares.
      *
      * @var MiddlewareInterface[]
@@ -77,6 +84,20 @@ class ClientFactory
      * @var array
      */
     protected $soapOptions = [];
+
+    /**
+     * Location of the client's WSDL file.
+     *
+     * @var string
+     */
+    protected $wsdlFile;
+
+    /**
+     * Location of the client's XSD file.
+     *
+     * @var string
+     */
+    protected $xsdFile;
 
     /**
      * ClientFactory constructor.
@@ -120,31 +141,25 @@ class ClientFactory
     /**
      * Get a notification client instance.
      *
-     * @return \OpenEuropa\EPoetry\Notification\NotificationClient
+     * @return NotificationClient
      */
     public function getNotificationClient(): ClientInterface
     {
-        return $this->buildClient(
-            NotificationClient::class,
-            'NotificationServiceWSDL.xml',
-            'NotificationServiceXSD.xml',
-            NotificationClassmap::getCollection()
-        );
+        $this->setNotificationData();
+
+        return $this->buildClient(NotificationClient::class);
     }
 
     /**
      * Get a request client instance.
      *
-     * @return \OpenEuropa\EPoetry\Request\RequestClient
+     * @return RequestClient
      */
     public function getRequestClient(): ClientInterface
     {
-        return $this->buildClient(
-            RequestClient::class,
-            'dgtServiceWSDL.xml',
-            'dgtServiceXSD.xml',
-            RequestClassmap::getCollection()
-        );
+        $this->setRequestData();
+
+        return $this->buildClient(RequestClient::class);
     }
 
     /**
@@ -199,6 +214,26 @@ class ClientFactory
     }
 
     /**
+     * Set notification data for client.
+     */
+    public function setNotificationData(): void
+    {
+        $this->wsdlFile = 'NotificationServiceWSDL.xml';
+        $this->xsdFile = 'NotificationServiceXSD.xml';
+        $this->mapCollection = NotificationClassmap::getCollection();
+    }
+
+    /**
+     * Set request data for client.
+     */
+    public function setRequestData(): void
+    {
+        $this->wsdlFile = 'dgtServiceWSDL.xml';
+        $this->xsdFile = 'dgtServiceXSD.xml';
+        $this->mapCollection = RequestClassmap::getCollection();
+    }
+
+    /**
      * Build and return an ePoetry client instance.
      *
      * Make sure you set/add logger, event dispatcher and middlewares before
@@ -216,25 +251,11 @@ class ClientFactory
      * @return \Phpro\SoapClient\ClientInterface
      *    Client instance.
      */
-    protected function buildClient(string $clientName, string $wsdlFile, string $xsdFile, ClassMapCollection $classMap): ClientInterface
+    protected function buildClient(string $clientName): ClientInterface
     {
-        $wsdl = $this->buildWsdl($this->endpoint, $wsdlFile, $xsdFile);
-
-        $handler = HttPlugHandle::createForClient($this->httpClient);
-        if ($this->middlewares) {
-            foreach ($this->middlewares as $middleware) {
-                $handler->addMiddleware($middleware);
-            }
-        }
-
-        $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
-            ExtSoapOptions::defaults($wsdl, [])
-                ->withClassMap($classMap),
-            $handler
-        );
+        $engine = $this->buildEngine();
 
         $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
-
         if ($this->logger) {
             $logger = new LoggerDecorator($this->logger, $this->logLevel);
             $logPlugin = new LoggerSubscriber($logger);
@@ -245,24 +266,40 @@ class ClientFactory
     }
 
     /**
-     * Build the WSDL with file on resources.
+     * Build the engine for client.
      *
-     * @param string $endpoint
-     *    Endpoint url
-     * @param string $wsdlFile
-     *    Name of the WSDL file.
-     * @param string $xsdFile
-     *    Name of the XSD file.
+     * @return Engine
+     */
+    protected function buildEngine()
+    {
+        $wsdl = $this->buildWsdl();
+
+        $handler = HttPlugHandle::createForClient($this->httpClient);
+        if ($this->middlewares) {
+            foreach ($this->middlewares as $middleware) {
+                $handler->addMiddleware($middleware);
+            }
+        }
+
+        return ExtSoapEngineFactory::fromOptionsWithHandler(
+            ExtSoapOptions::defaults($wsdl, [])
+                ->withClassMap($this->mapCollection),
+            $handler
+        );
+    }
+
+    /**
+     * Build the WSDL with file on resources.
      *
      * @return string
      */
-    protected function buildWsdl(string $endpoint, string $wsdlFile, string $xsdFile): string
+    protected function buildWsdl(): string
     {
-        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $wsdlFile);
-        $wsdl = str_replace('%ENDPOINT%', $endpoint, $wsdl);
+        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
+        $wsdl = str_replace('%ENDPOINT%', $this->endpoint, $wsdl);
 
-        $xsd = file_get_contents(__DIR__ . '/../resources/' . $xsdFile);
-        $wsdl = str_replace($xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
+        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
+        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
 
         return 'data://text/plain;base64,' . base64_encode($wsdl);
     }

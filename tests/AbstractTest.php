@@ -82,7 +82,7 @@ abstract class AbstractTest extends TestCase
     /**
      * Setup ePoetry client factory using HTTP mock client.
      *
-     * @return \OpenEuropa\EPoetry\ClientFactory
+     * @return ClientFactory
      */
     protected function createClientFactory(): ClientFactory
     {
