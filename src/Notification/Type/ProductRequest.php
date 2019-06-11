@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class ProductRequest
 {
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $acceptedDeadline;
 
@@ -22,9 +22,9 @@ class ProductRequest
     protected $language;
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getAcceptedDeadline(): ?\DateTime
+    public function getAcceptedDeadline(): ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -40,7 +40,7 @@ class ProductRequest
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\Language
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Notification\Type\Language
+    public function getLanguage(): ?Language
     {
         return $this->language;
     }
@@ -70,7 +70,7 @@ class ProductRequest
     }
 
     /**
-     * @param \DateTime $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      *
      * @return $this
      */
@@ -98,7 +98,7 @@ class ProductRequest
      *
      * @return $this
      */
-    public function setLanguage($language): ProductRequest
+    public function setLanguage(Language $language): ProductRequest
     {
         $this->language = $language;
 

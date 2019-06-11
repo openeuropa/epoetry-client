@@ -7,6 +7,8 @@ use OpenEuropa\EPoetry\Request\Type\DgtDocument;
 use OpenEuropa\EPoetry\Request\Type\DgtDocumentIn;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 $specialClassesAndProperties = [
     'ReceiveNotificationsResponse' => ['return'],
@@ -17,9 +19,20 @@ $specialClassesAndProperties = [
     'CreateRequestsResponse' => ['return'],
     'CreateRequests' => ['linguisticRequest'],
 ];
+$overridePropertyTypes = [
+    'LinguisticSection' => [
+        'language' => 'Language',
+    ],
+    'ProductRequest' => [
+        'language' => 'Language',
+    ],
+];
 
-return OpenEuropa\ConfigFactory::create($specialClassesAndProperties)
-    ->setWsdl('resources/dgtServiceWSDL.xml')
+return OpenEuropa\ConfigFactory::create($specialClassesAndProperties, $overridePropertyTypes)
+    ->setEngine(ExtSoapEngineFactory::fromOptions(
+        ExtSoapOptions::defaults('resources/dgtServiceWSDL.xml', [])
+            ->disableWsdlCache()
+    ))
     ->setTypeDestination('src/Request/Type')
     ->setTypeNamespace('OpenEuropa\EPoetry\Request\Type')
     ->setClientDestination('src')

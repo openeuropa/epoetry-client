@@ -5,13 +5,26 @@ declare(strict_types = 1);
 use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 $specialClassesAndProperties = [
     'ProductRequests' => ['productRequest'],
 ];
+$overridePropertyTypes = [
+    'ProductReference' => [
+        'targetLanguage' => 'Language',
+    ],
+    'ProductRequest' => [
+        'language' => 'Language',
+    ],
+];
 
-return OpenEuropa\ConfigFactory::create($specialClassesAndProperties)
-    ->setWsdl('resources/NotificationServiceWSDL.xml')
+return OpenEuropa\ConfigFactory::create($specialClassesAndProperties, $overridePropertyTypes)
+    ->setEngine(ExtSoapEngineFactory::fromOptions(
+        ExtSoapOptions::defaults('resources/NotificationServiceWSDL.xml', [])
+            ->disableWsdlCache()
+    ))
     ->setTypeDestination('src/Notification/Type')
     ->setTypeNamespace('OpenEuropa\EPoetry\Notification\Type')
     ->setClientDestination('src/Notification/')

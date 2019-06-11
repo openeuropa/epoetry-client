@@ -17,7 +17,7 @@ class ProductRequestIn
     protected $language;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $requestedDeadline;
 
@@ -37,15 +37,15 @@ class ProductRequestIn
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\LanguageIn
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Request\Type\LanguageIn
+    public function getLanguage(): ?LanguageIn
     {
         return $this->language;
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getRequestedDeadline(): ?\DateTime
+    public function getRequestedDeadline(): ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -115,7 +115,7 @@ class ProductRequestIn
     }
 
     /**
-     * @param \DateTime $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      *
      * @return $this
      */

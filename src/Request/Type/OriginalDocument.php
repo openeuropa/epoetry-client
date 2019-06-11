@@ -24,7 +24,7 @@ class OriginalDocument extends DgtDocument
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections(): ?LinguisticSections
     {
         return $this->linguisticSections;
     }

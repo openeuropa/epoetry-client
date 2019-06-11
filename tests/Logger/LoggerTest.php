@@ -43,18 +43,18 @@ final class LoggerTest extends AbstractTest
         }
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
-        $this->assertCount(1, $infoLogs);
+        static::assertCount(1, $infoLogs);
         $infoLog = reset($infoLogs);
-        $this->assertEquals('[ePoetry] Request: call {method} with params {request}', $infoLog['message']);
-        $this->assertEquals('createRequests', $infoLog['context']['method']);
-        $this->assertInstanceOf(CreateRequests::class, $infoLog['context']['request']);
+        static::assertEquals('[ePoetry] Request: call {method} with params {request}', $infoLog['message']);
+        static::assertEquals('createRequests', $infoLog['context']['method']);
+        static::assertInstanceOf(CreateRequests::class, $infoLog['context']['request']);
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
-        $this->assertCount(1, $errorLogs);
+        static::assertCount(1, $errorLogs);
         $errorLog = reset($errorLogs);
-        $this->assertEquals('[ePoetry] Fault {message} for request {method} with params {request}', $errorLog['message']);
-        $this->assertEquals('Request was not properly formatted.', $errorLog['context']['message']);
-        $this->assertEquals('createRequests', $errorLog['context']['method']);
-        $this->assertInstanceOf(CreateRequests::class, $errorLog['context']['request']);
+        static::assertEquals('[ePoetry] Fault {message} for request {method} with params {request}', $errorLog['message']);
+        static::assertEquals('Request was not properly formatted.', $errorLog['context']['message']);
+        static::assertEquals('createRequests', $errorLog['context']['method']);
+        static::assertInstanceOf(CreateRequests::class, $errorLog['context']['request']);
     }
 
     /**
@@ -82,13 +82,13 @@ final class LoggerTest extends AbstractTest
         }
 
         $infoLogs = $logger->getLogs()[LogLevel::INFO];
-        $this->assertCount(1, $infoLogs);
+        static::assertCount(1, $infoLogs);
         $infoLog = reset($infoLogs);
-        $this->assertEquals('[ePoetry] Request: call {method} with params {request}', $infoLog['message']);
-        $this->assertEquals('createRequests', $infoLog['context']['method']);
-        $this->assertInstanceOf(CreateRequests::class, $infoLog['context']['request']);
+        static::assertEquals('[ePoetry] Request: call {method} with params {request}', $infoLog['message']);
+        static::assertEquals('createRequests', $infoLog['context']['method']);
+        static::assertInstanceOf(CreateRequests::class, $infoLog['context']['request']);
         $errorLogs = $logger->getLogs()[LogLevel::ERROR];
-        $this->assertCount(0, $errorLogs);
+        static::assertCount(0, $errorLogs);
     }
 
     /**

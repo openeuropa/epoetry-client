@@ -22,12 +22,12 @@ abstract class AbstractAssemblerTest extends TestCase
     public function testItCanAssemble()
     {
         $context = $this->createContext();
-        $this->assertTrue($this->assembler->canAssemble($context));
+        static::assertTrue($this->assembler->canAssemble($context));
     }
 
     public function testItExtendsAbstractAssembler()
     {
-        $this->assertInstanceOf(AbstractAssembler::class, $this->assembler);
+        static::assertInstanceOf(AbstractAssembler::class, $this->assembler);
     }
 
     abstract protected function assemble(ContextInterface $context);

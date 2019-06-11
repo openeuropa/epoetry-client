@@ -16,7 +16,7 @@ class FindLinguisticRequestResponse implements ResultInterface
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\LinguisticRequest
      */
-    public function getReturn(): ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequest
+    public function getReturn(): ?LinguisticRequest
     {
         return $this->return;
     }

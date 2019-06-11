@@ -12,7 +12,7 @@ class DgtNotification
     protected $id;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $newDeadline;
 
@@ -65,9 +65,9 @@ class DgtNotification
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getNewDeadline(): ?\DateTime
+    public function getNewDeadline(): ?\DateTimeInterface
     {
         return $this->newDeadline;
     }
@@ -91,7 +91,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
-    public function getProduct(): ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProduct(): ?ProductReference
     {
         return $this->product;
     }
@@ -115,7 +115,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\ProductRequests
      */
-    public function getProductRequests(): ?\OpenEuropa\EPoetry\Notification\Type\ProductRequests
+    public function getProductRequests(): ?ProductRequests
     {
         return $this->productRequests;
     }
@@ -123,7 +123,7 @@ class DgtNotification
     /**
      * @return null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequest(): ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequest(): ?RequestReference
     {
         return $this->request;
     }
@@ -229,7 +229,7 @@ class DgtNotification
     }
 
     /**
-     * @param \DateTime $newDeadline
+     * @param \DateTimeInterface $newDeadline
      *
      * @return $this
      */

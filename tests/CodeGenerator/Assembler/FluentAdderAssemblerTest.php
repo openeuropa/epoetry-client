@@ -56,7 +56,7 @@ class MyType
 
 CODE;
 
-        $this->assertEquals($expected, $context->getClass()->generate());
+        static::assertEquals($expected, $context->getClass()->generate());
     }
 
     /**

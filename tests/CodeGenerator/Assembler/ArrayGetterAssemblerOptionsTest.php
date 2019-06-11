@@ -40,21 +40,21 @@ final class ArrayGetterAssemblerOptionsTest extends TestCase
 
     public function testItCanUseABlacklist()
     {
-        $this->assertTrue($this->options->isBlacklisted('bar'));
-        $this->assertTrue($this->options->isBlacklisted('bar', 'prop2'));
+        static::assertTrue($this->options->isBlacklisted('bar'));
+        static::assertTrue($this->options->isBlacklisted('bar', 'prop2'));
 
-        $this->assertFalse($this->options->isBlacklisted('foo'));
-        $this->assertFalse($this->options->isBlacklisted('foo', 'prop1'));
-        $this->assertFalse($this->options->isBlacklisted('bar', 'prop1'));
+        static::assertFalse($this->options->isBlacklisted('foo'));
+        static::assertFalse($this->options->isBlacklisted('foo', 'prop1'));
+        static::assertFalse($this->options->isBlacklisted('bar', 'prop1'));
     }
 
     public function testItCanUseWhitelist()
     {
-        $this->assertTrue($this->options->isWhitelisted('foo'));
-        $this->assertTrue($this->options->isWhitelisted('foo', 'prop1'));
+        static::assertTrue($this->options->isWhitelisted('foo'));
+        static::assertTrue($this->options->isWhitelisted('foo', 'prop1'));
 
-        $this->assertFalse($this->options->isWhitelisted('bar'));
-        $this->assertFalse($this->options->isWhitelisted('bar', 'prop2'));
-        $this->assertFalse($this->options->isWhitelisted('foo', 'prop2'));
+        static::assertFalse($this->options->isWhitelisted('bar'));
+        static::assertFalse($this->options->isWhitelisted('bar', 'prop2'));
+        static::assertFalse($this->options->isWhitelisted('foo', 'prop2'));
     }
 }

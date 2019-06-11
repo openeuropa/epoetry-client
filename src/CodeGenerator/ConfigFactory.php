@@ -21,7 +21,7 @@ class ConfigFactory
      * @return \Phpro\SoapClient\CodeGenerator\Config\Config
      *   Configuration object instance.
      */
-    public static function create(array $specialClassesAndProperties): Config
+    public static function create(array $specialClassesAndProperties, array $overridePropertyTypes): Config
     {
         // Set all property visibility to "protected".
         // We have to do this as the SOAP handler will erroneously create duplicate
@@ -92,8 +92,6 @@ class ConfigFactory
             ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
         // Update properties and set them as 'nullable'
             ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
-        // Set the default setter assembler and generate all setters methods.
-            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
         // Update properties and update only some of them.
             ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
         // Update setters and update only some of them.
@@ -102,10 +100,19 @@ class ConfigFactory
             ->addRule(new Rules\AssembleRule($defaultGetterAssembler))
         // Update getters and update only some of them.
             ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
-        // Update getters and set them as 'nullable'
-            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add adders only on some classes only.
             ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
+        // Override property and method types.
+            ->addRule(new Rules\AssembleRule(
+                new OpenEuropa\Assembler\OverridePropertyTypeAssembler(
+                    (new OpenEuropa\Assembler\OverridePropertyTypeAssemblerOptions())
+                        ->setPropertyTypeMapping($overridePropertyTypes)
+                )
+            ))
+        // Set the default setter assembler and generate all setters methods.
+            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
+        // Update getters and set them as 'nullable'
+            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler));
     }

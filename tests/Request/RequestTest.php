@@ -71,7 +71,7 @@ final class RequestTest extends AbstractRequestTest
     /**
      * Test parsing a SOAP response.
      *
-     * @param string $response
+     * @param string $responseFile
      * @param array $request
      * @param mixed $expectations
      *
@@ -79,9 +79,9 @@ final class RequestTest extends AbstractRequestTest
      *
      * @dataProvider responseParsingCases
      */
-    public function testResponseParsing(string $response, array $request, $expectations): void
+    public function testResponseParsing(string $responseFile, array $request, $expectations): void
     {
-        $response = new Response(200, [], $this->getFixtureContent($response));
+        $response = new Response(200, [], $this->getFixtureContent($responseFile));
         $this->httpClient->addResponse($response);
 
         $client = $this->createClientFactory()->getRequestClient();

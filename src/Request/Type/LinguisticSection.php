@@ -14,7 +14,7 @@ class LinguisticSection
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\Language
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage(): ?Language
     {
         return $this->language;
     }
@@ -32,7 +32,7 @@ class LinguisticSection
      *
      * @return $this
      */
-    public function setLanguage($language): LinguisticSection
+    public function setLanguage(Language $language): LinguisticSection
     {
         $this->language = $language;
 

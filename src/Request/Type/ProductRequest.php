@@ -7,7 +7,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ProductRequest
 {
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $acceptedDeadline;
 
@@ -27,7 +27,7 @@ class ProductRequest
     protected $language;
 
     /**
-     * @var null|\DateTime
+     * @var null|\DateTimeInterface
      */
     protected $requestedDeadline;
 
@@ -42,9 +42,9 @@ class ProductRequest
     protected $trackChanges;
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getAcceptedDeadline(): ?\DateTime
+    public function getAcceptedDeadline(): ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -68,15 +68,15 @@ class ProductRequest
     /**
      * @return null|\OpenEuropa\EPoetry\Request\Type\Language
      */
-    public function getLanguage(): ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage(): ?Language
     {
         return $this->language;
     }
 
     /**
-     * @return null|\DateTime
+     * @return null|\DateTimeInterface
      */
-    public function getRequestedDeadline(): ?\DateTime
+    public function getRequestedDeadline(): ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -154,7 +154,7 @@ class ProductRequest
     }
 
     /**
-     * @param \DateTime $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      *
      * @return $this
      */
@@ -194,7 +194,7 @@ class ProductRequest
      *
      * @return $this
      */
-    public function setLanguage($language): ProductRequest
+    public function setLanguage(Language $language): ProductRequest
     {
         $this->language = $language;
 
@@ -202,7 +202,7 @@ class ProductRequest
     }
 
     /**
-     * @param \DateTime $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      *
      * @return $this
      */

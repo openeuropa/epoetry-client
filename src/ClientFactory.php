@@ -11,11 +11,11 @@ use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
-use Phpro\SoapClient\ClientBuilder;
-use Phpro\SoapClient\ClientFactory as SoapClientFactory;
 use Phpro\SoapClient\ClientInterface;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -219,13 +219,21 @@ class ClientFactory
     protected function buildClient(string $clientName, string $wsdlFile, string $xsdFile, ClassMapCollection $classMap): ClientInterface
     {
         $wsdl = $this->buildWsdl($this->endpoint, $wsdlFile, $xsdFile);
-        $soapClientFactory = new SoapClientFactory($clientName);
 
-        $clientBuilder = new ClientBuilder($soapClientFactory, $wsdl, $this->soapOptions);
-        $clientBuilder->withClassMaps($classMap);
+        $handler = HttPlugHandle::createForClient($this->httpClient);
+        if ($this->middlewares) {
+            foreach ($this->middlewares as $middleware) {
+                $handler->addMiddleware($middleware);
+            }
+        }
+
+        $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
+            ExtSoapOptions::defaults($wsdl, [])
+                ->withClassMap($classMap),
+            $handler
+        );
 
         $this->eventDispatcher = $this->eventDispatcher ?? new EventDispatcher();
-        $clientBuilder->withEventDispatcher($this->eventDispatcher);
 
         if ($this->logger) {
             $logger = new LoggerDecorator($this->logger, $this->logLevel);
@@ -233,16 +241,7 @@ class ClientFactory
             $this->eventDispatcher->addSubscriber($logPlugin);
         }
 
-        $handler = HttPlugHandle::createForClient($this->httpClient);
-        $clientBuilder->withHandler($handler);
-
-        if ($this->middlewares) {
-            foreach ($this->middlewares as $middleware) {
-                $handler->addMiddleware($middleware);
-            }
-        }
-
-        return $clientBuilder->build();
+        return new $clientName($engine, $this->eventDispatcher);
     }
 
     /**
@@ -250,6 +249,10 @@ class ClientFactory
      *
      * @param string $endpoint
      *    Endpoint url
+     * @param string $wsdlFile
+     *    Name of the WSDL file.
+     * @param string $xsdFile
+     *    Name of the XSD file.
      *
      * @return string
      */
