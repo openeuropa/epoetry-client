@@ -25,6 +25,9 @@ final class NotificationServerHandlerTest extends AbstractTest
         static::assertContains('<ns1:receiveNotificationResponse/>', $response);
 
         $debug = $server->getHandler()->debugLastServerCall();
-        static::assertInstanceOf(ReceiveNotification::class, $debug['receiveNotification'][0]);
+        $receiveNotification = $debug['receiveNotification'][0];
+        static::assertInstanceOf(ReceiveNotification::class, $receiveNotification);
+
+        static::assertEquals('ONG', $receiveNotification->getNotification()->getNewStatus());
     }
 }
