@@ -5,8 +5,8 @@
     out-format: 'xml'
     endpoint: 'http://localhost'
     file: './tests/fixtures/Notification/notification-status-change.xml'
-    response: './tests/fixtures/Command/create-requests-response.xml'
+    response: './tests/fixtures/Command/receive-notification-response.xml'
   expectations:
     response: |
       <?xml version="1.0"?>
-      <response><result/></response>
+      <response/>

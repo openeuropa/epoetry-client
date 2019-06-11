@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry;
 use Http\Client\HttpClient;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationClient;
+use OpenEuropa\EPoetry\Notification\NotificationServer;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
@@ -17,6 +18,7 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapDriver;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
+use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptionsResolverFactory;
 use Phpro\SoapClient\Soap\Engine\DriverInterface;
 use Phpro\SoapClient\Soap\Engine\Engine;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
@@ -155,6 +157,22 @@ class ClientFactory
     }
 
     /**
+     * Build the WSDL with file on resources.
+     *
+     * @return string
+     */
+    public function buildWsdl(): string
+    {
+        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
+        $wsdl = str_replace('%ENDPOINT%', $this->endpoint, $wsdl);
+
+        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
+        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
+
+        return 'data://text/plain;base64,' . base64_encode($wsdl);
+    }
+
+    /**
      * Get a notification client instance.
      *
      * @return NotificationClient
@@ -176,6 +194,19 @@ class ClientFactory
         $this->setRequestData();
 
         return $this->buildClient(RequestClient::class);
+    }
+
+    /**
+     * @return NotificationServer
+     */
+    public function getSoapServer(): NotificationServer
+    {
+        $this->setNotificationData();
+        $options = ExtSoapOptionsResolverFactory::create()->resolve([
+            'classmap' => NotificationClassmap::getCollection(),
+        ]);
+
+        return new NotificationServer($this->buildWsdl(), $options);
     }
 
     /**
@@ -304,21 +335,5 @@ class ClientFactory
                 ->withClassMap($this->mapCollection),
             $handler
         );
-    }
-
-    /**
-     * Build the WSDL with file on resources.
-     *
-     * @return string
-     */
-    protected function buildWsdl(): string
-    {
-        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
-        $wsdl = str_replace('%ENDPOINT%', $this->endpoint, $wsdl);
-
-        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
-        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
-
-        return 'data://text/plain;base64,' . base64_encode($wsdl);
     }
 }
