@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry;
 
-use Http\Client\HttpClient;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationClient;
 use OpenEuropa\EPoetry\Notification\NotificationServer;
@@ -14,7 +13,6 @@ use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientInterface;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
-use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapDriver;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
@@ -31,98 +29,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  *
  * It can be used to get both Request and Notification clients.
  */
-class ClientFactory
+class ClientFactory extends AbstractFactory
 {
-    /**
-     * Service endpoint.
-     *
-     * @var string
-     */
-    protected $endpoint;
-    /**
-     * Event dispatcher instance.
-     *
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    /**
-     * HTTP Client.
-     *
-     * @var HttpClient
-     */
-    protected $httpClient;
-
-    /**
-     * PSR3 logger instance.
-     *
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * Level of severity of the events to be logged.
-     *
-     * @var string
-     */
-    protected $logLevel = 'none';
-
-    /**
-     * SOAP class map collection.
-     *
-     * @var ClassMapCollection
-     */
-    protected $mapCollection;
-
-    /**
-     * List of Phpro\SoapClient middlewares.
-     *
-     * @var MiddlewareInterface[]
-     */
-    protected $middlewares = [];
-
-    /**
-     * PHP SOAP client options.
-     *
-     * @see http://php.net/manual/en/soapclient.soapclient.php
-     *
-     * @var array
-     */
-    protected $soapOptions = [];
-
-    /**
-     * Location of the client's WSDL file.
-     *
-     * @var string
-     */
-    protected $wsdlFile;
-
-    /**
-     * Location of the client's XSD file.
-     *
-     * @var string
-     */
-    protected $xsdFile;
-
-    /**
-     * ClientFactory constructor.
-     *
-     * @param string $endpoint
-     *   The endpoint to be used in WSDL.
-     * @param HttpClient $httpClient
-     *   An HTTP Client to be used by service.
-     * @param array $soapOptions
-     */
-    public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
-    {
-        $this->endpoint = $endpoint;
-        $this->httpClient = $httpClient;
-        $this->soapOptions = [
-            'stream_context' => stream_context_create(),
-            'cache_wsdl' => WSDL_CACHE_NONE,
-        ] + $soapOptions;
-    }
-
     /**
      * Add a middleware.
      *
@@ -256,20 +164,6 @@ class ClientFactory
     public function setLogLevel(string $logLevel): ClientFactory
     {
         $this->logLevel = $logLevel;
-
-        return $this;
-    }
-
-    /**
-     * Set notification data for client.
-     *
-     * @return $this
-     */
-    public function setNotificationData()
-    {
-        $this->wsdlFile = 'NotificationServiceWSDL.xml';
-        $this->xsdFile = 'NotificationServiceXSD.xml';
-        $this->mapCollection = NotificationClassmap::getCollection();
 
         return $this;
     }

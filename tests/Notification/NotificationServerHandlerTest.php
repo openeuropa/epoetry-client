@@ -19,7 +19,7 @@ final class NotificationServerHandlerTest extends AbstractTest
     {
         $client = $this->createClientFactory();
         $server = $client->getSoapServer();
-        $request = $this->getFixtureContent(self::FIXTURE_DIR . '/Notification/notification-status-change-full.xml');
+        $request = $this->getFixtureContent(self::FIXTURE_DIR . '/Notification/notification-status-change.xml');
 
         $response = $server->handle($request);
         static::assertContains('<ns1:receiveNotificationResponse/>', $response);

@@ -6,6 +6,7 @@ namespace OpenEuropa\EPoetry\Tests;
 
 use Http\Mock\Client;
 use OpenEuropa\EPoetry\ClientFactory;
+use OpenEuropa\EPoetry\ServerFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
@@ -16,7 +17,7 @@ abstract class AbstractTest extends TestCase
     const FIXTURE_DIR = __DIR__ . '/fixtures';
 
     /**
-     * @var \Http\Mock\Client
+     * @var Client
      */
     public $httpClient;
 
@@ -87,5 +88,15 @@ abstract class AbstractTest extends TestCase
     protected function createClientFactory(): ClientFactory
     {
         return new ClientFactory('http://localhost', $this->httpClient);
+    }
+
+    /**
+     * Setup ePoetry server factory.
+     *
+     * @return ServerFactory
+     */
+    protected function createServerFactory(): ServerFactory
+    {
+        return new ServerFactory('http://localhost', $this->httpClient);
     }
 }
