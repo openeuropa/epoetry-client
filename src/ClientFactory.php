@@ -4,25 +4,18 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Notification\NotificationClassmap;
-use OpenEuropa\EPoetry\Notification\NotificationClient;
-use OpenEuropa\EPoetry\Notification\NotificationServer;
+use Http\Client\HttpClient;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientInterface;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapDriver;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptionsResolverFactory;
-use Phpro\SoapClient\Soap\Engine\DriverInterface;
 use Phpro\SoapClient\Soap\Engine\Engine;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Factory class for the ePoetry client.
@@ -31,6 +24,26 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class ClientFactory extends AbstractFactory
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $wsdlFile = 'dgtServiceWSDL.xml';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $xsdFile = 'dgtServiceXSD.xml';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
+    {
+        parent::__construct($endpoint, $httpClient, $soapOptions);
+
+        $this->mapCollection = RequestClassmap::getCollection();
+    }
+
     /**
      * Add a middleware.
      *
@@ -52,19 +65,6 @@ class ClientFactory extends AbstractFactory
     }
 
     /**
-     * Build the driver for engine.
-     *
-     * @return DriverInterface
-     */
-    public function buildDriver()
-    {
-        $options = ExtSoapOptions::defaults($this->buildWsdl(), [])
-            ->withClassMap($this->mapCollection);
-
-        return ExtSoapDriver::createFromOptions($options);
-    }
-
-    /**
      * Build the WSDL with file on resources.
      *
      * @return string
@@ -81,105 +81,13 @@ class ClientFactory extends AbstractFactory
     }
 
     /**
-     * Get a notification client instance.
-     *
-     * @return NotificationClient
-     */
-    public function getNotificationClient(): ClientInterface
-    {
-        $this->setNotificationData();
-
-        return $this->buildClient(NotificationClient::class);
-    }
-
-    /**
      * Get a request client instance.
      *
      * @return RequestClient
      */
     public function getRequestClient(): ClientInterface
     {
-        $this->setRequestData();
-
         return $this->buildClient(RequestClient::class);
-    }
-
-    /**
-     * @return NotificationServer
-     */
-    public function getSoapServer(): NotificationServer
-    {
-        $this->setNotificationData();
-        $options = ExtSoapOptionsResolverFactory::create()->resolve([
-            'classmap' => NotificationClassmap::getCollection(),
-        ]);
-
-        return new NotificationServer($this->buildWsdl(), $options);
-    }
-
-    /**
-     * Set event dispatcher instance.
-     *
-     * Pass here an external application event dispatcher to be able to
-     * subscribe to ePoetry events via the application's preferred methods.
-     *
-     * @param EventDispatcherInterface $eventDispatcher
-     *    Event dispatcher instance
-     *
-     * @return $this
-     */
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): ClientFactory
-    {
-        $this->eventDispatcher = $eventDispatcher;
-
-        return $this;
-    }
-
-    /**
-     * Set PSR3-compatible logger instance.
-     *
-     * Pass here an external application PSR3-compatible logger instance to be
-     * able to log ePoetry related messages within the application.
-     *
-     * @param LoggerInterface $logger
-     *    PSR3-compatible logger instance
-     *
-     * @return $this
-     */
-    public function setLogger(LoggerInterface $logger): ClientFactory
-    {
-        $this->logger = $logger;
-
-        return $this;
-    }
-
-    /**
-     * Set maximum level of severity of the events to be logged.
-     *
-     * @param string $logLevel
-     *    Log level string
-     *
-     * @return $this
-     */
-    public function setLogLevel(string $logLevel): ClientFactory
-    {
-        $this->logLevel = $logLevel;
-
-        return $this;
-    }
-
-    /**
-     * Set request data for client.
-     *
-     * @return $this
-     */
-    public function setRequestData()
-    {
-        $this->wsdlFile = 'dgtServiceWSDL.xml';
-        $this->xsdFile = 'dgtServiceXSD.xml';
-        $this->mapCollection = RequestClassmap::getCollection();
-
-        return $this;
     }
 
     /**

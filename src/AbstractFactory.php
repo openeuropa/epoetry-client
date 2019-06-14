@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\HttpClient;
-use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Psr\Log\LoggerInterface;
@@ -193,20 +192,6 @@ abstract class AbstractFactory
     public function setLogLevel(string $logLevel): ClientFactory
     {
         $this->logLevel = $logLevel;
-
-        return $this;
-    }
-
-    /**
-     * Set notification data for client.
-     *
-     * @return $this
-     */
-    public function setNotificationData()
-    {
-        $this->wsdlFile = 'NotificationServiceWSDL.xml';
-        $this->xsdFile = 'NotificationServiceXSD.xml';
-        $this->mapCollection = NotificationClassmap::getCollection();
 
         return $this;
     }

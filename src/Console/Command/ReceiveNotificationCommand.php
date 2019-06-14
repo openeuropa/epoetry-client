@@ -27,7 +27,7 @@ class ReceiveNotificationCommand extends Command
         $this
             ->setDescription('Receive a notification in ePoetry.')
             ->addOption('endpoint', null, InputOption::VALUE_REQUIRED, 'URL of the endpoint used in WSDL.', '')
-            ->addOption('in-format', null, InputOption::VALUE_REQUIRED, 'Format for the input (e.g. xml, yaml).', 'xml')
+            ->addOption('in-format', null, InputOption::VALUE_REQUIRED, 'Format for the input (currently only xml).', 'xml')
             ->addOption('out-format', null, InputOption::VALUE_REQUIRED, 'Format for the output (e.g. xml, yaml).', 'xml')
             ->addArgument('file', InputArgument::REQUIRED, 'Path to a file containing the body of the notification.');
     }

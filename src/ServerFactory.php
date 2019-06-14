@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry;
 
+use Http\Client\HttpClient;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationServer;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptionsResolverFactory;
@@ -16,11 +17,27 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptionsResolverFactory;
 class ServerFactory extends AbstractFactory
 {
     /**
+     * {@inheritdoc}
+     */
+    protected $wsdlFile = 'NotificationServiceWSDL.xml';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $xsdFile = 'NotificationServiceXSD.xml';
+
+    public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
+    {
+        parent::__construct($endpoint, $httpClient, $soapOptions);
+
+        $this->mapCollection = NotificationClassmap::getCollection();
+    }
+
+    /**
      * @return NotificationServer
      */
     public function getSoapServer(): NotificationServer
     {
-        $this->setNotificationData();
         $options = ExtSoapOptionsResolverFactory::create()->resolve([
             'classmap' => NotificationClassmap::getCollection(),
         ]);
