@@ -26,6 +26,9 @@ class ServerFactory extends AbstractFactory
      */
     protected $xsdFile = 'NotificationServiceXSD.xml';
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
     {
         parent::__construct($endpoint, $httpClient, $soapOptions);

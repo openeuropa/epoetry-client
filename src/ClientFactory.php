@@ -10,7 +10,6 @@ use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Services\LoggerDecorator;
 use OpenEuropa\EPoetry\Services\LoggerSubscriber;
 use Phpro\SoapClient\ClientInterface;
-use Phpro\SoapClient\Middleware\MiddlewareInterface;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 use Phpro\SoapClient\Soap\Engine\Engine;
@@ -18,9 +17,7 @@ use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
- * Factory class for the ePoetry client.
- *
- * It can be used to get both Request and Notification clients.
+ * Factory class for the ePoetry requests client.
  */
 class ClientFactory extends AbstractFactory
 {
@@ -42,42 +39,6 @@ class ClientFactory extends AbstractFactory
         parent::__construct($endpoint, $httpClient, $soapOptions);
 
         $this->mapCollection = RequestClassmap::getCollection();
-    }
-
-    /**
-     * Add a middleware.
-     *
-     * Middlewares will be executed by the library while performing
-     * a request or handling a response.
-     *
-     * @see https://github.com/phpro/soap-client/blob/master/docs/middlewares.md
-     *
-     * @param MiddlewareInterface $middleware
-     *   Middleware instance
-     *
-     * @return $this
-     */
-    public function addMiddleware(MiddlewareInterface $middleware): ClientFactory
-    {
-        $this->middlewares[] = $middleware;
-
-        return $this;
-    }
-
-    /**
-     * Build the WSDL with file on resources.
-     *
-     * @return string
-     */
-    public function buildWsdl(): string
-    {
-        $wsdl = file_get_contents(__DIR__ . '/../resources/' . $this->wsdlFile);
-        $wsdl = str_replace('%ENDPOINT%', $this->endpoint, $wsdl);
-
-        $xsd = file_get_contents(__DIR__ . '/../resources/' . $this->xsdFile);
-        $wsdl = str_replace($this->xsdFile, 'plain;base64,' . base64_encode($xsd), $wsdl);
-
-        return 'data://text/plain;base64,' . base64_encode($wsdl);
     }
 
     /**

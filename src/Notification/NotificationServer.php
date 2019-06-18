@@ -66,9 +66,9 @@ class NotificationServer
 
         ob_start();
         $soapServer->handle($request);
-        $responseBody = ob_get_contents();
+        $response = ob_get_contents();
         ob_end_clean();
 
-        return $responseBody;
+        return $response;
     }
 }

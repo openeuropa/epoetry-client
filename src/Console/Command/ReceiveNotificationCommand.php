@@ -44,12 +44,15 @@ class ReceiveNotificationCommand extends Command
         $factory = new ServerFactory($input->getOption('endpoint'), $adapter);
         $notificationServer = $factory->getSoapServer();
 
+        // Read the given SOAP request.
         $filepath = $input->getArgument('file');
         if (!file_exists($filepath)) {
             throw new FileNotFoundException(sprintf('File "%s" not found.', $filepath));
         }
         $request = file_get_contents($filepath);
 
+        // Let the server handle the SOAP request with the notification and
+        // read the returned XML.
         $response = $notificationServer->handle($request);
 
         $return = (new Serializer())->serialize($response, $input->getOption('out-format'));

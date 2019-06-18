@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * Abstract class for ePoetry factories.
  *
- * It can be used to get both Request and Notification clients.
+ * Used to get both Request client and Notification server.
  */
 abstract class AbstractFactory
 {
@@ -77,27 +77,28 @@ abstract class AbstractFactory
     protected $soapOptions = [];
 
     /**
-     * Location of the client's WSDL file.
+     * Location of the WSDL file.
      *
      * @var string
      */
     protected $wsdlFile;
 
     /**
-     * Location of the client's XSD file.
+     * Location of the XSD file.
      *
      * @var string
      */
     protected $xsdFile;
 
     /**
-     * ClientFactory constructor.
+     * AbstractFactory constructor.
      *
      * @param string $endpoint
      *   The endpoint to be used in WSDL.
      * @param HttpClient $httpClient
      *   An HTTP Client to be used by service.
      * @param array $soapOptions
+     *   The soap options.
      */
     public function __construct($endpoint, HttpClient $httpClient, array $soapOptions = [])
     {
