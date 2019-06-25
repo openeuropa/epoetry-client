@@ -1,98 +1,103 @@
-<ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
-    <notification>
-        <notificationType>RequestStatusChange</notificationType>
-        <request requesterCode="AGRI" year="2018" number="481" part="0" version="0" productType="TRA" id="1762"/>
-        <newStatus>ONG</newStatus>
-        <statusMessage>NO COMMENT YET</statusMessage>
-        <productRequests>
-            <productRequest>
-                <language code="SL"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="HR"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="PT"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="IT"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="EL"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="GA"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="SK"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="BG"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="DE"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="HU"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="ES"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="FI"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="DA"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="MT"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="ET"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="SV"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="LT"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="LV"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="CS"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="EN"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="PL"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-            <productRequest>
-                <language code="NL"/>
-                <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
-            </productRequest>
-        </productRequests>
-    </notification>
-</ns0:receiveNotification>
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <S:Body>
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>RequestStatusChange</notificationType>
+                <request requesterCode="AGRI" year="2018" number="481" part="0" version="0" productType="TRA" id="1762"/>
+                <newStatus>ONG</newStatus>
+                <statusMessage>NO COMMENT YET</statusMessage>
+                <productRequests>
+                    <productRequest>
+                        <language code="SL"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="HR"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="PT"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="IT"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="EL"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="GA"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="SK"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="BG"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="DE"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="HU"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="ES"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="FI"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="DA"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="MT"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="ET"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="SV"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="LT"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="LV"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="CS"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="EN"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="PL"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                    <productRequest>
+                        <language code="NL"/>
+                        <acceptedDeadline>2018-11-08T12:51:17.000+01:00</acceptedDeadline>
+                    </productRequest>
+                </productRequests>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</S:Envelope>

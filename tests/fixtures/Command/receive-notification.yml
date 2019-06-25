@@ -5,8 +5,7 @@
     out-format: 'xml'
     endpoint: 'http://localhost'
     file: './tests/fixtures/Notification/notification-status-change.xml'
-    response: './tests/fixtures/Command/create-requests-response.xml'
+    response: './tests/fixtures/Command/receive-notification-response.xml'
   expectations:
     response: |
-      <?xml version="1.0"?>
-      <response><result/></response>
+      <?xml version="1.0"?><response><![CDATA[<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse/></SOAP-ENV:Body></SOAP-ENV:Envelope>]]></response>

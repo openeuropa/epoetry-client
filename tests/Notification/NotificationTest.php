@@ -24,16 +24,17 @@ final class NotificationTest extends AbstractNotificationTest
     }
 
     /**
-     * Test parsing a SOAP notification.
+     * Test notification client.
      *
      * @param string $notification
      * @param mixed $expectations
      *
      * @dataProvider responseParsingCases
      */
-    public function testResponseParsing(string $notification, $expectations): void
+    public function testResponseClient(string $notification, $expectations): void
     {
         $notificationXml = $this->getFixtureContent($notification);
+
         $notificationSerialized = Serializer::fromString(
             $notificationXml,
             ReceiveNotification::class,
