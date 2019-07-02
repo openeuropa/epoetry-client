@@ -5,11 +5,9 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Middleware;
 
 use GuzzleHttp\Psr7\Response;
-use OpenEuropa\EPoetry\Middleware\CasProxyTicketSessionMiddleware;
+use OpenEuropa\EPoetry\Middleware\CasProxyTicketMiddleware;
 use OpenEuropa\EPoetry\Tests\Request\AbstractMiddlewareTest;
 use OpenEuropa\EPoetry\Request\Type\CreateRequests;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * @internal
@@ -30,10 +28,10 @@ final class MiddlewareTest extends AbstractMiddlewareTest
      *
      * @dataProvider proxyTicketCases
      *
-     * @param string $ticket
+     * @param string $pgt
      * @param array $expectations
      */
-    public function testProxyTicket(string $ticket, array $expectations)
+    public function testProxyTicket(string $pgt, array $expectations)
     {
         $expectations += ['exceptions' => []];
 
@@ -42,17 +40,9 @@ final class MiddlewareTest extends AbstractMiddlewareTest
         $this->httpClient->addResponse($response);
 
         $clientFactory = $this->createClientFactory();
-        $session = new Session(new MockArraySessionStorage());
+        $casProxyTicketService = new ProxyTicketService($pgt);
 
-        $values = [
-            'session' => $session,
-        ];
-
-        if ($ticket !== '') {
-            $session->set('cas_pgt', $ticket);
-        }
-
-        $middleware = new CasProxyTicketSessionMiddleware($session);
+        $middleware = new CasProxyTicketMiddleware($casProxyTicketService);
         $clientFactory->addMiddleware($middleware);
         $client = $clientFactory->getRequestClient();
 

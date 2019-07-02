@@ -1,13 +1,11 @@
 -
-  ticket: DESKTOP_PT-21-9fp9
+  pgt: DESKTOP_PGT-21-9fp9
   expectations:
     assertions:
-      - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false
+      - strpos(request['body'], '<ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">DESKTOP_PT-21-9fp9</ecas:ProxyTicket>') !== false
 
 -
-  ticket: ''
+  pgt: ''
   expectations:
     exceptions:
-      - "[epoetry] session has no proxy ticket."
-    assertions:
-      - strpos(request['headers'], 'ecas:ProxyTicket:\ DESKTOP_PT-21-9fp9') !== false
+      - "[epoetry] no proxy ticket."
