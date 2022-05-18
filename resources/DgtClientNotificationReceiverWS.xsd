@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.3.0-wls122140-b190328.0053 svn-revision#unknown. -->
+<xsd:schema xmlns:ns0="http://eu.europa.ec.dgt.epoetry" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://eu.europa.ec.dgt.epoetry">
+    <xsd:complexType name="receiveNotification">
+        <xsd:sequence>
+            <xsd:element name="notification" type="ns0:dgtNotification" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="receiveNotificationResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:dgtNotificationResult" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="linguisticRequest">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReference" minOccurs="0"/>
+            <xsd:element name="status" type="ns0:RequestStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="product">
+        <xsd:sequence>
+            <xsd:element name="productReference" type="ns0:productReference" minOccurs="0"/>
+            <xsd:element name="status" type="ns0:ProductStatus" minOccurs="0"/>
+            <xsd:element name="acceptedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="file" type="xsd:base64Binary" minOccurs="0"/>
+            <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="requestReference">
+        <xsd:sequence>
+            <xsd:element name="requesterCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="year" type="xsd:int"/>
+            <xsd:element name="number" type="xsd:int"/>
+            <xsd:element name="part" type="xsd:int"/>
+            <xsd:element name="version" type="xsd:int"/>
+            <xsd:element name="productType" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dgtNotification">
+        <xsd:sequence>
+            <xsd:element name="notificationType" type="ns0:NotificationType" minOccurs="0"/>
+            <xsd:element name="linguisticRequest" type="ns0:linguisticRequest" minOccurs="0"/>
+            <xsd:element name="product" type="ns0:product" minOccurs="0"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="planningAgent" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="planningSector" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dgtNotificationResult">
+        <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="productReference">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReference" minOccurs="0"/>
+            <xsd:element name="language" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="receiveNotificationResponse" type="ns0:receiveNotificationResponse"/>
+    <xsd:element name="dgtNotificationResult" type="ns0:dgtNotificationResult"/>
+    <xsd:element name="linguisticRequest" type="ns0:linguisticRequest"/>
+    <xsd:element name="dgtNotification" type="ns0:dgtNotification"/>
+    <xsd:element name="productReference" type="ns0:productReference"/>
+    <xsd:element name="requestReference" type="ns0:requestReference"/>
+    <xsd:element name="product" type="ns0:product"/>
+    <xsd:element name="receiveNotification" type="ns0:receiveNotification"/>
+    <xsd:simpleType name="RequestStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Accepted"/>
+            <xsd:enumeration value="Rejected"/>
+            <xsd:enumeration value="Executed"/>
+            <xsd:enumeration value="Suspended"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Validated"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ProductStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Accepted"/>
+            <xsd:enumeration value="Closed"/>
+            <xsd:enumeration value="Ongoing"/>
+            <xsd:enumeration value="ReadyToBeSent"/>
+            <xsd:enumeration value="Suspended"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Sent"/>
+            <xsd:enumeration value="Rejected"/>
+            <xsd:enumeration value="Requested"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="DocumentFormat">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XLS"/>
+            <xsd:enumeration value="XLSX"/>
+            <xsd:enumeration value="DOC"/>
+            <xsd:enumeration value="DOCX"/>
+            <xsd:enumeration value="PPTX"/>
+            <xsd:enumeration value="PPT"/>
+            <xsd:enumeration value="HTM"/>
+            <xsd:enumeration value="HTML"/>
+            <xsd:enumeration value="RTF"/>
+            <xsd:enumeration value="VSD"/>
+            <xsd:enumeration value="PDF"/>
+            <xsd:enumeration value="TIF"/>
+            <xsd:enumeration value="ZIP"/>
+            <xsd:enumeration value="TIFF"/>
+            <xsd:enumeration value="TXT"/>
+            <xsd:enumeration value="XML"/>
+            <xsd:enumeration value="XMW"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="NotificationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="RequestStatusChange"/>
+            <xsd:enumeration value="ProductStatusChange"/>
+            <xsd:enumeration value="ProductDelivery"/>
+            <xsd:enumeration value="CorrectionStatusChange"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,45 @@
+{
+    "name": "openeuropa/epoetry-client",
+    "type": "library",
+    "description": "PHP client for the ePoetry service.",
+    "license": "EUPL-1.2",
+    "require": {
+        "php": ">=7.4",
+        "ext-soap": "*",
+        "guzzlehttp/psr7": "^2.2",
+        "phpro/soap-client": "^2",
+        "symfony/http-client": "^5.4"
+    },
+    "require-dev": {
+        "openeuropa/code-review": "^2.0",
+        "openeuropa/task-runner": "^1",
+        "phpunit/phpunit": "~8"
+    },
+    "suggest": {
+        "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console."
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true
+        }
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenEuropa\\EPoetry\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OpenEuropa\\EPoetry\\Tests\\": "./tests/"
+        }
+    },
+    "bin": ["bin/epoetry"],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

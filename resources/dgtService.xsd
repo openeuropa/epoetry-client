@@ -1,0 +1,739 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.3.0-wls122140-b190328.0053 svn-revision#unknown. -->
+<xsd:schema xmlns:ns0="http://eu.europa.ec.dgt.epoetry" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://eu.europa.ec.dgt.epoetry">
+    <xsd:complexType name="addNewPartToDossier">
+        <xsd:sequence>
+            <xsd:element name="dossier" type="ns0:dossierReference" minOccurs="0"/>
+            <xsd:element name="requestDetails" type="ns0:requestDetailsIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="templateName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="addNewPartToDossierResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createCorrectionRequest">
+        <xsd:sequence>
+            <xsd:element name="correctionDetails" type="ns0:correctionDetailsIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createCorrectionRequestResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:correctionRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createLinguisticRequest">
+        <xsd:sequence>
+            <xsd:element name="requestDetails" type="ns0:requestDetailsIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="templateName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createLinguisticRequestResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createNewVersion">
+        <xsd:sequence>
+            <xsd:element name="linguisticRequest" type="ns0:linguisticRequestIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="createNewVersionResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getLinguisticRequest">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReferenceIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getLinguisticRequestResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyLinguisticRequest">
+        <xsd:sequence>
+            <xsd:element name="modifyLinguisticRequest" type="ns0:modifyLinguisticRequestIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyLinguisticRequestResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NoSuchMethodException">
+        <xsd:sequence>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="resubmitRequest">
+        <xsd:sequence>
+            <xsd:element name="resubmitRequest" type="ns0:linguisticRequestIn" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="templateName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="resubmitRequestResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:linguisticRequestOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UnsupportedEncodingException">
+        <xsd:sequence>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="updateCallbackUrl">
+        <xsd:sequence>
+            <xsd:element name="callbackUrl" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="updateCallbackUrlResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:updateCallbackUrlOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dossierReference">
+        <xsd:sequence>
+            <xsd:element name="requesterCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="number" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="year" type="xsd:int" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="requestDetailsIn">
+        <xsd:sequence>
+            <xsd:element name="title" type="xsd:string"/>
+            <xsd:element name="workflowCode" type="ns0:WorkflowCode" minOccurs="0"/>
+            <xsd:element name="internalReference" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="requestedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="sensitive" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="sentViaRue" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="documentToAdopt" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="decideReference" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="destination" type="ns0:Destination" minOccurs="0"/>
+            <xsd:element name="procedure" type="ns0:Procedure" minOccurs="0"/>
+            <xsd:element name="slaAnnex" type="ns0:SlaAnnex" minOccurs="0"/>
+            <xsd:element name="slaCommitment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="onBehalfOf" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="accessibleTo" type="ns0:AccessLevel" minOccurs="0"/>
+            <xsd:element name="keyword1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="keyword2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="keyword3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="contacts">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contact" type="ns0:contactPersonIn" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="originalDocument" type="ns0:originalDocumentIn"/>
+            <xsd:element name="products">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="product" type="ns0:productRequestIn" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="auxiliaryDocuments" type="ns0:auxiliaryDocumentsIn" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="contactPersonIn">
+        <xsd:sequence/>
+        <xsd:attribute name="userId" type="xsd:string" use="required"/>
+        <xsd:attribute name="contactRole" type="ns0:ContactRole" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="originalDocumentIn">
+        <xsd:sequence>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element xmlns:ns1="http://www.w3.org/2005/05/xmlmime" name="content" type="xsd:base64Binary"
+                         minOccurs="0" ns1:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="linguisticSections">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="linguisticSection" type="ns0:linguisticSectionIn" minOccurs="0"
+                                     maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="trackChanges" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="linguisticSectionIn">
+        <xsd:sequence>
+            <xsd:element name="language" type="ns0:Language"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="productRequestIn">
+        <xsd:sequence>
+            <xsd:element name="language" type="ns0:Language"/>
+        </xsd:sequence>
+        <xsd:attribute name="requestedDeadline" type="xsd:dateTime"/>
+        <xsd:attribute name="trackChanges" type="xsd:boolean" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="auxiliaryDocumentsIn">
+        <xsd:sequence>
+            <xsd:element name="referenceDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="traxDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="spotDocument" type="ns0:documentIn" minOccurs="0"/>
+            <xsd:element name="prtDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="srcDocument" type="ns0:srcDocumentIn" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="documentIn">
+        <xsd:sequence>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="language" type="ns0:Language"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element xmlns:ns2="http://www.w3.org/2005/05/xmlmime" name="content" type="xsd:base64Binary"
+                         minOccurs="0" ns2:expectedContentTypes="application/octet-stream"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="srcDocumentIn">
+        <xsd:sequence>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element xmlns:ns3="http://www.w3.org/2005/05/xmlmime" name="content" type="xsd:base64Binary"
+                         minOccurs="0" ns3:expectedContentTypes="application/octet-stream"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="linguisticRequestOut">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReferenceOut" minOccurs="0"/>
+            <xsd:element name="requestDetails" type="ns0:requestDetailsOut" minOccurs="0"/>
+            <xsd:element name="informativeMessages" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="requestReferenceOut">
+        <xsd:sequence>
+            <xsd:element name="dossier" type="ns0:dossierReference" minOccurs="0"/>
+            <xsd:element name="productType" type="ns0:ProductServiceType" minOccurs="0"/>
+            <xsd:element name="part" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="version" type="xsd:int" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="requestDetailsOut">
+        <xsd:sequence>
+            <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="workflowCode" type="ns0:WorkflowCode" minOccurs="0"/>
+            <xsd:element name="internalReference" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="requestedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="acceptedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="sensitive" type="xsd:boolean"/>
+            <xsd:element name="sentViaRue" type="xsd:boolean"/>
+            <xsd:element name="documentToAdopt" type="xsd:boolean"/>
+            <xsd:element name="decideReference" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="destination" type="ns0:Destination" minOccurs="0"/>
+            <xsd:element name="procedure" type="ns0:Procedure" minOccurs="0"/>
+            <xsd:element name="slaAnnex" type="ns0:SlaAnnex" minOccurs="0"/>
+            <xsd:element name="slaCommitment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="onBehalfOf" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="accessibleTo" type="ns0:AccessLevel" minOccurs="0"/>
+            <xsd:element name="keyword1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="keyword2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="keyword3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="status" type="ns0:RequestStatus" minOccurs="0"/>
+            <xsd:element name="rejectMessage" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="contacts" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contact" type="ns0:contactPersonOut" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="originalDocument" type="ns0:originalDocumentOut" minOccurs="0"/>
+            <xsd:element name="products" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="product" type="ns0:productRequestOut" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="auxiliaryDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:auxiliaryDocumentOut" minOccurs="0"
+                                     maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="contactPersonOut">
+        <xsd:sequence>
+            <xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="userId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="roleCode" type="ns0:ContactRole" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="originalDocumentOut">
+        <xsd:sequence>
+            <xsd:element name="trackChanges" type="xsd:boolean"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="pages" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="linguisticSections" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="linguisticSection" type="ns0:linguisticSectionOut" minOccurs="0"
+                                     maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="linguisticSectionOut">
+        <xsd:sequence>
+            <xsd:element name="language" type="ns0:Language" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="productRequestOut">
+        <xsd:sequence>
+            <xsd:element name="language" type="ns0:Language" minOccurs="0"/>
+            <xsd:element name="requestedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="acceptedDeadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="trackChanges" type="xsd:boolean"/>
+            <xsd:element name="status" type="ns0:ProductStatus" minOccurs="0"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="auxiliaryDocumentOut">
+        <xsd:sequence>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="language" type="ns0:Language" minOccurs="0"/>
+            <xsd:element name="documentType" type="ns0:DocumentType" minOccurs="0"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="correctionDetailsIn">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:correctionReferenceIn" minOccurs="0"/>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element xmlns:ns4="http://www.w3.org/2005/05/xmlmime" name="content" type="xsd:base64Binary"
+                         minOccurs="0" ns4:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+            <xsd:element name="language" type="ns0:Language" minOccurs="0"/>
+            <xsd:element name="remark" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="correctionReferenceIn">
+        <xsd:complexContent>
+            <xsd:extension base="ns0:requestReferenceIn">
+                <xsd:sequence>
+                    <xsd:element name="version" type="xsd:int" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="requestReferenceIn">
+        <xsd:sequence>
+            <xsd:element name="dossier" type="ns0:dossierReference" minOccurs="0"/>
+            <xsd:element name="productType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="part" type="xsd:int" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="correctionRequestOut">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReferenceOut" minOccurs="0"/>
+            <xsd:element name="DCO" type="ns0:dcoOut" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dcoOut">
+        <xsd:sequence>
+            <xsd:element name="applicationName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="deadline" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="fileName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="format" type="ns0:DocumentFormat" minOccurs="0"/>
+            <xsd:element name="language" type="ns0:Language" minOccurs="0"/>
+            <xsd:element name="remark" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="status" type="ns0:RequestStatus" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="linguisticRequestIn">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:requestReferenceIn" minOccurs="0"/>
+            <xsd:element name="requestDetails" type="ns0:requestDetailsIn" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyLinguisticRequestIn">
+        <xsd:sequence>
+            <xsd:element name="requestReference" type="ns0:modifyRequestReferenceIn" minOccurs="0"/>
+            <xsd:element name="requestDetails" type="ns0:modifyRequestDetailsIn" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyRequestReferenceIn">
+        <xsd:sequence>
+            <xsd:element name="dossier" type="ns0:dossierReference" minOccurs="0"/>
+            <xsd:element name="productType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="part" type="xsd:int" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyRequestDetailsIn">
+        <xsd:sequence>
+            <xsd:element name="contacts">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contact" type="ns0:contactPersonIn" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="products" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="product" type="ns0:modifyProductRequestIn" minOccurs="0"
+                                     maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="auxiliaryDocuments" type="ns0:modifyAuxiliaryDocumentsIn" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="modifyProductRequestIn">
+        <xsd:sequence>
+            <xsd:element name="language" type="ns0:Language"/>
+        </xsd:sequence>
+        <xsd:attribute name="requestedDeadline" type="xsd:dateTime" use="required"/>
+        <xsd:attribute name="trackChanges" type="xsd:boolean" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="modifyAuxiliaryDocumentsIn">
+        <xsd:sequence>
+            <xsd:element name="referenceDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="traxDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="spotDocument" type="ns0:documentIn" minOccurs="0"/>
+            <xsd:element name="prtDocuments" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="ns0:documentIn" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="updateCallbackUrlOut">
+        <xsd:sequence>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="oldCallbackUrl" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="newCallbackUrl" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="application" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="addNewPartToDossier" type="ns0:addNewPartToDossier"/>
+    <xsd:element name="addNewPartToDossierResponse" type="ns0:addNewPartToDossierResponse"/>
+    <xsd:element name="createCorrectionRequest" type="ns0:createCorrectionRequest"/>
+    <xsd:element name="createCorrectionRequestResponse" type="ns0:createCorrectionRequestResponse"/>
+    <xsd:element name="createLinguisticRequest" type="ns0:createLinguisticRequest"/>
+    <xsd:element name="createLinguisticRequestResponse" type="ns0:createLinguisticRequestResponse"/>
+    <xsd:element name="createNewVersion" type="ns0:createNewVersion"/>
+    <xsd:element name="createNewVersionResponse" type="ns0:createNewVersionResponse"/>
+    <xsd:element name="getLinguisticRequest" type="ns0:getLinguisticRequest"/>
+    <xsd:element name="getLinguisticRequestResponse" type="ns0:getLinguisticRequestResponse"/>
+    <xsd:element name="modifyLinguisticRequest" type="ns0:modifyLinguisticRequest"/>
+    <xsd:element name="modifyLinguisticRequestResponse" type="ns0:modifyLinguisticRequestResponse"/>
+    <xsd:element name="NoSuchMethodException" type="ns0:NoSuchMethodException"/>
+    <xsd:element name="resubmitRequest" type="ns0:resubmitRequest"/>
+    <xsd:element name="resubmitRequestResponse" type="ns0:resubmitRequestResponse"/>
+    <xsd:element name="UnsupportedEncodingException" type="ns0:UnsupportedEncodingException"/>
+    <xsd:element name="updateCallbackUrl" type="ns0:updateCallbackUrl"/>
+    <xsd:element name="updateCallbackUrlResponse" type="ns0:updateCallbackUrlOut"/>
+    <xsd:element name="dossier" type="ns0:dossierReference"/>
+    <xsd:element name="requestDetails" type="ns0:modifyRequestDetailsIn"/>
+    <xsd:element name="contactPersonIn" type="ns0:contactPersonIn"/>
+    <xsd:element name="originalDocument" type="ns0:originalDocumentOut"/>
+    <xsd:element name="linguisticSection" type="ns0:linguisticSectionOut"/>
+    <xsd:element name="product" type="ns0:modifyProductRequestIn"/>
+    <xsd:element name="documentIn" type="ns0:documentIn"/>
+    <xsd:element name="srcDocumentIn" type="ns0:srcDocumentIn"/>
+    <xsd:element name="linquisticRequest" type="ns0:linguisticRequestOut"/>
+    <xsd:element name="requestReference" type="ns0:modifyRequestReferenceIn"/>
+    <xsd:element name="contactPerson" type="ns0:contactPersonOut"/>
+    <xsd:element name="auxiliaryDocumentOut" type="ns0:auxiliaryDocumentOut"/>
+    <xsd:element name="DCO" type="ns0:dcoOut"/>
+    <xsd:simpleType name="WorkflowCode">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WEB"/>
+            <xsd:enumeration value="HOTL"/>
+            <xsd:enumeration value="STS"/>
+            <xsd:enumeration value="PP"/>
+            <xsd:enumeration value="QE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Destination">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="EM"/>
+            <xsd:enumeration value="EXT"/>
+            <xsd:enumeration value="IE"/>
+            <xsd:enumeration value="INTERNE"/>
+            <xsd:enumeration value="JO"/>
+            <xsd:enumeration value="PUBLIC"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Procedure">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DEGHP"/>
+            <xsd:enumeration value="NEANT"/>
+            <xsd:enumeration value="PROAC"/>
+            <xsd:enumeration value="PROCD"/>
+            <xsd:enumeration value="PROCE"/>
+            <xsd:enumeration value="PROCH"/>
+            <xsd:enumeration value="PROCO"/>
+            <xsd:enumeration value="REUNAU"/>
+            <xsd:enumeration value="REUNCS"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="SlaAnnex">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ANNEX8A"/>
+            <xsd:enumeration value="ANNEX8B"/>
+            <xsd:enumeration value="NO"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="AccessLevel">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CONTACTS"/>
+            <xsd:enumeration value="UNIT"/>
+            <xsd:enumeration value="DIR"/>
+            <xsd:enumeration value="DG"/>
+            <xsd:enumeration value="ON_BEHALF_DG"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ContactRole">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REQUESTER"/>
+            <xsd:enumeration value="AUTHOR"/>
+            <xsd:enumeration value="RECIPIENT"/>
+            <xsd:enumeration value="WEBMASTER"/>
+            <xsd:enumeration value="EDITOR"/>
+            <xsd:enumeration value="DOCUMENT_AUTHOR"/>
+            <xsd:enumeration value="DOSSIER_AUTHOR"/>
+            <xsd:enumeration value="LEGISLATIVE_COORDINATOR"/>
+            <xsd:enumeration value="SECRETARY"/>
+            <xsd:enumeration value="CONTACT_PERSON"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Language">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ML"/>
+            <xsd:enumeration value="EN"/>
+            <xsd:enumeration value="FR"/>
+            <xsd:enumeration value="DE"/>
+            <xsd:enumeration value="BG"/>
+            <xsd:enumeration value="HR"/>
+            <xsd:enumeration value="CS"/>
+            <xsd:enumeration value="DA"/>
+            <xsd:enumeration value="NL"/>
+            <xsd:enumeration value="ET"/>
+            <xsd:enumeration value="FI"/>
+            <xsd:enumeration value="EL"/>
+            <xsd:enumeration value="HU"/>
+            <xsd:enumeration value="GA"/>
+            <xsd:enumeration value="IT"/>
+            <xsd:enumeration value="LV"/>
+            <xsd:enumeration value="LT"/>
+            <xsd:enumeration value="MT"/>
+            <xsd:enumeration value="PL"/>
+            <xsd:enumeration value="PT"/>
+            <xsd:enumeration value="RO"/>
+            <xsd:enumeration value="SK"/>
+            <xsd:enumeration value="SL"/>
+            <xsd:enumeration value="ES"/>
+            <xsd:enumeration value="SV"/>
+            <xsd:enumeration value="AF"/>
+            <xsd:enumeration value="SQ"/>
+            <xsd:enumeration value="AM"/>
+            <xsd:enumeration value="AR"/>
+            <xsd:enumeration value="HY"/>
+            <xsd:enumeration value="AZ"/>
+            <xsd:enumeration value="EU"/>
+            <xsd:enumeration value="BE"/>
+            <xsd:enumeration value="BI"/>
+            <xsd:enumeration value="BO"/>
+            <xsd:enumeration value="BR"/>
+            <xsd:enumeration value="CN"/>
+            <xsd:enumeration value="CA"/>
+            <xsd:enumeration value="ZH"/>
+            <xsd:enumeration value="KW"/>
+            <xsd:enumeration value="CO"/>
+            <xsd:enumeration value="EG"/>
+            <xsd:enumeration value="EO"/>
+            <xsd:enumeration value="FO"/>
+            <xsd:enumeration value="FY"/>
+            <xsd:enumeration value="GD"/>
+            <xsd:enumeration value="GL"/>
+            <xsd:enumeration value="KA"/>
+            <xsd:enumeration value="GU"/>
+            <xsd:enumeration value="IW"/>
+            <xsd:enumeration value="HI"/>
+            <xsd:enumeration value="IS"/>
+            <xsd:enumeration value="IN"/>
+            <xsd:enumeration value="JA"/>
+            <xsd:enumeration value="KL"/>
+            <xsd:enumeration value="KK"/>
+            <xsd:enumeration value="KY"/>
+            <xsd:enumeration value="KO"/>
+            <xsd:enumeration value="KU"/>
+            <xsd:enumeration value="LA"/>
+            <xsd:enumeration value="LN"/>
+            <xsd:enumeration value="LU"/>
+            <xsd:enumeration value="MK"/>
+            <xsd:enumeration value="MG"/>
+            <xsd:enumeration value="MS"/>
+            <xsd:enumeration value="GV"/>
+            <xsd:enumeration value="MR"/>
+            <xsd:enumeration value="MO"/>
+            <xsd:enumeration value="MN"/>
+            <xsd:enumeration value="ME"/>
+            <xsd:enumeration value="SE"/>
+            <xsd:enumeration value="NO"/>
+            <xsd:enumeration value="NB"/>
+            <xsd:enumeration value="NN"/>
+            <xsd:enumeration value="OC"/>
+            <xsd:enumeration value="AU"/>
+            <xsd:enumeration value="PS"/>
+            <xsd:enumeration value="PA"/>
+            <xsd:enumeration value="FA"/>
+            <xsd:enumeration value="RM"/>
+            <xsd:enumeration value="RU"/>
+            <xsd:enumeration value="SC"/>
+            <xsd:enumeration value="SR"/>
+            <xsd:enumeration value="SH"/>
+            <xsd:enumeration value="SW"/>
+            <xsd:enumeration value="TG"/>
+            <xsd:enumeration value="TH"/>
+            <xsd:enumeration value="TI"/>
+            <xsd:enumeration value="TR"/>
+            <xsd:enumeration value="UK"/>
+            <xsd:enumeration value="UR"/>
+            <xsd:enumeration value="UZ"/>
+            <xsd:enumeration value="VI"/>
+            <xsd:enumeration value="WO"/>
+            <xsd:enumeration value="CY"/>
+            <xsd:enumeration value="JI"/>
+            <xsd:enumeration value="YO"/>
+            <xsd:enumeration value="ZZ"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ProductServiceType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ERR"/>
+            <xsd:enumeration value="EXT"/>
+            <xsd:enumeration value="EDT"/>
+            <xsd:enumeration value="TRA"/>
+            <xsd:enumeration value="RSO"/>
+            <xsd:enumeration value="RSE"/>
+            <xsd:enumeration value="REV"/>
+            <xsd:enumeration value="PER"/>
+            <xsd:enumeration value="SPO"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="RequestStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SenttoDGT"/>
+            <xsd:enumeration value="Received"/>
+            <xsd:enumeration value="Accepted"/>
+            <xsd:enumeration value="Rejected"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Suspended"/>
+            <xsd:enumeration value="Executed"/>
+            <xsd:enumeration value="ToBeValidated"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="DocumentFormat">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XLS"/>
+            <xsd:enumeration value="XLSX"/>
+            <xsd:enumeration value="DOC"/>
+            <xsd:enumeration value="DOCX"/>
+            <xsd:enumeration value="PPTX"/>
+            <xsd:enumeration value="PPT"/>
+            <xsd:enumeration value="HTM"/>
+            <xsd:enumeration value="HTML"/>
+            <xsd:enumeration value="RTF"/>
+            <xsd:enumeration value="VSD"/>
+            <xsd:enumeration value="PDF"/>
+            <xsd:enumeration value="TIF"/>
+            <xsd:enumeration value="ZIP"/>
+            <xsd:enumeration value="TIFF"/>
+            <xsd:enumeration value="TXT"/>
+            <xsd:enumeration value="XML"/>
+            <xsd:enumeration value="XMW"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ProductStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Accepted"/>
+            <xsd:enumeration value="SenttoDGT"/>
+            <xsd:enumeration value="Ongoing"/>
+            <xsd:enumeration value="Received"/>
+            <xsd:enumeration value="Rejected"/>
+            <xsd:enumeration value="Requested"/>
+            <xsd:enumeration value="Executed"/>
+            <xsd:enumeration value="Sent"/>
+            <xsd:enumeration value="ToBeValidated"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="DocumentType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ORI"/>
+            <xsd:enumeration value="REF"/>
+            <xsd:enumeration value="SRC"/>
+            <xsd:enumeration value="TRAX"/>
+            <xsd:enumeration value="SPOT"/>
+            <xsd:enumeration value="DCO"/>
+            <xsd:enumeration value="PRT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
