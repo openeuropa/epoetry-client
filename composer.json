@@ -6,13 +6,13 @@
     "require": {
         "php": ">=7.4",
         "ext-soap": "*",
-        "guzzlehttp/psr7": "^2.2",
-        "phpro/soap-client": "^2",
-        "symfony/http-client": "^5.4"
+        "phpro/soap-client": "~2.0.0",
+        "nyholm/psr7": "^1.4",
+        "symfony/http-client": "~4",
+        "guzzlehttp/guzzle": "~6"
     },
     "require-dev": {
-        "openeuropa/code-review": "^2.0",
-        "openeuropa/task-runner": "^1",
+        "openeuropa/task-runner": "^2@alpha",
         "phpunit/phpunit": "~8"
     },
     "suggest": {
