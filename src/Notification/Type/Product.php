@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class Product
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
     private $productReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $status;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $acceptedDeadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $file;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $name;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
+     * @return $this
      */
-    public function getProductReference()
+    public function setProductReference($productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->productReference = $productReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference|null
+     */
+    public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         return $this->productReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
-     * @return Product
+     * @return bool
      */
-    public function withProductReference($productReference)
+    public function hasProductReference() : bool
     {
-        $new = clone $this;
-        $new->productReference = $productReference;
-
-        return $new;
+        return !empty($this->productReference);
     }
 
     /**
-     * @return string
+     * @param string $status
+     * @return $this
      */
-    public function getStatus()
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus() : ?string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
-     * @return Product
+     * @return bool
      */
-    public function withStatus($status)
+    public function hasStatus() : bool
     {
-        $new = clone $this;
-        $new->status = $status;
-
-        return $new;
+        return !empty($this->status);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $acceptedDeadline
+     * @return $this
      */
-    public function getAcceptedDeadline()
+    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->acceptedDeadline = $acceptedDeadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getAcceptedDeadline() : ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
 
     /**
-     * @param \DateTimeInterface $acceptedDeadline
-     * @return Product
+     * @return bool
      */
-    public function withAcceptedDeadline($acceptedDeadline)
+    public function hasAcceptedDeadline() : bool
     {
-        $new = clone $this;
-        $new->acceptedDeadline = $acceptedDeadline;
-
-        return $new;
+        return !empty($this->acceptedDeadline);
     }
 
     /**
-     * @return string
+     * @param string $file
+     * @return $this
      */
-    public function getFile()
+    public function setFile(string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFile() : ?string
     {
         return $this->file;
     }
 
     /**
-     * @param string $file
-     * @return Product
+     * @return bool
      */
-    public function withFile($file)
+    public function hasFile() : bool
     {
-        $new = clone $this;
-        $new->file = $file;
-
-        return $new;
+        return !empty($this->file);
     }
 
     /**
-     * @return string
+     * @param string $name
+     * @return $this
      */
-    public function getName()
+    public function setName(string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName() : ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     * @return Product
+     * @return bool
      */
-    public function withName($name)
+    public function hasName() : bool
     {
-        $new = clone $this;
-        $new->name = $name;
-
-        return $new;
+        return !empty($this->name);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return Product
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 }
 

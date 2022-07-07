@@ -7,128 +7,158 @@ use Phpro\SoapClient\Type\ResultInterface;
 class UpdateCallbackUrlOut implements ResultInterface
 {
     /**
-     * @var bool
+     * @var null|bool
      */
     private $success;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $oldCallbackUrl;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $newCallbackUrl;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $application;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $message;
 
     /**
-     * @return bool
+     * @param bool $success
+     * @return $this
      */
-    public function getSuccess()
+    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        $this->success = $success;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isSuccess() : ?bool
     {
         return $this->success;
     }
 
     /**
-     * @param bool $success
-     * @return UpdateCallbackUrlOut
+     * @return bool
      */
-    public function withSuccess($success)
+    public function hasSuccess() : bool
     {
-        $new = clone $this;
-        $new->success = $success;
-
-        return $new;
+        return !empty($this->success);
     }
 
     /**
-     * @return string
+     * @param string $oldCallbackUrl
+     * @return $this
      */
-    public function getOldCallbackUrl()
+    public function setOldCallbackUrl(string $oldCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        $this->oldCallbackUrl = $oldCallbackUrl;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOldCallbackUrl() : ?string
     {
         return $this->oldCallbackUrl;
     }
 
     /**
-     * @param string $oldCallbackUrl
-     * @return UpdateCallbackUrlOut
+     * @return bool
      */
-    public function withOldCallbackUrl($oldCallbackUrl)
+    public function hasOldCallbackUrl() : bool
     {
-        $new = clone $this;
-        $new->oldCallbackUrl = $oldCallbackUrl;
-
-        return $new;
+        return !empty($this->oldCallbackUrl);
     }
 
     /**
-     * @return string
+     * @param string $newCallbackUrl
+     * @return $this
      */
-    public function getNewCallbackUrl()
+    public function setNewCallbackUrl(string $newCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        $this->newCallbackUrl = $newCallbackUrl;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNewCallbackUrl() : ?string
     {
         return $this->newCallbackUrl;
     }
 
     /**
-     * @param string $newCallbackUrl
-     * @return UpdateCallbackUrlOut
+     * @return bool
      */
-    public function withNewCallbackUrl($newCallbackUrl)
+    public function hasNewCallbackUrl() : bool
     {
-        $new = clone $this;
-        $new->newCallbackUrl = $newCallbackUrl;
-
-        return $new;
+        return !empty($this->newCallbackUrl);
     }
 
     /**
-     * @return string
+     * @param string $application
+     * @return $this
      */
-    public function getApplication()
+    public function setApplication(string $application) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        $this->application = $application;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplication() : ?string
     {
         return $this->application;
     }
 
     /**
-     * @param string $application
-     * @return UpdateCallbackUrlOut
+     * @return bool
      */
-    public function withApplication($application)
+    public function hasApplication() : bool
     {
-        $new = clone $this;
-        $new->application = $application;
-
-        return $new;
+        return !empty($this->application);
     }
 
     /**
-     * @return string
+     * @param string $message
+     * @return $this
      */
-    public function getMessage()
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage() : ?string
     {
         return $this->message;
     }
 
     /**
-     * @param string $message
-     * @return UpdateCallbackUrlOut
+     * @return bool
      */
-    public function withMessage($message)
+    public function hasMessage() : bool
     {
-        $new = clone $this;
-        $new->message = $message;
-
-        return $new;
+        return !empty($this->message);
     }
 }
 

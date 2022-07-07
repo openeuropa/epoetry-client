@@ -5,178 +5,220 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DcoOut
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $deadline;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $fileName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $remark;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $status;
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return DcoOut
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $deadline
+     * @return $this
      */
-    public function getDeadline()
+    public function setDeadline($deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->deadline = $deadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getDeadline() : ?\DateTimeInterface
     {
         return $this->deadline;
     }
 
     /**
-     * @param \DateTimeInterface $deadline
-     * @return DcoOut
+     * @return bool
      */
-    public function withDeadline($deadline)
+    public function hasDeadline() : bool
     {
-        $new = clone $this;
-        $new->deadline = $deadline;
-
-        return $new;
+        return !empty($this->deadline);
     }
 
     /**
-     * @return string
+     * @param string $fileName
+     * @return $this
      */
-    public function getFileName()
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
-     * @return DcoOut
+     * @return bool
      */
-    public function withFileName($fileName)
+    public function hasFileName() : bool
     {
-        $new = clone $this;
-        $new->fileName = $fileName;
-
-        return $new;
+        return !empty($this->fileName);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return DcoOut
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return DcoOut
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 
     /**
-     * @return string
+     * @param string $remark
+     * @return $this
      */
-    public function getRemark()
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->remark = $remark;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRemark() : ?string
     {
         return $this->remark;
     }
 
     /**
-     * @param string $remark
-     * @return DcoOut
+     * @return bool
      */
-    public function withRemark($remark)
+    public function hasRemark() : bool
     {
-        $new = clone $this;
-        $new->remark = $remark;
-
-        return $new;
+        return !empty($this->remark);
     }
 
     /**
-     * @return string
+     * @param string $status
+     * @return $this
      */
-    public function getStatus()
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus() : ?string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
-     * @return DcoOut
+     * @return bool
      */
-    public function withStatus($status)
+    public function hasStatus() : bool
     {
-        $new = clone $this;
-        $new->status = $status;
-
-        return $new;
+        return !empty($this->status);
     }
 }
 

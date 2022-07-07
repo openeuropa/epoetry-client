@@ -5,128 +5,158 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocumentsIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+     * @var null|\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
      */
     private $referenceDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+     * @var null|\OpenEuropa\EPoetry\Request\Type\TraxDocuments
      */
     private $traxDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
     private $spotDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+     * @var null|\OpenEuropa\EPoetry\Request\Type\PrtDocuments
      */
     private $prtDocuments;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
      */
     private $srcDocument;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
+     * @return $this
      */
-    public function getReferenceDocuments()
+    public function setReferenceDocuments($referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    {
+        $this->referenceDocuments = $referenceDocuments;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments|null
+     */
+    public function getReferenceDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
         return $this->referenceDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
-     * @return AuxiliaryDocumentsIn
+     * @return bool
      */
-    public function withReferenceDocuments($referenceDocuments)
+    public function hasReferenceDocuments() : bool
     {
-        $new = clone $this;
-        $new->referenceDocuments = $referenceDocuments;
-
-        return $new;
+        return !empty($this->referenceDocuments);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
+     * @return $this
      */
-    public function getTraxDocuments()
+    public function setTraxDocuments($traxDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    {
+        $this->traxDocuments = $traxDocuments;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\TraxDocuments|null
+     */
+    public function getTraxDocuments() : ?\OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
         return $this->traxDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
-     * @return AuxiliaryDocumentsIn
+     * @return bool
      */
-    public function withTraxDocuments($traxDocuments)
+    public function hasTraxDocuments() : bool
     {
-        $new = clone $this;
-        $new->traxDocuments = $traxDocuments;
-
-        return $new;
+        return !empty($this->traxDocuments);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
+     * @return $this
      */
-    public function getSpotDocument()
+    public function setSpotDocument($spotDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    {
+        $this->spotDocument = $spotDocument;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn|null
+     */
+    public function getSpotDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         return $this->spotDocument;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
-     * @return AuxiliaryDocumentsIn
+     * @return bool
      */
-    public function withSpotDocument($spotDocument)
+    public function hasSpotDocument() : bool
     {
-        $new = clone $this;
-        $new->spotDocument = $spotDocument;
-
-        return $new;
+        return !empty($this->spotDocument);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
+     * @return $this
      */
-    public function getPrtDocuments()
+    public function setPrtDocuments($prtDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    {
+        $this->prtDocuments = $prtDocuments;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\PrtDocuments|null
+     */
+    public function getPrtDocuments() : ?\OpenEuropa\EPoetry\Request\Type\PrtDocuments
     {
         return $this->prtDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
-     * @return AuxiliaryDocumentsIn
+     * @return bool
      */
-    public function withPrtDocuments($prtDocuments)
+    public function hasPrtDocuments() : bool
     {
-        $new = clone $this;
-        $new->prtDocuments = $prtDocuments;
-
-        return $new;
+        return !empty($this->prtDocuments);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+     * @param \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument
+     * @return $this
      */
-    public function getSrcDocument()
+    public function setSrcDocument($srcDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    {
+        $this->srcDocument = $srcDocument;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn|null
+     */
+    public function getSrcDocument() : ?\OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         return $this->srcDocument;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument
-     * @return AuxiliaryDocumentsIn
+     * @return bool
      */
-    public function withSrcDocument($srcDocument)
+    public function hasSrcDocument() : bool
     {
-        $new = clone $this;
-        $new->srcDocument = $srcDocument;
-
-        return $new;
+        return !empty($this->srcDocument);
     }
 }
 

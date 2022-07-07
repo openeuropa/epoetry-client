@@ -5,128 +5,158 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ContactPersonOut
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $firstName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $lastName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $email;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $userId;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $roleCode;
 
     /**
-     * @return string
+     * @param string $firstName
+     * @return $this
      */
-    public function getFirstName()
+    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName() : ?string
     {
         return $this->firstName;
     }
 
     /**
-     * @param string $firstName
-     * @return ContactPersonOut
+     * @return bool
      */
-    public function withFirstName($firstName)
+    public function hasFirstName() : bool
     {
-        $new = clone $this;
-        $new->firstName = $firstName;
-
-        return $new;
+        return !empty($this->firstName);
     }
 
     /**
-     * @return string
+     * @param string $lastName
+     * @return $this
      */
-    public function getLastName()
+    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName() : ?string
     {
         return $this->lastName;
     }
 
     /**
-     * @param string $lastName
-     * @return ContactPersonOut
+     * @return bool
      */
-    public function withLastName($lastName)
+    public function hasLastName() : bool
     {
-        $new = clone $this;
-        $new->lastName = $lastName;
-
-        return $new;
+        return !empty($this->lastName);
     }
 
     /**
-     * @return string
+     * @param string $email
+     * @return $this
      */
-    public function getEmail()
+    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmail() : ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
-     * @return ContactPersonOut
+     * @return bool
      */
-    public function withEmail($email)
+    public function hasEmail() : bool
     {
-        $new = clone $this;
-        $new->email = $email;
-
-        return $new;
+        return !empty($this->email);
     }
 
     /**
-     * @return string
+     * @param string $userId
+     * @return $this
      */
-    public function getUserId()
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->userId = $userId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
 
     /**
-     * @param string $userId
-     * @return ContactPersonOut
+     * @return bool
      */
-    public function withUserId($userId)
+    public function hasUserId() : bool
     {
-        $new = clone $this;
-        $new->userId = $userId;
-
-        return $new;
+        return !empty($this->userId);
     }
 
     /**
-     * @return string
+     * @param string $roleCode
+     * @return $this
      */
-    public function getRoleCode()
+    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->roleCode = $roleCode;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRoleCode() : ?string
     {
         return $this->roleCode;
     }
 
     /**
-     * @param string $roleCode
-     * @return ContactPersonOut
+     * @return bool
      */
-    public function withRoleCode($roleCode)
+    public function hasRoleCode() : bool
     {
-        $new = clone $this;
-        $new->roleCode = $roleCode;
-
-        return $new;
+        return !empty($this->roleCode);
     }
 }
 

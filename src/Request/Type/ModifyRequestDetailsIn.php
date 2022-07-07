@@ -5,78 +5,96 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyRequestDetailsIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Contacts
      */
     private $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Products
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Products
      */
     private $products;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
      */
     private $auxiliaryDocuments;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @return $this
      */
-    public function getContacts()
+    public function setContacts($contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    {
+        $this->contacts = $contacts;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
+     */
+    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
-     * @return ModifyRequestDetailsIn
+     * @return bool
      */
-    public function withContacts($contacts)
+    public function hasContacts() : bool
     {
-        $new = clone $this;
-        $new->contacts = $contacts;
-
-        return $new;
+        return !empty($this->contacts);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products
+     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @return $this
      */
-    public function getProducts()
+    public function setProducts($products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
+     */
+    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
-     * @return ModifyRequestDetailsIn
+     * @return bool
      */
-    public function withProducts($products)
+    public function hasProducts() : bool
     {
-        $new = clone $this;
-        $new->products = $products;
-
-        return $new;
+        return !empty($this->products);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
+     * @return $this
      */
-    public function getAuxiliaryDocuments()
+    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    {
+        $this->auxiliaryDocuments = $auxiliaryDocuments;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null
+     */
+    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
-     * @return ModifyRequestDetailsIn
+     * @return bool
      */
-    public function withAuxiliaryDocuments($auxiliaryDocuments)
+    public function hasAuxiliaryDocuments() : bool
     {
-        $new = clone $this;
-        $new->auxiliaryDocuments = $auxiliaryDocuments;
-
-        return $new;
+        return !empty($this->auxiliaryDocuments);
     }
 }
 

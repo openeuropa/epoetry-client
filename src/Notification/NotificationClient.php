@@ -1,12 +1,12 @@
 <?php
 
-namespace OpenEuropa\Notification;
+namespace OpenEuropa\EPoetry\Notification;
 
 use Phpro\SoapClient\Caller\Caller;
 use Phpro\SoapClient\Type\ResultInterface;
+use OpenEuropa\EPoetry\Notification\Type;
 use Phpro\SoapClient\Exception\SoapException;
 use Phpro\SoapClient\Type\RequestInterface;
-use OpenEuropa\EPoetry\Notification\Type;
 
 class NotificationClient
 {

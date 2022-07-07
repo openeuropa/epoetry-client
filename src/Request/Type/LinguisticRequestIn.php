@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticRequestIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     private $requestDetails;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
-     * @return LinguisticRequestIn
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @return $this
      */
-    public function getRequestDetails()
+    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    {
+        $this->requestDetails = $requestDetails;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     */
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
-     * @return LinguisticRequestIn
+     * @return bool
      */
-    public function withRequestDetails($requestDetails)
+    public function hasRequestDetails() : bool
     {
-        $new = clone $this;
-        $new->requestDetails = $requestDetails;
-
-        return $new;
+        return !empty($this->requestDetails);
     }
 }
 

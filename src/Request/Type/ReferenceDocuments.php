@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ReferenceDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
     private $document;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
+     * @return $this
      */
-    public function getDocument()
+    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+    {
+        $this->document = $document;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn|null
+     */
+    public function getDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         return $this->document;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
-     * @return ReferenceDocuments
+     * @return bool
      */
-    public function withDocument($document)
+    public function hasDocument() : bool
     {
-        $new = clone $this;
-        $new->document = $document;
-
-        return $new;
+        return !empty($this->document);
     }
 }
 

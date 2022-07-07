@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenEuropa\Notification;
+namespace OpenEuropa\EPoetry\Notification;
 
-use OpenEuropa\Notification\NotificationClient;
+use OpenEuropa\EPoetry\Notification\NotificationClient;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
@@ -12,7 +12,7 @@ use Phpro\SoapClient\Caller\EngineCaller;
 
 class NotificationClientFactory
 {
-    public static function factory(string $wsdl) : \OpenEuropa\Notification\NotificationClient
+    public static function factory(string $wsdl) : \OpenEuropa\EPoetry\Notification\NotificationClient
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdl, [])

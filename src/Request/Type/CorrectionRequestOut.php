@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionRequestOut
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
     private $requestReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\DcoOut
      */
     private $DCO;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
-     * @return CorrectionRequestOut
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
+     * @return $this
      */
-    public function getDCO()
+    public function setDCO($DCO) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    {
+        $this->DCO = $DCO;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
+     */
+    public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         return $this->DCO;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
-     * @return CorrectionRequestOut
+     * @return bool
      */
-    public function withDCO($DCO)
+    public function hasDCO() : bool
     {
-        $new = clone $this;
-        $new->DCO = $DCO;
-
-        return $new;
+        return !empty($this->DCO);
     }
 }
 

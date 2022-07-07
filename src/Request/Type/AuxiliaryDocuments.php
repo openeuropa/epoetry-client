@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
      */
     private $document;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
+     * @return $this
      */
-    public function getDocument()
+    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    {
+        $this->document = $document;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut|null
+     */
+    public function getDocument() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         return $this->document;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
-     * @return AuxiliaryDocuments
+     * @return bool
      */
-    public function withDocument($document)
+    public function hasDocument() : bool
     {
-        $new = clone $this;
-        $new->document = $document;
-
-        return $new;
+        return !empty($this->document);
     }
 }
 

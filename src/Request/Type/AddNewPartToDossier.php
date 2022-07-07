@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\RequestInterface;
 class AddNewPartToDossier implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @var null|\OpenEuropa\EPoetry\Request\Type\DossierReference
      */
     private $dossier;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     private $requestDetails;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $templateName;
 
@@ -43,83 +43,107 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @return $this
      */
-    public function getDossier()
+    public function setDossier($dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    {
+        $this->dossier = $dossier;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
+     */
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
-     * @return AddNewPartToDossier
+     * @return bool
      */
-    public function withDossier($dossier)
+    public function hasDossier() : bool
     {
-        $new = clone $this;
-        $new->dossier = $dossier;
-
-        return $new;
+        return !empty($this->dossier);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @return $this
      */
-    public function getRequestDetails()
+    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    {
+        $this->requestDetails = $requestDetails;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     */
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
-     * @return AddNewPartToDossier
+     * @return bool
      */
-    public function withRequestDetails($requestDetails)
+    public function hasRequestDetails() : bool
     {
-        $new = clone $this;
-        $new->requestDetails = $requestDetails;
-
-        return $new;
+        return !empty($this->requestDetails);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return AddNewPartToDossier
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 
     /**
-     * @return string
+     * @param string $templateName
+     * @return $this
      */
-    public function getTemplateName()
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    {
+        $this->templateName = $templateName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }
 
     /**
-     * @param string $templateName
-     * @return AddNewPartToDossier
+     * @return bool
      */
-    public function withTemplateName($templateName)
+    public function hasTemplateName() : bool
     {
-        $new = clone $this;
-        $new->templateName = $templateName;
-
-        return $new;
+        return !empty($this->templateName);
     }
 }
 

@@ -5,128 +5,158 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocumentOut
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $fileName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $documentType;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $comment;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @return string
+     * @param string $fileName
+     * @return $this
      */
-    public function getFileName()
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
-     * @return AuxiliaryDocumentOut
+     * @return bool
      */
-    public function withFileName($fileName)
+    public function hasFileName() : bool
     {
-        $new = clone $this;
-        $new->fileName = $fileName;
-
-        return $new;
+        return !empty($this->fileName);
     }
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return AuxiliaryDocumentOut
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 
     /**
-     * @return string
+     * @param string $documentType
+     * @return $this
      */
-    public function getDocumentType()
+    public function setDocumentType(string $documentType) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    {
+        $this->documentType = $documentType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDocumentType() : ?string
     {
         return $this->documentType;
     }
 
     /**
-     * @param string $documentType
-     * @return AuxiliaryDocumentOut
+     * @return bool
      */
-    public function withDocumentType($documentType)
+    public function hasDocumentType() : bool
     {
-        $new = clone $this;
-        $new->documentType = $documentType;
-
-        return $new;
+        return !empty($this->documentType);
     }
 
     /**
-     * @return string
+     * @param string $comment
+     * @return $this
      */
-    public function getComment()
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getComment() : ?string
     {
         return $this->comment;
     }
 
     /**
-     * @param string $comment
-     * @return AuxiliaryDocumentOut
+     * @return bool
      */
-    public function withComment($comment)
+    public function hasComment() : bool
     {
-        $new = clone $this;
-        $new->comment = $comment;
-
-        return $new;
+        return !empty($this->comment);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return AuxiliaryDocumentOut
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 }
 

@@ -5,78 +5,96 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyProductRequestIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $trackChanges;
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return ModifyProductRequestIn
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $requestedDeadline
+     * @return $this
      */
-    public function getRequestedDeadline()
+    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    {
+        $this->requestedDeadline = $requestedDeadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
-     * @return ModifyProductRequestIn
+     * @return bool
      */
-    public function withRequestedDeadline($requestedDeadline)
+    public function hasRequestedDeadline() : bool
     {
-        $new = clone $this;
-        $new->requestedDeadline = $requestedDeadline;
-
-        return $new;
+        return !empty($this->requestedDeadline);
     }
 
     /**
-     * @return bool
+     * @param bool $trackChanges
+     * @return $this
      */
-    public function getTrackChanges()
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    {
+        $this->trackChanges = $trackChanges;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
 
     /**
-     * @param bool $trackChanges
-     * @return ModifyProductRequestIn
+     * @return bool
      */
-    public function withTrackChanges($trackChanges)
+    public function hasTrackChanges() : bool
     {
-        $new = clone $this;
-        $new->trackChanges = $trackChanges;
-
-        return $new;
+        return !empty($this->trackChanges);
     }
 }
 

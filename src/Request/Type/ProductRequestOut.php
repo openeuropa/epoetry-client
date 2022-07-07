@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ProductRequestOut
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $requestedDeadline;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $acceptedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $trackChanges;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $status;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $requestedDeadline
+     * @return $this
      */
-    public function getRequestedDeadline()
+    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->requestedDeadline = $requestedDeadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withRequestedDeadline($requestedDeadline)
+    public function hasRequestedDeadline() : bool
     {
-        $new = clone $this;
-        $new->requestedDeadline = $requestedDeadline;
-
-        return $new;
+        return !empty($this->requestedDeadline);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $acceptedDeadline
+     * @return $this
      */
-    public function getAcceptedDeadline()
+    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->acceptedDeadline = $acceptedDeadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getAcceptedDeadline() : ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
 
     /**
-     * @param \DateTimeInterface $acceptedDeadline
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withAcceptedDeadline($acceptedDeadline)
+    public function hasAcceptedDeadline() : bool
     {
-        $new = clone $this;
-        $new->acceptedDeadline = $acceptedDeadline;
-
-        return $new;
+        return !empty($this->acceptedDeadline);
     }
 
     /**
-     * @return bool
+     * @param bool $trackChanges
+     * @return $this
      */
-    public function getTrackChanges()
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->trackChanges = $trackChanges;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
 
     /**
-     * @param bool $trackChanges
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withTrackChanges($trackChanges)
+    public function hasTrackChanges() : bool
     {
-        $new = clone $this;
-        $new->trackChanges = $trackChanges;
-
-        return $new;
+        return !empty($this->trackChanges);
     }
 
     /**
-     * @return string
+     * @param string $status
+     * @return $this
      */
-    public function getStatus()
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus() : ?string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withStatus($status)
+    public function hasStatus() : bool
     {
-        $new = clone $this;
-        $new->status = $status;
-
-        return $new;
+        return !empty($this->status);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return ProductRequestOut
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 }
 

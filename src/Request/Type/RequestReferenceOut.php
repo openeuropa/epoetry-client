@@ -5,103 +5,127 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class RequestReferenceOut
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @var null|\OpenEuropa\EPoetry\Request\Type\DossierReference
      */
     private $dossier;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $productType;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $part;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $version;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @return $this
      */
-    public function getDossier()
+    public function setDossier($dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    {
+        $this->dossier = $dossier;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
+     */
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
-     * @return RequestReferenceOut
+     * @return bool
      */
-    public function withDossier($dossier)
+    public function hasDossier() : bool
     {
-        $new = clone $this;
-        $new->dossier = $dossier;
-
-        return $new;
+        return !empty($this->dossier);
     }
 
     /**
-     * @return string
+     * @param string $productType
+     * @return $this
      */
-    public function getProductType()
+    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    {
+        $this->productType = $productType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProductType() : ?string
     {
         return $this->productType;
     }
 
     /**
-     * @param string $productType
-     * @return RequestReferenceOut
+     * @return bool
      */
-    public function withProductType($productType)
+    public function hasProductType() : bool
     {
-        $new = clone $this;
-        $new->productType = $productType;
-
-        return $new;
+        return !empty($this->productType);
     }
 
     /**
-     * @return int
+     * @param int $part
+     * @return $this
      */
-    public function getPart()
+    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    {
+        $this->part = $part;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPart() : ?int
     {
         return $this->part;
     }
 
     /**
-     * @param int $part
-     * @return RequestReferenceOut
+     * @return bool
      */
-    public function withPart($part)
+    public function hasPart() : bool
     {
-        $new = clone $this;
-        $new->part = $part;
-
-        return $new;
+        return !empty($this->part);
     }
 
     /**
-     * @return int
+     * @param int $version
+     * @return $this
      */
-    public function getVersion()
+    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    {
+        $this->version = $version;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getVersion() : ?int
     {
         return $this->version;
     }
 
     /**
-     * @param int $version
-     * @return RequestReferenceOut
+     * @return bool
      */
-    public function withVersion($version)
+    public function hasVersion() : bool
     {
-        $new = clone $this;
-        $new->version = $version;
-
-        return $new;
+        return !empty($this->version);
     }
 }
 

@@ -7,17 +7,17 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ResubmitRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
     private $resubmitRequest;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $templateName;
 
@@ -36,63 +36,81 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
+     * @return $this
      */
-    public function getResubmitRequest()
+    public function setResubmitRequest($resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    {
+        $this->resubmitRequest = $resubmitRequest;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
+     */
+    public function getResubmitRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->resubmitRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
-     * @return ResubmitRequest
+     * @return bool
      */
-    public function withResubmitRequest($resubmitRequest)
+    public function hasResubmitRequest() : bool
     {
-        $new = clone $this;
-        $new->resubmitRequest = $resubmitRequest;
-
-        return $new;
+        return !empty($this->resubmitRequest);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return ResubmitRequest
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 
     /**
-     * @return string
+     * @param string $templateName
+     * @return $this
      */
-    public function getTemplateName()
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    {
+        $this->templateName = $templateName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }
 
     /**
-     * @param string $templateName
-     * @return ResubmitRequest
+     * @return bool
      */
-    public function withTemplateName($templateName)
+    public function hasTemplateName() : bool
     {
-        $new = clone $this;
-        $new->templateName = $templateName;
-
-        return $new;
+        return !empty($this->templateName);
     }
 }
 

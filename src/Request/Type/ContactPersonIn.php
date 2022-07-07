@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ContactPersonIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $userId;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $contactRole;
 
     /**
-     * @return string
+     * @param string $userId
+     * @return $this
      */
-    public function getUserId()
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    {
+        $this->userId = $userId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
 
     /**
-     * @param string $userId
-     * @return ContactPersonIn
+     * @return bool
      */
-    public function withUserId($userId)
+    public function hasUserId() : bool
     {
-        $new = clone $this;
-        $new->userId = $userId;
-
-        return $new;
+        return !empty($this->userId);
     }
 
     /**
-     * @return string
+     * @param string $contactRole
+     * @return $this
      */
-    public function getContactRole()
+    public function setContactRole(string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    {
+        $this->contactRole = $contactRole;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContactRole() : ?string
     {
         return $this->contactRole;
     }
 
     /**
-     * @param string $contactRole
-     * @return ContactPersonIn
+     * @return bool
      */
-    public function withContactRole($contactRole)
+    public function hasContactRole() : bool
     {
-        $new = clone $this;
-        $new->contactRole = $contactRole;
-
-        return $new;
+        return !empty($this->contactRole);
     }
 }
 

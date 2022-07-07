@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateNewVersion implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
     private $linguisticRequest;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
@@ -29,43 +29,55 @@ class CreateNewVersion implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
+     * @return $this
      */
-    public function getLinguisticRequest()
+    public function setLinguisticRequest($linguisticRequest) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    {
+        $this->linguisticRequest = $linguisticRequest;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
+     */
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
-     * @return CreateNewVersion
+     * @return bool
      */
-    public function withLinguisticRequest($linguisticRequest)
+    public function hasLinguisticRequest() : bool
     {
-        $new = clone $this;
-        $new->linguisticRequest = $linguisticRequest;
-
-        return $new;
+        return !empty($this->linguisticRequest);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return CreateNewVersion
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 }
 

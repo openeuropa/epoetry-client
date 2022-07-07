@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class ProductReference
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     private $requestReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
-     * @return ProductReference
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return ProductReference
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 }
 

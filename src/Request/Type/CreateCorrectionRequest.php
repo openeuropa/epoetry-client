@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateCorrectionRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
      */
     private $correctionDetails;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
@@ -29,43 +29,55 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
+     * @return $this
      */
-    public function getCorrectionDetails()
+    public function setCorrectionDetails($correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    {
+        $this->correctionDetails = $correctionDetails;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null
+     */
+    public function getCorrectionDetails() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         return $this->correctionDetails;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
-     * @return CreateCorrectionRequest
+     * @return bool
      */
-    public function withCorrectionDetails($correctionDetails)
+    public function hasCorrectionDetails() : bool
     {
-        $new = clone $this;
-        $new->correctionDetails = $correctionDetails;
-
-        return $new;
+        return !empty($this->correctionDetails);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return CreateCorrectionRequest
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 }
 

@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionDetailsIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $fileName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $content;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $language;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $remark;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return string
+     * @param string $fileName
+     * @return $this
      */
-    public function getFileName()
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withFileName($fileName)
+    public function hasFileName() : bool
     {
-        $new = clone $this;
-        $new->fileName = $fileName;
-
-        return $new;
+        return !empty($this->fileName);
     }
 
     /**
-     * @return string
+     * @param string $content
+     * @return $this
      */
-    public function getContent()
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContent() : ?string
     {
         return $this->content;
     }
 
     /**
-     * @param string $content
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withContent($content)
+    public function hasContent() : bool
     {
-        $new = clone $this;
-        $new->content = $content;
-
-        return $new;
+        return !empty($this->content);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 
     /**
-     * @return string
+     * @param string $language
+     * @return $this
      */
-    public function getLanguage()
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
 
     /**
-     * @param string $language
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withLanguage($language)
+    public function hasLanguage() : bool
     {
-        $new = clone $this;
-        $new->language = $language;
-
-        return $new;
+        return !empty($this->language);
     }
 
     /**
-     * @return string
+     * @param string $remark
+     * @return $this
      */
-    public function getRemark()
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    {
+        $this->remark = $remark;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRemark() : ?string
     {
         return $this->remark;
     }
 
     /**
-     * @param string $remark
-     * @return CorrectionDetailsIn
+     * @return bool
      */
-    public function withRemark($remark)
+    public function hasRemark() : bool
     {
-        $new = clone $this;
-        $new->remark = $remark;
-
-        return $new;
+        return !empty($this->remark);
     }
 }
 

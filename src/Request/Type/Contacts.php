@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Contacts
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\ContactPersonIn
      */
     private $contact;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+     * @param \OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact
+     * @return $this
      */
-    public function getContact()
+    public function setContact($contact) : \OpenEuropa\EPoetry\Request\Type\Contacts
+    {
+        $this->contact = $contact;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn|null
+     */
+    public function getContact() : ?\OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         return $this->contact;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact
-     * @return Contacts
+     * @return bool
      */
-    public function withContact($contact)
+    public function hasContact() : bool
     {
-        $new = clone $this;
-        $new->contact = $contact;
-
-        return $new;
+        return !empty($this->contact);
     }
 }
 

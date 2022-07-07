@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ModifyLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
      */
     private $modifyLinguisticRequest;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
@@ -29,43 +29,55 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
+     * @return $this
      */
-    public function getModifyLinguisticRequest()
+    public function setModifyLinguisticRequest($modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    {
+        $this->modifyLinguisticRequest = $modifyLinguisticRequest;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null
+     */
+    public function getModifyLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         return $this->modifyLinguisticRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
-     * @return ModifyLinguisticRequest
+     * @return bool
      */
-    public function withModifyLinguisticRequest($modifyLinguisticRequest)
+    public function hasModifyLinguisticRequest() : bool
     {
-        $new = clone $this;
-        $new->modifyLinguisticRequest = $modifyLinguisticRequest;
-
-        return $new;
+        return !empty($this->modifyLinguisticRequest);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return ModifyLinguisticRequest
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 }
 

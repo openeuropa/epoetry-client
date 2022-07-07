@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class OriginalDocumentOut
 {
     /**
-     * @var bool
+     * @var null|bool
      */
     private $trackChanges;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $format;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $fileName;
 
     /**
-     * @var float
+     * @var null|float
      */
     private $pages;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $comment;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
     private $linguisticSections;
 
     /**
-     * @return bool
+     * @param bool $trackChanges
+     * @return $this
      */
-    public function getTrackChanges()
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->trackChanges = $trackChanges;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
 
     /**
-     * @param bool $trackChanges
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withTrackChanges($trackChanges)
+    public function hasTrackChanges() : bool
     {
-        $new = clone $this;
-        $new->trackChanges = $trackChanges;
-
-        return $new;
+        return !empty($this->trackChanges);
     }
 
     /**
-     * @return string
+     * @param string $format
+     * @return $this
      */
-    public function getFormat()
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFormat() : ?string
     {
         return $this->format;
     }
 
     /**
-     * @param string $format
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withFormat($format)
+    public function hasFormat() : bool
     {
-        $new = clone $this;
-        $new->format = $format;
-
-        return $new;
+        return !empty($this->format);
     }
 
     /**
-     * @return string
+     * @param string $fileName
+     * @return $this
      */
-    public function getFileName()
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withFileName($fileName)
+    public function hasFileName() : bool
     {
-        $new = clone $this;
-        $new->fileName = $fileName;
-
-        return $new;
+        return !empty($this->fileName);
     }
 
     /**
-     * @return float
+     * @param float $pages
+     * @return $this
      */
-    public function getPages()
+    public function setPages(float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->pages = $pages;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getPages() : ?float
     {
         return $this->pages;
     }
 
     /**
-     * @param float $pages
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withPages($pages)
+    public function hasPages() : bool
     {
-        $new = clone $this;
-        $new->pages = $pages;
-
-        return $new;
+        return !empty($this->pages);
     }
 
     /**
-     * @return string
+     * @param string $comment
+     * @return $this
      */
-    public function getComment()
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getComment() : ?string
     {
         return $this->comment;
     }
 
     /**
-     * @param string $comment
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withComment($comment)
+    public function hasComment() : bool
     {
-        $new = clone $this;
-        $new->comment = $comment;
-
-        return $new;
+        return !empty($this->comment);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
+     * @return $this
      */
-    public function getLinguisticSections()
+    public function setLinguisticSections($linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    {
+        $this->linguisticSections = $linguisticSections;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
+     */
+    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
-     * @return OriginalDocumentOut
+     * @return bool
      */
-    public function withLinguisticSections($linguisticSections)
+    public function hasLinguisticSections() : bool
     {
-        $new = clone $this;
-        $new->linguisticSections = $linguisticSections;
-
-        return $new;
+        return !empty($this->linguisticSections);
     }
 }
 

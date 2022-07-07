@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class UpdateCallbackUrl implements RequestInterface
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $callbackUrl;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
@@ -29,43 +29,55 @@ class UpdateCallbackUrl implements RequestInterface
     }
 
     /**
-     * @return string
+     * @param string $callbackUrl
+     * @return $this
      */
-    public function getCallbackUrl()
+    public function setCallbackUrl(string $callbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    {
+        $this->callbackUrl = $callbackUrl;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCallbackUrl() : ?string
     {
         return $this->callbackUrl;
     }
 
     /**
-     * @param string $callbackUrl
-     * @return UpdateCallbackUrl
+     * @return bool
      */
-    public function withCallbackUrl($callbackUrl)
+    public function hasCallbackUrl() : bool
     {
-        $new = clone $this;
-        $new->callbackUrl = $callbackUrl;
-
-        return $new;
+        return !empty($this->callbackUrl);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return UpdateCallbackUrl
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 }
 

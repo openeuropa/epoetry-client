@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotification
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $notificationType;
 
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
      */
     private $linguisticRequest;
 
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\Product
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\Product
      */
     private $product;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $message;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $planningAgent;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $planningSector;
 
     /**
-     * @return string
+     * @param string $notificationType
+     * @return $this
      */
-    public function getNotificationType()
+    public function setNotificationType(string $notificationType) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->notificationType = $notificationType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNotificationType() : ?string
     {
         return $this->notificationType;
     }
 
     /**
-     * @param string $notificationType
-     * @return DgtNotification
+     * @return bool
      */
-    public function withNotificationType($notificationType)
+    public function hasNotificationType() : bool
     {
-        $new = clone $this;
-        $new->notificationType = $notificationType;
-
-        return $new;
+        return !empty($this->notificationType);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
+     * @return $this
      */
-    public function getLinguisticRequest()
+    public function setLinguisticRequest($linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->linguisticRequest = $linguisticRequest;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest|null
+     */
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         return $this->linguisticRequest;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
-     * @return DgtNotification
+     * @return bool
      */
-    public function withLinguisticRequest($linguisticRequest)
+    public function hasLinguisticRequest() : bool
     {
-        $new = clone $this;
-        $new->linguisticRequest = $linguisticRequest;
-
-        return $new;
+        return !empty($this->linguisticRequest);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\Product
+     * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
+     * @return $this
      */
-    public function getProduct()
+    public function setProduct($product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->product = $product;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\Product|null
+     */
+    public function getProduct() : ?\OpenEuropa\EPoetry\Notification\Type\Product
     {
         return $this->product;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
-     * @return DgtNotification
+     * @return bool
      */
-    public function withProduct($product)
+    public function hasProduct() : bool
     {
-        $new = clone $this;
-        $new->product = $product;
-
-        return $new;
+        return !empty($this->product);
     }
 
     /**
-     * @return string
+     * @param string $message
+     * @return $this
      */
-    public function getMessage()
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage() : ?string
     {
         return $this->message;
     }
 
     /**
-     * @param string $message
-     * @return DgtNotification
+     * @return bool
      */
-    public function withMessage($message)
+    public function hasMessage() : bool
     {
-        $new = clone $this;
-        $new->message = $message;
-
-        return $new;
+        return !empty($this->message);
     }
 
     /**
-     * @return string
+     * @param string $planningAgent
+     * @return $this
      */
-    public function getPlanningAgent()
+    public function setPlanningAgent(string $planningAgent) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->planningAgent = $planningAgent;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlanningAgent() : ?string
     {
         return $this->planningAgent;
     }
 
     /**
-     * @param string $planningAgent
-     * @return DgtNotification
+     * @return bool
      */
-    public function withPlanningAgent($planningAgent)
+    public function hasPlanningAgent() : bool
     {
-        $new = clone $this;
-        $new->planningAgent = $planningAgent;
-
-        return $new;
+        return !empty($this->planningAgent);
     }
 
     /**
-     * @return string
+     * @param string $planningSector
+     * @return $this
      */
-    public function getPlanningSector()
+    public function setPlanningSector(string $planningSector) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    {
+        $this->planningSector = $planningSector;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlanningSector() : ?string
     {
         return $this->planningSector;
     }
 
     /**
-     * @param string $planningSector
-     * @return DgtNotification
+     * @return bool
      */
-    public function withPlanningSector($planningSector)
+    public function hasPlanningSector() : bool
     {
-        $new = clone $this;
-        $new->planningSector = $planningSector;
-
-        return $new;
+        return !empty($this->planningSector);
     }
 }
 

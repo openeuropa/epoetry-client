@@ -1,4 +1,8 @@
 commands:
+  generate:
+    - "./vendor/bin/run generate:request"
+    - "./vendor/bin/run generate:notification"
+
   generate:request:
     - { task: "remove", file: "src/Request/Type" }
     - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-request.php"

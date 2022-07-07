@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
@@ -29,43 +29,55 @@ class GetLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
-     * @return GetLinguisticRequest
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return GetLinguisticRequest
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 }
 

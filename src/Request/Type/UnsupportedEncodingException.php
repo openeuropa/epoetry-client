@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class UnsupportedEncodingException
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $message;
 
     /**
-     * @return string
+     * @param string $message
+     * @return $this
      */
-    public function getMessage()
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UnsupportedEncodingException
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage() : ?string
     {
         return $this->message;
     }
 
     /**
-     * @param string $message
-     * @return UnsupportedEncodingException
+     * @return bool
      */
-    public function withMessage($message)
+    public function hasMessage() : bool
     {
-        $new = clone $this;
-        $new->message = $message;
-
-        return $new;
+        return !empty($this->message);
     }
 }
 

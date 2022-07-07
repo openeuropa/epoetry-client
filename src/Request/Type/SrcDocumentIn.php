@@ -5,78 +5,96 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class SrcDocumentIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $fileName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $comment;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $content;
 
     /**
-     * @return string
+     * @param string $fileName
+     * @return $this
      */
-    public function getFileName()
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
-     * @return SrcDocumentIn
+     * @return bool
      */
-    public function withFileName($fileName)
+    public function hasFileName() : bool
     {
-        $new = clone $this;
-        $new->fileName = $fileName;
-
-        return $new;
+        return !empty($this->fileName);
     }
 
     /**
-     * @return string
+     * @param string $comment
+     * @return $this
      */
-    public function getComment()
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getComment() : ?string
     {
         return $this->comment;
     }
 
     /**
-     * @param string $comment
-     * @return SrcDocumentIn
+     * @return bool
      */
-    public function withComment($comment)
+    public function hasComment() : bool
     {
-        $new = clone $this;
-        $new->comment = $comment;
-
-        return $new;
+        return !empty($this->comment);
     }
 
     /**
-     * @return string
+     * @param string $content
+     * @return $this
      */
-    public function getContent()
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContent() : ?string
     {
         return $this->content;
     }
 
     /**
-     * @param string $content
-     * @return SrcDocumentIn
+     * @return bool
      */
-    public function withContent($content)
+    public function hasContent() : bool
     {
-        $new = clone $this;
-        $new->content = $content;
-
-        return $new;
+        return !empty($this->content);
     }
 }
 

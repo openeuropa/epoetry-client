@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class LinguisticRequest
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     private $requestReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $status;
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
-     * @return LinguisticRequest
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return string
+     * @param string $status
+     * @return $this
      */
-    public function getStatus()
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus() : ?string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
-     * @return LinguisticRequest
+     * @return bool
      */
-    public function withStatus($status)
+    public function hasStatus() : bool
     {
-        $new = clone $this;
-        $new->status = $status;
-
-        return $new;
+        return !empty($this->status);
     }
 }
 

@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Products
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
      */
     private $product;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
+     * @return $this
      */
-    public function getProduct()
+    public function setProduct($product) : \OpenEuropa\EPoetry\Request\Type\Products
+    {
+        $this->product = $product;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn|null
+     */
+    public function getProduct() : ?\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         return $this->product;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
-     * @return Products
+     * @return bool
      */
-    public function withProduct($product)
+    public function hasProduct() : bool
     {
-        $new = clone $this;
-        $new->product = $product;
-
-        return $new;
+        return !empty($this->product);
     }
 }
 

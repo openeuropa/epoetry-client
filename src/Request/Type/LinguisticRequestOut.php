@@ -5,78 +5,96 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticRequestOut
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
     private $requestReference;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
      */
     private $requestDetails;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+     * @var null|\OpenEuropa\EPoetry\Request\Type\InformativeMessages
      */
     private $informativeMessages;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @return $this
      */
-    public function getRequestReference()
+    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    {
+        $this->requestReference = $requestReference;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
+     */
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
-     * @return LinguisticRequestOut
+     * @return bool
      */
-    public function withRequestReference($requestReference)
+    public function hasRequestReference() : bool
     {
-        $new = clone $this;
-        $new->requestReference = $requestReference;
-
-        return $new;
+        return !empty($this->requestReference);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
+     * @return $this
      */
-    public function getRequestDetails()
+    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    {
+        $this->requestDetails = $requestDetails;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null
+     */
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         return $this->requestDetails;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
-     * @return LinguisticRequestOut
+     * @return bool
      */
-    public function withRequestDetails($requestDetails)
+    public function hasRequestDetails() : bool
     {
-        $new = clone $this;
-        $new->requestDetails = $requestDetails;
-
-        return $new;
+        return !empty($this->requestDetails);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
+     * @return $this
      */
-    public function getInformativeMessages()
+    public function setInformativeMessages($informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    {
+        $this->informativeMessages = $informativeMessages;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null
+     */
+    public function getInformativeMessages() : ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         return $this->informativeMessages;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
-     * @return LinguisticRequestOut
+     * @return bool
      */
-    public function withInformativeMessages($informativeMessages)
+    public function hasInformativeMessages() : bool
     {
-        $new = clone $this;
-        $new->informativeMessages = $informativeMessages;
-
-        return $new;
+        return !empty($this->informativeMessages);
     }
 }
 

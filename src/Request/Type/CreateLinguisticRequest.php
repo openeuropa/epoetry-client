@@ -7,17 +7,17 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     private $requestDetails;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $applicationName;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $templateName;
 
@@ -36,63 +36,81 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @return $this
      */
-    public function getRequestDetails()
+    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    {
+        $this->requestDetails = $requestDetails;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     */
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
-     * @return CreateLinguisticRequest
+     * @return bool
      */
-    public function withRequestDetails($requestDetails)
+    public function hasRequestDetails() : bool
     {
-        $new = clone $this;
-        $new->requestDetails = $requestDetails;
-
-        return $new;
+        return !empty($this->requestDetails);
     }
 
     /**
-     * @return string
+     * @param string $applicationName
+     * @return $this
      */
-    public function getApplicationName()
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    {
+        $this->applicationName = $applicationName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
 
     /**
-     * @param string $applicationName
-     * @return CreateLinguisticRequest
+     * @return bool
      */
-    public function withApplicationName($applicationName)
+    public function hasApplicationName() : bool
     {
-        $new = clone $this;
-        $new->applicationName = $applicationName;
-
-        return $new;
+        return !empty($this->applicationName);
     }
 
     /**
-     * @return string
+     * @param string $templateName
+     * @return $this
      */
-    public function getTemplateName()
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    {
+        $this->templateName = $templateName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }
 
     /**
-     * @param string $templateName
-     * @return CreateLinguisticRequest
+     * @return bool
      */
-    public function withTemplateName($templateName)
+    public function hasTemplateName() : bool
     {
-        $new = clone $this;
-        $new->templateName = $templateName;
-
-        return $new;
+        return !empty($this->templateName);
     }
 }
 

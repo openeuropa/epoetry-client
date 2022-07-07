@@ -5,53 +5,65 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotificationResult
 {
     /**
-     * @var bool
+     * @var null|bool
      */
     private $success;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $message;
 
     /**
-     * @return bool
+     * @param bool $success
+     * @return $this
      */
-    public function getSuccess()
+    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    {
+        $this->success = $success;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isSuccess() : ?bool
     {
         return $this->success;
     }
 
     /**
-     * @param bool $success
-     * @return DgtNotificationResult
+     * @return bool
      */
-    public function withSuccess($success)
+    public function hasSuccess() : bool
     {
-        $new = clone $this;
-        $new->success = $success;
-
-        return $new;
+        return !empty($this->success);
     }
 
     /**
-     * @return string
+     * @param string $message
+     * @return $this
      */
-    public function getMessage()
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage() : ?string
     {
         return $this->message;
     }
 
     /**
-     * @param string $message
-     * @return DgtNotificationResult
+     * @return bool
      */
-    public function withMessage($message)
+    public function hasMessage() : bool
     {
-        $new = clone $this;
-        $new->message = $message;
-
-        return $new;
+        return !empty($this->message);
     }
 }
 

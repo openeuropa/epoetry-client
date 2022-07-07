@@ -5,28 +5,34 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticSections
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
+     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
      */
     private $linguisticSection;
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut $linguisticSection
+     * @return $this
      */
-    public function getLinguisticSection()
+    public function setLinguisticSection($linguisticSection) : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    {
+        $this->linguisticSection = $linguisticSection;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut|null
+     */
+    public function getLinguisticSection() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
     {
         return $this->linguisticSection;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut $linguisticSection
-     * @return LinguisticSections
+     * @return bool
      */
-    public function withLinguisticSection($linguisticSection)
+    public function hasLinguisticSection() : bool
     {
-        $new = clone $this;
-        $new->linguisticSection = $linguisticSection;
-
-        return $new;
+        return !empty($this->linguisticSection);
     }
 }
 

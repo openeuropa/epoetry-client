@@ -7,7 +7,7 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ReceiveNotification implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+     * @var null|\OpenEuropa\EPoetry\Notification\Type\DgtNotification
      */
     private $notification;
 
@@ -22,23 +22,29 @@ class ReceiveNotification implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
+     * @return $this
      */
-    public function getNotification()
+    public function setNotification($notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
+    {
+        $this->notification = $notification;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification|null
+     */
+    public function getNotification() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         return $this->notification;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
-     * @return ReceiveNotification
+     * @return bool
      */
-    public function withNotification($notification)
+    public function hasNotification() : bool
     {
-        $new = clone $this;
-        $new->notification = $notification;
-
-        return $new;
+        return !empty($this->notification);
     }
 }
 

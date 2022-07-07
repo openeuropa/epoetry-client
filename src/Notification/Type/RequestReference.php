@@ -5,153 +5,189 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class RequestReference
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $requesterCode;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $year;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $number;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $part;
 
     /**
-     * @var int
+     * @var null|int
      */
     private $version;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $productType;
 
     /**
-     * @return string
+     * @param string $requesterCode
+     * @return $this
      */
-    public function getRequesterCode()
+    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->requesterCode = $requesterCode;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRequesterCode() : ?string
     {
         return $this->requesterCode;
     }
 
     /**
-     * @param string $requesterCode
-     * @return RequestReference
+     * @return bool
      */
-    public function withRequesterCode($requesterCode)
+    public function hasRequesterCode() : bool
     {
-        $new = clone $this;
-        $new->requesterCode = $requesterCode;
-
-        return $new;
+        return !empty($this->requesterCode);
     }
 
     /**
-     * @return int
+     * @param int $year
+     * @return $this
      */
-    public function getYear()
+    public function setYear(int $year) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->year = $year;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getYear() : ?int
     {
         return $this->year;
     }
 
     /**
-     * @param int $year
-     * @return RequestReference
+     * @return bool
      */
-    public function withYear($year)
+    public function hasYear() : bool
     {
-        $new = clone $this;
-        $new->year = $year;
-
-        return $new;
+        return !empty($this->year);
     }
 
     /**
-     * @return int
+     * @param int $number
+     * @return $this
      */
-    public function getNumber()
+    public function setNumber(int $number) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->number = $number;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumber() : ?int
     {
         return $this->number;
     }
 
     /**
-     * @param int $number
-     * @return RequestReference
+     * @return bool
      */
-    public function withNumber($number)
+    public function hasNumber() : bool
     {
-        $new = clone $this;
-        $new->number = $number;
-
-        return $new;
+        return !empty($this->number);
     }
 
     /**
-     * @return int
+     * @param int $part
+     * @return $this
      */
-    public function getPart()
+    public function setPart(int $part) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->part = $part;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPart() : ?int
     {
         return $this->part;
     }
 
     /**
-     * @param int $part
-     * @return RequestReference
+     * @return bool
      */
-    public function withPart($part)
+    public function hasPart() : bool
     {
-        $new = clone $this;
-        $new->part = $part;
-
-        return $new;
+        return !empty($this->part);
     }
 
     /**
-     * @return int
+     * @param int $version
+     * @return $this
      */
-    public function getVersion()
+    public function setVersion(int $version) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->version = $version;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getVersion() : ?int
     {
         return $this->version;
     }
 
     /**
-     * @param int $version
-     * @return RequestReference
+     * @return bool
      */
-    public function withVersion($version)
+    public function hasVersion() : bool
     {
-        $new = clone $this;
-        $new->version = $version;
-
-        return $new;
+        return !empty($this->version);
     }
 
     /**
-     * @return string
+     * @param string $productType
+     * @return $this
      */
-    public function getProductType()
+    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    {
+        $this->productType = $productType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProductType() : ?string
     {
         return $this->productType;
     }
 
     /**
-     * @param string $productType
-     * @return RequestReference
+     * @return bool
      */
-    public function withProductType($productType)
+    public function hasProductType() : bool
     {
-        $new = clone $this;
-        $new->productType = $productType;
-
-        return $new;
+        return !empty($this->productType);
     }
 }
 

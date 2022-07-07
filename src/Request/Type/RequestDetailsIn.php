@@ -5,553 +5,685 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class RequestDetailsIn
 {
     /**
-     * @var string
+     * @var null|string
      */
     private $title;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $workflowCode;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $internalReference;
 
     /**
-     * @var \DateTimeInterface
+     * @var null|\DateTimeInterface
      */
     private $requestedDeadline;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $sensitive;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $sentViaRue;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $documentToAdopt;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $decideReference;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $destination;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $procedure;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $slaAnnex;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $slaCommitment;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $comment;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $onBehalfOf;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $accessibleTo;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $keyword1;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $keyword2;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $keyword3;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Contacts
      */
     private $contacts;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
      */
     private $originalDocument;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Products
+     * @var null|\OpenEuropa\EPoetry\Request\Type\Products
      */
     private $products;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+     * @var null|\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
      */
     private $auxiliaryDocuments;
 
     /**
-     * @return string
+     * @param string $title
+     * @return $this
      */
-    public function getTitle()
+    public function setTitle(string $title) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitle() : ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withTitle($title)
+    public function hasTitle() : bool
     {
-        $new = clone $this;
-        $new->title = $title;
-
-        return $new;
+        return !empty($this->title);
     }
 
     /**
-     * @return string
+     * @param string $workflowCode
+     * @return $this
      */
-    public function getWorkflowCode()
+    public function setWorkflowCode(string $workflowCode) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->workflowCode = $workflowCode;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getWorkflowCode() : ?string
     {
         return $this->workflowCode;
     }
 
     /**
-     * @param string $workflowCode
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withWorkflowCode($workflowCode)
+    public function hasWorkflowCode() : bool
     {
-        $new = clone $this;
-        $new->workflowCode = $workflowCode;
-
-        return $new;
+        return !empty($this->workflowCode);
     }
 
     /**
-     * @return string
+     * @param string $internalReference
+     * @return $this
      */
-    public function getInternalReference()
+    public function setInternalReference(string $internalReference) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->internalReference = $internalReference;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInternalReference() : ?string
     {
         return $this->internalReference;
     }
 
     /**
-     * @param string $internalReference
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withInternalReference($internalReference)
+    public function hasInternalReference() : bool
     {
-        $new = clone $this;
-        $new->internalReference = $internalReference;
-
-        return $new;
+        return !empty($this->internalReference);
     }
 
     /**
-     * @return \DateTimeInterface
+     * @param \DateTimeInterface $requestedDeadline
+     * @return $this
      */
-    public function getRequestedDeadline()
+    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->requestedDeadline = $requestedDeadline;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withRequestedDeadline($requestedDeadline)
+    public function hasRequestedDeadline() : bool
     {
-        $new = clone $this;
-        $new->requestedDeadline = $requestedDeadline;
-
-        return $new;
+        return !empty($this->requestedDeadline);
     }
 
     /**
-     * @return bool
+     * @param bool $sensitive
+     * @return $this
      */
-    public function getSensitive()
+    public function setSensitive(bool $sensitive) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->sensitive = $sensitive;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isSensitive() : ?bool
     {
         return $this->sensitive;
     }
 
     /**
-     * @param bool $sensitive
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withSensitive($sensitive)
+    public function hasSensitive() : bool
     {
-        $new = clone $this;
-        $new->sensitive = $sensitive;
-
-        return $new;
+        return !empty($this->sensitive);
     }
 
     /**
-     * @return bool
+     * @param bool $sentViaRue
+     * @return $this
      */
-    public function getSentViaRue()
+    public function setSentViaRue(bool $sentViaRue) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->sentViaRue = $sentViaRue;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isSentViaRue() : ?bool
     {
         return $this->sentViaRue;
     }
 
     /**
-     * @param bool $sentViaRue
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withSentViaRue($sentViaRue)
+    public function hasSentViaRue() : bool
     {
-        $new = clone $this;
-        $new->sentViaRue = $sentViaRue;
-
-        return $new;
+        return !empty($this->sentViaRue);
     }
 
     /**
-     * @return bool
+     * @param bool $documentToAdopt
+     * @return $this
      */
-    public function getDocumentToAdopt()
+    public function setDocumentToAdopt(bool $documentToAdopt) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->documentToAdopt = $documentToAdopt;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isDocumentToAdopt() : ?bool
     {
         return $this->documentToAdopt;
     }
 
     /**
-     * @param bool $documentToAdopt
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withDocumentToAdopt($documentToAdopt)
+    public function hasDocumentToAdopt() : bool
     {
-        $new = clone $this;
-        $new->documentToAdopt = $documentToAdopt;
-
-        return $new;
+        return !empty($this->documentToAdopt);
     }
 
     /**
-     * @return string
+     * @param string $decideReference
+     * @return $this
      */
-    public function getDecideReference()
+    public function setDecideReference(string $decideReference) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->decideReference = $decideReference;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDecideReference() : ?string
     {
         return $this->decideReference;
     }
 
     /**
-     * @param string $decideReference
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withDecideReference($decideReference)
+    public function hasDecideReference() : bool
     {
-        $new = clone $this;
-        $new->decideReference = $decideReference;
-
-        return $new;
+        return !empty($this->decideReference);
     }
 
     /**
-     * @return string
+     * @param string $destination
+     * @return $this
      */
-    public function getDestination()
+    public function setDestination(string $destination) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->destination = $destination;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDestination() : ?string
     {
         return $this->destination;
     }
 
     /**
-     * @param string $destination
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withDestination($destination)
+    public function hasDestination() : bool
     {
-        $new = clone $this;
-        $new->destination = $destination;
-
-        return $new;
+        return !empty($this->destination);
     }
 
     /**
-     * @return string
+     * @param string $procedure
+     * @return $this
      */
-    public function getProcedure()
+    public function setProcedure(string $procedure) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->procedure = $procedure;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProcedure() : ?string
     {
         return $this->procedure;
     }
 
     /**
-     * @param string $procedure
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withProcedure($procedure)
+    public function hasProcedure() : bool
     {
-        $new = clone $this;
-        $new->procedure = $procedure;
-
-        return $new;
+        return !empty($this->procedure);
     }
 
     /**
-     * @return string
+     * @param string $slaAnnex
+     * @return $this
      */
-    public function getSlaAnnex()
+    public function setSlaAnnex(string $slaAnnex) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->slaAnnex = $slaAnnex;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlaAnnex() : ?string
     {
         return $this->slaAnnex;
     }
 
     /**
-     * @param string $slaAnnex
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withSlaAnnex($slaAnnex)
+    public function hasSlaAnnex() : bool
     {
-        $new = clone $this;
-        $new->slaAnnex = $slaAnnex;
-
-        return $new;
+        return !empty($this->slaAnnex);
     }
 
     /**
-     * @return string
+     * @param string $slaCommitment
+     * @return $this
      */
-    public function getSlaCommitment()
+    public function setSlaCommitment(string $slaCommitment) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->slaCommitment = $slaCommitment;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlaCommitment() : ?string
     {
         return $this->slaCommitment;
     }
 
     /**
-     * @param string $slaCommitment
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withSlaCommitment($slaCommitment)
+    public function hasSlaCommitment() : bool
     {
-        $new = clone $this;
-        $new->slaCommitment = $slaCommitment;
-
-        return $new;
+        return !empty($this->slaCommitment);
     }
 
     /**
-     * @return string
+     * @param string $comment
+     * @return $this
      */
-    public function getComment()
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getComment() : ?string
     {
         return $this->comment;
     }
 
     /**
-     * @param string $comment
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withComment($comment)
+    public function hasComment() : bool
     {
-        $new = clone $this;
-        $new->comment = $comment;
-
-        return $new;
+        return !empty($this->comment);
     }
 
     /**
-     * @return string
+     * @param string $onBehalfOf
+     * @return $this
      */
-    public function getOnBehalfOf()
+    public function setOnBehalfOf(string $onBehalfOf) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->onBehalfOf = $onBehalfOf;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOnBehalfOf() : ?string
     {
         return $this->onBehalfOf;
     }
 
     /**
-     * @param string $onBehalfOf
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withOnBehalfOf($onBehalfOf)
+    public function hasOnBehalfOf() : bool
     {
-        $new = clone $this;
-        $new->onBehalfOf = $onBehalfOf;
-
-        return $new;
+        return !empty($this->onBehalfOf);
     }
 
     /**
-     * @return string
+     * @param string $accessibleTo
+     * @return $this
      */
-    public function getAccessibleTo()
+    public function setAccessibleTo(string $accessibleTo) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->accessibleTo = $accessibleTo;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAccessibleTo() : ?string
     {
         return $this->accessibleTo;
     }
 
     /**
-     * @param string $accessibleTo
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withAccessibleTo($accessibleTo)
+    public function hasAccessibleTo() : bool
     {
-        $new = clone $this;
-        $new->accessibleTo = $accessibleTo;
-
-        return $new;
+        return !empty($this->accessibleTo);
     }
 
     /**
-     * @return string
+     * @param string $keyword1
+     * @return $this
      */
-    public function getKeyword1()
+    public function setKeyword1(string $keyword1) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->keyword1 = $keyword1;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getKeyword1() : ?string
     {
         return $this->keyword1;
     }
 
     /**
-     * @param string $keyword1
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withKeyword1($keyword1)
+    public function hasKeyword1() : bool
     {
-        $new = clone $this;
-        $new->keyword1 = $keyword1;
-
-        return $new;
+        return !empty($this->keyword1);
     }
 
     /**
-     * @return string
+     * @param string $keyword2
+     * @return $this
      */
-    public function getKeyword2()
+    public function setKeyword2(string $keyword2) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->keyword2 = $keyword2;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getKeyword2() : ?string
     {
         return $this->keyword2;
     }
 
     /**
-     * @param string $keyword2
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withKeyword2($keyword2)
+    public function hasKeyword2() : bool
     {
-        $new = clone $this;
-        $new->keyword2 = $keyword2;
-
-        return $new;
+        return !empty($this->keyword2);
     }
 
     /**
-     * @return string
+     * @param string $keyword3
+     * @return $this
      */
-    public function getKeyword3()
+    public function setKeyword3(string $keyword3) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->keyword3 = $keyword3;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getKeyword3() : ?string
     {
         return $this->keyword3;
     }
 
     /**
-     * @param string $keyword3
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withKeyword3($keyword3)
+    public function hasKeyword3() : bool
     {
-        $new = clone $this;
-        $new->keyword3 = $keyword3;
-
-        return $new;
+        return !empty($this->keyword3);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @return $this
      */
-    public function getContacts()
+    public function setContacts($contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->contacts = $contacts;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
+     */
+    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withContacts($contacts)
+    public function hasContacts() : bool
     {
-        $new = clone $this;
-        $new->contacts = $contacts;
-
-        return $new;
+        return !empty($this->contacts);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+     * @param \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument
+     * @return $this
      */
-    public function getOriginalDocument()
+    public function setOriginalDocument($originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->originalDocument = $originalDocument;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn|null
+     */
+    public function getOriginalDocument() : ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         return $this->originalDocument;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withOriginalDocument($originalDocument)
+    public function hasOriginalDocument() : bool
     {
-        $new = clone $this;
-        $new->originalDocument = $originalDocument;
-
-        return $new;
+        return !empty($this->originalDocument);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products
+     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @return $this
      */
-    public function getProducts()
+    public function setProducts($products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
+     */
+    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withProducts($products)
+    public function hasProducts() : bool
     {
-        $new = clone $this;
-        $new->products = $products;
-
-        return $new;
+        return !empty($this->products);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments
+     * @return $this
      */
-    public function getAuxiliaryDocuments()
+    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    {
+        $this->auxiliaryDocuments = $auxiliaryDocuments;
+        return $this;
+    }
+
+    /**
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn|null
+     */
+    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments
-     * @return RequestDetailsIn
+     * @return bool
      */
-    public function withAuxiliaryDocuments($auxiliaryDocuments)
+    public function hasAuxiliaryDocuments() : bool
     {
-        $new = clone $this;
-        $new->auxiliaryDocuments = $auxiliaryDocuments;
-
-        return $new;
+        return !empty($this->auxiliaryDocuments);
     }
 }
 
