@@ -8,7 +8,7 @@
     <types>
         <xsd:schema>
             <xsd:import namespace="http://eu.europa.ec.dgt.epoetry"
-                        schemaLocation="DgtClientNotificationReceiverWS.xsd"/>
+                        schemaLocation="notification.xsd"/>
         </xsd:schema>
     </types>
     <message name="receiveNotification">

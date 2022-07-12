@@ -16,3 +16,18 @@ Generate the library by running:
 ./vendor/bin/run generate:notification
 ./vendor/bin/run generate:authentication
 ```
+
+## Using it on a European Commission site
+
+The library requires the `ext-bcmath` PHP extension, which is not necessarily enabled on all images used on the
+European Commission infrastructure.
+
+When using this library on a site, make sure you install the `ext-bcmath` extension by specifying it in the site's
+`.opts.yml` file as follows:
+
+```yaml
+extra_pkgs:
+- ext-bcmath
+```
+
+For more information please refer to [the pipeline configuration documentation](https://webgate.ec.europa.eu/fpfis/wikis/display/MULTISITE/Pipeline+configuration+and+override).

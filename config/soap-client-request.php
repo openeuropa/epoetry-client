@@ -7,7 +7,7 @@ use Phpro\SoapClient\Soap\DefaultEngineFactory;
 
 $config = Config::create()
     ->setEngine($engine = DefaultEngineFactory::create(
-        ExtSoapOptions::defaults('./resources/dgtService.wsdl', [])
+        ExtSoapOptions::defaults('./resources/request.wsdl', [])
             ->disableWsdlCache()
     ))
     ->setTypeDestination('src/Request/Type')

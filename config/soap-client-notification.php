@@ -7,7 +7,7 @@ use Phpro\SoapClient\Soap\DefaultEngineFactory;
 
 $config = Config::create()
     ->setEngine($engine = DefaultEngineFactory::create(
-        ExtSoapOptions::defaults('./resources/DgtClientNotificationReceiverWS.wsdl', [])
+        ExtSoapOptions::defaults('./resources/notification.wsdl', [])
             ->disableWsdlCache()
     ))
     ->setTypeDestination('src/Notification/Type')
