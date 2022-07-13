@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Request;
+namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Request\RequestClient;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use OpenEuropa\EPoetry\Request\RequestClient;
+use Phpro\SoapClient\Caller\EngineCaller;
+use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Caller\EngineCaller;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class RequestClientFactory
+class RequestClientFactory extends BaseClientFactory
 {
-    public static function factory(string $wsdl) : \OpenEuropa\EPoetry\Request\RequestClient
+    public static function factory(string $wsdl): RequestClient
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdl, [])

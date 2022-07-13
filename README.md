@@ -14,8 +14,10 @@ Generate the library by running:
 ```
 ./vendor/bin/run generate:request
 ./vendor/bin/run generate:notification
-./vendor/bin/run generate:authentication
 ```
+
+- Notification endpoint: http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS
+- Request endpoint: https://www.cc.cec/epoetry/webservices/dgtService
 
 ## Using it on a European Commission site
 

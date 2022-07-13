@@ -1,18 +1,18 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Notification;
+namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Notification\NotificationClient;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use OpenEuropa\EPoetry\Notification\NotificationClient;
+use Phpro\SoapClient\Caller\EngineCaller;
+use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Caller\EngineCaller;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class NotificationClientFactory
+class NotificationClientFactory extends BaseClientFactory
 {
-    public static function factory(string $wsdl) : \OpenEuropa\EPoetry\Notification\NotificationClient
+    public static function factory(string $wsdl): NotificationClient
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdl, [])
