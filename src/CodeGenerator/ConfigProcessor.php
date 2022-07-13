@@ -80,39 +80,39 @@ class ConfigProcessor
         $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
 
         return $config
-//            // Add the ResultInterface to classes that match given regex.
-//            ->addRule(
-//                new Rules\TypenameMatchesRule(
-//                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
-//                    '/Response$/'
-//                )
-//            )
-            // Set the default property assembler and generate all properties.
+        //            // Add the ResultInterface to classes that match given regex.
+        //            ->addRule(
+        //                new Rules\TypenameMatchesRule(
+        //                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
+        //                    '/Response$/'
+        //                )
+        //            )
+        // Set the default property assembler and generate all properties.
             ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
-            // Update properties and set them as 'nullable'
+        // Update properties and set them as 'nullable'
             ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
-            // Update properties and update only some of them.
+        // Update properties and update only some of them.
             ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
-            // Update setters and update only some of them.
+        // Update setters and update only some of them.
             ->addRule(new Rules\AssembleRule($arraySetterAssembler))
-            // Set the default getter assembler and generate all getters methods.
+        // Set the default getter assembler and generate all getters methods.
             ->addRule(new Rules\AssembleRule($defaultGetterAssembler))
-            // Update getters and update only some of them.
+        // Update getters and update only some of them.
             ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
-            // Add adders only on some classes only.
+        // Add adders only on some classes only.
             ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
-            // Override property and method types.
+        // Override property and method types.
             ->addRule(new Rules\AssembleRule(
                 new OpenEuropa\Assembler\OverridePropertyTypeAssembler(
                     (new OpenEuropa\Assembler\OverridePropertyTypeAssemblerOptions())
                         ->setPropertyTypeMapping($overridePropertyTypes)
                 )
             ))
-            // Set the default setter assembler and generate all setters methods.
+        // Set the default setter assembler and generate all setters methods.
             ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-            // Update getters and set them as 'nullable'
+        // Update getters and set them as 'nullable'
             ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
-            // Add has[Properties] only on some classes only.
+        // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
             ->addRule(
                 new Rules\IsRequestRule(

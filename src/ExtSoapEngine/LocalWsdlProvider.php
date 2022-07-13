@@ -10,7 +10,8 @@ class LocalWsdlProvider implements WsdlProvider
 
     private string $wsldFilepath = '';
 
-    public function __construct(string $wsldFilepath, array $replacementTokens = []) {
+    public function __construct(string $wsldFilepath, array $replacementTokens = [])
+    {
         $this->wsldFilepath = $wsldFilepath;
         $this->replacementTokens = $replacementTokens;
     }
@@ -22,5 +23,4 @@ class LocalWsdlProvider implements WsdlProvider
     {
         return 'data://text/plain;base64,'.base64_encode($location);
     }
-
 }

@@ -8,9 +8,11 @@ use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\Engine\Engine;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 
-class BaseClientFactory {
+class BaseClientFactory
+{
 
-    protected function buildEngine(string $endpoint, string $wsdlFilepath): Engine {
+    protected function buildEngine(string $endpoint, string $wsdlFilepath): Engine
+    {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdlFilepath, [])
                 ->withClassMap(RequestClassmap::getCollection())

@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "openeuropa/task-runner": "^2@alpha",
+        "openeuropa/code-review": "^2.0",
         "phpunit/phpunit": "~8"
     },
     "suggest": {
