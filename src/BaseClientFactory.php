@@ -7,18 +7,17 @@ use OpenEuropa\EPoetry\Request\RequestClassmap;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\Engine\Engine;
 use Soap\ExtSoapEngine\ExtSoapOptions;
+use Soap\ExtSoapEngine\Wsdl\WsdlProvider;
 
 class BaseClientFactory
 {
 
-    protected function buildEngine(string $endpoint, string $wsdlFilepath): Engine
+    protected function buildEngine(string $wsdlFilepath, WsdlProvider $wsdlProvider): Engine
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdlFilepath, [])
                 ->withClassMap(RequestClassmap::getCollection())
-                ->withWsdlProvider(new LocalWsdlProvider($wsdlFilepath, [
-                    '${endpoint}' => $endpoint,
-                ]))
+                ->withWsdlProvider($wsdlProvider)
         );
         return $engine;
     }

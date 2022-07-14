@@ -40,7 +40,7 @@
     <service name="DgtClientNotificationReceiverWS">
         <port name="DgtClientNotificationReceiverWSPort" binding="tns:DgtClientNotificationReceiverWSPortBinding">
             <soap:address
-                    location="${endpoint}"/>
+                    location="http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS"/>
         </port>
     </service>
 </definitions>

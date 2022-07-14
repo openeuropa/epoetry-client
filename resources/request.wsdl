@@ -194,7 +194,7 @@
     </binding>
     <service name="DGTServiceWS">
         <port name="DGTServiceWSPort" binding="tns:DGTServiceWSPortBinding">
-            <soap:address location="${endpoint}"/>
+            <soap:address location="https://www.cc.cec/epoetry/webservices/dgtService"/>
         </port>
     </service>
 </definitions>

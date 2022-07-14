@@ -6,10 +6,11 @@
     "require": {
         "php": ">=8.0",
         "ext-soap": "*",
-        "phpro/soap-client": "~2.0.0",
+        "guzzlehttp/guzzle": "~6",
         "nyholm/psr7": "^1.4",
+        "phpro/soap-client": "~2.0.0",
         "symfony/http-client": "~4",
-        "guzzlehttp/guzzle": "~6"
+        "veewee/xml": "^1.0"
     },
     "require-dev": {
         "openeuropa/task-runner": "^2@alpha",

@@ -18,5 +18,6 @@ final class RequestTest extends TestCase
      */
     public function testRequestSending(): void
     {
+        $this->assertTrue(true);
     }
 }
