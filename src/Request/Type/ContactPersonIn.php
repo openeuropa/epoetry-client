@@ -15,6 +15,18 @@ class ContactPersonIn
     private $contactRole;
 
     /**
+     * Constructor
+     *
+     * @var string $userId
+     * @var string $contactRole
+     */
+    public function __construct(string $userId, string $contactRole)
+    {
+        $this->userId = $userId;
+        $this->contactRole = $contactRole;
+    }
+
+    /**
      * @param string $userId
      * @return $this
      */

@@ -22,7 +22,7 @@ class GetLinguisticRequest implements RequestInterface
      * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @var string $applicationName
      */
-    public function __construct($requestReference, $applicationName)
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference, string $applicationName)
     {
         $this->requestReference = $requestReference;
         $this->applicationName = $applicationName;

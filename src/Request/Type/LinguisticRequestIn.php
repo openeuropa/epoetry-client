@@ -15,6 +15,18 @@ class LinguisticRequestIn
     private $requestDetails;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference, \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails)
+    {
+        $this->requestReference = $requestReference;
+        $this->requestDetails = $requestDetails;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */

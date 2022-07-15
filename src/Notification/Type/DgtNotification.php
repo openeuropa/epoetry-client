@@ -35,6 +35,26 @@ class DgtNotification
     private $planningSector;
 
     /**
+     * Constructor
+     *
+     * @var string $notificationType
+     * @var \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
+     * @var \OpenEuropa\EPoetry\Notification\Type\Product $product
+     * @var string $message
+     * @var string $planningAgent
+     * @var string $planningSector
+     */
+    public function __construct(string $notificationType, \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest, \OpenEuropa\EPoetry\Notification\Type\Product $product, string $message, string $planningAgent, string $planningSector)
+    {
+        $this->notificationType = $notificationType;
+        $this->linguisticRequest = $linguisticRequest;
+        $this->product = $product;
+        $this->message = $message;
+        $this->planningAgent = $planningAgent;
+        $this->planningSector = $planningSector;
+    }
+
+    /**
      * @param string $notificationType
      * @return $this
      */

@@ -10,6 +10,16 @@ class PrtDocuments
     private $document;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\DocumentIn $document)
+    {
+        $this->document = $document;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
      * @return $this
      */

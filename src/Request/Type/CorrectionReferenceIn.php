@@ -10,6 +10,16 @@ class CorrectionReferenceIn
     private $version;
 
     /**
+     * Constructor
+     *
+     * @var int $version
+     */
+    public function __construct(int $version)
+    {
+        $this->version = $version;
+    }
+
+    /**
      * @param int $version
      * @return $this
      */

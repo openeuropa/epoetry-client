@@ -30,6 +30,24 @@ class AuxiliaryDocumentsIn
     private $srcDocument;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
+     * @var \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments, \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments, \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument, \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments, \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument)
+    {
+        $this->referenceDocuments = $referenceDocuments;
+        $this->traxDocuments = $traxDocuments;
+        $this->spotDocument = $spotDocument;
+        $this->prtDocuments = $prtDocuments;
+        $this->srcDocument = $srcDocument;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */

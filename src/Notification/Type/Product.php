@@ -35,6 +35,26 @@ class Product
     private $format;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
+     * @var string $status
+     * @var \DateTimeInterface $acceptedDeadline
+     * @var string $file
+     * @var string $name
+     * @var string $format
+     */
+    public function __construct(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference, string $status, \DateTimeInterface $acceptedDeadline, string $file, string $name, string $format)
+    {
+        $this->productReference = $productReference;
+        $this->status = $status;
+        $this->acceptedDeadline = $acceptedDeadline;
+        $this->file = $file;
+        $this->name = $name;
+        $this->format = $format;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */

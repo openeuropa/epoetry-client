@@ -15,6 +15,18 @@ class ProductReference
     private $language;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @var string $language
+     */
+    public function __construct(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference, string $language)
+    {
+        $this->requestReference = $requestReference;
+        $this->language = $language;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */

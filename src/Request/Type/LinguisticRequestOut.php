@@ -20,6 +20,20 @@ class LinguisticRequestOut
     private $informativeMessages;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
+     * @var \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference, \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails, \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages)
+    {
+        $this->requestReference = $requestReference;
+        $this->requestDetails = $requestDetails;
+        $this->informativeMessages = $informativeMessages;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */

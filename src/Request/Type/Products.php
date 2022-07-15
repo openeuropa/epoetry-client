@@ -10,6 +10,16 @@ class Products
     private $product;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product)
+    {
+        $this->product = $product;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
      * @return $this
      */

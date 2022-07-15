@@ -22,7 +22,7 @@ class CreateCorrectionRequest implements RequestInterface
      * @var \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
      * @var string $applicationName
      */
-    public function __construct($correctionDetails, $applicationName)
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails, string $applicationName)
     {
         $this->correctionDetails = $correctionDetails;
         $this->applicationName = $applicationName;

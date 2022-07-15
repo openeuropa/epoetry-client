@@ -22,7 +22,7 @@ class UpdateCallbackUrl implements RequestInterface
      * @var string $callbackUrl
      * @var string $applicationName
      */
-    public function __construct($callbackUrl, $applicationName)
+    public function __construct(string $callbackUrl, string $applicationName)
     {
         $this->callbackUrl = $callbackUrl;
         $this->applicationName = $applicationName;

@@ -12,6 +12,16 @@ class ModifyLinguisticRequestResponse implements ResultInterface
     private $return;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return)
+    {
+        $this->return = $return;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */

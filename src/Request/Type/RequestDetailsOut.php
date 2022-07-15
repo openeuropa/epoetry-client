@@ -135,6 +135,66 @@ class RequestDetailsOut
     private $auxiliaryDocuments;
 
     /**
+     * Constructor
+     *
+     * @var string $title
+     * @var string $workflowCode
+     * @var string $internalReference
+     * @var \DateTimeInterface $requestedDeadline
+     * @var \DateTimeInterface $acceptedDeadline
+     * @var bool $sensitive
+     * @var bool $sentViaRue
+     * @var bool $documentToAdopt
+     * @var string $decideReference
+     * @var string $destination
+     * @var string $procedure
+     * @var string $slaAnnex
+     * @var string $slaCommitment
+     * @var string $comment
+     * @var string $onBehalfOf
+     * @var string $accessibleTo
+     * @var string $keyword1
+     * @var string $keyword2
+     * @var string $keyword3
+     * @var string $status
+     * @var string $rejectMessage
+     * @var string $applicationName
+     * @var \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @var \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument
+     * @var \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments
+     */
+    public function __construct(string $title, string $workflowCode, string $internalReference, \DateTimeInterface $requestedDeadline, \DateTimeInterface $acceptedDeadline, bool $sensitive, bool $sentViaRue, bool $documentToAdopt, string $decideReference, string $destination, string $procedure, string $slaAnnex, string $slaCommitment, string $comment, string $onBehalfOf, string $accessibleTo, string $keyword1, string $keyword2, string $keyword3, string $status, string $rejectMessage, string $applicationName, \OpenEuropa\EPoetry\Request\Type\Contacts $contacts, \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument, \OpenEuropa\EPoetry\Request\Type\Products $products, \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments)
+    {
+        $this->title = $title;
+        $this->workflowCode = $workflowCode;
+        $this->internalReference = $internalReference;
+        $this->requestedDeadline = $requestedDeadline;
+        $this->acceptedDeadline = $acceptedDeadline;
+        $this->sensitive = $sensitive;
+        $this->sentViaRue = $sentViaRue;
+        $this->documentToAdopt = $documentToAdopt;
+        $this->decideReference = $decideReference;
+        $this->destination = $destination;
+        $this->procedure = $procedure;
+        $this->slaAnnex = $slaAnnex;
+        $this->slaCommitment = $slaCommitment;
+        $this->comment = $comment;
+        $this->onBehalfOf = $onBehalfOf;
+        $this->accessibleTo = $accessibleTo;
+        $this->keyword1 = $keyword1;
+        $this->keyword2 = $keyword2;
+        $this->keyword3 = $keyword3;
+        $this->status = $status;
+        $this->rejectMessage = $rejectMessage;
+        $this->applicationName = $applicationName;
+        $this->contacts = $contacts;
+        $this->originalDocument = $originalDocument;
+        $this->products = $products;
+        $this->auxiliaryDocuments = $auxiliaryDocuments;
+    }
+
+    /**
      * @param string $title
      * @return $this
      */

@@ -20,6 +20,20 @@ class ModifyRequestDetailsIn
     private $auxiliaryDocuments;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @var \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts, \OpenEuropa\EPoetry\Request\Type\Products $products, \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments)
+    {
+        $this->contacts = $contacts;
+        $this->products = $products;
+        $this->auxiliaryDocuments = $auxiliaryDocuments;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */

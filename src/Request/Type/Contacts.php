@@ -10,6 +10,16 @@ class Contacts
     private $contact;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact)
+    {
+        $this->contact = $contact;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact
      * @return $this
      */

@@ -10,6 +10,16 @@ class LinguisticSections
     private $linguisticSection;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut $linguisticSection
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut $linguisticSection)
+    {
+        $this->linguisticSection = $linguisticSection;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut $linguisticSection
      * @return $this
      */

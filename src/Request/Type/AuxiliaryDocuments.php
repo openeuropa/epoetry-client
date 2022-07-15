@@ -10,6 +10,16 @@ class AuxiliaryDocuments
     private $document;
 
     /**
+     * Constructor
+     *
+     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
+     */
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document)
+    {
+        $this->document = $document;
+    }
+
+    /**
      * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
      * @return $this
      */

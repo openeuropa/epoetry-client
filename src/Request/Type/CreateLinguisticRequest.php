@@ -28,7 +28,7 @@ class CreateLinguisticRequest implements RequestInterface
      * @var string $applicationName
      * @var string $templateName
      */
-    public function __construct($requestDetails, $applicationName, $templateName)
+    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails, string $applicationName, string $templateName)
     {
         $this->requestDetails = $requestDetails;
         $this->applicationName = $applicationName;
