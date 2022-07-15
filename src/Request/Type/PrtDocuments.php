@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class PrtDocuments
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
     private $document;
 
@@ -30,9 +30,9 @@ class PrtDocuments
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
-    public function getDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function getDocument() : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         return $this->document;
     }

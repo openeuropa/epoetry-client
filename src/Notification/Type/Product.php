@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class Product
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @var \OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
     private $productReference;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $status;
 
     /**
-     * @var null|\DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $acceptedDeadline;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $file;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $name;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $format;
 
@@ -65,9 +65,9 @@ class Product
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
-    public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProductReference() : \OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         return $this->productReference;
     }
@@ -91,9 +91,9 @@ class Product
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getStatus() : ?string
+    public function getStatus() : string
     {
         return $this->status;
     }
@@ -117,9 +117,9 @@ class Product
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface
      */
-    public function getAcceptedDeadline() : ?\DateTimeInterface
+    public function getAcceptedDeadline() : \DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -143,9 +143,9 @@ class Product
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFile() : ?string
+    public function getFile() : string
     {
         return $this->file;
     }
@@ -169,9 +169,9 @@ class Product
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getName() : ?string
+    public function getName() : string
     {
         return $this->name;
     }
@@ -195,9 +195,9 @@ class Product
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFormat() : ?string
+    public function getFormat() : string
     {
         return $this->format;
     }

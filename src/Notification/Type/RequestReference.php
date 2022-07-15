@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class RequestReference
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $requesterCode;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $year;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $number;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $part;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $version;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $productType;
 
@@ -65,9 +65,9 @@ class RequestReference
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getRequesterCode() : ?string
+    public function getRequesterCode() : string
     {
         return $this->requesterCode;
     }
@@ -91,9 +91,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getYear() : ?int
+    public function getYear() : int
     {
         return $this->year;
     }
@@ -117,9 +117,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getNumber() : ?int
+    public function getNumber() : int
     {
         return $this->number;
     }
@@ -143,9 +143,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getPart() : ?int
+    public function getPart() : int
     {
         return $this->part;
     }
@@ -169,9 +169,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getVersion() : ?int
+    public function getVersion() : int
     {
         return $this->version;
     }
@@ -195,9 +195,9 @@ class RequestReference
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getProductType() : ?string
+    public function getProductType() : string
     {
         return $this->productType;
     }

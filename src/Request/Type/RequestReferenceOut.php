@@ -5,22 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class RequestReferenceOut
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
     private $dossier;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $productType;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $part;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $version;
 
@@ -51,9 +51,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier() : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -77,9 +77,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getProductType() : ?string
+    public function getProductType() : string
     {
         return $this->productType;
     }
@@ -103,9 +103,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getPart() : ?int
+    public function getPart() : int
     {
         return $this->part;
     }
@@ -129,9 +129,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getVersion() : ?int
+    public function getVersion() : int
     {
         return $this->version;
     }

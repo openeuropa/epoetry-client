@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\ResultInterface;
 class UpdateCallbackUrlOut implements ResultInterface
 {
     /**
-     * @var null|bool
+     * @var bool
      */
     private $success;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $oldCallbackUrl;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $newCallbackUrl;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $application;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $message;
 
@@ -60,9 +60,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isSuccess() : ?bool
+    public function isSuccess() : bool
     {
         return $this->success;
     }
@@ -86,9 +86,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getOldCallbackUrl() : ?string
+    public function getOldCallbackUrl() : string
     {
         return $this->oldCallbackUrl;
     }
@@ -112,9 +112,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getNewCallbackUrl() : ?string
+    public function getNewCallbackUrl() : string
     {
         return $this->newCallbackUrl;
     }
@@ -138,9 +138,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplication() : ?string
+    public function getApplication() : string
     {
         return $this->application;
     }
@@ -164,9 +164,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMessage() : ?string
+    public function getMessage() : string
     {
         return $this->message;
     }

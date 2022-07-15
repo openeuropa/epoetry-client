@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticSections
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
      */
     private $linguisticSection;
 
@@ -30,9 +30,9 @@ class LinguisticSections
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
      */
-    public function getLinguisticSection() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
+    public function getLinguisticSection() : \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
     {
         return $this->linguisticSection;
     }

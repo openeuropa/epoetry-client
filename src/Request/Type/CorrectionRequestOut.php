@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionRequestOut
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
     private $requestReference;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @var \OpenEuropa\EPoetry\Request\Type\DcoOut
      */
     private $DCO;
 
@@ -37,9 +37,9 @@ class CorrectionRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -63,9 +63,9 @@ class CorrectionRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut
      */
-    public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function getDCO() : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         return $this->DCO;
     }

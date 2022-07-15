@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ProductRequestOut
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|\DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $requestedDeadline;
 
     /**
-     * @var null|\DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $acceptedDeadline;
 
     /**
-     * @var null|bool
+     * @var bool
      */
     private $trackChanges;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $status;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $format;
 
@@ -65,9 +65,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -91,9 +91,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface
      */
-    public function getRequestedDeadline() : ?\DateTimeInterface
+    public function getRequestedDeadline() : \DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -117,9 +117,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface
      */
-    public function getAcceptedDeadline() : ?\DateTimeInterface
+    public function getAcceptedDeadline() : \DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -143,9 +143,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isTrackChanges() : ?bool
+    public function isTrackChanges() : bool
     {
         return $this->trackChanges;
     }
@@ -169,9 +169,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getStatus() : ?string
+    public function getStatus() : string
     {
         return $this->status;
     }
@@ -195,9 +195,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFormat() : ?string
+    public function getFormat() : string
     {
         return $this->format;
     }

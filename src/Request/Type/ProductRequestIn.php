@@ -5,17 +5,17 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ProductRequestIn
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|\DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $requestedDeadline;
 
     /**
-     * @var null|bool
+     * @var bool
      */
     private $trackChanges;
 
@@ -44,9 +44,9 @@ class ProductRequestIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -70,9 +70,9 @@ class ProductRequestIn
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface
      */
-    public function getRequestedDeadline() : ?\DateTimeInterface
+    public function getRequestedDeadline() : \DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -96,9 +96,9 @@ class ProductRequestIn
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isTrackChanges() : ?bool
+    public function isTrackChanges() : bool
     {
         return $this->trackChanges;
     }

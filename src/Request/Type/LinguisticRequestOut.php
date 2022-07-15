@@ -5,17 +5,17 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticRequestOut
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
     private $requestReference;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
      */
     private $requestDetails;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\InformativeMessages
+     * @var \OpenEuropa\EPoetry\Request\Type\InformativeMessages
      */
     private $informativeMessages;
 
@@ -44,9 +44,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -70,9 +70,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         return $this->requestDetails;
     }
@@ -96,9 +96,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null
+     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages
      */
-    public function getInformativeMessages() : ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function getInformativeMessages() : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         return $this->informativeMessages;
     }

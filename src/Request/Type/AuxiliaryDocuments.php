@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
      */
     private $document;
 
@@ -30,9 +30,9 @@ class AuxiliaryDocuments
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
      */
-    public function getDocument() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function getDocument() : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         return $this->document;
     }

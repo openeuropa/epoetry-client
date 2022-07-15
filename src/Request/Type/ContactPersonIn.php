@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ContactPersonIn
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $userId;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $contactRole;
 
@@ -37,9 +37,9 @@ class ContactPersonIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUserId() : ?string
+    public function getUserId() : string
     {
         return $this->userId;
     }
@@ -63,9 +63,9 @@ class ContactPersonIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getContactRole() : ?string
+    public function getContactRole() : string
     {
         return $this->contactRole;
     }

@@ -5,17 +5,17 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyRequestDetailsIn
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\Contacts
+     * @var \OpenEuropa\EPoetry\Request\Type\Contacts
      */
     private $contacts;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\Products
+     * @var \OpenEuropa\EPoetry\Request\Type\Products
      */
     private $products;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
      */
     private $auxiliaryDocuments;
 
@@ -44,9 +44,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts() : \OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -70,9 +70,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Products
      */
-    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts() : \OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -96,9 +96,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
      */
-    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function getAuxiliaryDocuments() : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }

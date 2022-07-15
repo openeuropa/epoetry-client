@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotificationResult
 {
     /**
-     * @var null|bool
+     * @var bool
      */
     private $success;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $message;
 
@@ -37,9 +37,9 @@ class DgtNotificationResult
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isSuccess() : ?bool
+    public function isSuccess() : bool
     {
         return $this->success;
     }
@@ -63,9 +63,9 @@ class DgtNotificationResult
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMessage() : ?string
+    public function getMessage() : string
     {
         return $this->message;
     }

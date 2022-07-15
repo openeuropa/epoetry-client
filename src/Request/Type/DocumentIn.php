@@ -5,22 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DocumentIn
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $fileName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $comment;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $content;
 
@@ -51,9 +51,9 @@ class DocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFileName() : ?string
+    public function getFileName() : string
     {
         return $this->fileName;
     }
@@ -77,9 +77,9 @@ class DocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -103,9 +103,9 @@ class DocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getComment() : ?string
+    public function getComment() : string
     {
         return $this->comment;
     }
@@ -129,9 +129,9 @@ class DocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getContent() : ?string
+    public function getContent() : string
     {
         return $this->content;
     }

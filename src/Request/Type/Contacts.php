@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Contacts
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
      */
     private $contact;
 
@@ -30,9 +30,9 @@ class Contacts
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
      */
-    public function getContact() : ?\OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function getContact() : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         return $this->contact;
     }

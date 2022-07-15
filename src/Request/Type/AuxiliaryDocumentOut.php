@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocumentOut
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $fileName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $documentType;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $comment;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $format;
 
@@ -58,9 +58,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFileName() : ?string
+    public function getFileName() : string
     {
         return $this->fileName;
     }
@@ -84,9 +84,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -110,9 +110,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getDocumentType() : ?string
+    public function getDocumentType() : string
     {
         return $this->documentType;
     }
@@ -136,9 +136,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getComment() : ?string
+    public function getComment() : string
     {
         return $this->comment;
     }
@@ -162,9 +162,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFormat() : ?string
+    public function getFormat() : string
     {
         return $this->format;
     }

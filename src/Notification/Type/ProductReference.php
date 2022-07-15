@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class ProductReference
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     private $requestReference;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
@@ -37,9 +37,9 @@ class ProductReference
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequestReference() : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
@@ -63,9 +63,9 @@ class ProductReference
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }

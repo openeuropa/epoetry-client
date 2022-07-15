@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionDetailsIn
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $fileName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $content;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $format;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $remark;
 
@@ -65,9 +65,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
         return $this->requestReference;
     }
@@ -91,9 +91,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFileName() : ?string
+    public function getFileName() : string
     {
         return $this->fileName;
     }
@@ -117,9 +117,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getContent() : ?string
+    public function getContent() : string
     {
         return $this->content;
     }
@@ -143,9 +143,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFormat() : ?string
+    public function getFormat() : string
     {
         return $this->format;
     }
@@ -169,9 +169,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -195,9 +195,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getRemark() : ?string
+    public function getRemark() : string
     {
         return $this->remark;
     }

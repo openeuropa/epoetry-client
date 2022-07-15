@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetLinguisticRequest implements RequestInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $applicationName;
 
@@ -39,9 +39,9 @@ class GetLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -65,9 +65,9 @@ class GetLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName() : string
     {
         return $this->applicationName;
     }

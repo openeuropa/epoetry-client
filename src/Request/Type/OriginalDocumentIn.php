@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class OriginalDocumentIn
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $fileName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $comment;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $content;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
     private $linguisticSections;
 
     /**
-     * @var null|bool
+     * @var bool
      */
     private $trackChanges;
 
@@ -58,9 +58,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFileName() : ?string
+    public function getFileName() : string
     {
         return $this->fileName;
     }
@@ -84,9 +84,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getComment() : ?string
+    public function getComment() : string
     {
         return $this->comment;
     }
@@ -110,9 +110,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getContent() : ?string
+    public function getContent() : string
     {
         return $this->content;
     }
@@ -136,9 +136,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -162,9 +162,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isTrackChanges() : ?bool
+    public function isTrackChanges() : bool
     {
         return $this->trackChanges;
     }

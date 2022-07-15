@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class UpdateCallbackUrlResponse
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+     * @var \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
      */
     private $return;
 
@@ -30,9 +30,9 @@ class UpdateCallbackUrlResponse
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut|null
+     * @return \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
      */
-    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function getReturn() : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         return $this->return;
     }

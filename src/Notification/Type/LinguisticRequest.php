@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class LinguisticRequest
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     private $requestReference;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $status;
 
@@ -37,9 +37,9 @@ class LinguisticRequest
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequestReference() : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
@@ -63,9 +63,9 @@ class LinguisticRequest
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getStatus() : ?string
+    public function getStatus() : string
     {
         return $this->status;
     }

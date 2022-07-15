@@ -108,10 +108,10 @@ class ConfigProcessor
                         ->setPropertyTypeMapping($overridePropertyTypes)
                 )
             ))
-        // Set the default setter assembler and generate all setters methods.
-            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-        // Update getters and set them as 'nullable'
-            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
+//        // Set the default setter assembler and generate all setters methods.
+//            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
+//        // Update getters and set them as 'nullable'
+//            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
             ->addRule(new Rules\AssembleRule(

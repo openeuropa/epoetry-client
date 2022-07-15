@@ -5,37 +5,37 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DcoOut
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $applicationName;
 
     /**
-     * @var null|\DateTimeInterface
+     * @var \DateTimeInterface
      */
     private $deadline;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $fileName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $format;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $remark;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $status;
 
@@ -72,9 +72,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName() : string
     {
         return $this->applicationName;
     }
@@ -98,9 +98,9 @@ class DcoOut
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return \DateTimeInterface
      */
-    public function getDeadline() : ?\DateTimeInterface
+    public function getDeadline() : \DateTimeInterface
     {
         return $this->deadline;
     }
@@ -124,9 +124,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFileName() : ?string
+    public function getFileName() : string
     {
         return $this->fileName;
     }
@@ -150,9 +150,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getFormat() : ?string
+    public function getFormat() : string
     {
         return $this->format;
     }
@@ -176,9 +176,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -202,9 +202,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getRemark() : ?string
+    public function getRemark() : string
     {
         return $this->remark;
     }
@@ -228,9 +228,9 @@ class DcoOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getStatus() : ?string
+    public function getStatus() : string
     {
         return $this->status;
     }

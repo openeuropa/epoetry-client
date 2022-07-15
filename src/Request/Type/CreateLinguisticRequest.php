@@ -7,17 +7,17 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateLinguisticRequest implements RequestInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     private $requestDetails;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $applicationName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $templateName;
 
@@ -46,9 +46,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -72,9 +72,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName() : string
     {
         return $this->applicationName;
     }
@@ -98,9 +98,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getTemplateName() : ?string
+    public function getTemplateName() : string
     {
         return $this->templateName;
     }

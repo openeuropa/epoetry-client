@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotification
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $notificationType;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @var \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
      */
     private $linguisticRequest;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Notification\Type\Product
+     * @var \OpenEuropa\EPoetry\Notification\Type\Product
      */
     private $product;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $message;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $planningAgent;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $planningSector;
 
@@ -65,9 +65,9 @@ class DgtNotification
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getNotificationType() : ?string
+    public function getNotificationType() : string
     {
         return $this->notificationType;
     }
@@ -91,9 +91,9 @@ class DgtNotification
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
      */
-    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         return $this->linguisticRequest;
     }
@@ -117,9 +117,9 @@ class DgtNotification
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\Product|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\Product
      */
-    public function getProduct() : ?\OpenEuropa\EPoetry\Notification\Type\Product
+    public function getProduct() : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         return $this->product;
     }
@@ -143,9 +143,9 @@ class DgtNotification
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMessage() : ?string
+    public function getMessage() : string
     {
         return $this->message;
     }
@@ -169,9 +169,9 @@ class DgtNotification
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getPlanningAgent() : ?string
+    public function getPlanningAgent() : string
     {
         return $this->planningAgent;
     }
@@ -195,9 +195,9 @@ class DgtNotification
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getPlanningSector() : ?string
+    public function getPlanningSector() : string
     {
         return $this->planningSector;
     }

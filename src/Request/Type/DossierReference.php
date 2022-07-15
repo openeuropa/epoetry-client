@@ -5,17 +5,17 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DossierReference
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $requesterCode;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $number;
 
     /**
-     * @var null|int
+     * @var int
      */
     private $year;
 
@@ -44,9 +44,9 @@ class DossierReference
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getRequesterCode() : ?string
+    public function getRequesterCode() : string
     {
         return $this->requesterCode;
     }
@@ -70,9 +70,9 @@ class DossierReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getNumber() : ?int
+    public function getNumber() : int
     {
         return $this->number;
     }
@@ -96,9 +96,9 @@ class DossierReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getYear() : ?int
+    public function getYear() : int
     {
         return $this->year;
     }

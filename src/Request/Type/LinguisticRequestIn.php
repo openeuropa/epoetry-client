@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticRequestIn
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
     private $requestReference;
 
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     private $requestDetails;
 
@@ -37,9 +37,9 @@ class LinguisticRequestIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -63,9 +63,9 @@ class LinguisticRequestIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }

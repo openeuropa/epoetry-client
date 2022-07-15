@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class NoSuchMethodException
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $message;
 
@@ -30,9 +30,9 @@ class NoSuchMethodException
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMessage() : ?string
+    public function getMessage() : string
     {
         return $this->message;
     }

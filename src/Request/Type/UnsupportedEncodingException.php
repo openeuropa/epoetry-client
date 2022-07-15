@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class UnsupportedEncodingException
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $message;
 
@@ -30,9 +30,9 @@ class UnsupportedEncodingException
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMessage() : ?string
+    public function getMessage() : string
     {
         return $this->message;
     }

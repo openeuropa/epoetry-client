@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticSectionOut
 {
     /**
-     * @var null|string
+     * @var string
      */
     private $language;
 
@@ -30,9 +30,9 @@ class LinguisticSectionOut
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
         return $this->language;
     }

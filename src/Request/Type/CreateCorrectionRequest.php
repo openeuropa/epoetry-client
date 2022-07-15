@@ -7,12 +7,12 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateCorrectionRequest implements RequestInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
      */
     private $correctionDetails;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $applicationName;
 
@@ -39,9 +39,9 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
      */
-    public function getCorrectionDetails() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function getCorrectionDetails() : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         return $this->correctionDetails;
     }
@@ -65,9 +65,9 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName() : string
     {
         return $this->applicationName;
     }

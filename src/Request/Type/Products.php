@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Products
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
      */
     private $product;
 
@@ -30,9 +30,9 @@ class Products
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
      */
-    public function getProduct() : ?\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function getProduct() : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         return $this->product;
     }

@@ -7,17 +7,17 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ResubmitRequest implements RequestInterface
 {
     /**
-     * @var null|\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
     private $resubmitRequest;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $applicationName;
 
     /**
-     * @var null|string
+     * @var string
      */
     private $templateName;
 
@@ -46,9 +46,9 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
-    public function getResubmitRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function getResubmitRequest() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->resubmitRequest;
     }
@@ -72,9 +72,9 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName() : string
     {
         return $this->applicationName;
     }
@@ -98,9 +98,9 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getTemplateName() : ?string
+    public function getTemplateName() : string
     {
         return $this->templateName;
     }
