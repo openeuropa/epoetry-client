@@ -37,7 +37,7 @@ class ModifyRequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts($contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->contacts = $contacts;
         return $this;
@@ -63,7 +63,7 @@ class ModifyRequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts($products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->products = $products;
         return $this;
@@ -89,7 +89,7 @@ class ModifyRequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;

@@ -51,7 +51,7 @@ class AuxiliaryDocumentsIn
      * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */
-    public function setReferenceDocuments($referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function setReferenceDocuments(\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         $this->referenceDocuments = $referenceDocuments;
         return $this;
@@ -77,7 +77,7 @@ class AuxiliaryDocumentsIn
      * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
      * @return $this
      */
-    public function setTraxDocuments($traxDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function setTraxDocuments(\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         $this->traxDocuments = $traxDocuments;
         return $this;
@@ -103,7 +103,7 @@ class AuxiliaryDocumentsIn
      * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
      * @return $this
      */
-    public function setSpotDocument($spotDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function setSpotDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         $this->spotDocument = $spotDocument;
         return $this;
@@ -129,7 +129,7 @@ class AuxiliaryDocumentsIn
      * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
      * @return $this
      */
-    public function setPrtDocuments($prtDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function setPrtDocuments(\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         $this->prtDocuments = $prtDocuments;
         return $this;
@@ -155,7 +155,7 @@ class AuxiliaryDocumentsIn
      * @param \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument
      * @return $this
      */
-    public function setSrcDocument($srcDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function setSrcDocument(\OpenEuropa\EPoetry\Request\Type\SrcDocumentIn $srcDocument) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         $this->srcDocument = $srcDocument;
         return $this;

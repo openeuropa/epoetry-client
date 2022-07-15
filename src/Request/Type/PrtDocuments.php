@@ -23,7 +23,7 @@ class PrtDocuments
      * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
      * @return $this
      */
-    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+    public function setDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $document) : \OpenEuropa\EPoetry\Request\Type\PrtDocuments
     {
         $this->document = $document;
         return $this;

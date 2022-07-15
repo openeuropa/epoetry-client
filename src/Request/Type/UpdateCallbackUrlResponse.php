@@ -23,7 +23,7 @@ class UpdateCallbackUrlResponse
      * @param \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
      * @return $this
      */
-    public function setReturn($return) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
+    public function setReturn(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
     {
         $this->return = $return;
         return $this;

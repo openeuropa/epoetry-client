@@ -32,7 +32,7 @@ class CreateCorrectionRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
      * @return $this
      */
-    public function setCorrectionDetails($correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    public function setCorrectionDetails(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
     {
         $this->correctionDetails = $correctionDetails;
         return $this;

@@ -58,7 +58,7 @@ class CorrectionDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->requestReference = $requestReference;
         return $this;

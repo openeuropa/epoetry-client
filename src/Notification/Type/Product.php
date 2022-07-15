@@ -58,7 +58,7 @@ class Product
      * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */
-    public function setProductReference($productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->productReference = $productReference;
         return $this;
@@ -110,7 +110,7 @@ class Product
      * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;

@@ -23,7 +23,7 @@ class Products
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
      * @return $this
      */
-    public function setProduct($product) : \OpenEuropa\EPoetry\Request\Type\Products
+    public function setProduct(\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product) : \OpenEuropa\EPoetry\Request\Type\Products
     {
         $this->product = $product;
         return $this;

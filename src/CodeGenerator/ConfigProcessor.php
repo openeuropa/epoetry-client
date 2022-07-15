@@ -40,7 +40,7 @@ class ConfigProcessor
                 ->whitelist($specialClassesAndProperties)
         );
 
-        $defaultSetterAssembler = new Assembler\FluentSetterAssembler(
+        $defaultSetterAssembler = new OpenEuropa\Assembler\FluentSetterAssembler(
             (new Assembler\FluentSetterAssemblerOptions())
                 ->withTypeHints()
                 ->withReturnType()

@@ -37,7 +37,7 @@ class ModifyRequestReferenceIn
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier($dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->dossier = $dossier;
         return $this;

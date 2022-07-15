@@ -23,7 +23,7 @@ class TraxDocuments
      * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
      * @return $this
      */
-    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+    public function setDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $document) : \OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
         $this->document = $document;
         return $this;

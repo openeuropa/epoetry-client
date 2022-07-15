@@ -84,7 +84,7 @@ class ProductRequestOut
      * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -110,7 +110,7 @@ class ProductRequestOut
      * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;

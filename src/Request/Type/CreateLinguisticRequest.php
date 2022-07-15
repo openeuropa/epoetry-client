@@ -39,7 +39,7 @@ class CreateLinguisticRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
     {
         $this->requestDetails = $requestDetails;
         return $this;

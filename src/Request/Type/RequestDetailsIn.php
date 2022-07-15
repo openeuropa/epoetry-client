@@ -248,7 +248,7 @@ class RequestDetailsIn
      * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -638,7 +638,7 @@ class RequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts($contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         $this->contacts = $contacts;
         return $this;
@@ -664,7 +664,7 @@ class RequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument
      * @return $this
      */
-    public function setOriginalDocument($originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function setOriginalDocument(\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         $this->originalDocument = $originalDocument;
         return $this;
@@ -690,7 +690,7 @@ class RequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts($products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         $this->products = $products;
         return $this;
@@ -716,7 +716,7 @@ class RequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;

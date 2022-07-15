@@ -39,7 +39,7 @@ class ResubmitRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest($resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;

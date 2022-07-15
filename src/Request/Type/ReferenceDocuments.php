@@ -23,7 +23,7 @@ class ReferenceDocuments
      * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $document
      * @return $this
      */
-    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+    public function setDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $document) : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
         $this->document = $document;
         return $this;

@@ -276,7 +276,7 @@ class RequestDetailsOut
      * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -302,7 +302,7 @@ class RequestDetailsOut
      * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline($acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -770,7 +770,7 @@ class RequestDetailsOut
      * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts($contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->contacts = $contacts;
         return $this;
@@ -796,7 +796,7 @@ class RequestDetailsOut
      * @param \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument
      * @return $this
      */
-    public function setOriginalDocument($originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setOriginalDocument(\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->originalDocument = $originalDocument;
         return $this;
@@ -822,7 +822,7 @@ class RequestDetailsOut
      * @param \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts($products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->products = $products;
         return $this;
@@ -848,7 +848,7 @@ class RequestDetailsOut
      * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments($auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;

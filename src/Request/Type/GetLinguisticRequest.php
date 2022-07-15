@@ -32,7 +32,7 @@ class GetLinguisticRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;

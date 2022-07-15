@@ -30,7 +30,7 @@ class LinguisticRequest
      * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;

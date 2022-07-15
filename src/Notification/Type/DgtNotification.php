@@ -84,7 +84,7 @@ class DgtNotification
      * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest($linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setLinguisticRequest(\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
@@ -110,7 +110,7 @@ class DgtNotification
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @return $this
      */
-    public function setProduct($product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setProduct(\OpenEuropa\EPoetry\Notification\Type\Product $product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->product = $product;
         return $this;

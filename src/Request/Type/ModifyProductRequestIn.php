@@ -63,7 +63,7 @@ class ModifyProductRequestIn
      * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline($requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;

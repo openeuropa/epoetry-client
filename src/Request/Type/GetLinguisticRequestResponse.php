@@ -25,7 +25,7 @@ class GetLinguisticRequestResponse implements ResultInterface
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */
-    public function setReturn($return) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequestResponse
+    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequestResponse
     {
         $this->return = $return;
         return $this;

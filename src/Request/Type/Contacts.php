@@ -23,7 +23,7 @@ class Contacts
      * @param \OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact
      * @return $this
      */
-    public function setContact($contact) : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function setContact(\OpenEuropa\EPoetry\Request\Type\ContactPersonIn $contact) : \OpenEuropa\EPoetry\Request\Type\Contacts
     {
         $this->contact = $contact;
         return $this;

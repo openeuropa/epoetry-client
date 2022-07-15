@@ -30,7 +30,7 @@ class ProductReference
      * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference($requestReference) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         $this->requestReference = $requestReference;
         return $this;

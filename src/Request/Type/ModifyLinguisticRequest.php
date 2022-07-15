@@ -32,7 +32,7 @@ class ModifyLinguisticRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
      * @return $this
      */
-    public function setModifyLinguisticRequest($modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setModifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
     {
         $this->modifyLinguisticRequest = $modifyLinguisticRequest;
         return $this;

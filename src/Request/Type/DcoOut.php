@@ -91,7 +91,7 @@ class DcoOut
      * @param \DateTimeInterface $deadline
      * @return $this
      */
-    public function setDeadline($deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setDeadline(\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->deadline = $deadline;
         return $this;

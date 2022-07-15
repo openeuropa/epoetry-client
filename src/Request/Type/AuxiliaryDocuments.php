@@ -23,7 +23,7 @@ class AuxiliaryDocuments
      * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
      * @return $this
      */
-    public function setDocument($document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function setDocument(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
     {
         $this->document = $document;
         return $this;

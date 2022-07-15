@@ -25,7 +25,7 @@ class ReceiveNotification implements RequestInterface
      * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
      * @return $this
      */
-    public function setNotification($notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
+    public function setNotification(\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
     {
         $this->notification = $notification;
         return $this;

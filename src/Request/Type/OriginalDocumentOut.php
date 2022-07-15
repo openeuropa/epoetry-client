@@ -188,7 +188,7 @@ class OriginalDocumentOut
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections($linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->linguisticSections = $linguisticSections;
         return $this;

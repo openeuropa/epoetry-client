@@ -46,7 +46,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier($dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->dossier = $dossier;
         return $this;
@@ -72,7 +72,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails($requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->requestDetails = $requestDetails;
         return $this;
