@@ -114,12 +114,6 @@ class ConfigProcessor
 //            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
-//            ->addRule(new Rules\AssembleRule(
-//                new Assembler\ConstructorAssembler(
-//                    (new Assembler\ConstructorAssemblerOptions())
-//                        ->withTypeHints()
-//                ),
-//            ))
             ->addRule(
                 new Rules\IsRequestRule(
                     $config->getEngine()->getMetadata(),
@@ -134,6 +128,36 @@ class ConfigProcessor
                     new Rules\MultiRule([
                         new Rules\AssembleRule(new Assembler\ResultAssembler()),
                     ])
+                )
+            );
+    }
+
+    /**
+     * Add constructor to specific classes.
+     *
+     * This is used for very simple classes where fluent setters will make it
+     * cumbersome to instantiate objects. For example:
+     *
+     * new ContactPersonIn('john', 'REQUESTER')
+     *
+     * @param \Phpro\SoapClient\CodeGenerator\Config\Config $config
+     *      Configuration object.
+     * @param array $classes
+     *      Array of class names, without their namespace.
+     *
+     * @return \Phpro\SoapClient\CodeGenerator\Config\Config
+     *      Configuration object.
+     */
+    public static function addConstructorRule(Config $config, array $classes)
+    {
+        return $config
+            ->addRule(new Rules\TypenameMatchesRule(
+                new Rules\AssembleRule(
+                    new Assembler\ConstructorAssembler(
+                        (new Assembler\ConstructorAssemblerOptions())
+                            ->withTypeHints()
+                    )),
+                    '/^('.implode('|', $classes).')$/'
                 )
             );
     }

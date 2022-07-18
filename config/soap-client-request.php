@@ -1,6 +1,8 @@
 <?php
 
 use OpenEuropa\EPoetry\CodeGenerator\ConfigProcessor;
+use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
+use OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
@@ -19,7 +21,7 @@ $config = Config::create()
     ->setClassMapName('RequestClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry\Request');
 
-return ConfigProcessor::addRules($config, [
+$config = ConfigProcessor::addRules($config, [
     'LinguisticSections' => ['linguisticSection'],
     'Contacts' => ['contact'],
     'Products' => ['product'],
@@ -29,3 +31,9 @@ return ConfigProcessor::addRules($config, [
     //    'CreateRequests' => ['linguisticRequest'],
     //    'ProductRequests' => ['productRequest'],
 ]);
+$config = ConfigProcessor::addConstructorRule($config, [
+    'ContactPersonIn',
+    'LinguisticSectionOut'
+]);
+
+return $config;
