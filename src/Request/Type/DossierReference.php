@@ -20,20 +20,6 @@ class DossierReference
     private $year;
 
     /**
-     * Constructor
-     *
-     * @var string $requesterCode
-     * @var int $number
-     * @var int $year
-     */
-    public function __construct(string $requesterCode, int $number, int $year)
-    {
-        $this->requesterCode = $requesterCode;
-        $this->number = $number;
-        $this->year = $year;
-    }
-
-    /**
      * @param string $requesterCode
      * @return $this
      */

@@ -115,58 +115,6 @@ class RequestDetailsIn
     private $auxiliaryDocuments;
 
     /**
-     * Constructor
-     *
-     * @var string $title
-     * @var string $workflowCode
-     * @var string $internalReference
-     * @var \DateTimeInterface $requestedDeadline
-     * @var bool $sensitive
-     * @var bool $sentViaRue
-     * @var bool $documentToAdopt
-     * @var string $decideReference
-     * @var string $destination
-     * @var string $procedure
-     * @var string $slaAnnex
-     * @var string $slaCommitment
-     * @var string $comment
-     * @var string $onBehalfOf
-     * @var string $accessibleTo
-     * @var string $keyword1
-     * @var string $keyword2
-     * @var string $keyword3
-     * @var \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
-     * @var \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument
-     * @var \OpenEuropa\EPoetry\Request\Type\Products $products
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments
-     */
-    public function __construct(string $title, string $workflowCode, string $internalReference, \DateTimeInterface $requestedDeadline, bool $sensitive, bool $sentViaRue, bool $documentToAdopt, string $decideReference, string $destination, string $procedure, string $slaAnnex, string $slaCommitment, string $comment, string $onBehalfOf, string $accessibleTo, string $keyword1, string $keyword2, string $keyword3, \OpenEuropa\EPoetry\Request\Type\Contacts $contacts, \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn $originalDocument, \OpenEuropa\EPoetry\Request\Type\Products $products, \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn $auxiliaryDocuments)
-    {
-        $this->title = $title;
-        $this->workflowCode = $workflowCode;
-        $this->internalReference = $internalReference;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->sensitive = $sensitive;
-        $this->sentViaRue = $sentViaRue;
-        $this->documentToAdopt = $documentToAdopt;
-        $this->decideReference = $decideReference;
-        $this->destination = $destination;
-        $this->procedure = $procedure;
-        $this->slaAnnex = $slaAnnex;
-        $this->slaCommitment = $slaCommitment;
-        $this->comment = $comment;
-        $this->onBehalfOf = $onBehalfOf;
-        $this->accessibleTo = $accessibleTo;
-        $this->keyword1 = $keyword1;
-        $this->keyword2 = $keyword2;
-        $this->keyword3 = $keyword3;
-        $this->contacts = $contacts;
-        $this->originalDocument = $originalDocument;
-        $this->products = $products;
-        $this->auxiliaryDocuments = $auxiliaryDocuments;
-    }
-
-    /**
      * @param string $title
      * @return $this
      */

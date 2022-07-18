@@ -114,12 +114,12 @@ class ConfigProcessor
 //            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
-            ->addRule(new Rules\AssembleRule(
-                new Assembler\ConstructorAssembler(
-                    (new Assembler\ConstructorAssemblerOptions())
-                        ->withTypeHints()
-                ),
-            ))
+//            ->addRule(new Rules\AssembleRule(
+//                new Assembler\ConstructorAssembler(
+//                    (new Assembler\ConstructorAssemblerOptions())
+//                        ->withTypeHints()
+//                ),
+//            ))
             ->addRule(
                 new Rules\IsRequestRule(
                     $config->getEngine()->getMetadata(),

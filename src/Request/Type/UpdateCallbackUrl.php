@@ -17,18 +17,6 @@ class UpdateCallbackUrl implements RequestInterface
     private $applicationName;
 
     /**
-     * Constructor
-     *
-     * @var string $callbackUrl
-     * @var string $applicationName
-     */
-    public function __construct(string $callbackUrl, string $applicationName)
-    {
-        $this->callbackUrl = $callbackUrl;
-        $this->applicationName = $applicationName;
-    }
-
-    /**
      * @param string $callbackUrl
      * @return $this
      */

@@ -12,16 +12,6 @@ class CreateCorrectionRequestResponse implements ResultInterface
     private $return;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return)
-    {
-        $this->return = $return;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
      * @return $this
      */

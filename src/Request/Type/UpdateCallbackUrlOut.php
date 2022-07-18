@@ -32,24 +32,6 @@ class UpdateCallbackUrlOut implements ResultInterface
     private $message;
 
     /**
-     * Constructor
-     *
-     * @var bool $success
-     * @var string $oldCallbackUrl
-     * @var string $newCallbackUrl
-     * @var string $application
-     * @var string $message
-     */
-    public function __construct(bool $success, string $oldCallbackUrl, string $newCallbackUrl, string $application, string $message)
-    {
-        $this->success = $success;
-        $this->oldCallbackUrl = $oldCallbackUrl;
-        $this->newCallbackUrl = $newCallbackUrl;
-        $this->application = $application;
-        $this->message = $message;
-    }
-
-    /**
      * @param bool $success
      * @return $this
      */

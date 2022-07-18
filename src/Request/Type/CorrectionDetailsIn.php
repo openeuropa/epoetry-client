@@ -35,26 +35,6 @@ class CorrectionDetailsIn
     private $remark;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
-     * @var string $fileName
-     * @var string $content
-     * @var string $format
-     * @var string $language
-     * @var string $remark
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference, string $fileName, string $content, string $format, string $language, string $remark)
-    {
-        $this->requestReference = $requestReference;
-        $this->fileName = $fileName;
-        $this->content = $content;
-        $this->format = $format;
-        $this->language = $language;
-        $this->remark = $remark;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */

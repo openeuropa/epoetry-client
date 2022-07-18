@@ -10,16 +10,6 @@ class LinguisticSectionIn
     private $language;
 
     /**
-     * Constructor
-     *
-     * @var string $language
-     */
-    public function __construct(string $language)
-    {
-        $this->language = $language;
-    }
-
-    /**
      * @param string $language
      * @return $this
      */

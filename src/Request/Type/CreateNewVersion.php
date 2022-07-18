@@ -17,18 +17,6 @@ class CreateNewVersion implements RequestInterface
     private $applicationName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
-     * @var string $applicationName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest, string $applicationName)
-    {
-        $this->linguisticRequest = $linguisticRequest;
-        $this->applicationName = $applicationName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
      * @return $this
      */

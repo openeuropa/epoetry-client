@@ -10,16 +10,6 @@ class UpdateCallbackUrlResponse
     private $return;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return)
-    {
-        $this->return = $return;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
      * @return $this
      */

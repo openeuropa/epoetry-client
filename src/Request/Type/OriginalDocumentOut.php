@@ -35,26 +35,6 @@ class OriginalDocumentOut
     private $linguisticSections;
 
     /**
-     * Constructor
-     *
-     * @var bool $trackChanges
-     * @var string $format
-     * @var string $fileName
-     * @var float $pages
-     * @var string $comment
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
-     */
-    public function __construct(bool $trackChanges, string $format, string $fileName, float $pages, string $comment, \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections)
-    {
-        $this->trackChanges = $trackChanges;
-        $this->format = $format;
-        $this->fileName = $fileName;
-        $this->pages = $pages;
-        $this->comment = $comment;
-        $this->linguisticSections = $linguisticSections;
-    }
-
-    /**
      * @param bool $trackChanges
      * @return $this
      */

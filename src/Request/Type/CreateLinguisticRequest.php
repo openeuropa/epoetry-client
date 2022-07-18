@@ -22,20 +22,6 @@ class CreateLinguisticRequest implements RequestInterface
     private $templateName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
-     * @var string $applicationName
-     * @var string $templateName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails, string $applicationName, string $templateName)
-    {
-        $this->requestDetails = $requestDetails;
-        $this->applicationName = $applicationName;
-        $this->templateName = $templateName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */

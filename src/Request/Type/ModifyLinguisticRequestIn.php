@@ -15,18 +15,6 @@ class ModifyLinguisticRequestIn
     private $requestDetails;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference, \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails)
-    {
-        $this->requestReference = $requestReference;
-        $this->requestDetails = $requestDetails;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
      * @return $this
      */

@@ -22,20 +22,6 @@ class ResubmitRequest implements RequestInterface
     private $templateName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
-     * @var string $applicationName
-     * @var string $templateName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest, string $applicationName, string $templateName)
-    {
-        $this->resubmitRequest = $resubmitRequest;
-        $this->applicationName = $applicationName;
-        $this->templateName = $templateName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */

@@ -20,20 +20,6 @@ class ModifyRequestReferenceIn
     private $part;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
-     * @var string $productType
-     * @var int $part
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier, string $productType, int $part)
-    {
-        $this->dossier = $dossier;
-        $this->productType = $productType;
-        $this->part = $part;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */

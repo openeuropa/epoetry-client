@@ -30,24 +30,6 @@ class AuxiliaryDocumentOut
     private $format;
 
     /**
-     * Constructor
-     *
-     * @var string $fileName
-     * @var string $language
-     * @var string $documentType
-     * @var string $comment
-     * @var string $format
-     */
-    public function __construct(string $fileName, string $language, string $documentType, string $comment, string $format)
-    {
-        $this->fileName = $fileName;
-        $this->language = $language;
-        $this->documentType = $documentType;
-        $this->comment = $comment;
-        $this->format = $format;
-    }
-
-    /**
      * @param string $fileName
      * @return $this
      */

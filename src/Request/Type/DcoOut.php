@@ -40,28 +40,6 @@ class DcoOut
     private $status;
 
     /**
-     * Constructor
-     *
-     * @var string $applicationName
-     * @var \DateTimeInterface $deadline
-     * @var string $fileName
-     * @var string $format
-     * @var string $language
-     * @var string $remark
-     * @var string $status
-     */
-    public function __construct(string $applicationName, \DateTimeInterface $deadline, string $fileName, string $format, string $language, string $remark, string $status)
-    {
-        $this->applicationName = $applicationName;
-        $this->deadline = $deadline;
-        $this->fileName = $fileName;
-        $this->format = $format;
-        $this->language = $language;
-        $this->remark = $remark;
-        $this->status = $status;
-    }
-
-    /**
      * @param string $applicationName
      * @return $this
      */

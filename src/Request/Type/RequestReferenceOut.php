@@ -25,22 +25,6 @@ class RequestReferenceOut
     private $version;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
-     * @var string $productType
-     * @var int $part
-     * @var int $version
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier, string $productType, int $part, int $version)
-    {
-        $this->dossier = $dossier;
-        $this->productType = $productType;
-        $this->part = $part;
-        $this->version = $version;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */

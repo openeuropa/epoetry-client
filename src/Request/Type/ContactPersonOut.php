@@ -30,24 +30,6 @@ class ContactPersonOut
     private $roleCode;
 
     /**
-     * Constructor
-     *
-     * @var string $firstName
-     * @var string $lastName
-     * @var string $email
-     * @var string $userId
-     * @var string $roleCode
-     */
-    public function __construct(string $firstName, string $lastName, string $email, string $userId, string $roleCode)
-    {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->userId = $userId;
-        $this->roleCode = $roleCode;
-    }
-
-    /**
      * @param string $firstName
      * @return $this
      */

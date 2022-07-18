@@ -25,22 +25,6 @@ class ModifyAuxiliaryDocumentsIn
     private $prtDocuments;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
-     * @var \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
-     * @var \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments, \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments, \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument, \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments)
-    {
-        $this->referenceDocuments = $referenceDocuments;
-        $this->traxDocuments = $traxDocuments;
-        $this->spotDocument = $spotDocument;
-        $this->prtDocuments = $prtDocuments;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */

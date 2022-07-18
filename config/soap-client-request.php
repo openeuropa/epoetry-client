@@ -19,4 +19,13 @@ $config = Config::create()
     ->setClassMapName('RequestClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry\Request');
 
-return ConfigProcessor::addRules($config);
+return ConfigProcessor::addRules($config, [
+    'LinguisticSections' => ['linguisticSection'],
+    'Contacts' => ['contact'],
+    'Products' => ['product'],
+    'AuxiliaryDocuments' => ['document'],
+    //    'ReceiveNotificationsResponse' => ['return'],
+    //    'CreateRequestsResponse' => ['return'],
+    //    'CreateRequests' => ['linguisticRequest'],
+    //    'ProductRequests' => ['productRequest'],
+]);

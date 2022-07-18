@@ -20,20 +20,6 @@ class ProductRequestIn
     private $trackChanges;
 
     /**
-     * Constructor
-     *
-     * @var string $language
-     * @var \DateTimeInterface $requestedDeadline
-     * @var bool $trackChanges
-     */
-    public function __construct(string $language, \DateTimeInterface $requestedDeadline, bool $trackChanges)
-    {
-        $this->language = $language;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->trackChanges = $trackChanges;
-    }
-
-    /**
      * @param string $language
      * @return $this
      */

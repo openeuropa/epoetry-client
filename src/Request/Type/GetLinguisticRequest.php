@@ -17,18 +17,6 @@ class GetLinguisticRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
-     * @var string $applicationName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference, string $applicationName)
-    {
-        $this->requestReference = $requestReference;
-        $this->applicationName = $applicationName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */

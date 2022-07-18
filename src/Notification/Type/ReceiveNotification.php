@@ -12,16 +12,6 @@ class ReceiveNotification implements RequestInterface
     private $notification;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
-     */
-    public function __construct(\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification)
-    {
-        $this->notification = $notification;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
      * @return $this
      */

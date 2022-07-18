@@ -5,36 +5,35 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Products
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array
      */
-    private $product;
+    private $product = [];
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product)
-    {
-        $this->product = $product;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product
+     * @param ModifyProductRequestIn[] $product
      * @return $this
      */
-    public function setProduct(\OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn $product) : \OpenEuropa\EPoetry\Request\Type\Products
+    public function setProduct(array $product) : \OpenEuropa\EPoetry\Request\Type\Products
     {
         $this->product = $product;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array
      */
-    public function getProduct() : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function getProduct() : array
     {
         return $this->product;
+    }
+
+    /**
+     * @param ModifyProductRequestIn ...$products
+     * @return $this
+     */
+    public function addProduct(... $products) : \OpenEuropa\EPoetry\Request\Type\Products
+    {
+        $this->product = array_merge($this->product, $products);return $this;
     }
 
     /**

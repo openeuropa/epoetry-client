@@ -30,24 +30,6 @@ class OriginalDocumentIn
     private $trackChanges;
 
     /**
-     * Constructor
-     *
-     * @var string $fileName
-     * @var string $comment
-     * @var string $content
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
-     * @var bool $trackChanges
-     */
-    public function __construct(string $fileName, string $comment, string $content, \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections, bool $trackChanges)
-    {
-        $this->fileName = $fileName;
-        $this->comment = $comment;
-        $this->content = $content;
-        $this->linguisticSections = $linguisticSections;
-        $this->trackChanges = $trackChanges;
-    }
-
-    /**
      * @param string $fileName
      * @return $this
      */

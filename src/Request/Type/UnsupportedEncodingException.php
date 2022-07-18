@@ -10,16 +10,6 @@ class UnsupportedEncodingException
     private $message;
 
     /**
-     * Constructor
-     *
-     * @var string $message
-     */
-    public function __construct(string $message)
-    {
-        $this->message = $message;
-    }
-
-    /**
      * @param string $message
      * @return $this
      */

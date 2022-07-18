@@ -35,26 +35,6 @@ class RequestReference
     private $productType;
 
     /**
-     * Constructor
-     *
-     * @var string $requesterCode
-     * @var int $year
-     * @var int $number
-     * @var int $part
-     * @var int $version
-     * @var string $productType
-     */
-    public function __construct(string $requesterCode, int $year, int $number, int $part, int $version, string $productType)
-    {
-        $this->requesterCode = $requesterCode;
-        $this->year = $year;
-        $this->number = $number;
-        $this->part = $part;
-        $this->version = $version;
-        $this->productType = $productType;
-    }
-
-    /**
      * @param string $requesterCode
      * @return $this
      */

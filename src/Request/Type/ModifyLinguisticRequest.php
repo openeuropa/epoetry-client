@@ -17,18 +17,6 @@ class ModifyLinguisticRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
-     * @var string $applicationName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest, string $applicationName)
-    {
-        $this->modifyLinguisticRequest = $modifyLinguisticRequest;
-        $this->applicationName = $applicationName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
      * @return $this
      */

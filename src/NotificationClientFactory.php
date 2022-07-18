@@ -2,22 +2,20 @@
 
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\Notification\NotificationClassmap;
+use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Notification\NotificationClient;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class NotificationClientFactory extends BaseClientFactory
 {
-    public static function factory(string $wsdl): NotificationClient
+    public static function factory(string $endpoint): NotificationClient
     {
-        $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults($wsdl, [])
-                ->withClassMap(NotificationClassmap::getCollection())
-        );
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('DgtClientNotificationReceiverWSPort', $endpoint);
+        $wsdl = __DIR__.'/../resources/notification.wsdl';
+        $engine = self::buildEngine($wsdl, $wsdlProvider);
 
         $eventDispatcher = new EventDispatcher();
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
@@ -25,4 +23,3 @@ class NotificationClientFactory extends BaseClientFactory
         return new NotificationClient($caller);
     }
 }
-

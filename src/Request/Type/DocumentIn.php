@@ -25,22 +25,6 @@ class DocumentIn
     private $content;
 
     /**
-     * Constructor
-     *
-     * @var string $fileName
-     * @var string $language
-     * @var string $comment
-     * @var string $content
-     */
-    public function __construct(string $fileName, string $language, string $comment, string $content)
-    {
-        $this->fileName = $fileName;
-        $this->language = $language;
-        $this->comment = $comment;
-        $this->content = $content;
-    }
-
-    /**
      * @param string $fileName
      * @return $this
      */

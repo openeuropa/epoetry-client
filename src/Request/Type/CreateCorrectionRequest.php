@@ -17,18 +17,6 @@ class CreateCorrectionRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
-     * @var string $applicationName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails, string $applicationName)
-    {
-        $this->correctionDetails = $correctionDetails;
-        $this->applicationName = $applicationName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
      * @return $this
      */

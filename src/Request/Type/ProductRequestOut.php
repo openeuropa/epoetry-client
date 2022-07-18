@@ -35,26 +35,6 @@ class ProductRequestOut
     private $format;
 
     /**
-     * Constructor
-     *
-     * @var string $language
-     * @var \DateTimeInterface $requestedDeadline
-     * @var \DateTimeInterface $acceptedDeadline
-     * @var bool $trackChanges
-     * @var string $status
-     * @var string $format
-     */
-    public function __construct(string $language, \DateTimeInterface $requestedDeadline, \DateTimeInterface $acceptedDeadline, bool $trackChanges, string $status, string $format)
-    {
-        $this->language = $language;
-        $this->requestedDeadline = $requestedDeadline;
-        $this->acceptedDeadline = $acceptedDeadline;
-        $this->trackChanges = $trackChanges;
-        $this->status = $status;
-        $this->format = $format;
-    }
-
-    /**
      * @param string $language
      * @return $this
      */

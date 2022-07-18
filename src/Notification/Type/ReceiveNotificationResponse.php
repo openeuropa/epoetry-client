@@ -12,16 +12,6 @@ class ReceiveNotificationResponse implements ResultInterface
     private $return;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
-     */
-    public function __construct(\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return)
-    {
-        $this->return = $return;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
      * @return $this
      */

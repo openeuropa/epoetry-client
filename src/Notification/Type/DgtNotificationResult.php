@@ -15,18 +15,6 @@ class DgtNotificationResult
     private $message;
 
     /**
-     * Constructor
-     *
-     * @var bool $success
-     * @var string $message
-     */
-    public function __construct(bool $success, string $message)
-    {
-        $this->success = $success;
-        $this->message = $message;
-    }
-
-    /**
      * @param bool $success
      * @return $this
      */

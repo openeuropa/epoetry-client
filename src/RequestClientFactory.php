@@ -3,22 +3,19 @@
 namespace OpenEuropa\EPoetry;
 
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
-use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class RequestClientFactory extends BaseClientFactory
 {
-    public static function factory(string $wsdl): RequestClient
+    public static function factory(string $endpoint): RequestClient
     {
-        $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults($wsdl, [])
-                ->withClassMap(RequestClassmap::getCollection())
-        );
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('DGTServiceWSPort', $endpoint);
+        $wsdl = __DIR__.'/../resources/request.wsdl';
+        $engine = self::buildEngine($wsdl, $wsdlProvider);
 
         $eventDispatcher = new EventDispatcher();
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
@@ -26,4 +23,3 @@ class RequestClientFactory extends BaseClientFactory
         return new RequestClient($caller);
     }
 }
-

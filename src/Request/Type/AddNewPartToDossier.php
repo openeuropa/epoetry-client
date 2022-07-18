@@ -27,22 +27,6 @@ class AddNewPartToDossier implements RequestInterface
     private $templateName;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
-     * @var string $applicationName
-     * @var string $templateName
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier, \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails, string $applicationName, string $templateName)
-    {
-        $this->dossier = $dossier;
-        $this->requestDetails = $requestDetails;
-        $this->applicationName = $applicationName;
-        $this->templateName = $templateName;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */

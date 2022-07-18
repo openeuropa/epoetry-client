@@ -15,18 +15,6 @@ class LinguisticRequest
     private $status;
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
-     * @var string $status
-     */
-    public function __construct(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference, string $status)
-    {
-        $this->requestReference = $requestReference;
-        $this->status = $status;
-    }
-
-    /**
      * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */

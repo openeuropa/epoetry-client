@@ -5,36 +5,35 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut[]|array
      */
-    private $document;
+    private $document = [];
 
     /**
-     * Constructor
-     *
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
-     */
-    public function __construct(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document)
-    {
-        $this->document = $document;
-    }
-
-    /**
-     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document
+     * @param AuxiliaryDocumentOut[] $document
      * @return $this
      */
-    public function setDocument(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
     {
         $this->document = $document;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut[]|array
      */
-    public function getDocument() : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function getDocument() : array
     {
         return $this->document;
+    }
+
+    /**
+     * @param AuxiliaryDocumentOut ...$documents
+     * @return $this
+     */
+    public function addDocument(... $documents) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    {
+        $this->document = array_merge($this->document, $documents);return $this;
     }
 
     /**

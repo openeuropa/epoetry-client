@@ -12,7 +12,7 @@ use Soap\ExtSoapEngine\Wsdl\WsdlProvider;
 class BaseClientFactory
 {
 
-    protected function buildEngine(string $wsdlFilepath, WsdlProvider $wsdlProvider): Engine
+    protected static function buildEngine(string $wsdlFilepath, WsdlProvider $wsdlProvider): Engine
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdlFilepath, [])
