@@ -1,0 +1,89 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header>
+        <ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">${certlogin#Response#//ecas:serviceTicket}</ecas:ProxyTicket>
+    </soapenv:Header>
+    <soapenv:Body>
+        <eu:createLinguisticRequest>
+            <!--Optional:-->
+            <requestDetails>
+                <title>test for DOC - success</title>
+                <!--Optional:-->
+                <workflowCode/>
+                <!--Optional:-->
+                <internalReference/>
+                <!--Optional:-->
+                <requestedDeadline>2022-07-01T11:51:00+01:00</requestedDeadline>
+                <!--Optional:-->
+                <deadlineJustification>therefore</deadlineJustification>
+                <!--Optional:-->
+                <sensitive>false</sensitive>
+                <!--Optional:-->
+                <sentViaRue>false</sentViaRue>
+                <!--Optional:-->
+                <documentToAdopt>false</documentToAdopt>
+                <!--Optional:-->
+                <decideReference/>
+                <!--Optional:-->
+                <destination>PUBLIC</destination>
+                <procedure>DEGHP</procedure>
+                <slaAnnex>ANNEX8A</slaAnnex>
+                <slaCommitment>2225555</slaCommitment>
+                <comment>my request</comment>
+                <accessibleTo>CONTACTS</accessibleTo>
+                <keyword1>keyw1</keyword1>
+                <keyword2>key2</keyword2>
+                <keyword3>aaaaaaaaaaaaaaa</keyword3>
+                <contacts>
+                    <contact userId="liekejo" contactRole="REQUESTER"/>
+                    <contact userId="liekejo" contactRole="AUTHOR"/>
+                    <contact userId="liekejo" contactRole="RECIPIENT"/>
+                </contacts>
+                <originalDocument>
+                    <trackChanges/>
+                    <fileName>TEST_FILE_ORIGINALP.docx</fileName>
+                    <comment/>
+                    <content>cid:267736828531</content>
+                    <linguisticSections>
+                        <linguisticSection>
+                            <language>EN</language>
+                        </linguisticSection>
+                    </linguisticSections>
+                </originalDocument>
+                <products>
+                    <product requestedDeadline="2021-07-06T11:51:00+01:00" trackChanges="">
+                        <language>FR</language>
+                    </product>
+                </products>
+                <!--Optional:-->
+                <auxiliaryDocuments>
+                    <!--Optional:-->
+                    <referenceDocuments>
+                        <!--Zero or more repetitions:-->
+                        <document>
+                            <!--Optional:-->
+                            <fileName>test.docx</fileName>
+                            <language>EN</language>
+                            <!--Optional:-->
+                            <comment>test</comment>
+                            <!--Optional:-->
+                            <content>cid:303605824112</content>
+                        </document>
+                    </referenceDocuments>
+                    <!--Optional:-->
+                    <srcDocument>
+                        <!--Optional:-->
+                        <fileName>test2222SRC.docx</fileName>
+                        <!--Optional:-->
+                        <comment>777888877</comment>
+                        <!--Optional:-->
+                        <content>cid:1531884704226</content>
+                    </srcDocument>
+                </auxiliaryDocuments>
+            </requestDetails>
+            <!--Optional:-->
+            <applicationName>application1</applicationName>
+            <!--Optional:-->
+            <templateName>TraTemplate</templateName>
+        </eu:createLinguisticRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
