@@ -14,11 +14,11 @@ class NotificationClassmap
             new ClassMap('receiveNotification', Type\ReceiveNotification::class),
             new ClassMap('receiveNotificationResponse', Type\ReceiveNotificationResponse::class),
             new ClassMap('linguisticRequest', Type\LinguisticRequest::class),
-            new ClassMap('product', Type\Product::class),
-            new ClassMap('requestReference', Type\RequestReference::class),
-            new ClassMap('dgtNotification', Type\DgtNotification::class),
             new ClassMap('dgtNotificationResult', Type\DgtNotificationResult::class),
+            new ClassMap('dgtNotification', Type\DgtNotification::class),
             new ClassMap('productReference', Type\ProductReference::class),
+            new ClassMap('requestReference', Type\RequestReference::class),
+            new ClassMap('product', Type\Product::class),
         );
     }
 }

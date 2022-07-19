@@ -21,16 +21,6 @@ class RequestClient
     }
 
     /**
-     * @param RequestInterface|Type\CreateCorrectionRequest $parameters
-     * @return ResultInterface|Type\CreateCorrectionRequestResponse
-     * @throws SoapException
-     */
-    public function createCorrectionRequest(\OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
-    {
-        return ($this->caller)('createCorrectionRequest', $parameters);
-    }
-
-    /**
      * @param RequestInterface|Type\ResubmitRequest $parameters
      * @return ResultInterface|Type\ResubmitRequestResponse
      * @throws SoapException
@@ -38,6 +28,26 @@ class RequestClient
     public function resubmitRequest(\OpenEuropa\EPoetry\Request\Type\ResubmitRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequestResponse
     {
         return ($this->caller)('resubmitRequest', $parameters);
+    }
+
+    /**
+     * @param RequestInterface|Type\UpdateCallbackUrl $parameters
+     * @return ResultInterface|Type\UpdateCallbackUrlOut
+     * @throws SoapException
+     */
+    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    {
+        return ($this->caller)('updateCallbackUrl', $parameters);
+    }
+
+    /**
+     * @param RequestInterface|Type\ModifyLinguisticRequest $parameters
+     * @return ResultInterface|Type\ModifyLinguisticRequestResponse
+     * @throws SoapException
+     */
+    public function modifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestResponse
+    {
+        return ($this->caller)('modifyLinguisticRequest', $parameters);
     }
 
     /**
@@ -51,13 +61,13 @@ class RequestClient
     }
 
     /**
-     * @param RequestInterface|Type\UpdateCallbackUrl $parameters
-     * @return ResultInterface|Type\UpdateCallbackUrlOut
+     * @param RequestInterface|Type\CreateNewVersion $parameters
+     * @return ResultInterface|Type\CreateNewVersionResponse
      * @throws SoapException
      */
-    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function createNewVersion(\OpenEuropa\EPoetry\Request\Type\CreateNewVersion $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
     {
-        return ($this->caller)('updateCallbackUrl', $parameters);
+        return ($this->caller)('createNewVersion', $parameters);
     }
 
     /**
@@ -81,23 +91,13 @@ class RequestClient
     }
 
     /**
-     * @param RequestInterface|Type\ModifyLinguisticRequest $parameters
-     * @return ResultInterface|Type\ModifyLinguisticRequestResponse
+     * @param RequestInterface|Type\CreateCorrectionRequest $parameters
+     * @return ResultInterface|Type\CreateCorrectionRequestResponse
      * @throws SoapException
      */
-    public function modifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestResponse
+    public function createCorrectionRequest(\OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
     {
-        return ($this->caller)('modifyLinguisticRequest', $parameters);
-    }
-
-    /**
-     * @param RequestInterface|Type\CreateNewVersion $parameters
-     * @return ResultInterface|Type\CreateNewVersionResponse
-     * @throws SoapException
-     */
-    public function createNewVersion(\OpenEuropa\EPoetry\Request\Type\CreateNewVersion $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
-    {
-        return ($this->caller)('createNewVersion', $parameters);
+        return ($this->caller)('createCorrectionRequest', $parameters);
     }
 }
 
