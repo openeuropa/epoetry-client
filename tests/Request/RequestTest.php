@@ -94,7 +94,7 @@ final class RequestTest extends TestCase
         $linguisticSections = (new LinguisticSections())
             ->addLinguisticSection(new LinguisticSectionOut('FR'));
         $originalDocument = (new OriginalDocumentIn())
-            ->setTrackChanges(FALSE)
+            ->setTrackChanges(false)
             ->setFileName('TEST_FILE_ORIGINALP.docx')
             ->setContent('cid:267736828531')
             ->setLinguisticSections($linguisticSections)
