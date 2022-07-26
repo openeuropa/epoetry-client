@@ -2,7 +2,6 @@
 
 namespace OpenEuropa\EPoetry;
 
-use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\Engine\Engine;
