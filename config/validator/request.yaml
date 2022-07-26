@@ -1,6 +1,7 @@
 OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
     properties:
         requestDetails:
+            - Valid: ~
             - NotNull: ~
         applicationName:
             - NotBlank: ~
