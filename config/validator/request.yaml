@@ -1,8 +1,31 @@
 OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
     properties:
         requestDetails:
-            - NotBlank: ~
+            - NotNull: ~
         applicationName:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
+    properties:
+        title:
+            - Length:
+                min: 1
+                max: 500
+                allowEmptyString: false
+        internalReference:
+            - Length:
+                min: 0
+                max: 100
+        destination:
+            - Choice:
+                choices: [ EM, EXT, IE, INTERNE, JO, PUBLIC ]
+                message: |
+                    Choose a valid destination.
+                      - EM for Member State
+                      - EXT for Citizen/Company
+                      - IE for European Institutions
+                      - INTERNE for Internal
+                      - JO for Official Journal
+                      - PUBLIC for Public
