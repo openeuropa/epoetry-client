@@ -1,0 +1,8 @@
+OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
+    properties:
+        requestDetails:
+            - NotBlank: ~
+        applicationName:
+            - NotBlank: ~
+        templateName:
+            - NotBlank: ~

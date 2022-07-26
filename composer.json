@@ -9,6 +9,7 @@
         "nyholm/psr7": "^1.4",
         "phpro/soap-client": "~2.0.0",
         "symfony/http-client": "~4",
+        "symfony/validator": "~4",
         "veewee/xml": "^1.0"
     },
     "require-dev": {

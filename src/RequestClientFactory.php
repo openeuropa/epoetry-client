@@ -18,7 +18,7 @@ class RequestClientFactory extends BaseClientFactory
         $wsdl = __DIR__.'/../resources/request.wsdl';
         $engine = self::buildEngine($wsdl, $wsdlProvider, $transport);
 
-        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher = self::buildEventDispatcher(__DIR__.'/../config/validator/request.yaml');
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
 
         return new RequestClient($caller);

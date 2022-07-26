@@ -18,7 +18,7 @@ class NotificationClientFactory extends BaseClientFactory
         $wsdl = __DIR__.'/../resources/notification.wsdl';
         $engine = self::buildEngine($wsdl, $wsdlProvider, $transport);
 
-        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher = self::buildEventDispatcher(__DIR__.'/../config/validator/notification.yaml');
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
 
         return new NotificationClient($caller);
