@@ -3,7 +3,7 @@
     <SOAP-ENV:Body>
         <ns1:createLinguisticRequest>
             <requestDetails>
-                <title>test for DOC - success</title>
+                <title>Request title</title>
                 <requestedDeadline>2022-07-01T11:51:00+01:00</requestedDeadline>
                 <sensitive>false</sensitive>
                 <destination>PUBLIC</destination>
@@ -12,9 +12,9 @@
                 <slaCommitment>2225555</slaCommitment>
                 <comment>comment</comment>
                 <accessibleTo>CONTACTS</accessibleTo>
-                <keyword1>keyw1</keyword1>
-                <keyword2>key2</keyword2>
-                <keyword3>aaaaaaaaaaaaaaa</keyword3>
+                <keyword1>keyword1</keyword1>
+                <keyword2>keyword2</keyword2>
+                <keyword3>keyword3</keyword3>
                 <contacts>
                     <contact userId="liekejo" contactRole="REQUESTER" />
                     <contact userId="liekejo" contactRole="AUTHOR" />
@@ -38,7 +38,7 @@
                 </products>
             </requestDetails>
             <applicationName>appname</applicationName>
-            <templateName>templatename</templateName>
+            <templateName>DEFAULT</templateName>
         </ns1:createLinguisticRequest>
     </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

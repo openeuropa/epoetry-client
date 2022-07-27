@@ -14,15 +14,19 @@ use OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn;
 use OpenEuropa\EPoetry\Request\Type\Products;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 
+/**
+ * Test createLinguisticRequest service.
+ */
 final class CreateLinguisticRequestTest extends BaseRequestTest
 {
+
     /**
-     * Test a SOAP request.
+     * Ensure the correct creation of an XML payload.
      */
-    public function testRequestXml(): void
+    public function testXmlPayload(): void
     {
         $requestDetails = new RequestDetailsIn();
-        $requestDetails->setTitle('test for DOC - success')
+        $requestDetails->setTitle('Request title')
             ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2022-07-01T11:51:00+01:00'))
             ->setSensitive(false)
             ->setDestination('PUBLIC')
@@ -31,9 +35,9 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
             ->setSlaCommitment('2225555')
             ->setComment('comment')
             ->setAccessibleTo('CONTACTS')
-            ->setKeyword1('keyw1')
-            ->setKeyword2('key2')
-            ->setKeyword3('aaaaaaaaaaaaaaa');
+            ->setKeyword1('keyword1')
+            ->setKeyword2('keyword2')
+            ->setKeyword3('keyword3');
         $contacts = (new Contacts())
             ->addContact(new ContactPersonIn('liekejo', 'REQUESTER'))
             ->addContact(new ContactPersonIn('liekejo', 'AUTHOR'))
@@ -61,17 +65,22 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
         $request = (new CreateLinguisticRequest())
             ->setRequestDetails($requestDetails)
             ->setApplicationName('appname')
-            ->setTemplateName('templatename');
+            ->setTemplateName('DEFAULT');
 
         $expected = file_get_contents(__DIR__.'/fixtures/createLinguisticRequest.xml');
         $request = $this->driver->encode('createLinguisticRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
 
+    /**
+     * Test object validation.
+     *
+     * @return void
+     */
     public function testValidation(): void
     {
         $requestDetails = new RequestDetailsIn();
-        $requestDetails->setTitle('test for DOC - success')
+        $requestDetails->setTitle('Request title')
             ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2022-07-01T11:51:00+01:00'))
             ->setSensitive(false)
             ->setDestination('PUBLIC')
@@ -79,10 +88,9 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
         $request = (new CreateLinguisticRequest())
             ->setRequestDetails($requestDetails)
             ->setApplicationName('appname')
-            ->setTemplateName('templatename');
+            ->setTemplateName('DEFAULT');
 
         $violations = $this->validator->validate($request);
         $this->assertCount(0, $violations);
     }
-
 }

@@ -7,6 +7,20 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
+            - Choice:
+                choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
+                message: |
+                    Choose a valid template name
+                    - DEFAULT for full length translation
+                    - WEBTRA for web translation
+                    - HOTL for hotline
+                    - EDT	for standard editing
+                    - WEBEDT for web editing
+                    - RSE for written summary
+                    - RSO for oral summary
+                    - SPO for spotcheck
+                    - PP for spokesperson's service press documents
+                    - QE for replies to MEPs’ written questions
 
 OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
     properties:
@@ -23,10 +37,10 @@ OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
             - Choice:
                 choices: [ EM, EXT, IE, INTERNE, JO, PUBLIC ]
                 message: |
-                    Choose a valid destination.
-                      - EM for Member State
-                      - EXT for Citizen/Company
-                      - IE for European Institutions
-                      - INTERNE for Internal
-                      - JO for Official Journal
-                      - PUBLIC for Public
+                    Choose a valid destination value
+                    - EM for Member State
+                    - EXT for Citizen/Company
+                    - IE for European Institutions
+                    - INTERNE for Internal
+                    - JO for Official Journal
+                    - PUBLIC for Public

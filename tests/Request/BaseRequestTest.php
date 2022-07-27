@@ -25,8 +25,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 /**
- * @internal
- * @coversNothing
+ * Base test class for the "Request" ePoetry service.
  */
 abstract class BaseRequestTest extends TestCase
 {
@@ -39,6 +38,7 @@ abstract class BaseRequestTest extends TestCase
      */
     protected function setUp(): void
     {
+        // Setup SOAP driver.
         $this->driver = ExtSoapDriver::createFromClient(
             AbusedClient::createFromOptions(
                 ExtSoapOptions::defaults(__DIR__.'/../../resources/request.wsdl')
@@ -48,11 +48,11 @@ abstract class BaseRequestTest extends TestCase
             )
         );
 
+        // Setup validator.
         $validatorBuilder = new ValidatorBuilder();
         $validatorBuilder->addYamlMapping(__DIR__.'/../../config/validator/request.yaml');
         $this->validator = $validatorBuilder->getValidator();
 
         parent::setUp();
     }
-
 }
