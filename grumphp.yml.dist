@@ -1,0 +1,18 @@
+imports:
+  - { resource: vendor/openeuropa/code-review/dist/library-conventions.yml }
+
+grumphp:
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: 'docker-compose exec -T php'
+  extensions:
+    - OpenEuropa\CodeReview\ExtraTasksExtension
+
+parameters:
+  tasks.phpcs.ignore_patterns:
+    - src/Notification
+    - src/Request
+  tasks.phpcs.triggered_by:
+    - php
+  tasks.phpmd.exclude:
+    - src/Notification
+    - src/Request

@@ -1,0 +1,9 @@
+vendor
+grumphp.yml
+composer.lock
+behat.yml
+.idea
+phpunit.xml
+docker-compose.*.yml
+*.backup
+.phpunit.result.cache

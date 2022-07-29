@@ -1,0 +1,162 @@
+<?php
+
+namespace OpenEuropa\EPoetry\Request\Type;
+
+class ContactPersonOut
+{
+    /**
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $userId;
+
+    /**
+     * @var string
+     */
+    private $roleCode;
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName() : string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasFirstName() : bool
+    {
+        return !empty($this->firstName);
+    }
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName() : string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLastName() : bool
+    {
+        return !empty($this->lastName);
+    }
+
+    /**
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail() : string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasEmail() : bool
+    {
+        return !empty($this->email);
+    }
+
+    /**
+     * @param string $userId
+     * @return $this
+     */
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->userId = $userId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserId() : string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUserId() : bool
+    {
+        return !empty($this->userId);
+    }
+
+    /**
+     * @param string $roleCode
+     * @return $this
+     */
+    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    {
+        $this->roleCode = $roleCode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoleCode() : string
+    {
+        return $this->roleCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRoleCode() : bool
+    {
+        return !empty($this->roleCode);
+    }
+}
+

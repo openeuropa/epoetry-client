@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Not an actual, working WSDL file, this is just for testing purposes. -->
+<definitions name = "HelloService"
+             xmlns = "http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap"
+             xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+    <types>
+        <xsd:schema>
+            <xsd:import schemaLocation="test.xsd"/>
+        </xsd:schema>
+    </types>
+    <service name="TestService">
+        <port binding="tns:TestBinding" name="TestPort">
+            <soap:address location="http://www.examples.com/TestService/" />
+        </port>
+    </service>
+</definitions>

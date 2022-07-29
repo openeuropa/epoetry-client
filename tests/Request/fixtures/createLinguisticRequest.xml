@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <SOAP-ENV:Body>
+        <ns1:createLinguisticRequest>
+            <requestDetails>
+                <title>Request title</title>
+                <requestedDeadline>2022-07-01T11:51:00+01:00</requestedDeadline>
+                <sensitive>false</sensitive>
+                <destination>PUBLIC</destination>
+                <procedure>DEGHP</procedure>
+                <slaAnnex>ANNEX8A</slaAnnex>
+                <slaCommitment>2225555</slaCommitment>
+                <comment>comment</comment>
+                <accessibleTo>CONTACTS</accessibleTo>
+                <keyword1>keyword1</keyword1>
+                <keyword2>keyword2</keyword2>
+                <keyword3>keyword3</keyword3>
+                <contacts>
+                    <contact userId="liekejo" contactRole="REQUESTER" />
+                    <contact userId="liekejo" contactRole="AUTHOR" />
+                    <contact userId="liekejo" contactRole="RECIPIENT" />
+                </contacts>
+                <originalDocument>
+                    <fileName>TEST_FILE_ORIGINALP.docx</fileName>
+                    <comment />
+                    <content>Y2lkOjI2NzczNjgyODUzMQ==</content>
+                    <linguisticSections>
+                        <linguisticSection xsi:type="ns1:linguisticSectionOut">
+                            <language>FR</language>
+                        </linguisticSection>
+                    </linguisticSections>
+                    <trackChanges>false</trackChanges>
+                </originalDocument>
+                <products>
+                    <product requestedDeadline="2021-07-06T11:51:00+01:00" trackChanges="false" xsi:type="ns1:modifyProductRequestIn">
+                        <language>FR</language>
+                    </product>
+                </products>
+            </requestDetails>
+            <applicationName>appname</applicationName>
+            <templateName>DEFAULT</templateName>
+        </ns1:createLinguisticRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,19 @@
+version: "2"
+services:
+  php:
+    image: wodby/php:8.0-dev
+    environment:
+      # PHP_XDEBUG: 1 # Uncomment to enable XDebug.
+      PHP_FPM_USER: wodby
+      PHP_FPM_GROUP: wodby
+      PHP_OPCACHE_PRELOAD_USER: wodby
+      PHP_XDEBUG_START_WITH_REQUEST: "yes"
+      PHP_XDEBUG_DEFAULT_ENABLE: 1
+      PHP_XDEBUG_LOG_LEVEL: 0
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 1
+      PHP_XDEBUG_REMOTE_HOST: "172.17.0.1"
+      PHP_XDEBUG_IDEKEY: "PHPSTORM"
+      PHP_XDEBUG_MODE: "debug"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    volumes:
+    - ./:/var/www/html
