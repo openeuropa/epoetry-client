@@ -3,7 +3,6 @@
 namespace OpenEuropa\EPoetry;
 
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
-use OpenEuropa\EPoetry\Notification\NotificationClient;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -48,8 +47,8 @@ class RequestClientFactory
         // Build caller.
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
 
-        // Build notification client.
-        return new NotificationClient($caller);
+        // Build request client.
+        return new RequestClient($caller);
     }
 
 }
