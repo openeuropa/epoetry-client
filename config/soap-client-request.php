@@ -26,6 +26,10 @@ $config = ConfigProcessor::addRules($config, [
     'Contacts' => ['contact'],
     'Products' => ['product'],
     'AuxiliaryDocuments' => ['document'],
+    'ReferenceDocuments' => ['document'],
+    'TraxDocuments' => ['document'],
+    'PrtDocuments' => ['document'],
+    'InformativeMessages' => ['message']
     //    'ReceiveNotificationsResponse' => ['return'],
     //    'CreateRequestsResponse' => ['return'],
     //    'CreateRequests' => ['linguisticRequest'],
@@ -33,6 +37,7 @@ $config = ConfigProcessor::addRules($config, [
 ]);
 $config = ConfigProcessor::addConstructorRule($config, [
     'ContactPersonIn',
+    'ContactPersonOut',
     'LinguisticSectionOut'
 ]);
 
