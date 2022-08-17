@@ -99,7 +99,9 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
                 $results[$contactRole]++;
             }
         }
-        // Rules for contacts validation.
+        // Rules for contacts validation. Each rule consist of values:
+        // - "templateName" contains template code where the rule should be applied on.
+        // - "roles" contains number of maximum roles can be available in contacts.
         $rules = [
             [
                 'templateName' => ['DEFAULT', 'EDT', 'HOTL', 'PP', 'QE', 'SPO', 'RSO', 'RSE'],
@@ -146,20 +148,6 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
                 }
             }
         }
-
-        // @todo From spec isn't clear requirements
-        // Only for DIGIT/DECIDE DECISION:
-        //
-        // At least one for each of:
-        //
-        // DOCUMENT_AUTHOR
-        // DOSSIER_AUTHOR
-        // LEGISLATIVE_COORDINATOR
-        //
-        // Optional:
-        //
-        // SECRETARY
-        // CONTACT_PERSON
     }
 
     /**
@@ -189,8 +177,7 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
      */
     protected function validateSlaCommitment($linguisticRequest, $constraint): void
     {
-        // @todo from the spec isn't clear "should be a correct slaCommitent value defined if ABAC;".
-        // What is ABAC?
+        // Current validation does not enforce the slaCommitent value to be a correct slaCommitent value defined if ABAC.
         $requestDetails = $linguisticRequest->getRequestDetails();
         $templateName = $linguisticRequest->getTemplateName();
         if (in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])) {
@@ -214,10 +201,10 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     {
         $productCode = $this->getProductCode($linguisticRequest);
         $requestDetailsIn = $linguisticRequest->getRequestDetails();
-        // @todo From the spec:
-        // true only if sensitive value is true;
-        // true only for TRA and EDT product type;
-        // Do we need use "AND" or "OR" for these rules?
+        // From the spec:
+        // - true only if sensitive value is true;
+        // - true only for TRA and EDT product type;
+        // Currently we combine both rules using "OR" condition.
         if ($requestDetailsIn->hasSentViaRue()) {
             if (!$requestDetailsIn->hasSensitive()) {
                 $this->context->buildViolation($constraint->sentViaRueSensitiveMessage)

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <SOAP-ENV:Body>
-        <ns1:createLinguisticRequest xsi:type="ns1:createLinguisticRequestResponse">
+<S:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <S:Body>
+        <ns0:createLinguisticRequestResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <return>
                 <requestReference>
                     <dossier>
@@ -15,6 +15,7 @@
                 </requestReference>
                 <requestDetails>
                     <title>test for DOC - success</title>
+                    <internalReference/>
                     <requestedDeadline>2022-07-01T12:51:00+02:00</requestedDeadline>
                     <sensitive>false</sensitive>
                     <sentViaRue>false</sentViaRue>
@@ -29,22 +30,22 @@
                     <keyword3>aaaaaaaaaaaaaaa</keyword3>
                     <status>SenttoDGT</status>
                     <applicationName>application1</applicationName>
-                    <contacts xsi:type="ns1:contacts">
-                        <contact xsi:type="ns1:contactPersonOut">
+                    <contacts>
+                        <contact>
                             <firstName>Jochen</firstName>
                             <lastName>LIEKENS</lastName>
                             <email>Jochen.LIEKENS@ec.europa.eu</email>
                             <userId>liekejo</userId>
                             <roleCode>AUTHOR</roleCode>
                         </contact>
-                        <contact xsi:type="ns1:contactPersonOut">
+                        <contact>
                             <firstName>Jochen</firstName>
                             <lastName>LIEKENS</lastName>
                             <email>Jochen.LIEKENS@ec.europa.eu</email>
                             <userId>liekejo</userId>
                             <roleCode>RECIPIENT</roleCode>
                         </contact>
-                        <contact xsi:type="ns1:contactPersonOut">
+                        <contact>
                             <firstName>Jochen</firstName>
                             <lastName>LIEKENS</lastName>
                             <email>Jochen.LIEKENS@ec.europa.eu</email>
@@ -56,15 +57,15 @@
                         <trackChanges>false</trackChanges>
                         <format>DOCX</format>
                         <fileName>TEST_FILE_ORIGINALP.docx</fileName>
-                        <pages>0.1</pages>
-                        <linguisticSections xsi:type="ns1:linguisticSections">
-                            <linguisticSection xsi:type="ns1:linguisticSectionOut">
+                        <pages>0.0</pages>
+                        <linguisticSections>
+                            <linguisticSection>
                                 <language>EN</language>
                             </linguisticSection>
                         </linguisticSections>
                     </originalDocument>
-                    <products xsi:type="ns1:products">
-                        <product xsi:type="ns1:productRequestOut">
+                    <products>
+                        <product>
                             <language>FR</language>
                             <requestedDeadline>2021-07-06T12:51:00+02:00</requestedDeadline>
                             <trackChanges>false</trackChanges>
@@ -93,6 +94,6 @@
                     <message>The decide reference will be ignored because the request is not legislative!</message>
                 </informativeMessages>
             </return>
-        </ns1:createLinguisticRequest>
-    </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+        </ns0:createLinguisticRequestResponse>
+    </S:Body>
+</S:Envelope>

@@ -1,4 +1,4 @@
--   response: createLinguisticRequestResponseOriginal.xml
+-   response: createLinguisticRequestResponse.xml
     expectations:
         assertions:
             - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\CreateLinguisticRequestResponse')

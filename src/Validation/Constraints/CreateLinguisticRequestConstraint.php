@@ -37,26 +37,26 @@ class CreateLinguisticRequestConstraint extends Constraint
 
     public $destinationIgnoredMessage = 'Description value is ignored for the "{{ product }}".';
 
-    public $destinationRequiredMessage = "Choose a valid destination value:
-        - EM for Member State
-        - EXT for Citizen/Company
-        - IE for European Institutions
-        - INTERNE for Internal
-        - JO for Official Journal
-        - PUBLIC for Public";
+    public $destinationRequiredMessage = "Choose a valid destination value:\n" .
+    "- EM for Member State\n" .
+    "- EXT for Citizen/Company\n" .
+    "- IE for European Institutions\n" .
+    "- INTERNE for Internal\n" .
+    "- JO for Official Journal\n" .
+    "- PUBLIC for Public";
 
     public $procedureIgnoredMessage = 'Procedure value is ignored for the "{{ product }}".';
 
-    public $procedureRequiredMessage = "Choose a valid procedure value:
-        - DEGHP for Documents e-Greffe hors procedures
-        - NEANT for None
-        - PROAC for Expedited Written Procedure
-        - PROCD for Delegation procedure
-        - PROCE for Written Procedure
-        - PROCH for Empowerment procedure
-        - PROCO for Oral Procedure
-        - REUNAU for Other Meeting
-        - REUNCS for Council Meeting";
+    public $procedureRequiredMessage = "Choose a valid procedure value:\n" .
+    "- DEGHP for Documents e-Greffe hors procedures\n" .
+    "- NEANT for None\n" .
+    "- PROAC for Expedited Written Procedure\n" .
+    "- PROCD for Delegation procedure\n" .
+    "- PROCE for Written Procedure\n" .
+    "- PROCH for Empowerment procedure\n" .
+    "- PROCO for Oral Procedure\n" .
+    "- REUNAU for Other Meeting\n" .
+    "- REUNCS for Council Meeting";
 
     /**
      * {@inheritdoc}

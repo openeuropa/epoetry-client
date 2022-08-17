@@ -5,125 +5,12 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Request;
 
 use Soap\Engine\HttpBinding\SoapResponse;
-use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse;
-use OpenEuropa\EPoetry\Request\Type\Contacts;
-use OpenEuropa\EPoetry\Request\Type\ContactPersonOut;
-use OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut;
-use OpenEuropa\EPoetry\Request\Type\ProductRequestOut;
-use OpenEuropa\EPoetry\Request\Type\RequestReferenceOut;
-use OpenEuropa\EPoetry\Request\Type\DossierReference;
-use OpenEuropa\EPoetry\Request\Type\RequestDetailsOut;
-use OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut;
-use OpenEuropa\EPoetry\Request\Type\Products;
-use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments;
-use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut;
-use OpenEuropa\EPoetry\Request\Type\InformativeMessages;
 
 /**
  * Test CreateLinguisticRequestResponse service.
  */
 final class CreateLinguisticRequestResponseTest extends BaseRequestTest
 {
-    /**
-     * Ensure the correct creation of an XML payload.
-     */
-    public function testXmlPayload(): void
-    {
-        $dosier = (new DossierReference())
-            ->setRequesterCode('DGT')
-            ->setNumber(487)
-            ->setYear(2021);
-
-        $requestReference = (new RequestReferenceOut())
-            ->setDossier($dosier)
-            ->setProductType('TRA')
-            ->setPart(0)
-            ->setVersion(0);
-
-        // Set contacts.
-        $contacts = (new Contacts())
-            ->addContact(new ContactPersonOut('Jochen', 'LIEKENS', 'Jochen.LIEKENS@ec.europa.eu', 'liekejo', 'AUTHOR'))
-            ->addContact(new ContactPersonOut('Jochen', 'LIEKENS', 'Jochen.LIEKENS@ec.europa.eu', 'liekejo', 'RECIPIENT'))
-            ->addContact(new ContactPersonOut('Jochen', 'LIEKENS', 'Jochen.LIEKENS@ec.europa.eu', 'liekejo', 'REQUESTER'));
-
-        // Set original document.
-        $linguisticSection = (new LinguisticSections())
-            ->addLinguisticSection(new LinguisticSectionOut('EN'));
-        $originalDocument = (new OriginalDocumentOut())
-            ->setTrackChanges(false)
-            ->setFormat('DOCX')
-            ->setFileName('TEST_FILE_ORIGINALP.docx')
-            ->setPages(0.1)
-            ->setLinguisticSections($linguisticSection);
-
-        // Set products.
-        $productRequestOut = (new ProductRequestOut())
-            ->setLanguage('FR')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2021-07-06T12:51:00+02:00'))
-            ->setTrackChanges(false)
-            ->setStatus('SenttoDGT')
-            ->setFormat('DOCX');
-        $products = (new Products())
-            ->addProduct($productRequestOut);
-
-        // Set auxiliary documents.
-        $document1 = (new AuxiliaryDocumentOut())
-            ->setFileName('test.docx')
-            ->setLanguage('EN')
-            ->setDocumentType('REF')
-            ->setComment('test')
-            ->setFormat('DOCX');
-        $document2 = (new AuxiliaryDocumentOut())
-            ->setFileName('test2222SRC.docx')
-            ->setLanguage('EN')
-            ->setDocumentType('SRC')
-            ->setComment('srcFile')
-            ->setFormat('DOCX');
-        $auxiliaryDocuments = (new AuxiliaryDocuments())
-            ->addDocument($document1)
-            ->addDocument($document2);
-
-        $requestDetails = (new RequestDetailsOut())
-            ->setTitle('test for DOC - success')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2022-07-01T12:51:00+02:00'))
-            ->setSensitive(false)
-            ->setSentViaRue(false)
-            ->setDocumentToAdopt(false)
-            ->setDestination('PUBLIC')
-            ->setProcedure('DEGHP')
-            ->setSlaAnnex('ANNEX8A')
-            ->setComment('my request')
-            ->setAccessibleTo('CONTACTS')
-            ->setKeyword1('keyw1')
-            ->setKeyword2('key2')
-            ->setKeyword3('aaaaaaaaaaaaaaa')
-            ->setStatus('SenttoDGT')
-            ->setApplicationName('application1')
-            ->setContacts($contacts)
-            ->setOriginalDocument($originalDocument)
-            ->setProducts($products)
-            ->setAuxiliaryDocuments($auxiliaryDocuments);
-
-        $informativeLanguages = (new InformativeMessages())
-            ->addMessage('The decide reference will be ignored because the request is not legislative!');
-
-        $return = (new LinguisticRequestOut())
-            ->setRequestReference($requestReference)
-            ->setRequestDetails($requestDetails)
-            ->setInformativeMessages($informativeLanguages);
-
-        $response = (new CreateLinguisticRequestResponse())
-            ->setReturn($return);
-
-        // @todo Check why the code in createLinguisticRequestResponse.xml generated by soap-client is not the same
-        // as the code in createLinguisticRequestResponseOriginal.xml from documentation.
-        $expected = file_get_contents(__DIR__.'/fixtures/createLinguisticRequestResponse.xml');
-        $response = $this->driver->encode('createLinguisticRequest', [$response]);
-        $this->assertXmlStringEqualsXmlString($expected, $response->getRequest());
-    }
-
     /**
      * Tests CreateLinguisticRequestResponse decoding.
      *
@@ -153,11 +40,8 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
     public function testRequestResponseError(): void
     {
         $xml = file_get_contents(__DIR__.'/fixtures/createLinguisticRequestResponseError.xml');
-        try {
-            $this->driver->decode('createLinguisticRequest', new SoapResponse($xml));
-        } catch (\SoapFault $exception) {
-            $this->assertEquals('Error 1: Incorrect on behalf DG!', $exception->faultstring);
-            $this->assertEquals('ns0:Server', $exception->faultcode);
-        }
+        $this->expectException(\SoapFault::class);
+        $this->expectExceptionMessage('Error 1: Incorrect on behalf DG!');
+        $this->driver->decode('createLinguisticRequest', new SoapResponse($xml));
     }
 }

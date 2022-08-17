@@ -27,13 +27,6 @@ class RequestDetailsInConstraintValidator extends ConstraintValidator
         }
 
         $this->validateProducts($requestDetailsIn, $constraint);
-
-        // @todo onBehalfOf: should be a correct DG abbreviation; - What are correct DG abbreviation?
-
-        // @todo accessibleTo UNIT (only for proxy authenticated systems), DIR (only for proxy authenticated systems)
-        // How can we validate "only for proxy authenticated systems"?
-
-        // @todo product should include at least one product having the language code included in the list of the ePoetry languages (EU & non-EU)
     }
 
     /**
