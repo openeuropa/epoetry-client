@@ -1,0 +1,20 @@
+<ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+    <notification>
+        <notificationType>ProductStatusChange</notificationType>
+        <product>
+            <productReference>
+                <requestReference>
+                    <requesterCode>AGRI</requesterCode>
+                    <year>2022</year>
+                    <number>81</number>
+                    <part>0</part>
+                    <version>1</version>
+                    <productType>TRA</productType>
+                </requestReference>
+                <language>CS</language>
+            </productReference>
+            <status>Ongoing</status>
+            <acceptedDeadline>2022-04-04T12:51:00.000+02:00</acceptedDeadline>
+        </product>
+    </notification>
+</ns0:receiveNotification>

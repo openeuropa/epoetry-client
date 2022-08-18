@@ -40,5 +40,13 @@ class DgtNotificationConstraintValidator extends ConstraintValidator
                 ->setParameter('{{ notificationType }}', $notificationType)
                 ->addViolation();
         }
+
+        if ($notificationType === 'ProductStatusChange' && !$dgtNotification->hasProduct()) {
+            $this->context->buildViolation($constraint->propertyRequiredMessage)
+                ->atPath('notificationType')
+                ->setParameter('{{ property }}', 'product')
+                ->setParameter('{{ notificationType }}', $notificationType)
+                ->addViolation();
+        }
     }
 }

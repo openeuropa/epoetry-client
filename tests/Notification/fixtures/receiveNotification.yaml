@@ -27,3 +27,30 @@
             - notification.getNotification().getMessage() === 'rejection reason - it was missing some files'
             - notification.getNotification().getPlanningAgent() === 'collafc'
             - notification.getNotification().getPlanningSector() === 'DGT.S.S-1.P-2'
+-   notification: productStatusChangeRequested.xml
+    expectations:
+        assertions:
+            - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
+            - notification.getNotification().getNotificationType() === 'ProductStatusChange'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getRequesterCode() === 'AGRI'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getYear() === 2022
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getNumber() === 93
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getPart() === 0
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getVersion() === 0
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getProductType() === 'TRA'
+            - notification.getNotification().getProduct().getProductReference().getLanguage() === 'SK'
+            - notification.getNotification().getProduct().getStatus() === 'Requested'
+-   notification: productStatusChangeOngoing.xml
+    expectations:
+        assertions:
+            - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
+            - notification.getNotification().getNotificationType() === 'ProductStatusChange'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getRequesterCode() === 'AGRI'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getYear() === 2022
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getNumber() === 81
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getPart() === 0
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getVersion() === 1
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getProductType() === 'TRA'
+            - notification.getNotification().getProduct().getProductReference().getLanguage() === 'CS'
+            - notification.getNotification().getProduct().getStatus() === 'Ongoing'
+            - notification.getNotification().getProduct().getAcceptedDeadline().format('Y-m-d\\TH:i:sP') === '2022-04-04T12:51:00+02:00'
