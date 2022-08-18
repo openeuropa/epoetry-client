@@ -38,6 +38,7 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
             return;
         }
         // Only the following combinations between template codes and workflow codes are accepted.
+        // We use an empty string to indicate that a workflow code can be optionally set, for the related template.
         $mapping = [
             'DEFAULT' => ['', 'STS'],
             'WEBTRA' => ['WEB'],
@@ -156,15 +157,8 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     protected function validateSlaAnnex($linguisticRequest, Constraint $constraint): void
     {
         $templateName = $linguisticRequest->getTemplateName();
-        if (in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])) {
-            if ($linguisticRequest->getRequestDetails()->hasSlaAnnex()) {
-                // SlaAnnex is ignored.
-                $this->context->buildViolation($constraint->slaAnnexIgnoredMessage)
-                    ->atPath('requestDetails.slaAnnex')
-                    ->setParameter('{{ product }}', $templateName)
-                    ->addViolation();
-            }
-        } elseif (!in_array($linguisticRequest->getRequestDetails()->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])) {
+        if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
+            && !in_array($linguisticRequest->getRequestDetails()->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])) {
             // SlaAnnex is required, only specific options are possible.
             $this->context->buildViolation($constraint->slaAnnexRequiredMessage)
                 ->atPath('requestDetails.slaAnnex')
@@ -180,14 +174,10 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
         // Current validation does not enforce the slaCommitent value to be a correct slaCommitent value defined if ABAC.
         $requestDetails = $linguisticRequest->getRequestDetails();
         $templateName = $linguisticRequest->getTemplateName();
-        if (in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])) {
-            if ($requestDetails->hasSlaCommitment()) {
-                $this->context->buildViolation($constraint->slaCommitmentIgnoredMessage)
-                    ->atPath('requestDetails.slaCommitment')
-                    ->setParameter('{{ product }}', $templateName)
-                    ->addViolation();
-            }
-        } elseif ($requestDetails->hasSlaAnnex() && $requestDetails->getSlaAnnex() === 'ANNEX8B' && !$requestDetails->hasSlaCommitment()) {
+        if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
+            && $requestDetails->hasSlaAnnex()
+            && $requestDetails->getSlaAnnex() === 'ANNEX8B'
+            && !$requestDetails->hasSlaCommitment()) {
             $this->context->buildViolation($constraint->slaCommitmentRequiredMessage)
                 ->atPath('requestDetails.slaCommitment')
                 ->addViolation();
@@ -226,14 +216,8 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     protected function validateDestination($linguisticRequest, $constraint): void
     {
         $templateName = $linguisticRequest->getTemplateName();
-        if (in_array($templateName, ['HOTL', 'RSE', 'RSO'])) {
-            if ($linguisticRequest->getRequestDetails()->hasDestination()) {
-                $this->context->buildViolation($constraint->destinationIgnoredMessage)
-                    ->atPath('requestDetails.destination')
-                    ->setParameter('{{ product }}', $templateName)
-                    ->addViolation();
-            }
-        } elseif (!in_array($linguisticRequest->getRequestDetails()->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])) {
+        if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
+            && !in_array($linguisticRequest->getRequestDetails()->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])) {
             $this->context->buildViolation($constraint->destinationRequiredMessage)
                 ->atPath('requestDetails.destination')
                 ->addViolation();
@@ -246,14 +230,8 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     protected function validateProcedure($linguisticRequest, $constraint): void
     {
         $templateName = $linguisticRequest->getTemplateName();
-        if (in_array($templateName, ['HOTL', 'RSE', 'RSO'])) {
-            if ($linguisticRequest->getRequestDetails()->hasProcedure()) {
-                $this->context->buildViolation($constraint->procedureIgnoredMessage)
-                    ->atPath('requestDetails.procedure')
-                    ->setParameter('{{ product }}', $templateName)
-                    ->addViolation();
-            }
-        } elseif (!in_array($linguisticRequest->getRequestDetails()->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])) {
+        if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
+            && !in_array($linguisticRequest->getRequestDetails()->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])) {
             $this->context->buildViolation($constraint->procedureRequiredMessage)
                 ->atPath('requestDetails.procedure')
                 ->addViolation();

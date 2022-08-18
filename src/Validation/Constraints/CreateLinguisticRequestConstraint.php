@@ -6,36 +6,28 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
- *
- * @SuppressWarnings("PMD.TooManyFields")
  */
 class CreateLinguisticRequestConstraint extends Constraint
 {
-    public $requestedDeadlineHotlMessage = 'Requested deadline has to be empty for the "HOTL" template.';
+    public $requestedDeadlineHotlMessage = '"requestedDeadline" for "HOTL" template must be empty.';
 
-    public $requestedDeadlineRequiredMessage = 'Requested deadline is required.';
+    public $requestedDeadlineRequiredMessage = '"requestedDeadline" is required.';
 
-    public $requestedDeadlinePastMessage = 'Requested deadline can not be in the past.';
+    public $requestedDeadlinePastMessage = '"requestedDeadline" cannot be in the past.';
 
-    public $workflowCodeMessage = 'Workflow code "{{ code }}" is not allowed for template "{{ template }}".';
+    public $workflowCodeMessage = '"workflowCode" "{{ code }}" is not allowed for template "{{ template }}".';
 
     public $contactsMinimumMessage = 'At least one "{{ role }}" contact should be presented.';
 
     public $contactsMaximumMessage = 'Maximum of "{{ count }}" "{{ role }}" contacts should be presented.';
 
-    public $slaAnnexRequiredMessage = 'Choose a valid slaAnnex value: NO, ANNEX8A, ANNEX8B.';
+    public $slaAnnexRequiredMessage = 'Choose a valid "slaAnnex" value: NO, ANNEX8A, ANNEX8B.';
 
-    public $slaAnnexIgnoredMessage = 'SlaAnnex value is ignored for the "{{ product }}".';
+    public $slaCommitmentRequiredMessage = '"slaCommitment" value is required if "slaAnnex" is ANNEX8B.';
 
-    public $slaCommitmentIgnoredMessage = 'SlaCommitment value is ignored for the "{{ product }}".';
+    public $sentViaRueSensitiveMessage = '"sentViaRue" can be set to "true" only if "sensitive" value is also set to "true".';
 
-    public $slaCommitmentRequiredMessage = 'SlaCommitment value is required if slaAnnex is ANNEX8B.';
-
-    public $sentViaRueSensitiveMessage = 'Sent via rue is true only if Sensitive value is true.';
-
-    public $sentViaRueProductTypeMessage = 'Sent via rue can not be TRUE for the "{{ product }}" product type.';
-
-    public $destinationIgnoredMessage = 'Description value is ignored for the "{{ product }}".';
+    public $sentViaRueProductTypeMessage = '"sentViaRue" cannot be set to "true" for the following "{{ product }}" product type.';
 
     public $destinationRequiredMessage = "Choose a valid destination value:\n" .
     "- EM for Member State\n" .
@@ -44,8 +36,6 @@ class CreateLinguisticRequestConstraint extends Constraint
     "- INTERNE for Internal\n" .
     "- JO for Official Journal\n" .
     "- PUBLIC for Public";
-
-    public $procedureIgnoredMessage = 'Procedure value is ignored for the "{{ product }}".';
 
     public $procedureRequiredMessage = "Choose a valid procedure value:\n" .
     "- DEGHP for Documents e-Greffe hors procedures\n" .

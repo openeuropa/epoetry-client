@@ -68,7 +68,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 3
-                - violations.get(0).getMessage() === 'Workflow code "HOTL" is not allowed for template "WEBTRA".'
+                - violations.get(0).getMessage() === '"workflowCode" "HOTL" is not allowed for template "WEBTRA".'
                 - violations.get(0).getPropertyPath() === 'requestDetails.workflowCode'
                 - violations.get(1).getMessage() === 'At least one "WEBMASTER" contact should be presented.'
                 - violations.get(1).getPropertyPath() === 'requestDetails.contacts'
@@ -103,7 +103,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'Requested deadline has to be empty for the "HOTL" template.'
+                - violations.get(0).getMessage() === '"requestedDeadline" for "HOTL" template must be empty.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
     -   data:
             <<: *default-create-linguistic-request
@@ -137,13 +137,11 @@ tests:
                             contactRole: RECIPIENT
         expectations:
             assertions:
-                - count(violations) === 3
+                - count(violations) === 2
                 - violations.get(0).getMessage() === 'Maximum of "3" "WEBMASTER" contacts should be presented.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.contacts'
                 - violations.get(1).getMessage() === 'At least one "AUTHOR" contact should be presented.'
                 - violations.get(1).getPropertyPath() === 'requestDetails.contacts'
-                - violations.get(2).getMessage() === 'SlaAnnex value is ignored for the "WEBEDT".'
-                - violations.get(2).getPropertyPath() === 'requestDetails.slaAnnex'
     -   data:
             <<: *default-create-linguistic-request
             templateName: WEBEDT
@@ -246,7 +244,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'Requested deadline can not be in the past.'
+                - violations.get(0).getMessage() === '"requestedDeadline" cannot be in the past.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
     -   data:
             <<: *default-create-linguistic-request
@@ -270,7 +268,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'Requested deadline is required.'
+                - violations.get(0).getMessage() === '"requestedDeadline" is required.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
     -   data:
             <<: *default-create-linguistic-request
@@ -280,7 +278,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 2
-                - violations.get(0).getMessage() === 'Workflow code "wrong workflow code" is not allowed for template "DEFAULT".'
+                - violations.get(0).getMessage() === '"workflowCode" "wrong workflow code" is not allowed for template "DEFAULT".'
                 - strpos(violations.get(1).getMessage(), 'Choose a valid workflow code or set empty value') === 0
     -   data:
             <<: *default-create-linguistic-request
@@ -340,7 +338,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'Sent via rue is true only if Sensitive value is true.'
+                - violations.get(0).getMessage() === '"sentViaRue" can be set to "true" only if "sensitive" value is also set to "true".'
     -   data:
             <<: *default-create-linguistic-request
             templateName: RSE
@@ -352,17 +350,9 @@ tests:
                 sensitive: true
         expectations:
             assertions:
-                - count(violations) === 5
-                - violations.get(0).getMessage() === 'SlaAnnex value is ignored for the "RSE".'
-                - violations.get(0).getPropertyPath() === 'requestDetails.slaAnnex'
-                - violations.get(2).getMessage() === 'Sent via rue can not be TRUE for the "RSE" product type.'
-                - violations.get(2).getPropertyPath() === 'requestDetails.sentViaRue'
-                - violations.get(1).getMessage() === 'SlaCommitment value is ignored for the "RSE".'
-                - violations.get(1).getPropertyPath() === 'requestDetails.slaCommitment'
-                - violations.get(3).getMessage() === 'Description value is ignored for the "RSE".'
-                - violations.get(3).getPropertyPath() === 'requestDetails.destination'
-                - violations.get(4).getMessage() === 'Procedure value is ignored for the "RSE".'
-                - violations.get(4).getPropertyPath() === 'requestDetails.procedure'
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"sentViaRue" cannot be set to "true" for the following "RSE" product type.'
+                - violations.get(0).getPropertyPath() === 'requestDetails.sentViaRue'
     -   data:
             <<: *default-create-linguistic-request
             requestDetails:
@@ -461,7 +451,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - 'violations.get(0).getMessage() === "Choose a valid slaAnnex value: NO, ANNEX8A, ANNEX8B."'
+                - 'violations.get(0).getMessage() === "Choose a valid \"slaAnnex\" value: NO, ANNEX8A, ANNEX8B."'
                 - violations.get(0).getPropertyPath() === 'requestDetails.slaAnnex'
     -   data:
             <<: *default-create-linguistic-request
@@ -487,7 +477,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'SlaCommitment value is required if slaAnnex is ANNEX8B.'
+                - violations.get(0).getMessage() === '"slaCommitment" value is required if "slaAnnex" is ANNEX8B.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.slaCommitment'
     -   data:
             <<: *default-create-linguistic-request
@@ -640,7 +630,7 @@ tests:
         expectations:
             assertions:
                 - count(violations) === 1
-                - violations.get(0).getMessage() === 'The list of the products should not include language "FR" since it is defined as a single source language in the linguisticSections'
+                - violations.get(0).getMessage() === 'Product list must not include language "FR" since it is defined as a single source language in the "linguisticSections"'
                 - violations.get(0).getPropertyPath() === 'requestDetails.products.product[0]'
     -   data:
             <<: *default-create-linguistic-request
