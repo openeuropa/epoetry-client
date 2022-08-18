@@ -2,12 +2,10 @@
 
 namespace OpenEuropa\EPoetry\Validation\Constraints;
 
-use Symfony\Component\Validator\Constraint;
-
 /**
  * @Annotation
  */
-class CreateLinguisticRequestConstraint extends Constraint
+class CreateLinguisticRequestConstraint extends BaseConstraint
 {
     public $requestedDeadlineRequiredMessage = '"requestedDeadline" is required.';
 
@@ -45,12 +43,4 @@ class CreateLinguisticRequestConstraint extends Constraint
     "- PROCO for Oral Procedure\n" .
     "- REUNAU for Other Meeting\n" .
     "- REUNCS for Council Meeting";
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTargets()
-    {
-        return self::CLASS_CONSTRAINT;
-    }
 }

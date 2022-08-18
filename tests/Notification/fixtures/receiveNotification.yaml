@@ -1,0 +1,29 @@
+-   notification: requestStatusChangeAccepted.xml
+    expectations:
+        assertions:
+            - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
+            - notification.getNotification().getNotificationType() === 'RequestStatusChange'
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getRequesterCode() === 'SG'
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getYear() === 2022
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getNumber() === 127
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getPart() === 0
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getVersion() === 0
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getProductType() === 'TRA'
+            - notification.getNotification().getLinguisticRequest().getStatus() === 'Accepted'
+            - notification.getNotification().getPlanningAgent() === 'teodomi'
+            - notification.getNotification().getPlanningSector() === 'DGT.S.S-1.P-1'
+-   notification: requestStatusChangeRejected.xml
+    expectations:
+        assertions:
+            - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
+            - notification.getNotification().getNotificationType() === 'RequestStatusChange'
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getRequesterCode() === 'AGRI'
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getYear() === 2022
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getNumber() === 83
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getPart() === 0
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getVersion() === 0
+            - notification.getNotification().getLinguisticRequest().getRequestReference().getProductType() === 'TRA'
+            - notification.getNotification().getLinguisticRequest().getStatus() === 'Rejected'
+            - notification.getNotification().getMessage() === 'rejection reason - it was missing some files'
+            - notification.getNotification().getPlanningAgent() === 'collafc'
+            - notification.getNotification().getPlanningSector() === 'DGT.S.S-1.P-2'
