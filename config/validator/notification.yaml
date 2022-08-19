@@ -36,9 +36,17 @@ OpenEuropa\EPoetry\Notification\Type\RequestReference:
     properties:
         year:
             -   NotBlank: ~
+            -   Regex: '/^20\d{2}$$/'
         number:
             -   NotBlank: ~
+            -   PositiveOrZero: ~
         part:
             -   NotBlank: ~
+            -   PositiveOrZero: ~
         version:
             -   NotBlank: ~
+            -   PositiveOrZero: ~
+        productType:
+            -   Choice:
+                    choices: [ TRA, EDT, RSE, RSO, SPO, EDT ]
+                    message: Choose a valid "productType".
