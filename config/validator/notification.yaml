@@ -87,6 +87,10 @@ OpenEuropa\EPoetry\Notification\Type\Product:
                         - Rejected
                         - Requested
                         - Invalid
+        format:
+            -   Choice:
+                    choices: [ XLS, XLSX, DOC, DOCX, PPTX, PPT, HTM, HTML, RTF, VSD, PDF, TIF, ZIP, TIFF, TXT, XML, XMW ]
+                    message: Choose a valid file format.
 
 OpenEuropa\EPoetry\Notification\Type\ProductReference:
     properties:
