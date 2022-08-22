@@ -36,7 +36,7 @@ OpenEuropa\EPoetry\Notification\Type\RequestReference:
     properties:
         year:
             -   NotBlank: ~
-            -   Regex: '/^20\d{2}$$/'
+            -   Regex: '/^20\d{2}$/'
         number:
             -   NotBlank: ~
             -   PositiveOrZero: ~

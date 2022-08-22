@@ -17,7 +17,7 @@ class DgtNotificationConstraintValidator extends ConstraintValidator
     public function validate($dgtNotification, Constraint $constraint): void
     {
         if (!$constraint instanceof DgtNotificationConstraint) {
-            throw new UnexpectedTypeException($constraint, RequestDetailsInConstraint::class);
+            throw new UnexpectedTypeException($constraint, DgtNotificationConstraint::class);
         }
 
         $this->validateNotificationType($dgtNotification, $constraint);
