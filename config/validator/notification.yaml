@@ -28,7 +28,13 @@ OpenEuropa\EPoetry\Notification\Type\LinguisticRequest:
             -   Choice:
                     choices: [ Accepted, Rejected, Executed, Suspended, Cancelled, Validated ]
                     message: |
-                        Choose a valid linguistic request status.
+                        Choose a valid linguistic request status:
+                        - Accepted
+                        - Rejected
+                        - Executed
+                        - Suspended
+                        - Cancelled
+                        - Validated
         requestReference:
             -   Valid: ~
 
@@ -48,5 +54,11 @@ OpenEuropa\EPoetry\Notification\Type\RequestReference:
             -   PositiveOrZero: ~
         productType:
             -   Choice:
-                    choices: [ TRA, EDT, RSE, RSO, SPO, EDT ]
-                    message: Choose a valid "productType".
+                    choices: [ TRA, EDT, RSE, RSO, SPO ]
+                    message: |
+                        Choose a valid "productType":
+                        - TRA
+                        - EDT
+                        - RSE
+                        - RSO
+                        - SPO

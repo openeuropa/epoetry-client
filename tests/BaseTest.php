@@ -78,7 +78,7 @@ abstract class BaseTest extends TestCase
      * @param array $expressions
      * @param array $values
      */
-    protected function assertExpressionLanguageExpressions(array $expressions, array $values)
+    protected function assertExpressionLanguageExpressions(array $expressions, array $values): void
     {
         foreach ($expressions as $expression) {
             static::assertTrue(
