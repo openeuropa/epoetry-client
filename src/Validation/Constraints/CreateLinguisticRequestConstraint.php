@@ -9,8 +9,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class CreateLinguisticRequestConstraint extends Constraint
 {
-    public $requestedDeadlineHotlMessage = '"requestedDeadline" for "HOTL" template must be empty.';
-
     public $requestedDeadlineRequiredMessage = '"requestedDeadline" is required.';
 
     public $requestedDeadlinePastMessage = '"requestedDeadline" cannot be in the past.';

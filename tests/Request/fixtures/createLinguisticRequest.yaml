@@ -102,9 +102,7 @@ tests:
                 procedure: ''
         expectations:
             assertions:
-                - count(violations) === 1
-                - violations.get(0).getMessage() === '"requestedDeadline" for "HOTL" template must be empty.'
-                - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
+                - count(violations) === 0
     -   data:
             <<: *default-create-linguistic-request
             templateName: EDT

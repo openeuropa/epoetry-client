@@ -245,11 +245,7 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     {
         $templateName = $linguisticRequest->getTemplateName();
         if ($templateName === 'HOTL') {
-            if ($linguisticRequest->getRequestDetails()->hasRequestedDeadline()) {
-                $this->context->buildViolation($constraint->requestedDeadlineHotlMessage)
-                    ->atPath('requestDetails.requestedDeadline')
-                    ->addViolation();
-            }
+            return;
         } elseif (!$linguisticRequest->getRequestDetails()->hasRequestedDeadline()) {
             $this->context->buildViolation($constraint->requestedDeadlineRequiredMessage)
                 ->atPath('requestDetails.requestedDeadline')
