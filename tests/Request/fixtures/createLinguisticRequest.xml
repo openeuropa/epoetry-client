@@ -32,10 +32,25 @@
                     <trackChanges>false</trackChanges>
                 </originalDocument>
                 <products>
-                    <product requestedDeadline="2021-07-06T11:51:00+01:00" trackChanges="false" xsi:type="ns1:modifyProductRequestIn">
+                    <product requestedDeadline="2021-07-06T11:51:00+01:00" trackChanges="false">
                         <language>FR</language>
                     </product>
                 </products>
+                <auxiliaryDocuments>
+                    <referenceDocuments>
+                        <document>
+                            <fileName>test.docx</fileName>
+                                <language>EN</language>
+                                <comment>test</comment>
+                                <content>Y2lkOjMwMzYwNTgyNDExMg==</content>
+                        </document>
+                    </referenceDocuments>
+                    <srcDocument>
+                        <fileName>test2222SRC.docx</fileName>
+                        <comment>777888877</comment>
+                        <content>Y2lkOjE1MzE4ODQ3MDQyMjY=</content>
+                    </srcDocument>
+                </auxiliaryDocuments>
             </requestDetails>
             <applicationName>appname</applicationName>
             <templateName>DEFAULT</templateName>

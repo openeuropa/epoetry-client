@@ -5,26 +5,35 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class InformativeMessages
 {
     /**
-     * @var string
+     * @var string[]|array
      */
-    private $message;
+    private $message = [];
 
     /**
-     * @param string $message
+     * @param string[] $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function setMessage(array $message) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string[]|array
      */
-    public function getMessage() : string
+    public function getMessage() : array
     {
         return $this->message;
+    }
+
+    /**
+     * @param string ...$messages
+     * @return $this
+     */
+    public function addMessage(... $messages) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    {
+        $this->message = array_merge($this->message, $messages);return $this;
     }
 
     /**

@@ -1,4 +1,7 @@
 OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
+    constraints:
+        -   OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+
     properties:
         requestDetails:
             - Valid: ~
@@ -14,7 +17,7 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
                     - DEFAULT for full length translation
                     - WEBTRA for web translation
                     - HOTL for hotline
-                    - EDT	for standard editing
+                    - EDT for standard editing
                     - WEBEDT for web editing
                     - RSE for written summary
                     - RSO for oral summary
@@ -23,24 +26,139 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
                     - QE for replies to MEPs’ written questions
 
 OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
+    constraints:
+        - OpenEuropa\EPoetry\Validation\Constraints\RequestDetailsInConstraint: ~
+
     properties:
         title:
             - Length:
                 min: 1
                 max: 500
                 allowEmptyString: false
+            - NotNull: ~
+        workflowCode:
+            - Choice:
+                choices: [ '', WEB, HOTL, STS, PP, QE ]
+                message: |
+                    Choose a valid workflow code or set empty value
+                    - WEB
+                    - HOTL
+                    - STS
+                    - PP
+                    - QE
         internalReference:
             - Length:
                 min: 0
                 max: 100
-        destination:
+        comment:
+            - Length:
+                min: 0
+                max: 1700
+        accessibleTo:
             - Choice:
-                choices: [ EM, EXT, IE, INTERNE, JO, PUBLIC ]
+                choices: [ CONTACTS, UNIT, DIR, DG, ON_BEHALF_DG ]
                 message: |
-                    Choose a valid destination value
-                    - EM for Member State
-                    - EXT for Citizen/Company
-                    - IE for European Institutions
-                    - INTERNE for Internal
-                    - JO for Official Journal
-                    - PUBLIC for Public
+                    Choose a valid accessible to value
+                    - CONTACTS
+                    - UNIT only for proxy authenticated systems
+                    - DIR only for proxy authenticated systems
+                    - DG
+                    - ON_BEHALF_DG
+        keyword1:
+            - Length:
+                min: 0
+                max: 100
+        keyword2:
+            - Length:
+                  min: 0
+                  max: 100
+        keyword3:
+            - Length:
+                  min: 0
+                  max: 100
+        products:
+            - Valid: ~
+            - NotNull: ~
+        contacts:
+            - Valid: ~
+            - NotNull: ~
+        auxiliaryDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\Products:
+    properties:
+        product:
+            - Valid: ~
+            - NotNull: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
+    properties:
+        language:
+            - NotBlank: ~
+        requestedDeadline:
+            - NotNull: ~
+
+OpenEuropa\EPoetry\Request\Type\Contacts:
+    properties:
+        contact:
+            - Valid: ~
+            - NotNull: ~
+
+OpenEuropa\EPoetry\Request\Type\ContactPersonIn:
+    properties:
+        userId:
+            - NotBlank: ~
+        contactRole:
+            - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn:
+    properties:
+        referenceDocuments:
+            - Valid: ~
+        traxDocuments:
+            - Valid: ~
+        srcDocument:
+            - Valid: ~
+        spotDocument:
+            - Valid: ~
+        prtDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\SrcDocumentIn:
+    properties:
+        fileName:
+            - NotBlank: ~
+        content:
+            - NotBlank: ~
+        comment:
+            - Length:
+                min: 0
+                max: 500
+
+OpenEuropa\EPoetry\Request\Type\ReferenceDocuments:
+    properties:
+        document:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\TraxDocuments:
+    properties:
+        document:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\PrtDocuments:
+    properties:
+        document:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\DocumentIn:
+    properties:
+        fileName:
+            - NotBlank: ~
+        content:
+            - NotBlank: ~
+        comment:
+            - Length:
+                  min: 0
+                  max: 500
+
+

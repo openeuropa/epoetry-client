@@ -1,0 +1,64 @@
+-   response: createLinguisticRequestResponse.xml
+    expectations:
+        assertions:
+            - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\CreateLinguisticRequestResponse')
+            - response.getReturn().getRequestReference().getDossier().getRequesterCode() === 'DGT'
+            - response.getReturn().getRequestReference().getDossier().getNumber() === 487
+            - response.getReturn().getRequestReference().getDossier().getYear() === 2021
+            - response.getReturn().getRequestReference().getProductType() === 'TRA'
+            - response.getReturn().getRequestReference().getPart() === 0
+            - response.getReturn().getRequestReference().getVersion() === 0
+            - response.getReturn().getRequestDetails().getTitle() === 'test for DOC - success'
+            - response.getReturn().getRequestDetails().getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2022-07-01T10:51:00+00:00'
+            - response.getReturn().getRequestDetails().isSensitive() === false
+            - response.getReturn().getRequestDetails().isSentViaRue() === false
+            - response.getReturn().getRequestDetails().isDocumentToAdopt() === false
+            - response.getReturn().getRequestDetails().getDestination() === 'PUBLIC'
+            - response.getReturn().getRequestDetails().getProcedure() === 'DEGHP'
+            - response.getReturn().getRequestDetails().getSlaAnnex() === 'ANNEX8A'
+            - response.getReturn().getRequestDetails().getComment() === 'my request'
+            - response.getReturn().getRequestDetails().getAccessibleTo() === 'CONTACTS'
+            - response.getReturn().getRequestDetails().getKeyword1() === 'keyw1'
+            - response.getReturn().getRequestDetails().getKeyword2() === 'key2'
+            - response.getReturn().getRequestDetails().getKeyword3() === 'aaaaaaaaaaaaaaa'
+            - response.getReturn().getRequestDetails().getStatus() === 'SenttoDGT'
+            - response.getReturn().getRequestDetails().getApplicationName() === 'application1'
+            - count(response.getReturn().getRequestDetails().getContacts().getContact()) === 3
+            - response.getReturn().getRequestDetails().getContacts().getContact()[0].getFirstName() === 'Jochen'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[0].getLastName() === 'LIEKENS'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[0].getEmail() === 'Jochen.LIEKENS@ec.europa.eu'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[0].getUserId() === 'liekejo'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[0].getRoleCode() === 'AUTHOR'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[1].getFirstName() === 'Jochen'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[1].getLastName() === 'LIEKENS'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[1].getEmail() === 'Jochen.LIEKENS@ec.europa.eu'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[1].getUserId() === 'liekejo'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[1].getRoleCode() === 'RECIPIENT'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[2].getFirstName() === 'Jochen'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[2].getLastName() === 'LIEKENS'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[2].getEmail() === 'Jochen.LIEKENS@ec.europa.eu'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[2].getUserId() === 'liekejo'
+            - response.getReturn().getRequestDetails().getContacts().getContact()[2].getRoleCode() === 'REQUESTER'
+            - response.getReturn().getRequestDetails().getOriginalDocument().isTrackChanges() === false
+            - response.getReturn().getRequestDetails().getOriginalDocument().getFormat() === 'DOCX'
+            - response.getReturn().getRequestDetails().getOriginalDocument().getFileName() === 'TEST_FILE_ORIGINALP.docx'
+            - response.getReturn().getRequestDetails().getOriginalDocument().getPages() === 0.0
+            - response.getReturn().getRequestDetails().getOriginalDocument().getLinguisticSections().getLinguisticSection()[0].getLanguage() === 'EN'
+            - count(response.getReturn().getRequestDetails().getProducts().getProduct()) === 1
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getLanguage() === 'FR'
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2021-07-06T10:51:00+00:00'
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].isTrackChanges() === false
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getStatus() === 'SenttoDGT'
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getFormat() === 'DOCX'
+            - count(response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()) === 2
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[0].getFileName() === 'test.docx'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[0].getLanguage() === 'EN'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[0].getDocumentType() === 'REF'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[0].getComment() === 'test'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[0].getFormat() === 'DOCX'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[1].getFileName() === 'test2222SRC.docx'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[1].getLanguage() === 'EN'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[1].getDocumentType() === 'SRC'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[1].getComment() === 'srcFile'
+            - response.getReturn().getRequestDetails().getAuxiliaryDocuments().getDocument()[1].getFormat() === 'DOCX'
+            - response.getReturn().getInformativeMessages().getMessage()[0] === 'The decide reference will be ignored because the request is not legislative!'
