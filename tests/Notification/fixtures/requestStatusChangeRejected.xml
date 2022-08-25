@@ -1,0 +1,19 @@
+<ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+    <notification>
+        <notificationType>RequestStatusChange</notificationType>
+        <linguisticRequest>
+            <requestReference>
+                <requesterCode>AGRI</requesterCode>
+                <year>2022</year>
+                <number>83</number>
+                <part>0</part>
+                <version>0</version>
+                <productType>TRA</productType>
+            </requestReference>
+            <status>Rejected</status>
+        </linguisticRequest>
+        <message>rejection reason - it was missing some files</message>
+        <planningAgent>collafc</planningAgent>
+        <planningSector>DGT.S.S-1.P-2</planningSector>
+    </notification>
+</ns0:receiveNotification>

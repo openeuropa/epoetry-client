@@ -99,7 +99,7 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
      *
      * @dataProvider dataProviderCreateLinguisticRequest
      */
-    public function testValidation($data, $expectations)
+    public function testValidation($data, $expectations): void
     {
         $request = $this->serializer->denormalize($data, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest');
         $violations = $this->validator->validate($request);
@@ -119,6 +119,6 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
      */
     public function dataProviderCreateLinguisticRequest(): array
     {
-        return $this->getFixture('createLinguisticRequest.yaml')['tests'];
+        return $this->getFixture('createLinguisticRequest.yaml', '/Request')['tests'];
     }
 }

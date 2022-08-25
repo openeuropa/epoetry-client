@@ -16,7 +16,7 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
      *
      * @dataProvider dataProviderRequestResponse
      */
-    public function testRequestResponse($response, $expectations)
+    public function testRequestResponse($response, $expectations): void
     {
         $xml = file_get_contents(__DIR__ . '/fixtures/' . $response);
         $response = $this->driver->decode('createLinguisticRequest', new SoapResponse($xml));
@@ -31,7 +31,7 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
      */
     public function dataProviderRequestResponse(): array
     {
-        return $this->getFixture('createLinguisticRequestResponse.yaml');
+        return $this->getFixture('createLinguisticRequestResponse.yaml', '/Request');
     }
 
     /**

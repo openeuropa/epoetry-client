@@ -1,0 +1,89 @@
+tests:
+    -   data:
+            notification:
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'notification.notificationType'
+    -   data:
+            notification:
+                notificationType: InvalidNotificationType
+                linguisticRequest:
+                    status: InvalidLinguisticRequestStatus
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - strpos(violations.get(0).getMessage(), 'Choose a valid notification type') === 0
+                - violations.get(0).getPropertyPath() === 'notification.notificationType'
+                - strpos(violations.get(1).getMessage(), 'Choose a valid linguistic request status') === 0
+                - violations.get(1).getPropertyPath() === 'notification.linguisticRequest.status'
+    -   data:
+            notification:
+                notificationType: RequestStatusChange
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"linguisticRequest" value is required for "RequestStatusChange" notification type.'
+                - violations.get(0).getPropertyPath() === 'notification.notificationType'
+    -   data:
+            notification:
+                notificationType: RequestStatusChange
+                linguisticRequest:
+                    status: Accepted
+                    requestReference:
+        expectations:
+            assertions:
+                - count(violations) === 4
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'notification.linguisticRequest.requestReference.year'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'notification.linguisticRequest.requestReference.number'
+                - violations.get(2).getMessage() === 'This value should not be blank.'
+                - violations.get(2).getPropertyPath() === 'notification.linguisticRequest.requestReference.part'
+                - violations.get(3).getMessage() === 'This value should not be blank.'
+                - violations.get(3).getPropertyPath() === 'notification.linguisticRequest.requestReference.version'
+    -   data:
+            notification:
+                notificationType: RequestStatusChange
+                linguisticRequest:
+                    status: Accepted
+                    requestReference:
+                        requesterCode: AGRI
+                        year: 1984
+                        number: -1
+                        part: -2
+                        version: -3
+                        productType: InvalidProductType
+        expectations:
+            assertions:
+                - count(violations) === 5
+                - violations.get(0).getMessage() === 'This value is not valid.'
+                - violations.get(0).getPropertyPath() === 'notification.linguisticRequest.requestReference.year'
+                - violations.get(1).getMessage() === 'This value should be either positive or zero.'
+                - violations.get(1).getPropertyPath() === 'notification.linguisticRequest.requestReference.number'
+                - violations.get(2).getMessage() === 'This value should be either positive or zero.'
+                - violations.get(2).getPropertyPath() === 'notification.linguisticRequest.requestReference.part'
+                - violations.get(3).getMessage() === 'This value should be either positive or zero.'
+                - violations.get(3).getPropertyPath() === 'notification.linguisticRequest.requestReference.version'
+                - strpos(violations.get(4).getMessage(), 'Choose a valid "productType"') === 0
+                - violations.get(4).getPropertyPath() === 'notification.linguisticRequest.requestReference.productType'
+    -   data:
+            notification:
+                notificationType: RequestStatusChange
+                linguisticRequest:
+                    status: Accepted
+                    requestReference:
+                        requesterCode: AGRI
+                        year: 2022
+                        number: 81
+                        part: 0
+                        version: 1
+                        productType: TRA
+                message: rejection reason - it was missing some files
+                planningAgent: collafc
+                planningSector: DGT.S.S-1.P-2
+        expectations:
+            assertions:
+                - count(violations) === 0

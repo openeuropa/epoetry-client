@@ -1,0 +1,64 @@
+OpenEuropa\EPoetry\Notification\Type\ReceiveNotification:
+    properties:
+        notification:
+            -   Valid: ~
+            -   NotNull: ~
+
+OpenEuropa\EPoetry\Notification\Type\DgtNotification:
+    constraints:
+        -   OpenEuropa\EPoetry\Validation\Constraints\DgtNotificationConstraint: ~
+
+    properties:
+        notificationType:
+            -   NotBlank: ~
+            -   Choice:
+                    choices: [ RequestStatusChange, ProductStatusChange, ProductDelivery, CorrectionStatusChange ]
+                    message: |
+                        Choose a valid notification type:
+                        - RequestStatusChange
+                        - ProductStatusChange
+                        - ProductDelivery
+                        - CorrectionStatusChange
+        linguisticRequest:
+            -   Valid: ~
+
+OpenEuropa\EPoetry\Notification\Type\LinguisticRequest:
+    properties:
+        status:
+            -   Choice:
+                    choices: [ Accepted, Rejected, Executed, Suspended, Cancelled, Validated ]
+                    message: |
+                        Choose a valid linguistic request status:
+                        - Accepted
+                        - Rejected
+                        - Executed
+                        - Suspended
+                        - Cancelled
+                        - Validated
+        requestReference:
+            -   Valid: ~
+
+OpenEuropa\EPoetry\Notification\Type\RequestReference:
+    properties:
+        year:
+            -   NotBlank: ~
+            -   Regex: '/^20\d{2}$/'
+        number:
+            -   NotBlank: ~
+            -   PositiveOrZero: ~
+        part:
+            -   NotBlank: ~
+            -   PositiveOrZero: ~
+        version:
+            -   NotBlank: ~
+            -   PositiveOrZero: ~
+        productType:
+            -   Choice:
+                    choices: [ TRA, EDT, RSE, RSO, SPO ]
+                    message: |
+                        Choose a valid "productType":
+                        - TRA
+                        - EDT
+                        - RSE
+                        - RSO
+                        - SPO
