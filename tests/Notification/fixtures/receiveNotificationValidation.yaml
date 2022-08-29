@@ -163,7 +163,7 @@ tests:
                 - count(violations) === 2
                 - violations.get(0).getMessage() === '"acceptedDeadline" cannot be in the past.'
                 - violations.get(0).getPropertyPath() === 'notification.product.acceptedDeadline'
-                - violations.get(1).getMessage() === 'Choose a valid file format.'
+                - strpos(violations.get(1).getMessage(), 'Choose a valid file format') === 0
                 - violations.get(1).getPropertyPath() === 'notification.product.format'
     -   data:
             notification:
