@@ -1,0 +1,22 @@
+diff --git a/src/Phpro/SoapClient/CodeGenerator/Assembler/GetterAssembler.php b/src/Phpro/SoapClient/CodeGenerator/Assembler/GetterAssembler.php
+index 6cc84ab..1ea1647 100644
+--- a/src/Phpro/SoapClient/CodeGenerator/Assembler/GetterAssembler.php
++++ b/src/Phpro/SoapClient/CodeGenerator/Assembler/GetterAssembler.php
+@@ -59,7 +59,7 @@ class GetterAssembler implements AssemblerInterface
+             $methodGenerator->setBody(sprintf('return $this->%s;', $property->getName()));
+ 
+             if ($this->options->useReturnType()) {
+-                $methodGenerator->setReturnType($property->getCodeReturnType());
++                $methodGenerator->setReturnType('?' . $property->getCodeReturnType());
+             }
+ 
+             if ($this->options->useDocBlocks()) {
+@@ -67,7 +67,7 @@ class GetterAssembler implements AssemblerInterface
+                     'tags' => [
+                         [
+                             'name'        => 'return',
+-                            'description' => $property->getType(),
++                            'description' => $property->getType() . '|null',
+                         ],
+                     ],
+                 ]));

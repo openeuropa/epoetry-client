@@ -20,19 +20,19 @@ class SrcDocumentIn
     private $content;
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -46,19 +46,19 @@ class SrcDocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param string|null $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -72,19 +72,19 @@ class SrcDocumentIn
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }

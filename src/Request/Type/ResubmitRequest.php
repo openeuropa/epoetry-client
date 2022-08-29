@@ -22,19 +22,19 @@ class ResubmitRequest implements RequestInterface
     private $templateName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setResubmitRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
      */
-    public function getResubmitRequest() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function getResubmitRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->resubmitRequest;
     }
@@ -48,19 +48,19 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -74,19 +74,19 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string $templateName
+     * @param string|null $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setTemplateName(?string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTemplateName() : string
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }

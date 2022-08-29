@@ -12,19 +12,19 @@ class ResubmitRequestResponse implements ResultInterface
     private $return;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut|null $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequestResponse
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequestResponse
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut|null
      */
-    public function getReturn() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         return $this->return;
     }

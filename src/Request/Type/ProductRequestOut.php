@@ -35,19 +35,19 @@ class ProductRequestOut
     private $format;
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -61,19 +61,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
+     * @param \DateTimeInterface|null $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getRequestedDeadline() : \DateTimeInterface
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -87,19 +87,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface $acceptedDeadline
+     * @param \DateTimeInterface|null $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getAcceptedDeadline() : \DateTimeInterface
+    public function getAcceptedDeadline() : ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -113,19 +113,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param bool $trackChanges
+     * @param bool|null $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
@@ -139,19 +139,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param string $status
+     * @param string|null $status
      * @return $this
      */
-    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus() : string
+    public function getStatus() : ?string
     {
         return $this->status;
     }
@@ -165,19 +165,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param string $format
+     * @param string|null $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }

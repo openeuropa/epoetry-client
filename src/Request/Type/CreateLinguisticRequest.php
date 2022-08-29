@@ -22,19 +22,19 @@ class CreateLinguisticRequest implements RequestInterface
     private $templateName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -48,19 +48,19 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -74,19 +74,19 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $templateName
+     * @param string|null $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setTemplateName(?string $templateName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTemplateName() : string
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }

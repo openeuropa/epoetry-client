@@ -20,19 +20,19 @@ class ModifyProductRequestIn
     private $trackChanges;
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -46,19 +46,19 @@ class ModifyProductRequestIn
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
+     * @param \DateTimeInterface|null $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getRequestedDeadline() : \DateTimeInterface
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -72,19 +72,19 @@ class ModifyProductRequestIn
     }
 
     /**
-     * @param bool $trackChanges
+     * @param bool|null $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }

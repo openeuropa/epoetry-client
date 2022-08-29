@@ -17,19 +17,19 @@ class GetLinguisticRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -43,19 +43,19 @@ class GetLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

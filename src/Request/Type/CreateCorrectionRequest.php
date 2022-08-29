@@ -17,19 +17,19 @@ class CreateCorrectionRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null $correctionDetails
      * @return $this
      */
-    public function setCorrectionDetails(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    public function setCorrectionDetails(?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
     {
         $this->correctionDetails = $correctionDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null
      */
-    public function getCorrectionDetails() : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function getCorrectionDetails() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         return $this->correctionDetails;
     }
@@ -43,19 +43,19 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

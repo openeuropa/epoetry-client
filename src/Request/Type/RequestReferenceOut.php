@@ -25,19 +25,19 @@ class RequestReferenceOut
     private $version;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference|null $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->dossier = $dossier;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
      */
-    public function getDossier() : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -51,19 +51,19 @@ class RequestReferenceOut
     }
 
     /**
-     * @param string $productType
+     * @param string|null $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setProductType(?string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductType() : string
+    public function getProductType() : ?string
     {
         return $this->productType;
     }
@@ -77,19 +77,19 @@ class RequestReferenceOut
     }
 
     /**
-     * @param int $part
+     * @param int|null $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setPart(?int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->part = $part;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPart() : int
+    public function getPart() : ?int
     {
         return $this->part;
     }
@@ -103,19 +103,19 @@ class RequestReferenceOut
     }
 
     /**
-     * @param int $version
+     * @param int|null $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setVersion(?int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->version = $version;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVersion() : int
+    public function getVersion() : ?int
     {
         return $this->version;
     }

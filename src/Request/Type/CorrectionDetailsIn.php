@@ -35,19 +35,19 @@ class CorrectionDetailsIn
     private $remark;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
         return $this->requestReference;
     }
@@ -61,19 +61,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -87,19 +87,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -113,19 +113,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $format
+     * @param string|null $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -139,19 +139,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -165,19 +165,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $remark
+     * @param string|null $remark
      * @return $this
      */
-    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRemark(?string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->remark = $remark;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRemark() : string
+    public function getRemark() : ?string
     {
         return $this->remark;
     }

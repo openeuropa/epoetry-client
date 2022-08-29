@@ -40,19 +40,19 @@ class DcoOut
     private $status;
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -66,19 +66,19 @@ class DcoOut
     }
 
     /**
-     * @param \DateTimeInterface $deadline
+     * @param \DateTimeInterface|null $deadline
      * @return $this
      */
-    public function setDeadline(\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setDeadline(?\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->deadline = $deadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getDeadline() : \DateTimeInterface
+    public function getDeadline() : ?\DateTimeInterface
     {
         return $this->deadline;
     }
@@ -92,19 +92,19 @@ class DcoOut
     }
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -118,19 +118,19 @@ class DcoOut
     }
 
     /**
-     * @param string $format
+     * @param string|null $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -144,19 +144,19 @@ class DcoOut
     }
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -170,19 +170,19 @@ class DcoOut
     }
 
     /**
-     * @param string $remark
+     * @param string|null $remark
      * @return $this
      */
-    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setRemark(?string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->remark = $remark;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRemark() : string
+    public function getRemark() : ?string
     {
         return $this->remark;
     }
@@ -196,19 +196,19 @@ class DcoOut
     }
 
     /**
-     * @param string $status
+     * @param string|null $status
      * @return $this
      */
-    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus() : string
+    public function getStatus() : ?string
     {
         return $this->status;
     }

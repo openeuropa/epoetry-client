@@ -35,19 +35,19 @@ class RequestReference
     private $productType;
 
     /**
-     * @param string $requesterCode
+     * @param string|null $requesterCode
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setRequesterCode(?string $requesterCode) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->requesterCode = $requesterCode;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRequesterCode() : string
+    public function getRequesterCode() : ?string
     {
         return $this->requesterCode;
     }
@@ -61,19 +61,19 @@ class RequestReference
     }
 
     /**
-     * @param int $year
+     * @param int|null $year
      * @return $this
      */
-    public function setYear(int $year) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setYear(?int $year) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->year = $year;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getYear() : int
+    public function getYear() : ?int
     {
         return $this->year;
     }
@@ -87,19 +87,19 @@ class RequestReference
     }
 
     /**
-     * @param int $number
+     * @param int|null $number
      * @return $this
      */
-    public function setNumber(int $number) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setNumber(?int $number) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->number = $number;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNumber() : int
+    public function getNumber() : ?int
     {
         return $this->number;
     }
@@ -113,19 +113,19 @@ class RequestReference
     }
 
     /**
-     * @param int $part
+     * @param int|null $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setPart(?int $part) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->part = $part;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPart() : int
+    public function getPart() : ?int
     {
         return $this->part;
     }
@@ -139,19 +139,19 @@ class RequestReference
     }
 
     /**
-     * @param int $version
+     * @param int|null $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setVersion(?int $version) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->version = $version;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVersion() : int
+    public function getVersion() : ?int
     {
         return $this->version;
     }
@@ -165,19 +165,19 @@ class RequestReference
     }
 
     /**
-     * @param string $productType
+     * @param string|null $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setProductType(?string $productType) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductType() : string
+    public function getProductType() : ?string
     {
         return $this->productType;
     }

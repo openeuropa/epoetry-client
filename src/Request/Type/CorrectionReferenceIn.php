@@ -10,19 +10,19 @@ class CorrectionReferenceIn
     private $version;
 
     /**
-     * @param int $version
+     * @param int|null $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function setVersion(?int $version) : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
         $this->version = $version;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVersion() : int
+    public function getVersion() : ?int
     {
         return $this->version;
     }

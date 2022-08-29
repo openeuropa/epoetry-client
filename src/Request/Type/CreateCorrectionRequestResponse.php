@@ -12,19 +12,19 @@ class CreateCorrectionRequestResponse implements ResultInterface
     private $return;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut|null $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut|null
      */
-    public function getReturn() : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         return $this->return;
     }

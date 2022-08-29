@@ -27,19 +27,19 @@ class ContactPersonIn
     }
 
     /**
-     * @param string $userId
+     * @param string|null $userId
      * @return $this
      */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setUserId(?string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         $this->userId = $userId;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserId() : string
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
@@ -53,19 +53,19 @@ class ContactPersonIn
     }
 
     /**
-     * @param string $contactRole
+     * @param string|null $contactRole
      * @return $this
      */
-    public function setContactRole(string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setContactRole(?string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         $this->contactRole = $contactRole;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContactRole() : string
+    public function getContactRole() : ?string
     {
         return $this->contactRole;
     }

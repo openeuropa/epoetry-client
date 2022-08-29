@@ -20,19 +20,19 @@ class ModifyRequestDetailsIn
     private $auxiliaryDocuments;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @param \OpenEuropa\EPoetry\Request\Type\Contacts|null $contacts
      * @return $this
      */
-    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setContacts(?\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->contacts = $contacts;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
      */
-    public function getContacts() : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -46,19 +46,19 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @param \OpenEuropa\EPoetry\Request\Type\Products|null $products
      * @return $this
      */
-    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->products = $products;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
      */
-    public function getProducts() : \OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -72,19 +72,19 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null
      */
-    public function getAuxiliaryDocuments() : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }

@@ -20,19 +20,19 @@ class ModifyRequestReferenceIn
     private $part;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference|null $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->dossier = $dossier;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
      */
-    public function getDossier() : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -46,19 +46,19 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param string $productType
+     * @param string|null $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setProductType(?string $productType) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductType() : string
+    public function getProductType() : ?string
     {
         return $this->productType;
     }
@@ -72,19 +72,19 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param int $part
+     * @param int|null $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setPart(?int $part) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->part = $part;
         return $this;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPart() : int
+    public function getPart() : ?int
     {
         return $this->part;
     }

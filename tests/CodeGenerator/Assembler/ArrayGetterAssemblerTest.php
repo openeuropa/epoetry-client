@@ -43,7 +43,7 @@ namespace MyNamespace;
 class MyType
 {
     /**
-     * @return string[]|array
+     * @return string[]|array|null
      */
     public function getProp1() : array
     {

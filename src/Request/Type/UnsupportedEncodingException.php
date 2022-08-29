@@ -10,19 +10,19 @@ class UnsupportedEncodingException
     private $message;
 
     /**
-     * @param string $message
+     * @param string|null $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UnsupportedEncodingException
+    public function setMessage(?string $message) : \OpenEuropa\EPoetry\Request\Type\UnsupportedEncodingException
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage() : string
+    public function getMessage() : ?string
     {
         return $this->message;
     }

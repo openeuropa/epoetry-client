@@ -20,19 +20,19 @@ class LinguisticRequestOut
     private $informativeMessages;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -46,19 +46,19 @@ class LinguisticRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         return $this->requestDetails;
     }
@@ -72,19 +72,19 @@ class LinguisticRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
+     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null $informativeMessages
      * @return $this
      */
-    public function setInformativeMessages(\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setInformativeMessages(?\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->informativeMessages = $informativeMessages;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null
      */
-    public function getInformativeMessages() : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function getInformativeMessages() : ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         return $this->informativeMessages;
     }

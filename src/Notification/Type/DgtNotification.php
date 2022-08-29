@@ -35,19 +35,19 @@ class DgtNotification
     private $planningSector;
 
     /**
-     * @param string $notificationType
+     * @param string|null $notificationType
      * @return $this
      */
-    public function setNotificationType(string $notificationType) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setNotificationType(?string $notificationType) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->notificationType = $notificationType;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNotificationType() : string
+    public function getNotificationType() : ?string
     {
         return $this->notificationType;
     }
@@ -61,19 +61,19 @@ class DgtNotification
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
+     * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest|null $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setLinguisticRequest(?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest|null
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         return $this->linguisticRequest;
     }
@@ -87,19 +87,19 @@ class DgtNotification
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
+     * @param \OpenEuropa\EPoetry\Notification\Type\Product|null $product
      * @return $this
      */
-    public function setProduct(\OpenEuropa\EPoetry\Notification\Type\Product $product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setProduct(?\OpenEuropa\EPoetry\Notification\Type\Product $product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->product = $product;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\Product
+     * @return \OpenEuropa\EPoetry\Notification\Type\Product|null
      */
-    public function getProduct() : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function getProduct() : ?\OpenEuropa\EPoetry\Notification\Type\Product
     {
         return $this->product;
     }
@@ -113,19 +113,19 @@ class DgtNotification
     }
 
     /**
-     * @param string $message
+     * @param string|null $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setMessage(?string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage() : string
+    public function getMessage() : ?string
     {
         return $this->message;
     }
@@ -139,19 +139,19 @@ class DgtNotification
     }
 
     /**
-     * @param string $planningAgent
+     * @param string|null $planningAgent
      * @return $this
      */
-    public function setPlanningAgent(string $planningAgent) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setPlanningAgent(?string $planningAgent) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->planningAgent = $planningAgent;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPlanningAgent() : string
+    public function getPlanningAgent() : ?string
     {
         return $this->planningAgent;
     }
@@ -165,19 +165,19 @@ class DgtNotification
     }
 
     /**
-     * @param string $planningSector
+     * @param string|null $planningSector
      * @return $this
      */
-    public function setPlanningSector(string $planningSector) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setPlanningSector(?string $planningSector) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         $this->planningSector = $planningSector;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPlanningSector() : string
+    public function getPlanningSector() : ?string
     {
         return $this->planningSector;
     }

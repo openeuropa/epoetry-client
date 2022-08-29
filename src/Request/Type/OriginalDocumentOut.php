@@ -35,19 +35,19 @@ class OriginalDocumentOut
     private $linguisticSections;
 
     /**
-     * @param bool $trackChanges
+     * @param bool|null $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
@@ -61,19 +61,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string $format
+     * @param string|null $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -87,19 +87,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -113,19 +113,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param float $pages
+     * @param float|null $pages
      * @return $this
      */
-    public function setPages(float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setPages(?float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->pages = $pages;
         return $this;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getPages() : float
+    public function getPages() : ?float
     {
         return $this->pages;
     }
@@ -139,19 +139,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string $comment
+     * @param string|null $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -165,19 +165,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }

@@ -4,19 +4,10 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use OpenEuropa\EPoetry\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
-use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
-use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Yaml\Yaml;
 
@@ -45,11 +36,7 @@ abstract class BaseTest extends TestCase
      */
     protected function setUp(): void
     {
-        // Setup serializer service.
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
-        $normalizers = [new DateTimeNormalizer(), new ArrayDenormalizer()];
-        $normalizers[] = new ObjectNormalizer($classMetadataFactory, null, null, new PhpDocExtractor(), null, null, [AbstractObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true]);
-        $this->serializer = new Serializer($normalizers, [new XmlEncoder()]);
+        $this->serializer = new Serializer();
 
         // Setup expression language service.
         $this->expressionLanguage = new ExpressionLanguage();

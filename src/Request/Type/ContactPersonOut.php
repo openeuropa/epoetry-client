@@ -48,19 +48,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $firstName
+     * @param string|null $firstName
      * @return $this
      */
-    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setFirstName(?string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstName() : string
+    public function getFirstName() : ?string
     {
         return $this->firstName;
     }
@@ -74,19 +74,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $lastName
+     * @param string|null $lastName
      * @return $this
      */
-    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setLastName(?string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastName() : string
+    public function getLastName() : ?string
     {
         return $this->lastName;
     }
@@ -100,19 +100,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      * @return $this
      */
-    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setEmail(?string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail() : string
+    public function getEmail() : ?string
     {
         return $this->email;
     }
@@ -126,19 +126,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $userId
+     * @param string|null $userId
      * @return $this
      */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setUserId(?string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->userId = $userId;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserId() : string
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
@@ -152,19 +152,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $roleCode
+     * @param string|null $roleCode
      * @return $this
      */
-    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setRoleCode(?string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->roleCode = $roleCode;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRoleCode() : string
+    public function getRoleCode() : ?string
     {
         return $this->roleCode;
     }

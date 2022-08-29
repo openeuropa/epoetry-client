@@ -35,19 +35,19 @@ class Product
     private $format;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference|null $productReference
      * @return $this
      */
-    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setProductReference(?\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->productReference = $productReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference|null
      */
-    public function getProductReference() : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         return $this->productReference;
     }
@@ -61,19 +61,19 @@ class Product
     }
 
     /**
-     * @param string $status
+     * @param string|null $status
      * @return $this
      */
-    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus() : string
+    public function getStatus() : ?string
     {
         return $this->status;
     }
@@ -87,19 +87,19 @@ class Product
     }
 
     /**
-     * @param \DateTimeInterface $acceptedDeadline
+     * @param \DateTimeInterface|null $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getAcceptedDeadline() : \DateTimeInterface
+    public function getAcceptedDeadline() : ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -113,19 +113,19 @@ class Product
     }
 
     /**
-     * @param string $file
+     * @param string|null $file
      * @return $this
      */
-    public function setFile(string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFile(?string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->file = $file;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFile() : string
+    public function getFile() : ?string
     {
         return $this->file;
     }
@@ -139,19 +139,19 @@ class Product
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return $this
      */
-    public function setName(string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setName(?string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName() : string
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -165,19 +165,19 @@ class Product
     }
 
     /**
-     * @param string $format
+     * @param string|null $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }

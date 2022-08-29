@@ -10,7 +10,7 @@ class PrtDocuments
     private $document = [];
 
     /**
-     * @param DocumentIn[] $document
+     * @param DocumentIn[]|null $document
      * @return $this
      */
     public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\PrtDocuments
@@ -20,7 +20,7 @@ class PrtDocuments
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array|null
      */
     public function getDocument() : array
     {

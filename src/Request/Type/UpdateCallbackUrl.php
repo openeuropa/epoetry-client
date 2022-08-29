@@ -17,19 +17,19 @@ class UpdateCallbackUrl implements RequestInterface
     private $applicationName;
 
     /**
-     * @param string $callbackUrl
+     * @param string|null $callbackUrl
      * @return $this
      */
-    public function setCallbackUrl(string $callbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    public function setCallbackUrl(?string $callbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCallbackUrl() : string
+    public function getCallbackUrl() : ?string
     {
         return $this->callbackUrl;
     }
@@ -43,19 +43,19 @@ class UpdateCallbackUrl implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

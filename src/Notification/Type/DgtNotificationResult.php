@@ -15,19 +15,19 @@ class DgtNotificationResult
     private $message;
 
     /**
-     * @param bool $success
+     * @param bool|null $success
      * @return $this
      */
-    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function setSuccess(?bool $success) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
     {
         $this->success = $success;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSuccess() : bool
+    public function isSuccess() : ?bool
     {
         return $this->success;
     }
@@ -41,19 +41,19 @@ class DgtNotificationResult
     }
 
     /**
-     * @param string $message
+     * @param string|null $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function setMessage(?string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage() : string
+    public function getMessage() : ?string
     {
         return $this->message;
     }

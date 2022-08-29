@@ -30,19 +30,19 @@ class OriginalDocumentIn
     private $trackChanges;
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -56,19 +56,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param string|null $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -82,19 +82,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -108,19 +108,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -134,19 +134,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param bool $trackChanges
+     * @param bool|null $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }

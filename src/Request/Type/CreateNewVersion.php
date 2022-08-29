@@ -17,19 +17,19 @@ class CreateNewVersion implements RequestInterface
     private $applicationName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    public function setLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
@@ -43,19 +43,19 @@ class CreateNewVersion implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

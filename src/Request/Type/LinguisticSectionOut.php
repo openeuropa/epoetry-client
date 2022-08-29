@@ -20,19 +20,19 @@ class LinguisticSectionOut
     }
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }

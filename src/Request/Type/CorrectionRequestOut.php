@@ -15,19 +15,19 @@ class CorrectionRequestOut
     private $DCO;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -41,19 +41,19 @@ class CorrectionRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
+     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut|null $DCO
      * @return $this
      */
-    public function setDCO(\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function setDCO(?\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         $this->DCO = $DCO;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
      */
-    public function getDCO() : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         return $this->DCO;
     }

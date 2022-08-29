@@ -17,19 +17,19 @@ class ModifyLinguisticRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null $modifyLinguisticRequest
      * @return $this
      */
-    public function setModifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setModifyLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
     {
         $this->modifyLinguisticRequest = $modifyLinguisticRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null
      */
-    public function getModifyLinguisticRequest() : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+    public function getModifyLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         return $this->modifyLinguisticRequest;
     }
@@ -43,19 +43,19 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param string|null $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

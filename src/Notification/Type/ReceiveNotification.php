@@ -12,19 +12,19 @@ class ReceiveNotification implements RequestInterface
     private $notification;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
+     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification|null $notification
      * @return $this
      */
-    public function setNotification(\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
+    public function setNotification(?\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
     {
         $this->notification = $notification;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification|null
      */
-    public function getNotification() : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function getNotification() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         return $this->notification;
     }

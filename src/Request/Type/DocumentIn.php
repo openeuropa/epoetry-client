@@ -25,19 +25,19 @@ class DocumentIn
     private $content;
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -51,19 +51,19 @@ class DocumentIn
     }
 
     /**
-     * @param string $language
+     * @param string|null $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -77,19 +77,19 @@ class DocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param string|null $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -103,19 +103,19 @@ class DocumentIn
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }

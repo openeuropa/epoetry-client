@@ -10,7 +10,7 @@ class LinguisticSections
     private $linguisticSection = [];
 
     /**
-     * @param LinguisticSectionOut[] $linguisticSection
+     * @param LinguisticSectionOut[]|null $linguisticSection
      * @return $this
      */
     public function setLinguisticSection(array $linguisticSection) : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
@@ -20,7 +20,7 @@ class LinguisticSections
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array|null
      */
     public function getLinguisticSection() : array
     {
