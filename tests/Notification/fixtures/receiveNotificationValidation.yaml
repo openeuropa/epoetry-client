@@ -113,8 +113,27 @@ tests:
                 - violations.get(2).getPropertyPath() === 'notification.product.productReference.requestReference.part'
                 - violations.get(3).getMessage() === 'This value should not be blank.'
                 - violations.get(3).getPropertyPath() === 'notification.product.productReference.requestReference.version'
-                - violations.get(4).getMessage() === 'Choose a valid product status.'
+                - strpos(violations.get(4).getMessage(), 'Choose a valid product status') === 0
                 - violations.get(4).getPropertyPath() === 'notification.product.status'
+    -   data:
+            notification:
+                notificationType: ProductStatusChange
+                product:
+                    status: Ongoing
+                    productReference:
+                        language: SK
+                        requestReference:
+                            requesterCode: AGRI
+                            year: 2022
+                            number: 81
+                            part: 0
+                            version: 1
+                            productType: TRA
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"acceptedDeadline" value is required when product status is "Ongoing".'
+                - violations.get(0).getPropertyPath() === 'notification.product.acceptedDeadline'
     -   data:
             notification:
                 notificationType: ProductStatusChange
