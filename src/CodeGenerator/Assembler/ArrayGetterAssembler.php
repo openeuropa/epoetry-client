@@ -41,7 +41,7 @@ class ArrayGetterAssembler extends AbstractAssembler
         $methodObject = $class->getMethod($methodName);
 
         $methodObject
-            ->setReturnType('array');
+            ->setReturnType('?array');
 
         $tags = $methodObject->getDocBlock()->getTags();
 

@@ -22,7 +22,7 @@ class PrtDocuments
     /**
      * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array|null
      */
-    public function getDocument() : array
+    public function getDocument() : ?array
     {
         return $this->document;
     }

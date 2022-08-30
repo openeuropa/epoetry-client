@@ -67,7 +67,7 @@ class Serializer implements SerializerInterface
      *
      * @param object $data
      */
-    public function toArray($data): array
+    public function toArray(object $data): array
     {
         return $this->getSerializer()->normalize($data);
     }
@@ -90,7 +90,18 @@ class Serializer implements SerializerInterface
         return $this->deserialize($data, $type, $format);
     }
 
-    public function toString($data, $format)
+    /**
+     * Convert object to the string of specific format.
+     *
+     * @param object $data
+     *   The object type
+     * @param string $format
+     *   Format of the string
+     *
+     * @return string
+     *   Result string
+     */
+    public function toString(object $data, string $format): string
     {
         return $this->serialize($data, $format);
     }
@@ -114,8 +125,6 @@ class Serializer implements SerializerInterface
 
         // Setup serializer service.
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
-        $normalizers = [new DateTimeNormalizer(), new ArrayDenormalizer()];
-        $normalizers[] = new ObjectNormalizer($classMetadataFactory, null, null, new PhpDocExtractor(), null, null, [AbstractObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true]);
         $context = [
             AbstractObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true, // Allow to set integer values from strings.
             AbstractObjectNormalizer::SKIP_NULL_VALUES => true, // Null values won't be generated.

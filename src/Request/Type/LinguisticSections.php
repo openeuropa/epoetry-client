@@ -22,7 +22,7 @@ class LinguisticSections
     /**
      * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array|null
      */
-    public function getLinguisticSection() : array
+    public function getLinguisticSection() : ?array
     {
         return $this->linguisticSection;
     }

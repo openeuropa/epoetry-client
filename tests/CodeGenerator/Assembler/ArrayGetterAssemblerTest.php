@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Tests\CodeGenerator\Assembler;
 use OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssembler;
 use OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssembler;
+use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
 
 /**
@@ -45,7 +46,7 @@ class MyType
     /**
      * @return string[]|array|null
      */
-    public function getProp1() : array
+    public function getProp1() : ?array
     {
         return $this->prop1;
     }
@@ -61,7 +62,9 @@ CODE;
      */
     protected function assemble(ContextInterface $context)
     {
-        $originalAssembler = new GetterAssembler();
+        $originalAssembler = new GetterAssembler((new GetterAssemblerOptions())
+            ->withReturnType()
+            ->withBoolGetters());
         $originalAssembler->assemble($context);
         $this->assembler->assemble($context);
     }

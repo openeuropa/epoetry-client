@@ -151,9 +151,9 @@ final class SerializerTest extends TestCase
     }
 
     /**
-     * Test ProductDenormalizer.
+     * Test ProductsDenormalizer.
      */
-    public function testProductDenormalizer(): void
+    public function testProductsDenormalizer(): void
     {
         // Denormalized string object has to be the same as constructed class.
         $productRequestOut1 = new ProductRequestOut();
@@ -191,6 +191,8 @@ final class SerializerTest extends TestCase
     }
 
     /**
+     * Gets normalized array of CreateLinguisticRequest object as expected result.
+     *
      * @return array
      */
     protected function getCreateLinguisticRequestArray(): array

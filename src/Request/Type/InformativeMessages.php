@@ -22,7 +22,7 @@ class InformativeMessages
     /**
      * @return string[]|array|null
      */
-    public function getMessage() : array
+    public function getMessage() : ?array
     {
         return $this->message;
     }

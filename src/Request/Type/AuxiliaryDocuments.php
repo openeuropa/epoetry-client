@@ -22,7 +22,7 @@ class AuxiliaryDocuments
     /**
      * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut[]|array|null
      */
-    public function getDocument() : array
+    public function getDocument() : ?array
     {
         return $this->document;
     }
