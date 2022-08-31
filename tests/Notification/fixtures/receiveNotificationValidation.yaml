@@ -148,7 +148,41 @@ tests:
                             part: 0
                             version: 1
                             productType: TRA
-                    acceptedDeadline: '2022-04-04T12:51:00.000+02:00'
+                    acceptedDeadline: '2042-04-04T12:51:00.000+02:00'
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            notification:
+                notificationType: ProductDelivery
+                product:
+                    format: InvalidFormat
+                    acceptedDeadline: '2022-01-01T12:51:00.000+02:00'
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === '"acceptedDeadline" cannot be in the past.'
+                - violations.get(0).getPropertyPath() === 'notification.product.acceptedDeadline'
+                - strpos(violations.get(1).getMessage(), 'Choose a valid file format') === 0
+                - violations.get(1).getPropertyPath() === 'notification.product.format'
+    -   data:
+            notification:
+                notificationType: ProductDelivery
+                product:
+                    status: Sent
+                    productReference:
+                        language: SG
+                        requestReference:
+                            requesterCode: AGRI
+                            year: 2022
+                            number: 343
+                            part: 0
+                            version: 1
+                            productType: TRA
+                    acceptedDeadline: '2032-09-01T12:51:00.000+02:00'
+                    file: UEsDBBQABgAIAAAAIQAPqBZvTwIAAIMSAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAA.......AAA=
+                    name: SG-2022-00343(01)-00-TRA-FR
+                    format: DOCX
         expectations:
             assertions:
                 - count(violations) === 0

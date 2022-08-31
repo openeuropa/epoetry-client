@@ -54,3 +54,20 @@
             - notification.getNotification().getProduct().getProductReference().getLanguage() === 'CS'
             - notification.getNotification().getProduct().getStatus() === 'Ongoing'
             - notification.getNotification().getProduct().getAcceptedDeadline().format('Y-m-d\\TH:i:sP') === '2022-04-04T12:51:00+02:00'
+-   notification: productDeliverySent.xml
+    expectations:
+        assertions:
+            - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
+            - notification.getNotification().getNotificationType() === 'ProductDelivery'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getRequesterCode() === 'SG'
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getYear() === 2022
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getNumber() === 343
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getPart() === 0
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getVersion() === 1
+            - notification.getNotification().getProduct().getProductReference().getRequestReference().getProductType() === 'TRA'
+            - notification.getNotification().getProduct().getProductReference().getLanguage() === 'FR'
+            - notification.getNotification().getProduct().getStatus() === 'Sent'
+            - notification.getNotification().getProduct().getAcceptedDeadline().format('Y-m-d\\TH:i:sP') === '2022-09-01T12:51:00+02:00'
+            - notification.getNotification().getProduct().getFile() === 'UEsDBBQABgAIAAAAIQAPqBZvTwIAAIMSAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAA.......AAA='
+            - notification.getNotification().getProduct().getName() === 'SG-2022-00343(01)-00-TRA-FR'
+            - notification.getNotification().getProduct().getFormat() === 'DOCX'

@@ -27,5 +27,12 @@ class ProductConstraintValidator extends ConstraintValidator
                 ->setParameter('{{ status }}', 'Ongoing')
                 ->addViolation();
         }
+
+        if ($product->hasAcceptedDeadline() && $product->getAcceptedDeadline()->getTimestamp() < time()) {
+            // Accepted deadline can not be in the past.
+            $this->context->buildViolation($constraint->acceptedDeadlinePastMessage)
+                ->atPath('acceptedDeadline')
+                ->addViolation();
+        }
     }
 }
