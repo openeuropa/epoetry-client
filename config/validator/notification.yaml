@@ -21,6 +21,8 @@ OpenEuropa\EPoetry\Notification\Type\DgtNotification:
                         - CorrectionStatusChange
         linguisticRequest:
             -   Valid: ~
+        product:
+            -   Valid: ~
 
 OpenEuropa\EPoetry\Notification\Type\LinguisticRequest:
     properties:
@@ -62,3 +64,31 @@ OpenEuropa\EPoetry\Notification\Type\RequestReference:
                         - RSE
                         - RSO
                         - SPO
+
+OpenEuropa\EPoetry\Notification\Type\Product:
+    constraints:
+        -   OpenEuropa\EPoetry\Validation\Constraints\ProductConstraint: ~
+
+    properties:
+        productReference:
+            -   Valid: ~
+        status:
+            -   Choice:
+                    choices: [ Accepted, Closed, Ongoing, ReadyToBeSent, Suspended, Cancelled, Sent, Rejected, Requested, Invalid ]
+                    message: |
+                        Choose a valid product status:
+                        - Accepted
+                        - Closed
+                        - Ongoing
+                        - ReadyToBeSent
+                        - Suspended
+                        - Cancelled
+                        - Sent
+                        - Rejected
+                        - Requested
+                        - Invalid
+
+OpenEuropa\EPoetry\Notification\Type\ProductReference:
+    properties:
+        requestReference:
+            -   Valid: ~
