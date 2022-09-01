@@ -64,7 +64,7 @@ CODE;
     {
         $originalAssembler = new GetterAssembler((new GetterAssemblerOptions())
             ->withReturnType()
-            ->withBoolGetters());
+            ->withReturnNull());
         $originalAssembler->assemble($context);
         $this->assembler->assemble($context);
     }
