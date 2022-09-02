@@ -1,16 +1,18 @@
 diff --git a/src/Phpro/SoapClient/CodeGenerator/Assembler/FluentSetterAssembler.php b/src/Phpro/SoapClient/CodeGenerator/Assembler/FluentSetterAssembler.php
-index 09851c1..94299ee 100644
+index 09851c1..b05b525 100644
 --- a/src/Phpro/SoapClient/CodeGenerator/Assembler/FluentSetterAssembler.php
 +++ b/src/Phpro/SoapClient/CodeGenerator/Assembler/FluentSetterAssembler.php
-@@ -6,7 +6,6 @@ use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
+@@ -4,9 +4,7 @@ namespace Phpro\SoapClient\CodeGenerator\Assembler;
+ 
+ use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
  use Phpro\SoapClient\CodeGenerator\Context\PropertyContext;
- use Phpro\SoapClient\CodeGenerator\Model\Property;
+-use Phpro\SoapClient\CodeGenerator\Model\Property;
  use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
 -use Phpro\SoapClient\CodeGenerator\Util\TypeChecker;
  use Phpro\SoapClient\CodeGenerator\LaminasCodeFactory\DocBlockGeneratorFactory;
  use Phpro\SoapClient\Exception\AssemblerException;
  use Laminas\Code\Generator\MethodGenerator;
-@@ -50,11 +49,15 @@ class FluentSetterAssembler implements AssemblerInterface
+@@ -50,11 +48,15 @@ class FluentSetterAssembler implements AssemblerInterface
          $class = $context->getClass();
          $property = $context->getProperty();
          try {
@@ -27,7 +29,7 @@ index 09851c1..94299ee 100644
              $methodGenerator->setVisibility(MethodGenerator::VISIBILITY_PUBLIC);
              $methodGenerator->setBody(sprintf(
                  '$this->%1$s = $%1$s;%2$sreturn $this;',
-@@ -83,24 +86,4 @@ class FluentSetterAssembler implements AssemblerInterface
+@@ -83,24 +85,4 @@ class FluentSetterAssembler implements AssemblerInterface
              throw AssemblerException::fromException($e);
          }
      }
@@ -53,50 +55,22 @@ index 09851c1..94299ee 100644
 -    }
  }
 diff --git a/src/Phpro/SoapClient/CodeGenerator/Util/TypeChecker.php b/src/Phpro/SoapClient/CodeGenerator/Util/TypeChecker.php
-deleted file mode 100644
-index d3c4eed..0000000
+index d3c4eed..933c8f6 100644
 --- a/src/Phpro/SoapClient/CodeGenerator/Util/TypeChecker.php
-+++ /dev/null
-@@ -1,52 +0,0 @@
--<?php
--
--declare(strict_types=1);
--
--namespace Phpro\SoapClient\CodeGenerator\Util;
--
--/**
-- * Class TypeChecker
-- *
-- * @package Phpro\SoapClient\CodeGenerator\Util
-- */
--class TypeChecker
--{
--    /**
--     * @var string[]
--     *
--     * @link http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration
--     */
--    private static $internalPhpTypes = ['void', 'int', 'float', 'string', 'bool', 'array', 'callable', 'iterable'];
--
--    /**
--     * @param string $type
--     *
--     * @return bool
--     */
--    public static function isKnownType(string $type): bool
--    {
++++ b/src/Phpro/SoapClient/CodeGenerator/Util/TypeChecker.php
+@@ -25,7 +25,7 @@ class TypeChecker
+      */
+     public static function isKnownType(string $type): bool
+     {
 -        return self::isInternalPhpType($type) || self::isClassType($type);
--    }
--
--    /**
--     * @param string $type
--     *
--     * @return bool
--     */
--    private static function isInternalPhpType(string $type): bool
--    {
--        return in_array(strtolower($type), self::$internalPhpTypes, true);
--    }
++        return self::isInternalPhpType($type);
+     }
+ 
+     /**
+@@ -37,16 +37,4 @@ class TypeChecker
+     {
+         return in_array(strtolower($type), self::$internalPhpTypes, true);
+     }
 -
 -    /**
 -     * @param string $type
@@ -109,51 +83,26 @@ index d3c4eed..0000000
 -
 -        return false;
 -    }
--}
-diff --git a/test/PhproTest/SoapClient/Unit/CodeGenerator/Util/TypeCheckerTest.php b/test/PhproTest/SoapClient/Unit/CodeGenerator/Util/TypeCheckerTest.php
-deleted file mode 100644
-index 562769c..0000000
---- a/test/PhproTest/SoapClient/Unit/CodeGenerator/Util/TypeCheckerTest.php
-+++ /dev/null
-@@ -1,41 +0,0 @@
--<?php
--
--namespace PhproTest\SoapClient\Unit\CodeGenerator\Util;
--
--use Phpro\SoapClient\CodeGenerator\Util\TypeChecker;
--use PHPUnit\Framework\TestCase;
--
--/**
-- * Class TypeCheckerTest
-- *
-- * @package PhproTest\SoapClient\Unit\CodeGenerator\Util
-- */
--class TypeCheckerTest extends TestCase
--{
--    /**
--     * @test
--     * @dataProvider typeProvider
--     */
--    function it_can_check_a_type($type, $expected)
--    {
--        $this->assertEquals($expected, TypeChecker::isKnownType($type));
--    }
--
--    /**
--     * @return array
--     */
--    function typeProvider()
--    {
--        return [
--            ['void', true],
--            ['int', true],
--            ['float', true],
--            ['string', true],
--            ['bool', true],
--            ['array', true],
--            ['callable', true],
--            ['iterable', true],
--            ['Unknown class', false],
--        ];
--    }
--}
+ }
+diff --git a/test/PhproTest/SoapClient/Unit/CodeGenerator/Assembler/FluentSetterAssemblerTest.php b/test/PhproTest/SoapClient/Unit/CodeGenerator/Assembler/FluentSetterAssemblerTest.php
+index 8e465b8..b3eb049 100644
+--- a/test/PhproTest/SoapClient/Unit/CodeGenerator/Assembler/FluentSetterAssemblerTest.php
++++ b/test/PhproTest/SoapClient/Unit/CodeGenerator/Assembler/FluentSetterAssemblerTest.php
+@@ -130,7 +130,7 @@ CODE;
+     /**
+      * @test
+      */
+-    function it_assembles_a_property_with_an_unkown_type()
++    function it_assembles_a_property_with_class_type()
+     {
+         $assembler = new FluentSetterAssembler((new FluentSetterAssemblerOptions())->withTypeHints());
+         $context = $this->createContextWithAnUnknownType();
+@@ -146,7 +146,7 @@ class MyType
+      * @param \\MyNamespace\\Foobar \$prop1
+      * @return \$this
+      */
+-    public function setProp1(\$prop1)
++    public function setProp1(\\MyNamespace\\Foobar \$prop1)
+     {
+         \$this->prop1 = \$prop1;
+         return \$this;
