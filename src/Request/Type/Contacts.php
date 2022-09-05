@@ -10,7 +10,7 @@ class Contacts
     private $contact = [];
 
     /**
-     * @param ContactPersonIn[]|null $contact
+     * @param ContactPersonIn[] $contact
      * @return $this
      */
     public function setContact(array $contact) : \OpenEuropa\EPoetry\Request\Type\Contacts

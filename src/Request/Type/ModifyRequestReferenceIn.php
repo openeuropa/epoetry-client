@@ -20,10 +20,10 @@ class ModifyRequestReferenceIn
     private $part;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference|null $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->dossier = $dossier;
         return $this;
@@ -46,10 +46,10 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param string|null $productType
+     * @param string $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->productType = $productType;
         return $this;
@@ -72,10 +72,10 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param int|null $part
+     * @param int $part
      * @return $this
      */
-    public function setPart(?int $part) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->part = $part;
         return $this;

@@ -32,10 +32,10 @@ class UpdateCallbackUrlOut implements ResultInterface
     private $message;
 
     /**
-     * @param bool|null $success
+     * @param bool $success
      * @return $this
      */
-    public function setSuccess(?bool $success) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         $this->success = $success;
         return $this;
@@ -58,10 +58,10 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @param string|null $oldCallbackUrl
+     * @param string $oldCallbackUrl
      * @return $this
      */
-    public function setOldCallbackUrl(?string $oldCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setOldCallbackUrl(string $oldCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         $this->oldCallbackUrl = $oldCallbackUrl;
         return $this;
@@ -84,10 +84,10 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @param string|null $newCallbackUrl
+     * @param string $newCallbackUrl
      * @return $this
      */
-    public function setNewCallbackUrl(?string $newCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setNewCallbackUrl(string $newCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         $this->newCallbackUrl = $newCallbackUrl;
         return $this;
@@ -110,10 +110,10 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @param string|null $application
+     * @param string $application
      * @return $this
      */
-    public function setApplication(?string $application) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setApplication(string $application) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         $this->application = $application;
         return $this;
@@ -136,10 +136,10 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @param string|null $message
+     * @param string $message
      * @return $this
      */
-    public function setMessage(?string $message) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         $this->message = $message;
         return $this;

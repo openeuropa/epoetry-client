@@ -20,10 +20,10 @@ class DossierReference
     private $year;
 
     /**
-     * @param string|null $requesterCode
+     * @param string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(?string $requesterCode) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->requesterCode = $requesterCode;
         return $this;
@@ -46,10 +46,10 @@ class DossierReference
     }
 
     /**
-     * @param int|null $number
+     * @param int $number
      * @return $this
      */
-    public function setNumber(?int $number) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setNumber(int $number) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->number = $number;
         return $this;
@@ -72,10 +72,10 @@ class DossierReference
     }
 
     /**
-     * @param int|null $year
+     * @param int $year
      * @return $this
      */
-    public function setYear(?int $year) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setYear(int $year) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->year = $year;
         return $this;

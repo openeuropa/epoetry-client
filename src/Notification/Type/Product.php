@@ -35,10 +35,10 @@ class Product
     private $format;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference|null $productReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */
-    public function setProductReference(?\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->productReference = $productReference;
         return $this;
@@ -61,10 +61,10 @@ class Product
     }
 
     /**
-     * @param string|null $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->status = $status;
         return $this;
@@ -87,10 +87,10 @@ class Product
     }
 
     /**
-     * @param \DateTimeInterface|null $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -113,10 +113,10 @@ class Product
     }
 
     /**
-     * @param string|null $file
+     * @param string $file
      * @return $this
      */
-    public function setFile(?string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFile(string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->file = $file;
         return $this;
@@ -139,10 +139,10 @@ class Product
     }
 
     /**
-     * @param string|null $name
+     * @param string $name
      * @return $this
      */
-    public function setName(?string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setName(string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->name = $name;
         return $this;
@@ -165,10 +165,10 @@ class Product
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->format = $format;
         return $this;

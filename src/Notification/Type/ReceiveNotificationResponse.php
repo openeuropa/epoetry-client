@@ -12,10 +12,10 @@ class ReceiveNotificationResponse implements ResultInterface
     private $return;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult|null $return
+     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
+    public function setReturn(\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
     {
         $this->return = $return;
         return $this;

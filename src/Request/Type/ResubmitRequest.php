@@ -22,10 +22,10 @@ class ResubmitRequest implements RequestInterface
     private $templateName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null $resubmitRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;
@@ -48,10 +48,10 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string|null $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -74,10 +74,10 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string|null $templateName
+     * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(?string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->templateName = $templateName;
         return $this;

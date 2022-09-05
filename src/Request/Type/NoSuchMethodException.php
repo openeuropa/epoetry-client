@@ -10,10 +10,10 @@ class NoSuchMethodException
     private $message;
 
     /**
-     * @param string|null $message
+     * @param string $message
      * @return $this
      */
-    public function setMessage(?string $message) : \OpenEuropa\EPoetry\Request\Type\NoSuchMethodException
+    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\NoSuchMethodException
     {
         $this->message = $message;
         return $this;

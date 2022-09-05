@@ -15,10 +15,10 @@ class LinguisticRequestIn
     private $requestDetails;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -41,10 +41,10 @@ class LinguisticRequestIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         $this->requestDetails = $requestDetails;
         return $this;

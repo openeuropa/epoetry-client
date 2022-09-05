@@ -15,10 +15,10 @@ class LinguisticRequest
     private $status;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference|null $requestReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -41,10 +41,10 @@ class LinguisticRequest
     }
 
     /**
-     * @param string|null $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         $this->status = $status;
         return $this;

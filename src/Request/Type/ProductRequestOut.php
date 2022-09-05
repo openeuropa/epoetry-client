@@ -35,10 +35,10 @@ class ProductRequestOut
     private $format;
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->language = $language;
         return $this;
@@ -61,10 +61,10 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface|null $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -87,10 +87,10 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface|null $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -113,10 +113,10 @@ class ProductRequestOut
     }
 
     /**
-     * @param bool|null $trackChanges
+     * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->trackChanges = $trackChanges;
         return $this;
@@ -139,10 +139,10 @@ class ProductRequestOut
     }
 
     /**
-     * @param string|null $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->status = $status;
         return $this;
@@ -165,10 +165,10 @@ class ProductRequestOut
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\ProductRequestOut
     {
         $this->format = $format;
         return $this;

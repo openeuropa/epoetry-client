@@ -10,10 +10,10 @@ class LinguisticSectionIn
     private $language;
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn
     {
         $this->language = $language;
         return $this;

@@ -30,10 +30,10 @@ class OriginalDocumentIn
     private $trackChanges;
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->fileName = $fileName;
         return $this;
@@ -56,10 +56,10 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string|null $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->comment = $comment;
         return $this;
@@ -82,10 +82,10 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string|null $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->content = $content;
         return $this;
@@ -108,10 +108,10 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null $linguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
@@ -134,10 +134,10 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param bool|null $trackChanges
+     * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->trackChanges = $trackChanges;
         return $this;

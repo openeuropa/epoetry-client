@@ -25,10 +25,10 @@ class ModifyAuxiliaryDocumentsIn
     private $prtDocuments;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments|null $referenceDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */
-    public function setReferenceDocuments(?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function setReferenceDocuments(\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->referenceDocuments = $referenceDocuments;
         return $this;
@@ -51,10 +51,10 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments|null $traxDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
      * @return $this
      */
-    public function setTraxDocuments(?\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function setTraxDocuments(\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->traxDocuments = $traxDocuments;
         return $this;
@@ -77,10 +77,10 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn|null $spotDocument
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
      * @return $this
      */
-    public function setSpotDocument(?\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function setSpotDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->spotDocument = $spotDocument;
         return $this;
@@ -103,10 +103,10 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments|null $prtDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
      * @return $this
      */
-    public function setPrtDocuments(?\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function setPrtDocuments(\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->prtDocuments = $prtDocuments;
         return $this;

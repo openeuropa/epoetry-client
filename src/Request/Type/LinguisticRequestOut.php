@@ -20,10 +20,10 @@ class LinguisticRequestOut
     private $informativeMessages;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -46,10 +46,10 @@ class LinguisticRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -72,10 +72,10 @@ class LinguisticRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null $informativeMessages
+     * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
      * @return $this
      */
-    public function setInformativeMessages(?\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setInformativeMessages(\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         $this->informativeMessages = $informativeMessages;
         return $this;

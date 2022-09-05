@@ -10,7 +10,7 @@ class AuxiliaryDocuments
     private $document = [];
 
     /**
-     * @param AuxiliaryDocumentOut[]|null $document
+     * @param AuxiliaryDocumentOut[] $document
      * @return $this
      */
     public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments

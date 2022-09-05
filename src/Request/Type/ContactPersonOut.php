@@ -48,10 +48,10 @@ class ContactPersonOut
     }
 
     /**
-     * @param string|null $firstName
+     * @param string $firstName
      * @return $this
      */
-    public function setFirstName(?string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->firstName = $firstName;
         return $this;
@@ -74,10 +74,10 @@ class ContactPersonOut
     }
 
     /**
-     * @param string|null $lastName
+     * @param string $lastName
      * @return $this
      */
-    public function setLastName(?string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->lastName = $lastName;
         return $this;
@@ -100,10 +100,10 @@ class ContactPersonOut
     }
 
     /**
-     * @param string|null $email
+     * @param string $email
      * @return $this
      */
-    public function setEmail(?string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->email = $email;
         return $this;
@@ -126,10 +126,10 @@ class ContactPersonOut
     }
 
     /**
-     * @param string|null $userId
+     * @param string $userId
      * @return $this
      */
-    public function setUserId(?string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->userId = $userId;
         return $this;
@@ -152,10 +152,10 @@ class ContactPersonOut
     }
 
     /**
-     * @param string|null $roleCode
+     * @param string $roleCode
      * @return $this
      */
-    public function setRoleCode(?string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->roleCode = $roleCode;
         return $this;

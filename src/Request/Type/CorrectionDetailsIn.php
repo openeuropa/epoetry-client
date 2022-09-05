@@ -35,10 +35,10 @@ class CorrectionDetailsIn
     private $remark;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -61,10 +61,10 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->fileName = $fileName;
         return $this;
@@ -87,10 +87,10 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string|null $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->content = $content;
         return $this;
@@ -113,10 +113,10 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->format = $format;
         return $this;
@@ -139,10 +139,10 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->language = $language;
         return $this;
@@ -165,10 +165,10 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string|null $remark
+     * @param string $remark
      * @return $this
      */
-    public function setRemark(?string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->remark = $remark;
         return $this;

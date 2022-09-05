@@ -54,7 +54,7 @@
         "patches": {
             "phpro/soap-client" : {
                 "https://github.com/phpro/soap-client/issues/446": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/448.diff",
-                "https://github.com/phpro/soap-client/issues/444": "./patches/soap-client_allow_getter_return_null.patch"
+                "https://github.com/phpro/soap-client/issues/444": "https://github.com/phpro/soap-client/compare/master...yenyasinn:issue-444.patch"
             }
         }
     }

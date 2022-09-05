@@ -20,10 +20,10 @@ class ModifyRequestDetailsIn
     private $auxiliaryDocuments;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Contacts|null $contacts
+     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts(?\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->contacts = $contacts;
         return $this;
@@ -46,10 +46,10 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Products|null $products
+     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->products = $products;
         return $this;
@@ -72,10 +72,10 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null $auxiliaryDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;

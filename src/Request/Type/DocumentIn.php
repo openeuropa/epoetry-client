@@ -25,10 +25,10 @@ class DocumentIn
     private $content;
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->fileName = $fileName;
         return $this;
@@ -51,10 +51,10 @@ class DocumentIn
     }
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->language = $language;
         return $this;
@@ -77,10 +77,10 @@ class DocumentIn
     }
 
     /**
-     * @param string|null $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->comment = $comment;
         return $this;
@@ -103,10 +103,10 @@ class DocumentIn
     }
 
     /**
-     * @param string|null $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(?string $content) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         $this->content = $content;
         return $this;

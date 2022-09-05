@@ -15,10 +15,10 @@ class ProductReference
     private $language;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference|null $requestReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -41,10 +41,10 @@ class ProductReference
     }
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         $this->language = $language;
         return $this;

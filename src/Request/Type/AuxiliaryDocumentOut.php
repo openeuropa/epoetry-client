@@ -30,10 +30,10 @@ class AuxiliaryDocumentOut
     private $format;
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         $this->fileName = $fileName;
         return $this;
@@ -56,10 +56,10 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         $this->language = $language;
         return $this;
@@ -82,10 +82,10 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string|null $documentType
+     * @param string $documentType
      * @return $this
      */
-    public function setDocumentType(?string $documentType) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setDocumentType(string $documentType) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         $this->documentType = $documentType;
         return $this;
@@ -108,10 +108,10 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string|null $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         $this->comment = $comment;
         return $this;
@@ -134,10 +134,10 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
     {
         $this->format = $format;
         return $this;

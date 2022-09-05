@@ -10,7 +10,7 @@ class InformativeMessages
     private $message = [];
 
     /**
-     * @param string[]|null $message
+     * @param string[] $message
      * @return $this
      */
     public function setMessage(array $message) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages

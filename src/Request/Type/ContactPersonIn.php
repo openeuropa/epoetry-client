@@ -27,10 +27,10 @@ class ContactPersonIn
     }
 
     /**
-     * @param string|null $userId
+     * @param string $userId
      * @return $this
      */
-    public function setUserId(?string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         $this->userId = $userId;
         return $this;
@@ -53,10 +53,10 @@ class ContactPersonIn
     }
 
     /**
-     * @param string|null $contactRole
+     * @param string $contactRole
      * @return $this
      */
-    public function setContactRole(?string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setContactRole(string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
     {
         $this->contactRole = $contactRole;
         return $this;

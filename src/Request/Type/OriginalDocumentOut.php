@@ -35,10 +35,10 @@ class OriginalDocumentOut
     private $linguisticSections;
 
     /**
-     * @param bool|null $trackChanges
+     * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(?bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->trackChanges = $trackChanges;
         return $this;
@@ -61,10 +61,10 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->format = $format;
         return $this;
@@ -87,10 +87,10 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->fileName = $fileName;
         return $this;
@@ -113,10 +113,10 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param float|null $pages
+     * @param float $pages
      * @return $this
      */
-    public function setPages(?float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setPages(float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->pages = $pages;
         return $this;
@@ -139,10 +139,10 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string|null $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->comment = $comment;
         return $this;
@@ -165,10 +165,10 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null $linguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->linguisticSections = $linguisticSections;
         return $this;

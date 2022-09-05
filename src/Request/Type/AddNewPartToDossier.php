@@ -27,10 +27,10 @@ class AddNewPartToDossier implements RequestInterface
     private $templateName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference|null $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->dossier = $dossier;
         return $this;
@@ -53,10 +53,10 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -79,10 +79,10 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param string|null $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -105,10 +105,10 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param string|null $templateName
+     * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(?string $templateName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
     {
         $this->templateName = $templateName;
         return $this;

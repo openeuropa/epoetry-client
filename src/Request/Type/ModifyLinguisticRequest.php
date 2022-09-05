@@ -17,10 +17,10 @@ class ModifyLinguisticRequest implements RequestInterface
     private $applicationName;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null $modifyLinguisticRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
      * @return $this
      */
-    public function setModifyLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setModifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
     {
         $this->modifyLinguisticRequest = $modifyLinguisticRequest;
         return $this;
@@ -43,10 +43,10 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string|null $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
     {
         $this->applicationName = $applicationName;
         return $this;

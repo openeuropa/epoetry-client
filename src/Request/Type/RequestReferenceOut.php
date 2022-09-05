@@ -25,10 +25,10 @@ class RequestReferenceOut
     private $version;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference|null $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->dossier = $dossier;
         return $this;
@@ -51,10 +51,10 @@ class RequestReferenceOut
     }
 
     /**
-     * @param string|null $productType
+     * @param string $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->productType = $productType;
         return $this;
@@ -77,10 +77,10 @@ class RequestReferenceOut
     }
 
     /**
-     * @param int|null $part
+     * @param int $part
      * @return $this
      */
-    public function setPart(?int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->part = $part;
         return $this;
@@ -103,10 +103,10 @@ class RequestReferenceOut
     }
 
     /**
-     * @param int|null $version
+     * @param int $version
      * @return $this
      */
-    public function setVersion(?int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         $this->version = $version;
         return $this;

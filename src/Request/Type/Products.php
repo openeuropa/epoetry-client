@@ -10,7 +10,7 @@ class Products
     private $product = [];
 
     /**
-     * @param ModifyProductRequestIn[]|null $product
+     * @param ModifyProductRequestIn[] $product
      * @return $this
      */
     public function setProduct(array $product) : \OpenEuropa\EPoetry\Request\Type\Products

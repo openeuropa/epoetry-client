@@ -40,10 +40,10 @@ class DcoOut
     private $status;
 
     /**
-     * @param string|null $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -66,10 +66,10 @@ class DcoOut
     }
 
     /**
-     * @param \DateTimeInterface|null $deadline
+     * @param \DateTimeInterface $deadline
      * @return $this
      */
-    public function setDeadline(?\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setDeadline(\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->deadline = $deadline;
         return $this;
@@ -92,10 +92,10 @@ class DcoOut
     }
 
     /**
-     * @param string|null $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->fileName = $fileName;
         return $this;
@@ -118,10 +118,10 @@ class DcoOut
     }
 
     /**
-     * @param string|null $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->format = $format;
         return $this;
@@ -144,10 +144,10 @@ class DcoOut
     }
 
     /**
-     * @param string|null $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->language = $language;
         return $this;
@@ -170,10 +170,10 @@ class DcoOut
     }
 
     /**
-     * @param string|null $remark
+     * @param string $remark
      * @return $this
      */
-    public function setRemark(?string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->remark = $remark;
         return $this;
@@ -196,10 +196,10 @@ class DcoOut
     }
 
     /**
-     * @param string|null $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->status = $status;
         return $this;
