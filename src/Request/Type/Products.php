@@ -20,9 +20,9 @@ class Products
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array|null
      */
-    public function getProduct() : array
+    public function getProduct() : ?array
     {
         return $this->product;
     }

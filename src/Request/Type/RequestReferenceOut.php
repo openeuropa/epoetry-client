@@ -35,9 +35,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
      */
-    public function getDossier() : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -61,9 +61,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductType() : string
+    public function getProductType() : ?string
     {
         return $this->productType;
     }
@@ -87,9 +87,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPart() : int
+    public function getPart() : ?int
     {
         return $this->part;
     }
@@ -113,9 +113,9 @@ class RequestReferenceOut
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVersion() : int
+    public function getVersion() : ?int
     {
         return $this->version;
     }

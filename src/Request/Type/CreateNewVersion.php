@@ -27,9 +27,9 @@ class CreateNewVersion implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
         return $this->linguisticRequest;
     }
@@ -53,9 +53,9 @@ class CreateNewVersion implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

@@ -40,9 +40,9 @@ class AuxiliaryDocumentsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments|null
      */
-    public function getReferenceDocuments() : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+    public function getReferenceDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
         return $this->referenceDocuments;
     }
@@ -66,9 +66,9 @@ class AuxiliaryDocumentsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\TraxDocuments|null
      */
-    public function getTraxDocuments() : \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+    public function getTraxDocuments() : ?\OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
         return $this->traxDocuments;
     }
@@ -92,9 +92,9 @@ class AuxiliaryDocumentsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn|null
      */
-    public function getSpotDocument() : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function getSpotDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         return $this->spotDocument;
     }
@@ -118,9 +118,9 @@ class AuxiliaryDocumentsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\PrtDocuments|null
      */
-    public function getPrtDocuments() : \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+    public function getPrtDocuments() : ?\OpenEuropa\EPoetry\Request\Type\PrtDocuments
     {
         return $this->prtDocuments;
     }
@@ -144,9 +144,9 @@ class AuxiliaryDocumentsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+     * @return \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn|null
      */
-    public function getSrcDocument() : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
+    public function getSrcDocument() : ?\OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         return $this->srcDocument;
     }

@@ -25,9 +25,9 @@ class LinguisticRequestIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -51,9 +51,9 @@ class LinguisticRequestIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }

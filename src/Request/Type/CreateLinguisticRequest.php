@@ -32,9 +32,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -58,9 +58,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -84,9 +84,9 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTemplateName() : string
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }

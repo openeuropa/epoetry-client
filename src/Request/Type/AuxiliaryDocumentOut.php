@@ -40,9 +40,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -66,9 +66,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -92,9 +92,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDocumentType() : string
+    public function getDocumentType() : ?string
     {
         return $this->documentType;
     }
@@ -118,9 +118,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -144,9 +144,9 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }

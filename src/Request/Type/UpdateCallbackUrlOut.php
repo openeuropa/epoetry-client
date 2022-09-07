@@ -42,9 +42,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSuccess() : bool
+    public function isSuccess() : ?bool
     {
         return $this->success;
     }
@@ -68,9 +68,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOldCallbackUrl() : string
+    public function getOldCallbackUrl() : ?string
     {
         return $this->oldCallbackUrl;
     }
@@ -94,9 +94,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNewCallbackUrl() : string
+    public function getNewCallbackUrl() : ?string
     {
         return $this->newCallbackUrl;
     }
@@ -120,9 +120,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplication() : string
+    public function getApplication() : ?string
     {
         return $this->application;
     }
@@ -146,9 +146,9 @@ class UpdateCallbackUrlOut implements ResultInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage() : string
+    public function getMessage() : ?string
     {
         return $this->message;
     }

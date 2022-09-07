@@ -22,9 +22,9 @@ class GetLinguisticRequestResponse implements ResultInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut|null
      */
-    public function getReturn() : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         return $this->return;
     }

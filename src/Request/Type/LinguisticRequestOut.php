@@ -30,9 +30,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -56,9 +56,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         return $this->requestDetails;
     }
@@ -82,9 +82,9 @@ class LinguisticRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+     * @return \OpenEuropa\EPoetry\Request\Type\InformativeMessages|null
      */
-    public function getInformativeMessages() : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function getInformativeMessages() : ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         return $this->informativeMessages;
     }

@@ -37,9 +37,9 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
      */
-    public function getDossier() : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -63,9 +63,9 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
      */
-    public function getRequestDetails() : \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -89,9 +89,9 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -115,9 +115,9 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTemplateName() : string
+    public function getTemplateName() : ?string
     {
         return $this->templateName;
     }

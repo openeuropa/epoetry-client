@@ -60,16 +60,12 @@ class ConfigProcessor
             (new Assembler\GetterAssemblerOptions())
                 ->withReturnType()
                 ->withBoolGetters()
+                ->withReturnNull()
         );
 
         $arrayGetterAssembler = new OpenEuropa\Assembler\ArrayGetterAssembler(
             (new OpenEuropa\Assembler\ArrayGetterAssemblerOptions())
                 ->whitelist($specialClassesAndProperties)
-        );
-
-        $nullableGetterAssembler = new OpenEuropa\Assembler\NullableGetterAssembler(
-            (new OpenEuropa\Assembler\NullableGetterAssemblerOptions())
-                ->blacklist($specialClassesAndProperties)
         );
 
         $fluentAdderAssembler = new OpenEuropa\Assembler\FluentAdderAssembler(
@@ -110,8 +106,6 @@ class ConfigProcessor
             ))
         //        // Set the default setter assembler and generate all setters methods.
         //            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-        //        // Update getters and set them as 'nullable'
-        //            ->addRule(new Rules\AssembleRule($nullableGetterAssembler))
         // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
             ->addRule(

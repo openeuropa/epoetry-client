@@ -30,9 +30,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
      */
-    public function getContacts() : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -56,9 +56,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
      */
-    public function getProducts() : \OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -82,9 +82,9 @@ class ModifyRequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn|null
      */
-    public function getAuxiliaryDocuments() : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }

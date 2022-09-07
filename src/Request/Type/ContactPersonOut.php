@@ -58,9 +58,9 @@ class ContactPersonOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstName() : string
+    public function getFirstName() : ?string
     {
         return $this->firstName;
     }
@@ -84,9 +84,9 @@ class ContactPersonOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastName() : string
+    public function getLastName() : ?string
     {
         return $this->lastName;
     }
@@ -110,9 +110,9 @@ class ContactPersonOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail() : string
+    public function getEmail() : ?string
     {
         return $this->email;
     }
@@ -136,9 +136,9 @@ class ContactPersonOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserId() : string
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
@@ -162,9 +162,9 @@ class ContactPersonOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRoleCode() : string
+    public function getRoleCode() : ?string
     {
         return $this->roleCode;
     }

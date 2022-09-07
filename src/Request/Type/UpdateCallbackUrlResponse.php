@@ -20,9 +20,9 @@ class UpdateCallbackUrlResponse
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+     * @return \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut|null
      */
-    public function getReturn() : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         return $this->return;
     }

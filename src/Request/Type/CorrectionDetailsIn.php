@@ -45,9 +45,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
         return $this->requestReference;
     }
@@ -71,9 +71,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -97,9 +97,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -123,9 +123,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -149,9 +149,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -175,9 +175,9 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRemark() : string
+    public function getRemark() : ?string
     {
         return $this->remark;
     }

@@ -25,9 +25,9 @@ class ProductReference
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
@@ -51,9 +51,9 @@ class ProductReference
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }

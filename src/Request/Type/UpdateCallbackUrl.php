@@ -27,9 +27,9 @@ class UpdateCallbackUrl implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCallbackUrl() : string
+    public function getCallbackUrl() : ?string
     {
         return $this->callbackUrl;
     }
@@ -53,9 +53,9 @@ class UpdateCallbackUrl implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

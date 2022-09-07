@@ -125,9 +125,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle() : string
+    public function getTitle() : ?string
     {
         return $this->title;
     }
@@ -151,9 +151,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getWorkflowCode() : string
+    public function getWorkflowCode() : ?string
     {
         return $this->workflowCode;
     }
@@ -177,9 +177,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getInternalReference() : string
+    public function getInternalReference() : ?string
     {
         return $this->internalReference;
     }
@@ -203,9 +203,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getRequestedDeadline() : \DateTimeInterface
+    public function getRequestedDeadline() : ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -229,9 +229,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSensitive() : bool
+    public function isSensitive() : ?bool
     {
         return $this->sensitive;
     }
@@ -255,9 +255,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSentViaRue() : bool
+    public function isSentViaRue() : ?bool
     {
         return $this->sentViaRue;
     }
@@ -281,9 +281,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isDocumentToAdopt() : bool
+    public function isDocumentToAdopt() : ?bool
     {
         return $this->documentToAdopt;
     }
@@ -307,9 +307,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDecideReference() : string
+    public function getDecideReference() : ?string
     {
         return $this->decideReference;
     }
@@ -333,9 +333,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDestination() : string
+    public function getDestination() : ?string
     {
         return $this->destination;
     }
@@ -359,9 +359,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProcedure() : string
+    public function getProcedure() : ?string
     {
         return $this->procedure;
     }
@@ -385,9 +385,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSlaAnnex() : string
+    public function getSlaAnnex() : ?string
     {
         return $this->slaAnnex;
     }
@@ -411,9 +411,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSlaCommitment() : string
+    public function getSlaCommitment() : ?string
     {
         return $this->slaCommitment;
     }
@@ -437,9 +437,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -463,9 +463,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOnBehalfOf() : string
+    public function getOnBehalfOf() : ?string
     {
         return $this->onBehalfOf;
     }
@@ -489,9 +489,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAccessibleTo() : string
+    public function getAccessibleTo() : ?string
     {
         return $this->accessibleTo;
     }
@@ -515,9 +515,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getKeyword1() : string
+    public function getKeyword1() : ?string
     {
         return $this->keyword1;
     }
@@ -541,9 +541,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getKeyword2() : string
+    public function getKeyword2() : ?string
     {
         return $this->keyword2;
     }
@@ -567,9 +567,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getKeyword3() : string
+    public function getKeyword3() : ?string
     {
         return $this->keyword3;
     }
@@ -593,9 +593,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
      */
-    public function getContacts() : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -619,9 +619,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+     * @return \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn|null
      */
-    public function getOriginalDocument() : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function getOriginalDocument() : ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         return $this->originalDocument;
     }
@@ -645,9 +645,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Products
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
      */
-    public function getProducts() : \OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -671,9 +671,9 @@ class RequestDetailsIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn|null
      */
-    public function getAuxiliaryDocuments() : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
+    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }

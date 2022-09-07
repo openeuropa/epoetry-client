@@ -45,9 +45,9 @@ class Product
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference|null
      */
-    public function getProductReference() : \OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         return $this->productReference;
     }
@@ -71,9 +71,9 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus() : string
+    public function getStatus() : ?string
     {
         return $this->status;
     }
@@ -97,9 +97,9 @@ class Product
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getAcceptedDeadline() : \DateTimeInterface
+    public function getAcceptedDeadline() : ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -123,9 +123,9 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFile() : string
+    public function getFile() : ?string
     {
         return $this->file;
     }
@@ -149,9 +149,9 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName() : string
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -175,9 +175,9 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }

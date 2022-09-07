@@ -27,9 +27,9 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null
      */
-    public function getCorrectionDetails() : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function getCorrectionDetails() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         return $this->correctionDetails;
     }
@@ -53,9 +53,9 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

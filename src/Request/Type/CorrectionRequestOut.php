@@ -25,9 +25,9 @@ class CorrectionRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
      */
-    public function getRequestReference() : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -51,9 +51,9 @@ class CorrectionRequestOut
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
      */
-    public function getDCO() : \OpenEuropa\EPoetry\Request\Type\DcoOut
+    public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         return $this->DCO;
     }

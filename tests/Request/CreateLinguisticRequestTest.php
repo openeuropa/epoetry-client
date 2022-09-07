@@ -101,7 +101,7 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
      */
     public function testValidation($data, $expectations): void
     {
-        $request = $this->serializer->denormalize($data, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest');
+        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest');
         $violations = $this->validator->validate($request);
         $values = [
             'violations' => $violations,

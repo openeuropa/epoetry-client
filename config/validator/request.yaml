@@ -98,6 +98,13 @@ OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
         requestedDeadline:
             - NotNull: ~
 
+OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
+    properties:
+        language:
+            - NotBlank: ~
+        requestedDeadline:
+            - NotNull: ~
+
 OpenEuropa\EPoetry\Request\Type\Contacts:
     properties:
         contact:

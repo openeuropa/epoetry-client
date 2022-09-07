@@ -37,9 +37,9 @@ class ContactPersonIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserId() : string
+    public function getUserId() : ?string
     {
         return $this->userId;
     }
@@ -63,9 +63,9 @@ class ContactPersonIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContactRole() : string
+    public function getContactRole() : ?string
     {
         return $this->contactRole;
     }

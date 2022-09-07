@@ -41,7 +41,7 @@ final class ReceiveNotificationTest extends BaseNotificationTest
      */
     public function testValidation($data, $expectations): void
     {
-        $notification = $this->serializer->denormalize($data, 'OpenEuropa\EPoetry\Notification\Type\ReceiveNotification');
+        $notification = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Notification\Type\ReceiveNotification');
         $violations = $this->validator->validate($notification);
         $values = [
             'violations' => $violations,

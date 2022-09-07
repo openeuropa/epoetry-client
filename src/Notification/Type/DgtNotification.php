@@ -45,9 +45,9 @@ class DgtNotification
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNotificationType() : string
+    public function getNotificationType() : ?string
     {
         return $this->notificationType;
     }
@@ -71,9 +71,9 @@ class DgtNotification
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest|null
      */
-    public function getLinguisticRequest() : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         return $this->linguisticRequest;
     }
@@ -97,9 +97,9 @@ class DgtNotification
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\Product
+     * @return \OpenEuropa\EPoetry\Notification\Type\Product|null
      */
-    public function getProduct() : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function getProduct() : ?\OpenEuropa\EPoetry\Notification\Type\Product
     {
         return $this->product;
     }
@@ -123,9 +123,9 @@ class DgtNotification
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage() : string
+    public function getMessage() : ?string
     {
         return $this->message;
     }
@@ -149,9 +149,9 @@ class DgtNotification
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPlanningAgent() : string
+    public function getPlanningAgent() : ?string
     {
         return $this->planningAgent;
     }
@@ -175,9 +175,9 @@ class DgtNotification
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPlanningSector() : string
+    public function getPlanningSector() : ?string
     {
         return $this->planningSector;
     }

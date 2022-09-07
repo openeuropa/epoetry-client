@@ -22,9 +22,9 @@ class ReceiveNotification implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification|null
      */
-    public function getNotification() : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function getNotification() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         return $this->notification;
     }

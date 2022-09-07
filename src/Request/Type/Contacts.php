@@ -20,9 +20,9 @@ class Contacts
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array|null
      */
-    public function getContact() : array
+    public function getContact() : ?array
     {
         return $this->contact;
     }

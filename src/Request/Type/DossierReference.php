@@ -30,9 +30,9 @@ class DossierReference
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRequesterCode() : string
+    public function getRequesterCode() : ?string
     {
         return $this->requesterCode;
     }
@@ -56,9 +56,9 @@ class DossierReference
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNumber() : int
+    public function getNumber() : ?int
     {
         return $this->number;
     }
@@ -82,9 +82,9 @@ class DossierReference
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getYear() : int
+    public function getYear() : ?int
     {
         return $this->year;
     }

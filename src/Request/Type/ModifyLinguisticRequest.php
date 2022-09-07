@@ -27,9 +27,9 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null
      */
-    public function getModifyLinguisticRequest() : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+    public function getModifyLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         return $this->modifyLinguisticRequest;
     }
@@ -53,9 +53,9 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }

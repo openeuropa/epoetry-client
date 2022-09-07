@@ -50,9 +50,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getApplicationName() : string
+    public function getApplicationName() : ?string
     {
         return $this->applicationName;
     }
@@ -76,9 +76,9 @@ class DcoOut
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function getDeadline() : \DateTimeInterface
+    public function getDeadline() : ?\DateTimeInterface
     {
         return $this->deadline;
     }
@@ -102,9 +102,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -128,9 +128,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFormat() : string
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -154,9 +154,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -180,9 +180,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRemark() : string
+    public function getRemark() : ?string
     {
         return $this->remark;
     }
@@ -206,9 +206,9 @@ class DcoOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus() : string
+    public function getStatus() : ?string
     {
         return $this->status;
     }

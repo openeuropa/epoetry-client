@@ -40,9 +40,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName() : string
+    public function getFileName() : ?string
     {
         return $this->fileName;
     }
@@ -66,9 +66,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment() : string
+    public function getComment() : ?string
     {
         return $this->comment;
     }
@@ -92,9 +92,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent() : string
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -118,9 +118,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -144,9 +144,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }

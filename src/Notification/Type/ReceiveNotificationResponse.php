@@ -22,9 +22,9 @@ class ReceiveNotificationResponse implements ResultInterface
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult|null
      */
-    public function getReturn() : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function getReturn() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
     {
         return $this->return;
     }
