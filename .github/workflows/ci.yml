@@ -14,6 +14,8 @@ jobs:
       - run: docker-compose up -d
       - name: composer install
         run: docker-compose exec -T php composer install
+      - name: prepare vcr folder
+        run: docker-compose exec -T php sudo chmod -R 777 ./tests/fixtures/vcr
       - name: phpunit
         run: docker-compose exec -T php ./vendor/bin/phpunit
   code-sniffer:
