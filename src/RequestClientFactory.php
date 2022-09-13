@@ -20,6 +20,7 @@ use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
 use Soap\Xml\Builder\SoapHeader;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\Validator\ValidatorBuilder;
@@ -48,6 +49,13 @@ class RequestClientFactory
     protected $transport;
 
     /**
+     * SOAP endpoint.
+     *
+     * @var string
+     */
+    protected string $endpoint = '';
+
+    /**
      * Proxy ticket.
      *
      * @var string
@@ -57,28 +65,22 @@ class RequestClientFactory
     /**
      * Constructs RequestClientFactory object.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     *   Event dispatcher.
+     * @param string $endpoint
+     * @param string $proxyTicket
+     *   Proxy ticket is used to build default transport. It should be omitted if custom transport is provided.
+     * @param EventDispatcherInterface|null $eventDispatcher
      * @param LoggerInterface|null $logger
-     *   Logger service.
+     * @param ClientInterface|null $httpClient
+     * @param Transport|null $transport
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger = null)
+    public function __construct(string $endpoint, string $proxyTicket = '', EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
     {
-        $this->eventDispatcher = $eventDispatcher;
+        $this->endpoint = $endpoint;
+        $this->proxyTicket = $proxyTicket;
+        $this->eventDispatcher = $eventDispatcher ?? new EventDispatcher();
         $this->logger = $logger;
-    }
-
-    /**
-     * Sets event dispatcher.
-     *
-     * @param EventDispatcherInterface $eventDispatcher
-     *
-     * @return $this
-     */
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): RequestClientFactory
-    {
-        $this->eventDispatcher = $eventDispatcher;
-        return $this;
+        $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
+        $this->transport = $transport ?? $this->getDefaultTransport();
     }
 
     /**
@@ -92,19 +94,6 @@ class RequestClientFactory
     }
 
     /**
-     * Sets logger service.
-     *
-     * @param LoggerInterface $logger
-     *
-     * @return $this
-     */
-    public function setLogger(LoggerInterface $logger): RequestClientFactory
-    {
-        $this->logger = $logger;
-        return $this;
-    }
-
-    /**
      * Gets logger service.
      *
      * @return LoggerInterface|null
@@ -115,39 +104,13 @@ class RequestClientFactory
     }
 
     /**
-     * Sets http client.
-     *
-     * @param ClientInterface $httpClient
-     *
-     * @return $this
-     */
-    public function setHttpClient(ClientInterface $httpClient): RequestClientFactory
-    {
-        $this->httpClient = $httpClient;
-        return $this;
-    }
-
-    /**
      * Gets http client.
      *
      * @return ClientInterface
      */
     public function getHttpClient(): ClientInterface
     {
-        return $this->httpClient ?? Psr18ClientDiscovery::find();
-    }
-
-    /**
-     * Sets proxy ticket to be added to soap header.
-     *
-     * @param string $proxyTicket
-     *
-     * @return $this
-     */
-    public function setProxyTicket(string $proxyTicket): RequestClientFactory
-    {
-        $this->proxyTicket = $proxyTicket;
-        return $this;
+        return $this->httpClient;
     }
 
     /**
@@ -161,24 +124,21 @@ class RequestClientFactory
     }
 
     /**
-     * Sets transport.
+     * Gets endpoint.
      *
-     * @param Transport $transport
-     *
-     * @return $this
+     * @return string
      */
-    public function setTransport(Transport $transport): RequestClientFactory
+    public function getEndpoint(): string
     {
-        $this->transport = $transport;
-        return $this;
+        return $this->endpoint;
     }
 
     /**
      * Gets transport.
      *
-     * @return Transport|null
+     * @return Transport
      */
-    public function getTransport(): ?Transport
+    public function getTransport(): Transport
     {
         return $this->transport;
     }
@@ -190,6 +150,7 @@ class RequestClientFactory
      */
     protected function getDefaultTransport(): Transport
     {
+        $client = $this->getHttpClient();
         if ($this->proxyTicket) {
             // Add proxy ticket to the request header.
             $middlewarePlugin = new SoapHeaderMiddleware(
@@ -199,37 +160,29 @@ class RequestClientFactory
                     value($this->proxyTicket),
                 )
             );
-
-            return Psr18Transport::createForClient(
-                new PluginClient(
-                    $this->getHttpClient(),
-                    [$middlewarePlugin]
-                )
+            $client = new PluginClient(
+                $client,
+                [$middlewarePlugin]
             );
         }
-
-        return Psr18Transport::createForClient($this->getHttpClient());
+        return Psr18Transport::createForClient($client);
     }
 
     /**
      * Gets an engine.
      *
-     * @param string $endpoint
-     *   SOAP endpoint.
-     *
      * @return Engine
      */
-    protected function getEngine(string $endpoint): Engine
+    protected function getEngine(): Engine
     {
-        $transport = $this->transport ?? $this->getDefaultTransport();
         $wsdlProvider = (new LocalWsdlProvider())
-            ->withPortLocation('DGTServiceWSPort', $endpoint);
+            ->withPortLocation('DGTServiceWSPort', $this->endpoint);
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults(__DIR__.'/../resources/request.wsdl', [])
                 ->withClassMap(RequestClassmap::getCollection())
                 ->withWsdlProvider($wsdlProvider)
                 ->disableWsdlCache(),
-            $transport
+            $this->transport
         );
 
         return $engine;
@@ -238,13 +191,10 @@ class RequestClientFactory
     /**
      * Gets request client.
      *
-     * @param string $endpoint
-     *   SOAP endpoint.
-     *
      * @return RequestClient
      *   RequestClient instance.
      */
-    public function getRequestClient(string $endpoint): RequestClient
+    public function getRequestClient(): RequestClient
     {
         // Build validator with Validator Subscriber.
         $validatorBuilder = new ValidatorBuilder();
@@ -258,7 +208,7 @@ class RequestClientFactory
         }
 
         // Build caller.
-        $engine = $this->getEngine($endpoint);
+        $engine = $this->getEngine();
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $this->eventDispatcher);
 
         // Build request client.

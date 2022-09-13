@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests;
 
-use Http\Mock\Client;
+use Consolidation\Log\Logger;
+use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
+use Http\Mock\Client as MockClient;
 use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn;
 use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Request\Type\Contacts;
@@ -19,8 +21,12 @@ use OpenEuropa\EPoetry\Request\Type\ReferenceDocuments;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\Request\Type\SrcDocumentIn;
 use OpenEuropa\EPoetry\RequestClientFactory;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Nyholm\Psr7\Response;
+use Soap\ExtSoapEngine\AbusedClient;
+use Soap\Psr18Transport\Psr18Transport;
+use Soap\ExtSoapEngine\Transport\TraceableTransport;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
  * Test RequestClientFactory.
@@ -33,15 +39,12 @@ final class RequestClientFactoryTest extends BaseTest
         $expectedHeader = '<soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws"><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">[proxy ticket]</ecas:ProxyTicket></soap:Header>';
         $expectedBody = '<SOAP-ENV:Body><ns1:createLinguisticRequest><requestDetails><title>Request title</title>';
 
-        $mockClient = new Client();
-        $mockClient->addResponse(new Response(200, [], $this->getCreateLinguisticRequestResponse()));
-
-        $clientFactory = (new RequestClientFactory(new EventDispatcher()))
-            ->setHttpClient($mockClient)
-            ->setProxyTicket('[proxy ticket]');
+        $mockClient = new MockClient();
 
         // Assert proxy token exists in the header.
-        $requestClient = $clientFactory->getRequestClient('http://foo.bar');
+        $mockClient->addResponse(new Response(200, [], $this->getCreateLinguisticRequestResponse()));
+        $clientFactory = new RequestClientFactory('http://foo.bar', '[proxy ticket]', null, null, $mockClient);
+        $requestClient = $clientFactory->getRequestClient();
         $requestClient->createLinguisticRequest($this->getCreateLinguisticRequest());
         $body = (string) $mockClient->getLastRequest()->getBody();
         $this->assertStringContainsString($expectedBody, $body);
@@ -49,8 +52,8 @@ final class RequestClientFactoryTest extends BaseTest
 
         // Assert header with token doesn't exist in the request.
         $mockClient->addResponse(new Response(200, [], $this->getCreateLinguisticRequestResponse()));
-        $clientFactory->setProxyTicket('');
-        $requestClient = $clientFactory->getRequestClient('http://foo.bar');
+        $clientFactory = new RequestClientFactory('http://foo.bar', '', null, null, $mockClient);
+        $requestClient = $clientFactory->getRequestClient();
         $requestClient->createLinguisticRequest($this->getCreateLinguisticRequest());
         $body = (string) $mockClient->getLastRequest()->getBody();
         $this->assertStringContainsString($expectedBody, $body);
@@ -131,5 +134,26 @@ final class RequestClientFactoryTest extends BaseTest
     public function getCreateLinguisticRequestResponse(): string
     {
         return file_get_contents(__DIR__ . '/Request/fixtures/createLinguisticRequestResponse.xml');
+    }
+
+    /**
+     * Tests RequestClientFactory constructor.
+     */
+    public function testConstructor(): void
+    {
+        $clientFactory = new RequestClientFactory('http://foo.bar');
+        $this->assertEquals('http://foo.bar', $clientFactory->getEndpoint());
+        $this->assertEmpty($clientFactory->getProxyTicket());
+        $this->assertInstanceOf(EventDispatcher::class, $clientFactory->getEventDispatcher());
+        $this->assertEmpty($clientFactory->getLogger());
+        $this->assertInstanceOf(GuzzleHttpClient::class, $clientFactory->getHttpClient());
+        $this->assertInstanceOf(Psr18Transport::class, $clientFactory->getTransport());
+
+        $clientFactory = new RequestClientFactory('http://foo.bar', '[proxy ticket]', new EventDispatcher(), new Logger(new BufferedOutput()), new MockClient(), new TraceableTransport(new AbusedClient(__DIR__.'/../resources/request.wsdl'), Psr18Transport::createWithDefaultClient()));
+        $this->assertEquals('[proxy ticket]', $clientFactory->getProxyTicket());
+        $this->assertInstanceOf(EventDispatcher::class, $clientFactory->getEventDispatcher());
+        $this->assertInstanceOf(Logger::class, $clientFactory->getLogger());
+        $this->assertInstanceOf(MockClient::class, $clientFactory->getHttpClient());
+        $this->assertInstanceOf(TraceableTransport::class, $clientFactory->getTransport());
     }
 }
