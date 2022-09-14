@@ -117,16 +117,14 @@ final class RequestClientFactoryTest extends BaseTest
             ->addProduct($productRequestIn);
         $requestDetails->setProducts($products);
 
-        $createLinguisticRequest = (new CreateLinguisticRequest())
+        return (new CreateLinguisticRequest())
             ->setRequestDetails($requestDetails)
             ->setApplicationName('appname')
             ->setTemplateName('DEFAULT');
-
-        return $createLinguisticRequest;
     }
 
     /**
-     * Gets xml of createLinguisticRequestResponse.
+     * Gets XML of createLinguisticRequestResponse.
      *
      * @return string
      *   XML data.

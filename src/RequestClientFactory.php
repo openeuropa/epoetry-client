@@ -22,7 +22,6 @@ use Soap\Psr18Transport\Psr18Transport;
 use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\Validator\ValidatorBuilder;
 use function VeeWee\Xml\Dom\Builder\value;
 
@@ -31,7 +30,7 @@ class RequestClientFactory
     /**
      * @var EventDispatcherInterface
      */
-    protected $eventDispatcher ;
+    protected $eventDispatcher;
 
     /**
      * @var LoggerInterface
@@ -177,15 +176,13 @@ class RequestClientFactory
     {
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('DGTServiceWSPort', $this->endpoint);
-        $engine = DefaultEngineFactory::create(
+        return DefaultEngineFactory::create(
             ExtSoapOptions::defaults(__DIR__.'/../resources/request.wsdl', [])
                 ->withClassMap(RequestClassmap::getCollection())
                 ->withWsdlProvider($wsdlProvider)
                 ->disableWsdlCache(),
             $this->transport
         );
-
-        return $engine;
     }
 
     /**
