@@ -14,3 +14,9 @@ commands:
     - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-notification.php"
     - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-notification.php"
     - "./vendor/bin/soap-client generate:client --config=$(pwd)/config/soap-client-notification.php"
+
+  generate:authentication:
+    - { task: "remove", file: "src/Authentication/Type" }
+    - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-authentication.php"
+    - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-authentication.php"
+    - "./vendor/bin/soap-client generate:client --config=$(pwd)/config/soap-client-authentication.php"

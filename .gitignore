@@ -7,3 +7,4 @@ phpunit.xml
 docker-compose.*.yml
 *.backup
 .phpunit.result.cache
+/certs
