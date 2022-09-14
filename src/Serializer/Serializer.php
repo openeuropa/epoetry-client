@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use OpenEuropa\EPoetry\Serializer\Normalizer\ContactsDenormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\DateTimeNormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ObjectNormalizer;
+use OpenEuropa\EPoetry\Serializer\Normalizer\LinguisticSectionsDenormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ProductsDenormalizer;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -132,6 +134,8 @@ class Serializer implements SerializerInterface
             new DateTimeNormalizer(),
             new ArrayDenormalizer(),
             new ProductsDenormalizer(),
+            new LinguisticSectionsDenormalizer(),
+            new ContactsDenormalizer(),
             new ObjectNormalizer(
                 $classMetadataFactory,
                 null,

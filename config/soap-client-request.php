@@ -38,7 +38,8 @@ $config = ConfigProcessor::addRules($config, [
 $config = ConfigProcessor::addConstructorRule($config, [
     'ContactPersonIn',
     'ContactPersonOut',
-    'LinguisticSectionOut'
+    'LinguisticSectionOut',
+    'LinguisticSectionIn'
 ]);
 
 return $config;
