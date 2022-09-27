@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry">
     <SOAP-ENV:Body>
         <ns1:createLinguisticRequest>
             <requestDetails>
@@ -25,7 +25,7 @@
                     <comment />
                     <content>Y2lkOjI2NzczNjgyODUzMQ==</content>
                     <linguisticSections>
-                        <linguisticSection xsi:type="ns1:linguisticSectionOut">
+                        <linguisticSection>
                             <language>FR</language>
                         </linguisticSection>
                     </linguisticSections>

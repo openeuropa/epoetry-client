@@ -7,10 +7,10 @@ namespace OpenEuropa\EPoetry\Serializer\Normalizer;
 use OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsOut;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use OpenEuropa\EPoetry\Request\Type\Products;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestOut;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\SerializerAwareTrait;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 
