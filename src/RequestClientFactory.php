@@ -11,6 +11,9 @@ use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\Engine\Engine;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 
+/**
+ * Request client factory.
+ */
 class RequestClientFactory extends BaseClientFactory
 {
     /**
@@ -38,7 +41,11 @@ class RequestClientFactory extends BaseClientFactory
     public function getRequestClient(): RequestClient
     {
         $this->addValidatior(__DIR__ . '/../config/validator/request.yaml');
-        $this->addLogger();
+
+        // Set logger, if any.
+        if ($this->logger) {
+            $this->addLogger($this->logger);
+        }
 
         // Build caller.
         $caller = new EventDispatchingCaller(new EngineCaller($this->getEngine()), $this->eventDispatcher);

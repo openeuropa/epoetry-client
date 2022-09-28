@@ -18,24 +18,35 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
 use function VeeWee\Xml\Dom\Builder\value;
 
+/**
+ * Base class for client factories.
+ */
 abstract class BaseClientFactory
 {
     /**
+     * Event dispatcher service.
+     *
      * @var EventDispatcherInterface
      */
     protected $eventDispatcher;
 
     /**
+     * Logger service.
+     *
      * @var LoggerInterface
      */
     protected $logger;
 
     /**
+     * HTTP client.
+     *
      * @var ClientInterface
      */
     protected $httpClient;
 
     /**
+     * Transport.
+     *
      * @var Transport
      */
     protected $transport;
@@ -55,15 +66,20 @@ abstract class BaseClientFactory
     protected string $proxyTicket = '';
 
     /**
-     * Constructs RequestClientFactory object.
+     * Constructs BaseClientFactory object.
      *
      * @param string $endpoint
+     *   SOAP endpoint.
      * @param string $proxyTicket
      *   Proxy ticket is used to build default transport. It should be omitted if custom transport is provided.
      * @param EventDispatcherInterface|null $eventDispatcher
+     *   Event dispatcher service.
      * @param LoggerInterface|null $logger
+     *   Logger service.
      * @param ClientInterface|null $httpClient
+     *   HTTP client such as guzzle or symfony http-client.
      * @param Transport|null $transport
+     *   Transport.
      */
     public function __construct(string $endpoint, string $proxyTicket = '', EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
     {
@@ -80,14 +96,14 @@ abstract class BaseClientFactory
      *
      * @return Engine
      */
-    abstract protected function getEngine();
+    abstract protected function getEngine(): Engine;
 
     /**
      * Gets event dispatcher.
      *
-     * @return EventDispatcherInterface|null
+     * @return EventDispatcherInterface
      */
-    public function getEventDispatcher(): ?EventDispatcherInterface
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->eventDispatcher;
     }
@@ -185,11 +201,8 @@ abstract class BaseClientFactory
     /**
      * Adds log subscriber.
      */
-    protected function addLogger(): void
+    protected function addLogger($logger): void
     {
-        // Set logger, if any.
-        if ($this->logger) {
-            $this->eventDispatcher->addSubscriber(new LogSubscriber($this->logger));
-        }
+        $this->eventDispatcher->addSubscriber(new LogSubscriber($logger));
     }
 }

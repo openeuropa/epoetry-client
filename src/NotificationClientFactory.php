@@ -11,6 +11,9 @@ use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Soap\Engine\Engine;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 
+/**
+ * Notification client factory.
+ */
 class NotificationClientFactory extends BaseClientFactory
 {
     /**
@@ -33,17 +36,21 @@ class NotificationClientFactory extends BaseClientFactory
      * Gets notification client.
      *
      * @return NotificationClient
-     *   RequestClient instance.
+     *   NotificationClient instance.
      */
     public function getNotificationClient(): NotificationClient
     {
         $this->addValidatior(__DIR__ . '/../config/validator/notification.yaml');
-        $this->addLogger();
+
+        // Set logger, if any.
+        if ($this->logger) {
+            $this->addLogger($this->logger);
+        }
 
         // Build caller.
         $caller = new EventDispatchingCaller(new EngineCaller($this->getEngine()), $this->eventDispatcher);
 
-        // Build request client.
+        // Build notification client.
         return new NotificationClient($caller);
     }
 }
