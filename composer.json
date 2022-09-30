@@ -9,6 +9,7 @@
         "cweagans/composer-patches": "^1",
         "php-http/guzzle6-adapter": "^2.0",
         "nyholm/psr7": "^1.4",
+        "php-http/guzzle6-adapter": "^2.0",
         "phpro/soap-client": "~2.0.0",
         "psr/log": "~1",
         "symfony/validator": "~4",
@@ -16,12 +17,14 @@
     },
     "require-dev": {
         "doctrine/annotations": "^1.13",
+        "monolog/monolog": "^2.8",
         "openeuropa/code-review": "^2.0",
         "openeuropa/task-runner": "^2@alpha",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.5",
         "symfony/expression-language": "~4",
+        "symfony/http-kernel": "~4",
         "symfony/property-access": "~4",
         "symfony/property-info": "~4",
         "symfony/serializer": "~4"

@@ -21,5 +21,12 @@ if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
     exit(1);
 }
 
-$app = new OpenEuropa\EPoetry\Console\Application('ePoetry console');
-$app->run();
+use OpenEuropa\EPoetry\Console\AppKernel;
+use Symfony\Component\Console\Application;
+
+$kernel = new AppKernel(getenv('EPOETRY_CONSOLE_ENV'), getenv('EPOETRY_CONSOLE_DEBUG'));
+$kernel->boot();
+
+$container = $kernel->getContainer();
+$application = $container->get(Application::class);
+$application->run();
