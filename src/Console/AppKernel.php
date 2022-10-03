@@ -6,7 +6,6 @@ namespace OpenEuropa\EPoetry\Console;
 
 use OpenEuropa\EPoetry\Console\DependencyInjection\CompilerPass\CommandsToApplicationCompilerPass;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
@@ -34,7 +33,6 @@ final class AppKernel extends Kernel
      */
     protected function build(ContainerBuilder $containerBuilder): void
     {
-        $containerBuilder->register('event_dispatcher', EventDispatcher::class)->setPublic(true);
         $containerBuilder->addCompilerPass(new RegisterListenersPass());
         $containerBuilder->addCompilerPass(new CommandsToApplicationCompilerPass());
     }

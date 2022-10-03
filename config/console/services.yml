@@ -3,6 +3,9 @@ services:
     autowire: true
     autoconfigure: true
 
+  Psr\Log\LoggerInterface: "@logger"
+  Symfony\Component\Serializer\SerializerInterface: "@serializer"
+
   OpenEuropa\EPoetry\:
     resource: '../../src'
 
@@ -10,13 +13,19 @@ services:
     # Set to public so we can get it from container in bin file
     # via "$container->get(Application::class)"
     public: true
+    calls:
+      - setDispatcher: [ "@event_dispatcher"]
 
-  Psr\Log\LoggerInterface: "@logger"
+  serializer:
+    class: \OpenEuropa\EPoetry\Serializer\Serializer
 
   console_handler:
     class: \Symfony\Bridge\Monolog\Handler\ConsoleHandler
     tags:
         - { name: kernel.event_subscriber }
+
+  event_dispatcher:
+    class: \Symfony\Component\EventDispatcher\EventDispatcher
 
   logger:
     class: \Monolog\Logger

@@ -29,5 +29,4 @@ $kernel = new AppKernel(getenv('EPOETRY_CONSOLE_ENV'), getenv('EPOETRY_CONSOLE_D
 $kernel->boot();
 $container = $kernel->getContainer();
 $application = $container->get(Application::class);
-$application->setDispatcher($container->get('event_dispatcher'));
 $application->run();
