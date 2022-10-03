@@ -9,3 +9,4 @@ docker-compose.*.yml
 .phpunit.result.cache
 /certs
 /var
+client-metadata.json

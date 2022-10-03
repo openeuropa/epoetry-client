@@ -7,13 +7,14 @@
         "php": ">=8.0",
         "ext-soap": "*",
         "cweagans/composer-patches": "^1",
-        "php-http/guzzle6-adapter": "^2.0",
+        "facile-it/php-openid-client": "^0.3.1",
         "nyholm/psr7": "^1.4",
         "php-http/guzzle6-adapter": "^2.0",
         "phpro/soap-client": "~2.0.0",
         "psr/log": "~1",
         "symfony/validator": "~4",
-        "veewee/xml": "^1.0"
+        "veewee/xml": "^1.0",
+        "web-token/jwt-signature-algorithm-hmac": "*"
     },
     "require-dev": {
         "doctrine/annotations": "^1.13",
