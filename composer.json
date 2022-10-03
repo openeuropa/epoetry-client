@@ -25,6 +25,7 @@
         "phpunit/phpunit": "~9.5",
         "symfony/expression-language": "~4",
         "symfony/http-kernel": "~4",
+        "symfony/monolog-bridge": "~5",
         "symfony/property-access": "~4",
         "symfony/property-info": "~4",
         "symfony/serializer": "~4"

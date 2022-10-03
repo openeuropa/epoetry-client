@@ -23,10 +23,11 @@ if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
 
 use OpenEuropa\EPoetry\Console\AppKernel;
 use Symfony\Component\Console\Application;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 $kernel = new AppKernel(getenv('EPOETRY_CONSOLE_ENV'), getenv('EPOETRY_CONSOLE_DEBUG'));
 $kernel->boot();
-
 $container = $kernel->getContainer();
 $application = $container->get(Application::class);
+$application->setDispatcher($container->get('event_dispatcher'));
 $application->run();

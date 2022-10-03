@@ -13,7 +13,15 @@ services:
 
   Psr\Log\LoggerInterface: "@logger"
 
+  console_handler:
+    class: \Symfony\Bridge\Monolog\Handler\ConsoleHandler
+    tags:
+        - { name: kernel.event_subscriber }
+
   logger:
     class: \Monolog\Logger
     arguments:
       $name: "epoetry"
+    calls:
+      - setHandlers:
+        - [ "@console_handler" ]

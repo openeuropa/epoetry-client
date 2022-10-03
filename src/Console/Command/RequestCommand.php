@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
+use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use OpenEuropa\EPoetry\RequestClientFactory;
+use Symfony\Bridge\Monolog\Handler\ConsoleHandler;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -40,14 +42,7 @@ class RequestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        //        /** @var $logger LoggerInterface */
-        //        $logger = $this->getContainer()->get('logger');
-
-        $client = new RequestClientFactory(
-            $input->getArgument('endpoint'),
-            $input->getArgument('ticket')
-        );
-
+        $client = RequestClientFactory::factory($input->getArgument('endpoint'), $this->logger);
         return 0;
     }
 }
