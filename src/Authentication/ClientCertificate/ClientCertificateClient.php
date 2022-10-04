@@ -1,14 +1,14 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Authentication;
+namespace OpenEuropa\EPoetry\Authentication\ClientCertificate;
 
 use Phpro\SoapClient\Caller\Caller;
 use Phpro\SoapClient\Type\ResultInterface;
-use OpenEuropa\EPoetry\Authentication\Type;
+use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type;
 use Phpro\SoapClient\Exception\SoapException;
 use Phpro\SoapClient\Type\RequestInterface;
 
-class AuthenticationClient
+class ClientCertificateClient
 {
     /**
      * @var Caller
@@ -25,9 +25,8 @@ class AuthenticationClient
      * @return ResultInterface|Type\GetServiceTicketResponse
      * @throws SoapException
      */
-    public function getServiceTicket(\OpenEuropa\EPoetry\Authentication\Type\GetServiceTicket $getServiceTicketPart) : \OpenEuropa\EPoetry\Authentication\Type\GetServiceTicketResponse
+    public function getServiceTicket(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket $getServiceTicketPart) : \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicketResponse
     {
         return ($this->caller)('getServiceTicket', $getServiceTicketPart);
     }
 }
-

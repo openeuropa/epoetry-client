@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Authentication\Type;
+namespace OpenEuropa\EPoetry\Authentication\ClientCertificate\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
@@ -41,4 +41,3 @@ class GetServiceTicket implements RequestInterface
         return $new;
     }
 }
-

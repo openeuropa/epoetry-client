@@ -1,12 +1,12 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Authentication;
+namespace OpenEuropa\EPoetry\Authentication\ClientCertificate;
 
-use OpenEuropa\EPoetry\Authentication\Type;
+use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 
-class AuthenticationClassmap
+class ClientCertificateClassmap
 {
     public static function getCollection() : \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
     {
@@ -16,4 +16,3 @@ class AuthenticationClassmap
         );
     }
 }
-
