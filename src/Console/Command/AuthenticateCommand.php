@@ -4,22 +4,36 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use OpenEuropa\EPoetry\Authentication\Type\GetServiceTicket;
-use OpenEuropa\EPoetry\AuthenticationClientFactory;
+use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Get authentication ticket.
+ */
 class AuthenticateCommand extends Command
 {
     protected static $defaultName = 'authenticate';
+
+    private LoggerInterface $logger;
+
+    private AuthenticationInterface $authentication;
+
+    public function __construct(LoggerInterface $logger, AuthenticationInterface $authentication)
+    {
+        parent::__construct(null);
+        $this->logger = $logger;
+        $this->authentication = $authentication;
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function configure()
     {
-        $this->setDescription('Authenticate on EU Login.');
+        $this->setDescription('Get authentication ticket from the active authentication system.');
     }
 
     /**
@@ -27,8 +41,7 @@ class AuthenticateCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $client = AuthenticationClientFactory::factory();
-        $response = $client->getServiceTicket(new GetServiceTicket("https://www.test.cc.cec/epoetry/webservices/dgtService"));
+        $output->writeln($this->authentication->getTicket());
         return 0;
     }
 }

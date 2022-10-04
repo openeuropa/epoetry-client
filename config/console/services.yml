@@ -6,6 +6,7 @@ services:
   Psr\Log\LoggerInterface: "@logger"
   Symfony\Component\Serializer\SerializerInterface: "@serializer"
   Symfony\Component\EventDispatcher\EventDispatcherInterface: "@event_dispatcher"
+  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
 
   OpenEuropa\EPoetry\:
     resource: '../../src'
@@ -35,3 +36,11 @@ services:
     calls:
       - setHandlers:
         - [ "@console_handler" ]
+
+  openid_authentication:
+    class: \OpenEuropa\EPoetry\Authentication\OpenID\OpenIDAuthentication
+    arguments:
+      $wellKnownUrl: "https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration"
+      $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_AUTH_CLIENT_METADATA)%"
+      $serviceUrl: "https://www.test.cc.cec/epoetry/webservices/dgtService"
+      $tokenEndpoint: "https://ecas.acceptance.ec.europa.eu/cas/oauth2/token"
