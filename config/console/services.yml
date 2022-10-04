@@ -5,6 +5,7 @@ services:
 
   Psr\Log\LoggerInterface: "@logger"
   Symfony\Component\Serializer\SerializerInterface: "@serializer"
+  Symfony\Component\EventDispatcher\EventDispatcherInterface: "@event_dispatcher"
 
   OpenEuropa\EPoetry\:
     resource: '../../src'

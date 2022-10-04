@@ -25,6 +25,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Facile\OpenIDClient\Client\ClientBuilder;
 use Facile\OpenIDClient\Issuer\IssuerBuilder;
@@ -39,11 +40,14 @@ class RequestCommand extends Command
 
     private SerializerInterface $serializer;
 
-    public function __construct(LoggerInterface $logger, SerializerInterface $serializer)
+    private EventDispatcherInterface $eventDispatcher;
+
+    public function __construct(LoggerInterface $logger, SerializerInterface $serializer, EventDispatcherInterface $eventDispatcher)
     {
         parent::__construct(null);
         $this->logger = $logger;
         $this->serializer = $serializer;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -61,7 +65,7 @@ class RequestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $ticket = $this->getTicket();
-        $factory = new RequestClientFactory($input->getOption('endpoint'), $ticket, null, $this->logger);
+        $factory = new RequestClientFactory($input->getOption('endpoint'), $ticket, $this->eventDispatcher, $this->logger);
         $this->logger->info('Endpoint: ' . $factory->getEndpoint());
         $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
         $client = $factory->getRequestClient();
