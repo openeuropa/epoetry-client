@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
+use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn;
 use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Request\Type\Contacts;
@@ -18,9 +19,7 @@ use OpenEuropa\EPoetry\Request\Type\ReferenceDocuments;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\Request\Type\SrcDocumentIn;
 use OpenEuropa\EPoetry\RequestClientFactory;
-use OpenEuropa\EPoetry\Serializer\Serializer;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,12 +41,15 @@ class RequestCommand extends Command
 
     private EventDispatcherInterface $eventDispatcher;
 
-    public function __construct(LoggerInterface $logger, SerializerInterface $serializer, EventDispatcherInterface $eventDispatcher)
+    private AuthenticationInterface $authentication;
+
+    public function __construct(LoggerInterface $logger, SerializerInterface $serializer, EventDispatcherInterface $eventDispatcher, AuthenticationInterface $authentication)
     {
         parent::__construct(null);
         $this->logger = $logger;
         $this->serializer = $serializer;
         $this->eventDispatcher = $eventDispatcher;
+        $this->authentication = $authentication;
     }
 
     /**
@@ -64,7 +66,7 @@ class RequestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $ticket = $this->getTicket();
+        $ticket = $this->authentication->getTicket();
         $factory = new RequestClientFactory($input->getOption('endpoint'), $ticket, $this->eventDispatcher, $this->logger);
         $this->logger->info('Endpoint: ' . $factory->getEndpoint());
         $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
@@ -140,26 +142,5 @@ class RequestCommand extends Command
             ->setRequestDetails($requestDetails)
             ->setApplicationName('DRUPAL-TEST')
             ->setTemplateName('WEBTRA');
-    }
-
-    protected function getTicket(): string
-    {
-        $issuer = (new IssuerBuilder())->build('https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration');
-        $metadata = json_decode(file_get_contents(__DIR__ . '/../../../client-metadata.json'), true);
-        $clientMetadata = ClientMetadata::fromArray($metadata);
-        $client = (new ClientBuilder())
-            ->setIssuer($issuer)
-            ->setClientMetadata($clientMetadata)
-            ->build();
-
-        $authorizationService = (new AuthorizationServiceBuilder())->build();
-        $tokenSet = $authorizationService->grant($client, [
-            "grant_type" => "client_credentials",
-            "resource" => "https://www.test.cc.cec/epoetry/webservices/dgtService",
-            "aud" => "https://ecas.acceptance.ec.europa.eu/cas/oauth2/token",
-            "requested_token_type" => "urn:ietf:params:oauth:token-type:cas_ticket",
-        ]);
-
-        return $tokenSet->getAccessToken();
     }
 }
