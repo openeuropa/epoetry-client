@@ -14,10 +14,14 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\HttpClient\Psr18Client;
 
+/**
+ * Client certificate authentication plugin.
+ */
 class ClientCertificateAuthentication implements AuthenticationInterface
 {
     /**
      * Service URL for which to ask an authentication ticket.
+     *
      * For example: https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
      *
      * @var string
