@@ -141,5 +141,3 @@ extra_pkgs:
 ```
 
 For more information please refer to [the pipeline configuration documentation](https://webgate.ec.europa.eu/fpfis/wikis/display/MULTISITE/Pipeline+configuration+and+override).
-
-

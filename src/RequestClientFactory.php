@@ -27,33 +27,6 @@ use DOMElement;
 class RequestClientFactory extends BaseClientFactory
 {
     /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var ClientInterface
-     */
-    protected $httpClient;
-
-    /**
-     * @var Transport
-     */
-    protected $transport;
-
-    /**
-     * SOAP endpoint.
-     *
-     * @var string
-     */
-    protected string $endpoint = '';
-
-    /**
      * Authentication plugin.
      *
      * @var AuthenticationInterface
