@@ -59,36 +59,6 @@ class RequestClientFactory extends BaseClientFactory
     }
 
     /**
-     * Gets event dispatcher.
-     *
-     * @return EventDispatcherInterface
-     */
-    public function getEventDispatcher(): EventDispatcherInterface
-    {
-        return $this->eventDispatcher;
-    }
-
-    /**
-     * Gets logger service.
-     *
-     * @return LoggerInterface|null
-     */
-    public function getLogger(): ?LoggerInterface
-    {
-        return $this->logger;
-    }
-
-    /**
-     * Gets http client.
-     *
-     * @return ClientInterface
-     */
-    public function getHttpClient(): ClientInterface
-    {
-        return $this->httpClient;
-    }
-
-    /**
      * Gets proxy ticket.
      *
      * @return string
@@ -96,26 +66,6 @@ class RequestClientFactory extends BaseClientFactory
     public function getProxyTicket(): string
     {
         return $this->proxyTicket;
-    }
-
-    /**
-     * Gets endpoint.
-     *
-     * @return string
-     */
-    public function getEndpoint(): string
-    {
-        return $this->endpoint;
-    }
-
-    /**
-     * Gets transport.
-     *
-     * @return Transport
-     */
-    public function getTransport(): Transport
-    {
-        return $this->transport;
     }
 
     /**
