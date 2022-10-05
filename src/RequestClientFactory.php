@@ -4,6 +4,7 @@ namespace OpenEuropa\EPoetry;
 
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
+use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
@@ -23,7 +24,7 @@ use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
-use function VeeWee\Xml\Dom\Builder\value;
+use DOMElement;
 
 class RequestClientFactory
 {
@@ -55,7 +56,16 @@ class RequestClientFactory
     protected string $endpoint = '';
 
     /**
+     * Authentication plugin.
+     *
+     * @var AuthenticationInterface
+     */
+    protected AuthenticationInterface $authentication;
+
+    /**
      * Proxy ticket.
+     *
+     * This will be populated only after an actual request.
      *
      * @var string
      */
@@ -65,17 +75,16 @@ class RequestClientFactory
      * Constructs RequestClientFactory object.
      *
      * @param string $endpoint
-     * @param string $proxyTicket
-     *   Proxy ticket is used to build default transport. It should be omitted if custom transport is provided.
+     * @param \OpenEuropa\EPoetry\Authentication\AuthenticationInterface $authentication
      * @param EventDispatcherInterface|null $eventDispatcher
      * @param LoggerInterface|null $logger
      * @param ClientInterface|null $httpClient
      * @param Transport|null $transport
      */
-    public function __construct(string $endpoint, string $proxyTicket = '', EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
+    public function __construct(string $endpoint, AuthenticationInterface $authentication, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
     {
         $this->endpoint = $endpoint;
-        $this->proxyTicket = $proxyTicket;
+        $this->authentication = $authentication;
         $this->eventDispatcher = $eventDispatcher ?? new EventDispatcher();
         $this->logger = $logger;
         $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
@@ -149,21 +158,26 @@ class RequestClientFactory
      */
     protected function getDefaultTransport(): Transport
     {
-        $client = $this->getHttpClient();
-        if ($this->proxyTicket) {
-            // Add proxy ticket to the request header.
-            $middlewarePlugin = new SoapHeaderMiddleware(
-                new SoapHeader(
-                    'https://ecas.ec.europa.eu/cas/schemas/ws',
-                    'ecas:ProxyTicket',
-                    value($this->proxyTicket),
-                )
-            );
-            $client = new PluginClient(
-                $client,
-                [$middlewarePlugin]
-            );
-        }
+        // Wrap ticket in a callable, so the actual authentication request gets
+        // fired only when sending a SOAP request.
+        $getTicket = function (DOMElement $node): DOMElement {
+            $this->proxyTicket = $this->authentication->getTicket();
+            $node->nodeValue = $this->proxyTicket;
+            return $node;
+        };
+
+        // Add proxy ticket to the request header.
+        $middlewarePlugin = new SoapHeaderMiddleware(
+            new SoapHeader(
+                'https://ecas.ec.europa.eu/cas/schemas/ws',
+                'ecas:ProxyTicket',
+                $getTicket,
+            )
+        );
+        $client = new PluginClient(
+            $this->getHttpClient(),
+            [$middlewarePlugin]
+        );
         return Psr18Transport::createForClient($client);
     }
 

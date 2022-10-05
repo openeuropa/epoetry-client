@@ -66,13 +66,12 @@ class RequestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $ticket = $this->authentication->getTicket();
-        $factory = new RequestClientFactory($input->getOption('endpoint'), $ticket, $this->eventDispatcher, $this->logger);
-        $this->logger->info('Endpoint: ' . $factory->getEndpoint());
-        $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
+        $factory = new RequestClientFactory($input->getOption('endpoint'), $this->authentication, $this->eventDispatcher, $this->logger);
         $client = $factory->getRequestClient();
 
         $response = $client->createLinguisticRequest($this->getCreateLinguisticRequest());
+        $this->logger->info('Endpoint: ' . $factory->getEndpoint());
+        $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
         $this->logger->info($this->serializer->toString($response, 'json'));
         return 0;
     }
