@@ -3,7 +3,7 @@
 PHP client for the ePoetry service.
 
 Before proceeding, it is recommended to read the ["Introduction and terminology"](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=967905830)
-section of the official [ePoetry documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/EPOETRY/ePoetry+webservices). 
+section of the official [ePoetry documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/EPOETRY/ePoetry+webservices).
 
 A bird's-eye overview of a typical translation request workflow can be outlined as follows:
 
@@ -36,11 +36,96 @@ To (re-)generate the library, run:
   - Notification service XSD: [http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS?xsd=1](http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS?xsd=1)
 - [`./config/soap-client-*.php`](./config): configuration files for the code generation
 - [`./config/validator/*.yaml`](./config/validator): configuration files for object validation, built using [Symfony Validator](https://symfony.com/doc/4.4/validation.html)
-- [`./src/CodeGenerator`](./src/CodeGenerator): set of assembler classes, used to generated client's code 
-- [`./src/Console`](./src/Console): Symfony Console command classes 
-- [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files 
-- [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service 
+- [`./src/CodeGenerator`](./src/CodeGenerator): set of assembler classes, used to generated client's code
+- [`./src/Console`](./src/Console): Symfony Console command classes
+- [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files
+- [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service
 - [`./src/Request`](./src/Request):  automatically generated classes for the "Request" service
+- [`./src/Authentication`](./src/Authentication):  authentication plugins
+
+## Authentication
+
+The ePoetry service uses EU Login as a trusted third-party authentication system. Application that wants to use the ePoetry
+client will need to request an EU Login Job Account.
+
+You can request an EU Login job account from DIGIT by visiting [this page](https://intracomm.ec.testa.eu/itservices/eu-login_en)
+and communicate it to DGT for setting up access. When requesting your job account, please keep in mind that:
+
+- ePoetry test environment uses EU Login acceptance
+- ePoetry staging and production environment uses EU Login production
+
+**Note:** when requesting your job account make sure to ask DIGIT to insert your DG in the job account's "department" field:
+this is required by the ePoetry service.
+
+Once you get your job account, you have two ways of authenticating against the service:
+
+- Via OpenId Connect
+- Via Client Certificate login
+
+### Authenticating via OpenID Connect
+
+You can authenticate using OpenID Connect by using the [OpenIDAuthentication](./src/Authentication/OpenID/OpenIDAuthentication.php)
+plugin.
+
+This authentication plugin needs the following parameters to be set:
+
+- The OpenID Connect ".well-known" endpoint URL of the target environment, be it acceptance or production. Possible values are:
+  - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+  - Production: https://ecas.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+- The ePoetry service URL endpoint you want to target. You can use the following:
+  - Test: https://www.test.cc.cec/epoetry/webservices/dgtService or its publicly accessible proxy
+    https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+  - Acceptance: https://www.acceptance.cc.cec/epoetry/webservices/dgtService
+  - Production: https://www.cc.cec/epoetry/webservices/dgtService
+- EU Login token endpoint:
+  - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
+  - Production: https://ecas.ec.europa.eu/cas/oauth2/token
+- The location of a client metadata JSON file.
+
+In order to obtain this you need to register your application as an OpenID Connect client by following [these instructions](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/OpenID+Connect+-+Client+Registration).
+
+Below you can find a working example of a client metadata:
+
+```json
+{
+  "application_type" : "web",
+  "client_id" : "...",
+  "client_id_issued_at" : 1656329142,
+  "client_name" : "[Name of your application]",
+  "client_secret" : "...",
+  "client_secret_expires_at" : 0,
+  "client_type" : "confidential",
+  "contacts" : [ "[Email of the EC official issuing the request]" ],
+  "grant_types" : [ "client_credentials" ],
+  "id_token_signed_response_alg" : "PS512",
+  "job_account" : "[Your EU Login Job Account ID]",
+  "oauth_application_type" : "web_application",
+  "redirect_uris" : [ "[Your application's URL]" ],
+  "registration_access_token" : "...",
+  "registration_client_uri" : "...",
+  "response_types" : [ ],
+  "scope" : "openid",
+  "subject_type" : "public",
+  "token_endpoint_auth_method" : "client_secret_jwt"
+} 
+```
+
+Use the above values as a reference to configure your own client metadata. Make sure you set these as follows:
+
+```
+...
+  "application_type" : "web",
+  "grant_types" : [ "client_credentials" ],
+  "id_token_signed_response_alg" : "PS512",
+  "oauth_application_type" : "web_application",
+  "token_endpoint_auth_method" : "client_secret_jwt"
+...
+```
+
+
+### Authenticating via Client Certificate login
+
+This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
 
 ## Using it on a European Commission site
 
@@ -56,3 +141,5 @@ extra_pkgs:
 ```
 
 For more information please refer to [the pipeline configuration documentation](https://webgate.ec.europa.eu/fpfis/wikis/display/MULTISITE/Pipeline+configuration+and+override).
+
+
