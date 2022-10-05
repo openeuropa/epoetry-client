@@ -3,30 +3,28 @@
 namespace OpenEuropa\EPoetry;
 
 use Http\Client\Common\PluginClient;
-use Http\Discovery\Psr18ClientDiscovery;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
-use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
-use Soap\Engine\Transport;
 use Soap\Engine\Engine;
+use Soap\Engine\Transport;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
 use Soap\Xml\Builder\SoapHeader;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Validator\ValidatorBuilder;
 use DOMElement;
 
-class RequestClientFactory
+/**
+ * Request client factory.
+ */
+class RequestClientFactory extends BaseClientFactory
 {
     /**
      * @var EventDispatcherInterface
@@ -83,20 +81,16 @@ class RequestClientFactory
      */
     public function __construct(string $endpoint, AuthenticationInterface $authentication, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
     {
-        $this->endpoint = $endpoint;
+        parent::__construct($endpoint, $eventDispatcher, $logger, $httpClient, $transport);
         $this->authentication = $authentication;
-        $this->eventDispatcher = $eventDispatcher ?? new EventDispatcher();
-        $this->logger = $logger;
-        $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
-        $this->transport = $transport ?? $this->getDefaultTransport();
     }
 
     /**
      * Gets event dispatcher.
      *
-     * @return EventDispatcherInterface|null
+     * @return EventDispatcherInterface
      */
-    public function getEventDispatcher(): ?EventDispatcherInterface
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->eventDispatcher;
     }
@@ -182,9 +176,7 @@ class RequestClientFactory
     }
 
     /**
-     * Gets an engine.
-     *
-     * @return Engine
+     * {@inheritdoc}
      */
     protected function getEngine(): Engine
     {
@@ -207,20 +199,15 @@ class RequestClientFactory
      */
     public function getRequestClient(): RequestClient
     {
-        // Build validator with Validator Subscriber.
-        $validatorBuilder = new ValidatorBuilder();
-        $validatorBuilder->addYamlMapping(__DIR__.'/../config/validator/request.yaml');
-        $validator = $validatorBuilder->getValidator();
-        $this->eventDispatcher->addSubscriber(new ValidatorSubscriber($validator));
+        $this->addValidatior(__DIR__ . '/../config/validator/request.yaml');
 
         // Set logger, if any.
         if ($this->logger) {
-            $this->eventDispatcher->addSubscriber(new LogSubscriber($this->logger));
+            $this->addLogger($this->logger);
         }
 
         // Build caller.
-        $engine = $this->getEngine();
-        $caller = new EventDispatchingCaller(new EngineCaller($engine), $this->eventDispatcher);
+        $caller = new EventDispatchingCaller(new EngineCaller($this->getEngine()), $this->eventDispatcher);
 
         // Build request client.
         return new RequestClient($caller);

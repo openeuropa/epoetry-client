@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests;
 
 use Consolidation\Log\Logger;
-use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
 use Http\Mock\Client as MockClient;
 use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn;
 use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;

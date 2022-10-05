@@ -7,45 +7,48 @@ use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationClient;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\Engine\Transport;
-use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
-use Psr\Log\LoggerInterface;
+use Soap\Engine\Engine;
 use Soap\ExtSoapEngine\ExtSoapOptions;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Validator\ValidatorBuilder;
 
-class NotificationClientFactory
+/**
+ * Notification client factory.
+ */
+class NotificationClientFactory extends BaseClientFactory
 {
-    public static function factory(string $endpoint, ?LoggerInterface $logger = null, ?Transport $transport = null): NotificationClient
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEngine(): Engine
     {
         $wsdlProvider = (new LocalWsdlProvider())
-            ->withPortLocation('DgtClientNotificationReceiverWSPort', $endpoint);
-        $engine = DefaultEngineFactory::create(
+            ->withPortLocation('DgtClientNotificationReceiverWSPort', $this->endpoint);
+        return DefaultEngineFactory::create(
             ExtSoapOptions::defaults(__DIR__.'/../resources/notification.wsdl', [])
                 ->withClassMap(NotificationClassmap::getCollection())
                 ->withWsdlProvider($wsdlProvider)
                 ->disableWsdlCache(),
-            $transport
+            $this->transport
         );
+    }
 
-        // Create event dispatcher.
-        $eventDispatcher = new EventDispatcher();
-
-        // Build validator with Validator Subscriber.
-        $validatorBuilder = new ValidatorBuilder();
-        $validatorBuilder->addYamlMapping(__DIR__.'/../config/validator/notification.yaml');
-        $validator = $validatorBuilder->getValidator();
-        $eventDispatcher->addSubscriber(new ValidatorSubscriber($validator));
+    /**
+     * Gets notification client.
+     *
+     * @return NotificationClient
+     *   NotificationClient instance.
+     */
+    public function getNotificationClient(): NotificationClient
+    {
+        $this->addValidatior(__DIR__ . '/../config/validator/notification.yaml');
 
         // Set logger, if any.
-        if ($logger) {
-            $eventDispatcher->addSubscriber(new LogSubscriber($logger));
+        if ($this->logger) {
+            $this->addLogger($this->logger);
         }
 
         // Build caller.
-        $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
+        $caller = new EventDispatchingCaller(new EngineCaller($this->getEngine()), $this->eventDispatcher);
 
         // Build notification client.
         return new NotificationClient($caller);
