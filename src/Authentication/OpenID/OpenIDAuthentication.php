@@ -7,6 +7,7 @@ use Facile\OpenIDClient\Client\Metadata\ClientMetadata;
 use Facile\OpenIDClient\Issuer\IssuerBuilder;
 use Facile\OpenIDClient\Service\Builder\AuthorizationServiceBuilder;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
+use OpenEuropa\EPoetry\Exception\ClientException;
 
 /**
  * OpenID Connect authentication plugin.
@@ -70,7 +71,14 @@ class OpenIDAuthentication implements AuthenticationInterface
     public function getTicket(): string
     {
         $issuer = (new IssuerBuilder())->build($this->wellKnownUrl);
+        if (!file_exists($this->clientMetadataFilepath)) {
+            throw new ClientException("Client metadata file '{$this->clientMetadataFilepath}' not found.");
+        }
+
         $metadata = json_decode(file_get_contents($this->clientMetadataFilepath), true);
+        if ($metadata === null) {
+            throw new ClientException("Client metadata file '{$this->clientMetadataFilepath}' cannot be decoded.");
+        }
         $clientMetadata = ClientMetadata::fromArray($metadata);
         $client = (new ClientBuilder())
             ->setIssuer($issuer)

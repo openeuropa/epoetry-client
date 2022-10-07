@@ -7,7 +7,6 @@ phpunit.xml
 docker-compose.*.yml
 *.backup
 .phpunit.result.cache
-/certs
+/.sink
 /var
-/client-metadata.json
 /.env.local

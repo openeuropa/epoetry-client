@@ -40,7 +40,7 @@ services:
   openid_authentication:
     class: \OpenEuropa\EPoetry\Authentication\OpenID\OpenIDAuthentication
     arguments:
-      $wellKnownUrl: "https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration"
+      $wellKnownUrl: "%env(string:EPOETRY_CONSOLE_WELL_KNOWN_URL)%"
       $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_AUTH_CLIENT_METADATA)%"
-      $serviceUrl: "https://www.test.cc.cec/epoetry/webservices/dgtService"
-      $tokenEndpoint: "https://ecas.acceptance.ec.europa.eu/cas/oauth2/token"
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_SERVICE_URL)%"
+      $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_TOKEN_ENDPOINT)%"
