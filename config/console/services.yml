@@ -1,7 +1,11 @@
+parameters:
+    endpoint: "%env(string:EPOETRY_CONSOLE_SERVICE_URL)%"
 services:
   _defaults:
     autowire: true
     autoconfigure: true
+    bind:
+      string $endpoint: "%endpoint%"
 
   Psr\Log\LoggerInterface: "@logger"
   Symfony\Component\Serializer\SerializerInterface: "@serializer"
@@ -40,7 +44,7 @@ services:
   openid_authentication:
     class: \OpenEuropa\EPoetry\Authentication\OpenID\OpenIDAuthentication
     arguments:
-      $wellKnownUrl: "%env(string:EPOETRY_CONSOLE_WELL_KNOWN_URL)%"
-      $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_AUTH_CLIENT_METADATA)%"
-      $serviceUrl: "%env(string:EPOETRY_CONSOLE_SERVICE_URL)%"
-      $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_TOKEN_ENDPOINT)%"
+      $wellKnownUrl: "%env(string:EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL)%"
+      $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA)%"
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_OPENID_SERVICE_URL)%"
+      $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT)%"

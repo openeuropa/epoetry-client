@@ -127,6 +127,80 @@ Use the above values as a reference to configure your own client metadata. Make 
 
 This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
 
+## Interact with the service via command line
+
+This library provides the following convenience CLI commands to interact with the ePoetry service. You can set command verbosity
+by setting the usual `-v`, `-vv` and `-vvv` flags. If you want to set the maximum level of verbosity, set `EPOETRY_CONSOLE_DEBUG=1`
+in `.env`. You can also copy `.env` into `.env.local` and override the value there: `.env.local` is git-ignored by default. 
+
+### Get and authentication token from EU Login
+
+Run:
+
+```
+$ ./bin/epoetry authentication:get-ticket
+```
+
+This will use the authentication method set in the Symfony Console container to retrieve an authentication ticket.
+If successful the ticket will be printed out:
+
+```
+$ ./bin/epoetry authentication:get-ticket
+PT-158800-LdPkn3XdVza0Kyj4CC5kVcFJawuBpRZJ7A9dtCR...
+```
+
+The default authentication method is the OpenID Connect, you can change that by setting an alternative value here in [./config/console/services.yml](./config/console/services.yml):
+
+```yaml
+OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
+```
+
+OpenID Connect method requires a valid client metadata JSON file, available locally. You can control the value of that,
+along with other authentication setting, by changing the following environment variables:
+
+```
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL=https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+EPOETRY_CONSOLE_OPENID_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT=https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
+```
+
+### Perform a `CreateLinguisticRequest`
+
+Run:
+
+```
+$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+```
+
+This will parse the request object in `.sink/request.yml` and send it to the configured ePoetry service. You can set
+the desired service URL via the following environment variable:
+
+```
+EPOETRY_CONSOLE_SERVICE_URL=/var/www/html/.sink/client-metadata.json
+```
+
+You can find example of working request payloads in [./config/console/examples](./config/console/examples).
+
+If successful the command will return the ePoetry response in JSON format:
+
+```
+$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+{
+    "return": {
+        "requestReference": {
+            "dossier": {
+                "requesterCode": "DIGIT",
+                "number": 33,
+                "year": 2022
+            },
+            "productType": "TRA",
+            "part": 0,
+            "version": 0
+        },
+...
+```
+
 ## Using it on a European Commission site
 
 The ePoetry client library requires the `ext-bcmath` PHP extension, which is not necessarily enabled on all images used

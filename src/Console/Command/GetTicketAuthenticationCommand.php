@@ -13,9 +13,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Get authentication ticket.
  */
-class AuthenticateCommand extends Command
+class GetTicketAuthenticationCommand extends Command
 {
-    protected static $defaultName = 'authenticate';
+    protected static $defaultName = 'authentication:get-ticket';
 
     private LoggerInterface $logger;
 
