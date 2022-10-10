@@ -17,3 +17,5 @@ services:
       PHP_IDE_CONFIG: "serverName=Docker"
     volumes:
     - ./:/var/www/html
+    ports:
+      - 8088:8088

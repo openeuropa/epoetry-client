@@ -25,6 +25,7 @@
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.5",
+        "react/http": "^1.8",
         "symfony/dotenv": "~4",
         "symfony/expression-language": "~4",
         "symfony/http-client": "~4",
