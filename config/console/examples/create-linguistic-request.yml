@@ -1,3 +1,5 @@
+# You can copy this to ".sink/request.yml", modify its values and run a test request by running the following command
+# $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
 requestDetails:
     title: 'Request title'
     requestedDeadline: '2029-07-01T11:51:00+01:00'

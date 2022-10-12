@@ -2,7 +2,6 @@
 
 namespace OpenEuropa\EPoetry;
 
-use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
 use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
 use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
@@ -10,13 +9,10 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Soap\Engine\Transport;
 use Soap\Engine\Engine;
-use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
-use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
-use function VeeWee\Xml\Dom\Builder\value;
 
 /**
  * Base class for client factories.
@@ -165,7 +161,7 @@ abstract class BaseClientFactory
      * @param string $validationRulesPath
      *   Path to yaml file with validation rules.
      */
-    protected function addValidatior(string $validationRulesPath): void
+    protected function addValidator(string $validationRulesPath): void
     {
         // Build validator with Validator Subscriber.
         $validatorBuilder = new ValidatorBuilder();

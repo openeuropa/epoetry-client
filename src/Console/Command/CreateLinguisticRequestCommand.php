@@ -37,7 +37,7 @@ class CreateLinguisticRequestCommand extends BaseRequestCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $factory = $this->getRequestFactory($input);
+        $factory = $this->getRequestFactory();
         $object = $this->getRequestObject($input);
         if ($object === null) {
             return 1;

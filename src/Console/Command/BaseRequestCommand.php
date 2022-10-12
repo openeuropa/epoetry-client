@@ -58,11 +58,9 @@ abstract class BaseRequestCommand extends Command
     }
 
     /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     *
      * @return \OpenEuropa\EPoetry\RequestClientFactory
      */
-    protected function getRequestFactory(InputInterface $input): RequestClientFactory
+    protected function getRequestFactory(): RequestClientFactory
     {
         return new RequestClientFactory($this->endpoint, $this->authentication, $this->eventDispatcher, $this->logger);
     }

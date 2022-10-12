@@ -122,7 +122,7 @@ class RequestClientFactory extends BaseClientFactory
      */
     public function getRequestClient(): RequestClient
     {
-        $this->addValidatior(__DIR__ . '/../config/validator/request.yaml');
+        $this->addValidator(__DIR__ . '/../config/validator/request.yaml');
 
         // Set logger, if any.
         if ($this->logger) {

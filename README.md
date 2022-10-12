@@ -122,6 +122,15 @@ Use the above values as a reference to configure your own client metadata. Make 
 ...
 ```
 
+Once you get such information, store it in a JSON file that is reachable by your application, as this will be needed
+to configure the authentication service.
+
+For example: when using the ePoetry via the provided Symfony Console commands, the client metadata is expected to be found
+at this location (see [.env](.env)):
+
+```
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+```
 
 ### Authenticating via Client Certificate login
 
@@ -133,7 +142,7 @@ This library provides the following convenience CLI commands to interact with th
 by setting the usual `-v`, `-vv` and `-vvv` flags. If you want to set the maximum level of verbosity, set `EPOETRY_CONSOLE_DEBUG=1`
 in `.env`. You can also copy `.env` into `.env.local` and override the value there: `.env.local` is git-ignored by default. 
 
-### Get and authentication token from EU Login
+### Get an authentication token from EU Login
 
 Run:
 
@@ -177,7 +186,7 @@ This will parse the request object in `.sink/request.yml` and send it to the con
 the desired service URL via the following environment variable:
 
 ```
-EPOETRY_CONSOLE_SERVICE_URL=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_SERVICE_URL=https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
 ```
 
 You can find example of working request payloads in [./config/console/examples](./config/console/examples).
