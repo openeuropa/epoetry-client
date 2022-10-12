@@ -106,7 +106,7 @@ class StartNotificationListenerCommand extends Command
      */
     private function getLogFilepath(string $folder): string
     {
-        $name = (new \DateTimeImmutable())->format('Y-m-d-H-i-s-u');
+        $name = (new \DateTimeImmutable())->format('Y-m-d\THis.u');
         return $folder.DIRECTORY_SEPARATOR.$name.'.txt';
     }
 
