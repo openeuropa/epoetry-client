@@ -140,7 +140,13 @@ This section is still in progress. You can check [this page](https://citnet.tech
 
 This library provides the following convenience CLI commands to interact with the ePoetry service. You can set command verbosity
 by setting the usual `-v`, `-vv` and `-vvv` flags. If you want to set the maximum level of verbosity, set `EPOETRY_CONSOLE_DEBUG=1`
-in `.env`. You can also copy `.env` into `.env.local` and override the value there: `.env.local` is git-ignored by default. 
+in `.env`. You can also copy `.env` into `.env.local` and override the value there: `.env.local` is git-ignored by default.
+
+**Note for developers:** Symfony stores a compiled version of the command container under `./var`: make sure you delete this
+directory if you:
+
+- Modify the content of [./config/console/services.yml](./config/console/services.yml)
+- Add or change command classes
 
 ### Get an authentication token from EU Login
 
