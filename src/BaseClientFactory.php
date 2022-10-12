@@ -2,7 +2,6 @@
 
 namespace OpenEuropa\EPoetry;
 
-use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
 use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
 use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
@@ -10,13 +9,10 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Soap\Engine\Transport;
 use Soap\Engine\Engine;
-use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
-use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
-use function VeeWee\Xml\Dom\Builder\value;
 
 /**
  * Base class for client factories.
@@ -59,19 +55,10 @@ abstract class BaseClientFactory
     protected string $endpoint = '';
 
     /**
-     * Proxy ticket.
-     *
-     * @var string
-     */
-    protected string $proxyTicket = '';
-
-    /**
      * Constructs BaseClientFactory object.
      *
      * @param string $endpoint
      *   SOAP endpoint.
-     * @param string $proxyTicket
-     *   Proxy ticket is used to build default transport. It should be omitted if custom transport is provided.
      * @param EventDispatcherInterface|null $eventDispatcher
      *   Event dispatcher service.
      * @param LoggerInterface|null $logger
@@ -81,10 +68,9 @@ abstract class BaseClientFactory
      * @param Transport|null $transport
      *   Transport.
      */
-    public function __construct(string $endpoint, string $proxyTicket = '', EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
+    public function __construct(string $endpoint, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
     {
         $this->endpoint = $endpoint;
-        $this->proxyTicket = $proxyTicket;
         $this->eventDispatcher = $eventDispatcher ?? new EventDispatcher();
         $this->logger = $logger;
         $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
@@ -166,20 +152,6 @@ abstract class BaseClientFactory
     protected function getDefaultTransport(): Transport
     {
         $client = $this->getHttpClient();
-        if ($this->proxyTicket) {
-            // Add proxy ticket to the request header.
-            $middlewarePlugin = new SoapHeaderMiddleware(
-                new SoapHeader(
-                    'https://ecas.ec.europa.eu/cas/schemas/ws',
-                    'ecas:ProxyTicket',
-                    value($this->proxyTicket),
-                )
-            );
-            $client = new PluginClient(
-                $client,
-                [$middlewarePlugin]
-            );
-        }
         return Psr18Transport::createForClient($client);
     }
 
@@ -189,7 +161,7 @@ abstract class BaseClientFactory
      * @param string $validationRulesPath
      *   Path to yaml file with validation rules.
      */
-    protected function addValidatior(string $validationRulesPath): void
+    protected function addValidator(string $validationRulesPath): void
     {
         // Build validator with Validator Subscriber.
         $validatorBuilder = new ValidatorBuilder();

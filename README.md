@@ -3,7 +3,7 @@
 PHP client for the ePoetry service.
 
 Before proceeding, it is recommended to read the ["Introduction and terminology"](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=967905830)
-section of the official [ePoetry documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/EPOETRY/ePoetry+webservices). 
+section of the official [ePoetry documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/EPOETRY/ePoetry+webservices).
 
 A bird's-eye overview of a typical translation request workflow can be outlined as follows:
 
@@ -36,11 +36,185 @@ To (re-)generate the library, run:
   - Notification service XSD: [http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS?xsd=1](http://wlstd00470.cc.cec.eu.int:1042/epoetry/webservices/DgtClientNotificationReceiverWS?xsd=1)
 - [`./config/soap-client-*.php`](./config): configuration files for the code generation
 - [`./config/validator/*.yaml`](./config/validator): configuration files for object validation, built using [Symfony Validator](https://symfony.com/doc/4.4/validation.html)
-- [`./src/CodeGenerator`](./src/CodeGenerator): set of assembler classes, used to generated client's code 
-- [`./src/Console`](./src/Console): Symfony Console command classes 
-- [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files 
-- [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service 
+- [`./src/CodeGenerator`](./src/CodeGenerator): set of assembler classes, used to generated client's code
+- [`./src/Console`](./src/Console): Symfony Console command classes
+- [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files
+- [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service
 - [`./src/Request`](./src/Request):  automatically generated classes for the "Request" service
+- [`./src/Authentication`](./src/Authentication):  authentication plugins
+
+## Authentication
+
+The ePoetry service uses EU Login as a trusted third-party authentication system. Application that wants to use the ePoetry
+client will need to request an EU Login Job Account.
+
+You can request an EU Login job account from DIGIT by visiting [this page](https://intracomm.ec.testa.eu/itservices/eu-login_en)
+and communicate it to DGT for setting up access. When requesting your job account, please keep in mind that:
+
+- ePoetry test environment uses EU Login acceptance
+- ePoetry staging and production environment uses EU Login production
+
+**Note:** when requesting your job account make sure to ask DIGIT to insert your DG in the job account's "department" field:
+this is required by the ePoetry service.
+
+Once you get your job account, you have two ways of authenticating against the service:
+
+- Via OpenId Connect
+- Via Client Certificate login
+
+### Authenticating via OpenID Connect
+
+You can authenticate using OpenID Connect by using the [OpenIDAuthentication](./src/Authentication/OpenID/OpenIDAuthentication.php)
+plugin.
+
+This authentication plugin needs the following parameters to be set:
+
+- The OpenID Connect ".well-known" endpoint URL of the target environment, be it acceptance or production. Possible values are:
+  - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+  - Production: https://ecas.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+- The ePoetry service URL endpoint you want to target. You can use the following:
+  - Test: https://www.test.cc.cec/epoetry/webservices/dgtService or its publicly accessible proxy
+    https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+  - Acceptance: https://www.acceptance.cc.cec/epoetry/webservices/dgtService
+  - Production: https://www.cc.cec/epoetry/webservices/dgtService
+- EU Login token endpoint:
+  - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
+  - Production: https://ecas.ec.europa.eu/cas/oauth2/token
+- The location of a client metadata JSON file.
+
+In order to obtain this you need to register your application as an OpenID Connect client by following [these instructions](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/OpenID+Connect+-+Client+Registration).
+
+Below you can find a working example of a client metadata:
+
+```json
+{
+  "application_type" : "web",
+  "client_id" : "...",
+  "client_id_issued_at" : 1656329142,
+  "client_name" : "[Name of your application]",
+  "client_secret" : "...",
+  "client_secret_expires_at" : 0,
+  "client_type" : "confidential",
+  "contacts" : [ "[Email of the EC official issuing the request]" ],
+  "grant_types" : [ "client_credentials" ],
+  "id_token_signed_response_alg" : "PS512",
+  "job_account" : "[Your EU Login Job Account ID]",
+  "oauth_application_type" : "web_application",
+  "redirect_uris" : [ "[Your application's URL]" ],
+  "registration_access_token" : "...",
+  "registration_client_uri" : "...",
+  "response_types" : [ ],
+  "scope" : "openid",
+  "subject_type" : "public",
+  "token_endpoint_auth_method" : "client_secret_jwt"
+} 
+```
+
+Use the above values as a reference to configure your own client metadata. Make sure you set these as follows:
+
+```
+...
+  "application_type" : "web",
+  "grant_types" : [ "client_credentials" ],
+  "id_token_signed_response_alg" : "PS512",
+  "oauth_application_type" : "web_application",
+  "token_endpoint_auth_method" : "client_secret_jwt"
+...
+```
+
+Once you get such information, store it in a JSON file that is reachable by your application, as this will be needed
+to configure the authentication service.
+
+For example: when using the ePoetry via the provided Symfony Console commands, the client metadata is expected to be found
+at this location (see [.env](.env)):
+
+```
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+```
+
+### Authenticating via Client Certificate login
+
+This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
+
+## Interact with the service via command line
+
+This library provides the following convenience CLI commands to interact with the ePoetry service. You can set command verbosity
+by setting the usual `-v`, `-vv` and `-vvv` flags. If you want to set the maximum level of verbosity, set `EPOETRY_CONSOLE_DEBUG=1`
+in `.env`. You can also copy `.env` into `.env.local` and override the value there: `.env.local` is git-ignored by default.
+
+**Note for developers:** Symfony stores a compiled version of the command container under `./var`: make sure you delete this
+directory if you:
+
+- Modify the content of [./config/console/services.yml](./config/console/services.yml)
+- Add or change command classes
+
+### Get an authentication token from EU Login
+
+Run:
+
+```
+$ ./bin/epoetry authentication:get-ticket
+```
+
+This will use the authentication method set in the Symfony Console container to retrieve an authentication ticket.
+If successful the ticket will be printed out:
+
+```
+$ ./bin/epoetry authentication:get-ticket
+PT-158800-LdPkn3XdVza0Kyj4CC5kVcFJawuBpRZJ7A9dtCR...
+```
+
+The default authentication method is the OpenID Connect, you can change that by setting an alternative value here in [./config/console/services.yml](./config/console/services.yml):
+
+```yaml
+OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
+```
+
+OpenID Connect method requires a valid client metadata JSON file, available locally. You can control the value of that,
+along with other authentication setting, by changing the following environment variables:
+
+```
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL=https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
+EPOETRY_CONSOLE_OPENID_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT=https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
+```
+
+### Perform a `CreateLinguisticRequest`
+
+Run:
+
+```
+$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+```
+
+This will parse the request object in `.sink/request.yml` and send it to the configured ePoetry service. You can set
+the desired service URL via the following environment variable:
+
+```
+EPOETRY_CONSOLE_SERVICE_URL=https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+```
+
+You can find example of working request payloads in [./config/console/examples](./config/console/examples).
+
+If successful the command will return the ePoetry response in JSON format:
+
+```
+$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+{
+    "return": {
+        "requestReference": {
+            "dossier": {
+                "requesterCode": "DIGIT",
+                "number": 33,
+                "year": 2022
+            },
+            "productType": "TRA",
+            "part": 0,
+            "version": 0
+        },
+...
+```
 
 ## Using it on a European Commission site
 

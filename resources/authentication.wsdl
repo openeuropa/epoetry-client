@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="CertLoginService" targetNamespace="https://ecas.ec.europa.eu/cas/schemas/ws/CertLogin"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="https://ecas.ec.europa.eu/cas/schemas/ws/CertLogin"
+                  xmlns:wsoap11="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="https://ecas.ec.europa.eu/cas/schemas/ws/CertLogin" version="1.0" xml:lang="EN">
+            <xsd:element name="getServiceTicket">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Request to obtain a service ticket.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="service" type="xsd:anyURI">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    The target service for which you want to obtain a service ticket.
+                                    This must be a valid URL.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getServiceTicketResponse">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Response containing the service ticket for the specified service.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="serviceTicket" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Service ticket for the specified service.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getServiceTicketIn">
+        <wsdl:part element="getServiceTicket" name="getServiceTicketPart"/>
+    </wsdl:message>
+    <wsdl:message name="getServiceTicketOut">
+        <wsdl:part element="getServiceTicketResponse" name="getServiceTicketResponsePart"/>
+    </wsdl:message>
+    <wsdl:message name="httpRequest">
+        <wsdl:part name="service" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="httpResponse">
+        <wsdl:part name="ticket" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:portType name="CertLoginIntf">
+        <wsdl:operation name="getServiceTicket">
+            <wsdl:input message="getServiceTicketIn"/>
+            <wsdl:output message="getServiceTicketOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="CertLoginPostIntf">
+        <wsdl:operation name="getServiceTicket">
+           <wsdl:input message="httpRequest"/>
+           <wsdl:output message="getServiceTicketOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="CertLoginGetIntf">
+        <wsdl:operation name="getServiceTicket">
+           <wsdl:input message="httpRequest"/>
+           <wsdl:output message="httpResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CertLoginServiceSoap11Binding" type="CertLoginIntf">
+        <wsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getServiceTicket">
+            <wsoap11:operation style="document"/>
+            <wsdl:input>
+                <wsoap11:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <wsoap11:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CertLoginServiceSoap12Binding" type="CertLoginIntf">
+        <wsoap12:binding style="document" transport="http://www.w3.org/2003/05/soap/bindings/HTTP/"/>
+        <wsdl:operation name="getServiceTicket">
+            <wsoap12:operation style="document"/>
+            <wsdl:input>
+                <wsoap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <wsoap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CertLoginServiceHttpPostBinding" type="CertLoginPostIntf">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getServiceTicket">
+            <http:operation location="/post"/>
+            <wsdl:input>
+                <mime:content type="application/x-www-form-urlencoded"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:mimeXml part="getServiceTicketResponsePart"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CertLoginServiceHttpGetBinding" type="CertLoginGetIntf">
+        <http:binding verb="GET"/>
+        <wsdl:operation name="getServiceTicket">
+            <http:operation location="/get"/>
+            <wsdl:input>
+                <http:urlEncoded/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content part="ticket" type="text/plain"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CertLoginService">
+        <wsdl:port binding="CertLoginServiceSoap11Binding" name="CertLoginSoap11Port">
+            <wsoap11:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/soap/1.1"/>
+        </wsdl:port>
+        <wsdl:port binding="CertLoginServiceSoap12Binding" name="CertLoginSoap12Port">
+            <wsoap12:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/soap/1.2"/>
+        </wsdl:port>
+        <wsdl:port binding="CertLoginServiceHttpGetBinding" name="CertLoginHttpGetPort" >
+           <http:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/http"/>
+        </wsdl:port>
+        <wsdl:port binding="CertLoginServiceHttpPostBinding" name="CertLoginHttpPostPort">
+           <http:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/http"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

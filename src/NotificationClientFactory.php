@@ -40,7 +40,7 @@ class NotificationClientFactory extends BaseClientFactory
      */
     public function getNotificationClient(): NotificationClient
     {
-        $this->addValidatior(__DIR__ . '/../config/validator/notification.yaml');
+        $this->addValidator(__DIR__ . '/../config/validator/notification.yaml');
 
         // Set logger, if any.
         if ($this->logger) {

@@ -2,20 +2,102 @@
 
 namespace OpenEuropa\EPoetry;
 
+use Http\Client\Common\PluginClient;
+use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
 use Soap\Engine\Engine;
+use Soap\Engine\Transport;
 use Soap\ExtSoapEngine\ExtSoapOptions;
+use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
+use Soap\Psr18Transport\Psr18Transport;
+use Soap\Xml\Builder\SoapHeader;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use DOMElement;
 
 /**
  * Request client factory.
  */
 class RequestClientFactory extends BaseClientFactory
 {
+    /**
+     * Authentication plugin.
+     *
+     * @var AuthenticationInterface
+     */
+    protected AuthenticationInterface $authentication;
+
+    /**
+     * Proxy ticket.
+     *
+     * This will be populated only after an actual request.
+     *
+     * @var string
+     */
+    protected string $proxyTicket = '';
+
+    /**
+     * Constructs RequestClientFactory object.
+     *
+     * @param string $endpoint
+     * @param \OpenEuropa\EPoetry\Authentication\AuthenticationInterface $authentication
+     * @param EventDispatcherInterface|null $eventDispatcher
+     * @param LoggerInterface|null $logger
+     * @param ClientInterface|null $httpClient
+     * @param Transport|null $transport
+     */
+    public function __construct(string $endpoint, AuthenticationInterface $authentication, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
+    {
+        parent::__construct($endpoint, $eventDispatcher, $logger, $httpClient, $transport);
+        $this->authentication = $authentication;
+    }
+
+    /**
+     * Gets proxy ticket.
+     *
+     * @return string
+     */
+    public function getProxyTicket(): string
+    {
+        return $this->proxyTicket;
+    }
+
+    /**
+     * Gets transport if it wasn't provided.
+     *
+     * @return Transport
+     */
+    protected function getDefaultTransport(): Transport
+    {
+        // Wrap ticket in a callable, so the actual authentication request gets
+        // fired only when sending a SOAP request.
+        $getTicket = function (DOMElement $node): DOMElement {
+            $this->proxyTicket = $this->authentication->getTicket();
+            $node->nodeValue = $this->proxyTicket;
+            return $node;
+        };
+
+        // Add proxy ticket to the request header.
+        $middlewarePlugin = new SoapHeaderMiddleware(
+            new SoapHeader(
+                'https://ecas.ec.europa.eu/cas/schemas/ws',
+                'ecas:ProxyTicket',
+                $getTicket,
+            )
+        );
+        $client = new PluginClient(
+            $this->getHttpClient(),
+            [$middlewarePlugin]
+        );
+        return Psr18Transport::createForClient($client);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -40,7 +122,7 @@ class RequestClientFactory extends BaseClientFactory
      */
     public function getRequestClient(): RequestClient
     {
-        $this->addValidatior(__DIR__ . '/../config/validator/request.yaml');
+        $this->addValidator(__DIR__ . '/../config/validator/request.yaml');
 
         // Set logger, if any.
         if ($this->logger) {

@@ -6,28 +6,39 @@
     "require": {
         "php": ">=8.0",
         "ext-soap": "*",
+        "ext-dom": "*",
         "cweagans/composer-patches": "^1",
-        "php-http/guzzle6-adapter": "^2.0",
         "nyholm/psr7": "^1.4",
+        "php-http/guzzle6-adapter": "^2.0",
         "phpro/soap-client": "~2.0.0",
         "psr/log": "~1",
         "symfony/validator": "~4",
-        "veewee/xml": "^1.0"
+        "veewee/xml": "^1.0",
+        "symfony/serializer": "~4"
     },
     "require-dev": {
         "doctrine/annotations": "^1.13",
+        "facile-it/php-openid-client": "^0.3.1",
+        "monolog/monolog": "^2.8",
         "openeuropa/code-review": "^2.0",
         "openeuropa/task-runner": "^2@alpha",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.5",
+        "symfony/dotenv": "~4",
         "symfony/expression-language": "~4",
+        "symfony/http-client": "~4",
+        "symfony/http-kernel": "~4",
+        "symfony/monolog-bridge": "~5",
         "symfony/property-access": "~4",
         "symfony/property-info": "~4",
-        "symfony/serializer": "~4"
+        "web-token/jwt-signature-algorithm-hmac": "~3.1"
     },
     "suggest": {
-        "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console."
+        "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
+        "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
+        "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin.",
+        "symfony/http-client": "Require this in your project if you use the client certificate authentication plugin."
     },
     "config": {
         "sort-packages": true,

@@ -1,0 +1,50 @@
+parameters:
+    endpoint: "%env(string:EPOETRY_CONSOLE_SERVICE_URL)%"
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      string $endpoint: "%endpoint%"
+
+  Psr\Log\LoggerInterface: "@logger"
+  Symfony\Component\Serializer\SerializerInterface: "@serializer"
+  Symfony\Component\EventDispatcher\EventDispatcherInterface: "@event_dispatcher"
+  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
+
+  OpenEuropa\EPoetry\:
+    resource: '../../src'
+
+  Symfony\Component\Console\Application:
+    # Set to public so we can get it from container in bin file
+    # via "$container->get(Application::class)"
+    public: true
+    calls:
+      - setDispatcher: [ "@event_dispatcher"]
+
+  serializer:
+    class: \OpenEuropa\EPoetry\Serializer\Serializer
+
+  console_handler:
+    class: \Symfony\Bridge\Monolog\Handler\ConsoleHandler
+    tags:
+        - { name: kernel.event_subscriber }
+
+  event_dispatcher:
+    class: \Symfony\Component\EventDispatcher\EventDispatcher
+
+  logger:
+    class: \Monolog\Logger
+    arguments:
+      $name: "epoetry"
+    calls:
+      - setHandlers:
+        - [ "@console_handler" ]
+
+  openid_authentication:
+    class: \OpenEuropa\EPoetry\Authentication\OpenID\OpenIDAuthentication
+    arguments:
+      $wellKnownUrl: "%env(string:EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL)%"
+      $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA)%"
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_OPENID_SERVICE_URL)%"
+      $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT)%"

@@ -1,5 +1,10 @@
 #!/usr/bin/env php
 <?php
+
+use OpenEuropa\EPoetry\Console\AppKernel;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Dotenv\Dotenv;
+
 define('EPOETRY_PATH', realpath(__DIR__ . '/..'));
 
 if (is_file($autoload = getcwd() . '/vendor/autoload.php')) {
@@ -21,5 +26,11 @@ if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
     exit(1);
 }
 
-$app = new OpenEuropa\EPoetry\Console\Application('ePoetry console');
-$app->run();
+$dotenv = new Dotenv();
+$dotenv->loadEnv(__DIR__.'/../.env');
+
+$kernel = new AppKernel(getenv('EPOETRY_CONSOLE_ENV'), getenv('EPOETRY_CONSOLE_DEBUG'));
+$kernel->boot();
+$container = $kernel->getContainer();
+$application = $container->get(Application::class);
+$application->run();
