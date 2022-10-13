@@ -136,6 +136,18 @@ EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.
 
 This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
 
+## Notification events
+
+The ePoetry service will send the following notifications, as Symfony events:
+
+- [`RequestStatus\ChangeAcceptedEvent`](./src/Notification/Event/RequestStatus/ChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
+- [`RequestStatus\ChangeRejectedEvent`](./src/Notification/Event/RequestStatus/ChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
+- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeOngoingEvent`](./src/Notification/Event/Product/StatusChangeOngoingEvent.php): fired when the status of the product changes to "ongoing".
+- [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when the translation of a product is finalized. It contains the translated product.
+
+For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
+
 ## Interact with the service via command line
 
 This library provides the following convenience CLI commands to interact with the ePoetry service. You can set command verbosity
