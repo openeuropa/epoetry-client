@@ -127,16 +127,16 @@
     </wsdl:binding>
     <wsdl:service name="CertLoginService">
         <wsdl:port binding="CertLoginServiceSoap11Binding" name="CertLoginSoap11Port">
-            <wsoap11:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/soap/1.1"/>
+            <wsoap11:address location="https://ecasa.cc.cec.eu.int:7003/cas/ws/CertLoginService/soap/1.1"/>
         </wsdl:port>
         <wsdl:port binding="CertLoginServiceSoap12Binding" name="CertLoginSoap12Port">
-            <wsoap12:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/soap/1.2"/>
+            <wsoap12:address location="https://ecasa.cc.cec.eu.int:7003/cas/ws/CertLoginService/soap/1.2"/>
         </wsdl:port>
         <wsdl:port binding="CertLoginServiceHttpGetBinding" name="CertLoginHttpGetPort" >
-           <http:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/http"/>
+           <http:address location="https://ecasa.cc.cec.eu.int:7003/cas/ws/CertLoginService/http"/>
         </wsdl:port>
         <wsdl:port binding="CertLoginServiceHttpPostBinding" name="CertLoginHttpPostPort">
-           <http:address location="https://webgate.acceptance.ec.europa.eu/cas/ws/CertLoginService/http"/>
+           <http:address location="https://ecasa.cc.cec.eu.int:7003/cas/ws/CertLoginService/http"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

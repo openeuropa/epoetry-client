@@ -62,10 +62,15 @@ class ClientCertificateAuthentication implements AuthenticationInterface
     public function getTicket(): string
     {
         $httpClient = new CurlHttpClient([
-            'verify_peer' => false,
-            'verify_host' => false,
+//            'verify_peer' => true,
+//            'verify_host' => true,
             'local_cert' => $this->certFilepath,
-            'passphrase' => $this->certPassword,
+            'extra' => [
+                'curl' => [
+                    \CURLOPT_SSLCERTTYPE => 'P12',
+                    \CURLOPT_SSLCERTPASSWD => $this->certPassword,
+                ],
+            ],
         ]);
 
         $engine = DefaultEngineFactory::create(
