@@ -15,7 +15,7 @@
         "psr/log": "~1",
         "symfony/validator": "~4",
         "veewee/xml": "^1.0",
-        "symfony/serializer": "~4",
+        "symfony/serializer": "~4"
     },
     "require-dev": {
         "doctrine/annotations": "^1.13",
