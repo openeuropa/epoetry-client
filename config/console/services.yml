@@ -10,7 +10,8 @@ services:
   Psr\Log\LoggerInterface: "@logger"
   Symfony\Component\Serializer\SerializerInterface: "@serializer"
   Symfony\Component\EventDispatcher\EventDispatcherInterface: "@event_dispatcher"
-  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
+#  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
+  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@client_cert_authentication"
 
   OpenEuropa\EPoetry\:
     resource: '../../src'
@@ -48,3 +49,10 @@ services:
       $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA)%"
       $serviceUrl: "%env(string:EPOETRY_CONSOLE_OPENID_SERVICE_URL)%"
       $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT)%"
+
+  client_cert_authentication:
+    class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication
+    arguments:
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL)%"
+      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PATH)%"
+      $certPassword: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PASSWORD)%"
