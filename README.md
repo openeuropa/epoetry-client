@@ -228,6 +228,27 @@ $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
 ...
 ```
 
+## Using it on a European Commission Cloud9 environment
+
+When using the console commands on a Cloud9 environment, add a `docker-compose.override.yml` with the following content:
+
+```yaml
+version: "2"
+services:
+  php:
+    image: registry.fpfis.eu/fpfis/httpd-php:8.1-dev
+    working_dir: /var/www/html
+```
+
+Then login into the `php` container and run:
+
+```
+apt update
+apt install php-bcmath -y
+```
+
+This is necessary until the official Docker image will support the required PHP extension.
+
 ## Using it on a European Commission site
 
 The ePoetry client library requires the `ext-bcmath` PHP extension, which is not necessarily enabled on all images used
