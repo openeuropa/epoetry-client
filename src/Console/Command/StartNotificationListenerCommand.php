@@ -5,14 +5,22 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\Console\Monolog\ReactConsoleHandler;
+use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
+use OpenEuropa\EPoetry\Notification\NotificationClassmap;
+use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
+use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
+use OpenEuropa\EPoetry\NotificationServerFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use React\EventLoop\Loop;
+use Soap\ExtSoapEngine\ExtSoapOptions;
+use Soap\ExtSoapEngine\ExtSoapOptionsResolverFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\StreamOutput;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use React\Http\HttpServer;
@@ -30,19 +38,24 @@ class StartNotificationListenerCommand extends Command
 
     protected LoggerInterface $logger;
 
-    protected SerializerInterface $serializer;
+    protected Filesystem $fs;
+
+    protected EventDispatcherInterface $eventDispatcher;
+
+    protected NotificationServerFactory $notificationServer;
 
     /**
      * Constructor.
      *
+     * @param \OpenEuropa\EPoetry\NotificationServerFactory $notificationServer
      * @param \Psr\Log\LoggerInterface $logger
-     * @param \Symfony\Component\Serializer\SerializerInterface $serializer
      */
-    public function __construct(LoggerInterface $logger, SerializerInterface $serializer)
+    public function __construct(NotificationServerFactory $notificationServer, LoggerInterface $logger)
     {
         parent::__construct(null);
         $this->logger = $logger;
-        $this->serializer = $serializer;
+        $this->fs = new Filesystem();
+        $this->notificationServer = $notificationServer;
     }
 
     /**
@@ -66,26 +79,19 @@ class StartNotificationListenerCommand extends Command
             return 1;
         }
 
-        $fs = new Filesystem();
         $folder = $input->getOption('save-to');
-        $fs->mkdir(Path::normalize($folder), 0700);
+        $this->fs->mkdir(Path::normalize($folder), 0700);
 
         $loop = Loop::get();
         $this->logger->setHandlers([new ReactConsoleHandler($loop, $output)]);
-        $handler = function (ServerRequestInterface $request) use ($fs, $folder) {
+        $handler = function (ServerRequestInterface $request) use ($folder) {
             // Only handle POST requests.
             if ($request->getMethod() !== 'POST') {
                 $this->logger->error("Cannot handle {$request->getMethod()} requests.");
-                return Response::STATUS_BAD_GATEWAY;
+                return (new Response(Response::STATUS_BAD_REQUEST));
             }
-
-            // Dump response in a log file.
-            $content = $this->formatResponse($request);
-            $filename = $this->getLogFilepath($folder);
-            $this->logger->info("Saving response to $filename:\n\n" . $content);
-            $fs->dumpFile($filename, $content);
-
-            return Response::plaintext('');
+            $this->dumpRequestToFile($request, $folder);
+            return $this->notificationServer->handle($request);
         };
 
         $http = new HttpServer($loop, $handler);
@@ -95,6 +101,21 @@ class StartNotificationListenerCommand extends Command
         $uri = '0.0.0.0:'.$input->getOption('port');
         $this->logger->notice("Listening on {$uri}");
         $http->listen(new SocketServer($uri));
+    }
+
+    /**
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param string $folder
+     *
+     * @return void
+     */
+    private function dumpRequestToFile(ServerRequestInterface $request, string $folder): void
+    {
+        // Dump response in a log file.
+        $content = $this->formatRequest($request);
+        $filename = $this->getLogFilepath($folder);
+        $this->logger->info("Saving request to $filename:\n\n" . $content);
+        $this->fs->dumpFile($filename, $content);
     }
 
     /**
@@ -111,18 +132,19 @@ class StartNotificationListenerCommand extends Command
     }
 
     /**
-     * Format response as a text file.
+     * Format request as a text file.
      *
      * @param \Psr\Http\Message\RequestInterface $request
      *
      * @return string
      */
-    private function formatResponse(RequestInterface $request): string
+    private function formatRequest(RequestInterface $request): string
     {
         $method = $request->getMethod();
         $uri = (string) $request->getUri();
         $headers = $this->formatHeaders($request);
         $body = $request->getBody()->getContents();
+        $request->getBody()->rewind();
         return "$method $uri\n\n$headers\n\n$body\n";
     }
 
