@@ -2,6 +2,8 @@
 
 namespace OpenEuropa\EPoetry\Notification;
 
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
@@ -13,6 +15,10 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Notification handler passed to PHP's \SoapServer().
  */
 class NotificationHandler {
+
+    const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
+    const PRODUCT_STATUS_ONGOING = 'Ongoing';
+    const PRODUCT_STATUS_REQUESTED = 'Requested';
 
     /**
      * Event dispatcher service.
@@ -52,13 +58,40 @@ class NotificationHandler {
     /**
      * SOAP server handler method.
      *
-     * @param \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification $notification
+     * @param \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification $wrapper
      *
      * @return \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
      */
-    public function receiveNotification(ReceiveNotification $notification): ReceiveNotificationResponse
+    public function receiveNotification(ReceiveNotification $wrapper): ReceiveNotificationResponse
     {
-        $this->logger->info('Handling SOAP request', ['notification' => $this->serializer->toArray($notification)]);
+        $notification = $wrapper->getNotification();
+        $type = $notification->getNotificationType();
+        $this->logger->info('Handling ePoetry notification', [
+            'type' => $type,
+            'notification' => $this->serializer->toArray($notification),
+        ]);
+
+        $product = $notification->getProduct();
+        $status = $product->getStatus();
+        $event = null;
+
+        // Create event for an ongoing status change request.
+        if ($type === self::NOTIFICATION_PRODUCT_STATUS_CHANGE && $status === self::PRODUCT_STATUS_ONGOING) {
+            $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+        }
+
+        // Create event for a requested status change request.
+        if ($type === self::NOTIFICATION_PRODUCT_STATUS_CHANGE && $status === self::PRODUCT_STATUS_REQUESTED) {
+            $event = new StatusChangeRequestedEvent($notification->getProduct());
+        }
+
+        // @todo create following events:
+        // DeliveryEvent
+        // ChangeAcceptedEvent
+        // ChangeRejectedEvent
+
+        $this->eventDispatcher->dispatch($event::NAME, $event);
+
         $response = new ReceiveNotificationResponse();
         $response->setReturn((new DgtNotificationResult())->setSuccess(true));
         return $response;
