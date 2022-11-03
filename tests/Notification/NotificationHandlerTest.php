@@ -6,7 +6,10 @@ use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
+use OpenEuropa\EPoetry\Notification\Type\Product;
+use OpenEuropa\EPoetry\Notification\Type\ProductReference;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
+use OpenEuropa\EPoetry\Notification\Type\RequestReference;
 use OpenEuropa\EPoetry\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -41,6 +44,18 @@ class NotificationHandlerTest extends TestCase
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
             $this->assertInstanceOf(StatusChangeOngoingEvent::class, $event);
+            $this->assertInstanceOf(Product::class, $event->getProduct());
+            $this->assertInstanceOf(\DateTime::class, $event->getAcceptedDeadline());
+            $this->assertEquals('Mon, 04 Apr 22 12:51:00 +0200', $event->getAcceptedDeadline()->format(\DATE_RFC822));
+            $this->assertEquals('Ongoing', $event->getProduct()->getStatus());
+            $this->assertEquals(false, $event->getProduct()->hasFile());
+            $this->assertEquals(false, $event->getProduct()->hasFormat());
+            $this->assertEquals(false, $event->getProduct()->hasName());
+            $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
+            $productReference = $event->getProduct()->getProductReference();
+            $this->assertEquals('CS', $productReference->getLanguage());
+            $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
+            $requestReference = $productReference->getRequestReference();
         }));
 
         $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
