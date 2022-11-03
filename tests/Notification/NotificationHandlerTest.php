@@ -56,13 +56,15 @@ class NotificationHandlerTest extends TestCase
             $this->assertEquals('CS', $productReference->getLanguage());
             $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
             $this->assertEquals('AGRI-2022-81-(1)-0-TRA', $productReference->getRequestReference()->getReference());
+            $event->setSuccessResponse('Success message.');
         }));
 
         $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
         $notification = $this->getNotificationFixture('productStatusChangeOngoing.xml');
         $response = $handler->receiveNotification($notification);
 
-        $this->assertTrue(true);
+        $this->assertTrue($response->getReturn()->isSuccess());
+        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
     }
 
     /**

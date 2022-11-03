@@ -2,10 +2,10 @@
 
 namespace OpenEuropa\EPoetry\Notification\Event\RequestStatus;
 
-use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
-use Symfony\Contracts\EventDispatcher\Event;
+use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
+use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;use Symfony\Contracts\EventDispatcher\Event;
 
-abstract class BaseEvent extends Event {
+abstract class BaseEvent extends BaseNotificationEvent {
 
     private LinguisticRequest $linguisticRequest;
 
@@ -19,6 +19,7 @@ abstract class BaseEvent extends Event {
      * @param string $planningSector
      */
     public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector) {
+        parent::__construct();
         $this->linguisticRequest = $linguisticRequest;
         $this->planningAgent = $planningAgent;
         $this->planningSector = $planningSector;

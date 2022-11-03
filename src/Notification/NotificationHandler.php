@@ -91,10 +91,7 @@ class NotificationHandler {
         // ChangeRejectedEvent
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
-
-        $response = new ReceiveNotificationResponse();
-        $response->setReturn((new DgtNotificationResult())->setSuccess(true));
-        return $response;
+        return $event->getResponse();
     }
 
 }

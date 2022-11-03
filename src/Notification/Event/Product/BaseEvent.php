@@ -2,10 +2,10 @@
 
 namespace OpenEuropa\EPoetry\Notification\Event\Product;
 
+use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Type\Product;
-use Symfony\Contracts\EventDispatcher\Event;
 
-abstract class BaseEvent extends Event {
+abstract class BaseEvent extends BaseNotificationEvent {
 
     private Product $product;
 
@@ -13,6 +13,7 @@ abstract class BaseEvent extends Event {
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      */
     public function __construct(Product $product) {
+        parent::__construct();
         $this->product = $product;
     }
 
