@@ -55,7 +55,7 @@ class NotificationHandlerTest extends TestCase
             $productReference = $event->getProduct()->getProductReference();
             $this->assertEquals('CS', $productReference->getLanguage());
             $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
-            $requestReference = $productReference->getRequestReference();
+            $this->assertEquals('AGRI-2022-81-(1)-0-TRA', $productReference->getRequestReference()->getReference());
         }));
 
         $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
