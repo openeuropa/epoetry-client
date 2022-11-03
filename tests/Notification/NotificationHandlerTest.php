@@ -38,7 +38,7 @@ class NotificationHandlerTest extends TestCase
         $this->logger = new Logger('test');
     }
 
-    public function test()
+    public function testStatusChangeOngoingEvent()
     {
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
@@ -61,6 +61,33 @@ class NotificationHandlerTest extends TestCase
 
         $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
         $notification = $this->getNotificationFixture('productStatusChangeOngoing.xml');
+        $response = $handler->receiveNotification($notification);
+
+        $this->assertTrue($response->getReturn()->isSuccess());
+        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+    }
+
+    public function testStatusChangeRequestedEvent()
+    {
+        // Encapsulate assertions in an event subscriber.
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
+            $this->assertInstanceOf(StatusChangeRequestedEvent::class, $event);
+            $this->assertInstanceOf(Product::class, $event->getProduct());
+            $this->assertEquals('Requested', $event->getProduct()->getStatus());
+            $this->assertEquals(false, $event->getProduct()->hasFile());
+            $this->assertEquals(false, $event->getProduct()->hasFormat());
+            $this->assertEquals(false, $event->getProduct()->hasName());
+            $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
+            $productReference = $event->getProduct()->getProductReference();
+            $this->assertEquals('SK', $productReference->getLanguage());
+            $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
+            $this->assertEquals('AGRI-2022-93-(0)-0-TRA', $productReference->getRequestReference()->getReference());
+            $event->setSuccessResponse('Success message.');
+        }));
+
+        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
+        $notification = $this->getNotificationFixture('productStatusChangeRequested.xml');
         $response = $handler->receiveNotification($notification);
 
         $this->assertTrue($response->getReturn()->isSuccess());
