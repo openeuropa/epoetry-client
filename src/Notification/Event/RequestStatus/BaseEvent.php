@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Notification\Event\RequestStatus;
 use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;use Symfony\Contracts\EventDispatcher\Event;
 
-abstract class BaseEvent extends BaseNotificationEvent {
+abstract class  BaseEvent extends BaseNotificationEvent {
 
     private LinguisticRequest $linguisticRequest;
 

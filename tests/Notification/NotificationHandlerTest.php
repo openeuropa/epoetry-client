@@ -6,6 +6,8 @@ use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
@@ -123,6 +125,40 @@ class NotificationHandlerTest extends TestCase
         $this->assertEquals('Success message.', $response->getReturn()->getMessage());
     }
 
+    public function testChangeAcceptedEvent()
+    {
+        // Encapsulate assertions in an event subscriber.
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
+            $this->assertInstanceOf(ChangeAcceptedEvent::class, $event);
+            $event->setSuccessResponse('Success message.');
+        }));
+
+        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
+        $notification = $this->getNotificationFixture('requestStatusChangeAccepted.xml');
+        $response = $handler->receiveNotification($notification);
+
+        $this->assertTrue($response->getReturn()->isSuccess());
+        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+    }
+
+    public function testChangeRejectedEvent()
+    {
+        // Encapsulate assertions in an event subscriber.
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
+            $this->assertInstanceOf(ChangeRejectedEvent::class, $event);
+            $event->setSuccessResponse('Success message.');
+        }));
+
+        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
+        $notification = $this->getNotificationFixture('requestStatusChangeRejected.xml');
+        $response = $handler->receiveNotification($notification);
+
+        $this->assertTrue($response->getReturn()->isSuccess());
+        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+    }
+
     /**
      * Get a notification object by deserializing its XML representation.
      *
@@ -170,6 +206,8 @@ class NotificationHandlerTest extends TestCase
                     StatusChangeOngoingEvent::NAME => 'doAssert',
                     StatusChangeRequestedEvent::NAME => 'doAssert',
                     DeliveryEvent::NAME => 'doAssert',
+                    ChangeAcceptedEvent::NAME => 'doAssert',
+                    ChangeRejectedEvent::NAME => 'doAssert',
                 ];
             }
 

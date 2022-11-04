@@ -5,7 +5,8 @@ namespace OpenEuropa\EPoetry\Notification;
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
 use Psr\Log\LoggerInterface;
@@ -21,7 +22,10 @@ class NotificationHandler {
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
     const PRODUCT_STATUS_ONGOING = 'Ongoing';
     const PRODUCT_STATUS_REQUESTED = 'Requested';
-    const PRODUCT_DELIVERY = 'Requested';
+
+    const NOTIFICATION_REQUEST_STATUS_CHANGE = 'RequestStatusChange';
+    const REQUEST_STATUS_ACCEPTED = 'Accepted';
+    const REQUEST_STATUS_REJECTED = 'Rejected';
 
     /**
      * Event dispatcher service.
@@ -74,28 +78,31 @@ class NotificationHandler {
             'notification' => $this->serializer->toArray($notification),
         ]);
 
-        $product = $notification->getProduct();
-        $status = $product->getStatus();
         $event = null;
 
-        // Create event for an ongoing status change request.
-        if ($type === self::NOTIFICATION_PRODUCT_STATUS_CHANGE && $status === self::PRODUCT_STATUS_ONGOING) {
-            $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+        switch ($type) {
+            case self::NOTIFICATION_PRODUCT_STATUS_CHANGE:
+                $product = $notification->getProduct();
+                if ($product->getStatus() === self::PRODUCT_STATUS_ONGOING) {
+                    $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+                }
+                if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
+                    $event = new StatusChangeRequestedEvent($notification->getProduct());
+                }
+                break;
+            case self::NOTIFICATION_PRODUCT_DELIVERY:
+                $event = new DeliveryEvent($notification->getProduct());
+                break;
+            case self::NOTIFICATION_REQUEST_STATUS_CHANGE:
+                $request = $notification->getLinguisticRequest();
+                if ($request->getStatus() === self::REQUEST_STATUS_ACCEPTED) {
+                    $event = new ChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                }
+                if ($request->getStatus() === self::REQUEST_STATUS_REJECTED) {
+                    $event = new ChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                }
+                break;
         }
-
-        // Create event for a requested status change request.
-        if ($type === self::NOTIFICATION_PRODUCT_STATUS_CHANGE && $status === self::PRODUCT_STATUS_REQUESTED) {
-            $event = new StatusChangeRequestedEvent($notification->getProduct());
-        }
-
-        // Create event for product delivery.
-        if ($type === self::NOTIFICATION_PRODUCT_DELIVERY) {
-            $event = new DeliveryEvent($notification->getProduct());
-        }
-
-        // @todo create following events:
-        // ChangeAcceptedEvent
-        // ChangeRejectedEvent
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
         return $event->getResponse();
