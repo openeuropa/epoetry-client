@@ -7,6 +7,7 @@ use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
 use Psr\Log\LoggerInterface;
@@ -51,9 +52,9 @@ class NotificationHandler {
     /**
      * Constructs NotificationHandler object.
      *
-     * @param EventDispatcherInterface|null $eventDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      *   Event dispatcher service.
-     * @param LoggerInterface|null $logger
+     * @param LoggerInterface $logger
      *   Logger service.
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer) {
@@ -105,6 +106,9 @@ class NotificationHandler {
         }
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
+        if (!$event->hasResponse()) {
+            throw new NotificationException("The ePoetry notification event '$type' has not been correctly handled.");
+        }
         return $event->getResponse();
     }
 

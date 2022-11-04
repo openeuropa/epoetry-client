@@ -8,6 +8,7 @@ use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
@@ -134,6 +135,7 @@ class NotificationHandlerTest extends TestCase
             $this->assertEquals('DGT.S.S-1.P-1', $event->getPlanningSector());
             $this->assertEquals('teodomi', $event->getPlanningAgent());
             $this->assertEquals('Accepted', $event->getLinguisticRequest()->getStatus());
+            $this->assertEquals('SG-2022-127-(0)-0-TRA', $event->getLinguisticRequest()->getRequestReference()->getReference());
             $event->setSuccessResponse('Success message.');
         }));
 
@@ -154,6 +156,7 @@ class NotificationHandlerTest extends TestCase
             $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
             $this->assertEquals('collafc', $event->getPlanningAgent());
             $this->assertEquals('Rejected', $event->getLinguisticRequest()->getStatus());
+            $this->assertEquals('AGRI-2022-83-(0)-0-TRA', $event->getLinguisticRequest()->getRequestReference()->getReference());
             $event->setSuccessResponse('Success message.');
         }));
 
@@ -163,6 +166,17 @@ class NotificationHandlerTest extends TestCase
 
         $this->assertTrue($response->getReturn()->isSuccess());
         $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+    }
+
+    public function testNotificationHandlerError(): void
+    {
+        $this->expectException(NotificationException::class);
+        $this->expectExceptionMessage("The ePoetry notification event 'RequestStatusChange' has not been correctly handled");
+
+        $eventDispatcher = new EventDispatcher();
+        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
+        $notification = $this->getNotificationFixture('requestStatusChangeRejected.xml');
+        $handler->receiveNotification($notification);
     }
 
     /**

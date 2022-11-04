@@ -19,7 +19,6 @@ abstract class  BaseEvent extends BaseNotificationEvent {
      * @param string $planningSector
      */
     public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector) {
-        parent::__construct();
         $this->linguisticRequest = $linguisticRequest;
         $this->planningAgent = $planningAgent;
         $this->planningSector = $planningSector;

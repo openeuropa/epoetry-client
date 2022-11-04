@@ -16,14 +16,6 @@ abstract class BaseNotificationEvent extends Event {
     protected ReceiveNotificationResponse $response;
 
     /**
-     * Constructor.
-     */
-    public function __construct() {
-        // By default, we set an error, as all events must be handled.
-        $this->setErrorResponse('Current event has not being handled.');
-    }
-
-    /**
      * @param $message
      *
      * @return void
@@ -56,6 +48,13 @@ abstract class BaseNotificationEvent extends Event {
      */
     public function getResponse(): ReceiveNotificationResponse {
         return $this->response;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasResponse(): bool {
+        return !empty($this->response);
     }
 
 }

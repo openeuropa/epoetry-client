@@ -13,7 +13,6 @@ abstract class BaseEvent extends BaseNotificationEvent {
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      */
     public function __construct(Product $product) {
-        parent::__construct();
         $this->product = $product;
     }
 
