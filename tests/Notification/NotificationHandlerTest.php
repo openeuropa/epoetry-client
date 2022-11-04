@@ -131,6 +131,9 @@ class NotificationHandlerTest extends TestCase
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
             $this->assertInstanceOf(ChangeAcceptedEvent::class, $event);
+            $this->assertEquals('DGT.S.S-1.P-1', $event->getPlanningSector());
+            $this->assertEquals('teodomi', $event->getPlanningAgent());
+            $this->assertEquals('Accepted', $event->getLinguisticRequest()->getStatus());
             $event->setSuccessResponse('Success message.');
         }));
 
@@ -148,6 +151,9 @@ class NotificationHandlerTest extends TestCase
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
             $this->assertInstanceOf(ChangeRejectedEvent::class, $event);
+            $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
+            $this->assertEquals('collafc', $event->getPlanningAgent());
+            $this->assertEquals('Rejected', $event->getLinguisticRequest()->getStatus());
             $event->setSuccessResponse('Success message.');
         }));
 
