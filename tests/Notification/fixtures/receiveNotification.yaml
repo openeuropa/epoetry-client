@@ -68,6 +68,6 @@
             - notification.getNotification().getProduct().getProductReference().getLanguage() === 'FR'
             - notification.getNotification().getProduct().getStatus() === 'Sent'
             - notification.getNotification().getProduct().getAcceptedDeadline().format('Y-m-d\\TH:i:sP') === '2022-09-01T12:51:00+02:00'
-            - notification.getNotification().getProduct().getFile() === 'UEsDBBQABgAIAAAAIQAPqBZvTwIAAIMSAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAA.......AAA='
+            - notification.getNotification().getProduct().getFile() === 'RmlsZSBjb250ZW50Lg=='
             - notification.getNotification().getProduct().getName() === 'SG-2022-00343(01)-00-TRA-FR'
             - notification.getNotification().getProduct().getFormat() === 'DOCX'

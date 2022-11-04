@@ -2,6 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Notification;
 
+use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
@@ -16,9 +17,11 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class NotificationHandler {
 
+    const NOTIFICATION_PRODUCT_DELIVERY = 'ProductDelivery';
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
     const PRODUCT_STATUS_ONGOING = 'Ongoing';
     const PRODUCT_STATUS_REQUESTED = 'Requested';
+    const PRODUCT_DELIVERY = 'Requested';
 
     /**
      * Event dispatcher service.
@@ -85,8 +88,12 @@ class NotificationHandler {
             $event = new StatusChangeRequestedEvent($notification->getProduct());
         }
 
+        // Create event for product delivery.
+        if ($type === self::NOTIFICATION_PRODUCT_DELIVERY) {
+            $event = new DeliveryEvent($notification->getProduct());
+        }
+
         // @todo create following events:
-        // DeliveryEvent
         // ChangeAcceptedEvent
         // ChangeRejectedEvent
 

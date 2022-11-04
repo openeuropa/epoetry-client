@@ -180,9 +180,9 @@ tests:
                             version: 1
                             productType: TRA
                     acceptedDeadline: '2032-09-01T12:51:00.000+02:00'
-                    file: UEsDBBQABgAIAAAAIQAPqBZvTwIAAIMSAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAA.......AAA=
-                    name: SG-2022-00343(01)-00-TRA-FR
-                    format: DOCX
+                    file: 'RmlsZSBjb250ZW50Lg=='
+                    name: 'SG-2022-00343(01)-00-TRA-FR'
+                    format: 'DOCX'
         expectations:
             assertions:
                 - count(violations) === 0
