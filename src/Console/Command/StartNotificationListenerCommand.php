@@ -85,13 +85,17 @@ class StartNotificationListenerCommand extends Command
         $loop = Loop::get();
         $this->logger->setHandlers([new ReactConsoleHandler($loop, $output)]);
         $handler = function (ServerRequestInterface $request) use ($folder) {
-            // Only handle POST requests.
-            if ($request->getMethod() !== 'POST') {
-                $this->logger->error("Cannot handle {$request->getMethod()} requests.");
-                return (new Response(Response::STATUS_BAD_REQUEST));
+            switch ($request->getMethod()) {
+                case 'GET':
+                    $this->logger->info("Serving WSDL.");
+                    return Response::xml($this->notificationServer->getWsdl());
+                case 'POST':
+                    $this->dumpRequestToFile($request, $folder);
+                    return $this->notificationServer->handle($request);
+                default:
+                    $this->logger->error("Cannot handle {$request->getMethod()} requests.");
+                    return (new Response(Response::STATUS_BAD_REQUEST));
             }
-            $this->dumpRequestToFile($request, $folder);
-            return $this->notificationServer->handle($request);
         };
 
         $http = new HttpServer($loop, $handler);

@@ -1,11 +1,13 @@
 parameters:
     endpoint: "%env(string:EPOETRY_CONSOLE_SERVICE_URL)%"
+    callback: "%env(string:EPOETRY_CONSOLE_CALLBACK_URL)%"
 services:
   _defaults:
     autowire: true
     autoconfigure: true
     bind:
       string $endpoint: "%endpoint%"
+      string $callback: "%callback%"
 
   Psr\Log\LoggerInterface: "@logger"
   Symfony\Component\Serializer\SerializerInterface: "@serializer"

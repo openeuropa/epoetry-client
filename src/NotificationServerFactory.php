@@ -16,11 +16,18 @@ use Symfony\Component\Serializer\SerializerInterface;
 class NotificationServerFactory {
 
     /**
+     * Callback URL, where notifications are supposed to be sent by ePoetry.
+     *
+     * @var string
+     */
+    protected string $callback;
+
+    /**
      * Event dispatcher service.
      *
      * @var EventDispatcherInterface
      */
-    protected $eventDispatcher;
+    protected EventDispatcherInterface $eventDispatcher;
 
     /**
      * Logger service.
@@ -37,14 +44,15 @@ class NotificationServerFactory {
     protected SerializerInterface $serializer;
 
     /**
-     * Constructs NotificationHandler object.
+     * Constructs NotificationServerFactory object.
      *
-     * @param EventDispatcherInterface|null $eventDispatcher
-     *   Event dispatcher service.
-     * @param LoggerInterface|null $logger
-     *   Logger service.
+     * @param string $callback
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
+     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Symfony\Component\Serializer\SerializerInterface $serializer
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer) {
+    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer) {
+        $this->callback = $callback;
         $this->eventDispatcher = $eventDispatcher;
         $this->logger = $logger;
         $this->serializer = $serializer;
@@ -59,8 +67,7 @@ class NotificationServerFactory {
      */
     public function handle(RequestInterface $request): ResponseInterface {
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
-        $wsdl = (new LocalWsdlProvider())(__DIR__. '/../resources/notification.wsdl');
-        $server = new \SoapServer($wsdl, ExtSoapOptionsResolverFactory::create()->resolve([
+        $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([
             'classmap' => NotificationClassmap::getCollection(),
         ]));
         $server->setObject($handler);
@@ -73,6 +80,26 @@ class NotificationServerFactory {
         return new Response(200, [
             'content-type' => 'application/xml',
         ], $xml);
+    }
+
+    /**
+     * Get WSDL as a plain XML string.
+     *
+     * @return string
+     */
+    public function getWsdl(): string {
+        return file_get_contents($this->getEncodedWsdl());
+    }
+
+    /**
+     * Get WSDL as a base64 encoded file URI.
+     *
+     * @return string
+     */
+    private function getEncodedWsdl(): string {
+        $provider = new LocalWsdlProvider();
+        $provider->withPortLocation('DgtClientNotificationReceiverWSPort', $this->callback);
+        return $provider(__DIR__. '/../resources/notification.wsdl');
     }
 
 }

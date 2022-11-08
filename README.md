@@ -23,7 +23,17 @@ To (re-)generate the library, run:
 ```
 ./vendor/bin/run generate:request
 ./vendor/bin/run generate:notification
+./vendor/bin/run generate:authentication
 ```
+
+Or by running:
+
+```
+./vendor/bin/run generate
+```
+
+Note that the method `\OpenEuropa\EPoetry\Notification\Type\RequestReference::getReference()` has been added manually,
+and it won't be automatically generated: make sure you restore it using your local Git history.
 
 ## Project overview
 
