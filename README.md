@@ -238,6 +238,57 @@ $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
 ...
 ```
 
+### Receive notification from the ePoetry service
+
+Run:
+
+```
+$ ./bin/epoetry notification:start-listener
+```
+
+This will start a service listening for incoming messages at port `8088`.
+
+All `POST` incoming requests will be saved in `.sink/notifications`, regardless if they are actual ePoetry notifications,
+or not. Additionally, ePoetry notifications will be handled and the service response will be print out on the console.
+
+Any `GET` request to your service will print out the service WSDL, which contains the callback URL. When running this
+on a publicly accessible server, you might want to change the callback URL by setting the following ENV variable:
+
+```
+EPOETRY_CONSOLE_CALLBACK_URL=https://my-host.com:8088
+```
+
+Remember to delete the ./var directory to force a Symfony command container rebuild.
+
+You can override the command default parameters as follows:
+
+```
+$ ./bin/epoetry notification:start-listener --port=80 --save-to=/path/to/folder
+```
+
+It is recommended to use `-vvv` for a fully verbose output.
+
+## Using it on a European Commission Cloud9 environment
+
+When using the console commands on a Cloud9 environment, add a `docker-compose.override.yml` with the following content:
+
+```yaml
+version: "2"
+services:
+  php:
+    image: registry.fpfis.eu/fpfis/httpd-php:8.1-dev
+    working_dir: /var/www/html
+```
+
+Then login into the `php` container and run:
+
+```
+apt update
+apt install php-bcmath -y
+```
+
+This is necessary until the official Docker image will support the required PHP extension.
+
 ## Using it on a European Commission site
 
 The ePoetry client library requires the `ext-bcmath` PHP extension, which is not necessarily enabled on all images used

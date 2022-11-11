@@ -2,6 +2,7 @@ commands:
   generate:
     - "./vendor/bin/run generate:request"
     - "./vendor/bin/run generate:notification"
+    - "./vendor/bin/run generate:authentication"
 
   generate:request:
     - { task: "remove", file: "src/Request/Type" }

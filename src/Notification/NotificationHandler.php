@@ -88,7 +88,7 @@ class NotificationHandler {
                     $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
                 }
                 if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
-                    $event = new StatusChangeRequestedEvent($notification->getProduct());
+                    $event = new StatusChangeRequestedEvent($product);
                 }
                 break;
             case self::NOTIFICATION_PRODUCT_DELIVERY:
