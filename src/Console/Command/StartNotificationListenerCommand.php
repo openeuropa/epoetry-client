@@ -44,6 +44,8 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
 
     protected NotificationServerFactory $notificationServer;
 
+    protected bool $returnError = false;
+
     /**
      * Constructor.
      *
@@ -81,7 +83,13 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
     public function logEvent(BaseNotificationEvent $event): void
     {
         $this->logger->info('Received event ' . $event::NAME);
-        $event->setSuccessResponse('Event handled successfully.');
+        if ($this->returnError) {
+            $this->logger->info('Returning error message.');
+            $event->setErrorResponse('The notification was not handled successfully.');
+            return;
+        }
+        $this->logger->info('Returning successful message.');
+        $event->setSuccessResponse('The notification handled successfully.');
     }
 
     /**
@@ -92,6 +100,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         $this->setDescription('Run a notification service handler, listening for incoming messages at the given port.')
             ->addOption('port', 'p', InputOption::VALUE_REQUIRED, 'Port the service will listen onto.', 8088)
             ->addOption('save-to', null, InputOption::VALUE_REQUIRED, 'Path to a local folder in which to save incoming messages', '.sink/notifications')
+            ->addOption('return-error', 'e', InputOption::VALUE_NONE, 'Set this flag to return an error.')
         ;
     }
 
@@ -111,6 +120,8 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         $loop = Loop::get();
         $this->logger->setHandlers([new ReactConsoleHandler($loop, $output)]);
         $this->eventDispatcher->addSubscriber($this);
+        $this->returnError = $input->getOption('return-error');
+
         $handler = function (ServerRequestInterface $request) use ($folder) {
             switch ($request->getMethod()) {
                 case 'GET':

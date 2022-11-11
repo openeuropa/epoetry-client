@@ -266,7 +266,13 @@ You can override the command default parameters as follows:
 $ ./bin/epoetry notification:start-listener --port=80 --save-to=/path/to/folder
 ```
 
-It is recommended to use `-vvv` for a fully verbose output.
+If you wish to return an error, start the service with the `-e` flag.
+
+```
+$ ./bin/epoetry notification:start-listener -e
+```
+
+It is recommended to always use `-vvv` for a fully verbose output.
 
 ## Using it on a European Commission Cloud9 environment
 
