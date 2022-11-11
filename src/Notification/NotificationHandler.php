@@ -107,7 +107,9 @@ class NotificationHandler {
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
         if (!$event->hasResponse()) {
-            throw new NotificationException("The ePoetry notification event '$type' has not been correctly handled.");
+            $error = "The ePoetry notification event '$type' has not been correctly handled.";
+            $this->logger->error($error);
+            throw new NotificationException($error);
         }
         return $event->getResponse();
     }

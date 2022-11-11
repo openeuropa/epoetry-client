@@ -5,34 +5,34 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\Console\Monolog\ReactConsoleHandler;
-use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
-use OpenEuropa\EPoetry\Notification\NotificationClassmap;
-use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
-use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
+use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
 use OpenEuropa\EPoetry\NotificationServerFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use React\EventLoop\Loop;
-use Soap\ExtSoapEngine\ExtSoapOptions;
-use Soap\ExtSoapEngine\ExtSoapOptionsResolverFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\StreamOutput;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use React\Http\HttpServer;
 use React\Http\Message\Response;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Socket\SocketServer;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Start a notification listener service.
  */
-class StartNotificationListenerCommand extends Command
+class StartNotificationListenerCommand extends Command implements EventSubscriberInterface
 {
     protected static $defaultName = 'notification:start-listener';
 
@@ -50,12 +50,38 @@ class StartNotificationListenerCommand extends Command
      * @param \OpenEuropa\EPoetry\NotificationServerFactory $notificationServer
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(NotificationServerFactory $notificationServer, LoggerInterface $logger)
+    public function __construct(NotificationServerFactory $notificationServer, LoggerInterface $logger, EventDispatcherInterface $eventDispatcher)
     {
         parent::__construct(null);
         $this->logger = $logger;
         $this->fs = new Filesystem();
         $this->notificationServer = $notificationServer;
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            StatusChangeOngoingEvent::NAME => 'logEvent',
+            StatusChangeRequestedEvent::NAME => 'logEvent',
+            DeliveryEvent::NAME => 'logEvent',
+            ChangeAcceptedEvent::NAME => 'logEvent',
+            ChangeRejectedEvent::NAME => 'logEvent',
+        ];
+    }
+
+    /**
+     * @param \OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent $event
+     *
+     * @return void
+     */
+    public function logEvent(BaseNotificationEvent $event): void
+    {
+        $this->logger->info('Received event ' . $event::NAME);
+        $event->setSuccessResponse('Event handled successfully.');
     }
 
     /**
@@ -84,6 +110,7 @@ class StartNotificationListenerCommand extends Command
 
         $loop = Loop::get();
         $this->logger->setHandlers([new ReactConsoleHandler($loop, $output)]);
+        $this->eventDispatcher->addSubscriber($this);
         $handler = function (ServerRequestInterface $request) use ($folder) {
             switch ($request->getMethod()) {
                 case 'GET':
@@ -91,7 +118,12 @@ class StartNotificationListenerCommand extends Command
                     return Response::xml($this->notificationServer->getWsdl());
                 case 'POST':
                     $this->dumpRequestToFile($request, $folder);
-                    return $this->notificationServer->handle($request);
+                    $response = $this->notificationServer->handle($request);
+                    $body = $response->getBody()->getContents();
+                    $response->getBody()->rewind();
+                    $this->logger->info('Response code: ' . $response->getStatusCode());
+                    $this->logger->info('Response body: ' . $body);
+                    return $response;
                 default:
                     $this->logger->error("Cannot handle {$request->getMethod()} requests.");
                     return (new Response(Response::STATUS_BAD_REQUEST));
