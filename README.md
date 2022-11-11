@@ -23,7 +23,17 @@ To (re-)generate the library, run:
 ```
 ./vendor/bin/run generate:request
 ./vendor/bin/run generate:notification
+./vendor/bin/run generate:authentication
 ```
+
+Or by running:
+
+```
+./vendor/bin/run generate
+```
+
+Note that the method `\OpenEuropa\EPoetry\Notification\Type\RequestReference::getReference()` has been added manually,
+and it won't be automatically generated: make sure you restore it using your local Git history.
 
 ## Project overview
 
@@ -136,6 +146,18 @@ EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.
 
 This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
 
+## Notification events
+
+The ePoetry service will send the following notifications, as Symfony events:
+
+- [`RequestStatus\ChangeAcceptedEvent`](./src/Notification/Event/RequestStatus/ChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
+- [`RequestStatus\ChangeRejectedEvent`](./src/Notification/Event/RequestStatus/ChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
+- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeOngoingEvent`](./src/Notification/Event/Product/StatusChangeOngoingEvent.php): fired when the status of the product changes to "ongoing".
+- [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when the translation of a product is finalized. It contains the translated product.
+
+For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
+
 ## Interact with the service via command line
 
 This library provides the following convenience CLI commands to interact with the ePoetry service. You can set command verbosity
@@ -215,6 +237,63 @@ $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
         },
 ...
 ```
+
+### Receive notification from the ePoetry service
+
+Run:
+
+```
+$ ./bin/epoetry notification:start-listener
+```
+
+This will start a service listening for incoming messages at port `8088`.
+
+All `POST` incoming requests will be saved in `.sink/notifications`, regardless if they are actual ePoetry notifications,
+or not. Additionally, ePoetry notifications will be handled and the service response will be print out on the console.
+
+Any `GET` request to your service will print out the service WSDL, which contains the callback URL. When running this
+on a publicly accessible server, you might want to change the callback URL by setting the following ENV variable:
+
+```
+EPOETRY_CONSOLE_CALLBACK_URL=https://my-host.com:8088
+```
+
+Remember to delete the ./var directory to force a Symfony command container rebuild.
+
+You can override the command default parameters as follows:
+
+```
+$ ./bin/epoetry notification:start-listener --port=80 --save-to=/path/to/folder
+```
+
+If you wish to return an error, start the service with the `-e` flag.
+
+```
+$ ./bin/epoetry notification:start-listener -e
+```
+
+It is recommended to always use `-vvv` for a fully verbose output.
+
+## Using it on a European Commission Cloud9 environment
+
+When using the console commands on a Cloud9 environment, add a `docker-compose.override.yml` with the following content:
+
+```yaml
+version: "2"
+services:
+  php:
+    image: registry.fpfis.eu/fpfis/httpd-php:8.1-dev
+    working_dir: /var/www/html
+```
+
+Then login into the `php` container and run:
+
+```
+apt update
+apt install php-bcmath -y
+```
+
+This is necessary until the official Docker image will support the required PHP extension.
 
 ## Using it on a European Commission site
 
