@@ -78,7 +78,7 @@ class NotificationServerFactory {
         ob_end_clean();
 
         return new Response(200, [
-            'content-type' => 'application/xml',
+            'content-type' => 'text/xml',
         ], $xml);
     }
 
