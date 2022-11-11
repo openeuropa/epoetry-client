@@ -190,6 +190,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         $method = $request->getMethod();
         $uri = (string) $request->getUri();
         $headers = $this->formatHeaders($request);
+        $request->getBody()->rewind();
         $body = $request->getBody()->getContents();
         $request->getBody()->rewind();
         return "$method $uri\n\n$headers\n\n$body\n";
