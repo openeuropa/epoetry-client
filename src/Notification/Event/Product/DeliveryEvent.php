@@ -2,6 +2,11 @@
 
 namespace OpenEuropa\EPoetry\Notification\Event\Product;
 
+/**
+ * Event fired when the translation of a product is finalized.
+ *
+ * This event contains the actual translated product.
+ */
 class DeliveryEvent extends BaseEvent {
 
     public const NAME = 'epoetry.notification.product_delivery';
