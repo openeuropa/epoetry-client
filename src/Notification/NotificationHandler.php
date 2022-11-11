@@ -88,7 +88,7 @@ class NotificationHandler {
                     $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
                 }
                 if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
-                    $event = new StatusChangeRequestedEvent($notification->getProduct());
+                    $event = new StatusChangeRequestedEvent($product);
                 }
                 break;
             case self::NOTIFICATION_PRODUCT_DELIVERY:
@@ -107,7 +107,9 @@ class NotificationHandler {
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
         if (!$event->hasResponse()) {
-            throw new NotificationException("The ePoetry notification event '$type' has not been correctly handled.");
+            $error = "The ePoetry notification event '$type' has not been correctly handled.";
+            $this->logger->error($error);
+            throw new NotificationException($error);
         }
         return $event->getResponse();
     }

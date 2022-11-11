@@ -238,6 +238,42 @@ $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
 ...
 ```
 
+### Receive notification from the ePoetry service
+
+Run:
+
+```
+$ ./bin/epoetry notification:start-listener
+```
+
+This will start a service listening for incoming messages at port `8088`.
+
+All `POST` incoming requests will be saved in `.sink/notifications`, regardless if they are actual ePoetry notifications,
+or not. Additionally, ePoetry notifications will be handled and the service response will be print out on the console.
+
+Any `GET` request to your service will print out the service WSDL, which contains the callback URL. When running this
+on a publicly accessible server, you might want to change the callback URL by setting the following ENV variable:
+
+```
+EPOETRY_CONSOLE_CALLBACK_URL=https://my-host.com:8088
+```
+
+Remember to delete the ./var directory to force a Symfony command container rebuild.
+
+You can override the command default parameters as follows:
+
+```
+$ ./bin/epoetry notification:start-listener --port=80 --save-to=/path/to/folder
+```
+
+If you wish to return an error, start the service with the `-e` flag.
+
+```
+$ ./bin/epoetry notification:start-listener -e
+```
+
+It is recommended to always use `-vvv` for a fully verbose output.
+
 ## Using it on a European Commission Cloud9 environment
 
 When using the console commands on a Cloud9 environment, add a `docker-compose.override.yml` with the following content:
