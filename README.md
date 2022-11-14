@@ -224,7 +224,7 @@ If successful the ticket will be printed out:
 
 ```
 $ ./bin/epoetry authentication:get-ticket
-PT-158800-LdPkn3XdVza0Kyj4CC5kVcFJawuBpRZJ7A9dtCR...
+ST-1785405-EQb6PwLuh9PKnpLk6hiGHAD...
 ```
 
 The default authentication method is the Client Certificate login, you can change that to the OpenID Connect plugin
