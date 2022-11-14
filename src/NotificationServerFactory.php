@@ -13,7 +13,8 @@ use Soap\ExtSoapEngine\ExtSoapOptionsResolverFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class NotificationServerFactory {
+class NotificationServerFactory
+{
 
     /**
      * Callback URL, where notifications are supposed to be sent by ePoetry.
@@ -51,7 +52,8 @@ class NotificationServerFactory {
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Symfony\Component\Serializer\SerializerInterface $serializer
      */
-    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer) {
+    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer)
+    {
         $this->callback = $callback;
         $this->eventDispatcher = $eventDispatcher;
         $this->logger = $logger;
@@ -65,7 +67,8 @@ class NotificationServerFactory {
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function handle(RequestInterface $request): ResponseInterface {
+    public function handle(RequestInterface $request): ResponseInterface
+    {
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
         $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([
             'classmap' => NotificationClassmap::getCollection(),
@@ -87,7 +90,8 @@ class NotificationServerFactory {
      *
      * @return string
      */
-    public function getWsdl(): string {
+    public function getWsdl(): string
+    {
         return file_get_contents($this->getEncodedWsdl());
     }
 
@@ -96,10 +100,10 @@ class NotificationServerFactory {
      *
      * @return string
      */
-    private function getEncodedWsdl(): string {
+    private function getEncodedWsdl(): string
+    {
         $provider = new LocalWsdlProvider();
         $provider->withPortLocation('DgtClientNotificationReceiverWSPort', $this->callback);
         return $provider(__DIR__. '/../resources/notification.wsdl');
     }
-
 }

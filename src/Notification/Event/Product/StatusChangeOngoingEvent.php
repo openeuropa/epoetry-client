@@ -7,7 +7,8 @@ use OpenEuropa\EPoetry\Notification\Type\Product;
 /**
  * Event fired when the status of the product changes to "ongoing".
  */
-class StatusChangeOngoingEvent extends BaseEvent {
+class StatusChangeOngoingEvent extends BaseEvent
+{
 
     public const NAME = 'epoetry.notification.product_status_change_ongoing';
 
@@ -17,7 +18,8 @@ class StatusChangeOngoingEvent extends BaseEvent {
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @param \DateTime $acceptedDeadline
      */
-    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline) {
+    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline)
+    {
         parent::__construct($product);
         $this->acceptedDeadline = $acceptedDeadline;
     }
@@ -25,8 +27,8 @@ class StatusChangeOngoingEvent extends BaseEvent {
     /**
      * @return \DateTime
      */
-    public function getAcceptedDeadline(): \DateTime {
+    public function getAcceptedDeadline(): \DateTime
+    {
         return $this->acceptedDeadline;
     }
-
 }

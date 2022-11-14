@@ -7,7 +7,8 @@ use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
 /**
  * Event ired when the status of the linguistic request changes to "rejected".
  */
-class ChangeRejectedEvent extends BaseEvent {
+class ChangeRejectedEvent extends BaseEvent
+{
 
     public const NAME = 'epoetry.notification.request_status.change_rejected';
 
@@ -19,7 +20,8 @@ class ChangeRejectedEvent extends BaseEvent {
      * @param string $planningSector
      * @param string $message
      */
-    public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector, string $message) {
+    public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector, string $message)
+    {
         parent::__construct($linguisticRequest, $planningAgent, $planningSector);
         $this->message = $message;
     }
@@ -27,8 +29,8 @@ class ChangeRejectedEvent extends BaseEvent {
     /**
      * @return string
      */
-    public function getMessage(): string {
+    public function getMessage(): string
+    {
         return $this->message;
     }
-
 }

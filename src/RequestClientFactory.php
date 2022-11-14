@@ -253,5 +253,4 @@ class RequestClientFactory
     {
         $this->eventDispatcher->addSubscriber(new LogSubscriber($logger));
     }
-
 }

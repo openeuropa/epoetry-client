@@ -7,7 +7,8 @@ namespace OpenEuropa\EPoetry\Notification\Event\Product;
  *
  * This event contains the actual translated product.
  */
-class DeliveryEvent extends BaseEvent {
+class DeliveryEvent extends BaseEvent
+{
 
     public const NAME = 'epoetry.notification.product_delivery';
 
@@ -16,7 +17,8 @@ class DeliveryEvent extends BaseEvent {
      *
      * @return string
      */
-    public function getDeliveryContent(): string {
+    public function getDeliveryContent(): string
+    {
         $raw = $this->getProduct()->getFile();
         return base64_decode($raw);
     }

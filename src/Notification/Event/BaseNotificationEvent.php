@@ -6,7 +6,8 @@ use OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
 use Symfony\Contracts\EventDispatcher\Event;
 
-abstract class BaseNotificationEvent extends Event {
+abstract class BaseNotificationEvent extends Event
+{
 
     /**
      * Event response.
@@ -20,7 +21,8 @@ abstract class BaseNotificationEvent extends Event {
      *
      * @return void
      */
-    public function setErrorResponse($message): void {
+    public function setErrorResponse($message): void
+    {
         $response = new ReceiveNotificationResponse();
         $return = new DgtNotificationResult();
         $return->setMessage($message);
@@ -34,7 +36,8 @@ abstract class BaseNotificationEvent extends Event {
      *
      * @return void
      */
-    public function setSuccessResponse($message): void {
+    public function setSuccessResponse($message): void
+    {
         $response = new ReceiveNotificationResponse();
         $return = new DgtNotificationResult();
         $return->setMessage($message);
@@ -46,15 +49,16 @@ abstract class BaseNotificationEvent extends Event {
     /**
      * @return \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
      */
-    public function getResponse(): ReceiveNotificationResponse {
+    public function getResponse(): ReceiveNotificationResponse
+    {
         return $this->response;
     }
 
     /**
      * @return bool
      */
-    public function hasResponse(): bool {
+    public function hasResponse(): bool
+    {
         return !empty($this->response);
     }
-
 }

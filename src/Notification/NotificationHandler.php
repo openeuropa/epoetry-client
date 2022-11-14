@@ -17,7 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * Notification handler passed to PHP's \SoapServer().
  */
-class NotificationHandler {
+class NotificationHandler
+{
 
     const NOTIFICATION_PRODUCT_DELIVERY = 'ProductDelivery';
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
@@ -57,7 +58,8 @@ class NotificationHandler {
      * @param LoggerInterface $logger
      *   Logger service.
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer) {
+    public function __construct(EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer)
+    {
         $this->eventDispatcher = $eventDispatcher;
         $this->logger = $logger;
         $this->serializer = $serializer;
@@ -113,5 +115,4 @@ class NotificationHandler {
         }
         return $event->getResponse();
     }
-
 }

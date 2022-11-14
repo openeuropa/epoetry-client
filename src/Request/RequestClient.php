@@ -100,4 +100,3 @@ class RequestClient
         return ($this->caller)('createCorrectionRequest', $parameters);
     }
 }
-
