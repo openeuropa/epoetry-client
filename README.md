@@ -69,8 +69,43 @@ this is required by the ePoetry service.
 
 Once you get your job account, you have two ways of authenticating against the service:
 
-- Via OpenId Connect
 - Via Client Certificate login
+- Via OpenId Connect (requires extra dependencies and PHP 8.1)
+
+### Authenticating via Client Certificate login
+
+In EU Login, the application running the ePoetry library (e.g. a Drupal site) can be represented by a special kind of
+user accounts called a "job account".
+
+In order to set up this authentication method you need to request a job account to EU Login, linked to the site running
+the ePoetry library. You can ask your direct manager or scrum master to initiate the request job account request.
+Check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
+
+After getting an EU Login job account you need to communicate this to DGT so that they can proceed with the setup on the
+ePoetry service. For more information about this procedure check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/EPOETRY/2.+New+client+system).
+
+Once you get the job account you need to request a client certificate: you can ask this too to your scum master.
+On acceptance environments you can request one yourself at [https://webgate.acceptance.ec.europa.eu/cas/selfCertWeb](https://webgate.acceptance.ec.europa.eu/cas/selfCertWeb).
+
+Once you receive the actual client certificate file, in `.p12` format, and its password, you can configure the
+authentication plugin service. Below an example of a possible setup, taken from the library console application:
+
+```yaml
+  client_cert_authentication:
+    class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication
+    arguments:
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL)%"
+      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PATH)%"
+      $certPassword: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PASSWORD)%"
+```
+
+With the following `.env` file:
+
+```
+EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+```
 
 ### Authenticating via OpenID Connect
 
@@ -91,6 +126,16 @@ This authentication plugin needs the following parameters to be set:
   - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
   - Production: https://ecas.ec.europa.eu/cas/oauth2/token
 - The location of a client metadata JSON file.
+
+It also requires PHP 8.1 and the following dependencies to be present in your codebase:
+
+```
+    "suggest": {
+        ...
+        "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
+        "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin. It requres php >=8.1.",
+    },
+```
 
 In order to obtain this you need to register your application as an OpenID Connect client by following [these instructions](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/OpenID+Connect+-+Client+Registration).
 
@@ -142,10 +187,6 @@ at this location (see [.env](.env)):
 EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
 ```
 
-### Authenticating via Client Certificate login
-
-This section is still in progress. You can check [this page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?spaceKey=IAM&title=ECAS+Certificate+Login) for more information.
-
 ## Notification events
 
 The ePoetry service will send the following notifications, as Symfony events:
@@ -183,16 +224,26 @@ If successful the ticket will be printed out:
 
 ```
 $ ./bin/epoetry authentication:get-ticket
-PT-158800-LdPkn3XdVza0Kyj4CC5kVcFJawuBpRZJ7A9dtCR...
+ST-1785405-EQb6PwLuh9PKnpLk6hiGHAD...
 ```
 
-The default authentication method is the OpenID Connect, you can change that by setting an alternative value here in [./config/console/services.yml](./config/console/services.yml):
+The default authentication method is the Client Certificate login, you can change that to the OpenID Connect plugin
+by setting an alternative value here in [./config/console/services.yml](./config/console/services.yml):
 
 ```yaml
 OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
 ```
 
-OpenID Connect method requires a valid client metadata JSON file, available locally. You can control the value of that,
+The **Client Certificate** method requires a path to the client certificate file, in `.p12` format, and it's password.
+Both parameters can be set via the following environment variables:
+
+```
+EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+```
+
+The **OpenID Connect method** requires a valid client metadata JSON file, available locally. You can control the value of that,
 along with other authentication setting, by changing the following environment variables:
 
 ```

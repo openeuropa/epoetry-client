@@ -9,10 +9,12 @@ grumphp:
 
 parameters:
   tasks.phpcs.ignore_patterns:
-    - src/Notification
-    - src/Request
+    - src/Notification/Type
+    - src/Request/Type
+    - src/Authentication/ClientCertificate/Type
   tasks.phpcs.triggered_by:
     - php
   tasks.phpmd.exclude:
-    - src/Notification
-    - src/Request
+    - src/Notification/Type
+    - src/Request/Type
+    - src/Authentication/ClientCertificate/Type
