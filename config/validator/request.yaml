@@ -25,6 +25,33 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
                     - PP for spokesperson's service press documents
                     - QE for replies to MEPs’ written questions
 
+OpenEuropa\EPoetry\Request\Type\ResubmitRequest:
+    constraints:
+        -   OpenEuropa\EPoetry\Validation\Constraints\ResubmitRequestConstraint: ~
+
+    properties:
+        resubmitRequest:
+            - Valid: ~
+            - NotNull: ~
+        applicationName:
+            - NotBlank: ~
+        templateName:
+            - NotBlank: ~
+            - Choice:
+                  choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
+                  message: |
+                      Choose a valid template name
+                      - DEFAULT for full length translation
+                      - WEBTRA for web translation
+                      - HOTL for hotline
+                      - EDT for standard editing
+                      - WEBEDT for web editing
+                      - RSE for written summary
+                      - RSO for oral summary
+                      - SPO for spotcheck
+                      - PP for spokesperson's service press documents
+                      - QE for replies to MEPs’ written questions
+
 OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
     constraints:
         - OpenEuropa\EPoetry\Validation\Constraints\RequestDetailsInConstraint: ~
@@ -168,4 +195,46 @@ OpenEuropa\EPoetry\Request\Type\DocumentIn:
                   min: 0
                   max: 500
 
+OpenEuropa\EPoetry\Request\Type\DossierReference:
+    properties:
+        requesterCode:
+            - NotBlank: ~
+            - Length:
+                  min: 0
+                  max: 500
+        number:
+            - NotBlank: ~
+            - PositiveOrZero: ~
+        year:
+            - DateTime:
+                  format: Y
 
+OpenEuropa\EPoetry\Request\Type\RequestReference:
+    properties:
+        dossier:
+            - Valid: ~
+            - NotNull: ~
+        productType:
+            - NotBlank: ~
+            - Choice:
+                  choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
+                  message: |
+                      Choose a valid product type
+                      - ERR
+                      - EXT
+                      - EDT
+                      - TRA
+                      - RSO
+                      - RSE
+                      - REV
+                      - PER
+                      - SPO
+
+OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
+    properties:
+        requestDetails:
+            - Valid: ~
+            - NotNull: ~
+        requestReference:
+            - Valid: ~
+            - NotNull: ~
