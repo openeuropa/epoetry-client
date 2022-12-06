@@ -1,0 +1,63 @@
+# You can copy this to ".sink/request.yml", modify its values and run a test request by running the following command
+# $ ./bin/epoetry resubmit:resubmit-request .sink/request.yml
+resubmitRequest:
+    requestReference:
+        dossier:
+            requesterCode: DIGIT
+            number: 33
+            year: 2022
+        productType: TRA
+        part: 0
+    requestDetails:
+        title: 'Request title'
+        requestedDeadline: '2029-07-01T11:51:00+01:00'
+        sensitive: false
+        destination: PUBLIC
+        procedure: DEGHP
+        slaAnnex: ANNEX8A
+        slaCommitment: '2225555'
+        comment: comment
+        accessibleTo: CONTACTS
+        keyword1: keyword1
+        keyword2: keyword2
+        keyword3: keyword3
+        contacts:
+            contact:
+                -
+                    userId: liekejo
+                    contactRole: WEBMASTER
+                -
+                    userId: liekejo
+                    contactRole: EDITOR
+                -
+                    userId: liekejo
+                    contactRole: RECIPIENT
+        originalDocument:
+            fileName: TEST_FILE_ORIGINALP.docx
+            comment: ''
+            content: 'cid:267736828531'
+            linguisticSections:
+                linguisticSection:
+                    -
+                        language: FR
+            trackChanges: false
+        products:
+            product:
+                -
+                    language: IT
+                    requestedDeadline: '2029-07-06T11:51:00+01:00'
+                    trackChanges: false
+        auxiliaryDocuments:
+            referenceDocuments:
+                document:
+                    -
+                        fileName: test.docx
+                        language: EN
+                        comment: test
+                        content: 'cid:303605824112'
+            srcDocument:
+                fileName: test2222SRC.docx
+                comment: '777888877'
+                content: 'cid:1531884704226'
+applicationName: DRUPAL-TEST
+templateName: WEBTRA

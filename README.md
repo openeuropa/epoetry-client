@@ -289,6 +289,43 @@ $ ./bin/epoetry request:create-linguistic-request .sink/request.yml
 ...
 ```
 
+
+### Perform a `ResubmitRequest`
+
+Run:
+
+```
+$ ./bin/epoetry resubmit:resubmit-request .sink/request.yml
+```
+
+This will parse the request object in `.sink/request.yml` and send it to the configured ePoetry service. You can set
+the desired service URL via the following environment variable:
+
+```
+EPOETRY_CONSOLE_SERVICE_URL=https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+```
+
+You can find example of working request payloads in [./config/console/examples](./config/console/examples).
+
+If successful the command will return the ePoetry response in JSON format:
+
+```
+$ ./bin/epoetry resubmit:resubmit-request .sink/request.yml
+{
+    "return": {
+        "requestReference": {
+            "dossier": {
+                "requesterCode": "DIGIT",
+                "number": 33,
+                "year": 2022
+            },
+            "productType": "TRA",
+            "part": 0,
+            "version": 0
+        },
+...
+```
+
 ### Receive notification from the ePoetry service
 
 Run:
