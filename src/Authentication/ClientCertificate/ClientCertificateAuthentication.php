@@ -5,6 +5,8 @@ namespace OpenEuropa\EPoetry\Authentication\ClientCertificate;
 use Http\Client\Common\PluginClient;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket;
+use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
+use OpenEuropa\EPoetry\Request\RequestClassmap;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
@@ -43,17 +45,28 @@ class ClientCertificateAuthentication implements AuthenticationInterface
     private string $certPassword;
 
     /**
+     * Endpoint of EU Login service.
+     *
+     * Acceptance: https://ecasa.cc.cec.eu.int:7003
+     * Produciton: https://ecas.cc.cec.eu.int:7003
+     *
+     * @var string
+     */
+    private string $euLoginBasePath;
+
+    /**
      * Constructor.
      *
      * @param string $serviceUrl
      * @param string $certFilepath
      * @param string $certPassword
      */
-    public function __construct(string $serviceUrl, string $certFilepath, string $certPassword)
+    public function __construct(string $serviceUrl, string $certFilepath, string $certPassword, string $euLoginBasePath)
     {
         $this->serviceUrl = $serviceUrl;
         $this->certFilepath = $certFilepath;
         $this->certPassword = $certPassword;
+        $this->euLoginBasePath = $euLoginBasePath;
     }
 
     /**
@@ -71,9 +84,16 @@ class ClientCertificateAuthentication implements AuthenticationInterface
             ],
         ]);
 
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('CertLoginSoap11Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.1")
+            ->withPortLocation('CertLoginSoap12Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.2")
+            ->withPortLocation('CertLoginHttpGetPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http")
+            ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults(__DIR__.'/../../../resources/authentication.wsdl', [])
-                ->withClassMap(ClientCertificateClassmap::getCollection()),
+                ->withClassMap(ClientCertificateClassmap::getCollection())
+                ->withWsdlProvider($wsdlProvider)
+                ->disableWsdlCache(),
             Psr18Transport::createForClient(new PluginClient(new Psr18Client($httpClient)))
         );
 
