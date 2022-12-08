@@ -200,18 +200,16 @@ OpenEuropa\EPoetry\Request\Type\DocumentIn:
 OpenEuropa\EPoetry\Request\Type\DossierReference:
     properties:
         requesterCode:
-            - NotBlank: ~
             - Length:
                   min: 0
                   max: 500
         number:
-            - NotBlank: ~
             - PositiveOrZero: ~
         year:
             - DateTime:
                   format: Y
 
-OpenEuropa\EPoetry\Request\Type\RequestReference:
+OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
     properties:
         dossier:
             - Valid: ~
