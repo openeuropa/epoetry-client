@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <SOAP-ENV:Body>
+        <ns1:modifyLinguisticRequest>
+            <modifyLinguisticRequest>
+                <requestReference>
+                    <dossier>
+                        <requesterCode>CA07</requesterCode>
+                        <number>1</number>
+                        <year>2021</year>
+                    </dossier>
+                    <productType>TRA</productType>
+                    <part>0</part>
+                </requestReference>
+                <requestDetails>
+                    <contacts xsi:type="ns1:contacts">
+                        <contact userId="LIEKEJO" contactRole="REQUESTER"/>
+                        <contact userId="ESCUDLU" contactRole="REQUESTER"/>
+                        <contact userId="ESCUDLU" contactRole="AUTHOR"/>
+                        <contact userId="ESCUDLU" contactRole="RECIPIENT"/>
+                    </contacts>
+                    <products xsi:type="ns1:products">
+                        <product requestedDeadline="2021-11-13T23:59:00+02:00" trackChanges="false" xsi:type="ns1:modifyProductRequestIn">
+                            <language>ES</language>
+                        </product>
+                    </products>
+                    <auxiliaryDocuments>
+                        <referenceDocuments xsi:type="ns1:referenceDocuments">
+                            <document>
+                                <fileName>auxilary-file-IT-20210813.doc</fileName>
+                                <language>ES</language>
+                                <comment>3rd attach</comment>
+                                <content>Y2lkOmF1eA==</content>
+                            </document>
+                        </referenceDocuments>
+                    </auxiliaryDocuments>
+                </requestDetails>
+            </modifyLinguisticRequest>
+            <applicationName>EPOETRY</applicationName>
+        </ns1:modifyLinguisticRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

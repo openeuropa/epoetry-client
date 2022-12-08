@@ -13,6 +13,12 @@ use OpenEuropa\EPoetry\Request\Type\DossierReference;
 use OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
+use OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn;
+use OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest;
+use OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn;
+use OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn;
+use OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn;
+use OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn;
 use OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\Products;
@@ -161,6 +167,59 @@ abstract class BaseTest extends TestCase
             ->setApplicationName('appname')
             ->setTemplateName('DEFAULT');
     }
+
+  /**
+   * Gets test ModifyLinguisticRequest object.
+   */
+  protected function getModifyLinguisticRequest(): ModifyLinguisticRequest
+  {
+    $document = new DocumentIn();
+    $document->setFileName('auxilary-file-IT-20210813.doc')
+      ->setLanguage('ES')
+      ->setComment('3rd attach')
+      ->setContent('cid:aux');
+
+    $referenceDocuments = new ReferenceDocuments();
+    $referenceDocuments->addDocument($document);
+
+    $auxiliaryDocuments = new ModifyAuxiliaryDocumentsIn();
+    $auxiliaryDocuments->setReferenceDocuments($referenceDocuments);
+
+    $requestDetails = new ModifyRequestDetailsIn();
+    $requestDetails->setAuxiliaryDocuments($auxiliaryDocuments);
+    $contacts = (new Contacts())
+      ->addContact(new ContactPersonIn('LIEKEJO', 'REQUESTER'))
+      ->addContact(new ContactPersonIn('ESCUDLU', 'REQUESTER'))
+      ->addContact(new ContactPersonIn('ESCUDLU', 'AUTHOR'))
+      ->addContact(new ContactPersonIn('ESCUDLU', 'RECIPIENT'));
+    $requestDetails->setContacts($contacts);
+
+    $productRequestIn = (new ModifyProductRequestIn())
+      ->setLanguage('ES')
+      ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2021-11-13T23:59:00+02:00'))
+      ->setTrackChanges(false);
+    $products = (new Products())
+      ->addProduct($productRequestIn);
+    $requestDetails->setProducts($products);
+
+    $dossierReference = (new DossierReference());
+    $dossierReference->setRequesterCode('CA07')
+      ->setNumber(1)
+      ->setYear(2021);
+    $requestReference = (new ModifyRequestReferenceIn());
+    $requestReference->setDossier($dossierReference)
+      ->setPart(0)
+      ->setProductType('TRA');
+
+    $modifyLinguisticRequestIn = new ModifyLinguisticRequestIn();
+    $modifyLinguisticRequestIn->setRequestDetails($requestDetails);
+    $modifyLinguisticRequestIn->setRequestReference($requestReference);
+
+
+    return (new ModifyLinguisticRequest())
+      ->setModifyLinguisticRequest($modifyLinguisticRequestIn)
+      ->setApplicationName('EPOETRY');
+  }
 
     /**
      * Gets test ResubmitRequest object.
