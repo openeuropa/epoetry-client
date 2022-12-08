@@ -199,7 +199,8 @@ abstract class BaseTest extends TestCase
         $requestDetails->setOriginalDocument($originalDocument);
 
         $productRequest = (new ProductRequestIn())
-            ->setLanguage('FR');
+            ->setLanguage('FR')
+            ->setTrackChanges(false);
         $products = (new Products())
             ->addProduct($productRequest);
         $requestDetails->setProducts($products);

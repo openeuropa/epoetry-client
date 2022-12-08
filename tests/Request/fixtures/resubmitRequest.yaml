@@ -8,6 +8,7 @@ x-default-request-details: &default-request-details
         product:
             -   requestedDeadline: '2040-07-01T11:51:00+01:00'
                 language: FR
+                trackChanges: false
     contacts:
         contact:
             -   userId: liekejo
@@ -299,6 +300,7 @@ tests:
                         product:
                             -   requestedDeadline: '2040-07-01T11:51:00+01:00'
                                 language: FR
+                                trackChanges: true
                     contacts:
                         contact:
                             -   userId: liekejo
@@ -695,6 +697,7 @@ tests:
                     products:
                         product:
                             -   language: ''
+                                trackChanges: true
         expectations:
             assertions:
                 - count(violations) === 2

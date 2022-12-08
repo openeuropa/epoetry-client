@@ -33,9 +33,9 @@ class ResubmitRequestConstraintValidator extends CreateLinguisticRequestConstrai
         $this->validateProcedure($resubmitRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint, 'resubmitRequest.');
 
         // The client can change all values with this resubmission, except:
-        //-          sensitive
-        //-          sentViaRue
-        //-          onBehalfOf
+        // - sensitive
+        // - sentViaRue
+        // - onBehalfOf
         if ($linguisticRequest->getRequestDetails()->isSensitive() !== null) {
             $this->context->buildViolation($constraint->requestedSensitiveMessage)
                 ->atPath('resubmitRequest.requestDetails.sensitive')

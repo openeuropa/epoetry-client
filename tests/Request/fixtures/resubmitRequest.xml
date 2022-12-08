@@ -44,7 +44,7 @@
                         <trackChanges/>
                     </originalDocument>
                     <products>
-                        <product>
+                        <product trackChanges="false">
                             <language>FR</language>
                         </product>
                     </products>

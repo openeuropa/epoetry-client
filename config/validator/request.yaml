@@ -124,13 +124,15 @@ OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
             - NotBlank: ~
         requestedDeadline:
             - NotNull: ~
-
 OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
     properties:
         language:
             - NotBlank: ~
         requestedDeadline:
             - NotNull: ~
+        trackChanges:
+            - NotNull: ~
+            - Type: bool
 
 OpenEuropa\EPoetry\Request\Type\Contacts:
     properties:
