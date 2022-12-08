@@ -12,6 +12,7 @@ use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
 use OpenEuropa\EPoetry\Request\Type\DocumentIn;
 use OpenEuropa\EPoetry\Request\Type\DossierReference;
 use OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn;
+use OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
 use OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn;
@@ -375,5 +376,25 @@ abstract class BaseTest extends TestCase
             ->setRequestDetails($requestDetails)
             ->setApplicationName('application1')
             ->setTemplateName('DEFAULT');
+    }
+
+    /**
+     * Gets test CreateLinguisticRequest object.
+     */
+    protected function getGetLinguisticRequest(): GetLinguisticRequest
+    {
+        $dossierReference = (new DossierReference())
+            ->setRequesterCode('CA07')
+            ->setNumber(3)
+            ->setYear(2021);
+
+        $requestReference = (new RequestReferenceIn())
+            ->setDossier($dossierReference)
+            ->setPart(0)
+            ->setProductType('TRA');
+
+        return (new GetLinguisticRequest())
+            ->setRequestReference($requestReference)
+            ->setApplicationName('appname');
     }
 }

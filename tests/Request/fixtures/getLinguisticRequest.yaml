@@ -1,0 +1,87 @@
+x-default-dossier: &default-dossier
+    requesterCode: CA07
+    number: 3
+    year: 2021
+
+x-default-request-reference: &default-request-reference
+    dossier:
+        <<: *default-dossier
+    productType: TRA
+    part: 0
+
+x-default: &default
+    applicationName: appname
+    requestReference:
+        <<: *default-request-reference
+
+tests:
+    -   data:
+            <<: *default
+            requestReference:
+                dossier:
+                    requesterCode: 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+                    year: 2000
+                productType: TRA
+                part: 0
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(0).getPropertyPath() === 'requestReference.dossier.requesterCode'
+    -   data:
+            <<: *default
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            applicationName: ''
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'applicationName'
+    -   data:
+            <<: *default
+            requestReference: ''
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === 'This value should not be null.'
+                - violations.get(0).getPropertyPath() === 'requestReference.dossier'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'requestReference.productType'
+    -   data:
+            <<: *default
+            requestReference:
+                dossier:
+                    <<: *default-dossier
+                productType: 'wrong value'
+                part: 0
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid product type') === 0
+    -   data:
+            <<: *default
+            requestReference:
+                productType: TRA
+                part: 0
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be null.'
+                - violations.get(0).getPropertyPath() === 'requestReference.dossier'
+    -   data:
+            <<: *default
+            requestReference:
+                dossier:
+                    requesterCode: 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+                productType: TRA
+                part: 0
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(0).getPropertyPath() === 'requestReference.dossier.requesterCode'
