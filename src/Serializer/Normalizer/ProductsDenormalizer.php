@@ -49,8 +49,15 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
         }
 
         $products = new Products();
-        foreach ($data['product'] as $values) {
-            $product = $this->serializer->denormalize($values, $childType, $format, $context);
+        $values = $data['product'];
+        if (!isset($data['product'][0])) {
+            // Single value in XML.
+            $values = [
+                $data['product'],
+            ];
+        }
+        foreach ($values as $value) {
+            $product = $this->serializer->denormalize($value, $childType, $format, $context);
             $products->addProduct($product);
         }
 

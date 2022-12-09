@@ -38,8 +38,15 @@ class ContactsDenormalizer implements DenormalizerInterface, SerializerAwareInte
         }
 
         $contacts = new Contacts();
-        foreach ($data['contact'] as $values) {
-            $contact = $this->serializer->denormalize($values, $childType, $format, $context);
+        $values = $data['contact'];
+        if (!isset($data['contact'][0])) {
+            // Single value in XML.
+            $values = [
+                $data['contact'],
+            ];
+        }
+        foreach ($values as $value) {
+            $contact = $this->serializer->denormalize($value, $childType, $format, $context);
             $contacts->addContact($contact);
         }
 

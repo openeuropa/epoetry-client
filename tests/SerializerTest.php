@@ -69,25 +69,40 @@ final class SerializerTest extends BaseTest
      */
     public function testProductsDenormalizer(): void
     {
-        $yaml = "{ products: { product: [{ language: FR, acceptedDeadline: '2022-07-01T11:51:00+01:00', trackChanges: true, status: Ongoing, format: DOC }, { language: EN, requestedDeadline: '2022-08-01T11:51:00+01:00', trackChanges: false, status: Accepted, format: DOCX }] } }";
+        // XML single value.
+        $xml = '<?xml version="1.0"?><response><products><product><language>FR</language><requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline><trackChanges>0</trackChanges><status>SenttoDGT</status><format>DOCX</format></product></products></response>';
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml');
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml');
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml');
 
-        // Assert creation of children classes based on type of denormalized object.
-        $this->assertProducts($yaml, RequestDetailsOut::class, ProductRequestOut::class);
-        $this->assertProducts($yaml, RequestDetailsIn::class, ProductRequestIn::class);
-        $this->assertProducts($yaml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class);
+        // XML multiple values.
+        $xml = '<?xml version="1.0"?><response><products><product><language>FR</language><requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline><trackChanges>0</trackChanges><status>SenttoDGT</status><format>DOCX</format></product><product><language>EN</language><requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline><trackChanges>0</trackChanges><status>SenttoDGT</status><format>DOCX</format></product></products></response>';
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml', 2);
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 2);
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml', 2);
+
+        // Yaml strings.
+        $yaml = "{ products: { product: [{ language: FR, acceptedDeadline: '2022-07-01T11:51:00+01:00', trackChanges: true, status: Ongoing, format: DOC }, { language: EN, requestedDeadline: '2022-08-01T11:51:00+01:00', trackChanges: false, status: Accepted, format: DOCX }] } }";
+        $this->assertProducts($yaml, RequestDetailsOut::class, ProductRequestOut::class, 'yaml', 2);
+        $this->assertProducts($yaml, RequestDetailsIn::class, ProductRequestIn::class, 'yaml', 2);
+        $this->assertProducts($yaml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'yaml', 2);
     }
 
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\Products object.
      */
-    protected function assertProducts(string $yaml, string $type, string $expectedInstance): void
+    protected function assertProducts(string $yaml, string $type, string $expectedInstance, string $format = 'yaml', int $count = 1): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
         $products = $denormalizedObject->getProducts()->getProduct();
-        $this->assertCount(2, $products);
+        $this->assertCount($count, $products);
         foreach ($products as $product) {
             $this->assertInstanceOf($expectedInstance, $product);
+        }
+        $this->assertEquals('FR', $products[0]->getLanguage());
+        if ($count === 2) {
+            $this->assertEquals('EN', $products[1]->getLanguage());
         }
     }
 
@@ -96,9 +111,18 @@ final class SerializerTest extends BaseTest
      */
     public function testLinguisticSectionsDenormalizer(): void
     {
-        $yaml = "{ linguisticSections: { linguisticSection: [{ language: FR }] } }";
+        // XML single value.
+        $xml = '<?xml version="1.0"?><response><linguisticSections><linguisticSection><language>FR</language></linguisticSection></linguisticSections></response>';
+        $this->assertLinguisticSections($xml, OriginalDocumentOut::class, LinguisticSectionOut::class, 'xml');
+        $this->assertLinguisticSections($xml, OriginalDocumentIn::class, LinguisticSectionIn::class, 'xml');
 
-        // Assert creation of children classes based on type of denormalized object.
+        // XML multiple values.
+        $xml = '<?xml version="1.0"?><response><linguisticSections><linguisticSection><language>FR</language><language>EN</language></linguisticSection></linguisticSections></response>';
+        $this->assertLinguisticSections($xml, OriginalDocumentOut::class, LinguisticSectionOut::class, 'xml', 2);
+        $this->assertLinguisticSections($xml, OriginalDocumentIn::class, LinguisticSectionIn::class, 'xml', 2);
+
+        // Yaml strings.
+        $yaml = "{ linguisticSections: { linguisticSection: [{ language: FR }] } }";
         $this->assertLinguisticSections($yaml, OriginalDocumentOut::class, LinguisticSectionOut::class);
         $this->assertLinguisticSections($yaml, OriginalDocumentIn::class, LinguisticSectionIn::class);
     }
@@ -106,12 +130,19 @@ final class SerializerTest extends BaseTest
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\LinguisticSections object.
      */
-    protected function assertLinguisticSections(string $yaml, string $type, string $expectedInstance): void
+    protected function assertLinguisticSections(string $yaml, string $type, string $expectedInstance, string $format = 'yaml', int $count = 1): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
-        $linguisticSection = $denormalizedObject->getLinguisticSections()->getLinguisticSection();
-        $this->assertInstanceOf($expectedInstance, reset($linguisticSection));
+        $linguisticSections = $denormalizedObject->getLinguisticSections()->getLinguisticSection();
+        $this->assertCount($count, $linguisticSections);
+        foreach ($linguisticSections as $linguisticSection) {
+            $this->assertInstanceOf($expectedInstance, $linguisticSection);
+        }
+        $this->assertEquals('FR', $linguisticSections[0]->getLanguage());
+        if ($count === 2) {
+            $this->assertEquals('EN', $linguisticSections[1]->getLanguage());
+        }
     }
 
     /**
@@ -119,11 +150,26 @@ final class SerializerTest extends BaseTest
      */
     public function testContactsDenormalizer(): void
     {
-        // Assert creation of children classes based on type of denormalized object.
-        $yaml = "{ contacts: { contact: [{ firstName: First, lastName: Last, email: test@example.com, userId: userId, roleCode: code }] } }";
+        // XML single value.
+        $xml = '<?xml version="1.0"?><response><contacts><contact><firstName>First1</firstName><lastName>Last1</lastName><email>mail1@ec.europa.eu</email><userId>id1</userId><roleCode>AUTHOR</roleCode></contact></contacts></response>';
+        $this->assertContacts($xml, RequestDetailsOut::class, ContactPersonOut::class, 'xml');
+
+        $xml = '<?xml version="1.0"?><response><contacts><contact><userId>id1</userId><contactRole>AUTHOR</contactRole></contact></contacts></response>';
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml');
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml');
+
+        // XML multiple values.
+        $xml = '<?xml version="1.0"?><response><contacts><contact><firstName>First1</firstName><lastName>Last1</lastName><email>mail1@ec.europa.eu</email><userId>id1</userId><roleCode>AUTHOR</roleCode></contact><contact><firstName>First2</firstName><lastName>Last2</lastName><email>mail2@ec.europa.eu</email><userId>id2</userId><roleCode>RECIPIENT</roleCode></contact></contacts></response>';
+        $this->assertContacts($xml, RequestDetailsOut::class, ContactPersonOut::class, 'xml', 2);
+        $xml = '<?xml version="1.0"?><response><contacts><contact><userId>id1</userId><contactRole>AUTHOR</contactRole></contact><contact><userId>id2</userId><contactRole>RECIPIENT</contactRole></contact></contacts></response>';
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 2);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 2);
+
+        // Yaml strings.
+        $yaml = "{ contacts: { contact: [{ firstName: First1, lastName: Last1, email: mail1@ec.europa.eu, userId: id1, roleCode: AUTHOR }] } }";
         $this->assertContacts($yaml, RequestDetailsOut::class, ContactPersonOut::class);
 
-        $yaml = "{ contacts: { contact: [{ userId: userId, contactRole: role }] } }";
+        $yaml = "{ contacts: { contact: [{ userId: id1, contactRole: role }] } }";
         $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class);
         $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class);
     }
@@ -131,12 +177,19 @@ final class SerializerTest extends BaseTest
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\Contacts object.
      */
-    protected function assertContacts(string $yaml, string $type, string $expectedInstance): void
+    protected function assertContacts(string $yaml, string $type, string $expectedInstance, string $format = 'yaml', int $count = 1): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
-        $contact = $denormalizedObject->getContacts()->getContact();
-        $this->assertInstanceOf($expectedInstance, reset($contact));
+        $contacts = $denormalizedObject->getContacts()->getContact();
+        $this->assertCount($count, $contacts);
+        foreach ($contacts as $contact) {
+            $this->assertInstanceOf($expectedInstance, $contact);
+        }
+        $this->assertEquals('id1', $contacts[0]->getUserId());
+        if ($count === 2) {
+            $this->assertEquals('id2', $contacts[1]->getUserId());
+        }
     }
 
     /**
