@@ -22,13 +22,13 @@ final class ModifyLinguisticRequestTest extends BaseRequestTest
     }
 
     /**
-     * Test validation of CreateLinguisticRequest class.
+     * Test validation of ResubmitRequest class.
      *
-     * @dataProvider dataProviderCreateLinguisticRequest
+     * @dataProvider dataProviderResubmitRequest
      */
     public function testValidation($data, $expectations): void
     {
-        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest');
+        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest');
         $violations = $this->validator->validate($request);
         $values = [
             'violations' => $violations,
@@ -44,8 +44,8 @@ final class ModifyLinguisticRequestTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderCreateLinguisticRequest(): array
+    public function dataProviderResubmitRequest(): array
     {
-        return $this->getFixture('createLinguisticRequest.yaml', '/Request')['tests'];
+        return $this->getFixture('modifyLinguisticRequest.yaml', '/Request')['tests'];
     }
 }

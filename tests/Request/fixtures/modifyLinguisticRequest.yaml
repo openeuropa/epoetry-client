@@ -1,0 +1,62 @@
+x-default-request-details: &default-request-details
+    contacts:
+        contact:
+            -   userId: liekejo
+                contactRole: REQUESTER
+            -   userId: liekejo
+                contactRole: AUTHOR
+            -   userId: liekejo
+                contactRole: RECIPIENT
+
+x-default-dossier: &default-dossier
+    requesterCode: CA07
+    number: 3
+    year: 2021
+
+x-default-request-reference: &default-request-reference
+    dossier:
+        <<: *default-dossier
+    productType: TRA
+    part: 0
+
+x-default-modify-linguistic-request: &default-modify-linguistic-request
+    requestDetails:
+        <<: *default-request-details
+    requestReference:
+        <<: *default-request-reference
+
+x-default: &default
+    applicationName: appname
+    modifyLinguisticRequest:
+        <<: *default-modify-linguistic-request
+
+tests:
+    -   data:
+            <<: *default
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            applicationName: ''
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'applicationName'
+    -   data:
+            <<: *default
+            requestDetails:
+                <<: *default-request-details
+                contacts:
+                    contact:
+                        -   userId: liekejo
+                            contactRole: WEBMASTER
+                        -   userId: liekejo
+                            contactRole: EDITOR
+                        -   userId: liekejo
+                            contactRole: RECIPIENT
+        expectations:
+            assertions:
+                - count(violations) === 0

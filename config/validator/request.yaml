@@ -52,6 +52,14 @@ OpenEuropa\EPoetry\Request\Type\ResubmitRequest:
                       - PP for spokesperson's service press documents
                       - QE for replies to MEPs’ written questions
 
+OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest:
+    properties:
+        modifyLinguisticRequest:
+            - Valid: ~
+            - NotNull: ~
+        applicationName:
+            - NotBlank: ~
+
 OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
     constraints:
         - OpenEuropa\EPoetry\Validation\Constraints\RequestDetailsInConstraint: ~
@@ -124,6 +132,9 @@ OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
             - NotBlank: ~
         requestedDeadline:
             - NotNull: ~
+        trackChanges:
+            -   NotNull: ~
+            -   Type: bool
 OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
     properties:
         language:
@@ -229,6 +240,8 @@ OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
                       - REV
                       - PER
                       - SPO
+        part:
+            - PositiveOrZero: ~
 
 OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
     properties:
@@ -238,3 +251,52 @@ OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
         requestReference:
             - Valid: ~
             - NotNull: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn:
+    properties:
+        requestReference:
+            - Valid: ~
+        requestDetails:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn:
+    properties:
+        dossier:
+            - Valid: ~
+        productType:
+            - Choice:
+                  choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
+                  message: |
+                      Choose a valid product type
+                      - ERR
+                      - EXT
+                      - EDT
+                      - TRA
+                      - RSO
+                      - RSE
+                      - REV
+                      - PER
+                      - SPO
+        part:
+            - PositiveOrZero: ~
+
+OpenEuropa\EPoetry\Request\Type\modifyRequestDetailsIn:
+    properties:
+        products:
+            - Valid: ~
+        contacts:
+            - Valid: ~
+            - NotNull: ~
+        auxiliaryDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\modifyAuxiliaryDocumentsIn:
+    properties:
+        referenceDocuments:
+            - Valid: ~
+        traxDocuments:
+            - Valid: ~
+        spotDocument:
+            - Valid: ~
+        prtDocuments:
+            - Valid: ~
