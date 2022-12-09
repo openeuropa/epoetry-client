@@ -10,8 +10,11 @@
         </xsd:schema>
     </types>
     <service name="TestService">
-        <port binding="tns:TestBinding" name="TestPort">
-            <soap:address location="http://www.examples.com/TestService/" />
+        <port binding="tns:TestBinding" name="TestPort1">
+            <soap:address location="http://www.examples.com/TestService/1" />
+        </port>
+        <port binding="tns:TestBinding" name="TestPort2">
+            <soap:address location="http://www.examples.com/TestService/2" />
         </port>
     </service>
 </definitions>
