@@ -9,7 +9,7 @@ use Soap\Engine\HttpBinding\SoapResponse;
 /**
  * Test GetLinguisticRequestResponse service.
  */
-final class GetLinguisticRequestResponse extends BaseRequestTest
+final class GetLinguisticRequestResponseTest extends BaseRequestTest
 {
     /**
      * Tests GetLinguisticRequestResponse decoding.

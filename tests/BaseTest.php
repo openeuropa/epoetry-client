@@ -379,7 +379,7 @@ abstract class BaseTest extends TestCase
     }
 
     /**
-     * Gets test CreateLinguisticRequest object.
+     * Gets test GetLinguisticRequest object.
      */
     protected function getGetLinguisticRequest(): GetLinguisticRequest
     {

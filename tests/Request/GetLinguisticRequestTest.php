@@ -16,7 +16,7 @@ final class GetLinguisticRequestTest extends BaseRequestTest
     {
         $request = $this->getGetLinguisticRequest();
 
-        $expected = file_get_contents(__DIR__.'/fixtures/getLinguisticRequest.xml');
+        $expected = file_get_contents(__DIR__ . '/fixtures/getLinguisticRequest.xml');
         $request = $this->driver->encode('getLinguisticRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }

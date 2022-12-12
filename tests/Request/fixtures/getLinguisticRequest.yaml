@@ -47,11 +47,9 @@ tests:
             requestReference: ''
         expectations:
             assertions:
-                - count(violations) === 2
-                - violations.get(0).getMessage() === 'This value should not be null.'
-                - violations.get(0).getPropertyPath() === 'requestReference.dossier'
-                - violations.get(1).getMessage() === 'This value should not be blank.'
-                - violations.get(1).getPropertyPath() === 'requestReference.productType'
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'requestReference.productType'
     -   data:
             <<: *default
             requestReference:
@@ -70,9 +68,7 @@ tests:
                 part: 0
         expectations:
             assertions:
-                - count(violations) === 1
-                - violations.get(0).getMessage() === 'This value should not be null.'
-                - violations.get(0).getPropertyPath() === 'requestReference.dossier'
+                - count(violations) === 0
     -   data:
             <<: *default
             requestReference:

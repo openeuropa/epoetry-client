@@ -230,7 +230,6 @@ OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
     properties:
         dossier:
             - Valid: ~
-            - NotNull: ~
         productType:
             - NotBlank: ~
             - Choice: *productTypeChoice
