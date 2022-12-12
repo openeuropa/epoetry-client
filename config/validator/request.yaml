@@ -133,8 +133,9 @@ OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
         requestedDeadline:
             - NotNull: ~
         trackChanges:
-            -   NotNull: ~
-            -   Type: bool
+            - NotNull: ~
+            - Type: bool
+
 OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
     properties:
         language:

@@ -215,7 +215,6 @@ abstract class BaseTest extends TestCase
         $modifyLinguisticRequestIn->setRequestDetails($requestDetails);
         $modifyLinguisticRequestIn->setRequestReference($requestReference);
 
-
         return (new ModifyLinguisticRequest())
             ->setModifyLinguisticRequest($modifyLinguisticRequestIn)
             ->setApplicationName('EPOETRY');

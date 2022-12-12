@@ -16,15 +16,15 @@ final class ModifyLinguisticRequestTest extends BaseRequestTest
     {
         $request = $this->getModifyLinguisticRequest();
 
-        $expected = file_get_contents(__DIR__.'/fixtures/modifyLinguisticRequest.xml');
+        $expected = file_get_contents(__DIR__ . '/fixtures/modifyLinguisticRequest.xml');
         $request = $this->driver->encode('modifyLinguisticRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
 
     /**
-     * Test validation of ResubmitRequest class.
+     * Test validation of ModifyLinguisticRequest class.
      *
-     * @dataProvider dataProviderResubmitRequest
+     * @dataProvider dataProviderModifyLinguisticRequest
      */
     public function testValidation($data, $expectations): void
     {
@@ -44,7 +44,7 @@ final class ModifyLinguisticRequestTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderResubmitRequest(): array
+    public function dataProviderModifyLinguisticRequest(): array
     {
         return $this->getFixture('modifyLinguisticRequest.yaml', '/Request')['tests'];
     }

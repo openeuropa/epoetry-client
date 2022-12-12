@@ -39,7 +39,7 @@ final class ModifyLinguisticRequestResponseTest extends BaseRequestTest
      */
     public function testRequestResponseError(): void
     {
-        $xml = file_get_contents(__DIR__.'/fixtures/modifyLinguisticRequestResponseError.xml');
+        $xml = file_get_contents(__DIR__ . '/fixtures/modifyLinguisticRequestResponseError.xml');
         $this->expectException(\SoapFault::class);
         $this->expectExceptionMessage('Error 1: Incorrect on behalf DG!');
         $this->driver->decode('modifyLinguisticRequest', new SoapResponse($xml));
