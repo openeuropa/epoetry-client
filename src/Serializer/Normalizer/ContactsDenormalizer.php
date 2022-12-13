@@ -45,7 +45,22 @@ class ContactsDenormalizer implements DenormalizerInterface, SerializerAwareInte
                 $data['contact'],
             ];
         }
+
+        $attributes = ['userId', 'contactRole'];
         foreach ($values as $value) {
+            // Copy attributes to values.
+            foreach ($attributes as $attribute) {
+                $name = '@' . $attribute;
+                if (isset($value[$name])) {
+                    $value[$attribute] = $value[$name];
+                    unset($value[$name]);
+                }
+            }
+            if (isset($value['#'])) {
+                unset($value['#']);
+            }
+
+            // Create objects.
             $contact = $this->serializer->denormalize($value, $childType, $format, $context);
             $contacts->addContact($contact);
         }

@@ -56,7 +56,21 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
                 $data['product'],
             ];
         }
+        $attributes = ['requestedDeadline', 'trackChanges'];
         foreach ($values as $value) {
+            // Copy attributes to values.
+            foreach ($attributes as $attribute) {
+                $name = '@' . $attribute;
+                if (isset($value[$name])) {
+                    $value[$attribute] = $value[$name];
+                    unset($value[$name]);
+                }
+            }
+            if (isset($value['#'])) {
+                unset($value['#']);
+            }
+
+            // Create objects.
             $product = $this->serializer->denormalize($value, $childType, $format, $context);
             $products->addProduct($product);
         }
