@@ -299,3 +299,10 @@ OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
         templateName:
             - NotBlank: ~
             - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\CreateNewVersion:
+    properties:
+        linguisticRequest:
+            - Valid: ~
+        applicationName:
+            - NotBlank: ~
