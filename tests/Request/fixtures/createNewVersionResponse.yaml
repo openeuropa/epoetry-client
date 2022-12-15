@@ -12,7 +12,7 @@
             - response.getReturn().getRequestReference().getDossier().getYear() === 2021
             - response.getReturn().getRequestReference().getProductType() === 'TRA'
             - response.getReturn().getRequestReference().getPart() === 0
-            - response.getReturn().getRequestReference().getVersion() === 0
+            - response.getReturn().getRequestReference().getVersion() === 5
             - response.getReturn().getRequestDetails().getTitle() === 'test for DOC - success'
             - response.getReturn().getRequestDetails().getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2022-07-01T10:51:00+00:00'
             - response.getReturn().getRequestDetails().isSensitive() === false
