@@ -299,3 +299,10 @@ OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
         templateName:
             - NotBlank: ~
             - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl:
+    properties:
+        callbackUrl:
+            - NotBlank: ~
+        applicationName:
+            - NotBlank: ~
