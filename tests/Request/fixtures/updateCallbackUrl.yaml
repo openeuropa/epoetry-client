@@ -7,6 +7,22 @@ tests:
                 - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
                 - count(violations) === 0
     -   data:
+            callbackUrl: 'http://example.com'
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is not a valid URL.'
+                - violations.get(0).getPropertyPath() === 'callbackUrl'
+    -   data:
+            callbackUrl: '/example.com'
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is not a valid URL.'
+                - violations.get(0).getPropertyPath() === 'callbackUrl'
+    -   data:
             callbackUrl: 'https://example.com'
         expectations:
             assertions:

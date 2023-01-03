@@ -304,5 +304,6 @@ OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl:
     properties:
         callbackUrl:
             - NotBlank: ~
+            - Url: { protocols: [https] }
         applicationName:
             - NotBlank: ~

@@ -2,7 +2,9 @@
     expectations:
         assertions:
             - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\UpdateCallbackUrlOut')
-            - response.getOldCallbackUrl() === 'http://example.com/old'
-            - response.getNewCallbackUrl() === 'http://example.com/new'
+            - response.hasSuccess() === true
+            - response.isSuccess() === true
+            - response.getOldCallbackUrl() === 'https://example.com/old'
+            - response.getNewCallbackUrl() === 'https://example.com/new'
             - response.getApplication() === 'appname'
             - response.getMessage() === 'Some message'
