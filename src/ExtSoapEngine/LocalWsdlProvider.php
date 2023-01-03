@@ -9,9 +9,12 @@ use VeeWee\XML\DOM\Xpath;
 
 class LocalWsdlProvider implements WsdlProvider
 {
-    private string $portName;
-
-    private string $portLocation;
+    /**
+     * Array of port locations, keyed by port name.
+     *
+     * @var array
+     */
+    private array $ports = [];
 
     /**
      * Override address for a given port name.
@@ -23,15 +26,9 @@ class LocalWsdlProvider implements WsdlProvider
      */
     public function withPortLocation(string $name, string $location): LocalWsdlProvider
     {
-        $this->portName = $name;
-        $this->portLocation = $location;
+        $this->ports[$name] = $location;
 
         return $this;
-    }
-
-    private function hasPortLocation(): bool
-    {
-        return !empty($this->portName) && !empty($this->portLocation);
     }
 
     /**
@@ -41,9 +38,9 @@ class LocalWsdlProvider implements WsdlProvider
     {
         $wsdl = Document::fromXmlFile($location);
 
-        if ($this->hasPortLocation()) {
-            $element = $wsdl->xpath()->querySingle("//*[local-name()='port'][@name='{$this->portName}']/soap:address");
-            $element->setAttribute('location', $this->portLocation);
+        foreach ($this->ports as $port_name => $port_location) {
+            $element = $wsdl->xpath()->querySingle("//*[local-name()='port'][@name='{$port_name}']/*");
+            $element->setAttribute('location', $port_location);
         }
 
         // Look for a schema import in the WSDL file.

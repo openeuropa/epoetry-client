@@ -12,7 +12,8 @@ class LocalWsdlProviderTest extends TestCase
     public function testProvider(): void
     {
         $wsdlProvider = (new LocalWsdlProvider())
-            ->withPortLocation('TestPort', 'http://overridden.address');
+            ->withPortLocation('TestPort1', 'http://overridden.address1')
+            ->withPortLocation('TestPort2', 'http://overridden.address2');
         $wsdl = __DIR__.'/../fixtures/test.wsdl';
         $wsdl_location = $wsdlProvider($wsdl);
 
@@ -28,8 +29,11 @@ class LocalWsdlProviderTest extends TestCase
         </xsd:schema>
     </types>
     <service name="TestService">
-        <port binding="tns:TestBinding" name="TestPort">
-            <soap:address location="http://overridden.address"/>
+        <port binding="tns:TestBinding" name="TestPort1">
+            <soap:address location="http://overridden.address1"/>
+        </port>
+        <port binding="tns:TestBinding" name="TestPort2">
+            <soap:address location="http://overridden.address2"/>
         </port>
     </service>
 </definitions>

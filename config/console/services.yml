@@ -58,3 +58,4 @@ services:
       $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL)%"
       $certFilepath: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PATH)%"
       $certPassword: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PASSWORD)%"
+      $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLENT_EU_LOGIN_BASEPATH)%"

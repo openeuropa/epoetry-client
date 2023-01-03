@@ -9,4 +9,5 @@ docker-compose.*.yml
 .phpunit.result.cache
 /.sink
 /var
-/.env.local
+/.env.*
+*.p12
