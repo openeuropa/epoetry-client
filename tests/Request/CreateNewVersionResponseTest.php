@@ -7,12 +7,12 @@ namespace OpenEuropa\EPoetry\Tests\Request;
 use Soap\Engine\HttpBinding\SoapResponse;
 
 /**
- * Test CreateNewVersionResponseTest service.
+ * Test CreateNewVersionResponse service.
  */
 final class CreateNewVersionResponseTest extends BaseRequestTest
 {
     /**
-     * Tests CreateNewVersionResponseTest decoding.
+     * Tests CreateNewVersionResponse decoding.
      *
      * @dataProvider dataProviderRequestResponse
      */
