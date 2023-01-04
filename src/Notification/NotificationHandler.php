@@ -3,7 +3,10 @@
 namespace OpenEuropa\EPoetry\Notification;
 
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeReadyToBeSentEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeSentEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
@@ -22,8 +25,11 @@ class NotificationHandler
 
     const NOTIFICATION_PRODUCT_DELIVERY = 'ProductDelivery';
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
-    const PRODUCT_STATUS_ONGOING = 'Ongoing';
     const PRODUCT_STATUS_REQUESTED = 'Requested';
+    const PRODUCT_STATUS_ACCEPTED = 'Accepted';
+    const PRODUCT_STATUS_ONGOING = 'Ongoing';
+    const PRODUCT_STATUS_READY_TO_BE_SENT = 'ReadyToBeSent';
+    const PRODUCT_STATUS_SENT = 'Sent';
 
     const NOTIFICATION_REQUEST_STATUS_CHANGE = 'RequestStatusChange';
     const REQUEST_STATUS_ACCEPTED = 'Accepted';
@@ -86,11 +92,20 @@ class NotificationHandler
         switch ($type) {
             case self::NOTIFICATION_PRODUCT_STATUS_CHANGE:
                 $product = $notification->getProduct();
+                if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
+                    $event = new StatusChangeRequestedEvent($product);
+                }
+                if ($product->getStatus() === self::PRODUCT_STATUS_ACCEPTED) {
+                    $event = new StatusChangeAcceptedEvent($product);
+                }
                 if ($product->getStatus() === self::PRODUCT_STATUS_ONGOING) {
                     $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
                 }
-                if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
-                    $event = new StatusChangeRequestedEvent($product);
+                if ($product->getStatus() === self::PRODUCT_STATUS_READY_TO_BE_SENT) {
+                    $event = new StatusChangeReadyToBeSentEvent($product);
+                }
+                if ($product->getStatus() === self::PRODUCT_STATUS_SENT) {
+                    $event = new StatusChangeSentEvent($product);
                 }
                 break;
             case self::NOTIFICATION_PRODUCT_DELIVERY:
