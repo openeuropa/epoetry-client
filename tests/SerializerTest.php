@@ -160,6 +160,10 @@ final class SerializerTest extends BaseTest
         $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 1, ['id1']);
         $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 1, ['id1']);
 
+        $xml = '<?xml version="1.0"?><response><contacts></contacts></response>';
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 0, []);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 0, []);
+
         // XML multiple values.
         $xml = '<?xml version="1.0"?><response><contacts><contact><firstName>First1</firstName><lastName>Last1</lastName><email>mail1@ec.europa.eu</email><userId>id1</userId><roleCode>AUTHOR</roleCode></contact><contact><firstName>First2</firstName><lastName>Last2</lastName><email>mail2@ec.europa.eu</email><userId>id2</userId><roleCode>RECIPIENT</roleCode></contact></contacts></response>';
         $this->assertContacts($xml, RequestDetailsOut::class, ContactPersonOut::class, 'xml', 2, ['id1', 'id2']);
@@ -179,6 +183,10 @@ final class SerializerTest extends BaseTest
         $yaml = "{ contacts: { contact: [{ userId: id1, contactRole: role }] } }";
         $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class, 'yaml', 1, ['id1']);
         $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'yaml', 1, ['id1']);
+
+        $yaml = "{ contacts: {  } }";
+        $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class, 'yaml', 0, []);
+        $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'yaml', 0, []);
     }
 
     /**

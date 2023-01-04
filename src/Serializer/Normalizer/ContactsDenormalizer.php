@@ -28,7 +28,7 @@ class ContactsDenormalizer implements DenormalizerInterface, SerializerAwareInte
     public function denormalize($data, $type, $format = null, array $context = []): ?object
     {
         if (empty($data['contact'])) {
-            return null;
+            return new Contacts();
         }
 
         // Parent types in $context['parent_types'] are set in ObjectNormalizer.
