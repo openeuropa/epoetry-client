@@ -2,6 +2,7 @@
 
 namespace Notification;
 
+use GuzzleHttp\Psr7\Request;
 use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
@@ -9,13 +10,13 @@ use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
-use OpenEuropa\EPoetry\Notification\NotificationHandler;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
-use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Notification\Type\RequestReference;
+use OpenEuropa\EPoetry\NotificationServerFactory;
 use OpenEuropa\EPoetry\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -42,6 +43,9 @@ class NotificationHandlerTest extends TestCase
         $this->logger = new Logger('test');
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testStatusChangeOngoingEvent()
     {
         // Encapsulate assertions in an event subscriber.
@@ -49,8 +53,8 @@ class NotificationHandlerTest extends TestCase
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
             $this->assertInstanceOf(StatusChangeOngoingEvent::class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
-            $this->assertInstanceOf(\DateTime::class, $event->getAcceptedDeadline());
-            $this->assertEquals('Mon, 04 Apr 22 12:51:00 +0200', $event->getAcceptedDeadline()->format(\DATE_RFC822));
+            $this->assertInstanceOf(\DateTimeInterface::class, $event->getAcceptedDeadline());
+            $this->assertEquals('Mon, 04 Apr 22 10:51:00 +0000', $event->getAcceptedDeadline()->format(\DATE_RFC822));
             $this->assertEquals('Ongoing', $event->getProduct()->getStatus());
             $this->assertEquals(false, $event->getProduct()->hasFile());
             $this->assertEquals(false, $event->getProduct()->hasFormat());
@@ -63,14 +67,20 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('productStatusChangeOngoing.xml');
-        $response = $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('productStatusChangeOngoing.xml');
+        $response = $server->handle($request);
 
-        $this->assertTrue($response->getReturn()->isSuccess());
-        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testStatusChangeRequestedEvent()
     {
         // Encapsulate assertions in an event subscriber.
@@ -90,14 +100,20 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('productStatusChangeRequested.xml');
-        $response = $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('productStatusChangeRequested.xml');
+        $response = $server->handle($request);
 
-        $this->assertTrue($response->getReturn()->isSuccess());
-        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testDeliveryEvent()
     {
         // Encapsulate assertions in an event subscriber.
@@ -118,14 +134,20 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('productDeliverySent.xml');
-        $response = $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('productDeliverySent.xml');
+        $response = $server->handle($request);
 
-        $this->assertTrue($response->getReturn()->isSuccess());
-        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testChangeAcceptedEvent()
     {
         // Encapsulate assertions in an event subscriber.
@@ -139,14 +161,20 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('requestStatusChangeAccepted.xml');
-        $response = $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('requestStatusChangeAccepted.xml');
+        $response = $server->handle($request);
 
-        $this->assertTrue($response->getReturn()->isSuccess());
-        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testChangeRejectedEvent()
     {
         // Encapsulate assertions in an event subscriber.
@@ -160,40 +188,48 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('requestStatusChangeRejected.xml');
-        $response = $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('requestStatusChangeRejected.xml');
+        $response = $server->handle($request);
 
-        $this->assertTrue($response->getReturn()->isSuccess());
-        $this->assertEquals('Success message.', $response->getReturn()->getMessage());
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testNotificationHandlerError(): void
     {
         $this->expectException(NotificationException::class);
         $this->expectExceptionMessage("The ePoetry notification event 'RequestStatusChange' has not been correctly handled");
 
         $eventDispatcher = new EventDispatcher();
-        $handler = new NotificationHandler($eventDispatcher, $this->logger, $this->serializer);
-        $notification = $this->getNotificationFixture('requestStatusChangeRejected.xml');
-        $handler->receiveNotification($notification);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequest('requestStatusChangeRejected.xml');
+        $server->handle($request);
     }
 
     /**
-     * Get a notification object by deserializing its XML representation.
+     * Get a HTTP request object having given fixture as body.
      *
-     * @param string $name
+     * @param string $fixtureName
      *   Fixture filename.
      *
-     * @return \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
-     *   Deserialized object.
+     * @return \Psr\Http\Message\RequestInterface
+     *   HTTP request object.
      */
-    private function getNotificationFixture(string $name): ReceiveNotification
+    private function getNotificationRequest(string $fixtureName): RequestInterface
     {
-        /** @var ReceiveNotification $object */
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $name);
-        $object = $this->serializer->deserialize($xml, 'OpenEuropa\EPoetry\Notification\Type\ReceiveNotification', 'xml');
-        return $object;
+        $xml = file_get_contents(__DIR__ . '/fixtures/' . $fixtureName);
+        return new Request('POST', 'http://foo', [
+            'accept' => 'text/xml',
+            'content-type' => 'text/xml; charset=utf-8',
+            'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest',
+        ], $xml);
     }
 
     /**

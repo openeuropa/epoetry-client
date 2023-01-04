@@ -19,7 +19,6 @@ class DeliveryEvent extends BaseEvent
      */
     public function getDeliveryContent(): string
     {
-        $raw = $this->getProduct()->getFile();
-        return base64_decode($raw);
+        return $this->getProduct()->getFile();
     }
 }

@@ -9,9 +9,11 @@ use OpenEuropa\EPoetry\Notification\NotificationHandler;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use Soap\ExtSoapEngine\Configuration\TypeConverter\TypeConverterCollection;
 use Soap\ExtSoapEngine\ExtSoapOptionsResolverFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Soap\ExtSoapEngine\Configuration\TypeConverter;
 
 class NotificationServerFactory
 {
@@ -72,6 +74,11 @@ class NotificationServerFactory
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
         $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([
             'classmap' => NotificationClassmap::getCollection(),
+            'typemap' => new TypeConverterCollection([
+                new TypeConverter\DateTimeTypeConverter(),
+                new TypeConverter\DateTypeConverter(),
+            ]),
+
         ]));
         $server->setObject($handler);
 
