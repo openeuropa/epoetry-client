@@ -1,4 +1,22 @@
--   notification: requestStatusChangeAccepted.xml
+-   notification: |
+      <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <notification>
+              <notificationType>RequestStatusChange</notificationType>
+              <linguisticRequest>
+                  <requestReference>
+                      <requesterCode>SG</requesterCode>
+                      <year>2022</year>
+                      <number>127</number>
+                      <part>0</part>
+                      <version>0</version>
+                      <productType>TRA</productType>
+                  </requestReference>
+                  <status>Accepted</status>
+              </linguisticRequest>
+              <planningAgent>teodomi</planningAgent>
+              <planningSector>DGT.S.S-1.P-1</planningSector>
+          </notification>
+      </ns0:receiveNotification>
     expectations:
         assertions:
             - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
@@ -12,7 +30,26 @@
             - notification.getNotification().getLinguisticRequest().getStatus() === 'Accepted'
             - notification.getNotification().getPlanningAgent() === 'teodomi'
             - notification.getNotification().getPlanningSector() === 'DGT.S.S-1.P-1'
--   notification: requestStatusChangeRejected.xml
+-   notification: |
+      <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <notification>
+              <notificationType>RequestStatusChange</notificationType>
+              <linguisticRequest>
+                  <requestReference>
+                      <requesterCode>AGRI</requesterCode>
+                      <year>2022</year>
+                      <number>83</number>
+                      <part>0</part>
+                      <version>0</version>
+                      <productType>TRA</productType>
+                  </requestReference>
+                  <status>Rejected</status>
+              </linguisticRequest>
+              <message>rejection reason - it was missing some files</message>
+              <planningAgent>collafc</planningAgent>
+              <planningSector>DGT.S.S-1.P-2</planningSector>
+          </notification>
+      </ns0:receiveNotification>
     expectations:
         assertions:
             - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
@@ -27,7 +64,26 @@
             - notification.getNotification().getMessage() === 'rejection reason - it was missing some files'
             - notification.getNotification().getPlanningAgent() === 'collafc'
             - notification.getNotification().getPlanningSector() === 'DGT.S.S-1.P-2'
--   notification: productStatusChangeRequested.xml
+-   notification: |
+      <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <notification>
+              <notificationType>ProductStatusChange</notificationType>
+              <product>
+                  <productReference>
+                      <requestReference>
+                          <requesterCode>AGRI</requesterCode>
+                          <year>2022</year>
+                          <number>93</number>
+                          <part>0</part>
+                          <version>0</version>
+                          <productType>TRA</productType>
+                      </requestReference>
+                      <language>SK</language>
+                  </productReference>
+                  <status>Requested</status>
+              </product>
+          </notification>
+      </ns0:receiveNotification>
     expectations:
         assertions:
             - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
@@ -40,7 +96,27 @@
             - notification.getNotification().getProduct().getProductReference().getRequestReference().getProductType() === 'TRA'
             - notification.getNotification().getProduct().getProductReference().getLanguage() === 'SK'
             - notification.getNotification().getProduct().getStatus() === 'Requested'
--   notification: productStatusChangeOngoing.xml
+-   notification: |
+      <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <notification>
+              <notificationType>ProductStatusChange</notificationType>
+              <product>
+                  <productReference>
+                      <requestReference>
+                          <requesterCode>AGRI</requesterCode>
+                          <year>2022</year>
+                          <number>81</number>
+                          <part>0</part>
+                          <version>1</version>
+                          <productType>TRA</productType>
+                      </requestReference>
+                      <language>CS</language>
+                  </productReference>
+                  <status>Ongoing</status>
+                  <acceptedDeadline>2022-04-04T12:51:00.000+02:00</acceptedDeadline>
+              </product>
+          </notification>
+      </ns0:receiveNotification>
     expectations:
         assertions:
             - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
@@ -54,7 +130,31 @@
             - notification.getNotification().getProduct().getProductReference().getLanguage() === 'CS'
             - notification.getNotification().getProduct().getStatus() === 'Ongoing'
             - notification.getNotification().getProduct().getAcceptedDeadline().format('Y-m-d\\TH:i:sP') === '2022-04-04T12:51:00+02:00'
--   notification: productDeliverySent.xml
+-   notification: |
+      <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <notification>
+              <notificationType>ProductDelivery</notificationType>
+              <product>
+                  <productReference>
+                      <requestReference>
+                          <requesterCode>SG</requesterCode>
+                          <year>2022</year>
+                          <number>343</number>
+                          <part>0</part>
+                          <version>1</version>
+                          <productType>TRA</productType>
+                      </requestReference>
+                      <language>FR</language>
+                  </productReference>
+                  <status>Sent</status>
+                  <acceptedDeadline>2022-09-01T12:51:00.000+02:00</acceptedDeadline>
+                  <file>RmlsZSBjb250ZW50Lg==</file>
+                  <name>SG-2022-00343(01)-00-TRA-FR</name>
+                  <format>DOCX</format>
+              </product>
+              <planningSector>DGT.D.FR.FR-1</planningSector>
+          </notification>
+      </ns0:receiveNotification>
     expectations:
         assertions:
             - is_a(notification, '\\OpenEuropa\\EPoetry\\Notification\\Type\\ReceiveNotification')
