@@ -255,9 +255,12 @@ OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
 
 OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn:
     properties:
-        requestReference:
+        contacts:
+            -   Valid: ~
+            -   NotNull: ~
+        products:
             - Valid: ~
-        requestDetails:
+        auxiliaryDocuments:
             - Valid: ~
 
 OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn:
@@ -281,17 +284,7 @@ OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn:
         part:
             - PositiveOrZero: ~
 
-OpenEuropa\EPoetry\Request\Type\modifyRequestDetailsIn:
-    properties:
-        products:
-            - Valid: ~
-        contacts:
-            - Valid: ~
-            - NotNull: ~
-        auxiliaryDocuments:
-            - Valid: ~
-
-OpenEuropa\EPoetry\Request\Type\modifyAuxiliaryDocumentsIn:
+OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn:
     properties:
         referenceDocuments:
             - Valid: ~
@@ -300,4 +293,11 @@ OpenEuropa\EPoetry\Request\Type\modifyAuxiliaryDocumentsIn:
         spotDocument:
             - Valid: ~
         prtDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn:
+    properties:
+        requestReference:
+            - Valid: ~
+        requestDetails:
             - Valid: ~
