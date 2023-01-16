@@ -301,3 +301,33 @@ OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn:
             - Valid: ~
         requestDetails:
             - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
+    constraints:
+        -   OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+
+    properties:
+        dossier:
+            - Valid: ~
+            - NotBlank: ~
+        requestDetails:
+            - Valid: ~
+            - NotBlank: ~
+        applicationName:
+            - NotBlank: ~
+        templateName:
+            - NotBlank: ~
+            - Choice:
+                  choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
+                  message: |
+                      Choose a valid template name
+                      - DEFAULT for full length translation
+                      - WEBTRA for web translation
+                      - HOTL for hotline
+                      - EDT for standard editing
+                      - WEBEDT for web editing
+                      - RSE for written summary
+                      - RSO for oral summary
+                      - SPO for spotcheck
+                      - PP for spokesperson's service press documents
+                      - QE for replies to MEPs’ written questions

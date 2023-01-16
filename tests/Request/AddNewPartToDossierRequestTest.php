@@ -20,4 +20,33 @@ final class AddNewPartToDossierRequestTest extends BaseRequestTest
         $request = $this->driver->encode('AddNewPartToDossier', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
+
+
+    /**
+     * Test validation of AddNewPartToDossier class.
+     *
+     * @dataProvider dataProviderAddNewPartToDossierRequest
+     */
+    public function testValidation($data, $expectations): void
+    {
+        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier');
+        $violations = $this->validator->validate($request);
+        $values = [
+            'violations' => $violations,
+        ];
+        $this->assertExpressionLanguageExpressions($expectations['assertions'], $values);
+    }
+
+    /**
+     * Data provider.
+     *
+     * The actual data is read from fixtures stored in a YAML configuration.
+     *
+     * @return array
+     *   A set of dump data for testing.
+     */
+    public function dataProviderAddNewPartToDossierRequest(): array
+    {
+        return $this->getFixture('addNewPartToDossierRequest.yaml', '/Request')['tests'];
+    }
 }
