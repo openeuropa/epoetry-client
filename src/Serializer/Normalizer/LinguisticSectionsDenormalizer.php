@@ -37,9 +37,24 @@ class LinguisticSectionsDenormalizer implements DenormalizerInterface, Serialize
             $childType = LinguisticSectionIn::class;
         }
 
+        $values = $innerArray = $data['linguisticSection'];
+        if (isset($innerArray['language'])) {
+            $values = [];
+            // Denormalization from XML.
+            if (is_array($innerArray['language'])) {
+                // Multiple values in XML.
+                foreach ($innerArray['language'] as $value) {
+                    $values[] = ['language' => $value];
+                }
+            } else {
+                // Single value in XML.
+                $values[] = $innerArray;
+            }
+        }
+
         $linguisticSections = new LinguisticSections();
-        foreach ($data['linguisticSection'] as $values) {
-            $linguisticSection = $this->serializer->denormalize($values, $childType, $format, $context);
+        foreach ($values as $value) {
+            $linguisticSection = $this->serializer->denormalize($value, $childType, $format, $context);
             $linguisticSections->addLinguisticSection($linguisticSection);
         }
 
