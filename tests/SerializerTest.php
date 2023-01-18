@@ -196,6 +196,18 @@ YAML;
         $xml = <<<XML
 <?xml version="1.0"?>
 <response>
+    <products></products>
+</response>
+XML;
+
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml', 0, []);
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 0, []);
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml', 0, []);
+
+        // XML single value.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
     <products>
         <product>
             <language>FR</language>

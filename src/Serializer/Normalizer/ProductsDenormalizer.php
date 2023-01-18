@@ -30,7 +30,7 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
     public function denormalize($data, $type, $format = null, array $context = []): ?object
     {
         if (empty($data['product'])) {
-            return null;
+            return new Products();
         }
 
         // Define product class based on the class of the parent object.
