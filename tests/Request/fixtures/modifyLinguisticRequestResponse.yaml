@@ -1,4 +1,98 @@
--   response: modifyLinguisticRequestResponse.xml
+-   response: |
+        <ns0:modifyLinguisticRequestResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <return>
+                <requestReference>
+                    <dossier>
+                        <requesterCode>DGT</requesterCode>
+                        <number>487</number>
+                        <year>2021</year>
+                    </dossier>
+                    <productType>TRA</productType>
+                    <part>0</part>
+                    <version>0</version>
+                </requestReference>
+                <requestDetails>
+                    <title>test for DOC - success</title>
+                    <internalReference/>
+                    <requestedDeadline>2022-07-01T12:51:00+02:00</requestedDeadline>
+                    <sensitive>false</sensitive>
+                    <sentViaRue>false</sentViaRue>
+                    <documentToAdopt>false</documentToAdopt>
+                    <destination>PUBLIC</destination>
+                    <procedure>DEGHP</procedure>
+                    <slaAnnex>ANNEX8A</slaAnnex>
+                    <comment>my request</comment>
+                    <accessibleTo>CONTACTS</accessibleTo>
+                    <keyword1>keyw1</keyword1>
+                    <keyword2>key2</keyword2>
+                    <keyword3>aaaaaaaaaaaaaaa</keyword3>
+                    <status>SenttoDGT</status>
+                    <applicationName>application1</applicationName>
+                    <contacts>
+                        <contact>
+                            <firstName>Jochen</firstName>
+                            <lastName>LIEKENS</lastName>
+                            <email>Jochen.LIEKENS@ec.europa.eu</email>
+                            <userId>liekejo</userId>
+                            <roleCode>AUTHOR</roleCode>
+                        </contact>
+                        <contact>
+                            <firstName>Jochen</firstName>
+                            <lastName>LIEKENS</lastName>
+                            <email>Jochen.LIEKENS@ec.europa.eu</email>
+                            <userId>liekejo</userId>
+                            <roleCode>RECIPIENT</roleCode>
+                        </contact>
+                        <contact>
+                            <firstName>Jochen</firstName>
+                            <lastName>LIEKENS</lastName>
+                            <email>Jochen.LIEKENS@ec.europa.eu</email>
+                            <userId>liekejo</userId>
+                            <roleCode>REQUESTER</roleCode>
+                        </contact>
+                    </contacts>
+                    <originalDocument>
+                        <trackChanges>false</trackChanges>
+                        <format>DOCX</format>
+                        <fileName>TEST_FILE_ORIGINALP.docx</fileName>
+                        <pages>0.0</pages>
+                        <linguisticSections>
+                            <linguisticSection>
+                                <language>EN</language>
+                            </linguisticSection>
+                        </linguisticSections>
+                    </originalDocument>
+                    <products>
+                        <product>
+                            <language>FR</language>
+                            <requestedDeadline>2021-07-06T12:51:00+02:00</requestedDeadline>
+                            <trackChanges>false</trackChanges>
+                            <status>SenttoDGT</status>
+                            <format>DOCX</format>
+                        </product>
+                    </products>
+                    <auxiliaryDocuments>
+                        <document>
+                            <fileName>test.docx</fileName>
+                            <language>EN</language>
+                            <documentType>REF</documentType>
+                            <comment>test</comment>
+                            <format>DOCX</format>
+                        </document>
+                        <document>
+                            <fileName>test2222SRC.docx</fileName>
+                            <language>EN</language>
+                            <documentType>SRC</documentType>
+                            <comment>srcFile</comment>
+                            <format>DOCX</format>
+                        </document>
+                    </auxiliaryDocuments>
+                </requestDetails>
+                <informativeMessages>
+                    <message>The decide reference will be ignored because the request is not legislative!</message>
+                </informativeMessages>
+            </return>
+        </ns0:modifyLinguisticRequestResponse>
     expectations:
         assertions:
             - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\ModifyLinguisticRequestResponse')
@@ -9,7 +103,7 @@
             - response.getReturn().getRequestReference().getPart() === 0
             - response.getReturn().getRequestReference().getVersion() === 0
             - response.getReturn().getRequestDetails().getTitle() === 'test for DOC - success'
-            - response.getReturn().getRequestDetails().getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2022-07-01T10:51:00+00:00'
+            - response.getReturn().getRequestDetails().getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2022-07-01T12:51:00+02:00'
             - response.getReturn().getRequestDetails().isSensitive() === false
             - response.getReturn().getRequestDetails().isSentViaRue() === false
             - response.getReturn().getRequestDetails().isDocumentToAdopt() === false
@@ -46,7 +140,7 @@
             - response.getReturn().getRequestDetails().getOriginalDocument().getLinguisticSections().getLinguisticSection()[0].getLanguage() === 'EN'
             - count(response.getReturn().getRequestDetails().getProducts().getProduct()) === 1
             - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getLanguage() === 'FR'
-            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2021-07-06T10:51:00+00:00'
+            - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getRequestedDeadline().format('Y-m-d\\TH:i:sP') === '2021-07-06T12:51:00+02:00'
             - response.getReturn().getRequestDetails().getProducts().getProduct()[0].isTrackChanges() === false
             - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getStatus() === 'SenttoDGT'
             - response.getReturn().getRequestDetails().getProducts().getProduct()[0].getFormat() === 'DOCX'

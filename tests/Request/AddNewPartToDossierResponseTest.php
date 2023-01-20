@@ -12,15 +12,14 @@ use Soap\Engine\HttpBinding\SoapResponse;
 final class AddNewPartToDossierResponseTest extends BaseRequestTest
 {
     /**
-     * Tests AddNewPartToDossierResponse decoding.
+     * Tests addNewPartToDossierResponse xml into object conversion.
      *
-     * @dataProvider dataProviderRequestResponse
+     * @dataProvider dataProviderAddNewPartToDossierResponse
      */
-    public function testRequestResponse($response, $expectations): void
+    public function testAddNewPartToDossierResponse($response, $expectations): void
     {
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $response);
-        $response = $this->driver->decode('addNewPartToDossier', new SoapResponse($xml));
-        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $response]);
+        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\AddNewPartToDossierResponse', 'xml');
+        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);
     }
 
     /**
@@ -29,7 +28,7 @@ final class AddNewPartToDossierResponseTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderRequestResponse(): array
+    public function dataProviderAddNewPartToDossierResponse(): array
     {
         return $this->getFixture('addNewPartToDossierResponse.yaml', '/Request');
     }

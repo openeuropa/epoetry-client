@@ -21,7 +21,6 @@ final class AddNewPartToDossierRequestTest extends BaseRequestTest
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
 
-
     /**
      * Test validation of AddNewPartToDossier class.
      *
