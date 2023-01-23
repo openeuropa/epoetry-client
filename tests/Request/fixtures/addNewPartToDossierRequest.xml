@@ -40,8 +40,8 @@
                 <keyword3>3333</keyword3>
                 <contacts>
                     <contact userId="teodomi" contactRole="REQUESTER"/>
-                    <contact userId="liekejo" contactRole="AUTHOR"/>
-                    <contact userId="liekejo" contactRole="RECIPIENT"/>
+                    <contact userId="smithjo" contactRole="AUTHOR"/>
+                    <contact userId="smithjo" contactRole="RECIPIENT"/>
                 </contacts>
                 <originalDocument>
                     <fileName>TEST_ORI.docx</fileName>

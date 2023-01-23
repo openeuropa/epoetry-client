@@ -14,10 +14,10 @@
                 </requestReference>
                 <requestDetails>
                     <contacts xsi:type="ns1:contacts">
-                        <contact userId="LIEKEJO" contactRole="REQUESTER"/>
-                        <contact userId="ESCUDLU" contactRole="REQUESTER"/>
-                        <contact userId="ESCUDLU" contactRole="AUTHOR"/>
-                        <contact userId="ESCUDLU" contactRole="RECIPIENT"/>
+                        <contact userId="smithjo" contactRole="REQUESTER"/>
+                        <contact userId="rossmi" contactRole="REQUESTER"/>
+                        <contact userId="rossmi" contactRole="AUTHOR"/>
+                        <contact userId="rossmi" contactRole="RECIPIENT"/>
                     </contacts>
                     <products xsi:type="ns1:products">
                         <product requestedDeadline="2021-11-13T23:59:00+02:00" trackChanges="false" xsi:type="ns1:modifyProductRequestIn">

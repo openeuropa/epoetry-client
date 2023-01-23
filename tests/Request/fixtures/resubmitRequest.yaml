@@ -11,11 +11,11 @@ x-default-request-details: &default-request-details
                 trackChanges: false
     contacts:
         contact:
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: REQUESTER
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: AUTHOR
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: RECIPIENT
 
 x-default-dossier: &default-dossier
@@ -101,11 +101,11 @@ tests:
                     workflowCode: WEB
                     contacts:
                         contact:
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: EDITOR
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: RECIPIENT
         expectations:
             assertions:
@@ -146,17 +146,17 @@ tests:
                     workflowCode: WEB
                     contacts:
                         contact:
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: EDITOR
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: RECIPIENT
         expectations:
             assertions:
@@ -176,11 +176,11 @@ tests:
                     slaAnnex: ''
                     contacts:
                         contact:
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: WEBMASTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: AUTHOR
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: RECIPIENT
         expectations:
             assertions:
@@ -303,11 +303,11 @@ tests:
                                 trackChanges: true
                     contacts:
                         contact:
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: REQUESTER
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: AUTHOR
-                            -   userId: liekejo
+                            -   userId: smithjo
                                 contactRole: RECIPIENT
         expectations:
             assertions:

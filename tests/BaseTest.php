@@ -140,9 +140,9 @@ abstract class BaseTest extends TestCase
             ->setKeyword3('keyword3')
             ->setAuxiliaryDocuments($auxiliaryDocuments);
         $contacts = (new Contacts())
-            ->addContact(new ContactPersonIn('liekejo', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('liekejo', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('liekejo', 'RECIPIENT'));
+            ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
+            ->addContact(new ContactPersonIn('smithjo', 'AUTHOR'))
+            ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
         $linguisticSections = (new LinguisticSections())
@@ -189,10 +189,10 @@ abstract class BaseTest extends TestCase
         $requestDetails = new ModifyRequestDetailsIn();
         $requestDetails->setAuxiliaryDocuments($auxiliaryDocuments);
         $contacts = (new Contacts())
-            ->addContact(new ContactPersonIn('LIEKEJO', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('ESCUDLU', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('ESCUDLU', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('ESCUDLU', 'RECIPIENT'));
+            ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
+            ->addContact(new ContactPersonIn('rossmi', 'REQUESTER'))
+            ->addContact(new ContactPersonIn('rossmi', 'AUTHOR'))
+            ->addContact(new ContactPersonIn('rossmi', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
         $productRequestIn = (new ModifyProductRequestIn())
@@ -243,9 +243,9 @@ abstract class BaseTest extends TestCase
             ->setKeyword3('aaaaaaaaaaaaaaa - resubmitted');
 
         $contacts = (new Contacts())
-            ->addContact(new ContactPersonIn('liekejo', 'REQUESTER'))
+            ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
             ->addContact(new ContactPersonIn('aniskja', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('liekejo', 'RECIPIENT'));
+            ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
         $linguisticSections = (new LinguisticSections())
@@ -339,8 +339,8 @@ abstract class BaseTest extends TestCase
 
         $contacts = (new Contacts())
             ->addContact(new ContactPersonIn('teodomi', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('liekejo', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('liekejo', 'RECIPIENT'));
+            ->addContact(new ContactPersonIn('smithjo', 'AUTHOR'))
+            ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
         $linguisticSections = (new LinguisticSections())
