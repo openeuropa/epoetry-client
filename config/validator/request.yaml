@@ -249,8 +249,8 @@ OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
 OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn:
     properties:
         contacts:
-            -   Valid: ~
-            -   NotNull: ~
+            - Valid: ~
+            - NotNull: ~
         products:
             - Valid: ~
         auxiliaryDocuments:
@@ -285,7 +285,7 @@ OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn:
 
 OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
     constraints:
-        -   OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+        - OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
 
     properties:
         dossier:
