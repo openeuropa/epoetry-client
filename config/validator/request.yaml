@@ -1,6 +1,37 @@
+# We collect here some reusable validation rules, so we don't have to maintain
+# the same code in several parts of this YAML file.
+_:
+    templateNameChoice: &templateNameChoice
+        choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
+        message: |
+            Choose a valid template name
+            - DEFAULT for full length translation
+            - WEBTRA for web translation
+            - HOTL for hotline
+            - EDT for standard editing
+            - WEBEDT for web editing
+            - RSE for written summary
+            - RSO for oral summary
+            - SPO for spotcheck
+            - PP for spokesperson's service press documents
+            - QE for replies to MEPs’ written questions
+    productTypeChoice: &productTypeChoice
+        choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
+        message: |
+            Choose a valid product type
+            - ERR
+            - EXT
+            - EDT
+            - TRA
+            - RSO
+            - RSE
+            - REV
+            - PER
+            - SPO
+
 OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
     constraints:
-        -   OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+        - OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
 
     properties:
         requestDetails:
@@ -10,24 +41,11 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
-            - Choice:
-                choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
-                message: |
-                    Choose a valid template name
-                    - DEFAULT for full length translation
-                    - WEBTRA for web translation
-                    - HOTL for hotline
-                    - EDT for standard editing
-                    - WEBEDT for web editing
-                    - RSE for written summary
-                    - RSO for oral summary
-                    - SPO for spotcheck
-                    - PP for spokesperson's service press documents
-                    - QE for replies to MEPs’ written questions
+            - Choice: *templateNameChoice
 
 OpenEuropa\EPoetry\Request\Type\ResubmitRequest:
     constraints:
-        -   OpenEuropa\EPoetry\Validation\Constraints\ResubmitRequestConstraint: ~
+        - OpenEuropa\EPoetry\Validation\Constraints\ResubmitRequestConstraint: ~
 
     properties:
         resubmitRequest:
@@ -37,20 +55,7 @@ OpenEuropa\EPoetry\Request\Type\ResubmitRequest:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
-            - Choice:
-                  choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
-                  message: |
-                      Choose a valid template name
-                      - DEFAULT for full length translation
-                      - WEBTRA for web translation
-                      - HOTL for hotline
-                      - EDT for standard editing
-                      - WEBEDT for web editing
-                      - RSE for written summary
-                      - RSO for oral summary
-                      - SPO for spotcheck
-                      - PP for spokesperson's service press documents
-                      - QE for replies to MEPs’ written questions
+            - Choice: *templateNameChoice
 
 OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest:
     properties:
@@ -228,19 +233,7 @@ OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
             - NotNull: ~
         productType:
             - NotBlank: ~
-            - Choice:
-                  choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
-                  message: |
-                      Choose a valid product type
-                      - ERR
-                      - EXT
-                      - EDT
-                      - TRA
-                      - RSO
-                      - RSE
-                      - REV
-                      - PER
-                      - SPO
+            - Choice: *productTypeChoice
         part:
             - PositiveOrZero: ~
 
@@ -268,19 +261,7 @@ OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn:
         dossier:
             - Valid: ~
         productType:
-            - Choice:
-                  choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
-                  message: |
-                      Choose a valid product type
-                      - ERR
-                      - EXT
-                      - EDT
-                      - TRA
-                      - RSO
-                      - RSE
-                      - REV
-                      - PER
-                      - SPO
+            - Choice: *productTypeChoice
         part:
             - PositiveOrZero: ~
 
@@ -317,17 +298,4 @@ OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
-            - Choice:
-                  choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
-                  message: |
-                      Choose a valid template name
-                      - DEFAULT for full length translation
-                      - WEBTRA for web translation
-                      - HOTL for hotline
-                      - EDT for standard editing
-                      - WEBEDT for web editing
-                      - RSE for written summary
-                      - RSO for oral summary
-                      - SPO for spotcheck
-                      - PP for spokesperson's service press documents
-                      - QE for replies to MEPs’ written questions
+            - Choice: *templateNameChoice
