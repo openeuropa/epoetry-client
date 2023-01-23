@@ -38,24 +38,24 @@
                     <applicationName>application1</applicationName>
                     <contacts>
                         <contact>
-                            <firstName>Jochen</firstName>
-                            <lastName>LIEKENS</lastName>
-                            <email>Jochen.LIEKENS@ec.europa.eu</email>
-                            <userId>liekejo</userId>
+                            <firstName>John</firstName>
+                            <lastName>SMITH</lastName>
+                            <email>John.SMITH@ec.europa.eu</email>
+                            <userId>smithjo</userId>
                             <roleCode>AUTHOR</roleCode>
                         </contact>
                         <contact>
-                            <firstName>Jochen</firstName>
-                            <lastName>LIEKENS</lastName>
-                            <email>Jochen.LIEKENS@ec.europa.eu</email>
-                            <userId>liekejo</userId>
+                            <firstName>John</firstName>
+                            <lastName>SMITH</lastName>
+                            <email>John.SMITH@ec.europa.eu</email>
+                            <userId>smithjo</userId>
                             <roleCode>RECIPIENT</roleCode>
                         </contact>
                         <contact>
-                            <firstName>Jochen</firstName>
-                            <lastName>LIEKENS</lastName>
-                            <email>Jochen.LIEKENS@ec.europa.eu</email>
-                            <userId>liekejo</userId>
+                            <firstName>John</firstName>
+                            <lastName>SMITH</lastName>
+                            <email>John.SMITH@ec.europa.eu</email>
+                            <userId>smithjo</userId>
                             <roleCode>REQUESTER</roleCode>
                         </contact>
                     </contacts>
