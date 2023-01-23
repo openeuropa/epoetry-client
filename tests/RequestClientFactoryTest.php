@@ -87,9 +87,9 @@ final class RequestClientFactoryTest extends BaseTest
             ->setSlaAnnex('ANNEX8A')
             ->setAuxiliaryDocuments($auxiliaryDocuments);
         $contacts = (new Contacts())
-            ->addContact(new ContactPersonIn('liekejo', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('liekejo', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('liekejo', 'RECIPIENT'));
+            ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
+            ->addContact(new ContactPersonIn('smithjo', 'AUTHOR'))
+            ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
         $linguisticSections = (new LinguisticSections())

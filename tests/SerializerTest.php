@@ -49,15 +49,15 @@ final class SerializerTest extends BaseTest
     "contacts": {
       "contact": [
         {
-          "userId": "liekejo",
+          "userId": "smithjo",
           "contactRole": "REQUESTER"
         },
         {
-          "userId": "liekejo",
+          "userId": "smithjo",
           "contactRole": "AUTHOR"
         },
         {
-          "userId": "liekejo",
+          "userId": "smithjo",
           "contactRole": "RECIPIENT"
         }
       ]
@@ -135,11 +135,11 @@ requestDetails:
   keyword3: keyword3
   contacts:
     contact:
-      - userId: liekejo
+      - userId: smithjo
         contactRole: REQUESTER
-      - userId: liekejo
+      - userId: smithjo
         contactRole: AUTHOR
-      - userId: liekejo
+      - userId: smithjo
         contactRole: RECIPIENT
   originalDocument:
     fileName: TEST_FILE_ORIGINALP.docx
@@ -533,13 +533,13 @@ YAML;
                 'contacts' => [
                     'contact' => [
                         [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'REQUESTER',
                         ], [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'AUTHOR',
                         ], [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'RECIPIENT',
                         ]
                     ],
