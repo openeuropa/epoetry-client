@@ -12,15 +12,14 @@ use Soap\Engine\HttpBinding\SoapResponse;
 final class UpdateCallbackUrlResponseTest extends BaseRequestTest
 {
     /**
-     * Tests UpdateCallbackUrlResponse decoding.
+     * Tests updateCallbackUrlResponse xml into object conversion.
      *
      * @dataProvider dataProviderUpdateCallbackUrlResponse
      */
-    public function testRequestResponse($response, $expectations): void
+    public function testUpdateCallbackUrlResponse($response, $expectations): void
     {
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $response);
-        $response = $this->driver->decode('updateCallbackUrl', new SoapResponse($xml));
-        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $response]);
+        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut', 'xml');
+        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);
     }
 
     /**
