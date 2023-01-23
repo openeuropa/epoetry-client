@@ -1,5 +1,5 @@
 -   response: |
-        <ns0:resubmitRequestResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+        <ns0:addNewPartToDossierResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <return>
                 <requestReference>
                     <dossier>
@@ -14,7 +14,7 @@
                 <requestDetails>
                     <title>test for DOC - success</title>
                     <internalReference/>
-                    <requestedDeadline>2022-07-01T12:51:00+02:00</requestedDeadline>
+                    <requestedDeadline>2022-07-01T12:51:00.000+02:00</requestedDeadline>
                     <sensitive>false</sensitive>
                     <sentViaRue>false</sentViaRue>
                     <documentToAdopt>false</documentToAdopt>
@@ -92,10 +92,10 @@
                     <message>The decide reference will be ignored because the request is not legislative!</message>
                 </informativeMessages>
             </return>
-        </ns0:resubmitRequestResponse>
+        </ns0:addNewPartToDossierResponse>
     expectations:
         assertions:
-            - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\ResubmitRequestResponse')
+            - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\AddNewPartToDossierResponse')
             - response.getReturn().getRequestReference().getDossier().getRequesterCode() === 'DGT'
             - response.getReturn().getRequestReference().getDossier().getNumber() === 487
             - response.getReturn().getRequestReference().getDossier().getYear() === 2021
