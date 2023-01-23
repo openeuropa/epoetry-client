@@ -16,7 +16,7 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
      *
      * @dataProvider dataProviderCreateLinguisticRequestResponse
      */
-    public function testAddNewPartToDossierResponse($response, $expectations): void
+    public function testCreateLinguisticRequestResponse($response, $expectations): void
     {
         $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse', 'xml');
         $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);

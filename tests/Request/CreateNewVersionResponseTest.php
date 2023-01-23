@@ -12,15 +12,14 @@ use Soap\Engine\HttpBinding\SoapResponse;
 final class CreateNewVersionResponseTest extends BaseRequestTest
 {
     /**
-     * Tests CreateNewVersionResponse decoding.
+     * Tests createNewVersionResponse xml into object conversion.
      *
-     * @dataProvider dataProviderRequestResponse
+     * @dataProvider dataProviderCreateNewVersionResponse
      */
-    public function testRequestResponse($response, $expectations): void
+    public function testCreateNewVersionResponse($response, $expectations): void
     {
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $response);
-        $response = $this->driver->decode('createNewVersion', new SoapResponse($xml));
-        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $response]);
+        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse', 'xml');
+        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);
     }
 
     /**
@@ -29,7 +28,7 @@ final class CreateNewVersionResponseTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderRequestResponse(): array
+    public function dataProviderCreateNewVersionResponse(): array
     {
         return $this->getFixture('createNewVersionResponse.yaml', '/Request');
     }

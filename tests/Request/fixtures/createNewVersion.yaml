@@ -8,13 +8,16 @@ x-default-request-details: &default-request-details
         product:
             -   requestedDeadline: '2040-07-01T11:51:00+01:00'
                 language: FR
+                # the Boolean field "trackChanges" is no longer in use (you can leave it empty, or "false").
+                # It remains there for backwards compatibility only.
+                trackChanges: ''
     contacts:
         contact:
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: REQUESTER
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: AUTHOR
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: RECIPIENT
 
 x-default-dossier: &default-dossier
