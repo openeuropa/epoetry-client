@@ -4,11 +4,15 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
+use OpenEuropa\EPoetry\Tests\Request\Traits\ResubmitRequestTrait;
+
 /**
  * Test resubmitRequest service.
  */
 final class ResubmitRequestTest extends BaseRequestTest
 {
+    use ResubmitRequestTrait;
+
     /**
      * Ensure the correct creation of an XML payload.
      */
