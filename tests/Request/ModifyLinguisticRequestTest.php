@@ -4,11 +4,15 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
+use OpenEuropa\EPoetry\Tests\Request\Traits\ModifyLinguisticRequestTrait;
+
 /**
  * Test ModifyLinguisticRequest service.
  */
 final class ModifyLinguisticRequestTest extends BaseRequestTest
 {
+    use ModifyLinguisticRequestTrait;
+
     /**
      * Ensure the correct creation of an XML payload.
      */
