@@ -4,35 +4,35 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
-use OpenEuropa\EPoetry\Tests\Request\Traits\ModifyLinguisticRequestTrait;
+use OpenEuropa\EPoetry\Tests\Request\Traits\GetLinguisticRequestTrait;
 
 /**
- * Test ModifyLinguisticRequest service.
+ * Test GetLinguisticRequest service.
  */
-final class ModifyLinguisticRequestTest extends BaseRequestTest
+final class GetLinguisticRequestTest extends BaseRequestTest
 {
-    use ModifyLinguisticRequestTrait;
+    use GetLinguisticRequestTrait;
 
     /**
      * Ensure the correct creation of an XML payload.
      */
     public function testXmlPayload(): void
     {
-        $request = $this->getModifyLinguisticRequest();
+        $request = $this->getGetLinguisticRequest();
 
-        $expected = file_get_contents(__DIR__ . '/fixtures/modifyLinguisticRequest.xml');
-        $request = $this->driver->encode('modifyLinguisticRequest', [$request]);
+        $expected = file_get_contents(__DIR__ . '/fixtures/getLinguisticRequest.xml');
+        $request = $this->driver->encode('getLinguisticRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
 
     /**
-     * Test validation of ModifyLinguisticRequest class.
+     * Test validation of GetLinguisticRequest class.
      *
-     * @dataProvider dataProviderModifyLinguisticRequest
+     * @dataProvider dataProviderGetLinguisticRequest
      */
     public function testValidation($data, $expectations): void
     {
-        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest');
+        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest');
         $violations = $this->validator->validate($request);
         $values = [
             'violations' => $violations,
@@ -48,8 +48,8 @@ final class ModifyLinguisticRequestTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderModifyLinguisticRequest(): array
+    public function dataProviderGetLinguisticRequest(): array
     {
-        return $this->getFixture('modifyLinguisticRequest.yaml', '/Request')['tests'];
+        return $this->getFixture('getLinguisticRequest.yaml', '/Request')['tests'];
     }
 }
