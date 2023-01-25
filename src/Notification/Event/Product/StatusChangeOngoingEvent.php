@@ -12,11 +12,11 @@ class StatusChangeOngoingEvent extends BaseEvent
 
     public const NAME = 'epoetry.notification.product_status_change_ongoing';
 
-    private \DateTime|null $acceptedDeadline;
+    private \DateTimeInterface $acceptedDeadline;
 
     /**
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
-     * @param \DateTime $acceptedDeadline
+     * @param \DateTimeInterface|NULL $acceptedDeadline
      */
     public function __construct(Product $product, \DateTimeInterface $acceptedDeadline = NULL)
     {
@@ -25,9 +25,9 @@ class StatusChangeOngoingEvent extends BaseEvent
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getAcceptedDeadline(): \DateTime
+    public function getAcceptedDeadline(): \DateTimeInterface
     {
         return $this->acceptedDeadline;
     }

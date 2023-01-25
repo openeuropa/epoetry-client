@@ -12,15 +12,14 @@ use Soap\Engine\HttpBinding\SoapResponse;
 final class CreateLinguisticRequestResponseTest extends BaseRequestTest
 {
     /**
-     * Tests CreateLinguisticRequestResponse decoding.
+     * Tests createLinguisticRequestResponse xml into object conversion.
      *
-     * @dataProvider dataProviderRequestResponse
+     * @dataProvider dataProviderCreateLinguisticRequestResponse
      */
-    public function testRequestResponse($response, $expectations): void
+    public function testCreateLinguisticRequestResponse($response, $expectations): void
     {
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $response);
-        $response = $this->driver->decode('createLinguisticRequest', new SoapResponse($xml));
-        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $response]);
+        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse', 'xml');
+        $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);
     }
 
     /**
@@ -29,7 +28,7 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderRequestResponse(): array
+    public function dataProviderCreateLinguisticRequestResponse(): array
     {
         return $this->getFixture('createLinguisticRequestResponse.yaml', '/Request');
     }

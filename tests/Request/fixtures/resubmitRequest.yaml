@@ -1,0 +1,882 @@
+x-default-request-details: &default-request-details
+    title: Request title
+    requestedDeadline: '2040-07-01T11:51:00+01:00'
+    destination: PUBLIC
+    procedure: DEGHP
+    slaAnnex: ANNEX8A
+    products:
+        product:
+            -   requestedDeadline: '2040-07-01T11:51:00+01:00'
+                language: FR
+                trackChanges: false
+    contacts:
+        contact:
+            -   userId: smithjo
+                contactRole: REQUESTER
+            -   userId: smithjo
+                contactRole: AUTHOR
+            -   userId: smithjo
+                contactRole: RECIPIENT
+
+x-default-dossier: &default-dossier
+    requesterCode: CA07
+    number: 3
+    year: 2021
+
+x-default-request-reference: &default-request-reference
+    dossier:
+        <<: *default-dossier
+    productType: TRA
+    part: 0
+
+x-default-linguistic-request: &default-linguistic-request
+    requestDetails:
+        <<: *default-request-details
+    requestReference:
+        <<: *default-request-reference
+
+x-default: &default
+    applicationName: appname
+    templateName: DEFAULT
+    resubmitRequest:
+        <<: *default-linguistic-request
+
+tests:
+    -   data:
+            <<: *default
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            applicationName: ''
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'applicationName'
+    -   data:
+            <<: *default
+            templateName: ''
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'templateName'
+                - strpos(violations.get(1).getMessage(), 'Choose a valid template name') === 0
+                - violations.get(1).getPropertyPath() === 'templateName'
+    -   data:
+            <<: *default
+            templateName: wrong value
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid template name') === 0
+                - violations.get(0).getPropertyPath() === 'templateName'
+    -   data:
+            <<: *default
+            templateName: WEBTRA
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: HOTL
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === '"workflowCode" "HOTL" is not allowed for template "WEBTRA".'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.workflowCode'
+                - violations.get(1).getMessage() === 'At least one "WEBMASTER" contact should be presented.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.contacts'
+                - violations.get(2).getMessage() === 'At least one "EDITOR" contact should be presented.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.contacts'
+    -   data:
+            <<: *default
+            templateName: WEBTRA
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: WEB
+                    contacts:
+                        contact:
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: EDITOR
+                            -   userId: smithjo
+                                contactRole: RECIPIENT
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: HOTL
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: HOTL
+                    slaAnnex: ''
+                    destination: ''
+                    procedure: ''
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: EDT
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: STS
+                    slaAnnex: ''
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: WEBEDT
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: WEB
+                    contacts:
+                        contact:
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: EDITOR
+                            -   userId: smithjo
+                                contactRole: RECIPIENT
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === 'Maximum of "3" "WEBMASTER" contacts should be presented.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.contacts'
+                - violations.get(1).getMessage() === 'At least one "AUTHOR" contact should be presented.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.contacts'
+    -   data:
+            <<: *default
+            templateName: WEBEDT
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: WEB
+                    slaAnnex: ''
+                    contacts:
+                        contact:
+                            -   userId: smithjo
+                                contactRole: WEBMASTER
+                            -   userId: smithjo
+                                contactRole: AUTHOR
+                            -   userId: smithjo
+                                contactRole: RECIPIENT
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: RSE
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: ''
+                    destination: ''
+                    procedure: ''
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: RSO
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: ''
+                    destination: ''
+                    procedure: ''
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: SPO
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: PP
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: PP
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            templateName: QE
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: QE
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    title: ''
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too short. It should have 1 character or more.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.title'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    title: 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.title'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    internalReference: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.internalReference'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    requestedDeadline: '2020-07-01T11:51:00+01:00'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"requestedDeadline" cannot be in the past.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.requestedDeadline'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    title: Request title
+                    destination: PUBLIC
+                    procedure: DEGHP
+                    slaAnnex: ANNEX8A
+                    products:
+                        product:
+                            -   requestedDeadline: '2040-07-01T11:51:00+01:00'
+                                language: FR
+                                trackChanges: true
+                    contacts:
+                        contact:
+                            -   userId: smithjo
+                                contactRole: REQUESTER
+                            -   userId: smithjo
+                                contactRole: AUTHOR
+                            -   userId: smithjo
+                                contactRole: RECIPIENT
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"requestedDeadline" is required.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.requestedDeadline'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    workflowCode: wrong workflow code
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === '"workflowCode" "wrong workflow code" is not allowed for template "DEFAULT".'
+                - strpos(violations.get(1).getMessage(), 'Choose a valid workflow code or set empty value') === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: wrong description
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid destination value') === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: EM
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: EXT
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: IE
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: INTERNE
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    destination: JO
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: wrong value
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid procedure value') === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: DEGHP
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: NEANT
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: PROAC
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: PROCD
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: PROCE
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: PROCH
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: PROCO
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: REUNAU
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    procedure: REUNCS
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: slaAnnex wrong value
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - 'violations.get(0).getMessage() === "Choose a valid \"slaAnnex\" value: NO, ANNEX8A, ANNEX8B."'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.slaAnnex'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: NO
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: ANNEX8A
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: ANNEX8B
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === '"slaCommitment" value is required if "slaAnnex" is ANNEX8B.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.slaCommitment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    slaAnnex: ANNEX8B
+                    slaCommitment: Sla commitment
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    comment: 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 1700 characters or less.'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    comment: Test comment
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: wrong value
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid accessible to value') === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: CONTACTS
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: UNIT
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: DIR
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: DG
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    accessibleTo: ON_BEHALF_DG
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword1: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword1: Keyword 1
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword2: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword2: Keyword 2
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword3: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    keyword3: Keyword 3
+        expectations:
+            assertions:
+                - count(violations) === 0
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    products:
+                        product:
+                            -   language: ''
+                                trackChanges: true
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.products.product[0].language'
+                - violations.get(1).getMessage() === 'This value should not be null.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.products.product[0].requestedDeadline'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    originalDocument:
+                        linguisticSections:
+                            linguisticSection:
+                                -   language: FR
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'Product list must not include language "FR" since it is defined as a single source language in the "linguisticSections"'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.products.product[0]'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        srcDocument:
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.srcDocument.fileName'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.srcDocument.content'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        srcDocument:
+                            fileName: TEST_FILE_ORIGINALP.docx
+                            content: Y2lkOjI2NzczNjgyODUzMQ==
+                            comment: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.srcDocument.comment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        referenceDocuments:
+                            document:
+                                -
+                                -   fileName: TEST_FILE_ORIGINALP.docx
+                                    content: Y2lkOjI2NzczNjgyODUzMQ==
+                                    comment: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.referenceDocuments.document[0].fileName'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.referenceDocuments.document[0].content'
+                - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.referenceDocuments.document[1].comment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        spotDocument:
+                            comment: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.spotDocument.fileName'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.spotDocument.content'
+                - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.spotDocument.comment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        traxDocuments:
+                            document:
+                                -   comment: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+                                -   fileName: TEST_FILE_ORIGINALP.docx
+                                    content: Y2lkOjI2NzczNjgyODUzMQ==
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.traxDocuments.document[0].fileName'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.traxDocuments.document[0].content'
+                - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.traxDocuments.document[0].comment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    auxiliaryDocuments:
+                        prtDocuments:
+                            document:
+                                -   comment: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+                                -   fileName: TEST_FILE_ORIGINALP.docx
+                                    content: Y2lkOjI2NzczNjgyODUzMQ==
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.prtDocuments.document[0].fileName'
+                - violations.get(1).getMessage() === 'This value should not be blank.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.prtDocuments.document[0].content'
+                - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.auxiliaryDocuments.prtDocuments.document[0].comment'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    sentViaRue: false
+                    sensitive: false
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === '"sensitive" should not be set in resubmitRequest.'
+                - violations.get(1).getMessage() === '"sentViaRue" should not be set in resubmitRequest.'
+
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    sentViaRue: true
+                    sensitive: true
+        expectations:
+            assertions:
+                - count(violations) === 2
+                - violations.get(0).getMessage() === '"sensitive" should not be set in resubmitRequest.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.sensitive'
+                - violations.get(1).getMessage() === '"sentViaRue" should not be set in resubmitRequest.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.sentViaRue'
+    -   data:
+            <<: *default
+            resubmitRequest:
+                <<: *default-linguistic-request
+                requestDetails:
+                    <<: *default-request-details
+                    sentViaRue: true
+                    sensitive: true
+                    onBehalfOf: some value
+        expectations:
+            assertions:
+                - count(violations) === 3
+                - violations.get(0).getMessage() === '"sensitive" should not be set in resubmitRequest.'
+                - violations.get(0).getPropertyPath() === 'resubmitRequest.requestDetails.sensitive'
+                - violations.get(1).getMessage() === '"sentViaRue" should not be set in resubmitRequest.'
+                - violations.get(1).getPropertyPath() === 'resubmitRequest.requestDetails.sentViaRue'
+                - violations.get(2).getMessage() === '"onBehalfOf" should not be set in resubmitRequest.'
+                - violations.get(2).getPropertyPath() === 'resubmitRequest.requestDetails.onBehalfOf'

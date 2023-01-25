@@ -1,6 +1,37 @@
+# We collect here some reusable validation rules, so we don't have to maintain
+# the same code in several parts of this YAML file.
+_:
+    templateNameChoice: &templateNameChoice
+        choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
+        message: |
+            Choose a valid template name
+            - DEFAULT for full length translation
+            - WEBTRA for web translation
+            - HOTL for hotline
+            - EDT for standard editing
+            - WEBEDT for web editing
+            - RSE for written summary
+            - RSO for oral summary
+            - SPO for spotcheck
+            - PP for spokesperson's service press documents
+            - QE for replies to MEPs’ written questions
+    productTypeChoice: &productTypeChoice
+        choices: [ ERR, EXT, EDT, TRA, RSO, RSE, REV, PER, SPO ]
+        message: |
+            Choose a valid product type
+            - ERR
+            - EXT
+            - EDT
+            - TRA
+            - RSO
+            - RSE
+            - REV
+            - PER
+            - SPO
+
 OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
     constraints:
-        -   OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+        - OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
 
     properties:
         requestDetails:
@@ -10,20 +41,29 @@ OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest:
             - NotBlank: ~
         templateName:
             - NotBlank: ~
-            - Choice:
-                choices: [ DEFAULT, WEBTRA, HOTL, EDT, WEBEDT, RSE, RSO, SPO, PP, QE ]
-                message: |
-                    Choose a valid template name
-                    - DEFAULT for full length translation
-                    - WEBTRA for web translation
-                    - HOTL for hotline
-                    - EDT for standard editing
-                    - WEBEDT for web editing
-                    - RSE for written summary
-                    - RSO for oral summary
-                    - SPO for spotcheck
-                    - PP for spokesperson's service press documents
-                    - QE for replies to MEPs’ written questions
+            - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\ResubmitRequest:
+    constraints:
+        - OpenEuropa\EPoetry\Validation\Constraints\ResubmitRequestConstraint: ~
+
+    properties:
+        resubmitRequest:
+            - Valid: ~
+            - NotNull: ~
+        applicationName:
+            - NotBlank: ~
+        templateName:
+            - NotBlank: ~
+            - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest:
+    properties:
+        modifyLinguisticRequest:
+            - Valid: ~
+            - NotNull: ~
+        applicationName:
+            - NotBlank: ~
 
 OpenEuropa\EPoetry\Request\Type\RequestDetailsIn:
     constraints:
@@ -97,6 +137,9 @@ OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn:
             - NotBlank: ~
         requestedDeadline:
             - NotNull: ~
+        trackChanges:
+            - NotNull: ~
+            - Type: bool
 
 OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
     properties:
@@ -104,6 +147,9 @@ OpenEuropa\EPoetry\Request\Type\ProductRequestIn:
             - NotBlank: ~
         requestedDeadline:
             - NotNull: ~
+        trackChanges:
+            - NotNull: ~
+            - Type: bool
 
 OpenEuropa\EPoetry\Request\Type\Contacts:
     properties:
@@ -168,4 +214,109 @@ OpenEuropa\EPoetry\Request\Type\DocumentIn:
                   min: 0
                   max: 500
 
+OpenEuropa\EPoetry\Request\Type\DossierReference:
+    properties:
+        requesterCode:
+            - Length:
+                  min: 0
+                  max: 500
+        number:
+            - PositiveOrZero: ~
+        year:
+            - DateTime:
+                  format: Y
 
+OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
+    properties:
+        dossier:
+            - Valid: ~
+        productType:
+            - NotBlank: ~
+            - Choice: *productTypeChoice
+        part:
+            - PositiveOrZero: ~
+
+OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn:
+    properties:
+        requestDetails:
+            - Valid: ~
+            - NotNull: ~
+        requestReference:
+            - Valid: ~
+            - NotNull: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn:
+    properties:
+        contacts:
+            - Valid: ~
+            - NotNull: ~
+        products:
+            - Valid: ~
+        auxiliaryDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn:
+    properties:
+        dossier:
+            - Valid: ~
+        productType:
+            - Choice: *productTypeChoice
+        part:
+            - PositiveOrZero: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn:
+    properties:
+        referenceDocuments:
+            - Valid: ~
+        traxDocuments:
+            - Valid: ~
+        spotDocument:
+            - Valid: ~
+        prtDocuments:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn:
+    properties:
+        requestReference:
+            - Valid: ~
+        requestDetails:
+            - Valid: ~
+
+OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
+    constraints:
+        - OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+
+    properties:
+        dossier:
+            - Valid: ~
+            - NotBlank: ~
+        requestDetails:
+            - Valid: ~
+            - NotBlank: ~
+        applicationName:
+            - NotBlank: ~
+        templateName:
+            - NotBlank: ~
+            - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest:
+    properties:
+        requestReference:
+            - Valid: ~
+        applicationName:
+            - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl:
+    properties:
+        callbackUrl:
+            - NotBlank: ~
+            - Url: { protocols: [https] }
+        applicationName:
+            - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\CreateNewVersion:
+    properties:
+        linguisticRequest:
+            - Valid: ~
+        applicationName:
+            - NotBlank: ~

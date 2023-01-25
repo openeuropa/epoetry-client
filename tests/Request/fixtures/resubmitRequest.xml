@@ -1,0 +1,57 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                   xmlns:ns1="http://eu.europa.ec.dgt.epoetry">
+    <SOAP-ENV:Body>
+        <ns1:resubmitRequest>
+            <resubmitRequest>
+                <requestReference>
+                    <dossier>
+                        <requesterCode>CA07</requesterCode>
+                        <number>3</number>
+                        <year>2021</year>
+                    </dossier>
+                    <productType>TRA</productType>
+                    <part>0</part>
+                </requestReference>
+                <requestDetails>
+                    <title>Resubmission - JL</title>
+                    <internalReference/>
+                    <requestedDeadline>2021-10-10T11:51:00+01:00</requestedDeadline>
+                    <documentToAdopt>false</documentToAdopt>
+                    <decideReference/>
+                    <destination>PUBLIC</destination>
+                    <procedure>DEGHP</procedure>
+                    <slaAnnex>ANNEX8A</slaAnnex>
+                    <slaCommitment>2225555</slaCommitment>
+                    <comment>my request - resubmitted</comment>
+                    <accessibleTo>CONTACTS</accessibleTo>
+                    <keyword1>ACC test - resubmitted</keyword1>
+                    <keyword2>key2 - resubmitted</keyword2>
+                    <keyword3>aaaaaaaaaaaaaaa - resubmitted</keyword3>
+                    <contacts>
+                        <contact userId="smithjo" contactRole="REQUESTER"/>
+                        <contact userId="aniskja" contactRole="AUTHOR"/>
+                        <contact userId="smithjo" contactRole="RECIPIENT"/>
+                    </contacts>
+                    <originalDocument>
+                        <fileName>ORI-resubmitted-PL.docx</fileName>
+                        <comment>Ori doc resubmitted</comment>
+                        <content>Y2lkOm9yaS1yZXN1Ym1pdHRlZA==</content>
+                        <linguisticSections>
+                            <linguisticSection>
+                                <language>PL</language>
+                            </linguisticSection>
+                        </linguisticSections>
+                        <trackChanges/>
+                    </originalDocument>
+                    <products>
+                        <product trackChanges="false">
+                            <language>FR</language>
+                        </product>
+                    </products>
+                </requestDetails>
+            </resubmitRequest>
+            <applicationName>EPOETRY</applicationName>
+            <templateName>DEFAULT</templateName>
+        </ns1:resubmitRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

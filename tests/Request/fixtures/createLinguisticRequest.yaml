@@ -12,13 +12,14 @@ x-default-request-details: &default-request-details
         product:
             -   requestedDeadline: '2040-07-01T11:51:00+01:00'
                 language: FR
+                trackChanges: false
     contacts:
         contact:
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: REQUESTER
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: AUTHOR
-            -   userId: liekejo
+            -   userId: smithjo
                 contactRole: RECIPIENT
 
 x-default: &default
@@ -82,11 +83,11 @@ tests:
                 workflowCode: WEB
                 contacts:
                     contact:
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: EDITOR
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: RECIPIENT
         expectations:
             assertions:
@@ -121,17 +122,17 @@ tests:
                 workflowCode: WEB
                 contacts:
                     contact:
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: EDITOR
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: RECIPIENT
         expectations:
             assertions:
@@ -149,11 +150,11 @@ tests:
                 slaAnnex: ''
                 contacts:
                     contact:
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: WEBMASTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: AUTHOR
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: RECIPIENT
         expectations:
             assertions:
@@ -255,13 +256,14 @@ tests:
                     product:
                         -   requestedDeadline: '2040-07-01T11:51:00+01:00'
                             language: FR
+                            trackChanges: true
                 contacts:
                     contact:
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: REQUESTER
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: AUTHOR
-                        -   userId: liekejo
+                        -   userId: smithjo
                             contactRole: RECIPIENT
         expectations:
             assertions:
@@ -610,6 +612,7 @@ tests:
                 products:
                     product:
                         -   language: ''
+                            trackChanges: true
         expectations:
             assertions:
                 - count(violations) === 2

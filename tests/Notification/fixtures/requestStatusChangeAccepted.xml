@@ -1,18 +1,23 @@
-<ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
-    <notification>
-        <notificationType>RequestStatusChange</notificationType>
-        <linguisticRequest>
-            <requestReference>
-                <requesterCode>SG</requesterCode>
-                <year>2022</year>
-                <number>127</number>
-                <part>0</part>
-                <version>0</version>
-                <productType>TRA</productType>
-            </requestReference>
-            <status>Accepted</status>
-        </linguisticRequest>
-        <planningAgent>teodomi</planningAgent>
-        <planningSector>DGT.S.S-1.P-1</planningSector>
-    </notification>
-</ns0:receiveNotification>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header/>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>RequestStatusChange</notificationType>
+                <linguisticRequest>
+                    <requestReference>
+                        <requesterCode>SG</requesterCode>
+                        <year>2022</year>
+                        <number>127</number>
+                        <part>0</part>
+                        <version>0</version>
+                        <productType>TRA</productType>
+                    </requestReference>
+                    <status>Accepted</status>
+                </linguisticRequest>
+                <planningAgent>teodomi</planningAgent>
+                <planningSector>DGT.S.S-1.P-1</planningSector>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>

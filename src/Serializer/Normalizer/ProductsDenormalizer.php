@@ -30,7 +30,7 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
     public function denormalize($data, $type, $format = null, array $context = []): ?object
     {
         if (empty($data['product'])) {
-            return null;
+            return new Products();
         }
 
         // Define product class based on the class of the parent object.
@@ -49,8 +49,29 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
         }
 
         $products = new Products();
-        foreach ($data['product'] as $values) {
-            $product = $this->serializer->denormalize($values, $childType, $format, $context);
+        $values = $data['product'];
+        if (!isset($data['product'][0])) {
+            // Single value in XML.
+            $values = [
+                $data['product'],
+            ];
+        }
+        $attributes = ['requestedDeadline', 'trackChanges'];
+        foreach ($values as $value) {
+            // Copy attributes to values.
+            foreach ($attributes as $attribute) {
+                $name = '@' . $attribute;
+                if (isset($value[$name])) {
+                    $value[$attribute] = $value[$name];
+                    unset($value[$name]);
+                }
+            }
+            if (isset($value['#'])) {
+                unset($value['#']);
+            }
+
+            // Create objects.
+            $product = $this->serializer->denormalize($value, $childType, $format, $context);
             $products->addProduct($product);
         }
 

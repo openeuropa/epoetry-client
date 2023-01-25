@@ -18,8 +18,7 @@ final class ReceiveNotificationTest extends BaseNotificationTest
      */
     public function testReceiveNotification($notification, $expectations): void
     {
-        $xml = file_get_contents(__DIR__ . '/fixtures/' . $notification);
-        $object = $this->serializer->deserialize($xml, 'OpenEuropa\EPoetry\Notification\Type\ReceiveNotification', 'xml');
+        $object = $this->serializer->deserialize($notification, 'OpenEuropa\EPoetry\Notification\Type\ReceiveNotification', 'xml');
         $this->assertExpressionLanguageExpressions($expectations['assertions'], ['notification' => $object]);
     }
 

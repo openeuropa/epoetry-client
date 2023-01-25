@@ -17,12 +17,15 @@ use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestOut;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsOut;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Test Serializer.
  */
 final class SerializerTest extends BaseTest
 {
+    use Request\Traits\CreateLinguisticRequestTrait;
+
     /**
      * Test serialization/deserialization to/from JSON.
      */
@@ -30,8 +33,82 @@ final class SerializerTest extends BaseTest
     {
         $request = $this->getCreateLinguisticRequest();
         $output = $this->serializer->toString($request, 'json');
-        $json = '{"requestDetails":{"title":"Request title","requestedDeadline":"2022-07-01T11:51:00+01:00","sensitive":false,"destination":"PUBLIC","procedure":"DEGHP","slaAnnex":"ANNEX8A","slaCommitment":"2225555","comment":"comment","accessibleTo":"CONTACTS","keyword1":"keyword1","keyword2":"keyword2","keyword3":"keyword3","contacts":{"contact":[{"userId":"liekejo","contactRole":"REQUESTER"},{"userId":"liekejo","contactRole":"AUTHOR"},{"userId":"liekejo","contactRole":"RECIPIENT"}]},"originalDocument":{"fileName":"TEST_FILE_ORIGINALP.docx","comment":"","content":"cid:267736828531","linguisticSections":{"linguisticSection":[{"language":"FR"}]},"trackChanges":false},"products":{"product":[{"language":"FR","requestedDeadline":"2021-07-06T11:51:00+01:00","trackChanges":false}]},"auxiliaryDocuments":{"referenceDocuments":{"document":[{"fileName":"test.docx","language":"EN","comment":"test","content":"cid:303605824112"}]},"srcDocument":{"fileName":"test2222SRC.docx","comment":"777888877","content":"cid:1531884704226"}}},"applicationName":"appname","templateName":"DEFAULT"}';
-        $this->assertEquals($json, $output);
+        $json = <<<JSON
+{
+  "requestDetails": {
+    "title": "Request title",
+    "requestedDeadline": "2121-07-06T11:51:00+01:00",
+    "sensitive": false,
+    "destination": "PUBLIC",
+    "procedure": "DEGHP",
+    "slaAnnex": "ANNEX8A",
+    "slaCommitment": "2225555",
+    "comment": "comment",
+    "accessibleTo": "CONTACTS",
+    "keyword1": "keyword1",
+    "keyword2": "keyword2",
+    "keyword3": "keyword3",
+    "contacts": {
+      "contact": [
+        {
+          "userId": "smithjo",
+          "contactRole": "REQUESTER"
+        },
+        {
+          "userId": "smithjo",
+          "contactRole": "AUTHOR"
+        },
+        {
+          "userId": "smithjo",
+          "contactRole": "RECIPIENT"
+        }
+      ]
+    },
+    "originalDocument": {
+      "fileName": "TEST_FILE_ORIGINALP.docx",
+      "comment": "",
+      "content": "cid:267736828531",
+      "linguisticSections": {
+        "linguisticSection": [
+          {
+            "language": "FR"
+          }
+        ]
+      },
+      "trackChanges": false
+    },
+    "products": {
+      "product": [
+        {
+          "language": "FR",
+          "requestedDeadline": "2121-07-06T11:51:00+01:00",
+          "trackChanges": false
+        }
+      ]
+    },
+    "auxiliaryDocuments": {
+      "referenceDocuments": {
+        "document": [
+          {
+            "fileName": "test.docx",
+            "language": "EN",
+            "comment": "test",
+            "content": "cid:303605824112"
+          }
+        ]
+      },
+      "srcDocument": {
+        "fileName": "test2222SRC.docx",
+        "comment": "777888877",
+        "content": "cid:1531884704226"
+      }
+    }
+  },
+  "applicationName": "appname",
+  "templateName": "DEFAULT"
+}
+JSON;
+        $this->assertJsonStringEqualsJsonString($json, $output);
 
         $requestDeserialized = $this->serializer->fromString($json, CreateLinguisticRequest::class, 'json');
         $this->assertEquals($request, $requestDeserialized);
@@ -44,8 +121,56 @@ final class SerializerTest extends BaseTest
     {
         $request = $this->getCreateLinguisticRequest();
         $output = $this->serializer->toString($request, 'yaml');
-        $yaml = "{ requestDetails: { title: 'Request title', requestedDeadline: '2022-07-01T11:51:00+01:00', sensitive: false, destination: PUBLIC, procedure: DEGHP, slaAnnex: ANNEX8A, slaCommitment: '2225555', comment: comment, accessibleTo: CONTACTS, keyword1: keyword1, keyword2: keyword2, keyword3: keyword3, contacts: { contact: [{ userId: liekejo, contactRole: REQUESTER }, { userId: liekejo, contactRole: AUTHOR }, { userId: liekejo, contactRole: RECIPIENT }] }, originalDocument: { fileName: TEST_FILE_ORIGINALP.docx, comment: '', content: 'cid:267736828531', linguisticSections: { linguisticSection: [{ language: FR }] }, trackChanges: false }, products: { product: [{ language: FR, requestedDeadline: '2021-07-06T11:51:00+01:00', trackChanges: false }] }, auxiliaryDocuments: { referenceDocuments: { document: [{ fileName: test.docx, language: EN, comment: test, content: 'cid:303605824112' }] }, srcDocument: { fileName: test2222SRC.docx, comment: '777888877', content: 'cid:1531884704226' } } }, applicationName: appname, templateName: DEFAULT }";
-        $this->assertEquals($yaml, $output);
+        $yaml = <<<YAML
+requestDetails:
+  title: Request title
+  requestedDeadline: '2121-07-06T11:51:00+01:00'
+  sensitive: false
+  destination: PUBLIC
+  procedure: DEGHP
+  slaAnnex: ANNEX8A
+  slaCommitment: '2225555'
+  comment: comment
+  accessibleTo: CONTACTS
+  keyword1: keyword1
+  keyword2: keyword2
+  keyword3: keyword3
+  contacts:
+    contact:
+      - userId: smithjo
+        contactRole: REQUESTER
+      - userId: smithjo
+        contactRole: AUTHOR
+      - userId: smithjo
+        contactRole: RECIPIENT
+  originalDocument:
+    fileName: TEST_FILE_ORIGINALP.docx
+    comment: ''
+    content: 'cid:267736828531'
+    linguisticSections:
+      linguisticSection:
+        - language: FR
+    trackChanges: false
+  products:
+    product:
+      - language: FR
+        requestedDeadline: '2121-07-06T11:51:00+01:00'
+        trackChanges: false
+  auxiliaryDocuments:
+    referenceDocuments:
+      document:
+        - fileName: test.docx
+          language: EN
+          comment: test
+          content: 'cid:303605824112'
+    srcDocument:
+      fileName: test2222SRC.docx
+      comment: '777888877'
+      content: 'cid:1531884704226'
+applicationName: appname
+templateName: DEFAULT
+YAML;
+        $this->assertEquals(Yaml::parse($yaml), Yaml::parse($output));
 
         $requestDeserialized = $this->serializer->fromString($yaml, CreateLinguisticRequest::class, 'yaml');
         $this->assertEquals($request, $requestDeserialized);
@@ -69,25 +194,116 @@ final class SerializerTest extends BaseTest
      */
     public function testProductsDenormalizer(): void
     {
-        $yaml = "{ products: { product: [{ language: FR, acceptedDeadline: '2022-07-01T11:51:00+01:00', trackChanges: true, status: Ongoing, format: DOC }, { language: EN, requestedDeadline: '2022-08-01T11:51:00+01:00', trackChanges: false, status: Accepted, format: DOCX }] } }";
+        // XML single value.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <products></products>
+</response>
+XML;
 
-        // Assert creation of children classes based on type of denormalized object.
-        $this->assertProducts($yaml, RequestDetailsOut::class, ProductRequestOut::class);
-        $this->assertProducts($yaml, RequestDetailsIn::class, ProductRequestIn::class);
-        $this->assertProducts($yaml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class);
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml', 0, []);
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 0, []);
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml', 0, []);
+
+        // XML single value.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <products>
+        <product>
+            <language>FR</language>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
+            <trackChanges>0</trackChanges>
+            <status>SenttoDGT</status>
+            <format>DOCX</format>
+        </product>
+    </products>
+</response>
+XML;
+
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml', 1, ['FR']);
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 1, ['FR']);
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml', 1, ['FR']);
+
+        // XML multiple values.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <products>
+        <product>
+            <language>FR</language>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
+            <trackChanges>0</trackChanges>
+            <status>SenttoDGT</status>
+            <format>DOCX</format>
+        </product>
+        <product>
+            <language>EN</language>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
+            <trackChanges>0</trackChanges>
+            <status>SenttoDGT</status>
+            <format>DOCX</format>
+        </product>
+    </products>
+</response>
+XML;
+        $this->assertProducts($xml, RequestDetailsOut::class, ProductRequestOut::class, 'xml', 2, ['FR', 'EN']);
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 2, ['FR', 'EN']);
+        $this->assertProducts($xml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'xml', 2, ['FR', 'EN']);
+
+        // XML multiple values with attributes.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <products>
+        <product requestedDeadline="2121-07-06T11:51:00+01:00" trackChanges="true">
+            <language>FR</language>
+        </product>
+        <product requestedDeadline="2022-07-06T11:51:00+01:00" trackChanges="false">
+            <language>EN</language>
+        </product>
+    </products>
+</response>
+XML;
+        $this->assertProducts($xml, RequestDetailsIn::class, ProductRequestIn::class, 'xml', 2, ['FR', 'EN']);
+
+        // Yaml strings.
+        $yaml = <<<YAML
+products:
+  product:
+    - language: FR
+      acceptedDeadline: '2121-07-06T11:51:00+01:00'
+      trackChanges: true
+      status: Ongoing
+      format: DOC
+    - language: EN
+      requestedDeadline: '2022-08-01T11:51:00+01:00'
+      trackChanges: false
+      status: Accepted
+      format: DOCX
+
+YAML;
+
+        $this->assertProducts($yaml, RequestDetailsOut::class, ProductRequestOut::class, 'yaml', 2, ['FR', 'EN']);
+        $this->assertProducts($yaml, RequestDetailsIn::class, ProductRequestIn::class, 'yaml', 2, ['FR', 'EN']);
+        $this->assertProducts($yaml, ModifyRequestDetailsIn::class, ModifyProductRequestIn::class, 'yaml', 2, ['FR', 'EN']);
     }
 
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\Products object.
      */
-    protected function assertProducts(string $yaml, string $type, string $expectedInstance): void
+    protected function assertProducts(string $yaml, string $type, string $expectedInstance, string $format, int $count, array $expectedLanguages): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
         $products = $denormalizedObject->getProducts()->getProduct();
-        $this->assertCount(2, $products);
+        $this->assertCount($count, $products);
         foreach ($products as $product) {
             $this->assertInstanceOf($expectedInstance, $product);
+        }
+        foreach ($expectedLanguages as $key => $value) {
+            $this->assertEquals($value, $products[$key]->getLanguage());
         }
     }
 
@@ -96,22 +312,61 @@ final class SerializerTest extends BaseTest
      */
     public function testLinguisticSectionsDenormalizer(): void
     {
-        $yaml = "{ linguisticSections: { linguisticSection: [{ language: FR }] } }";
+        // XML single value.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <linguisticSections>
+        <linguisticSection>
+            <language>FR</language>
+        </linguisticSection>
+    </linguisticSections>
+</response>
+XML;
+        $this->assertLinguisticSections($xml, OriginalDocumentOut::class, LinguisticSectionOut::class, 'xml', 1, ['FR']);
+        $this->assertLinguisticSections($xml, OriginalDocumentIn::class, LinguisticSectionIn::class, 'xml', 1, ['FR']);
 
-        // Assert creation of children classes based on type of denormalized object.
-        $this->assertLinguisticSections($yaml, OriginalDocumentOut::class, LinguisticSectionOut::class);
-        $this->assertLinguisticSections($yaml, OriginalDocumentIn::class, LinguisticSectionIn::class);
+        // XML multiple values.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <linguisticSections>
+        <linguisticSection>
+            <language>FR</language>
+            <language>EN</language>
+        </linguisticSection>
+    </linguisticSections>
+</response>
+XML;
+        $this->assertLinguisticSections($xml, OriginalDocumentOut::class, LinguisticSectionOut::class, 'xml', 2, ['FR', 'EN']);
+        $this->assertLinguisticSections($xml, OriginalDocumentIn::class, LinguisticSectionIn::class, 'xml', 2, ['FR', 'EN']);
+
+        // Yaml strings.
+        $yaml = <<<YAML
+linguisticSections:
+  linguisticSection:
+    - language: FR
+YAML;
+
+        $this->assertLinguisticSections($yaml, OriginalDocumentOut::class, LinguisticSectionOut::class, 'yaml', 1, ['FR']);
+        $this->assertLinguisticSections($yaml, OriginalDocumentIn::class, LinguisticSectionIn::class, 'yaml', 1, ['FR']);
     }
 
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\LinguisticSections object.
      */
-    protected function assertLinguisticSections(string $yaml, string $type, string $expectedInstance): void
+    protected function assertLinguisticSections(string $yaml, string $type, string $expectedInstance, string $format, int $count, array $languages): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
-        $linguisticSection = $denormalizedObject->getLinguisticSections()->getLinguisticSection();
-        $this->assertInstanceOf($expectedInstance, reset($linguisticSection));
+        $linguisticSections = $denormalizedObject->getLinguisticSections()->getLinguisticSection();
+        $this->assertCount($count, $linguisticSections);
+        foreach ($linguisticSections as $linguisticSection) {
+            $this->assertInstanceOf($expectedInstance, $linguisticSection);
+        }
+        foreach ($languages as $key => $value) {
+            $this->assertEquals($value, $linguisticSections[$key]->getLanguage());
+        }
     }
 
     /**
@@ -119,24 +374,141 @@ final class SerializerTest extends BaseTest
      */
     public function testContactsDenormalizer(): void
     {
-        // Assert creation of children classes based on type of denormalized object.
-        $yaml = "{ contacts: { contact: [{ firstName: First, lastName: Last, email: test@example.com, userId: userId, roleCode: code }] } }";
-        $this->assertContacts($yaml, RequestDetailsOut::class, ContactPersonOut::class);
+        // XML single value.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts>
+        <contact>
+            <firstName>First1</firstName>
+            <lastName>Last1</lastName>
+            <email>mail1@ec.europa.eu</email>
+            <userId>id1</userId>
+            <roleCode>AUTHOR</roleCode>
+        </contact>
+    </contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsOut::class, ContactPersonOut::class, 'xml', 1, ['id1']);
 
-        $yaml = "{ contacts: { contact: [{ userId: userId, contactRole: role }] } }";
-        $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class);
-        $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class);
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts>
+        <contact>
+            <userId>id1</userId>
+            <contactRole>AUTHOR</contactRole>
+        </contact>
+    </contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 1, ['id1']);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 1, ['id1']);
+
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts></contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 0, []);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 0, []);
+
+        // XML multiple values.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts>
+        <contact>
+            <firstName>First1</firstName>
+            <lastName>Last1</lastName>
+            <email>mail1@ec.europa.eu</email>
+            <userId>id1</userId>
+            <roleCode>AUTHOR</roleCode>
+        </contact>
+        <contact>
+            <firstName>First2</firstName>
+            <lastName>Last2</lastName>
+            <email>mail2@ec.europa.eu</email>
+            <userId>id2</userId>
+            <roleCode>RECIPIENT</roleCode>
+        </contact>
+    </contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsOut::class, ContactPersonOut::class, 'xml', 2, ['id1', 'id2']);
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts>
+        <contact>
+            <userId>id1</userId>
+            <contactRole>AUTHOR</contactRole>
+        </contact>
+        <contact>
+            <userId>id2</userId>
+            <contactRole>RECIPIENT</contactRole>
+        </contact>
+    </contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 2, ['id1', 'id2']);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 2, ['id1', 'id2']);
+
+        // XML multiple values with attributes.
+        $xml = <<<XML
+<?xml version="1.0"?>
+<response>
+    <contacts>
+        <contact userId="id1" contactRole="AUTHOR"></contact>
+        <contact userId="id2" contactRole="RECIPIENT"></contact>
+    </contacts>
+</response>
+XML;
+        $this->assertContacts($xml, RequestDetailsIn::class, ContactPersonIn::class, 'xml', 2, ['id1', 'id2']);
+        $this->assertContacts($xml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'xml', 2, ['id1', 'id2']);
+
+        // Yaml strings.
+        $yaml = <<<YAML
+contacts:
+  contact:
+    - firstName: First1
+      lastName: Last1
+      email: mail1@ec.europa.eu
+      userId: id1
+      roleCode: AUTHOR
+YAML;
+        $this->assertContacts($yaml, RequestDetailsOut::class, ContactPersonOut::class, 'yaml', 1, ['id1']);
+
+        $yaml = <<<YAML
+contacts:
+  contact:
+    - userId: id1
+      contactRole: role
+YAML;
+        $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class, 'yaml', 1, ['id1']);
+        $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'yaml', 1, ['id1']);
+
+        $yaml = "contacts: {}";
+        $this->assertContacts($yaml, RequestDetailsIn::class, ContactPersonIn::class, 'yaml', 0, []);
+        $this->assertContacts($yaml, ModifyRequestDetailsIn::class, ContactPersonIn::class, 'yaml', 0, []);
     }
 
     /**
      * Asserts denormalization of OpenEuropa\EPoetry\Request\Type\Contacts object.
      */
-    protected function assertContacts(string $yaml, string $type, string $expectedInstance): void
+    protected function assertContacts(string $yaml, string $type, string $expectedInstance, string $format, int $count, array $userIds): void
     {
-        $denormalizedObject = $this->serializer->fromString($yaml, $type, 'yaml');
+        $denormalizedObject = $this->serializer->fromString($yaml, $type, $format);
         $this->assertInstanceOf($type, $denormalizedObject);
-        $contact = $denormalizedObject->getContacts()->getContact();
-        $this->assertInstanceOf($expectedInstance, reset($contact));
+        $contacts = $denormalizedObject->getContacts()->getContact();
+        $this->assertCount($count, $contacts);
+        foreach ($contacts as $contact) {
+            $this->assertInstanceOf($expectedInstance, $contact);
+        }
+        foreach ($userIds as $key => $value) {
+            $this->assertEquals($value, $contacts[$key]->getUserId());
+        }
     }
 
     /**
@@ -149,7 +521,7 @@ final class SerializerTest extends BaseTest
         return [
             'requestDetails' => [
                 'title' => 'Request title',
-                'requestedDeadline' => '2022-07-01T11:51:00+01:00',
+                'requestedDeadline' => '2121-07-06T11:51:00+01:00',
                 'sensitive' => false,
                 'destination' => 'PUBLIC',
                 'procedure' => 'DEGHP',
@@ -163,13 +535,13 @@ final class SerializerTest extends BaseTest
                 'contacts' => [
                     'contact' => [
                         [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'REQUESTER',
                         ], [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'AUTHOR',
                         ], [
-                            'userId' => 'liekejo',
+                            'userId' => 'smithjo',
                             'contactRole' => 'RECIPIENT',
                         ]
                     ],
@@ -191,7 +563,7 @@ final class SerializerTest extends BaseTest
                     'product' => [
                         [
                             'language' => 'FR',
-                            'requestedDeadline' => '2021-07-06T11:51:00+01:00',
+                            'requestedDeadline' => '2121-07-06T11:51:00+01:00',
                             'trackChanges' => false,
                         ]
                     ]

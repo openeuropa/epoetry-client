@@ -19,22 +19,23 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, CreateLinguisticRequestConstraint::class);
         }
 
-        $this->validateRequestedDeadline($linguisticRequest, $constraint);
-        $this->validateWorkflowCode($linguisticRequest, $constraint);
-        $this->validateContacts($linguisticRequest, $constraint);
-        $this->validateSlaAnnex($linguisticRequest, $constraint);
-        $this->validateSlaCommitment($linguisticRequest, $constraint);
-        $this->validateSentViaRue($linguisticRequest, $constraint);
-        $this->validateDestination($linguisticRequest, $constraint);
-        $this->validateProcedure($linguisticRequest, $constraint);
+        /** @var \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest $linguisticRequest */
+        $this->validateRequestedDeadline($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateWorkflowCode($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateContacts($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateSlaAnnex($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateSlaCommitment($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateSentViaRue($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateDestination($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
+        $this->validateProcedure($linguisticRequest->getTemplateName(), $linguisticRequest->getRequestDetails(), $constraint);
     }
 
     /**
      * Validates workflow code value.
      */
-    protected function validateWorkflowCode($linguisticRequest, Constraint $constraint): void
+    protected function validateWorkflowCode($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        if (!$linguisticRequest->getRequestDetails()->hasWorkflowCode()) {
+        if (!$requestDetails->hasWorkflowCode()) {
             return;
         }
         // Only the following combinations between template codes and workflow codes are accepted.
@@ -51,19 +52,18 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
             'PP' => ['PP'],
             'QE' => ['QE'],
         ];
-        $template = $linguisticRequest->getTemplateName();
-        $workflowCode = $linguisticRequest->getRequestDetails()->getWorkflowCode();
+        $workflowCode = $requestDetails->getWorkflowCode();
 
-        if (isset($mapping[$template]) && !in_array($workflowCode, $mapping[$template])) {
+        if (isset($mapping[$templateName]) && !in_array($workflowCode, $mapping[$templateName])) {
             $this->context->buildViolation($constraint->workflowCodeMessage)
-                ->atPath('requestDetails.workflowCode')
+                ->atPath($atPathPrefix . 'requestDetails.workflowCode')
                 ->setParameter('{{ code }}', $workflowCode)
-                ->setParameter('{{ template }}', $template)
+                ->setParameter('{{ template }}', $templateName)
                 ->addViolation();
         }
     }
 
-    protected function getProductCode($linguisticRequest) : string
+    protected function getProductCode($templateName) : string
     {
         $mapping = [
             'DEFAULT' => 'TRA',
@@ -78,19 +78,18 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
             'QE' => 'TRA',
         ];
 
-        return $mapping[$linguisticRequest->getTemplateName()] ?? '';
+        return $mapping[$templateName] ?? '';
     }
 
     /**
      * Validates workflow code value.
      */
-    protected function validateContacts($linguisticRequest, Constraint $constraint): void
+    protected function validateContacts($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        if (!$linguisticRequest->getRequestDetails()->hasContacts()) {
+        if (!$requestDetails->hasContacts()) {
             return;
         }
-        $templateName = $linguisticRequest->getTemplateName();
-        $contacts = $linguisticRequest->getRequestDetails()->getContacts()->getContact();
+        $contacts = $requestDetails->getContacts()->getContact();
         $results = [];
         foreach ($contacts as $contact) {
             $contactRole = $contact->getContactRole();
@@ -135,13 +134,13 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
                     if (!isset($results[$roleName])) {
                         // Check roles that are required.
                         $this->context->buildViolation($constraint->contactsMinimumMessage)
-                            ->atPath('requestDetails.contacts')
+                            ->atPath($atPathPrefix . 'requestDetails.contacts')
                             ->setParameter('{{ role }}', $roleName)
                             ->addViolation();
                     } elseif ($results[$roleName] > $count) {
                         // Check amount of roles.
                         $this->context->buildViolation($constraint->contactsMaximumMessage)
-                            ->atPath('requestDetails.contacts')
+                            ->atPath($atPathPrefix . 'requestDetails.contacts')
                             ->setParameter('{{ count }}', $count)
                             ->setParameter('{{ role }}', $roleName)
                             ->addViolation();
@@ -154,14 +153,13 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates slaAnnex value.
      */
-    protected function validateSlaAnnex($linguisticRequest, Constraint $constraint): void
+    protected function validateSlaAnnex($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        $templateName = $linguisticRequest->getTemplateName();
         if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
-            && !in_array($linguisticRequest->getRequestDetails()->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])) {
+            && !in_array($requestDetails->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])) {
             // SlaAnnex is required, only specific options are possible.
             $this->context->buildViolation($constraint->slaAnnexRequiredMessage)
-                ->atPath('requestDetails.slaAnnex')
+                ->atPath($atPathPrefix . 'requestDetails.slaAnnex')
                 ->addViolation();
         }
     }
@@ -169,17 +167,15 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates slaCommitment value.
      */
-    protected function validateSlaCommitment($linguisticRequest, $constraint): void
+    protected function validateSlaCommitment($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
         // Current validation does not enforce the slaCommitent value to be a correct slaCommitent value defined if ABAC.
-        $requestDetails = $linguisticRequest->getRequestDetails();
-        $templateName = $linguisticRequest->getTemplateName();
         if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
             && $requestDetails->hasSlaAnnex()
             && $requestDetails->getSlaAnnex() === 'ANNEX8B'
             && !$requestDetails->hasSlaCommitment()) {
             $this->context->buildViolation($constraint->slaCommitmentRequiredMessage)
-                ->atPath('requestDetails.slaCommitment')
+                ->atPath($atPathPrefix . 'requestDetails.slaCommitment')
                 ->addViolation();
         }
     }
@@ -187,23 +183,22 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates sentViaRue value.
      */
-    protected function validateSentViaRue($linguisticRequest, $constraint): void
+    protected function validateSentViaRue($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        $productCode = $this->getProductCode($linguisticRequest);
-        $requestDetailsIn = $linguisticRequest->getRequestDetails();
+        $productCode = $this->getProductCode($templateName);
         // From the spec:
         // - true only if sensitive value is true;
         // - true only for TRA and EDT product type;
         // Currently we combine both rules using "OR" condition.
-        if ($requestDetailsIn->hasSentViaRue()) {
-            if (!$requestDetailsIn->hasSensitive()) {
+        if ($requestDetails->hasSentViaRue()) {
+            if (!$requestDetails->hasSensitive()) {
                 $this->context->buildViolation($constraint->sentViaRueSensitiveMessage)
-                    ->atPath('requestDetails.sentViaRue')
+                    ->atPath($atPathPrefix . 'requestDetails.sentViaRue')
                     ->addViolation();
             }
             if (!in_array($productCode, ['TRA', 'EDT'])) {
                 $this->context->buildViolation($constraint->sentViaRueProductTypeMessage)
-                    ->atPath('requestDetails.sentViaRue')
+                    ->atPath($atPathPrefix . 'requestDetails.sentViaRue')
                     ->setParameter('{{ product }}', $productCode)
                     ->addViolation();
             }
@@ -213,13 +208,12 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates destination value.
      */
-    protected function validateDestination($linguisticRequest, $constraint): void
+    protected function validateDestination($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        $templateName = $linguisticRequest->getTemplateName();
         if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
-            && !in_array($linguisticRequest->getRequestDetails()->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])) {
+            && !in_array($requestDetails->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])) {
             $this->context->buildViolation($constraint->destinationRequiredMessage)
-                ->atPath('requestDetails.destination')
+                ->atPath($atPathPrefix . 'requestDetails.destination')
                 ->addViolation();
         }
     }
@@ -227,13 +221,12 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates procedure value.
      */
-    protected function validateProcedure($linguisticRequest, $constraint): void
+    protected function validateProcedure($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        $templateName = $linguisticRequest->getTemplateName();
         if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
-            && !in_array($linguisticRequest->getRequestDetails()->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])) {
+            && !in_array($requestDetails->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])) {
             $this->context->buildViolation($constraint->procedureRequiredMessage)
-                ->atPath('requestDetails.procedure')
+                ->atPath($atPathPrefix . 'requestDetails.procedure')
                 ->addViolation();
         }
     }
@@ -241,18 +234,17 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * Validates requested deadline value.
      */
-    protected function validateRequestedDeadline($linguisticRequest, $constraint): void
+    protected function validateRequestedDeadline($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        $templateName = $linguisticRequest->getTemplateName();
         if ($templateName === 'HOTL') {
             return;
-        } elseif (!$linguisticRequest->getRequestDetails()->hasRequestedDeadline()) {
+        } elseif (!$requestDetails->hasRequestedDeadline()) {
             $this->context->buildViolation($constraint->requestedDeadlineRequiredMessage)
-                ->atPath('requestDetails.requestedDeadline')
+                ->atPath($atPathPrefix . 'requestDetails.requestedDeadline')
                 ->addViolation();
-        } elseif ($linguisticRequest->getRequestDetails()->getRequestedDeadline()->getTimestamp() < time()) {
+        } elseif ($requestDetails->getRequestedDeadline()->getTimestamp() < time()) {
             $this->context->buildViolation($constraint->requestedDeadlinePastMessage)
-                ->atPath('requestDetails.requestedDeadline')
+                ->atPath($atPathPrefix . 'requestDetails.requestedDeadline')
                 ->addViolation();
         }
     }

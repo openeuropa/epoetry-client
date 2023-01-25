@@ -1,0 +1,16 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry">
+    <SOAP-ENV:Body>
+        <ns1:getLinguisticRequest>
+            <requestReference>
+                <dossier>
+                    <requesterCode>CA07</requesterCode>
+                    <number>3</number>
+                    <year>2021</year>
+                </dossier>
+                <productType>TRA</productType>
+                <part>0</part>
+            </requestReference>
+            <applicationName>appname</applicationName>
+        </ns1:getLinguisticRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

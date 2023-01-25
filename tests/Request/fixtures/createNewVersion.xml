@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry">
+    <SOAP-ENV:Body>
+        <ns1:createNewVersion>
+            <linguisticRequest>
+                <requestReference>
+                    <dossier>
+                        <requesterCode>DGT</requesterCode>
+                        <number>269</number>
+                        <year>2021</year>
+                    </dossier>
+                    <productType>TRA</productType>
+                    <part>0</part>
+                </requestReference>
+                <requestDetails>
+                    <title>NewVersionEmilia</title>
+                    <internalReference/>
+                    <requestedDeadline>2021-07-01T11:51:00+01:00</requestedDeadline>
+                    <sensitive>false</sensitive>
+                    <sentViaRue>false</sentViaRue>
+                    <documentToAdopt>false</documentToAdopt>
+                    <decideReference/>
+                    <destination>PUBLIC</destination>
+                    <procedure>DEGHP</procedure>
+                    <slaAnnex>ANNEX8A</slaAnnex>
+                    <slaCommitment>slaCom</slaCommitment>
+                    <comment>comment</comment>
+                    <onBehalfOf></onBehalfOf>
+                    <accessibleTo>CONTACTS</accessibleTo>
+                    <keyword1>111</keyword1>
+                    <keyword2>333</keyword2>
+                    <keyword3>222</keyword3>
+                    <contacts>
+                        <contact userId="micemil" contactRole="REQUESTER"/>
+                        <contact userId="micemil" contactRole="AUTHOR"/>
+                        <contact userId="micemil" contactRole="RECIPIENT"/>
+                    </contacts>
+                    <originalDocument>
+                        <fileName>Emilia.docx</fileName>
+                        <comment>my comment</comment>
+                        <content>Y2lkOjEyMw==</content>
+                        <linguisticSections>
+                            <linguisticSection>
+                                <language>EN</language>
+                            </linguisticSection>
+                        </linguisticSections>
+                        <trackChanges>false</trackChanges>
+                    </originalDocument>
+                    <products>
+                        <product>
+                            <language>DE</language>
+                        </product>
+                    </products>
+                    <auxiliaryDocuments>
+                        <referenceDocuments>
+                            <document>
+                                <fileName>emilia.docx</fileName>
+                                <language>DE</language>
+                                <comment>my comment</comment>
+                                <content>Y2lkOjE0MzY3MDgzNDkzMjE=</content>
+                            </document>
+                        </referenceDocuments>
+                        <srcDocument>
+                            <fileName>emilia.docx</fileName>
+                            <comment>?</comment>
+                            <content>Y2lkOjEzMjczOTQyOTU2NzE=</content>
+                        </srcDocument>
+                    </auxiliaryDocuments>
+                </requestDetails>
+            </linguisticRequest>
+            <applicationName>application1</applicationName>
+        </ns1:createNewVersion>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
