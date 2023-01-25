@@ -1,0 +1,38 @@
+tests:
+    -   data:
+            callbackUrl: 'https://example.com'
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 0
+    -   data:
+            callbackUrl: 'http://example.com'
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is not a valid URL.'
+                - violations.get(0).getPropertyPath() === 'callbackUrl'
+    -   data:
+            callbackUrl: '/example.com'
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value is not a valid URL.'
+                - violations.get(0).getPropertyPath() === 'callbackUrl'
+    -   data:
+            callbackUrl: 'https://example.com'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'applicationName'
+    -   data:
+            applicationName: 'appname'
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'callbackUrl'
