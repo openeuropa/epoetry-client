@@ -4,13 +4,15 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
-use OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl;
+use OpenEuropa\EPoetry\Tests\Request\Traits\UpdateCallbackUrlTrait;
 
 /**
  * Test updateCallbackUrl service.
  */
 final class UpdateCallbackUrlTest extends BaseRequestTest
 {
+    use UpdateCallbackUrlTrait;
+
     /**
      * Ensure the correct creation of an XML payload.
      */
@@ -48,15 +50,5 @@ final class UpdateCallbackUrlTest extends BaseRequestTest
     public function dataProviderUpdateCallbackUrl(): array
     {
         return $this->getFixture('updateCallbackUrl.yaml', '/Request')['tests'];
-    }
-
-    /**
-     * Builds UpdateCallbackUrl object.
-     */
-    protected function getUpdateCallbackUrl(): UpdateCallbackUrl
-    {
-        return (new UpdateCallbackUrl())
-            ->setCallbackUrl('http://example.com')
-            ->setApplicationName('appname');
     }
 }
