@@ -4,11 +4,15 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
+use OpenEuropa\EPoetry\Tests\Request\Traits\AddNewPartToDossierTrait;
+
 /**
  * Test addNewPartToDossier service.
  */
 final class AddNewPartToDossierRequestTest extends BaseRequestTest
 {
+    use AddNewPartToDossierTrait;
+
     /**
      * Ensure the correct creation of an XML payload.
      */

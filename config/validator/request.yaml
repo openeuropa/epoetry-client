@@ -230,7 +230,6 @@ OpenEuropa\EPoetry\Request\Type\RequestReferenceIn:
     properties:
         dossier:
             - Valid: ~
-            - NotNull: ~
         productType:
             - NotBlank: ~
             - Choice: *productTypeChoice
@@ -299,6 +298,21 @@ OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
         templateName:
             - NotBlank: ~
             - Choice: *templateNameChoice
+
+OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest:
+    properties:
+        requestReference:
+            - Valid: ~
+        applicationName:
+            - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl:
+    properties:
+        callbackUrl:
+            - NotBlank: ~
+            - Url: { protocols: [https] }
+        applicationName:
+            - NotBlank: ~
 
 OpenEuropa\EPoetry\Request\Type\CreateNewVersion:
     properties:

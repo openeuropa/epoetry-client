@@ -24,6 +24,8 @@ use Symfony\Component\Yaml\Yaml;
  */
 final class SerializerTest extends BaseTest
 {
+    use Request\Traits\CreateLinguisticRequestTrait;
+
     /**
      * Test serialization/deserialization to/from JSON.
      */
@@ -35,7 +37,7 @@ final class SerializerTest extends BaseTest
 {
   "requestDetails": {
     "title": "Request title",
-    "requestedDeadline": "2022-07-01T11:51:00+01:00",
+    "requestedDeadline": "2121-07-06T11:51:00+01:00",
     "sensitive": false,
     "destination": "PUBLIC",
     "procedure": "DEGHP",
@@ -79,7 +81,7 @@ final class SerializerTest extends BaseTest
       "product": [
         {
           "language": "FR",
-          "requestedDeadline": "2021-07-06T11:51:00+01:00",
+          "requestedDeadline": "2121-07-06T11:51:00+01:00",
           "trackChanges": false
         }
       ]
@@ -122,7 +124,7 @@ JSON;
         $yaml = <<<YAML
 requestDetails:
   title: Request title
-  requestedDeadline: '2022-07-01T11:51:00+01:00'
+  requestedDeadline: '2121-07-06T11:51:00+01:00'
   sensitive: false
   destination: PUBLIC
   procedure: DEGHP
@@ -152,7 +154,7 @@ requestDetails:
   products:
     product:
       - language: FR
-        requestedDeadline: '2021-07-06T11:51:00+01:00'
+        requestedDeadline: '2121-07-06T11:51:00+01:00'
         trackChanges: false
   auxiliaryDocuments:
     referenceDocuments:
@@ -211,7 +213,7 @@ XML;
     <products>
         <product>
             <language>FR</language>
-            <requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
             <trackChanges>0</trackChanges>
             <status>SenttoDGT</status>
             <format>DOCX</format>
@@ -231,14 +233,14 @@ XML;
     <products>
         <product>
             <language>FR</language>
-            <requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
             <trackChanges>0</trackChanges>
             <status>SenttoDGT</status>
             <format>DOCX</format>
         </product>
         <product>
             <language>EN</language>
-            <requestedDeadline>2021-07-06T11:51:00+01:00</requestedDeadline>
+            <requestedDeadline>2121-07-06T11:51:00+01:00</requestedDeadline>
             <trackChanges>0</trackChanges>
             <status>SenttoDGT</status>
             <format>DOCX</format>
@@ -255,7 +257,7 @@ XML;
 <?xml version="1.0"?>
 <response>
     <products>
-        <product requestedDeadline="2021-07-06T11:51:00+01:00" trackChanges="true">
+        <product requestedDeadline="2121-07-06T11:51:00+01:00" trackChanges="true">
             <language>FR</language>
         </product>
         <product requestedDeadline="2022-07-06T11:51:00+01:00" trackChanges="false">
@@ -271,7 +273,7 @@ XML;
 products:
   product:
     - language: FR
-      acceptedDeadline: '2022-07-01T11:51:00+01:00'
+      acceptedDeadline: '2121-07-06T11:51:00+01:00'
       trackChanges: true
       status: Ongoing
       format: DOC
@@ -519,7 +521,7 @@ YAML;
         return [
             'requestDetails' => [
                 'title' => 'Request title',
-                'requestedDeadline' => '2022-07-01T11:51:00+01:00',
+                'requestedDeadline' => '2121-07-06T11:51:00+01:00',
                 'sensitive' => false,
                 'destination' => 'PUBLIC',
                 'procedure' => 'DEGHP',
@@ -561,7 +563,7 @@ YAML;
                     'product' => [
                         [
                             'language' => 'FR',
-                            'requestedDeadline' => '2021-07-06T11:51:00+01:00',
+                            'requestedDeadline' => '2121-07-06T11:51:00+01:00',
                             'trackChanges' => false,
                         ]
                     ]

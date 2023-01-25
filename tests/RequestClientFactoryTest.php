@@ -6,19 +6,12 @@ namespace OpenEuropa\EPoetry\Tests;
 
 use Consolidation\Log\Logger;
 use Http\Mock\Client as MockClient;
-use OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentsIn;
 use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Request\Type\Contacts;
 use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
-use OpenEuropa\EPoetry\Request\Type\DocumentIn;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
-use OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\Products;
-use OpenEuropa\EPoetry\Request\Type\ReferenceDocuments;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
-use OpenEuropa\EPoetry\Request\Type\SrcDocumentIn;
 use OpenEuropa\EPoetry\RequestClientFactory;
 use Nyholm\Psr7\Response;
 use OpenEuropa\EPoetry\Tests\Authentication\MockAuthentication;
@@ -34,6 +27,7 @@ use Symfony\Component\HttpClient\Psr18Client;
  */
 final class RequestClientFactoryTest extends BaseTest
 {
+    use Request\Traits\CreateLinguisticRequestTrait;
 
     public function testProxyTicket(): void
     {
@@ -47,73 +41,36 @@ final class RequestClientFactoryTest extends BaseTest
         $mockClient->addResponse(new Response(200, [], $this->getCreateLinguisticRequestResponse()));
         $clientFactory = new RequestClientFactory('http://foo.bar', $authentication, null, null, $mockClient);
         $requestClient = $clientFactory->getRequestClient();
-        $requestClient->createLinguisticRequest($this->getCreateLinguisticRequest());
-        $body = (string) $mockClient->getLastRequest()->getBody();
-        $this->assertStringContainsString($expectedBody, $body);
-        $this->assertStringContainsString($expectedHeader, $body);
-    }
-
-    /**
-     * Gets CreateLinguisticRequest instance.
-     *
-     * @return CreateLinguisticRequest
-     */
-    protected function getCreateLinguisticRequest(): CreateLinguisticRequest
-    {
-        // Prepare request object.
-        $document = new DocumentIn();
-        $document->setFileName('test.docx')
-            ->setLanguage('EN')
-            ->setComment('test')
-            ->setContent('cid:303605824112');
-
-        $referenceDocuments = new ReferenceDocuments();
-        $referenceDocuments->addDocument($document);
-
-        $srcDocument = new SrcDocumentIn();
-        $srcDocument->setFileName('test2222SRC.docx')
-            ->setComment('777888877')
-            ->setContent('cid:1531884704226');
-
-        $auxiliaryDocuments = new AuxiliaryDocumentsIn();
-        $auxiliaryDocuments->setReferenceDocuments($referenceDocuments)
-            ->setSrcDocument($srcDocument);
 
         $requestDetails = new RequestDetailsIn();
         $requestDetails->setTitle('Request title')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2023-07-01T11:51:00+01:00'))
+            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2121-07-06T11:51:00+01:00'))
             ->setDestination('PUBLIC')
             ->setProcedure('DEGHP')
-            ->setSlaAnnex('ANNEX8A')
-            ->setAuxiliaryDocuments($auxiliaryDocuments);
+            ->setSlaAnnex('ANNEX8A');
         $contacts = (new Contacts())
             ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
             ->addContact(new ContactPersonIn('smithjo', 'AUTHOR'))
             ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
-        $linguisticSections = (new LinguisticSections())
-            ->addLinguisticSection(new LinguisticSectionOut('EN'));
-        $originalDocument = (new OriginalDocumentIn())
-            ->setTrackChanges(false)
-            ->setFileName('TEST_FILE_ORIGINALP.docx')
-            ->setContent('cid:267736828531')
-            ->setLinguisticSections($linguisticSections)
-            ->setComment('');
-        $requestDetails->setOriginalDocument($originalDocument);
+        $linguisticRequest = (new CreateLinguisticRequest())
+            ->setRequestDetails($requestDetails)
+            ->setApplicationName('appname')
+            ->setTemplateName('DEFAULT');
 
         $productRequestIn = (new ProductRequestIn())
             ->setLanguage('FR')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2021-07-06T11:51:00+01:00'))
+            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2121-07-06T11:51:00+01:00'))
             ->setTrackChanges(false);
         $products = (new Products())
             ->addProduct($productRequestIn);
         $requestDetails->setProducts($products);
 
-        return (new CreateLinguisticRequest())
-            ->setRequestDetails($requestDetails)
-            ->setApplicationName('appname')
-            ->setTemplateName('DEFAULT');
+        $requestClient->createLinguisticRequest($linguisticRequest);
+        $body = (string) $mockClient->getLastRequest()->getBody();
+        $this->assertStringContainsString($expectedBody, $body);
+        $this->assertStringContainsString($expectedHeader, $body);
     }
 
     /**
