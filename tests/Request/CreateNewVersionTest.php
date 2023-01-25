@@ -4,34 +4,35 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
-use OpenEuropa\EPoetry\Tests\Request\Traits\UpdateCallbackUrlTrait;
+use OpenEuropa\EPoetry\Tests\Request\Traits\CreateNewVersionTrait;
 
 /**
- * Test updateCallbackUrl service.
+ * Test CreateNewVersion service.
  */
-final class UpdateCallbackUrlTest extends BaseRequestTest
+final class CreateNewVersionTest extends BaseRequestTest
 {
-    use UpdateCallbackUrlTrait;
+    use CreateNewVersionTrait;
 
     /**
      * Ensure the correct creation of an XML payload.
      */
     public function testXmlPayload(): void
     {
-        $request = $this->getUpdateCallbackUrl();
-        $expected = file_get_contents(__DIR__ . '/fixtures/updateCallbackUrl.xml');
-        $request = $this->driver->encode('updateCallbackUrl', [$request]);
+        $request = $this->getCreateNewVersion();
+
+        $expected = file_get_contents(__DIR__ . '/fixtures/createNewVersion.xml');
+        $request = $this->driver->encode('createNewVersion', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }
 
     /**
-     * Test validation of UpdateCallbackUrl class.
+     * Test validation of CreateNewVersion class.
      *
-     * @dataProvider dataProviderUpdateCallbackUrl
+     * @dataProvider dataProviderCreateNewVersion
      */
     public function testValidation($data, $expectations): void
     {
-        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl');
+        $request = $this->serializer->fromArray($data, 'OpenEuropa\EPoetry\Request\Type\CreateNewVersion');
         $violations = $this->validator->validate($request);
         $values = [
             'violations' => $violations,
@@ -47,8 +48,8 @@ final class UpdateCallbackUrlTest extends BaseRequestTest
      * @return array
      *   A set of dump data for testing.
      */
-    public function dataProviderUpdateCallbackUrl(): array
+    public function dataProviderCreateNewVersion(): array
     {
-        return $this->getFixture('updateCallbackUrl.yaml', '/Request')['tests'];
+        return $this->getFixture('createNewVersion.yaml', '/Request')['tests'];
     }
 }

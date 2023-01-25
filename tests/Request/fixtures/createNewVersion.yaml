@@ -1,0 +1,95 @@
+x-default-request-details: &default-request-details
+    title: Request title
+    requestedDeadline: '2040-07-01T11:51:00+01:00'
+    destination: PUBLIC
+    procedure: DEGHP
+    slaAnnex: ANNEX8A
+    products:
+        product:
+            -   requestedDeadline: '2040-07-01T11:51:00+01:00'
+                language: FR
+                # the Boolean field "trackChanges" is no longer in use (you can leave it empty, or "false").
+                # It remains there for backwards compatibility only.
+                trackChanges: ''
+    contacts:
+        contact:
+            -   userId: smithjo
+                contactRole: REQUESTER
+            -   userId: smithjo
+                contactRole: AUTHOR
+            -   userId: smithjo
+                contactRole: RECIPIENT
+
+x-default-dossier: &default-dossier
+    requesterCode: CA07
+    number: 3
+    year: 2021
+
+x-default-request-reference: &default-request-reference
+    dossier:
+        <<: *default-dossier
+    productType: TRA
+    part: 0
+
+x-default-linguistic-request: &default-linguistic-request
+    requestReference:
+        <<: *default-request-reference
+    requestDetails:
+        <<: *default-request-details
+
+x-default: &default
+    applicationName: appname
+    linguisticRequest:
+        <<: *default-linguistic-request
+
+tests:
+    -   data:
+            <<: *default
+        expectations:
+            assertions:
+                - is_a(violations, '\\Symfony\\Component\\Validator\\ConstraintViolationListInterface')
+                - count(violations) === 0
+    -   data:
+            linguisticRequest:
+                <<: *default-linguistic-request
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - violations.get(0).getPropertyPath() === 'applicationName'
+    -   data:
+            linguisticRequest:
+                requestReference:
+                    <<: *default-request-reference
+            applicationName: appname
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be null.'
+                - violations.get(0).getPropertyPath() === 'linguisticRequest.requestDetails'
+    -   data:
+            linguisticRequest:
+                requestDetails:
+                    <<: *default-request-details
+            applicationName: appname
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - violations.get(0).getMessage() === 'This value should not be null.'
+                - violations.get(0).getPropertyPath() === 'linguisticRequest.requestReference'
+    -   data:
+            applicationName: appname
+            linguisticRequest:
+                requestReference:
+                    dossier:
+                        <<: *default-dossier
+                    productType: 'wrong value'
+                    part: 0
+                requestDetails:
+                    <<: *default-request-details
+
+        expectations:
+            assertions:
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid product type') === 0
+                - violations.get(0).getPropertyPath() === 'linguisticRequest.requestReference.productType'

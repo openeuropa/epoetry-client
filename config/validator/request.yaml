@@ -313,3 +313,10 @@ OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl:
             - Url: { protocols: [https] }
         applicationName:
             - NotBlank: ~
+
+OpenEuropa\EPoetry\Request\Type\CreateNewVersion:
+    properties:
+        linguisticRequest:
+            - Valid: ~
+        applicationName:
+            - NotBlank: ~
