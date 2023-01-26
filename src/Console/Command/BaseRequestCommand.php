@@ -50,36 +50,11 @@ abstract class BaseRequestCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function configure()
-    {
-        $this->addArgument('payload', InputArgument::REQUIRED, 'Path to a file containing the ePoetry request payload, in YAML format. Check README.md for an example.');
-    }
-
-    /**
      * @return \OpenEuropa\EPoetry\RequestClientFactory
      */
     protected function getRequestFactory(): RequestClientFactory
     {
         return new RequestClientFactory($this->endpoint, $this->authentication, $this->eventDispatcher, $this->logger);
-    }
-
-    /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     *
-     * @return \Phpro\SoapClient\Type\RequestInterface|null
-     */
-    protected function getRequestObject(InputInterface $input): ?RequestInterface
-    {
-        $payloadPath = $input->getArgument('payload');
-        if (!file_exists($payloadPath)) {
-            $this->logger->error("File '{$payloadPath}' not found.");
-            return null;
-        }
-
-        $content = file_get_contents($payloadPath);
-        return $this->serializer->deserialize($content, $this->getRequestObjectClass(), 'yaml');
     }
 
     /**
@@ -97,11 +72,4 @@ abstract class BaseRequestCommand extends Command
             JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
         ]));
     }
-
-    /**
-     * Get SOAP request object class used by the current command.
-     *
-     * @return string
-     */
-    abstract protected function getRequestObjectClass(): string;
 }
