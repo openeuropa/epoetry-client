@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 /**
@@ -15,16 +14,16 @@ final class EvaluateRequestReturn
 
     private RequestInterface $request;
 
-    private ResultInterface $response;
+    private string $method;
 
     /**
      * @param \Phpro\SoapClient\Type\RequestInterface $request
-     * @param \Phpro\SoapClient\Type\ResultInterface $result
+     * @param string $method
      */
-    public function __construct(RequestInterface $request, ResultInterface $result)
+    public function __construct(RequestInterface $request, string $method)
     {
         $this->request = $request;
-        $this->response = $result;
+        $this->method = $method;
     }
 
     /**
@@ -36,10 +35,10 @@ final class EvaluateRequestReturn
     }
 
     /**
-     * @return \Phpro\SoapClient\Type\ResultInterface
+     * @return string
      */
-    public function getResponse(): ResultInterface
+    public function getMethod(): string
     {
-        return $this->response;
+        return $this->method;
     }
 }

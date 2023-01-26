@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
-use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class EvaluateRequestCommand extends BaseRequestCommand
 {
@@ -34,9 +32,13 @@ The file should return a function with the following signature:
 use OpenEuropa\EPoetry\RequestClientFactory;
 use OpenEuropa\EPoetry\Console\Command\EvaluateRequestReturn;
 
-return function (RequestClientFactory $factory): EvaluateRequestReturn {
+return function(): EvaluateRequestReturn {
     // Build $object here...
-    return $factory->getRequestClient()->createLinguisticRequest($object);
+    $request = (new CreateLinguisticRequest())
+        ->setRequestDetails($requestDetails)
+        ->setApplicationName('FOO')
+        ->setTemplateName('WEBTRA');
+    return new EvaluateRequestReturn($request, 'createLinguisticRequest');
 };
 EOF);
     }
@@ -54,9 +56,15 @@ EOF);
         }
         $function = require $input->getArgument('file');
         /** @var EvaluateRequestReturn $result */
-        $result = $function($factory);
-        $output->writeln($this->serializer->serialize($result->getRequest(), 'xml'));
-        $this->outputResponse($output, $factory, $result->getResponse());
+        $result = $function();
+        $method = $result->getMethod();
+        $request = $result->getRequest();
+        $this->logger->info('Sending request...');
+        $this->logger->info($this->serializer->serialize($result->getRequest(), 'xml', [
+            'xml_format_output' => true,
+        ]));
+        $result = $factory->getRequestClient()->{$method}($request);
+        $this->outputResponse($output, $factory, $result->getMethod());
         return 0;
     }
 }
