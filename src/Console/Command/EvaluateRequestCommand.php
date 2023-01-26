@@ -4,9 +4,11 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
+use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class EvaluateRequestCommand extends BaseRequestCommand
 {
@@ -30,9 +32,9 @@ The file should return a function with the following signature:
 <?php
 
 use OpenEuropa\EPoetry\RequestClientFactory;
-use Phpro\SoapClient\Type\ResultInterface;
+use OpenEuropa\EPoetry\Console\Command\EvaluateRequestReturn;
 
-return function (RequestClientFactory $factory): ResultInterface {
+return function (RequestClientFactory $factory): EvaluateRequestReturn {
     // Build $object here...
     return $factory->getRequestClient()->createLinguisticRequest($object);
 };
@@ -51,8 +53,10 @@ EOF);
             return 1;
         }
         $function = require $input->getArgument('file');
-        $response = $function($factory);
-        $this->outputResponse($output, $factory, $response);
+        /** @var EvaluateRequestReturn $result */
+        $result = $function($factory);
+        $output->writeln($this->serializer->serialize($result->getRequest(), 'xml'));
+        $this->outputResponse($output, $factory, $result->getResponse());
         return 0;
     }
 }
