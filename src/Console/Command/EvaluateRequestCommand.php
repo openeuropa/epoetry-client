@@ -55,16 +55,16 @@ EOF);
             return 1;
         }
         $function = require $input->getArgument('file');
-        /** @var EvaluateRequestReturn $result */
-        $result = $function();
-        $method = $result->getMethod();
-        $request = $result->getRequest();
+        /** @var EvaluateRequestReturn $return */
+        $return = $function();
+        $method = $return->getMethod();
+        $request = $return->getRequest();
         $this->logger->info('Sending request...');
-        $this->logger->info($this->serializer->serialize($result->getRequest(), 'xml', [
+        $this->logger->info($this->serializer->serialize($return->getRequest(), 'xml', [
             'xml_format_output' => true,
         ]));
-        $result = $factory->getRequestClient()->{$method}($request);
-        $this->outputResponse($output, $factory, $result->getMethod());
+        $response = $factory->getRequestClient()->{$method}($request);
+        $this->outputResponse($output, $factory, $response);
         return 0;
     }
 }
