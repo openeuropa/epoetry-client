@@ -214,7 +214,7 @@ class RequestClientFactory
         );
 
         // Add HTTP logging middleware.
-        $loggerPlugin = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());
+        $loggerPlugin = new LoggerPlugin($this->logger, new FullHttpMessageFormatter(null));
 
         $client = new PluginClient(
             $this->getHttpClient(),
