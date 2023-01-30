@@ -4,6 +4,7 @@ namespace OpenEuropa\EPoetry;
 
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
+use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
@@ -213,7 +214,7 @@ class RequestClientFactory
         );
 
         // Add HTTP logging middleware.
-        $loggerPlugin = new LoggerPlugin(new Logger('http'));
+        $loggerPlugin = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());
 
         $client = new PluginClient(
             $this->getHttpClient(),
