@@ -25,6 +25,9 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use DOMElement;
 use Symfony\Component\Validator\ValidatorBuilder;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Client\Common\Plugin\LoggerPlugin;
+use Monolog\Logger;
 
 /**
  * Request client factory.
@@ -208,9 +211,16 @@ class RequestClientFactory
                 $getTicket,
             )
         );
+
+        // Add HTTP logging middleware.
+        $loggerPlugin = new LoggerPlugin(new Logger('http'));
+
         $client = new PluginClient(
             $this->getHttpClient(),
-            [$middlewarePlugin]
+            [
+                $middlewarePlugin,
+                $loggerPlugin,
+            ]
         );
         return Psr18Transport::createForClient($client);
     }
