@@ -212,17 +212,16 @@ class RequestClientFactory
                 $getTicket,
             )
         );
+        $plugins = [
+            $middlewarePlugin,
+        ];
 
         // Add HTTP logging middleware.
-        $loggerPlugin = new LoggerPlugin($this->logger, new FullHttpMessageFormatter(null));
+        if ($this->logger instanceof LoggerInterface) {
+            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter(null));
+        }
 
-        $client = new PluginClient(
-            $this->getHttpClient(),
-            [
-                $middlewarePlugin,
-                $loggerPlugin,
-            ]
-        );
+        $client = new PluginClient($this->getHttpClient(), $plugins);
         return Psr18Transport::createForClient($client);
     }
 
