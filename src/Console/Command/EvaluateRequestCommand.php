@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class EvaluateRequestCommand extends BaseRequestCommand
 {
@@ -59,9 +60,9 @@ EOF);
         $return = $function();
         $method = $return->getMethod();
         $request = $return->getRequest();
-        $this->logger->info('Sending request...');
-        $this->logger->info($this->serializer->serialize($return->getRequest(), 'xml', [
-            'xml_format_output' => true,
+        $output->writeln('Request:');
+        $output->writeln($this->serializer->serialize($request, 'json', [
+            JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
         ]));
         $response = $factory->getRequestClient()->{$method}($request);
         $this->outputResponse($output, $factory, $response);
