@@ -68,8 +68,9 @@ abstract class BaseRequestCommand extends Command
     {
         $this->logger->info('Endpoint: ' . $factory->getEndpoint());
         $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
-        $output->writeln($this->serializer->serialize($response, 'json', [
-            JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
+        $this->logger->info('Response object: ' . PHP_EOL . var_export($response));
+        $output->writeln($this->serializer->serialize($response, 'xml', [
+            'xml_format_output' => true,
         ]));
     }
 }
