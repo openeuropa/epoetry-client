@@ -253,41 +253,73 @@ EPOETRY_CONSOLE_OPENID_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/d
 EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT=https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
 ```
 
-### Perform a `CreateLinguisticRequest`
+### Perform a request by evaluating PHP code
 
 Run:
 
 ```
-$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+$ ./bin/epoetry request:evaluate /path/to/request.php
 ```
 
-This will parse the request object in `.sink/request.yml` and send it to the configured ePoetry service. You can set
-the desired service URL via the following environment variable:
+The PHP file `/path/to/request.php` should return a function with the following signature:
+
+```php
+<?php
+
+use OpenEuropa\EPoetry\RequestClientFactory;
+use OpenEuropa\EPoetry\Console\Command\EvaluateRequestReturn;
+
+return function(): EvaluateRequestReturn {
+    // Build $object here...
+    $request = (new CreateLinguisticRequest())
+        ->setRequestDetails($requestDetails)
+        ->setApplicationName('FOO')
+        ->setTemplateName('WEBTRA');
+    return new EvaluateRequestReturn($request, 'createLinguisticRequest');
+};
+```
+
+The command will require the file above and use the returned valued to perform an actual request to the ePoetry service.
+You can set the desired service URL via the following environment variable:
 
 ```
 EPOETRY_CONSOLE_SERVICE_URL=https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
 ```
 
-You can find example of working request payloads in [./config/console/examples](./config/console/examples).
-
 If successful the command will return the ePoetry response in JSON format:
 
 ```
-$ ./bin/epoetry request:create-linguistic-request .sink/request.yml
+$ ./bin/epoetry request:evaluate /path/to/request.php
+Request:
+{
+    "requestDetails": {
+        "title": "Content title",
+        "internalReference": "Translation request 1",
+        "requestedDeadline": "2121-07-06T11:51:00+01:00",
+        "sensitive": false,
+        ...
+}
+Response:
 {
     "return": {
         "requestReference": {
             "dossier": {
-                "requesterCode": "DIGIT",
-                "number": 33,
-                "year": 2022
+                "requesterCode": "COMM",
+                "number": 25,
+                "year": 2023
             },
             "productType": "TRA",
             "part": 0,
             "version": 0
         },
-...
+        "requestDetails": {
+            "title": "Content title",
+            "workflowCode": "WEB",
+            ...
+}
 ```
+
+Running the command with `-vvv` will display the raw HTTP request and response. 
 
 ### Receive notification from the ePoetry service
 
