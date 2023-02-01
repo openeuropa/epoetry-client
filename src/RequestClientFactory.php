@@ -4,6 +4,7 @@ namespace OpenEuropa\EPoetry;
 
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
+use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
@@ -25,6 +26,9 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use DOMElement;
 use Symfony\Component\Validator\ValidatorBuilder;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Client\Common\Plugin\LoggerPlugin;
+use Monolog\Logger;
 
 /**
  * Request client factory.
@@ -208,10 +212,16 @@ class RequestClientFactory
                 $getTicket,
             )
         );
-        $client = new PluginClient(
-            $this->getHttpClient(),
-            [$middlewarePlugin]
-        );
+        $plugins = [
+            $middlewarePlugin,
+        ];
+
+        // Add HTTP logging middleware.
+        if ($this->logger instanceof LoggerInterface) {
+            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter(null));
+        }
+
+        $client = new PluginClient($this->getHttpClient(), $plugins);
         return Psr18Transport::createForClient($client);
     }
 
