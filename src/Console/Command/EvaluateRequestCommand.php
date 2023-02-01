@@ -6,7 +6,6 @@ namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\RequestClientFactory;
-use Phpro\SoapClient\Type\RequestInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,11 +15,13 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\SerializerInterface;
 
-/**
- * Base class for all request-related commands.
- */
-abstract class BaseRequestCommand extends Command
+class EvaluateRequestCommand extends Command
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected static $defaultName = 'request:evaluate';
+
     protected string $endpoint;
 
     protected LoggerInterface $logger;
@@ -54,54 +55,56 @@ abstract class BaseRequestCommand extends Command
      */
     protected function configure()
     {
-        $this->addArgument('payload', InputArgument::REQUIRED, 'Path to a file containing the ePoetry request payload, in YAML format. Check README.md for an example.');
+        parent::configure();
+        $this
+            ->addArgument('file', InputArgument::REQUIRED, 'Path to a file containing the code to be evaluated. Check command help for instructions.')
+            ->setDescription('Perform a request by evaluating PHP code.')
+            ->setHelp(<<<'EOF'
+The file should return a function with the following signature:
+
+<?php
+
+use OpenEuropa\EPoetry\RequestClientFactory;
+use OpenEuropa\EPoetry\Console\Command\EvaluateRequestReturn;
+
+return function(): EvaluateRequestReturn {
+    // Build $object here...
+    $request = (new CreateLinguisticRequest())
+        ->setRequestDetails($requestDetails)
+        ->setApplicationName('FOO')
+        ->setTemplateName('WEBTRA');
+    return new EvaluateRequestReturn($request, 'createLinguisticRequest');
+};
+EOF);
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\RequestClientFactory
+     * {@inheritdoc}
      */
-    protected function getRequestFactory(): RequestClientFactory
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return new RequestClientFactory($this->endpoint, $this->authentication, $this->eventDispatcher, $this->logger);
-    }
-
-    /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     *
-     * @return \Phpro\SoapClient\Type\RequestInterface|null
-     */
-    protected function getRequestObject(InputInterface $input): ?RequestInterface
-    {
-        $payloadPath = $input->getArgument('payload');
-        if (!file_exists($payloadPath)) {
-            $this->logger->error("File '{$payloadPath}' not found.");
-            return null;
+        $factory = new RequestClientFactory($this->endpoint, $this->authentication, $this->eventDispatcher, $this->logger);
+        $file = $input->getArgument('file');
+        if (!file_exists($file)) {
+            $this->logger->error("File '{$file}' not found.");
+            return 1;
         }
-
-        $content = file_get_contents($payloadPath);
-        return $this->serializer->deserialize($content, $this->getRequestObjectClass(), 'yaml');
-    }
-
-    /**
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     * @param \OpenEuropa\EPoetry\RequestClientFactory $factory
-     * @param $response
-     *
-     * @return void
-     */
-    protected function outputResponse(OutputInterface $output, RequestClientFactory $factory, $response)
-    {
+        $function = require $input->getArgument('file');
+        /** @var EvaluateRequestReturn $return */
+        $return = $function();
+        $method = $return->getMethod();
+        $request = $return->getRequest();
+        $output->writeln('Request:');
+        $output->writeln($this->serializer->serialize($request, 'json', [
+            JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
+        ]));
+        $response = $factory->getRequestClient()->{$method}($request);
         $this->logger->info('Endpoint: ' . $factory->getEndpoint());
         $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
+        $output->writeln('Response:');
         $output->writeln($this->serializer->serialize($response, 'json', [
             JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
         ]));
+        return 0;
     }
-
-    /**
-     * Get SOAP request object class used by the current command.
-     *
-     * @return string
-     */
-    abstract protected function getRequestObjectClass(): string;
 }
