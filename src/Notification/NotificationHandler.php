@@ -4,10 +4,13 @@ namespace OpenEuropa\EPoetry\Notification;
 
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeCancelledEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeClosedEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeReadyToBeSentEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeSentEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeSuspendedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
 use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
@@ -25,11 +28,14 @@ class NotificationHandler
 
     const NOTIFICATION_PRODUCT_DELIVERY = 'ProductDelivery';
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
-    const PRODUCT_STATUS_REQUESTED = 'Requested';
-    const PRODUCT_STATUS_ACCEPTED = 'Accepted';
-    const PRODUCT_STATUS_ONGOING = 'Ongoing';
-    const PRODUCT_STATUS_READY_TO_BE_SENT = 'ReadyToBeSent';
-    const PRODUCT_STATUS_SENT = 'Sent';
+    const PRODUCT_STATUS_CHANGE_REQUESTED = 'Requested';
+    const PRODUCT_STATUS_CHANGE_ACCEPTED = 'Accepted';
+    const PRODUCT_STATUS_CHANGE_ONGOING = 'Ongoing';
+    const PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT = 'ReadyToBeSent';
+    const PRODUCT_STATUS_CHANGE_SENT = 'Sent';
+    const PRODUCT_STATUS_CHANGE_CANCELLED = 'Cancelled';
+    const PRODUCT_STATUS_CHANGE_CLOSED = 'Closed';
+    const PRODUCT_STATUS_CHANGE_SUSPENDED = 'Suspended';
 
     const NOTIFICATION_REQUEST_STATUS_CHANGE = 'RequestStatusChange';
     const REQUEST_STATUS_ACCEPTED = 'Accepted';
@@ -74,6 +80,8 @@ class NotificationHandler
     /**
      * SOAP server handler method.
      *
+     * @SuppressWarnings(PHPMD)
+     *
      * @param \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification $wrapper
      *
      * @return \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
@@ -92,20 +100,31 @@ class NotificationHandler
         switch ($type) {
             case self::NOTIFICATION_PRODUCT_STATUS_CHANGE:
                 $product = $notification->getProduct();
-                if ($product->getStatus() === self::PRODUCT_STATUS_REQUESTED) {
-                    $event = new StatusChangeRequestedEvent($product);
-                }
-                if ($product->getStatus() === self::PRODUCT_STATUS_ACCEPTED) {
-                    $event = new StatusChangeAcceptedEvent($product);
-                }
-                if ($product->getStatus() === self::PRODUCT_STATUS_ONGOING) {
-                    $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
-                }
-                if ($product->getStatus() === self::PRODUCT_STATUS_READY_TO_BE_SENT) {
-                    $event = new StatusChangeReadyToBeSentEvent($product);
-                }
-                if ($product->getStatus() === self::PRODUCT_STATUS_SENT) {
-                    $event = new StatusChangeSentEvent($product);
+                switch ($product->getStatus()) {
+                    case self::PRODUCT_STATUS_CHANGE_REQUESTED:
+                        $event = new StatusChangeRequestedEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_ACCEPTED:
+                        $event = new StatusChangeAcceptedEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_ONGOING:
+                        $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT:
+                        $event = new StatusChangeReadyToBeSentEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_SENT:
+                        $event = new StatusChangeSentEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_CANCELLED:
+                        $event = new StatusChangeCancelledEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_CLOSED:
+                        $event = new StatusChangeClosedEvent($product);
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_SUSPENDED:
+                        $event = new StatusChangeSuspendedEvent($product);
+                        break;
                 }
                 break;
             case self::NOTIFICATION_PRODUCT_DELIVERY:

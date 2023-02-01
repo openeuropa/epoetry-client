@@ -18,7 +18,7 @@ class StatusChangeOngoingEvent extends BaseEvent
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @param \DateTimeInterface|NULL $acceptedDeadline
      */
-    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline = NULL)
+    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline = null)
     {
         parent::__construct($product);
         $this->acceptedDeadline = $acceptedDeadline;
