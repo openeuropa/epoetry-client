@@ -9,8 +9,8 @@ use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeRejectedEvent;
 use OpenEuropa\EPoetry\NotificationServerFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
@@ -70,8 +70,8 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
             StatusChangeOngoingEvent::NAME => 'logEvent',
             StatusChangeRequestedEvent::NAME => 'logEvent',
             DeliveryEvent::NAME => 'logEvent',
-            ChangeAcceptedEvent::NAME => 'logEvent',
-            ChangeRejectedEvent::NAME => 'logEvent',
+            StatusChangeAcceptedEvent::NAME => 'logEvent',
+            StatusChangeRejectedEvent::NAME => 'logEvent',
         ];
     }
 

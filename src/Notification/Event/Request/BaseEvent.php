@@ -1,10 +1,9 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Notification\Event\RequestStatus;
+namespace OpenEuropa\EPoetry\Notification\Event\Request;
 
 use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
-use Symfony\Contracts\EventDispatcher\Event;
 
 abstract class BaseEvent extends BaseNotificationEvent
 {

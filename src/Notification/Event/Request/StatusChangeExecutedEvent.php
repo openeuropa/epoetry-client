@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Notification\Event\RequestStatus;
+namespace OpenEuropa\EPoetry\Notification\Event\Request;
 
 /**
  * Event fired when the status of the linguistic request changes to "Executed".
  */
-class ChangeExecutedEvent extends BaseEvent
+class StatusChangeExecutedEvent extends BaseEvent
 {
 
     public const NAME = 'epoetry.notification.request_status.change_executed';

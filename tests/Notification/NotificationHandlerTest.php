@@ -7,8 +7,8 @@ use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
 use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeAcceptedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeRejectedEvent;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
@@ -153,7 +153,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(ChangeAcceptedEvent::class, $event);
+            $this->assertInstanceOf(StatusChangeAcceptedEvent::class, $event);
             $this->assertEquals('DGT.S.S-1.P-1', $event->getPlanningSector());
             $this->assertEquals('teodomi', $event->getPlanningAgent());
             $this->assertEquals('Accepted', $event->getLinguisticRequest()->getStatus());
@@ -180,7 +180,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(ChangeRejectedEvent::class, $event);
+            $this->assertInstanceOf(StatusChangeRejectedEvent::class, $event);
             $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
             $this->assertEquals('collafc', $event->getPlanningAgent());
             $this->assertEquals('Rejected', $event->getLinguisticRequest()->getStatus());
@@ -262,8 +262,8 @@ RESPONSE, trim($response->getBody()->getContents()));
                     StatusChangeOngoingEvent::NAME => 'doAssert',
                     StatusChangeRequestedEvent::NAME => 'doAssert',
                     DeliveryEvent::NAME => 'doAssert',
-                    ChangeAcceptedEvent::NAME => 'doAssert',
-                    ChangeRejectedEvent::NAME => 'doAssert',
+                    StatusChangeAcceptedEvent::NAME => 'doAssert',
+                    StatusChangeRejectedEvent::NAME => 'doAssert',
                 ];
             }
 

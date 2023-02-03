@@ -189,13 +189,24 @@ EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.
 
 ## Notification events
 
-The ePoetry service will send the following notifications, as Symfony events:
+The ePoetry service will send the following product-related notifications, as Symfony events:
 
-- [`RequestStatus\ChangeAcceptedEvent`](./src/Notification/Event/RequestStatus/ChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
-- [`RequestStatus\ChangeRejectedEvent`](./src/Notification/Event/RequestStatus/ChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
-- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeAcceptedEvent`](./src/Notification/Event/Product/StatusChangeAcceptedEvent.php): fired when the status of the product changes to "accepted".
+- [`Product\StatusChangeCancelledEvent`](./src/Notification/Event/Product/StatusChangeCancelledEvent.php): fired when the status of the product changes to "cancelled".
+- [`Product\StatusChangeClosedEvent`](./src/Notification/Event/Product/StatusChangeClosedEvent.php): fired when the status of the product changes to "closed".
 - [`Product\StatusChangeOngoingEvent`](./src/Notification/Event/Product/StatusChangeOngoingEvent.php): fired when the status of the product changes to "ongoing".
-- [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when the translation of a product is finalized. It contains the translated product.
+- [`Product\StatusChangeReadyToBeSentEvent`](./src/Notification/Event/Product/StatusChangeReadyToBeSentEvent.php):  fired when the status of the product changes to "ready to be sent".
+- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeSentEvent`](./src/Notification/Event/Product/StatusChangeSentEvent.php): fired when the status of the product changes to "sent".
+- [`Product\StatusChangeSuspendedEvent`](./src/Notification/Event/Product/StatusChangeSuspendedEvent.php): fired when the status of the product changes to "suspended".
+
+The ePoetry service will send the following request-related notifications, as Symfony events:
+
+- [`Request\StatusChangeAcceptedEvent`](./src/Notification/Event/Request/StatusChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
+- [`Request\StatusChangeCancelledEvent`](./src/Notification/Event/Request/StatusChangeCancelledEvent.php): fired when the status of the linguistic request changes to "cancelled".
+- [`Request\StatusChangeExecutedEvent`](./src/Notification/Event/Request/StatusChangeExecutedEvent.php): fired when the status of the linguistic request changes to "executed".
+- [`Request\StatusChangeRejectedEvent`](./src/Notification/Event/Request/StatusChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
+- [`Request\StatusChangeSuspendedEvent`](./src/Notification/Event/Request/StatusChangeSuspendedEvent.php): fired when the status of the linguistic request changes to "suspended".
 
 For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
 

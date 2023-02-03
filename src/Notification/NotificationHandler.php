@@ -2,20 +2,8 @@
 
 namespace OpenEuropa\EPoetry\Notification;
 
-use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeCancelledEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeClosedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeReadyToBeSentEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeSentEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeSuspendedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeCancelledEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeExecutedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeRejectedEvent;
-use OpenEuropa\EPoetry\Notification\Event\RequestStatus\ChangeSuspendedEvent;
+use OpenEuropa\EPoetry\Notification\Event\Product as Product;
+use OpenEuropa\EPoetry\Notification\Event\Request as Request;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotification;
 use OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse;
@@ -108,51 +96,51 @@ class NotificationHandler
                 $product = $notification->getProduct();
                 switch ($product->getStatus()) {
                     case self::PRODUCT_STATUS_CHANGE_REQUESTED:
-                        $event = new StatusChangeRequestedEvent($product);
+                        $event = new Product\StatusChangeRequestedEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_ACCEPTED:
-                        $event = new StatusChangeAcceptedEvent($product);
+                        $event = new Product\StatusChangeAcceptedEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_ONGOING:
-                        $event = new StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+                        $event = new Product\StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
                         break;
                     case self::PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT:
-                        $event = new StatusChangeReadyToBeSentEvent($product);
+                        $event = new Product\StatusChangeReadyToBeSentEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_SENT:
-                        $event = new StatusChangeSentEvent($product);
+                        $event = new Product\StatusChangeSentEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_CANCELLED:
-                        $event = new StatusChangeCancelledEvent($product);
+                        $event = new Product\StatusChangeCancelledEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_CLOSED:
-                        $event = new StatusChangeClosedEvent($product);
+                        $event = new Product\StatusChangeClosedEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_SUSPENDED:
-                        $event = new StatusChangeSuspendedEvent($product);
+                        $event = new Product\StatusChangeSuspendedEvent($product);
                         break;
                 }
                 break;
             case self::NOTIFICATION_PRODUCT_DELIVERY:
-                $event = new DeliveryEvent($notification->getProduct());
+                $event = new Product\DeliveryEvent($notification->getProduct());
                 break;
             case self::NOTIFICATION_REQUEST_STATUS_CHANGE:
                 $request = $notification->getLinguisticRequest();
                 switch ($request->getStatus()) {
                     case self::REQUEST_STATUS_CHANGE_ACCEPTED:
-                        $event = new ChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
                         break;
                     case self::REQUEST_STATUS_CHANGE_CANCELLED:
-                        $event = new ChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
                         break;
                     case self::REQUEST_STATUS_CHANGE_EXECUTED:
-                        $event = new ChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
                         break;
                     case self::REQUEST_STATUS_CHANGE_SUSPENDED:
-                        $event = new ChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
                         break;
                     case self::REQUEST_STATUS_CHANGE_REJECTED:
-                        $event = new ChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
                         break;
                 }
                 break;
@@ -160,7 +148,7 @@ class NotificationHandler
 
         $this->eventDispatcher->dispatch($event::NAME, $event);
         if (!$event->hasResponse()) {
-            $error = "The ePoetry notification event '$type' has not been correctly handled.";
+            $error = "The ePoetry notification event '$type' was not handled correctly.";
             $this->logger->error($error);
             throw new NotificationException($error);
         }

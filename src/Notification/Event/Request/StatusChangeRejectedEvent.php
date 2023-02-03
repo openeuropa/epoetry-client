@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenEuropa\EPoetry\Notification\Event\RequestStatus;
+namespace OpenEuropa\EPoetry\Notification\Event\Request;
 
 use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
 
 /**
  * Event ired when the status of the linguistic request changes to "rejected".
  */
-class ChangeRejectedEvent extends BaseEvent
+class StatusChangeRejectedEvent extends BaseEvent
 {
 
     public const NAME = 'epoetry.notification.request_status.change_rejected';
