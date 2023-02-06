@@ -128,16 +128,16 @@ class NotificationHandler
                 $request = $notification->getLinguisticRequest();
                 switch ($request->getStatus()) {
                     case self::REQUEST_STATUS_CHANGE_ACCEPTED:
-                        $event = new Request\StatusChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
                         break;
                     case self::REQUEST_STATUS_CHANGE_CANCELLED:
-                        $event = new Request\StatusChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
                         break;
                     case self::REQUEST_STATUS_CHANGE_EXECUTED:
-                        $event = new Request\StatusChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
                         break;
                     case self::REQUEST_STATUS_CHANGE_SUSPENDED:
-                        $event = new Request\StatusChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector());
+                        $event = new Request\StatusChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
                         break;
                     case self::REQUEST_STATUS_CHANGE_REJECTED:
                         $event = new Request\StatusChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());

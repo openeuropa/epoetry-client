@@ -40,7 +40,7 @@ class NotificationHandlerTest extends TestCase
     }
 
     /**
-     * Test all status changes notification events.
+     * Test product status changes notification events.
      *
      * @runInSeparateProcess
      * @dataProvider productStatusChangeEventsDataProvider
@@ -50,6 +50,7 @@ class NotificationHandlerTest extends TestCase
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) use ($class, $status) {
+            /** @var Notification\Product\BaseEvent $event */
             $this->assertInstanceOf($class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
             $this->assertEquals($status, $event->getProduct()->getStatus());
@@ -76,7 +77,7 @@ RESPONSE, trim($response->getBody()->getContents()));
     }
 
     /**
-     * Test data provider.
+     * Test data provider for product status change notifications.
      *
      * This covers all notification that do not have date-related information,
      * such as "Ongoing", nor deliver the actual product. For those two we have
@@ -201,23 +202,28 @@ RESPONSE, trim($response->getBody()->getContents()));
     }
 
     /**
+     * Test request status changes notification events.
+     *
      * @runInSeparateProcess
+     * @dataProvider requestStatusChangeEventsDataProvider
      */
-    public function testChangeAcceptedEvent()
+    public function testRequestStatusChangeEvents(string $class, string $status, string $message)
     {
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(Notification\Request\StatusChangeAcceptedEvent::class, $event);
-            $this->assertEquals('DGT.S.S-1.P-1', $event->getPlanningSector());
-            $this->assertEquals('teodomi', $event->getPlanningAgent());
-            $this->assertEquals('Accepted', $event->getLinguisticRequest()->getStatus());
-            $this->assertEquals('SG-2022-127-(0)-0-TRA', $event->getLinguisticRequest()->getRequestReference()->getReference());
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) use ($class, $status) {
+            /** @var Notification\Request\BaseEvent $event */
+            $this->assertInstanceOf($class, $event);
+            $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
+            $this->assertEquals('Notification message', $event->getMessage());
+            $this->assertEquals('foobar', $event->getPlanningAgent());
+            $this->assertEquals($status, $event->getLinguisticRequest()->getStatus());
+            $this->assertEquals('AGRI-2022-83-(0)-0-TRA', $event->getLinguisticRequest()->getRequestReference()->getReference());
             $event->setSuccessResponse('Success message.');
         }));
 
         $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
-        $request = $this->getNotificationRequest('requestStatusChangeAccepted.xml');
+        $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
         $this->assertEquals('200', $response->getStatusCode());
@@ -228,30 +234,53 @@ RESPONSE, trim($response->getBody()->getContents()));
     }
 
     /**
-     * @runInSeparateProcess
+     * Test data provider for request status change notifications.
+     *
+     * @return array
      */
-    public function testChangeRejectedEvent()
+    public function requestStatusChangeEventsDataProvider(): array
     {
-        // Encapsulate assertions in an event subscriber.
-        $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(Notification\Request\StatusChangeRejectedEvent::class, $event);
-            $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
-            $this->assertEquals('collafc', $event->getPlanningAgent());
-            $this->assertEquals('Rejected', $event->getLinguisticRequest()->getStatus());
-            $this->assertEquals('AGRI-2022-83-(0)-0-TRA', $event->getLinguisticRequest()->getRequestReference()->getReference());
-            $event->setSuccessResponse('Success message.');
-        }));
+        $data = [];
+        foreach ([
+            'Accepted' => Notification\Request\StatusChangeAcceptedEvent::class,
+            'Cancelled' => Notification\Request\StatusChangeCancelledEvent::class,
+            'Executed' => Notification\Request\StatusChangeExecutedEvent::class,
+            'Rejected' => Notification\Request\StatusChangeRejectedEvent::class,
+            'Suspended' => Notification\Request\StatusChangeSuspendedEvent::class,
+        ] as $status => $class) {
+            $data[] = [
+                'class' => $class,
+                'status' => $status,
+                'message' => sprintf(<<<MESSAGE
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header/>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>RequestStatusChange</notificationType>
+                <linguisticRequest>
+                    <requestReference>
+                        <requesterCode>AGRI</requesterCode>
+                        <year>2022</year>
+                        <number>83</number>
+                        <part>0</part>
+                        <version>0</version>
+                        <productType>TRA</productType>
+                    </requestReference>
+                    <status>%s</status>
+                </linguisticRequest>
+                <message>Notification message</message>
+                <planningAgent>foobar</planningAgent>
+                <planningSector>DGT.S.S-1.P-2</planningSector>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>
+MESSAGE, $status),
+            ];
+        }
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
-        $request = $this->getNotificationRequest('requestStatusChangeRejected.xml');
-        $response = $server->handle($request);
-
-        $this->assertEquals('200', $response->getStatusCode());
-        $this->assertEquals(<<<RESPONSE
-<?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-RESPONSE, trim($response->getBody()->getContents()));
+        return $data;
     }
 
     /**
