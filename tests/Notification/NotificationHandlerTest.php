@@ -289,11 +289,37 @@ MESSAGE, $status),
     public function testNotificationHandlerError(): void
     {
         $this->expectException(NotificationException::class);
-        $this->expectExceptionMessage("The ePoetry notification event 'RequestStatusChange' was not handled correctly");
+        $this->expectExceptionMessage("The ePoetry notification event 'epoetry.notification.request_status.change_accepted' was not handled correctly");
 
+        // We don't set up any even handler, so to trigger the error above.
         $eventDispatcher = new EventDispatcher();
         $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
-        $request = $this->getNotificationRequest('requestStatusChangeRejected.xml');
+        $request = $this->getNotificationRequestByXml(<<<MESSAGE
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header/>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>RequestStatusChange</notificationType>
+                <linguisticRequest>
+                    <requestReference>
+                        <requesterCode>AGRI</requesterCode>
+                        <year>2022</year>
+                        <number>83</number>
+                        <part>0</part>
+                        <version>0</version>
+                        <productType>TRA</productType>
+                    </requestReference>
+                    <status>Accepted</status>
+                </linguisticRequest>
+                <message>Notification message</message>
+                <planningAgent>foobar</planningAgent>
+                <planningSector>DGT.S.S-1.P-2</planningSector>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>
+MESSAGE);
         $server->handle($request);
     }
 
