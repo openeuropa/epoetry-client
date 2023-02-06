@@ -40,6 +40,98 @@ class NotificationHandlerTest extends TestCase
     }
 
     /**
+     * Test all status changes notification events.
+     *
+     * @runInSeparateProcess
+     * @dataProvider productStatusChangeEventsDataProvider
+     */
+    public function testProductStatusChangeEvents(string $class, string $status, string $message)
+    {
+        // Encapsulate assertions in an event subscriber.
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) use ($class, $status) {
+            $this->assertInstanceOf($class, $event);
+            $this->assertInstanceOf(Product::class, $event->getProduct());
+            $this->assertEquals($status, $event->getProduct()->getStatus());
+            $this->assertEquals(false, $event->getProduct()->hasFile());
+            $this->assertEquals(false, $event->getProduct()->hasFormat());
+            $this->assertEquals(false, $event->getProduct()->hasName());
+            $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
+            $productReference = $event->getProduct()->getProductReference();
+            $this->assertEquals('SK', $productReference->getLanguage());
+            $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
+            $this->assertEquals('AGRI-2022-93-(0)-0-TRA', $productReference->getRequestReference()->getReference());
+            $event->setSuccessResponse('Success message.');
+        }));
+
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $request = $this->getNotificationRequestByXml($message);
+        $response = $server->handle($request);
+
+        $this->assertEquals('200', $response->getStatusCode());
+        $this->assertEquals(<<<RESPONSE
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+RESPONSE, trim($response->getBody()->getContents()));
+    }
+
+    /**
+     * Test data provider.
+     *
+     * This covers all notification that do not have date-related information,
+     * such as "Ongoing", nor deliver the actual product. For those two we have
+     * separate tests.
+     *
+     * @return array
+     */
+    public function productStatusChangeEventsDataProvider(): array
+    {
+        $data = [];
+        foreach ([
+            'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
+            'Cancelled' => Notification\Product\StatusChangeCancelledEvent::class,
+            'Closed' => Notification\Product\StatusChangeClosedEvent::class,
+            'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
+            'Requested' => Notification\Product\StatusChangeRequestedEvent::class,
+            'Sent' => Notification\Product\StatusChangeSentEvent::class,
+            'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
+        ] as $status => $class) {
+            $data[] = [
+                'class' => $class,
+                'status' => $status,
+                'message' => sprintf(<<<MESSAGE
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header/>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>ProductStatusChange</notificationType>
+                <product>
+                    <productReference>
+                        <requestReference>
+                            <requesterCode>AGRI</requesterCode>
+                            <year>2022</year>
+                            <number>93</number>
+                            <part>0</part>
+                            <version>0</version>
+                            <productType>TRA</productType>
+                        </requestReference>
+                        <language>SK</language>
+                    </productReference>
+                    <status>%s</status>
+                </product>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>
+MESSAGE, $status),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
      * @runInSeparateProcess
      */
     public function testStatusChangeOngoingEvent()
@@ -65,39 +157,6 @@ class NotificationHandlerTest extends TestCase
 
         $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
         $request = $this->getNotificationRequest('productStatusChangeOngoing.xml');
-        $response = $server->handle($request);
-
-        $this->assertEquals('200', $response->getStatusCode());
-        $this->assertEquals(<<<RESPONSE
-<?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
-RESPONSE, trim($response->getBody()->getContents()));
-    }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testStatusChangeRequestedEvent()
-    {
-        // Encapsulate assertions in an event subscriber.
-        $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(Notification\Product\StatusChangeRequestedEvent::class, $event);
-            $this->assertInstanceOf(Product::class, $event->getProduct());
-            $this->assertEquals('Requested', $event->getProduct()->getStatus());
-            $this->assertEquals(false, $event->getProduct()->hasFile());
-            $this->assertEquals(false, $event->getProduct()->hasFormat());
-            $this->assertEquals(false, $event->getProduct()->hasName());
-            $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
-            $productReference = $event->getProduct()->getProductReference();
-            $this->assertEquals('SK', $productReference->getLanguage());
-            $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
-            $this->assertEquals('AGRI-2022-93-(0)-0-TRA', $productReference->getRequestReference()->getReference());
-            $event->setSuccessResponse('Success message.');
-        }));
-
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
-        $request = $this->getNotificationRequest('productStatusChangeRequested.xml');
         $response = $server->handle($request);
 
         $this->assertEquals('200', $response->getStatusCode());
@@ -221,6 +280,20 @@ RESPONSE, trim($response->getBody()->getContents()));
     private function getNotificationRequest(string $fixtureName): RequestInterface
     {
         $xml = file_get_contents(__DIR__ . '/fixtures/' . $fixtureName);
+        return $this->getNotificationRequestByXml($xml);
+    }
+
+    /**
+     * Get a HTTP request object having given XML as body.
+     *
+     * @param string $xml
+     *   String containing actual request XML.
+     *
+     * @return \Psr\Http\Message\RequestInterface
+     *   HTTP request object.
+     */
+    private function getNotificationRequestByXml(string $xml): RequestInterface
+    {
         return new Request('POST', 'http://foo', [
             'accept' => 'text/xml',
             'content-type' => 'text/xml; charset=utf-8',
@@ -255,11 +328,22 @@ RESPONSE, trim($response->getBody()->getContents()));
             public static function getSubscribedEvents()
             {
                 return [
+                    // Product notifications.
+                    Notification\Product\StatusChangeAcceptedEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeCancelledEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeClosedEvent::NAME => 'doAssert',
                     Notification\Product\StatusChangeOngoingEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeReadyToBeSentEvent::NAME => 'doAssert',
                     Notification\Product\StatusChangeRequestedEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeSentEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeSuspendedEvent::NAME => 'doAssert',
                     Notification\Product\DeliveryEvent::NAME => 'doAssert',
+                    // Request notifications.
                     Notification\Request\StatusChangeAcceptedEvent::NAME => 'doAssert',
+                    Notification\Request\StatusChangeCancelledEvent::NAME => 'doAssert',
+                    Notification\Request\StatusChangeExecutedEvent::NAME => 'doAssert',
                     Notification\Request\StatusChangeRejectedEvent::NAME => 'doAssert',
+                    Notification\Request\StatusChangeSuspendedEvent::NAME => 'doAssert',
                 ];
             }
 
