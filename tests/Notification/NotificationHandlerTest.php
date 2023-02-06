@@ -4,11 +4,7 @@ namespace Notification;
 
 use GuzzleHttp\Psr7\Request;
 use Monolog\Logger;
-use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Event as Notification;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
@@ -51,7 +47,7 @@ class NotificationHandlerTest extends TestCase
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(StatusChangeOngoingEvent::class, $event);
+            $this->assertInstanceOf(Notification\Product\StatusChangeOngoingEvent::class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
             $this->assertInstanceOf(\DateTimeInterface::class, $event->getAcceptedDeadline());
             $this->assertEquals('Mon, 04 Apr 22 10:51:00 +0000', $event->getAcceptedDeadline()->format(\DATE_RFC822));
@@ -86,7 +82,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(StatusChangeRequestedEvent::class, $event);
+            $this->assertInstanceOf(Notification\Product\StatusChangeRequestedEvent::class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
             $this->assertEquals('Requested', $event->getProduct()->getStatus());
             $this->assertEquals(false, $event->getProduct()->hasFile());
@@ -119,7 +115,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(DeliveryEvent::class, $event);
+            $this->assertInstanceOf(Notification\Product\DeliveryEvent::class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
             $this->assertEquals('Sent', $event->getProduct()->getStatus());
             $this->assertEquals(true, $event->getProduct()->hasFile());
@@ -153,7 +149,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(StatusChangeAcceptedEvent::class, $event);
+            $this->assertInstanceOf(Notification\Request\StatusChangeAcceptedEvent::class, $event);
             $this->assertEquals('DGT.S.S-1.P-1', $event->getPlanningSector());
             $this->assertEquals('teodomi', $event->getPlanningAgent());
             $this->assertEquals('Accepted', $event->getLinguisticRequest()->getStatus());
@@ -180,7 +176,7 @@ RESPONSE, trim($response->getBody()->getContents()));
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(StatusChangeRejectedEvent::class, $event);
+            $this->assertInstanceOf(Notification\Request\StatusChangeRejectedEvent::class, $event);
             $this->assertEquals('DGT.S.S-1.P-2', $event->getPlanningSector());
             $this->assertEquals('collafc', $event->getPlanningAgent());
             $this->assertEquals('Rejected', $event->getLinguisticRequest()->getStatus());
@@ -259,11 +255,11 @@ RESPONSE, trim($response->getBody()->getContents()));
             public static function getSubscribedEvents()
             {
                 return [
-                    StatusChangeOngoingEvent::NAME => 'doAssert',
-                    StatusChangeRequestedEvent::NAME => 'doAssert',
-                    DeliveryEvent::NAME => 'doAssert',
-                    StatusChangeAcceptedEvent::NAME => 'doAssert',
-                    StatusChangeRejectedEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeOngoingEvent::NAME => 'doAssert',
+                    Notification\Product\StatusChangeRequestedEvent::NAME => 'doAssert',
+                    Notification\Product\DeliveryEvent::NAME => 'doAssert',
+                    Notification\Request\StatusChangeAcceptedEvent::NAME => 'doAssert',
+                    Notification\Request\StatusChangeRejectedEvent::NAME => 'doAssert',
                 ];
             }
 
