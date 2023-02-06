@@ -6,11 +6,7 @@ namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\Console\Monolog\ReactConsoleHandler;
 use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\DeliveryEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeOngoingEvent;
-use OpenEuropa\EPoetry\Notification\Event\Product\StatusChangeRequestedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeAcceptedEvent;
-use OpenEuropa\EPoetry\Notification\Event\Request\StatusChangeRejectedEvent;
+use OpenEuropa\EPoetry\Notification\Event as Notification;
 use OpenEuropa\EPoetry\NotificationServerFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
@@ -67,11 +63,22 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
     public static function getSubscribedEvents(): array
     {
         return [
-            StatusChangeOngoingEvent::NAME => 'logEvent',
-            StatusChangeRequestedEvent::NAME => 'logEvent',
-            DeliveryEvent::NAME => 'logEvent',
-            StatusChangeAcceptedEvent::NAME => 'logEvent',
-            StatusChangeRejectedEvent::NAME => 'logEvent',
+            // Product notifications.
+            Notification\Product\StatusChangeAcceptedEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeCancelledEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeClosedEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeOngoingEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeReadyToBeSentEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeRequestedEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeSentEvent::NAME => 'logEvent',
+            Notification\Product\StatusChangeSuspendedEvent::NAME => 'logEvent',
+            Notification\Product\DeliveryEvent::NAME => 'logEvent',
+            // Request notifications.
+            Notification\Request\StatusChangeAcceptedEvent::NAME => 'logEvent',
+            Notification\Request\StatusChangeCancelledEvent::NAME => 'logEvent',
+            Notification\Request\StatusChangeExecutedEvent::NAME => 'logEvent',
+            Notification\Request\StatusChangeRejectedEvent::NAME => 'logEvent',
+            Notification\Request\StatusChangeSuspendedEvent::NAME => 'logEvent',
         ];
     }
 
