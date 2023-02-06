@@ -83,9 +83,16 @@ class NotificationServerFactory
         $server->setObject($handler);
 
         ob_start();
-        $server->handle($request->getBody()->getContents());
-        $xml = ob_get_contents();
-        ob_end_clean();
+        try {
+            $server->handle($request->getBody()->getContents());
+            $xml = ob_get_contents();
+            ob_end_clean();
+        } catch (\Exception $e) {
+            // Make sure we clean the opened buffer, if an exception occurred,
+            // then throw the caught exception.
+            ob_end_clean();
+            throw $e;
+        }
 
         return new Response(200, [
             'content-type' => 'text/xml',

@@ -7,23 +7,26 @@ use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
 
 abstract class BaseEvent extends BaseNotificationEvent
 {
-
     private LinguisticRequest $linguisticRequest;
 
     private string $planningAgent;
 
     private string $planningSector;
 
+    private string $message;
+
     /**
      * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
      * @param string $planningAgent
      * @param string $planningSector
+     * @param string $message
      */
-    public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector)
+    public function __construct(LinguisticRequest $linguisticRequest, string $planningAgent, string $planningSector, string $message = '')
     {
         $this->linguisticRequest = $linguisticRequest;
         $this->planningAgent = $planningAgent;
         $this->planningSector = $planningSector;
+        $this->message = $message;
     }
 
     /**
@@ -48,5 +51,13 @@ abstract class BaseEvent extends BaseNotificationEvent
     public function getPlanningSector(): string
     {
         return $this->planningSector;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
     }
 }

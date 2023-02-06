@@ -205,7 +205,7 @@ RESPONSE, trim($response->getBody()->getContents()));
     public function testNotificationHandlerError(): void
     {
         $this->expectException(NotificationException::class);
-        $this->expectExceptionMessage("The ePoetry notification event 'RequestStatusChange' has not been correctly handled");
+        $this->expectExceptionMessage("The ePoetry notification event 'RequestStatusChange' was not handled correctly");
 
         $eventDispatcher = new EventDispatcher();
         $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
