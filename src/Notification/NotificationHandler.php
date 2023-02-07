@@ -126,21 +126,22 @@ class NotificationHandler
                 break;
             case self::NOTIFICATION_REQUEST_STATUS_CHANGE:
                 $request = $notification->getLinguisticRequest();
+                $message = $notification->getMessage() ?? '';
                 switch ($request->getStatus()) {
                     case self::REQUEST_STATUS_CHANGE_ACCEPTED:
-                        $event = new Request\StatusChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeAcceptedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $message);
                         break;
                     case self::REQUEST_STATUS_CHANGE_CANCELLED:
-                        $event = new Request\StatusChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeCancelledEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $message);
                         break;
                     case self::REQUEST_STATUS_CHANGE_EXECUTED:
-                        $event = new Request\StatusChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeExecutedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $message);
                         break;
                     case self::REQUEST_STATUS_CHANGE_SUSPENDED:
-                        $event = new Request\StatusChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeSuspendedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $message);
                         break;
                     case self::REQUEST_STATUS_CHANGE_REJECTED:
-                        $event = new Request\StatusChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $notification->getMessage());
+                        $event = new Request\StatusChangeRejectedEvent($request, $notification->getPlanningAgent(), $notification->getPlanningSector(), $message);
                         break;
                 }
                 break;
