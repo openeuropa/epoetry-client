@@ -94,17 +94,17 @@ authentication plugin service. Below an example of a possible setup, taken from 
   client_cert_authentication:
     class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication
     arguments:
-      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL)%"
-      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PATH)%"
-      $certPassword: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PASSWORD)%"
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL)%"
+      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
+      $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
 ```
 
 With the following `.env` file:
 
 ```
-EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
-EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
-EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLIENT_CERT_PATH=/path/to/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD=password
 ```
 
 ### Authenticating via OpenID Connect
@@ -184,7 +184,7 @@ For example: when using the ePoetry via the provided Symfony Console commands, t
 at this location (see [.env](.env)):
 
 ```
-EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/path/to/client-metadata.json
 ```
 
 ## Notification events
@@ -249,16 +249,16 @@ The **Client Certificate** method requires a path to the client certificate file
 Both parameters can be set via the following environment variables:
 
 ```
-EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
-EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
-EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLIENT_CERT_PATH=/path/to/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD=password
 ```
 
 The **OpenID Connect method** requires a valid client metadata JSON file, available locally. You can control the value of that,
 along with other authentication setting, by changing the following environment variables:
 
 ```
-EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/path/to/client-metadata.json
 EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL=https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
 EPOETRY_CONSOLE_OPENID_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
 EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT=https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
