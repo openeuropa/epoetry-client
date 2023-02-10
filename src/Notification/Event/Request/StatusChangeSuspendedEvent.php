@@ -7,6 +7,5 @@ namespace OpenEuropa\EPoetry\Notification\Event\Request;
  */
 class StatusChangeSuspendedEvent extends BaseEvent
 {
-
     public const NAME = 'epoetry.notification.request_status.change_suspended';
 }

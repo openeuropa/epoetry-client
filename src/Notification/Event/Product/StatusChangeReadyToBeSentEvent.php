@@ -7,6 +7,5 @@ namespace OpenEuropa\EPoetry\Notification\Event\Product;
  */
 class StatusChangeReadyToBeSentEvent extends BaseEvent
 {
-
     public const NAME = 'epoetry.notification.product_status_change_ready_to_be_sent';
 }
