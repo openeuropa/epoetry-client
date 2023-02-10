@@ -9,16 +9,15 @@ use OpenEuropa\EPoetry\Notification\Type\Product;
  */
 class StatusChangeOngoingEvent extends BaseEvent
 {
-
     public const NAME = 'epoetry.notification.product_status_change_ongoing';
 
     private \DateTimeInterface $acceptedDeadline;
 
     /**
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
-     * @param \DateTimeInterface $acceptedDeadline
+     * @param \DateTimeInterface|null $acceptedDeadline
      */
-    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline)
+    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline = null)
     {
         parent::__construct($product);
         $this->acceptedDeadline = $acceptedDeadline;

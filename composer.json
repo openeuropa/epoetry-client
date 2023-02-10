@@ -13,6 +13,7 @@
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/logger-plugin": "^1.3",
         "phpro/soap-client": "~2.0.0",
+        "psr/http-factory-implementation": "*",
         "psr/log": "~1",
         "symfony/serializer": "~4",
         "symfony/validator": "~4",
@@ -46,7 +47,8 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpro/grumphp": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "php-http/discovery": true
         }
     },
     "autoload": {

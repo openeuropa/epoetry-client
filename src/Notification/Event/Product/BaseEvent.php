@@ -7,7 +7,6 @@ use OpenEuropa\EPoetry\Notification\Type\Product;
 
 abstract class BaseEvent extends BaseNotificationEvent
 {
-
     private Product $product;
 
     /**

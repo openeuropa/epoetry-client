@@ -94,17 +94,17 @@ authentication plugin service. Below an example of a possible setup, taken from 
   client_cert_authentication:
     class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication
     arguments:
-      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL)%"
-      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PATH)%"
-      $certPassword: "%env(string:EPOETRY_CONSOLE_CLENT_CERT_PASSWORD)%"
+      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL)%"
+      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
+      $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
 ```
 
 With the following `.env` file:
 
 ```
-EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
-EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
-EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLIENT_CERT_PATH=/path/to/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD=password
 ```
 
 ### Authenticating via OpenID Connect
@@ -184,18 +184,29 @@ For example: when using the ePoetry via the provided Symfony Console commands, t
 at this location (see [.env](.env)):
 
 ```
-EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/path/to/client-metadata.json
 ```
 
 ## Notification events
 
-The ePoetry service will send the following notifications, as Symfony events:
+The ePoetry service will send the following product-related notifications, as Symfony events:
 
-- [`RequestStatus\ChangeAcceptedEvent`](./src/Notification/Event/RequestStatus/ChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
-- [`RequestStatus\ChangeRejectedEvent`](./src/Notification/Event/RequestStatus/ChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
-- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeAcceptedEvent`](./src/Notification/Event/Product/StatusChangeAcceptedEvent.php): fired when the status of the product changes to "accepted".
+- [`Product\StatusChangeCancelledEvent`](./src/Notification/Event/Product/StatusChangeCancelledEvent.php): fired when the status of the product changes to "cancelled".
+- [`Product\StatusChangeClosedEvent`](./src/Notification/Event/Product/StatusChangeClosedEvent.php): fired when the status of the product changes to "closed".
 - [`Product\StatusChangeOngoingEvent`](./src/Notification/Event/Product/StatusChangeOngoingEvent.php): fired when the status of the product changes to "ongoing".
-- [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when the translation of a product is finalized. It contains the translated product.
+- [`Product\StatusChangeReadyToBeSentEvent`](./src/Notification/Event/Product/StatusChangeReadyToBeSentEvent.php):  fired when the status of the product changes to "ready to be sent".
+- [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
+- [`Product\StatusChangeSentEvent`](./src/Notification/Event/Product/StatusChangeSentEvent.php): fired when the status of the product changes to "sent".
+- [`Product\StatusChangeSuspendedEvent`](./src/Notification/Event/Product/StatusChangeSuspendedEvent.php): fired when the status of the product changes to "suspended".
+
+The ePoetry service will send the following request-related notifications, as Symfony events:
+
+- [`Request\StatusChangeAcceptedEvent`](./src/Notification/Event/Request/StatusChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
+- [`Request\StatusChangeCancelledEvent`](./src/Notification/Event/Request/StatusChangeCancelledEvent.php): fired when the status of the linguistic request changes to "cancelled".
+- [`Request\StatusChangeExecutedEvent`](./src/Notification/Event/Request/StatusChangeExecutedEvent.php): fired when the status of the linguistic request changes to "executed".
+- [`Request\StatusChangeRejectedEvent`](./src/Notification/Event/Request/StatusChangeRejectedEvent.php): fired when the status of the linguistic request changes to "rejected".
+- [`Request\StatusChangeSuspendedEvent`](./src/Notification/Event/Request/StatusChangeSuspendedEvent.php): fired when the status of the linguistic request changes to "suspended".
 
 For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
 
@@ -238,16 +249,16 @@ The **Client Certificate** method requires a path to the client certificate file
 Both parameters can be set via the following environment variables:
 
 ```
-EPOETRY_CONSOLE_CLENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
-EPOETRY_CONSOLE_CLENT_CERT_PATH=/var/www/html/.sink/certs/j905dyi.p12
-EPOETRY_CONSOLE_CLENT_CERT_PASSWORD=password
+EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
+EPOETRY_CONSOLE_CLIENT_CERT_PATH=/path/to/certs/j905dyi.p12
+EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD=password
 ```
 
 The **OpenID Connect method** requires a valid client metadata JSON file, available locally. You can control the value of that,
 along with other authentication setting, by changing the following environment variables:
 
 ```
-EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/var/www/html/.sink/client-metadata.json
+EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/path/to/client-metadata.json
 EPOETRY_CONSOLE_OPENID_WELL_KNOWN_URL=https://ecas.acceptance.ec.europa.eu/cas/oauth2/.well-known/openid-configuration
 EPOETRY_CONSOLE_OPENID_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
 EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT=https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
