@@ -135,6 +135,11 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
                     $this->logger->info("Serving WSDL.");
                     return Response::xml($this->notificationServer->getWsdl());
                 case 'POST':
+                    if (!$request->hasHeader('SOAPAction')) {
+                        $this->logger->error("Cannot handle non-SOAP {$request->getMethod()} requests.");
+                        return (new Response(Response::STATUS_BAD_REQUEST));
+                    }
+
                     $this->dumpRequestToFile($request, $folder);
                     $response = $this->notificationServer->handle($request);
                     $body = $response->getBody()->getContents();
