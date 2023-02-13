@@ -86,7 +86,9 @@ EOF);
         $factory = new RequestClientFactory($this->endpoint, $this->authentication, $this->eventDispatcher, $this->logger);
         $file = $input->getArgument('file');
         if (!file_exists($file)) {
-            $this->logger->error("File '{$file}' not found.");
+            $this->logger->error("File {file} not found.", [
+                'file' => $file,
+            ]);
             return 1;
         }
         $function = require $input->getArgument('file');
@@ -99,8 +101,12 @@ EOF);
             JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
         ]));
         $response = $factory->getRequestClient()->{$method}($request);
-        $this->logger->info('Endpoint: ' . $factory->getEndpoint());
-        $this->logger->info('Proxy ticket: ' . $factory->getProxyTicket());
+        $this->logger->info('Endpoint: {endpoint}', [
+            'endpoint' => $factory->getEndpoint(),
+        ]);
+        $this->logger->info('Proxy ticket: {ticket}', [
+            'ticket' => $factory->getProxyTicket(),
+        ]);
         $output->writeln('Response:');
         $output->writeln($this->serializer->serialize($response, 'json', [
             JsonEncode::OPTIONS => JSON_PRETTY_PRINT,
