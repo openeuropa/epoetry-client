@@ -4,9 +4,9 @@ namespace OpenEuropa\EPoetry;
 
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
-use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
+use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -26,9 +26,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use DOMElement;
 use Symfony\Component\Validator\ValidatorBuilder;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Client\Common\Plugin\LoggerPlugin;
-use Monolog\Logger;
 
 /**
  * Request client factory.
@@ -218,7 +215,7 @@ class RequestClientFactory
 
         // Add HTTP logging middleware.
         if ($this->logger instanceof LoggerInterface) {
-            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter(null));
+            $plugins[] = new LoggerPlugin($this->logger);
         }
 
         $client = new PluginClient($this->getHttpClient(), $plugins);
