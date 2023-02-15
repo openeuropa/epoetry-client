@@ -147,7 +147,7 @@ class NotificationHandler
                 break;
         }
 
-        $this->eventDispatcher->dispatch($event::NAME, $event);
+        $this->eventDispatcher->dispatch($event, $event::NAME);
         if (!$event->hasResponse()) {
             $error = sprintf("The ePoetry notification event '%s' was not handled correctly.", $event::NAME);
             $this->logger->error($error);

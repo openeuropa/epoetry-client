@@ -8,14 +8,17 @@ use DateTimeInterface;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer as SymfonyDateTimeNormalizer;
 
 /**
- * Extension of Symfony's DateTimeNormalize class.
- */
-class DateTimeNormalizer extends SymfonyDateTimeNormalizer
+ * Extension of Symfony's DateTimeNormalize class, only for Symfony 4.
+ *
+ * @todo When support for Symfony 4 will be dropped, this class needs to be
+ *       deleted.
+*/
+class DateTimeNormalizer4 extends SymfonyDateTimeNormalizer
 {
     /**
      * {@inheritdoc}
      */
-    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): DateTimeInterface
+    public function denormalize($data, $type, $format = null, array $context = []): object
     {
         if ($type === \DateTimeInterface::class) {
             // Force to build \DateTime objects instead of \DateTimeImmutable.

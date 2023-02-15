@@ -7,9 +7,11 @@ namespace OpenEuropa\EPoetry\Serializer;
 use Doctrine\Common\Annotations\AnnotationReader;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ContactsDenormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\DateTimeNormalizer;
+use OpenEuropa\EPoetry\Serializer\Normalizer\DateTimeNormalizer4;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ObjectNormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\LinguisticSectionsDenormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ProductsDenormalizer;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -130,8 +132,13 @@ class Serializer implements SerializerInterface
             AbstractObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true, // Allow to set integer values from strings.
             AbstractObjectNormalizer::SKIP_NULL_VALUES => true, // Null values won't be generated.
         ];
+
         return new SymfonySerializer([
-            new DateTimeNormalizer(),
+            // @todo When support for Symfony 4 will be dropped, two things
+            // needs to be done:
+            // 1. The `DateTimeNormalizer4` class needs to be deleted
+            // 2. The next line needs to be rewritten accordingly.
+            (5 >= Kernel::MAJOR_VERSION ? new DateTimeNormalizer4() : new DateTimeNormalizer()),
             new ArrayDenormalizer(),
             new ProductsDenormalizer(),
             new LinguisticSectionsDenormalizer(),
