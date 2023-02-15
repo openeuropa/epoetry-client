@@ -10,7 +10,6 @@
         "ext-soap": "*",
         "cweagans/composer-patches": "^1",
         "nyholm/psr7": "^1.4",
-        "php-http/guzzle6-adapter": "^2.0",
         "php-http/logger-plugin": "^1.3",
         "phpro/soap-client": "~2.0.0",
         "psr/http-factory-implementation": "*",
@@ -20,6 +19,7 @@
         "veewee/xml": "^1.0"
     },
     "require-dev": {
+        "php-http/guzzle6-adapter": "^2.0",
         "doctrine/annotations": "^1.13",
         "monolog/monolog": "^2.8",
         "openeuropa/code-review": "^2.0",
