@@ -48,7 +48,7 @@ class ClientCertificateAuthentication implements AuthenticationInterface
      * Endpoint of EU Login service.
      *
      * Acceptance: https://ecasa.cc.cec.eu.int:7003
-     * Produciton: https://ecas.cc.cec.eu.int:7003
+     * Production: https://ecas.cc.cec.eu.int:7003
      *
      * @var string
      */
