@@ -12,6 +12,7 @@
         "cweagans/composer-patches": "^1",
         "php-http/logger-plugin": "^1.3",
         "phpro/soap-client": "~2.0.0",
+        "psr/http-client-implementation": "^1",
         "psr/http-factory-implementation": "1",
         "psr/log": "^1 || ^3",
         "symfony/serializer": "~4",
