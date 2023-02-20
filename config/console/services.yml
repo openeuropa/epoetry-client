@@ -59,3 +59,4 @@ services:
       $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
       $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
       $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLIENT_EU_LOGIN_BASEPATH)%"
+      $logger: "@logger"
