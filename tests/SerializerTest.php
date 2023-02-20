@@ -68,13 +68,6 @@ final class SerializerTest extends BaseTest
       "fileName": "TEST_FILE_ORIGINALP.docx",
       "comment": "",
       "content": "cid:267736828531",
-      "linguisticSections": {
-        "linguisticSection": [
-          {
-            "language": "FR"
-          }
-        ]
-      },
       "trackChanges": false
     },
     "products": {
@@ -147,9 +140,6 @@ requestDetails:
     fileName: TEST_FILE_ORIGINALP.docx
     comment: ''
     content: 'cid:267736828531'
-    linguisticSections:
-      linguisticSection:
-        - language: FR
     trackChanges: false
   products:
     product:
@@ -550,13 +540,6 @@ YAML;
                     'fileName' => 'TEST_FILE_ORIGINALP.docx',
                     'comment' => '',
                     'content' => 'cid:267736828531',
-                    'linguisticSections' => [
-                        'linguisticSection' => [
-                            [
-                                'language' => 'FR',
-                            ],
-                        ],
-                    ],
                     'trackChanges' => false,
                 ],
                 'products' => [

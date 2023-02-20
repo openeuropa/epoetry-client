@@ -6,12 +6,6 @@ namespace OpenEuropa\EPoetry\Tests;
 
 use Consolidation\Log\Logger;
 use Http\Mock\Client as MockClient;
-use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
-use OpenEuropa\EPoetry\Request\Type\Contacts;
-use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
-use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
-use OpenEuropa\EPoetry\Request\Type\Products;
-use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\RequestClientFactory;
 use Nyholm\Psr7\Response;
 use OpenEuropa\EPoetry\Tests\Authentication\MockAuthentication;
@@ -42,31 +36,7 @@ final class RequestClientFactoryTest extends BaseTest
         $clientFactory = new RequestClientFactory('http://foo.bar', $authentication, null, null, $mockClient);
         $requestClient = $clientFactory->getRequestClient();
 
-        $requestDetails = new RequestDetailsIn();
-        $requestDetails->setTitle('Request title')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2121-07-06T11:51:00+01:00'))
-            ->setDestination('PUBLIC')
-            ->setProcedure('DEGHP')
-            ->setSlaAnnex('ANNEX8A');
-        $contacts = (new Contacts())
-            ->addContact(new ContactPersonIn('smithjo', 'REQUESTER'))
-            ->addContact(new ContactPersonIn('smithjo', 'AUTHOR'))
-            ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
-        $requestDetails->setContacts($contacts);
-
-        $linguisticRequest = (new CreateLinguisticRequest())
-            ->setRequestDetails($requestDetails)
-            ->setApplicationName('appname')
-            ->setTemplateName('DEFAULT');
-
-        $productRequestIn = (new ProductRequestIn())
-            ->setLanguage('FR')
-            ->setRequestedDeadline(\DateTime::createFromFormat(DATE_RFC3339, '2121-07-06T11:51:00+01:00'))
-            ->setTrackChanges(false);
-        $products = (new Products())
-            ->addProduct($productRequestIn);
-        $requestDetails->setProducts($products);
-
+        $linguisticRequest = $this->getCreateLinguisticRequest();
         $requestClient->createLinguisticRequest($linguisticRequest);
         $body = (string) $mockClient->getLastRequest()->getBody();
         $this->assertStringContainsString($expectedBody, $body);
