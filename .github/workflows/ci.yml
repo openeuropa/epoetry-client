@@ -13,9 +13,9 @@ jobs:
       - name: clone
         uses: actions/checkout@v2
       - run: docker-compose up -d
-      - name: composer install
+      - name: build
         run: docker-compose exec -T php ${{ matrix.composer_command }}
-      - name: phpunit
+      - name: test
         run: docker-compose exec -T php ./vendor/bin/phpunit
   code-sniffer:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
       - name: clone
         uses: actions/checkout@v2
       - run: docker-compose up -d
-      - name: composer install
+      - name: build
         run: docker-compose exec -T php composer install
-      - name: grumphp
+      - name: test
         run: docker-compose exec -T php ./vendor/bin/grumphp run
