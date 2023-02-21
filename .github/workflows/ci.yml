@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        PHP_VERSION: ["8.0"]
+        PHP_VERSION: ["8.1"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
@@ -19,7 +19,7 @@ jobs:
   code-sniffer:
     runs-on: ubuntu-latest
     env:
-      PHP_VERSION: "8.0"
+      PHP_VERSION: "8.1"
     steps:
       - name: clone
         uses: actions/checkout@v2

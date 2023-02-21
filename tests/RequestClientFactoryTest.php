@@ -9,7 +9,7 @@ use Http\Mock\Client as MockClient;
 use OpenEuropa\EPoetry\RequestClientFactory;
 use Nyholm\Psr7\Response;
 use OpenEuropa\EPoetry\Tests\Authentication\MockAuthentication;
-use Psr\Log\Test\TestLogger;
+use ColinODell\PsrTestLogger\TestLogger;
 use Soap\ExtSoapEngine\AbusedClient;
 use Soap\Psr18Transport\Psr18Transport;
 use Soap\ExtSoapEngine\Transport\TraceableTransport;

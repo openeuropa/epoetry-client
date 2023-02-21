@@ -14,7 +14,7 @@ class DateTimeNormalizer extends SymfonyDateTimeNormalizer
     /**
      * {@inheritdoc}
      */
-    public function denormalize($data, $type, $format = null, array $context = []): object
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): \DateTimeInterface
     {
         if ($type === \DateTimeInterface::class) {
             // Force to build \DateTime objects instead of \DateTimeImmutable.
