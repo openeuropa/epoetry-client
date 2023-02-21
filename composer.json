@@ -38,7 +38,8 @@
         "symfony/http-kernel": "~4",
         "symfony/monolog-bridge": "~5",
         "symfony/property-access": "~4",
-        "symfony/property-info": "~4"
+        "symfony/property-info": "~4",
+        "symfony/yaml": "~4"
     },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
