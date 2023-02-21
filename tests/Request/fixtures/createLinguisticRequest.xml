@@ -24,11 +24,7 @@
                     <fileName>TEST_FILE_ORIGINALP.docx</fileName>
                     <comment />
                     <content>Y2lkOjI2NzczNjgyODUzMQ==</content>
-                    <linguisticSections>
-                        <linguisticSection>
-                            <language>FR</language>
-                        </linguisticSection>
-                    </linguisticSections>
+                    <linguisticSections/>
                     <trackChanges>false</trackChanges>
                 </originalDocument>
                 <products>

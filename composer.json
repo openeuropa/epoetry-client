@@ -20,7 +20,7 @@
         "veewee/xml": "^1.0"
     },
     "require-dev": {
-        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/guzzle7-adapter": "~1",
         "doctrine/annotations": "^1.13",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
@@ -50,7 +50,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpro/grumphp": true,
             "cweagans/composer-patches": true,
-            "php-http/discovery": true
+            "php-http/discovery": false
         }
     },
     "autoload": {

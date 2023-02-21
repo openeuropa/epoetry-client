@@ -289,7 +289,7 @@ MESSAGE, $status),
     public function testNotificationHandlerError(): void
     {
         $this->expectException(NotificationException::class);
-        $this->expectExceptionMessage("The ePoetry notification event 'epoetry.notification.request_status.change_accepted' was not handled correctly");
+        $this->expectExceptionMessage("The ePoetry notification event 'epoetry.notification.request_status.change_accepted' was not handled correctly. Make sure to set a response when handling the event.");
 
         // We don't set up any even handler, so to trigger the error above.
         $eventDispatcher = new EventDispatcher();

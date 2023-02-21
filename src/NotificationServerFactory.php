@@ -3,6 +3,7 @@
 namespace OpenEuropa\EPoetry;
 
 use GuzzleHttp\Psr7\Response;
+use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
@@ -71,6 +72,7 @@ class NotificationServerFactory
      */
     public function handle(RequestInterface $request): ResponseInterface
     {
+        $formatter = new FullHttpMessageFormatter(null);
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
         $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([
             'classmap' => NotificationClassmap::getCollection(),
@@ -84,6 +86,9 @@ class NotificationServerFactory
 
         ob_start();
         try {
+            $this->logger->info("Received notification:\n{request}", [
+                'request' => $formatter->formatRequest($request),
+            ]);
             $server->handle($request->getBody()->getContents());
             $xml = ob_get_contents();
             ob_end_clean();
@@ -94,9 +99,11 @@ class NotificationServerFactory
             throw $e;
         }
 
-        return new Response(200, [
-            'content-type' => 'text/xml',
-        ], $xml);
+        $response = new Response(200, ['content-type' => 'text/xml'], $xml);
+        $this->logger->info("Returned response:\n{response}", [
+            'response' => $formatter->formatResponseForRequest($response, $request),
+        ]);
+        return $response;
     }
 
     /**

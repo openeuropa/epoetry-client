@@ -67,13 +67,10 @@ trait CreateLinguisticRequestTrait
             ->addContact(new ContactPersonIn('smithjo', 'RECIPIENT'));
         $requestDetails->setContacts($contacts);
 
-        $linguisticSections = (new LinguisticSections())
-            ->addLinguisticSection(new LinguisticSectionIn('FR'));
         $originalDocument = (new OriginalDocumentIn())
             ->setTrackChanges(false)
             ->setFileName('TEST_FILE_ORIGINALP.docx')
             ->setContent('cid:267736828531')
-            ->setLinguisticSections($linguisticSections)
             ->setComment('');
         $requestDetails->setOriginalDocument($originalDocument);
 

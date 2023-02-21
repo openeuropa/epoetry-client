@@ -89,7 +89,9 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
      */
     public function logEvent(BaseNotificationEvent $event): void
     {
-        $this->logger->info('Received event ' . $event::NAME);
+        $this->logger->info('Received event {event}', [
+            'event' => $event::NAME,
+        ]);
         if ($this->returnError) {
             $this->logger->info('Returning error message.');
             $event->setErrorResponse('The notification was not handled successfully.');
@@ -132,33 +134,32 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         $handler = function (ServerRequestInterface $request) use ($folder) {
             switch ($request->getMethod()) {
                 case 'GET':
-                    $this->logger->info("Serving WSDL.");
+                    $this->logger->info('Serving WSDL.');
                     return Response::xml($this->notificationServer->getWsdl());
                 case 'POST':
                     if (!$request->hasHeader('SOAPAction')) {
-                        $this->logger->error("Cannot handle non-SOAP {$request->getMethod()} requests.");
+                        $this->logger->error('Cannot handle non-SOAP POST requests.');
                         return (new Response(Response::STATUS_BAD_REQUEST));
                     }
 
                     $this->dumpRequestToFile($request, $folder);
-                    $response = $this->notificationServer->handle($request);
-                    $body = $response->getBody()->getContents();
-                    $response->getBody()->rewind();
-                    $this->logger->info('Response code: ' . $response->getStatusCode());
-                    $this->logger->info('Response body: ' . $body);
-                    return $response;
+                    return $this->notificationServer->handle($request);
                 default:
-                    $this->logger->error("Cannot handle {$request->getMethod()} requests.");
+                    $this->logger->error("Cannot handle {method} requests.", [
+                        'method' => $request->getMethod(),
+                    ]);
                     return (new Response(Response::STATUS_BAD_REQUEST));
             }
         };
 
         $http = new HttpServer($loop, $handler);
         $http->on('error', function (\Exception $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->error($e->getMessage(), [
+                'exception' => $e,
+            ]);
         });
         $uri = '0.0.0.0:'.$input->getOption('port');
-        $this->logger->notice("Listening on {$uri}");
+        $this->logger->notice('Listening on {uri}', ['uri' => $uri]);
         $http->listen(new SocketServer($uri));
     }
 
@@ -173,7 +174,9 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         // Dump response in a log file.
         $content = $this->formatRequest($request);
         $filename = $this->getLogFilepath($folder);
-        $this->logger->info("Saving request to $filename:\n\n" . $content);
+        $this->logger->info('Saving request to {filename}', [
+            'filename' => $filename,
+        ]);
         $this->fs->dumpFile($filename, $content);
     }
 
