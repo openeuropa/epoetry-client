@@ -18,6 +18,7 @@
         "psr/http-client": "^1",
         "psr/http-client-implementation": "^1",
         "psr/log": "^3",
+        "symfony/options-resolver": "~5.4 || ~6",
         "symfony/serializer": "~5.4 || ~6",
         "symfony/validator": "~5.4 || ~6",
         "veewee/xml": "^2.0"
