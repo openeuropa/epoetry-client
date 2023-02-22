@@ -33,7 +33,7 @@
         "php-http/guzzle7-adapter": "~1",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
-        "phpunit/phpunit": "~9.5",
+        "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
         "symfony/dotenv": "~5.4 || ~6",
         "symfony/expression-language": "~5.4 || ~6",
