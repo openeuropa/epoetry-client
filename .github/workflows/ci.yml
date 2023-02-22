@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: ["8.1"]
+        php_version: ["8.0", "8.1"]
         composer_command: ["composer install", "composer update --prefer-lowest"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
