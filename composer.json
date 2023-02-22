@@ -9,6 +9,7 @@
         "ext-dom": "*",
         "ext-soap": "*",
         "ext-xsl": "*",
+        "azjezz/psl": "^1.9.3 || ^2.4",
         "cweagans/composer-patches": "^1",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
