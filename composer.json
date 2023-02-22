@@ -21,7 +21,7 @@
         "symfony/options-resolver": "~5.4 || ~6",
         "symfony/serializer": "~5.4 || ~6",
         "symfony/validator": "~5.4 || ~6",
-        "veewee/xml": "^2.0"
+        "veewee/xml": "^1.7 || ^2.6"
     },
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
