@@ -7,7 +7,9 @@ use Facile\OpenIDClient\Client\Metadata\ClientMetadata;
 use Facile\OpenIDClient\Issuer\IssuerBuilder;
 use Facile\OpenIDClient\Service\Builder\AuthorizationServiceBuilder;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
+use OpenEuropa\EPoetry\Authentication\Exception\AuthenticationException;
 use OpenEuropa\EPoetry\Exception\ClientException;
+use Psr\Log\LoggerInterface;
 
 /**
  * OpenID Connect authentication plugin.
@@ -50,19 +52,28 @@ class OpenIDAuthentication implements AuthenticationInterface
     private string $tokenEndpoint;
 
     /**
+     * Logger service.
+     *
+     * @var LoggerInterface
+     */
+    protected LoggerInterface $logger;
+
+    /**
      * Constructor.
      *
      * @param string $wellKnownUrl
      * @param string $clientMetadataFilepath
      * @param string $serviceUrl
      * @param string $tokenEndpoint
+     * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $wellKnownUrl, string $clientMetadataFilepath, string $serviceUrl, string $tokenEndpoint)
+    public function __construct(string $wellKnownUrl, string $clientMetadataFilepath, string $serviceUrl, string $tokenEndpoint, LoggerInterface $logger)
     {
         $this->wellKnownUrl = $wellKnownUrl;
         $this->clientMetadataFilepath = $clientMetadataFilepath;
         $this->serviceUrl = $serviceUrl;
         $this->tokenEndpoint = $tokenEndpoint;
+        $this->logger = $logger;
     }
 
     /**
@@ -84,14 +95,19 @@ class OpenIDAuthentication implements AuthenticationInterface
             ->setIssuer($issuer)
             ->setClientMetadata($clientMetadata)
             ->build();
-
-        $authorizationService = (new AuthorizationServiceBuilder())->build();
-        $tokenSet = $authorizationService->grant($client, [
-            "grant_type" => "client_credentials",
-            "resource" => $this->serviceUrl,
-            "aud" => $this->tokenEndpoint,
-            "requested_token_type" => "urn:ietf:params:oauth:token-type:cas_ticket",
-        ]);
+        try {
+            $authorizationService = (new AuthorizationServiceBuilder())->build();
+            $tokenSet = $authorizationService->grant($client, [
+                "grant_type" => "client_credentials",
+                "resource" => $this->serviceUrl,
+                "aud" => $this->tokenEndpoint,
+                "requested_token_type" => "urn:ietf:params:oauth:token-type:cas_ticket",
+            ]);
+        } catch (\Exception $e) {
+            $message = 'OpenID authentication failed due to the following error: ' . $e->getMessage();
+            $this->logger->error($message);
+            throw new AuthenticationException($message);
+        }
 
         return $tokenSet->getAccessToken();
     }

@@ -14,6 +14,7 @@ use OpenEuropa\EPoetry\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\Test\TestLogger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\EventDispatcher\Event;
@@ -321,6 +322,111 @@ MESSAGE, $status),
 </soapenv:Envelope>
 MESSAGE);
         $server->handle($request);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testNotificationLogging()
+    {
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
+            // We need to handle the event, or else an exception will be thrown.
+            $event->setSuccessResponse('Success message.');
+        }));
+
+        $logger = new TestLogger();
+        $server = new NotificationServerFactory('', $eventDispatcher, $logger, $this->serializer);
+        $request = $this->getNotificationRequest('productDeliverySent.xml');
+        $server->handle($request);
+
+        $this->assertEquals(
+            [
+                'level' => 'info',
+                'message' => "Received notification:\n{request}",
+                'context' =>
+                    [
+                        'request' => 'POST / HTTP/1.1
+Host: foo
+accept: text/xml
+content-type: text/xml; charset=utf-8
+SOAPAction: http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header/>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>ProductDelivery</notificationType>
+                <product>
+                    <productReference>
+                        <requestReference>
+                            <requesterCode>SG</requesterCode>
+                            <year>2022</year>
+                            <number>343</number>
+                            <part>0</part>
+                            <version>1</version>
+                            <productType>TRA</productType>
+                        </requestReference>
+                        <language>FR</language>
+                    </productReference>
+                    <status>Sent</status>
+                    <acceptedDeadline>2022-09-01T12:51:00.000+02:00</acceptedDeadline>
+                    <file>RmlsZSBjb250ZW50Lg==</file>
+                    <name>SG-2022-00343(01)-00-TRA-FR</name>
+                    <format>DOCX</format>
+                </product>
+                <planningSector>DGT.D.FR.FR-1</planningSector>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>
+',
+                    ],
+            ],
+            $logger->records[0]
+        );
+        $this->assertEquals(
+            [
+                'level' => 'info',
+                'message' => 'Handling ePoetry notification "{type}": {notification}',
+                'context' =>
+                    [
+                        'type' => 'ProductDelivery',
+                        'notification' => '<?xml version="1.0"?>
+<response><notificationType>ProductDelivery</notificationType><product><productReference><requestReference><requesterCode>SG</requesterCode><year>2022</year><number>343</number><part>0</part><version>1</version><productType>TRA</productType><reference>SG-2022-343-(1)-0-TRA</reference></requestReference><language>FR</language></productReference><status>Sent</status><acceptedDeadline>2022-09-01T10:51:00+00:00</acceptedDeadline><file>File content.</file><name>SG-2022-00343(01)-00-TRA-FR</name><format>DOCX</format></product><planningSector>DGT.D.FR.FR-1</planningSector></response>
+',
+                    ],
+            ],
+            $logger->records[1]
+        );
+        $this->assertEquals(
+            [
+                'level' => 'info',
+                'message' => 'Dispatching ePoetry notification event "{event}"',
+                'context' =>
+                    [
+                        'event' => 'epoetry.notification.product_delivery',
+                    ],
+            ],
+            $logger->records[2]
+        );
+        $this->assertEquals(
+            [
+                'level' => 'info',
+                'message' => "Returned response:\n{response}",
+                'context' =>
+                    [
+                        'response' => 'HTTP/1.1 200 OK
+content-type: text/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+',
+                    ],
+            ],
+            $logger->records[3]
+        );
     }
 
     /**
