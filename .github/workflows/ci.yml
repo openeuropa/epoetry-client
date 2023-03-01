@@ -5,26 +5,27 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        PHP_VERSION: ["8.0"]
+        php_version: ["8.1"]
+        composer_command: ["composer install", "composer update --prefer-lowest"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
       - name: clone
         uses: actions/checkout@v2
       - run: docker-compose up -d
-      - name: composer install
-        run: docker-compose exec -T php composer install
-      - name: phpunit
+      - name: build
+        run: docker-compose exec -T php ${{ matrix.composer_command }}
+      - name: test
         run: docker-compose exec -T php ./vendor/bin/phpunit
   code-sniffer:
     runs-on: ubuntu-latest
     env:
-      PHP_VERSION: "8.0"
+      PHP_VERSION: "8.1"
     steps:
       - name: clone
         uses: actions/checkout@v2
       - run: docker-compose up -d
-      - name: composer install
+      - name: build
         run: docker-compose exec -T php composer install
-      - name: grumphp
+      - name: test
         run: docker-compose exec -T php ./vendor/bin/grumphp run

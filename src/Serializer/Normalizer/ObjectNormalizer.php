@@ -34,6 +34,8 @@ class ObjectNormalizer extends SymfonyObjectNormalizer
                 }
             }
         }
+        // Cast empty string to null to ensure $data is denormalized correctly.
+        $data = ($data === '') ? null : $data;
 
         return parent::denormalize($data, $type, $format, $context);
     }
