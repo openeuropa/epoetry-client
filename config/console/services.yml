@@ -51,6 +51,7 @@ services:
       $clientMetadataFilepath: "%env(string:EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA)%"
       $serviceUrl: "%env(string:EPOETRY_CONSOLE_OPENID_SERVICE_URL)%"
       $tokenEndpoint: "%env(string:EPOETRY_CONSOLE_OPENID_TOKEN_ENDPOINT)%"
+      $logger: "@logger"
 
   client_cert_authentication:
     class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication

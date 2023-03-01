@@ -5,6 +5,7 @@ namespace OpenEuropa\EPoetry\Authentication\ClientCertificate;
 use Http\Client\Common\PluginClient;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket;
+use OpenEuropa\EPoetry\Authentication\Exception\AuthenticationException;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use Phpro\SoapClient\Caller\EngineCaller;
@@ -60,7 +61,7 @@ class ClientCertificateAuthentication implements AuthenticationInterface
      *
      * @var LoggerInterface
      */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * Constructor.
@@ -68,6 +69,8 @@ class ClientCertificateAuthentication implements AuthenticationInterface
      * @param string $serviceUrl
      * @param string $certFilepath
      * @param string $certPassword
+     * @param string $euLoginBasePath
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(string $serviceUrl, string $certFilepath, string $certPassword, string $euLoginBasePath, LoggerInterface $logger)
     {
@@ -114,15 +117,14 @@ class ClientCertificateAuthentication implements AuthenticationInterface
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
         $client = new ClientCertificateClient($caller);
 
-        $ticket = '';
         try {
             $ticket = $client
                 ->getServiceTicket(new GetServiceTicket($this->serviceUrl))
                 ->getServiceTicket();
         } catch (\Exception $e) {
-            $this->logger->error('Could not get EU Login service ticket due to the following error: {error}', [
-                'error' => $e->getMessage(),
-            ]);
+            $message = 'Client certificate authentication failed due to the following error: ' . $e->getMessage();
+            $this->logger->error($message);
+            throw new AuthenticationException($message);
         }
         return $ticket;
     }
