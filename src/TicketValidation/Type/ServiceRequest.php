@@ -87,46 +87,6 @@ class ServiceRequest implements RequestInterface
     private $authenticationLevel;
 
     /**
-     * Constructor
-     *
-     * @var string $service
-     * @var string $ticket
-     * @var bool $renew
-     * @var string $pgtUrl
-     * @var \OpenEuropa\EPoetry\TicketValidation\Type\Groups $groups
-     * @var bool $userDetails
-     * @var string $clientFingerprint
-     * @var string $sessionId
-     * @var string $version
-     * @var \OpenEuropa\EPoetry\TicketValidation\Type\TicketTypes $ticketTypes
-     * @var int $assuranceLevel
-     * @var string $proxyGrantingProtocol
-     * @var string $userAddress
-     * @var bool $singleSignOut
-     * @var \OpenEuropa\EPoetry\TicketValidation\Type\AcceptStrengths $acceptStrengths
-     * @var string $authenticationLevel
-     */
-    public function __construct($service, $ticket, $renew, $pgtUrl, $groups, $userDetails, $clientFingerprint, $sessionId, $version, $ticketTypes, $assuranceLevel, $proxyGrantingProtocol, $userAddress, $singleSignOut, $acceptStrengths, $authenticationLevel)
-    {
-        $this->service = $service;
-        $this->ticket = $ticket;
-        $this->renew = $renew;
-        $this->pgtUrl = $pgtUrl;
-        $this->groups = $groups;
-        $this->userDetails = $userDetails;
-        $this->clientFingerprint = $clientFingerprint;
-        $this->sessionId = $sessionId;
-        $this->version = $version;
-        $this->ticketTypes = $ticketTypes;
-        $this->assuranceLevel = $assuranceLevel;
-        $this->proxyGrantingProtocol = $proxyGrantingProtocol;
-        $this->userAddress = $userAddress;
-        $this->singleSignOut = $singleSignOut;
-        $this->acceptStrengths = $acceptStrengths;
-        $this->authenticationLevel = $authenticationLevel;
-    }
-
-    /**
      * @return string
      */
     public function getService()

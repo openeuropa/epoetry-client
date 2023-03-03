@@ -1,8 +1,6 @@
 <?php
 
 use OpenEuropa\EPoetry\CodeGenerator\ConfigProcessor;
-use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
@@ -30,10 +28,6 @@ $config = ConfigProcessor::addRules($config, [
     'TraxDocuments' => ['document'],
     'PrtDocuments' => ['document'],
     'InformativeMessages' => ['message']
-    //    'ReceiveNotificationsResponse' => ['return'],
-    //    'CreateRequestsResponse' => ['return'],
-    //    'CreateRequests' => ['linguisticRequest'],
-    //    'ProductRequests' => ['productRequest'],
 ]);
 $config = ConfigProcessor::addConstructorRule($config, [
     'ContactPersonIn',
