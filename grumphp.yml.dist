@@ -12,9 +12,11 @@ parameters:
     - src/Notification/Type
     - src/Request/Type
     - src/Authentication/ClientCertificate/Type
+    - src/TicketValidation/Type
   tasks.phpcs.triggered_by:
     - php
   tasks.phpmd.exclude:
     - src/Notification/Type
     - src/Request/Type
     - src/Authentication/ClientCertificate/Type
+    - src/TicketValidation/Type
