@@ -8,7 +8,7 @@ use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
 use Phpro\SoapClient\Type\RequestInterface;
 
-class ClientCertificateClient
+class TicketValidationClient
 {
     /**
      * @var Caller
@@ -30,3 +30,4 @@ class ClientCertificateClient
         return ($this->caller)('validate', $serviceRequestPart);
     }
 }
+

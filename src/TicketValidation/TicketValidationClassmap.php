@@ -6,7 +6,7 @@ use OpenEuropa\EPoetry\TicketValidation\Type;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 
-class ClientCertificateClassmap
+class TicketValidationClassmap
 {
     public static function getCollection() : \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
     {
@@ -41,3 +41,4 @@ class ClientCertificateClassmap
         );
     }
 }
+

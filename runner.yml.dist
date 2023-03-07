@@ -26,6 +26,10 @@ commands:
 
   generate:ticket-validation:
     - { task: "remove", file: "src/TicketValidation/Type" }
+    - { task: "remove", file: "src/TicketValidation/TicketValidationClassmap.php" }
+    - { task: "remove", file: "src/TicketValidation/TicketValidationClient.php" }
+    - { task: "remove", file: "src/TicketValidation/TicketValidationClientFactory.php" }
     - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-ticket-validation.php"
     - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-ticket-validation.php"
     - "./vendor/bin/soap-client generate:client --config=$(pwd)/config/soap-client-ticket-validation.php"
+    - "./vendor/bin/soap-client generate:clientfactory --config=$(pwd)/config/soap-client-ticket-validation.php"
