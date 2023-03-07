@@ -20,6 +20,15 @@ use Symfony\Component\HttpClient\Psr18Client;
 class EuLoginTicketValidation implements TicketValidationInterface
 {
     /**
+     * Service URL to validate a ticket for.
+     *
+     * For example: https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+     *
+     * @var string
+     */
+    private string $serviceUrl;
+
+    /**
      * Endpoint of EU Login service.
      *
      * Acceptance: https://ecasa.cc.cec.eu.int:7003
@@ -39,11 +48,13 @@ class EuLoginTicketValidation implements TicketValidationInterface
     /**
      * Constructor.
      *
+     * @param string $serviceUrl
      * @param string $euLoginBasePath
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $euLoginBasePath, LoggerInterface $logger)
+    public function __construct(string $serviceUrl, string $euLoginBasePath, LoggerInterface $logger)
     {
+        $this->serviceUrl = $serviceUrl;
         $this->euLoginBasePath = $euLoginBasePath;
         $this->logger = $logger;
     }
@@ -81,13 +92,22 @@ class EuLoginTicketValidation implements TicketValidationInterface
         try {
             $request = (new ServiceRequest())
                 ->withTicket($ticket)
-                ->withUserDetails(true);
+                ->withService($this->serviceUrl)
+                ->withUserDetails(true)
+            ;
             $response = $client->validate($request);
-            // @todo check job account from response.
+            if ($response->getAuthenticationFailure() !== null) {
+                $this->logger->error('EULogin ticket validation failed with the following error code: ' . $response->getAuthenticationFailure()->getCode());
+                return false;
+            }
+            $uid = $response->getAuthenticationSuccess()->getUid();
+            if ($account !== $uid) {
+                $this->logger->error("EULogin ticket user ID is '{$uid}', while '{$account}' was expected.");
+                return false;
+            }
             return true;
         } catch (\Exception $e) {
-            $message = 'EULogin ticket validation failed due to the following error: ' . $e->getMessage();
-            $this->logger->error($message);
+            $this->logger->error('EULogin ticket validation failed due to the following error: ' . $e->getMessage());
             return false;
         }
     }

@@ -21,11 +21,11 @@ class GetTicketAuthenticationCommand extends Command
 
     private AuthenticationInterface $authentication;
 
-    public function __construct(LoggerInterface $logger, AuthenticationInterface $authentication)
+    public function __construct(LoggerInterface $logger, AuthenticationInterface $validation)
     {
         parent::__construct(null);
         $this->logger = $logger;
-        $this->authentication = $authentication;
+        $this->authentication = $validation;
     }
 
     /**
