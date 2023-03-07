@@ -29,6 +29,20 @@ class EuLoginTicketValidation implements TicketValidationInterface
     private string $serviceUrl;
 
     /**
+     * Path to client certificate in PK12 format.
+     *
+     * @var string
+     */
+    private string $certFilepath;
+
+    /**
+     * Local certificate password.
+     *
+     * @var string
+     */
+    private string $certPassword;
+
+    /**
      * Endpoint of EU Login service.
      *
      * Acceptance: https://ecasa.cc.cec.eu.int:7003
@@ -49,12 +63,16 @@ class EuLoginTicketValidation implements TicketValidationInterface
      * Constructor.
      *
      * @param string $serviceUrl
+     * @param string $certFilepath
+     * @param string $certPassword
      * @param string $euLoginBasePath
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $serviceUrl, string $euLoginBasePath, LoggerInterface $logger)
+    public function __construct(string $serviceUrl, string $certFilepath, string $certPassword, string $euLoginBasePath, LoggerInterface $logger)
     {
         $this->serviceUrl = $serviceUrl;
+        $this->certFilepath = $certFilepath;
+        $this->certPassword = $certPassword;
         $this->euLoginBasePath = $euLoginBasePath;
         $this->logger = $logger;
     }
@@ -75,7 +93,15 @@ class EuLoginTicketValidation implements TicketValidationInterface
             ->withPortLocation('TicketValidationService2WaySSLSoap12Port', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/soap/1.2")
             ->withPortLocation('TicketValidationService2WaySSLHttpPostPort', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/http");
 
-        $httpClient = new CurlHttpClient();
+        $httpClient = new CurlHttpClient([
+            'local_cert' => $this->certFilepath,
+            'passphrase' => $this->certPassword,
+            'extra' => [
+                'curl' => [
+                    \CURLOPT_SSLCERTTYPE => 'P12',
+                ],
+            ],
+        ]);
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
 
         $engine = DefaultEngineFactory::create(
