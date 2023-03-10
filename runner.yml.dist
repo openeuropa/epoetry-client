@@ -3,7 +3,6 @@ commands:
     - "./vendor/bin/run generate:request"
     - "./vendor/bin/run generate:notification"
     - "./vendor/bin/run generate:authentication"
-    - "./vendor/bin/run generate:ticket-validation"
 
   generate:request:
     - { task: "remove", file: "src/Request/Type" }
@@ -23,11 +22,3 @@ commands:
     - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-authentication.php"
     - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-authentication.php"
     - "./vendor/bin/soap-client generate:client --config=$(pwd)/config/soap-client-authentication.php"
-
-  generate:ticket-validation:
-    - { task: "remove", file: "src/TicketValidation/EuLogin/Type" }
-    - { task: "remove", file: "src/TicketValidation/EuLogin/EuLoginTicketValidationClassmap.php" }
-    - { task: "remove", file: "src/TicketValidation/EuLogin/EuLoginTicketValidationClient.php" }
-    - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-ticket-validation.php"
-    - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-ticket-validation.php"
-    - "./vendor/bin/soap-client generate:client --config=$(pwd)/config/soap-client-ticket-validation.php"

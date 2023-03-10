@@ -37,6 +37,12 @@ services:
   event_dispatcher:
     class: \Symfony\Component\EventDispatcher\EventDispatcher
 
+  http_request_factory:
+    class: \GuzzleHttp\Psr7\HttpFactory
+
+  http_client:
+    class: \GuzzleHttp\Client
+
   logger:
     class: \Monolog\Logger
     arguments:
@@ -67,7 +73,7 @@ services:
     class: \OpenEuropa\EPoetry\TicketValidation\EuLogin\EuLoginTicketValidation
     arguments:
       $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL)%"
-      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
-      $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
       $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLIENT_EU_LOGIN_BASEPATH)%"
+      $requestFactory: "@http_request_factory"
+      $httpClient: "@http_client"
       $logger: "@logger"

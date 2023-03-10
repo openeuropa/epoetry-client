@@ -3,20 +3,11 @@
 namespace OpenEuropa\EPoetry\TicketValidation\EuLogin;
 
 use Http\Client\Common\PluginClient;
-use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
-use OpenEuropa\EPoetry\TicketValidation\EuLogin\Type\ServiceRequest;
-use OpenEuropa\EPoetry\TicketValidation\EuLogin\Type\TicketTypes;
 use OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface;
 use Psr\Log\LoggerInterface;
-use Soap\Psr18Transport\Psr18Transport;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Caller\EngineCaller;
-use Symfony\Component\HttpClient\CurlHttpClient;
-use Symfony\Component\HttpClient\Psr18Client;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 class EuLoginTicketValidation implements TicketValidationInterface
 {
@@ -53,28 +44,27 @@ class EuLoginTicketValidation implements TicketValidationInterface
      */
     private string $euLoginBasePath;
 
-    /**
-     * Logger service.
-     *
-     * @var LoggerInterface
-     */
+    private RequestFactoryInterface $requestFactory;
+
+    private ClientInterface $httpClient;
+
     protected LoggerInterface $logger;
 
     /**
      * Constructor.
      *
      * @param string $serviceUrl
-     * @param string $certFilepath
-     * @param string $certPassword
      * @param string $euLoginBasePath
+     * @param \Psr\Http\Message\RequestFactoryInterface $requestFactory
+     * @param \Psr\Http\Client\ClientInterface $httpClient
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $serviceUrl, string $certFilepath, string $certPassword, string $euLoginBasePath, LoggerInterface $logger)
+    public function __construct(string $serviceUrl, string $euLoginBasePath, RequestFactoryInterface $requestFactory, ClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->serviceUrl = $serviceUrl;
-        $this->certFilepath = $certFilepath;
-        $this->certPassword = $certPassword;
         $this->euLoginBasePath = $euLoginBasePath;
+        $this->requestFactory = $requestFactory;
+        $this->httpClient = $httpClient;
         $this->logger = $logger;
     }
 
@@ -83,61 +73,56 @@ class EuLoginTicketValidation implements TicketValidationInterface
      */
     public function validate(string $account, string $ticket): bool
     {
-        // Add HTTP logging middleware.
-        $plugins[] = new LoggerPlugin($this->logger);
-
-        $wsdlProvider = (new LocalWsdlProvider())
-            ->withPortLocation('TicketValidationServiceSoap11Port', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/soap/1.1")
-            ->withPortLocation('TicketValidationServiceSoap12Port', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/soap/1.2")
-            ->withPortLocation('TicketValidationServiceHttpPostPort', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/http")
-            ->withPortLocation('TicketValidationService2WaySSLSoap11Port', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/soap/1.1")
-            ->withPortLocation('TicketValidationService2WaySSLSoap12Port', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/soap/1.2")
-            ->withPortLocation('TicketValidationService2WaySSLHttpPostPort', "{$this->euLoginBasePath}/cas/ws/TicketValidationService/http");
-
-        $httpClient = new CurlHttpClient([
-            'local_cert' => $this->certFilepath,
-            'passphrase' => $this->certPassword,
-            'extra' => [
-                'curl' => [
-                    \CURLOPT_SSLCERTTYPE => 'P12',
-                ],
-            ],
+        $pluginClient = new PluginClient($this->httpClient, [
+            new LoggerPlugin($this->logger)
         ]);
-        $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
 
-        $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__.'/../../../resources/ticket-validation.wsdl', [])
-                ->withClassMap(EuLoginTicketValidationClassmap::getCollection())
-                ->withWsdlProvider($wsdlProvider)
-                ->disableWsdlCache(),
-            Psr18Transport::createForClient($pluginClient)
-        );
-        $eventDispatcher = new EventDispatcher();
-        $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
-
-        $client = new EuLoginTicketValidationClient($caller);
         try {
-            $request = (new ServiceRequest())
-                ->withTicket($ticket)
-                ->withService($this->serviceUrl)
-                ->withTicketTypes((new TicketTypes())->withTicketType('SERVICE'))
-                ->withAuthenticationLevel('BASIC')
-                ->withAssuranceLevel(0)
-                ->withUserDetails(true)
-            ;
-            $response = $client->validate($request);
-            if ($response->getAuthenticationFailure() !== null) {
-                $this->logger->error('EU Login ticket validation failed with the following error code: ' . $response->getAuthenticationFailure()->getCode());
+            $uri = sprintf(
+                '%s/cas/strictValidate?service=%s&format=json&ticket=%s',
+                $this->euLoginBasePath,
+                $this->serviceUrl,
+                $ticket
+            );
+            $request = $this->requestFactory->createRequest('GET', $uri);
+            $response = $pluginClient->sendRequest($request);
+
+            // Log service level error, and fail validation.
+            if ($response->getStatusCode() !== 200) {
+                $this->logger->error('EU Login ticket validation request failed with HTTP status {code}: ', [
+                    'code' => $response->getStatusCode(),
+                ]);
                 return false;
             }
-            $uid = $response->getAuthenticationSuccess()->getUid();
-            if ($account !== $uid) {
-                $this->logger->error("EU Login ticket user ID is '{$uid}', while '{$account}' was expected.");
+
+            // Log authentication error, and fail validation.
+            $serviceResponse = json_decode($response->getBody()->getContents(), true);
+            if (isset($serviceResponse['serviceResponse']['authenticationFailure'])) {
+                $this->logger->error('EU Login ticket validation failed with the following error: {code} {description} ', [
+                    'code' => $serviceResponse['serviceResponse']['authenticationFailure']['code'],
+                    'description' => $serviceResponse['serviceResponse']['authenticationFailure']['description'],
+                ]);
                 return false;
             }
+
+            // If ticket returns a different user than the one expected,
+            // log error and fail validation.
+            $user = $serviceResponse['serviceResponse']['authenticationSuccess']['user'];
+            if ($account !== $user) {
+                $this->logger->error('EU Login ticket account mismatched: {account} was expected, while {user} was returned.', [
+                    'account' => $account,
+                    'user' => $user,
+                ]);
+                return false;
+            }
+
+            // Else, validation is successful.
             return true;
-        } catch (\Exception $e) {
-            $this->logger->error('EU Login ticket validation failed due to the following error: ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            $this->logger->error('EU Login ticket validation failed due to the following error: {message}', [
+                'exception' => $exception,
+                'message' => $exception->getMessage(),
+            ]);
             return false;
         }
     }
