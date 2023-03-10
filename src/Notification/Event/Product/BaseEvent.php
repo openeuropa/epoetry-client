@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Notification\Event\Product;
 use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 
-abstract class BaseEvent extends BaseNotificationEvent
+abstract class BaseEvent extends BaseNotificationEvent implements ProductEventInterface
 {
     private Product $product;
 
@@ -18,7 +18,7 @@ abstract class BaseEvent extends BaseNotificationEvent
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\Product
+     * @inheritDoc
      */
     public function getProduct(): Product
     {

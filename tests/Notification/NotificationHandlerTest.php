@@ -58,6 +58,9 @@ class NotificationHandlerTest extends TestCase
             $this->assertEquals(false, $event->getProduct()->hasFile());
             $this->assertEquals(false, $event->getProduct()->hasFormat());
             $this->assertEquals(false, $event->getProduct()->hasName());
+            if ($event instanceof Notification\Product\ProductEventWithDeadlineInterface) {
+                $this->assertEquals(null, $event->getAcceptedDeadline());
+            }
             $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
             $productReference = $event->getProduct()->getProductReference();
             $this->assertEquals('SK', $productReference->getLanguage());
