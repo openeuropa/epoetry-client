@@ -6,6 +6,7 @@ use Http\Client\Common\PluginClient;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use OpenEuropa\EPoetry\TicketValidation\EuLogin\Type\ServiceRequest;
+use OpenEuropa\EPoetry\TicketValidation\EuLogin\Type\TicketTypes;
 use OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface;
 use Psr\Log\LoggerInterface;
 use Soap\Psr18Transport\Psr18Transport;
@@ -119,21 +120,24 @@ class EuLoginTicketValidation implements TicketValidationInterface
             $request = (new ServiceRequest())
                 ->withTicket($ticket)
                 ->withService($this->serviceUrl)
+                ->withTicketTypes((new TicketTypes())->withTicketType('SERVICE'))
+                ->withAuthenticationLevel('BASIC')
+                ->withAssuranceLevel(0)
                 ->withUserDetails(true)
             ;
             $response = $client->validate($request);
             if ($response->getAuthenticationFailure() !== null) {
-                $this->logger->error('EULogin ticket validation failed with the following error code: ' . $response->getAuthenticationFailure()->getCode());
+                $this->logger->error('EU Login ticket validation failed with the following error code: ' . $response->getAuthenticationFailure()->getCode());
                 return false;
             }
             $uid = $response->getAuthenticationSuccess()->getUid();
             if ($account !== $uid) {
-                $this->logger->error("EULogin ticket user ID is '{$uid}', while '{$account}' was expected.");
+                $this->logger->error("EU Login ticket user ID is '{$uid}', while '{$account}' was expected.");
                 return false;
             }
             return true;
         } catch (\Exception $e) {
-            $this->logger->error('EULogin ticket validation failed due to the following error: ' . $e->getMessage());
+            $this->logger->error('EU Login ticket validation failed due to the following error: ' . $e->getMessage());
             return false;
         }
     }
