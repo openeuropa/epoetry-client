@@ -115,7 +115,6 @@ trait AddNewPartToDossierTrait
         return (new AddNewPartToDossier())
             ->setDossier($dossierReference)
             ->setRequestDetails($requestDetails)
-            ->setApplicationName('application1')
-            ->setTemplateName('DEFAULT');
+            ->setApplicationName('application1');
     }
 }

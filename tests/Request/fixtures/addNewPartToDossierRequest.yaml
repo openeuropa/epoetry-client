@@ -1,6 +1,5 @@
 x-default-add-new-part-to-dossier-request: &default-add-new-part-to-dossier-request
     applicationName: appname
-    templateName: DEFAULT
 
 x-default-dossier: &default-dossier
     requesterCode: DIGIT
@@ -34,6 +33,14 @@ x-default: &default
     requestDetails:
         <<: *default-request-details
 
+x-default-with-template-name: &default-with-template-name
+    <<: *default-add-new-part-to-dossier-request
+    templateName: DEFAULT
+    dossier:
+        <<: *default-dossier
+    requestDetails:
+        <<: *default-request-details
+
 tests:
     -   data:
             <<: *default
@@ -54,11 +61,9 @@ tests:
             templateName: ''
         expectations:
             assertions:
-                - count(violations) === 2
-                - violations.get(0).getMessage() === 'This value should not be blank.'
+                - count(violations) === 1
+                - strpos(violations.get(0).getMessage(), 'Choose a valid template name') === 0
                 - violations.get(0).getPropertyPath() === 'templateName'
-                - strpos(violations.get(1).getMessage(), 'Choose a valid template name') === 0
-                - violations.get(1).getPropertyPath() === 'templateName'
     -   data:
             <<: *default
             templateName: wrong value
@@ -213,7 +218,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 title: ''
@@ -223,7 +228,7 @@ tests:
                 - violations.get(0).getMessage() === 'This value is too short. It should have 1 character or more.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.title'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 title: 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -233,7 +238,7 @@ tests:
                 - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.title'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 internalReference: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -243,7 +248,7 @@ tests:
                 - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.internalReference'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 requestedDeadline: '2020-07-01T11:51:00+01:00'
@@ -253,7 +258,7 @@ tests:
                 - violations.get(0).getMessage() === '"requestedDeadline" cannot be in the past.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 title: Request title
                 destination: PUBLIC
@@ -278,7 +283,7 @@ tests:
                 - violations.get(0).getMessage() === '"requestedDeadline" is required.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.requestedDeadline'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 workflowCode: wrong workflow code
@@ -288,7 +293,7 @@ tests:
                 - violations.get(0).getMessage() === '"workflowCode" "wrong workflow code" is not allowed for template "DEFAULT".'
                 - strpos(violations.get(1).getMessage(), 'Choose a valid workflow code or set empty value') === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: wrong description
@@ -297,7 +302,7 @@ tests:
                 - count(violations) === 1
                 - strpos(violations.get(0).getMessage(), 'Choose a valid destination value') === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: EM
@@ -305,7 +310,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: EXT
@@ -313,7 +318,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: IE
@@ -321,7 +326,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: INTERNE
@@ -329,7 +334,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 destination: JO
@@ -337,7 +342,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 sentViaRue: true
@@ -361,7 +366,7 @@ tests:
                 - violations.get(0).getMessage() === '"sentViaRue" cannot be set to "true" for the following "RSE" product type.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.sentViaRue'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 sentViaRue: true
@@ -370,7 +375,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: wrong value
@@ -379,7 +384,7 @@ tests:
                 - count(violations) === 1
                 - strpos(violations.get(0).getMessage(), 'Choose a valid procedure value') === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: DEGHP
@@ -387,7 +392,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: NEANT
@@ -395,7 +400,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: PROAC
@@ -403,7 +408,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: PROCD
@@ -411,7 +416,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: PROCE
@@ -419,7 +424,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: PROCH
@@ -427,7 +432,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: PROCO
@@ -435,7 +440,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: REUNAU
@@ -443,7 +448,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 procedure: REUNCS
@@ -451,7 +456,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 slaAnnex: slaAnnex wrong value
@@ -461,7 +466,7 @@ tests:
                 - 'violations.get(0).getMessage() === "Choose a valid \"slaAnnex\" value: NO, ANNEX8A, ANNEX8B."'
                 - violations.get(0).getPropertyPath() === 'requestDetails.slaAnnex'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 slaAnnex: NO
@@ -469,7 +474,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 slaAnnex: ANNEX8A
@@ -477,7 +482,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 slaAnnex: ANNEX8B
@@ -487,7 +492,7 @@ tests:
                 - violations.get(0).getMessage() === '"slaCommitment" value is required if "slaAnnex" is ANNEX8B.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.slaCommitment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 slaAnnex: ANNEX8B
@@ -496,7 +501,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 comment: 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -505,7 +510,7 @@ tests:
                 - count(violations) === 1
                 - violations.get(0).getMessage() === 'This value is too long. It should have 1700 characters or less.'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 comment: Test comment
@@ -513,7 +518,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: wrong value
@@ -522,7 +527,7 @@ tests:
                 - count(violations) === 1
                 - strpos(violations.get(0).getMessage(), 'Choose a valid accessible to value') === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: CONTACTS
@@ -530,7 +535,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: UNIT
@@ -538,7 +543,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: DIR
@@ -546,7 +551,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: DG
@@ -554,7 +559,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 accessibleTo: ON_BEHALF_DG
@@ -562,7 +567,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword1: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -571,7 +576,7 @@ tests:
                 - count(violations) === 1
                 - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword1: Keyword 1
@@ -579,7 +584,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword2: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -588,7 +593,7 @@ tests:
                 - count(violations) === 1
                 - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword2: Keyword 2
@@ -596,7 +601,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword3: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -605,7 +610,7 @@ tests:
                 - count(violations) === 1
                 - violations.get(0).getMessage() === 'This value is too long. It should have 100 characters or less.'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 keyword3: Keyword 3
@@ -613,7 +618,7 @@ tests:
             assertions:
                 - count(violations) === 0
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 products:
@@ -628,7 +633,7 @@ tests:
                 - violations.get(1).getMessage() === 'This value should not be null.'
                 - violations.get(1).getPropertyPath() === 'requestDetails.products.product[0].requestedDeadline'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 originalDocument:
@@ -641,7 +646,7 @@ tests:
                 - violations.get(0).getMessage() === 'Product list must not include language "FR" since it is defined as a single source language in the "linguisticSections"'
                 - violations.get(0).getPropertyPath() === 'requestDetails.products.product[0]'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -654,7 +659,7 @@ tests:
                 - violations.get(1).getMessage() === 'This value should not be blank.'
                 - violations.get(1).getPropertyPath() === 'requestDetails.auxiliaryDocuments.srcDocument.content'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -668,7 +673,7 @@ tests:
                 - violations.get(0).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(0).getPropertyPath() === 'requestDetails.auxiliaryDocuments.srcDocument.comment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -688,7 +693,7 @@ tests:
                 - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(2).getPropertyPath() === 'requestDetails.auxiliaryDocuments.referenceDocuments.document[1].comment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -705,7 +710,7 @@ tests:
                 - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(2).getPropertyPath() === 'requestDetails.auxiliaryDocuments.spotDocument.comment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -724,7 +729,7 @@ tests:
                 - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(2).getPropertyPath() === 'requestDetails.auxiliaryDocuments.traxDocuments.document[0].comment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             requestDetails:
                 <<: *default-request-details
                 auxiliaryDocuments:
@@ -743,7 +748,7 @@ tests:
                 - violations.get(2).getMessage() === 'This value is too long. It should have 500 characters or less.'
                 - violations.get(2).getPropertyPath() === 'requestDetails.auxiliaryDocuments.prtDocuments.document[0].comment'
     -   data:
-            <<: *default
+            <<: *default-with-template-name
             dossier:
                 <<: *default-dossier
                 requesterCode: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
