@@ -2,18 +2,16 @@
 
 namespace Notification;
 
+namespace OpenEuropa\EPoetry\Tests\Notification;
+
 use GuzzleHttp\Psr7\Request;
-use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event as Notification;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
 use OpenEuropa\EPoetry\Notification\Type\RequestReference;
 use OpenEuropa\EPoetry\NotificationServerFactory;
-use OpenEuropa\EPoetry\Serializer\Serializer;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
-use Psr\Log\LoggerInterface;
 use Psr\Log\Test\TestLogger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,23 +20,8 @@ use Symfony\Contracts\EventDispatcher\Event;
 /**
  * Test SOAP notification handler.
  */
-class NotificationHandlerTest extends TestCase
+class NotificationHandlerTest extends BaseNotificationTest
 {
-
-    protected Serializer $serializer;
-
-    protected LoggerInterface $logger;
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->serializer = new Serializer();
-        $this->logger = new Logger('test');
-    }
 
     /**
      * Test product status changes notification events.

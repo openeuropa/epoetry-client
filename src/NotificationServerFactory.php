@@ -5,6 +5,8 @@ namespace OpenEuropa\EPoetry;
 use GuzzleHttp\Psr7\Response;
 use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
+use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
+use OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
 use Psr\Http\Message\RequestInterface;
@@ -15,6 +17,9 @@ use Soap\ExtSoapEngine\ExtSoapOptionsResolverFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Soap\ExtSoapEngine\Configuration\TypeConverter;
+use VeeWee\Xml\Dom\Traverser\Visitor\RemoveNamespaces;
+use function VeeWee\Xml\Dom\Configurator\traverse;
+use function VeeWee\Xml\Encoding\xml_decode;
 
 class NotificationServerFactory
 {
@@ -92,11 +97,11 @@ class NotificationServerFactory
             $server->handle($request->getBody()->getContents());
             $xml = ob_get_contents();
             ob_end_clean();
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             // Make sure we clean the opened buffer, if an exception occurred,
             // then throw the caught exception.
             ob_end_clean();
-            throw $e;
+            throw new NotificationException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         $response = new Response(200, ['content-type' => 'text/xml'], $xml);
@@ -114,6 +119,41 @@ class NotificationServerFactory
     public function getWsdl(): string
     {
         return file_get_contents($this->getEncodedWsdl());
+    }
+
+    /**
+     * Extract proxy ticket.
+     *
+     * @param \Psr\Http\Message\RequestInterface $request
+     *   Notification request.
+     *
+     * @return string
+     *
+     * @throws \OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException
+     */
+    private function extractTicket(RequestInterface $request): string
+    {
+        if ($request->hasHeader('SOAPAction') === false) {
+            throw new NotificationValidationException('Header "SOAPAction" is missing from notification request.');
+        }
+        $header = $request->getHeaderLine('SOAPAction');
+        if ($header !== 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest') {
+            throw new NotificationValidationException('Header "SOAPAction" must be set to "http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest"');
+        }
+        $body = $request->getBody()->getContents();
+        try {
+            $data = xml_decode($body, traverse(new RemoveNamespaces()));
+        } catch (\Throwable $exception) {
+            throw new NotificationValidationException('Request body is not a valid XML.', $exception->getCode(), $exception);
+        }
+        if (!isset($data['Envelope']['Header']['ProxyTicket'])) {
+            throw new NotificationValidationException('Request body element <ProxyTicket/> not found.');
+        }
+        $ticket = trim($data['Envelope']['Header']['ProxyTicket']);
+        if (empty($ticket)) {
+            throw new NotificationValidationException('Request body element <ProxyTicket/> found, but empty.');
+        }
+        return $ticket;
     }
 
     /**
