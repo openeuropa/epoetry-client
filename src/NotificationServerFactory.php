@@ -9,6 +9,7 @@ use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
+use OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -43,7 +44,7 @@ class NotificationServerFactory
      *
      * @var LoggerInterface
      */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * Serializer service.
@@ -53,6 +54,13 @@ class NotificationServerFactory
     protected SerializerInterface $serializer;
 
     /**
+     * Ticket validation service.
+     *
+     * @var \OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface
+     */
+    protected TicketValidationInterface $ticketValidation;
+
+    /**
      * Constructs NotificationServerFactory object.
      *
      * @param string $callback
@@ -60,12 +68,13 @@ class NotificationServerFactory
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Symfony\Component\Serializer\SerializerInterface $serializer
      */
-    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer)
+    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer, TicketValidationInterface $ticketValidation)
     {
         $this->callback = $callback;
         $this->eventDispatcher = $eventDispatcher;
         $this->logger = $logger;
         $this->serializer = $serializer;
+        $this->ticketValidation = $ticketValidation;
     }
 
     /**
@@ -77,6 +86,15 @@ class NotificationServerFactory
      */
     public function handle(RequestInterface $request): ResponseInterface
     {
+        // Extract proxy ticket, if any.
+        $ticket = $this->extractTicket($request);
+        if ($this->ticketValidation->validate($ticket) === false) {
+            $this->logger->error('Ticket validation failed for {ticket}.', [
+                'ticket' => $ticket,
+            ]);
+            throw new NotificationException('Ticket validation failed.');
+        }
+
         $formatter = new FullHttpMessageFormatter(null);
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
         $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([

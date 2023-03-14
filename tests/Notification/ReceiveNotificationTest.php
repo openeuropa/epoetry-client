@@ -7,6 +7,7 @@ namespace OpenEuropa\EPoetry\Tests\Notification;
 use GuzzleHttp\Psr7\Request;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\NotificationServerFactory;
+use OpenEuropa\EPoetry\Tests\TicketValidation\NoopTicketValidation;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
@@ -58,7 +59,7 @@ final class ReceiveNotificationTest extends BaseNotificationTest
      */
     public function testExtractTicket(array $headers, string $body, string $exception): void
     {
-        $server = new NotificationServerFactory('', new EventDispatcher(), $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', new EventDispatcher(), $this->logger, $this->serializer, new NoopTicketValidation());
         $this->expectException(NotificationException::class);
 
         $request = new Request('POST', 'http://foo', $headers, $body);

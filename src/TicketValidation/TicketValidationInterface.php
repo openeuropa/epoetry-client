@@ -10,17 +10,12 @@ namespace OpenEuropa\EPoetry\TicketValidation;
 interface TicketValidationInterface
 {
     /**
-     * Validate given ticket against given job account.
+     * Validate given ticket.
      *
-     * Validation is successful if the implementation class can establish that
-     * the given ticket is valid, and it identifies the given job account.
-     *
-     * @param string $account
-     *   Job account identifier.
      * @param string $ticket
      *   Ticket to be validated.
      *
      * @return bool
      */
-    public function validate(string $account, string $ticket): bool;
+    public function validate(string $ticket): bool;
 }

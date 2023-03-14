@@ -21,28 +21,24 @@ class EuLoginTicketValidation implements TicketValidationInterface
     private string $serviceUrl;
 
     /**
-     * Path to client certificate in PK12 format.
-     *
-     * @var string
-     */
-    private string $certFilepath;
-
-    /**
-     * Local certificate password.
-     *
-     * @var string
-     */
-    private string $certPassword;
-
-    /**
      * Endpoint of EU Login service.
      *
-     * Acceptance: https://ecasa.cc.cec.eu.int:7003
-     * Production: https://ecas.cc.cec.eu.int:7003
+     * Acceptance: https://ecas.acceptance.ec.europa.eu
+     * Production: https://ecas.ec.europa.eu
      *
      * @var string
      */
     private string $euLoginBasePath;
+
+    /**
+     * Job account of ePoetry service.
+     *
+     * A ticket is considered valid if it is associated with a job account
+     * that matches this one.
+     *
+     * @var string
+     */
+    private string $jobAccount;
 
     private RequestFactoryInterface $requestFactory;
 
@@ -55,14 +51,16 @@ class EuLoginTicketValidation implements TicketValidationInterface
      *
      * @param string $serviceUrl
      * @param string $euLoginBasePath
+     * @param string $jobAccount
      * @param \Psr\Http\Message\RequestFactoryInterface $requestFactory
      * @param \Psr\Http\Client\ClientInterface $httpClient
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $serviceUrl, string $euLoginBasePath, RequestFactoryInterface $requestFactory, ClientInterface $httpClient, LoggerInterface $logger)
+    public function __construct(string $serviceUrl, string $euLoginBasePath, string $jobAccount, RequestFactoryInterface $requestFactory, ClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->serviceUrl = $serviceUrl;
         $this->euLoginBasePath = $euLoginBasePath;
+        $this->jobAccount = $jobAccount;
         $this->requestFactory = $requestFactory;
         $this->httpClient = $httpClient;
         $this->logger = $logger;
@@ -71,7 +69,7 @@ class EuLoginTicketValidation implements TicketValidationInterface
     /**
      * {@inheritDoc}
      */
-    public function validate(string $account, string $ticket): bool
+    public function validate(string $ticket): bool
     {
         $pluginClient = new PluginClient($this->httpClient, [
             new LoggerPlugin($this->logger)
@@ -108,9 +106,9 @@ class EuLoginTicketValidation implements TicketValidationInterface
             // If ticket returns a different user than the one expected,
             // log error and fail validation.
             $user = $serviceResponse['serviceResponse']['authenticationSuccess']['user'];
-            if ($account !== $user) {
+            if ($this->jobAccount !== $user) {
                 $this->logger->error('EU Login ticket account mismatched: {account} was expected, while {user} was returned.', [
-                    'account' => $account,
+                    'account' => $this->jobAccount,
                     'user' => $user,
                 ]);
                 return false;
