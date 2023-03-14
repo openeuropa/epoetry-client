@@ -35,9 +35,8 @@ class ValidateTicketCommand extends Command
     protected function configure()
     {
         $this
-            ->addArgument('account', InputArgument::REQUIRED, 'Job account.')
             ->addArgument('ticket', InputArgument::REQUIRED, 'Ticket to be validated.')
-            ->setDescription('Validate ticket for given job account.');
+            ->setDescription('Validate given ticket.');
     }
 
     /**
@@ -45,7 +44,7 @@ class ValidateTicketCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->validation->validate($input->getArgument('account'), $input->getArgument('ticket')));
+        $output->writeln($this->validation->validate($input->getArgument('ticket')));
         return 0;
     }
 }
