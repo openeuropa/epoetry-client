@@ -36,6 +36,9 @@ class EuLoginTicketValidation implements TicketValidationInterface
      * A ticket is considered valid if it is associated with a job account
      * that matches this one.
      *
+     * Check the following documentation for the actual value:
+     * @link https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436
+     *
      * @var string
      */
     private string $jobAccount;
