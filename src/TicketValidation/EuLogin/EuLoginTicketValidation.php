@@ -110,9 +110,9 @@ class EuLoginTicketValidation implements TicketValidationInterface
             // log error and fail validation.
             $user = $serviceResponse['serviceResponse']['authenticationSuccess']['user'];
             if ($this->jobAccount !== $user) {
-                $this->logger->error('EU Login ticket account mismatched: {account} was expected, while {user} was returned.', [
-                    'account' => $this->jobAccount,
-                    'user' => $user,
+                $this->logger->error('EU Login ticket account mismatched: {expected} was expected, while {actual} was returned.', [
+                    'expected' => $this->jobAccount,
+                    'actual' => $user,
                 ]);
                 return false;
             }
