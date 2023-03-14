@@ -72,7 +72,7 @@ services:
   eu_login_ticket_validation:
     class: \OpenEuropa\EPoetry\TicketValidation\EuLogin\EuLoginTicketValidation
     arguments:
-      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL)%"
+      $callbackUrl: "%env(string:EPOETRY_CONSOLE_CALLBACK_URL)%"
       $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLIENT_TICKET_VALIDATION_EU_LOGIN_BASEPATH)%"
       $jobAccount: "%env(string:EPOETRY_CONSOLE_CLIENT_TICKET_VALIDATION_JOB_ACCOUNT)%"
       $requestFactory: "@http_request_factory"

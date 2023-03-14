@@ -12,13 +12,11 @@ use Psr\Http\Message\RequestFactoryInterface;
 class EuLoginTicketValidation implements TicketValidationInterface
 {
     /**
-     * Service URL to validate a ticket for.
-     *
-     * For example: https://webgate.acceptance.ec.europa.eu/epoetrytst/epoetry/webservices/dgtService
+     * Full URL handing incoming ePoetry notifications.
      *
      * @var string
      */
-    private string $serviceUrl;
+    private string $callbackUrl;
 
     /**
      * Endpoint of EU Login service.
@@ -52,16 +50,16 @@ class EuLoginTicketValidation implements TicketValidationInterface
     /**
      * Constructor.
      *
-     * @param string $serviceUrl
+     * @param string $callbackUrl
      * @param string $euLoginBasePath
      * @param string $jobAccount
      * @param \Psr\Http\Message\RequestFactoryInterface $requestFactory
      * @param \Psr\Http\Client\ClientInterface $httpClient
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(string $serviceUrl, string $euLoginBasePath, string $jobAccount, RequestFactoryInterface $requestFactory, ClientInterface $httpClient, LoggerInterface $logger)
+    public function __construct(string $callbackUrl, string $euLoginBasePath, string $jobAccount, RequestFactoryInterface $requestFactory, ClientInterface $httpClient, LoggerInterface $logger)
     {
-        $this->serviceUrl = $serviceUrl;
+        $this->callbackUrl = $callbackUrl;
         $this->euLoginBasePath = $euLoginBasePath;
         $this->jobAccount = $jobAccount;
         $this->requestFactory = $requestFactory;
@@ -82,7 +80,7 @@ class EuLoginTicketValidation implements TicketValidationInterface
             $uri = sprintf(
                 '%s/cas/strictValidate?service=%s&format=json&ticket=%s',
                 $this->euLoginBasePath,
-                $this->serviceUrl,
+                $this->callbackUrl,
                 $ticket
             );
             $request = $this->requestFactory->createRequest('GET', $uri);
