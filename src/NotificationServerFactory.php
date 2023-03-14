@@ -155,7 +155,9 @@ class NotificationServerFactory
             throw new NotificationValidationException('Header "SOAPAction" is missing from notification request.');
         }
         $header = $request->getHeaderLine('SOAPAction');
-        if ($header !== 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest') {
+        // We cannot use strict comparison since header value might, at times,
+        // be wrapped by double quotes.
+        if (str_contains($header, 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest') === false) {
             throw new NotificationValidationException('Header "SOAPAction" must be set to "http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest"');
         }
         $body = $request->getBody()->getContents();
