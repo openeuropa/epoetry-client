@@ -2,18 +2,17 @@
 
 namespace Notification;
 
+namespace OpenEuropa\EPoetry\Tests\Notification;
+
 use GuzzleHttp\Psr7\Request;
-use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event as Notification;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
 use OpenEuropa\EPoetry\Notification\Type\RequestReference;
 use OpenEuropa\EPoetry\NotificationServerFactory;
-use OpenEuropa\EPoetry\Serializer\Serializer;
-use PHPUnit\Framework\TestCase;
+use OpenEuropa\EPoetry\Tests\TicketValidation\NoopTicketValidation;
 use Psr\Http\Message\RequestInterface;
-use Psr\Log\LoggerInterface;
 use Psr\Log\Test\TestLogger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,23 +21,8 @@ use Symfony\Contracts\EventDispatcher\Event;
 /**
  * Test SOAP notification handler.
  */
-class NotificationHandlerTest extends TestCase
+class NotificationHandlerTest extends BaseNotificationTest
 {
-
-    protected Serializer $serializer;
-
-    protected LoggerInterface $logger;
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->serializer = new Serializer();
-        $this->logger = new Logger('test');
-    }
 
     /**
      * Test product status changes notification events.
@@ -69,7 +53,7 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
@@ -102,8 +86,9 @@ RESPONSE, trim($response->getBody()->getContents()));
                 'class' => $class,
                 'status' => $status,
                 'message' => sprintf(<<<MESSAGE
+<?xml version='1.0' encoding='UTF-8'?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -161,7 +146,7 @@ MESSAGE, $status),
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
@@ -190,8 +175,9 @@ RESPONSE, trim($response->getBody()->getContents()));
                 'class' => $class,
                 'status' => $status,
                 'message' => sprintf(<<<MESSAGE
+<?xml version='1.0' encoding='UTF-8'?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -246,7 +232,7 @@ MESSAGE, $status),
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequest('productDeliverySent.xml');
         $response = $server->handle($request);
 
@@ -278,7 +264,7 @@ RESPONSE, trim($response->getBody()->getContents()));
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
@@ -309,7 +295,7 @@ RESPONSE, trim($response->getBody()->getContents()));
                 'status' => $status,
                 'message' => sprintf(<<<MESSAGE
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -349,10 +335,10 @@ MESSAGE, $status),
 
         // We don't set up any even handler, so to trigger the error above.
         $eventDispatcher = new EventDispatcher();
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml(<<<MESSAGE
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -391,7 +377,7 @@ MESSAGE);
         }));
 
         $logger = new TestLogger();
-        $server = new NotificationServerFactory('', $eventDispatcher, $logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequest('productDeliverySent.xml');
         $server->handle($request);
 
@@ -408,7 +394,7 @@ content-type: text/xml; charset=utf-8
 SOAPAction: http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest
 
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
