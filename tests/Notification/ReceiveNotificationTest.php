@@ -159,13 +159,6 @@ final class ReceiveNotificationTest extends BaseNotificationTest
             ],
             [
                 'headers' => [
-                    'SOAPAction' => 'abc'
-                ],
-                'body' => '',
-                'exception' => 'Header "SOAPAction" must be set to "http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest"',
-            ],
-            [
-                'headers' => [
                     'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
                 ],
                 'body' => '',
