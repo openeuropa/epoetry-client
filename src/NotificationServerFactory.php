@@ -149,6 +149,7 @@ class NotificationServerFactory
             throw new NotificationValidationException('Header "SOAPAction" is missing from notification request.');
         }
         $body = $request->getBody()->getContents();
+        $request->getBody()->rewind();
         try {
             xml_decode($body, traverse(new RemoveNamespaces()));
         } catch (\Throwable $exception) {
