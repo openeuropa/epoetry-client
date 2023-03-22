@@ -86,12 +86,9 @@ class NotificationServerFactory
      */
     public function handle(RequestInterface $request): ResponseInterface
     {
-        // Extract proxy ticket, if any.
-        $ticket = $this->extractTicket($request);
-        if ($this->ticketValidation->validate($ticket) === false) {
-            $this->logger->error('Ticket validation failed for {ticket}.', [
-                'ticket' => $ticket,
-            ]);
+        // Validate incoming request.
+        $this->validateRequest($request);
+        if ($this->ticketValidation->validate($request) === false) {
             throw new NotificationException('Ticket validation failed.');
         }
 
@@ -140,16 +137,14 @@ class NotificationServerFactory
     }
 
     /**
-     * Extract proxy ticket.
+     * Validate incoming notification requests.
      *
      * @param \Psr\Http\Message\RequestInterface $request
      *   Notification request.
      *
-     * @return string
-     *
      * @throws \OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException
      */
-    private function extractTicket(RequestInterface $request): string
+    private function validateRequest(RequestInterface $request)
     {
         if ($request->hasHeader('SOAPAction') === false) {
             throw new NotificationValidationException('Header "SOAPAction" is missing from notification request.');
@@ -162,18 +157,10 @@ class NotificationServerFactory
         }
         $body = $request->getBody()->getContents();
         try {
-            $data = xml_decode($body, traverse(new RemoveNamespaces()));
+            xml_decode($body, traverse(new RemoveNamespaces()));
         } catch (\Throwable $exception) {
             throw new NotificationValidationException('Request body is not a valid XML.', $exception->getCode(), $exception);
         }
-        if (!isset($data['Envelope']['Header']['ProxyTicket'])) {
-            throw new NotificationValidationException('Request body element <ProxyTicket/> not found.');
-        }
-        $ticket = trim($data['Envelope']['Header']['ProxyTicket']);
-        if (empty($ticket)) {
-            throw new NotificationValidationException('Request body element <ProxyTicket/> found, but empty.');
-        }
-        return $ticket;
     }
 
     /**

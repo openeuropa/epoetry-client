@@ -4,10 +4,15 @@ namespace OpenEuropa\EPoetry\TicketValidation\EuLogin;
 
 use Http\Client\Common\PluginClient;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
+use OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException;
 use OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
+use VeeWee\Xml\Dom\Traverser\Visitor\RemoveNamespaces;
+use function VeeWee\Xml\Dom\Configurator\traverse;
+use function VeeWee\Xml\Encoding\xml_decode;
 
 class EuLoginTicketValidation implements TicketValidationInterface
 {
@@ -70,13 +75,14 @@ class EuLoginTicketValidation implements TicketValidationInterface
     /**
      * {@inheritDoc}
      */
-    public function validate(string $ticket): bool
+    public function validate(RequestInterface $request): bool
     {
         $pluginClient = new PluginClient($this->httpClient, [
             new LoggerPlugin($this->logger)
         ]);
 
         try {
+            $ticket = $this->extractTicket($request);
             $uri = sprintf(
                 '%s/cas/strictValidate?service=%s&format=json&ticket=%s',
                 $this->euLoginBasePath,
@@ -124,5 +130,28 @@ class EuLoginTicketValidation implements TicketValidationInterface
             ]);
             return false;
         }
+    }
+
+    /**
+     * Extract ticket from request.
+     *
+     * @param \Psr\Http\Message\RequestInterface $request
+     *
+     * @return string
+     *
+     * @throws \OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException
+     */
+    private function extractTicket(RequestInterface $request): string
+    {
+        $body = $request->getBody()->getContents();
+        $data = xml_decode($body, traverse(new RemoveNamespaces()));
+        if (!isset($data['Envelope']['Header']['ProxyTicket'])) {
+            throw new NotificationValidationException('Request body element <ProxyTicket/> not found.');
+        }
+        $ticket = trim($data['Envelope']['Header']['ProxyTicket']);
+        if (empty($ticket)) {
+            throw new NotificationValidationException('Request body element <ProxyTicket/> found, but empty.');
+        }
+        return $ticket;
     }
 }

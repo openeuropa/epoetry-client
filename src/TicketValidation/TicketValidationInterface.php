@@ -2,6 +2,8 @@
 
 namespace OpenEuropa\EPoetry\TicketValidation;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Interface for ePoetry ticket validation plugins.
  *
@@ -10,12 +12,12 @@ namespace OpenEuropa\EPoetry\TicketValidation;
 interface TicketValidationInterface
 {
     /**
-     * Validate given ticket.
+     * Authenticate given notification request.
      *
-     * @param string $ticket
-     *   Ticket to be validated.
+     * @param \Psr\Http\Message\RequestInterface $request
+     *   Notification request.
      *
      * @return bool
      */
-    public function validate(string $ticket): bool;
+    public function validate(RequestInterface $request): bool;
 }

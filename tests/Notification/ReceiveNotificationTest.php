@@ -4,10 +4,14 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests\Notification;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
+use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\NotificationServerFactory;
 use OpenEuropa\EPoetry\Tests\TicketValidation\NoopTicketValidation;
+use OpenEuropa\EPoetry\TicketValidation\EuLogin\EuLoginTicketValidation;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
@@ -53,54 +57,28 @@ final class ReceiveNotificationTest extends BaseNotificationTest
     }
 
     /**
-     * Test ticket extraction from incoming notification requests.
+     * Test ticket extraction.
      *
      * @dataProvider extractTicketDataProvider
      */
     public function testExtractTicket(array $headers, string $body, string $exception): void
     {
-        $server = new NotificationServerFactory('', new EventDispatcher(), $this->logger, $this->serializer, new NoopTicketValidation());
+        $validation = new EuLoginTicketValidation('', '', '', new HttpFactory(), new Client(), new Logger('foo'));
         $this->expectException(NotificationException::class);
 
         $request = new Request('POST', 'http://foo', $headers, $body);
         $this->expectExceptionMessage($exception);
-        $this->getMethod(NotificationServerFactory::class, 'extractTicket')->invoke($server, $request);
+        $this->getMethod(EuLoginTicketValidation::class, 'extractTicket')->invoke($validation, $request);
     }
 
     /**
-     * Data provider for testExtractTicketDataProvider().
+     * Data provider for testExtractTicket().
      *
      * @return array[]
      */
     public function extractTicketDataProvider(): array
     {
         return [
-            [
-                'headers' => [],
-                'body' => '',
-                'exception' => 'Header "SOAPAction" is missing from notification request.',
-            ],
-            [
-                'headers' => [
-                    'SOAPAction' => 'abc'
-                ],
-                'body' => '',
-                'exception' => 'Header "SOAPAction" must be set to "http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest"',
-            ],
-            [
-                'headers' => [
-                    'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
-                ],
-                'body' => '',
-                'exception' => 'Request body is not a valid XML.',
-            ],
-            [
-                'headers' => [
-                    'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
-                ],
-                'body' => '{"foo": "bar"}',
-                'exception' => 'Request body is not a valid XML.',
-            ],
             [
                 'headers' => [
                     'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
@@ -147,6 +125,58 @@ final class ReceiveNotificationTest extends BaseNotificationTest
                                </S:Body>
                            </S:Envelope>',
                 'exception' => 'Request body element <ProxyTicket/> found, but empty.',
+            ],
+        ];
+    }
+
+    /**
+     * Test validation of incoming notification requests.
+     *
+     * @dataProvider validateRequestDataProvider
+     */
+    public function testValidateRequest(array $headers, string $body, string $exception): void
+    {
+        $server = new NotificationServerFactory('', new EventDispatcher(), $this->logger, $this->serializer, new NoopTicketValidation());
+        $this->expectException(NotificationException::class);
+
+        $request = new Request('POST', 'http://foo', $headers, $body);
+        $this->expectExceptionMessage($exception);
+        $this->getMethod(NotificationServerFactory::class, 'validateRequest')->invoke($server, $request);
+    }
+
+    /**
+     * Data provider for testValidateRequest().
+     *
+     * @return array[]
+     */
+    public function validateRequestDataProvider(): array
+    {
+        return [
+            [
+                'headers' => [],
+                'body' => '',
+                'exception' => 'Header "SOAPAction" is missing from notification request.',
+            ],
+            [
+                'headers' => [
+                    'SOAPAction' => 'abc'
+                ],
+                'body' => '',
+                'exception' => 'Header "SOAPAction" must be set to "http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest"',
+            ],
+            [
+                'headers' => [
+                    'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
+                ],
+                'body' => '',
+                'exception' => 'Request body is not a valid XML.',
+            ],
+            [
+                'headers' => [
+                    'SOAPAction' => 'http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest'
+                ],
+                'body' => '{"foo": "bar"}',
+                'exception' => 'Request body is not a valid XML.',
             ],
         ];
     }
