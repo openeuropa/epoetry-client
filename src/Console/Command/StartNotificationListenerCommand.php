@@ -98,7 +98,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
             return;
         }
         $this->logger->info('Returning successful message.');
-        $event->setSuccessResponse('The notification handled successfully.');
+        $event->setSuccessResponse('The notification was handled successfully.');
     }
 
     /**

@@ -38,7 +38,7 @@ services:
     class: \Symfony\Component\EventDispatcher\EventDispatcher
 
   http_request_factory:
-    class: \GuzzleHttp\Psr7\HttpFactory
+    class: \Nyholm\Psr7\Factory\Psr17Factory
 
   http_client:
     class: \GuzzleHttp\Client
