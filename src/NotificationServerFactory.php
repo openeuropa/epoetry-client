@@ -56,9 +56,9 @@ class NotificationServerFactory
     /**
      * Ticket validation service.
      *
-     * @var \OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface
+     * @var \OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface|NULL
      */
-    protected TicketValidationInterface $ticketValidation;
+    protected ?TicketValidationInterface $ticketValidation;
 
     /**
      * Constructs NotificationServerFactory object.
@@ -67,8 +67,9 @@ class NotificationServerFactory
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Symfony\Component\Serializer\SerializerInterface $serializer
+     * @param \OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface|NULL $ticketValidation
      */
-    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer, TicketValidationInterface $ticketValidation)
+    public function __construct(string $callback, EventDispatcherInterface $eventDispatcher, LoggerInterface $logger, SerializerInterface $serializer, ?TicketValidationInterface $ticketValidation = null)
     {
         $this->callback = $callback;
         $this->eventDispatcher = $eventDispatcher;
@@ -88,7 +89,7 @@ class NotificationServerFactory
     {
         // Validate incoming request.
         $this->validateRequest($request);
-        if ($this->ticketValidation->validate($request) === false) {
+        if ($this->ticketValidation instanceof TicketValidationInterface && $this->ticketValidation->validate($request) === false) {
             throw new NotificationException('Ticket validation failed.');
         }
 
