@@ -22,12 +22,13 @@
         "veewee/xml": "^1.0"
     },
     "require-dev": {
-        "php-http/guzzle7-adapter": "~1",
         "doctrine/annotations": "^1.13",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
         "openeuropa/code-review": "^2.0",
         "openeuropa/task-runner": "^2@alpha",
+        "php-http/discovery": "^1.15",
+        "php-http/guzzle7-adapter": "~1",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.5",
