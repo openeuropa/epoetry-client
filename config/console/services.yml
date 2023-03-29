@@ -14,6 +14,7 @@ services:
   Symfony\Component\EventDispatcher\EventDispatcherInterface: "@event_dispatcher"
 #  OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@openid_authentication"
   OpenEuropa\EPoetry\Authentication\AuthenticationInterface: "@client_cert_authentication"
+  OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface: "@eu_login_ticket_validation"
 
   OpenEuropa\EPoetry\:
     resource: '../../src'
@@ -35,6 +36,12 @@ services:
 
   event_dispatcher:
     class: \Symfony\Component\EventDispatcher\EventDispatcher
+
+  http_request_factory:
+    class: \GuzzleHttp\Psr7\HttpFactory
+
+  http_client:
+    class: \GuzzleHttp\Client
 
   logger:
     class: \Monolog\Logger
@@ -60,4 +67,14 @@ services:
       $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
       $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
       $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLIENT_EU_LOGIN_BASEPATH)%"
+      $logger: "@logger"
+
+  eu_login_ticket_validation:
+    class: \OpenEuropa\EPoetry\TicketValidation\EuLogin\EuLoginTicketValidation
+    arguments:
+      $callbackUrl: "%env(string:EPOETRY_CONSOLE_CALLBACK_URL)%"
+      $euLoginBasePath: "%env(string:EPOETRY_CONSOLE_CLIENT_TICKET_VALIDATION_EU_LOGIN_BASEPATH)%"
+      $jobAccount: "%env(string:EPOETRY_CONSOLE_CLIENT_TICKET_VALIDATION_JOB_ACCOUNT)%"
+      $requestFactory: "@http_request_factory"
+      $httpClient: "@http_client"
       $logger: "@logger"

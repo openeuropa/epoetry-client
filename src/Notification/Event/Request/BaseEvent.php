@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Notification\Event\Request;
 use OpenEuropa\EPoetry\Notification\Event\BaseNotificationEvent;
 use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
 
-abstract class BaseEvent extends BaseNotificationEvent
+abstract class BaseEvent extends BaseNotificationEvent implements RequestEventInterface
 {
     private LinguisticRequest $linguisticRequest;
 
@@ -30,7 +30,7 @@ abstract class BaseEvent extends BaseNotificationEvent
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+     * @inheritDoc
      */
     public function getLinguisticRequest(): LinguisticRequest
     {
@@ -38,7 +38,7 @@ abstract class BaseEvent extends BaseNotificationEvent
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getPlanningAgent(): string
     {
@@ -46,7 +46,7 @@ abstract class BaseEvent extends BaseNotificationEvent
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getPlanningSector(): string
     {
@@ -54,7 +54,7 @@ abstract class BaseEvent extends BaseNotificationEvent
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getMessage(): string
     {

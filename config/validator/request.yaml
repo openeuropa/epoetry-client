@@ -283,7 +283,7 @@ OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn:
 
 OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
     constraints:
-        - OpenEuropa\EPoetry\Validation\Constraints\CreateLinguisticRequestConstraint: ~
+        - OpenEuropa\EPoetry\Validation\Constraints\AddNewPartToDossierConstraint: ~
 
     properties:
         dossier:
@@ -295,7 +295,6 @@ OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier:
         applicationName:
             - NotBlank: ~
         templateName:
-            - NotBlank: ~
             - Choice: *templateNameChoice
 
 OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest:

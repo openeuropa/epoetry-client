@@ -2,18 +2,17 @@
 
 namespace Notification;
 
+namespace OpenEuropa\EPoetry\Tests\Notification;
+
 use GuzzleHttp\Psr7\Request;
-use Monolog\Logger;
 use OpenEuropa\EPoetry\Notification\Event as Notification;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\Notification\Type\Product;
 use OpenEuropa\EPoetry\Notification\Type\ProductReference;
 use OpenEuropa\EPoetry\Notification\Type\RequestReference;
 use OpenEuropa\EPoetry\NotificationServerFactory;
-use OpenEuropa\EPoetry\Serializer\Serializer;
-use PHPUnit\Framework\TestCase;
+use OpenEuropa\EPoetry\Tests\TicketValidation\NoopTicketValidation;
 use Psr\Http\Message\RequestInterface;
-use Psr\Log\LoggerInterface;
 use ColinODell\PsrTestLogger\TestLogger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,23 +21,8 @@ use Symfony\Contracts\EventDispatcher\Event;
 /**
  * Test SOAP notification handler.
  */
-class NotificationHandlerTest extends TestCase
+class NotificationHandlerTest extends BaseNotificationTest
 {
-
-    protected Serializer $serializer;
-
-    protected LoggerInterface $logger;
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->serializer = new Serializer();
-        $this->logger = new Logger('test');
-    }
 
     /**
      * Test product status changes notification events.
@@ -58,6 +42,9 @@ class NotificationHandlerTest extends TestCase
             $this->assertEquals(false, $event->getProduct()->hasFile());
             $this->assertEquals(false, $event->getProduct()->hasFormat());
             $this->assertEquals(false, $event->getProduct()->hasName());
+            if ($event instanceof Notification\Product\ProductEventWithDeadlineInterface) {
+                $this->assertEquals(null, $event->getAcceptedDeadline());
+            }
             $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
             $productReference = $event->getProduct()->getProductReference();
             $this->assertEquals('SK', $productReference->getLanguage());
@@ -66,7 +53,7 @@ class NotificationHandlerTest extends TestCase
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
@@ -79,10 +66,6 @@ RESPONSE, trim($response->getBody()->getContents()));
 
     /**
      * Test data provider for product status change notifications.
-     *
-     * This covers all notification that do not have date-related information,
-     * such as "Ongoing", nor deliver the actual product. For those two we have
-     * separate tests.
      *
      * @return array
      */
@@ -97,13 +80,15 @@ RESPONSE, trim($response->getBody()->getContents()));
             'Requested' => Notification\Product\StatusChangeRequestedEvent::class,
             'Sent' => Notification\Product\StatusChangeSentEvent::class,
             'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
+            'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
         ] as $status => $class) {
             $data[] = [
                 'class' => $class,
                 'status' => $status,
                 'message' => sprintf(<<<MESSAGE
+<?xml version='1.0' encoding='UTF-8'?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -134,31 +119,35 @@ MESSAGE, $status),
     }
 
     /**
+     * Test product status changes notification events.
+     *
      * @runInSeparateProcess
+     * @dataProvider productStatusChangeEventsWithDeadlineDataProvider
      */
-    public function testStatusChangeOngoingEvent()
+    public function testProductStatusChangeEventsWithDeadline(string $class, string $status, string $message)
     {
         // Encapsulate assertions in an event subscriber.
         $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) {
-            $this->assertInstanceOf(Notification\Product\StatusChangeOngoingEvent::class, $event);
+        $eventDispatcher->addSubscriber($this->getSubscriber(function (Event $event) use ($class, $status) {
+            /** @var Notification\Product\BaseEventWithDeadline $event */
+            $this->assertInstanceOf($class, $event);
             $this->assertInstanceOf(Product::class, $event->getProduct());
+            $this->assertEquals($status, $event->getProduct()->getStatus());
             $this->assertInstanceOf(\DateTimeInterface::class, $event->getAcceptedDeadline());
             $this->assertEquals('Mon, 04 Apr 22 10:51:00 +0000', $event->getAcceptedDeadline()->format(\DATE_RFC822));
-            $this->assertEquals('Ongoing', $event->getProduct()->getStatus());
             $this->assertEquals(false, $event->getProduct()->hasFile());
             $this->assertEquals(false, $event->getProduct()->hasFormat());
             $this->assertEquals(false, $event->getProduct()->hasName());
             $this->assertInstanceOf(ProductReference::class, $event->getProduct()->getProductReference());
             $productReference = $event->getProduct()->getProductReference();
-            $this->assertEquals('CS', $productReference->getLanguage());
+            $this->assertEquals('SK', $productReference->getLanguage());
             $this->assertInstanceOf(RequestReference::class, $productReference->getRequestReference());
-            $this->assertEquals('AGRI-2022-81-(1)-0-TRA', $productReference->getRequestReference()->getReference());
+            $this->assertEquals('AGRI-2022-93-(0)-0-TRA', $productReference->getRequestReference()->getReference());
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
-        $request = $this->getNotificationRequest('productStatusChangeOngoing.xml');
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
+        $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
         $this->assertEquals('200', $response->getStatusCode());
@@ -167,6 +156,58 @@ MESSAGE, $status),
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://eu.europa.ec.dgt.epoetry"><SOAP-ENV:Body><ns1:receiveNotificationResponse><return><success>true</success><message>Success message.</message></return></ns1:receiveNotificationResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
 RESPONSE, trim($response->getBody()->getContents()));
     }
+
+    /**
+     * Test data provider for product status change notifications.
+     *
+     * @return array
+     */
+    public function productStatusChangeEventsWithDeadlineDataProvider(): array
+    {
+        $data = [];
+        foreach ([
+            'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
+            'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
+            'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
+            'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
+        ] as $status => $class) {
+            $data[] = [
+                'class' => $class,
+                'status' => $status,
+                'message' => sprintf(<<<MESSAGE
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
+    <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+        <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+            <notification>
+                <notificationType>ProductStatusChange</notificationType>
+                <product>
+                    <productReference>
+                        <requestReference>
+                            <requesterCode>AGRI</requesterCode>
+                            <year>2022</year>
+                            <number>93</number>
+                            <part>0</part>
+                            <version>0</version>
+                            <productType>TRA</productType>
+                        </requestReference>
+                        <language>SK</language>
+                    </productReference>
+                    <status>%s</status>
+                    <acceptedDeadline>2022-04-04T12:51:00.000+02:00</acceptedDeadline>
+                </product>
+            </notification>
+        </ns0:receiveNotification>
+    </S:Body>
+</soapenv:Envelope>
+MESSAGE, $status),
+            ];
+        }
+
+        return $data;
+    }
+
 
     /**
      * @runInSeparateProcess
@@ -191,7 +232,7 @@ RESPONSE, trim($response->getBody()->getContents()));
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequest('productDeliverySent.xml');
         $response = $server->handle($request);
 
@@ -223,7 +264,7 @@ RESPONSE, trim($response->getBody()->getContents()));
             $event->setSuccessResponse('Success message.');
         }));
 
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml($message);
         $response = $server->handle($request);
 
@@ -254,7 +295,7 @@ RESPONSE, trim($response->getBody()->getContents()));
                 'status' => $status,
                 'message' => sprintf(<<<MESSAGE
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -294,10 +335,10 @@ MESSAGE, $status),
 
         // We don't set up any even handler, so to trigger the error above.
         $eventDispatcher = new EventDispatcher();
-        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $this->logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequestByXml(<<<MESSAGE
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
@@ -336,7 +377,7 @@ MESSAGE);
         }));
 
         $logger = new TestLogger();
-        $server = new NotificationServerFactory('', $eventDispatcher, $logger, $this->serializer);
+        $server = new NotificationServerFactory('', $eventDispatcher, $logger, $this->serializer, new NoopTicketValidation());
         $request = $this->getNotificationRequest('productDeliverySent.xml');
         $server->handle($request);
 
@@ -353,7 +394,7 @@ content-type: text/xml; charset=utf-8
 SOAPAction: http://eu.europa.ec.dgt.epoetry/DgtClientNotificationReceiverWS/receiveNotificationRequest
 
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eu="http://eu.europa.ec.dgt.epoetry">
-    <soapenv:Header/>
+    <soapenv:Header><ecas:ProxyTicket xmlns:ecas="https://ecas.ec.europa.eu/cas/schemas/ws">abc</ecas:ProxyTicket></soapenv:Header>
     <S:Body xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
         <ns0:receiveNotification xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
             <notification>
