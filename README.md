@@ -15,26 +15,6 @@ A bird's-eye overview of a typical translation request workflow can be outlined 
 This project provides the necessary code (SOAP objects, middleware, etc.) to request a translation and handle incoming
 notifications from the ePoetry service.
 
-The library is built using the [PHP SOAP client project](https://github.com/phpro/soap-client) which, among other things,
-allows for the actual PHP client code to be automatically generated, given a WSDL/XSD files pair.
-
-To (re-)generate the library, run:
-
-```
-./vendor/bin/run generate:request
-./vendor/bin/run generate:notification
-./vendor/bin/run generate:authentication
-```
-
-Or by running:
-
-```
-./vendor/bin/run generate
-```
-
-Note that the method `\OpenEuropa\EPoetry\Notification\Type\RequestReference::getReference()` has been added manually,
-and it won't be automatically generated: make sure you restore it using your local Git history.
-
 ## Project overview
 
 - [`./bin/epoetry`](./bin/epoetry): CLI executable to interact with the ePoetry service
@@ -51,7 +31,8 @@ and it won't be automatically generated: make sure you restore it using your loc
 - [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files
 - [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service
 - [`./src/Request`](./src/Request):  automatically generated classes for the "Request" service
-- [`./src/Authentication`](./src/Authentication):  authentication plugins
+- [`./src/Authentication`](./src/Authentication):  authentication services
+- [`./src/TicketValidation`](./src/TicketValidation):  ticket validation services
 
 ## Authentication
 
@@ -70,7 +51,10 @@ this is required by the ePoetry service.
 Once you get your job account, you have two ways of authenticating against the service:
 
 - Via Client Certificate login
-- Via OpenId Connect (requires extra dependencies and PHP 8.1)
+- Via OpenID Connect
+
+**PLEASE NOTE:** both methods above requires extra dependencies to be added to your project, please check the respective
+sections below for more information.
 
 ### Authenticating via Client Certificate login
 
@@ -88,23 +72,32 @@ Once you get the job account you need to request a client certificate: you can a
 On acceptance environments you can request one yourself at [https://webgate.acceptance.ec.europa.eu/cas/selfCertWeb](https://webgate.acceptance.ec.europa.eu/cas/selfCertWeb).
 
 Once you receive the actual client certificate file, in `.p12` format, and its password, you can configure the
-authentication plugin service. Below an example of a possible setup, taken from the library console application:
+authentication plugin service. Below an example of a possible setup:
 
 ```yaml
   client_cert_authentication:
     class: \OpenEuropa\EPoetry\Authentication\ClientCertificate\ClientCertificateAuthentication
     arguments:
-      $serviceUrl: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL)%"
-      $certFilepath: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PATH)%"
-      $certPassword: "%env(string:EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD)%"
+      $serviceUrl: "https://www.cc.cec/epoetry/webservices/dgtService"
+      $certFilepath: "/path/to/certs/j123abc.p12"
+      $certPassword: "password"
+      $euLoginBasePath: "https://ecas.cc.cec.eu.int:7003"
+      $logger: "..." # A PSR compatible logger implementation.
+
 ```
 
-With the following `.env` file:
+For ePoetry acceptance, use the following:
+
+```yaml
+      $serviceUrl: "https://www.acceptance.cc.cec/epoetry/webservices/dgtService"
+```
+
+**PLEASE NOTE:** this authentication method requires the following dependencies, as specified in `composer.json` "suggest" section:
 
 ```
-EPOETRY_CONSOLE_CLIENT_CERT_SERVICE_URL=https://www.test.cc.cec/epoetry/webservices/dgtService
-EPOETRY_CONSOLE_CLIENT_CERT_PATH=/path/to/certs/j905dyi.p12
-EPOETRY_CONSOLE_CLIENT_CERT_PASSWORD=password
+    "suggest": {
+        "symfony/http-client": "Require this in your project if you use the client certificate authentication plugin."
+    },
 ```
 
 ### Authenticating via OpenID Connect
@@ -126,16 +119,6 @@ This authentication plugin needs the following parameters to be set:
   - Acceptance: https://ecas.acceptance.ec.europa.eu/cas/oauth2/token
   - Production: https://ecas.ec.europa.eu/cas/oauth2/token
 - The location of a client metadata JSON file.
-
-It also requires PHP 8.1 and the following dependencies to be present in your codebase:
-
-```
-    "suggest": {
-        ...
-        "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
-        "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin. It requres php >=8.1.",
-    },
-```
 
 In order to obtain this you need to register your application as an OpenID Connect client by following [these instructions](https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/OpenID+Connect+-+Client+Registration).
 
@@ -178,18 +161,109 @@ Use the above values as a reference to configure your own client metadata. Make 
 ```
 
 Once you get such information, store it in a JSON file that is reachable by your application, as this will be needed
-to configure the authentication service.
+to configure the authentication service. Below an example of a possible setup:
 
-For example: when using the ePoetry via the provided Symfony Console commands, the client metadata is expected to be found
-at this location (see [.env](.env)):
+
+```yaml
+  openid_authentication:
+    class: \OpenEuropa\EPoetry\Authentication\OpenID\OpenIDAuthentication
+    arguments:
+      $wellKnownUrl: "https://ecas.ec.europa.eu/cas/oauth2/.well-known/openid-configuration"
+      $clientMetadataFilepath: "/path/to/client-metadata.json"
+      $serviceUrl: "https://www.cc.cec/epoetry/webservices/dgtService"
+      $tokenEndpoint: "https://ecas.ec.europa.eu/cas/oauth2/token"
+      $logger: "..." # A PSR compatible logger implementation.
+```
+
+For ePoetry acceptance, use the following:
+
+```yaml
+      $serviceUrl: "https://www.acceptance.cc.cec/epoetry/webservices/dgtService"
+```
+
+**PLEASE NOTE:** this authentication method requires the following dependencies, as specified in `composer.json` "suggest" section:
 
 ```
-EPOETRY_CONSOLE_OPENID_AUTH_CLIENT_METADATA=/path/to/client-metadata.json
+    "suggest": {
+        "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
+        "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin.",
+    },
 ```
 
-## Notification events
+## ePoetry Notifications
 
-The ePoetry service will send the following product-related notifications, as Symfony events:
+The ePoetry service sends messages to the site, containing information about a translation request status change, the
+translated content, etc.
+
+In order for your application to be able to receive and handle ePoetry notifications, you need
+to expose two endpoints:
+
+- One that provides the site's WSDL to the ePoetry service.
+- One that handles POST inbound requests, coming from the ePoetry service.
+
+The [`NotificationServerFactory`](./src/NotificationServerFactory.php) can be used in implementing both endpoints.
+
+The `NotificationServerFactory` service requires the following dependencies:
+
+- `$callback`: the site's endpoint handing inbound POST requests.
+- `$eventDispatcher`: a Symfony event dispatcher instance.
+- `$logger`: a PSR compatible logger implementation.
+- `$serializer`: an instance of the library's [Serializer class](./src/Serializer/Serializer.php)
+- `$ticketValidation`: optionally, an instance of the [ticket validation service](./src/TicketValidation/TicketValidationInterface.php).
+
+Below an example of a Symfony controller that implements both endpoints:
+
+```php
+<?php
+
+namespace App\Controller;
+
+use Http\Discovery\Psr17Factory;
+use OpenEuropa\EPoetry\NotificationServerFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+
+class TranslationController extends AbstractController
+{
+    private NotificationServerFactory $factory;
+
+    /**
+     * @param \OpenEuropa\EPoetry\NotificationServerFactory $factory
+     */
+    public function __construct(NotificationServerFactory $factory) {
+        $this->factory = $factory;
+    }
+
+    /**
+     * @Route("/translation", name="translation_get", methods={"GET"})
+     */
+    public function getWsdl(Request $request): Response
+    {
+        $response = new Response($this->factory->getWsdl());
+        $response->headers->set('Content-Type', 'application/xml');
+        return $response;
+    }
+
+    /**
+     * @Route("/translation", name="translation_post", methods={"POST"})
+     */
+    public function handleNotification(Request $request): Response
+    {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $response = $this->factory->handle($psrHttpFactory->createRequest($request));
+        return (new HttpFoundationFactory())->createResponse($response);
+    }
+}
+```
+
+In the example above, the `NotificationServerFactory`'s `$callback` would be: `https://my-site.com/translation`.
+
+When handling inbound notifications, the `NotificationServerFactory` fires the following Symfony events:
 
 - [`Product\StatusChangeAcceptedEvent`](./src/Notification/Event/Product/StatusChangeAcceptedEvent.php): fired when the status of the product changes to "accepted".
 - [`Product\StatusChangeCancelledEvent`](./src/Notification/Event/Product/StatusChangeCancelledEvent.php): fired when the status of the product changes to "cancelled".
@@ -199,9 +273,7 @@ The ePoetry service will send the following product-related notifications, as Sy
 - [`Product\StatusChangeRequestedEvent`](./src/Notification/Event/Product/StatusChangeRequestedEvent.php): fired when the status of the product changes to "requested".
 - [`Product\StatusChangeSentEvent`](./src/Notification/Event/Product/StatusChangeSentEvent.php): fired when the status of the product changes to "sent".
 - [`Product\StatusChangeSuspendedEvent`](./src/Notification/Event/Product/StatusChangeSuspendedEvent.php): fired when the status of the product changes to "suspended".
-
-The ePoetry service will send the following request-related notifications, as Symfony events:
-
+- [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when a product translation is finalized. This contains the actual translation(s).
 - [`Request\StatusChangeAcceptedEvent`](./src/Notification/Event/Request/StatusChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
 - [`Request\StatusChangeCancelledEvent`](./src/Notification/Event/Request/StatusChangeCancelledEvent.php): fired when the status of the linguistic request changes to "cancelled".
 - [`Request\StatusChangeExecutedEvent`](./src/Notification/Event/Request/StatusChangeExecutedEvent.php): fired when the status of the linguistic request changes to "executed".
@@ -209,6 +281,59 @@ The ePoetry service will send the following request-related notifications, as Sy
 - [`Request\StatusChangeSuspendedEvent`](./src/Notification/Event/Request/StatusChangeSuspendedEvent.php): fired when the status of the linguistic request changes to "suspended".
 
 For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
+
+### Authenticate inbound notifications
+
+Inbound notifications will need to be authenticated using the EU Login ticket validation service. In order to do so, this library
+provides the [`EuLoginTicketValidation`](./src/TicketValidation/EuLogin/EuLoginTicketValidation.php) service, which will need
+to be injected when building the [`NotificationServerFactory`](./src/NotificationServerFactory.php).
+
+The `EuLoginTicketValidation` service requires the following dependencies:
+
+- `$callbackUrl`: the site's URL where the `NotificationServerFactory` is handling requests.
+- `$euLoginBasePath`: the EU Login public base URL. For both ePoetry production and acceptance, this should be set to `https://ecas.ec.europa.eu`.
+- `$jobAccount`: The ePoetry job account. This should be set to `j97brfy`. Please not this might change in the future,
+  make sure you consult the following [documentation page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
+- `$requestFactory`: a PSR compatible HTTP request factory, check [this list](https://packagist.org/providers/psr/http-factory-implementation) for possible candidates.
+- `$httpClient`: a PSR compatible HTTP client, check [this list](https://packagist.org/providers/psr/http-client-implementation) for possible candidates.
+- `$logger`: a PSR compatible logger implementation.
+
+Below an example of a possible setup:
+
+```yaml
+  eu_login_ticket_validation:
+    class: \OpenEuropa\EPoetry\TicketValidation\EuLogin\EuLoginTicketValidation
+    arguments:
+      $callbackUrl: "https://my-site.europa.eu/my/epoetry/endpoint"
+      $euLoginBasePath: "https://ecas.ec.europa.eu"
+      $jobAccount: "j97brfy"
+      $requestFactory: "..." # A PSR compatible HTTP request factory.
+      $httpClient: "..." # PSR compatible HTTP client.
+      $logger: "..." # A PSR compatible logger implementation
+```
+
+## Generate SOAP-related classes
+
+The library is built using the [PHP SOAP client project](https://github.com/phpro/soap-client) which, among other things,
+allows for SOAP-related PHP classes to be automatically generated, given a WSDL/XSD files pair.
+
+To (re-)generate code, run:
+
+```
+./vendor/bin/run generate:request
+./vendor/bin/run generate:notification
+./vendor/bin/run generate:authentication
+```
+
+Or, simply, the command below, which runs all three commands above:
+
+```
+./vendor/bin/run generate
+```
+
+Note that the method `\OpenEuropa\EPoetry\Notification\Type\RequestReference::getReference()` has been added manually,
+and it won't be automatically generated: make sure you restore it using your local Git history.
+
 
 ## Interact with the service via command line
 

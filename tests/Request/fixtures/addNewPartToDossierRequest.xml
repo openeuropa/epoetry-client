@@ -107,7 +107,6 @@
             </requestDetails>
             <!--Optional:-->
             <applicationName>application1</applicationName>
-            <templateName>DEFAULT</templateName>
         </ns1:addNewPartToDossier>
     </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

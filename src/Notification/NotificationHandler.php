@@ -98,15 +98,6 @@ class NotificationHandler
                     case self::PRODUCT_STATUS_CHANGE_REQUESTED:
                         $event = new Product\StatusChangeRequestedEvent($product);
                         break;
-                    case self::PRODUCT_STATUS_CHANGE_ACCEPTED:
-                        $event = new Product\StatusChangeAcceptedEvent($product);
-                        break;
-                    case self::PRODUCT_STATUS_CHANGE_ONGOING:
-                        $event = new Product\StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
-                        break;
-                    case self::PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT:
-                        $event = new Product\StatusChangeReadyToBeSentEvent($product);
-                        break;
                     case self::PRODUCT_STATUS_CHANGE_SENT:
                         $event = new Product\StatusChangeSentEvent($product);
                         break;
@@ -116,8 +107,17 @@ class NotificationHandler
                     case self::PRODUCT_STATUS_CHANGE_CLOSED:
                         $event = new Product\StatusChangeClosedEvent($product);
                         break;
+                    case self::PRODUCT_STATUS_CHANGE_ACCEPTED:
+                        $event = new Product\StatusChangeAcceptedEvent($product, $product->getAcceptedDeadline());
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_ONGOING:
+                        $event = new Product\StatusChangeOngoingEvent($product, $product->getAcceptedDeadline());
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT:
+                        $event = new Product\StatusChangeReadyToBeSentEvent($product, $product->getAcceptedDeadline());
+                        break;
                     case self::PRODUCT_STATUS_CHANGE_SUSPENDED:
-                        $event = new Product\StatusChangeSuspendedEvent($product);
+                        $event = new Product\StatusChangeSuspendedEvent($product, $product->getAcceptedDeadline());
                         break;
                 }
                 break;

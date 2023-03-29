@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Tests;
 
+use Monolog\Logger;
 use OpenEuropa\EPoetry\Serializer\Serializer;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -19,12 +21,12 @@ abstract class BaseTest extends TestCase
     /**
      * @var Serializer
      */
-    protected $serializer;
+    protected Serializer $serializer;
 
     /**
      * @var ExpressionLanguage
      */
-    protected $expressionLanguage;
+    protected ExpressionLanguage $expressionLanguage;
 
     /**
      * @var ValidatorInterface
@@ -32,11 +34,17 @@ abstract class BaseTest extends TestCase
     protected ValidatorInterface $validator;
 
     /**
+     * @var LoggerInterface
+     */
+    protected LoggerInterface $logger;
+
+    /**
      * {@inheritDoc}
      */
     protected function setUp(): void
     {
         $this->serializer = new Serializer();
+        $this->logger = new Logger('test');
 
         // Setup expression language service.
         $this->expressionLanguage = new ExpressionLanguage();
@@ -76,5 +84,22 @@ abstract class BaseTest extends TestCase
                 sprintf('The expression [%s] failed to evaluate to true.', $expression)
             );
         }
+    }
+
+    /**
+     * Get a non-accessible method on given class, so it can be unit-tested.
+     *
+     * @param string $class
+     * @param string $name
+     *
+     * @return \ReflectionMethod
+     * @throws \ReflectionException
+     */
+    protected function getMethod(string $class, string $name): \ReflectionMethod
+    {
+        $class = new \ReflectionClass($class);
+        $method = $class->getMethod($name);
+        $method->setAccessible(true);
+        return $method;
     }
 }
