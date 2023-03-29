@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace OpenEuropa\EPoetry\Tests\Notification;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
 use Monolog\Logger;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
 use OpenEuropa\EPoetry\NotificationServerFactory;
 use OpenEuropa\EPoetry\Tests\TicketValidation\NoopTicketValidation;
@@ -63,7 +63,7 @@ final class ReceiveNotificationTest extends BaseNotificationTest
      */
     public function testExtractTicket(array $headers, string $body, string $exception): void
     {
-        $validation = new EuLoginTicketValidation('', '', '', new HttpFactory(), new Client(), new Logger('foo'));
+        $validation = new EuLoginTicketValidation('', '', '', new Psr17Factory(), new Client(), new Logger('foo'));
         $this->expectException(NotificationException::class);
 
         $request = new Request('POST', 'http://foo', $headers, $body);
