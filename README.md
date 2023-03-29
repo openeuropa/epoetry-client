@@ -190,9 +190,80 @@ For ePoetry acceptance, use the following:
     },
 ```
 
-## Notification events
+## ePoetry Notifications
 
-The ePoetry service will send the following product-related notifications, as Symfony events:
+The ePoetry service sends messages to the site, containing information about a translation request status change, the
+translated content, etc.
+
+In order for your application to be able to receive and handle ePoetry notifications, you need
+to expose two endpoints:
+
+- One that provides the site's WSDL to the ePoetry service.
+- One that handles POST inbound requests, coming from the ePoetry service.
+
+The [`NotificationServerFactory`](./src/NotificationServerFactory.php) can be used in implementing both endpoints.
+
+The `NotificationServerFactory` service requires the following dependencies:
+
+- `$callback`: the site's endpoint handing inbound POST requests.
+- `$eventDispatcher`: a Symfony event dispatcher instance.
+- `$logger`: a PSR compatible logger implementation.
+- `$serializer`: an instance of the library's [Serializer class](./src/Serializer/Serializer.php)
+- `$ticketValidation`: optionally, an instance of the [ticket validation service](./src/TicketValidation/TicketValidationInterface.php).
+
+Below an example of a Symfony controller that implements both endpoints:
+
+```php
+<?php
+
+namespace App\Controller;
+
+use Http\Discovery\Psr17Factory;
+use OpenEuropa\EPoetry\NotificationServerFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+
+class TranslationController extends AbstractController
+{
+    private NotificationServerFactory $factory;
+
+    /**
+     * @param \OpenEuropa\EPoetry\NotificationServerFactory $factory
+     */
+    public function __construct(NotificationServerFactory $factory) {
+        $this->factory = $factory;
+    }
+
+    /**
+     * @Route("/translation", name="translation_get", methods={"GET"})
+     */
+    public function getWsdl(Request $request): Response
+    {
+        $response = new Response($this->factory->getWsdl());
+        $response->headers->set('Content-Type', 'application/xml');
+        return $response;
+    }
+
+    /**
+     * @Route("/translation", name="translation_post", methods={"POST"})
+     */
+    public function handleNotification(Request $request): Response
+    {
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $response = $this->factory->handle($psrHttpFactory->createRequest($request));
+        return (new HttpFoundationFactory())->createResponse($response);
+    }
+}
+```
+
+In the example above, the `NotificationServerFactory`'s `$callback` would be: `https://my-site.com/translation`.
+
+When handling inbound notifications, the `NotificationServerFactory` fires the following Symfony events:
 
 - [`Product\StatusChangeAcceptedEvent`](./src/Notification/Event/Product/StatusChangeAcceptedEvent.php): fired when the status of the product changes to "accepted".
 - [`Product\StatusChangeCancelledEvent`](./src/Notification/Event/Product/StatusChangeCancelledEvent.php): fired when the status of the product changes to "cancelled".
@@ -203,9 +274,6 @@ The ePoetry service will send the following product-related notifications, as Sy
 - [`Product\StatusChangeSentEvent`](./src/Notification/Event/Product/StatusChangeSentEvent.php): fired when the status of the product changes to "sent".
 - [`Product\StatusChangeSuspendedEvent`](./src/Notification/Event/Product/StatusChangeSuspendedEvent.php): fired when the status of the product changes to "suspended".
 - [`Product\DeliveryEvent`](./src/Notification/Event/Product/DeliveryEvent.php): fired when a product translation is finalized. This contains the actual translation(s).
-
-The ePoetry service will send the following request-related notifications, as Symfony events:
-
 - [`Request\StatusChangeAcceptedEvent`](./src/Notification/Event/Request/StatusChangeAcceptedEvent.php): fired when the status of the linguistic request changes to "accepted".
 - [`Request\StatusChangeCancelledEvent`](./src/Notification/Event/Request/StatusChangeCancelledEvent.php): fired when the status of the linguistic request changes to "cancelled".
 - [`Request\StatusChangeExecutedEvent`](./src/Notification/Event/Request/StatusChangeExecutedEvent.php): fired when the status of the linguistic request changes to "executed".
@@ -214,9 +282,9 @@ The ePoetry service will send the following request-related notifications, as Sy
 
 For more information about ePoetry notifications check the [official documentation](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
 
-### Authenticate incoming notifications
+### Authenticate inbound notifications
 
-Incoming notifications will need to be authenticated using the EU Login ticket validation service. In order to do so, this library
+Inbound notifications will need to be authenticated using the EU Login ticket validation service. In order to do so, this library
 provides the [`EuLoginTicketValidation`](./src/TicketValidation/EuLogin/EuLoginTicketValidation.php) service, which will need
 to be injected when building the [`NotificationServerFactory`](./src/NotificationServerFactory.php).
 
