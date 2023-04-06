@@ -23,6 +23,7 @@ class NotificationHandler
     const PRODUCT_STATUS_CHANGE_ACCEPTED = 'Accepted';
     const PRODUCT_STATUS_CHANGE_ONGOING = 'Ongoing';
     const PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT = 'ReadyToBeSent';
+    const PRODUCT_STATUS_CHANGE_REJECTED = 'Rejected';
     const PRODUCT_STATUS_CHANGE_SENT = 'Sent';
     const PRODUCT_STATUS_CHANGE_CANCELLED = 'Cancelled';
     const PRODUCT_STATUS_CHANGE_CLOSED = 'Closed';
@@ -115,6 +116,9 @@ class NotificationHandler
                         break;
                     case self::PRODUCT_STATUS_CHANGE_READY_TO_BE_SENT:
                         $event = new Product\StatusChangeReadyToBeSentEvent($product, $product->getAcceptedDeadline());
+                        break;
+                    case self::PRODUCT_STATUS_CHANGE_REJECTED:
+                        $event = new Product\StatusChangeRejectedEvent($product, $product->getAcceptedDeadline());
                         break;
                     case self::PRODUCT_STATUS_CHANGE_SUSPENDED:
                         $event = new Product\StatusChangeSuspendedEvent($product, $product->getAcceptedDeadline());
