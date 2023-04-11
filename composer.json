@@ -17,7 +17,7 @@
         "psr/http-client-implementation": "*",
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
-        "psr/log": "^3",
+        "psr/log": "^2 || ^3",
         "symfony/serializer": "~5.4 || ~6",
         "symfony/validator": "~5.4 || ~6",
         "veewee/xml": "^2.0"
