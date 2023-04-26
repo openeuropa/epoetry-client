@@ -18,7 +18,7 @@ final class UpdateCallbackUrlResponseTest extends BaseRequestTest
      */
     public function testUpdateCallbackUrlResponse($response, $expectations): void
     {
-        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut', 'xml');
+        $object = $this->serializer->deserialize($response, 'OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse', 'xml');
         $this->assertExpressionLanguageExpressions($expectations['assertions'], ['response' => $object]);
     }
 
