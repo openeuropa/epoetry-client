@@ -17,6 +17,7 @@
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
         "psr/log": "^1 || ^2 || ^3",
+        "symfony/http-client": "~5",
         "symfony/serializer": "~4",
         "symfony/validator": "~4",
         "veewee/xml": "^1.0"
@@ -34,7 +35,6 @@
         "react/http": "^1.8",
         "symfony/dotenv": "~4",
         "symfony/expression-language": "~4",
-        "symfony/http-client": "~5",
         "symfony/http-kernel": "~4",
         "symfony/monolog-bridge": "~5",
         "symfony/property-access": "~4",
