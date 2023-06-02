@@ -32,10 +32,10 @@ class RequestClient
 
     /**
      * @param RequestInterface|Type\UpdateCallbackUrl $parameters
-     * @return ResultInterface|Type\UpdateCallbackUrlOut
+     * @return ResultInterface|Type\UpdateCallbackUrlResponse
      * @throws SoapException
      */
-    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
     {
         return ($this->caller)('updateCallbackUrl', $parameters);
     }

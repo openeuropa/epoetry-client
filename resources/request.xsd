@@ -488,7 +488,7 @@
     <xsd:element name="resubmitRequestResponse" type="ns0:resubmitRequestResponse"/>
     <xsd:element name="UnsupportedEncodingException" type="ns0:UnsupportedEncodingException"/>
     <xsd:element name="updateCallbackUrl" type="ns0:updateCallbackUrl"/>
-    <xsd:element name="updateCallbackUrlResponse" type="ns0:updateCallbackUrlOut"/>
+    <xsd:element name="updateCallbackUrlResponse" type="ns0:updateCallbackUrlResponse"/>
     <xsd:element name="dossier" type="ns0:dossierReference"/>
     <xsd:element name="requestDetails" type="ns0:modifyRequestDetailsIn"/>
     <xsd:element name="contactPersonIn" type="ns0:contactPersonIn"/>

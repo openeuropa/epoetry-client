@@ -2,7 +2,9 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class UpdateCallbackUrlResponse
+use Phpro\SoapClient\Type\ResultInterface;
+
+class UpdateCallbackUrlResponse implements ResultInterface
 {
     /**
      * @var \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
