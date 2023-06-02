@@ -528,3 +528,9 @@ extra_pkgs:
 ```
 
 For more information please refer to [the pipeline configuration documentation](https://webgate.ec.europa.eu/fpfis/wikis/display/MULTISITE/Pipeline+configuration+and+override).
+
+## Known issues
+
+The `updateCallbackUrl` method is incorrectly specified in the ePoetry schema, for this reason we have patched locally
+the schema in [this PR](https://github.com/openeuropa/epoetry-client/pull/72/files). If necessary, remember to reapply
+such change after updating the WSDL/XSD files.

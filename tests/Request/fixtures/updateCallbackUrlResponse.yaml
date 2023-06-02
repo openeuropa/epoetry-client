@@ -1,17 +1,19 @@
 -   response: |
         <ns0:updateCallbackUrlResponse xmlns:ns0="http://eu.europa.ec.dgt.epoetry">
+          <return>
             <success>true</success>
             <oldCallbackUrl>https://example.com/old</oldCallbackUrl>
             <newCallbackUrl>https://example.com/new</newCallbackUrl>
             <application>appname</application>
             <message>Some message</message>
+          </return>
         </ns0:updateCallbackUrlResponse>
     expectations:
         assertions:
-            - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\UpdateCallbackUrlOut')
-            - response.hasSuccess() === true
-            - response.isSuccess() === true
-            - response.getOldCallbackUrl() === 'https://example.com/old'
-            - response.getNewCallbackUrl() === 'https://example.com/new'
-            - response.getApplication() === 'appname'
-            - response.getMessage() === 'Some message'
+            - is_a(response, '\\OpenEuropa\\EPoetry\\Request\\Type\\UpdateCallbackUrlResponse')
+            - response.getReturn().hasSuccess() === true
+            - response.getReturn().isSuccess() === true
+            - response.getReturn().getOldCallbackUrl() === 'https://example.com/old'
+            - response.getReturn().getNewCallbackUrl() === 'https://example.com/new'
+            - response.getReturn().getApplication() === 'appname'
+            - response.getReturn().getMessage() === 'Some message'
