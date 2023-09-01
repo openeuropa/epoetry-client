@@ -15,6 +15,10 @@ A bird's-eye overview of a typical translation request workflow can be outlined 
 This project provides the necessary code (SOAP objects, middleware, etc.) to request a translation and handle incoming
 notifications from the ePoetry service.
 
+## Versions
+- 2.x should be used with PHP > 8.1.26 and Symfony >= 5.x
+- 1.x should be used with PHP 8.0 and Symfony 4.x
+
 ## Project overview
 
 - [`./bin/epoetry`](./bin/epoetry): CLI executable to interact with the ePoetry service
