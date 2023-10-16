@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.0.0-beta1](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta1) (2023-10-16)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-alpha1...2.0.0-beta1)
+
+**Merged pull requests:**
+
+- fix: replace getenv with $_ENV [\#78](https://github.com/openeuropa/epoetry-client/pull/78) ([drupol](https://github.com/drupol))
+
 ## [2.0.0-alpha1](https://github.com/openeuropa/epoetry-client/tree/2.0.0-alpha1) (2023-09-01)
 [Full Changelog](https://github.com/openeuropa/epoetry-client/compare/1.0.0-alpha1...2.0.0-alpha1)
 
