@@ -29,7 +29,7 @@ if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
 $dotenv = new Dotenv();
 $dotenv->loadEnv(__DIR__.'/../.env');
 
-$kernel = new AppKernel(getenv('EPOETRY_CONSOLE_ENV'), getenv('EPOETRY_CONSOLE_DEBUG'));
+$kernel = new AppKernel($_ENV['EPOETRY_CONSOLE_ENV'], $_ENV['EPOETRY_CONSOLE_DEBUG']);
 $kernel->boot();
 $container = $kernel->getContainer();
 $application = $container->get(Application::class);
