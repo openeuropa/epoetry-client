@@ -9,7 +9,7 @@
         "ext-dom": "*",
         "ext-soap": "*",
         "ext-xsl": "*",
-        "cweagans/composer-patches": "^1",
+        "cweagans/composer-patches": "^1 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
         "phpro/soap-client": "~2.4",
