@@ -1,17 +1,30 @@
-# Change Log
+# Changelog
+
+## [2.0.0-beta2](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta2) (2024-02-15)
+
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-beta1...2.0.0-beta2)
+
+**Merged pull requests:**
+
+- EWPP-4100: Add composer-patches v2 and php8.2 to matrix. [\#81](https://github.com/openeuropa/epoetry-client/pull/81) ([nagyad](https://github.com/nagyad))
+- EWPP-3789: Fix test flakiness due to inconsistent SOAP XML generation [\#80](https://github.com/openeuropa/epoetry-client/pull/80) ([ademarco](https://github.com/ademarco))
 
 ## [2.0.0-beta1](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta1) (2023-10-16)
+
 [Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-alpha1...2.0.0-beta1)
 
 **Merged pull requests:**
 
-- fix: replace getenv with $_ENV [\#78](https://github.com/openeuropa/epoetry-client/pull/78) ([drupol](https://github.com/drupol))
+- Prepare release 2.0.0-beta1 [\#79](https://github.com/openeuropa/epoetry-client/pull/79) ([ademarco](https://github.com/ademarco))
+- fix: replace `getenv` with `$_ENV` [\#78](https://github.com/openeuropa/epoetry-client/pull/78) ([drupol](https://github.com/drupol))
 
 ## [2.0.0-alpha1](https://github.com/openeuropa/epoetry-client/tree/2.0.0-alpha1) (2023-09-01)
+
 [Full Changelog](https://github.com/openeuropa/epoetry-client/compare/1.0.0-alpha1...2.0.0-alpha1)
 
 **Merged pull requests:**
 
+- Release 2.0.0 alpha1 [\#77](https://github.com/openeuropa/epoetry-client/pull/77) ([hernani](https://github.com/hernani))
 - EWPP-3477: Enforce php version to \>=8.1.21. [\#76](https://github.com/openeuropa/epoetry-client/pull/76) ([ademarco](https://github.com/ademarco))
 - EWPP-3245: Port changes to 2.x [\#75](https://github.com/openeuropa/epoetry-client/pull/75) ([ademarco](https://github.com/ademarco))
 - EWPP-2965: Symfony http client is required by ClientCertificateAuthentication. [\#74](https://github.com/openeuropa/epoetry-client/pull/74) ([brummbar](https://github.com/brummbar))
