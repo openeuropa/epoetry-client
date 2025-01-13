@@ -12,7 +12,7 @@
         "cweagans/composer-patches": "^1 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
-        "phpro/soap-client": "~2.4",
+        "phpro/soap-client": "~3.4",
         "psr/http-client": "^1",
         "psr/http-client-implementation": "*",
         "psr/http-factory": "^1",
@@ -21,7 +21,7 @@
         "symfony/http-client": "~5.4 || ~6",
         "symfony/serializer": "~5.4 || ~6",
         "symfony/validator": "~5.4 || ~6",
-        "veewee/xml": "^2.0"
+        "veewee/xml": "^3.0"
     },
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
@@ -69,13 +69,5 @@
     },
     "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "patches": {
-            "phpro/soap-client" : {
-                "https://github.com/phpro/soap-client/issues/446": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/448.diff",
-                "https://github.com/phpro/soap-client/issues/444": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/445.diff"
-            }
-        }
-    }
+    "prefer-stable": true
 }

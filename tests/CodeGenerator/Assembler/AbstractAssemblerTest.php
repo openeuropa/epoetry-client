@@ -11,6 +11,7 @@ use Phpro\SoapClient\CodeGenerator\Model\Property;
 use Phpro\SoapClient\CodeGenerator\Model\Type;
 use PHPUnit\Framework\TestCase;
 use Laminas\Code\Generator\ClassGenerator;
+use Soap\Engine\Metadata\Model\TypeMeta;
 
 abstract class AbstractAssemblerTest extends TestCase
 {
@@ -47,8 +48,8 @@ abstract class AbstractAssemblerTest extends TestCase
         ];
 
         $class = new ClassGenerator('MyType', 'MyNamespace');
-        $type = new Type('MyNamespace', 'MyType', $properties);
-        $property = new Property($propertyName, $properties[$propertyName], 'ns1');
+        $type = new Type('MyNamespace', 'MyType', $properties, new TypeMeta());
+        $property = new Property($propertyName, $properties[$propertyName], 'ns1', new TypeMeta());
 
         return new PropertyContext($class, $type, $property);
     }

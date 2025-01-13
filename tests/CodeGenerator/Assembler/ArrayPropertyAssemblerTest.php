@@ -45,7 +45,7 @@ class MyType
     /**
      * @var string[]|array
      */
-    private $prop1 = [];
+    private string $prop1 = [];
 }
 
 CODE;
