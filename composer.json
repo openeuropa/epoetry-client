@@ -69,5 +69,12 @@
     },
     "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "extra": {
+        "patches": {
+            "phpro/soap-client" : {
+                "add-anyuri-to-normalizer.patch": "./patches/add-anyuri-to-normalizer.patch"
+            }
+        }
+    }
 }

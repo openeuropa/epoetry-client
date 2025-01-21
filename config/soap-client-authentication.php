@@ -5,6 +5,7 @@ use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
 
 // Generate SOAP client library to perform ECAS client certificate login.
 // @link https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/ECAS+Certificate+Login
@@ -24,6 +25,12 @@ return Config::create()
     ->setClassMapDestination('src/Authentication/ClientCertificate')
     ->setClassMapName('ClientCertificateClassmap')
     ->setClassMapNamespace('OpenEuropa\EPoetry\Authentication\ClientCertificate')
+    ->addRule(new Rules\AssembleRule(
+        new OpenEuropa\Assembler\OverridePropertyTypeAssembler(
+            (new OpenEuropa\Assembler\OverridePropertyTypeAssemblerOptions())
+                ->setPropertyTypeMapping([])
+        )
+    ))
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
     ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler(
         new Assembler\ImmutableSetterAssemblerOptions()
