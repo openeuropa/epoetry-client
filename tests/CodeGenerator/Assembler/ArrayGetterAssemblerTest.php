@@ -46,7 +46,7 @@ namespace MyNamespace;
 class MyType
 {
     /**
-     * @return string[]|array|null
+     * @return string[]|array
      */
     public function getProp1() : ?array
     {
@@ -64,9 +64,8 @@ CODE;
      */
     protected function assemble(ContextInterface $context)
     {
-        $originalAssembler = new NullableGetterAssembler(NullableGetterAssemblerOptions::create()
-            ->withReturnType()
-            ->withReturnNull());
+        $originalAssembler = new GetterAssembler(GetterAssemblerOptions::create()
+            ->withReturnType());
         $originalAssembler->assemble($context);
         $this->assembler->assemble($context);
     }

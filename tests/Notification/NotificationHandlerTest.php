@@ -135,7 +135,7 @@ MESSAGE, $status),
             $this->assertInstanceOf(Product::class, $event->getProduct());
             $this->assertEquals($status, $event->getProduct()->getStatus());
             $this->assertInstanceOf(\DateTimeInterface::class, $event->getAcceptedDeadline());
-            $this->assertEquals('Mon, 04 Apr 22 10:51:00 +0000', $event->getAcceptedDeadline()->format(\DATE_RFC822));
+            $this->assertEquals(strtotime('Mon, 04 Apr 22 10:51:00 +0000'), $event->getAcceptedDeadline()->getTimestamp());
             $this->assertEquals(false, $event->getProduct()->hasFile());
             $this->assertEquals(false, $event->getProduct()->hasFormat());
             $this->assertEquals(false, $event->getProduct()->hasName());

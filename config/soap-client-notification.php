@@ -2,7 +2,10 @@
 
 use OpenEuropa\EPoetry\CodeGenerator\ConfigProcessor;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
+use Phpro\SoapClient\CodeGenerator\Rules\RuleSet;
 use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
+use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\CodeGenerator\Assembler;
 
 $engine = CodeGeneratorEngineFactory::create('./resources/notification.wsdl');
 $config = Config::create()
