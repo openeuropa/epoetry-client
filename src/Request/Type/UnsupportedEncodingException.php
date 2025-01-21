@@ -13,7 +13,7 @@ class UnsupportedEncodingException
      * @param string $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UnsupportedEncodingException
+    public function setMessage(string $message) : static
     {
         $this->message = $message;
         return $this;

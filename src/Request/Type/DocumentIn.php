@@ -10,7 +10,7 @@ class DocumentIn
     private $fileName;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Language
      */
     private $language;
 
@@ -20,7 +20,7 @@ class DocumentIn
     private $comment;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
      */
     private $content;
 
@@ -28,7 +28,7 @@ class DocumentIn
      * @param string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setFileName(string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
@@ -51,19 +51,19 @@ class DocumentIn
     }
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
     {
         return $this->language;
     }
@@ -80,7 +80,7 @@ class DocumentIn
      * @param string $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setComment(string $comment) : static
     {
         $this->comment = $comment;
         return $this;
@@ -103,19 +103,19 @@ class DocumentIn
     }
 
     /**
-     * @param string $content
+     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
      */
-    public function getContent() : ?string
+    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
     {
         return $this->content;
     }

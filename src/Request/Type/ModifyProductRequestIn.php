@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyProductRequestIn
 {
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Language
      */
     private $language;
 
@@ -20,19 +20,19 @@ class ModifyProductRequestIn
     private $trackChanges;
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
     {
         return $this->language;
     }
@@ -49,7 +49,7 @@ class ModifyProductRequestIn
      * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : static
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -75,7 +75,7 @@ class ModifyProductRequestIn
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn
+    public function setTrackChanges(bool $trackChanges) : static
     {
         $this->trackChanges = $trackChanges;
         return $this;

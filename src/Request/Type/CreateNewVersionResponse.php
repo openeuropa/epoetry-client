@@ -15,7 +15,7 @@ class CreateNewVersionResponse implements ResultInterface
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
+    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : static
     {
         $this->return = $return;
         return $this;

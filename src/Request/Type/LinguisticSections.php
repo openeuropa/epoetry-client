@@ -13,7 +13,7 @@ class LinguisticSections
      * @param LinguisticSectionOut[] $linguisticSection
      * @return $this
      */
-    public function setLinguisticSection(array $linguisticSection) : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function setLinguisticSection(array $linguisticSection) : static
     {
         $this->linguisticSection = $linguisticSection;
         return $this;

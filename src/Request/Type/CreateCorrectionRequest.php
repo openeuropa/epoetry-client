@@ -20,7 +20,7 @@ class CreateCorrectionRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
      * @return $this
      */
-    public function setCorrectionDetails(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    public function setCorrectionDetails(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : static
     {
         $this->correctionDetails = $correctionDetails;
         return $this;
@@ -46,7 +46,7 @@ class CreateCorrectionRequest implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;

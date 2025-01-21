@@ -33,7 +33,10 @@ class ConfigProcessor
         // We have to do this as the SOAP handler will erroneously create duplicate
         // public properties when a value object extends another one with those
         // same properties marked as "private".
-        $defaultPropertyAssembler = new Assembler\PropertyAssembler(PropertyGenerator::VISIBILITY_PROTECTED);
+        $defaultPropertyAssemblerOptions = (new Assembler\PropertyAssemblerOptions())
+            ->withVisibility(PropertyGenerator::VISIBILITY_PRIVATE)
+            ->withTypeHints(false);
+        $defaultPropertyAssembler = new Assembler\PropertyAssembler($defaultPropertyAssemblerOptions);
 
         $arrayPropertyAssembler = new OpenEuropa\Assembler\ArrayPropertyAssembler(
             (new OpenEuropa\Assembler\ArrayPropertyAssemblerOptions())
@@ -56,8 +59,8 @@ class ConfigProcessor
                 ->whitelist($specialClassesAndProperties)
         );
 
-        $defaultGetterAssembler = new Assembler\GetterAssembler(
-            (new Assembler\GetterAssemblerOptions())
+        $defaultGetterAssembler = new OpenEuropa\Assembler\NullableGetterAssembler(
+            OpenEuropa\Assembler\NullableGetterAssemblerOptions::create()
                 ->withReturnType()
                 ->withBoolGetters()
                 ->withReturnNull()

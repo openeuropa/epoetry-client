@@ -15,7 +15,7 @@ class OriginalDocumentIn
     private $comment;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
      */
     private $content;
 
@@ -33,7 +33,7 @@ class OriginalDocumentIn
      * @param string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setFileName(string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
@@ -59,7 +59,7 @@ class OriginalDocumentIn
      * @param string $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setComment(string $comment) : static
     {
         $this->comment = $comment;
         return $this;
@@ -82,19 +82,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string $content
+     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
      */
-    public function getContent() : ?string
+    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
     {
         return $this->content;
     }
@@ -111,7 +111,7 @@ class OriginalDocumentIn
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
@@ -137,7 +137,7 @@ class OriginalDocumentIn
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
+    public function setTrackChanges(bool $trackChanges) : static
     {
         $this->trackChanges = $trackChanges;
         return $this;

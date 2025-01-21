@@ -33,7 +33,7 @@ class UpdateCallbackUrlOut
      * @param bool $success
      * @return $this
      */
-    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setSuccess(bool $success) : static
     {
         $this->success = $success;
         return $this;
@@ -59,7 +59,7 @@ class UpdateCallbackUrlOut
      * @param string $oldCallbackUrl
      * @return $this
      */
-    public function setOldCallbackUrl(string $oldCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setOldCallbackUrl(string $oldCallbackUrl) : static
     {
         $this->oldCallbackUrl = $oldCallbackUrl;
         return $this;
@@ -85,7 +85,7 @@ class UpdateCallbackUrlOut
      * @param string $newCallbackUrl
      * @return $this
      */
-    public function setNewCallbackUrl(string $newCallbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setNewCallbackUrl(string $newCallbackUrl) : static
     {
         $this->newCallbackUrl = $newCallbackUrl;
         return $this;
@@ -111,7 +111,7 @@ class UpdateCallbackUrlOut
      * @param string $application
      * @return $this
      */
-    public function setApplication(string $application) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setApplication(string $application) : static
     {
         $this->application = $application;
         return $this;
@@ -137,7 +137,7 @@ class UpdateCallbackUrlOut
      * @param string $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function setMessage(string $message) : static
     {
         $this->message = $message;
         return $this;

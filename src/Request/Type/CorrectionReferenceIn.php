@@ -13,7 +13,7 @@ class CorrectionReferenceIn
      * @param int $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function setVersion(int $version) : static
     {
         $this->version = $version;
         return $this;

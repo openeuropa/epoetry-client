@@ -13,7 +13,7 @@ class PrtDocuments
      * @param DocumentIn[] $document
      * @return $this
      */
-    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+    public function setDocument(array $document) : static
     {
         $this->document = $document;
         return $this;

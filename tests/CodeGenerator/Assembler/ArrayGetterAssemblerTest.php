@@ -6,6 +6,8 @@ namespace OpenEuropa\EPoetry\Tests\CodeGenerator\Assembler;
 
 use OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssembler;
 use OpenEuropa\EPoetry\CodeGenerator\Assembler\ArrayGetterAssemblerOptions;
+use OpenEuropa\EPoetry\CodeGenerator\Assembler\NullableGetterAssembler;
+use OpenEuropa\EPoetry\CodeGenerator\Assembler\NullableGetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssembler;
 use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
@@ -62,7 +64,7 @@ CODE;
      */
     protected function assemble(ContextInterface $context)
     {
-        $originalAssembler = new GetterAssembler((new GetterAssemblerOptions())
+        $originalAssembler = new NullableGetterAssembler(NullableGetterAssemblerOptions::create()
             ->withReturnType()
             ->withReturnNull());
         $originalAssembler->assemble($context);

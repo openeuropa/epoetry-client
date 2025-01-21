@@ -30,7 +30,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
     {
         $this->dossier = $dossier;
         return $this;
@@ -56,7 +56,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -82,7 +82,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -108,7 +108,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setTemplateName(string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;

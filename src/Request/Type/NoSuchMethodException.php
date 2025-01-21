@@ -13,7 +13,7 @@ class NoSuchMethodException
      * @param string $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Request\Type\NoSuchMethodException
+    public function setMessage(string $message) : static
     {
         $this->message = $message;
         return $this;

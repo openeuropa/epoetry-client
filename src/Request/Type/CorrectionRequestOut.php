@@ -18,7 +18,7 @@ class CorrectionRequestOut
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -44,7 +44,7 @@ class CorrectionRequestOut
      * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
      * @return $this
      */
-    public function setDCO(\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function setDCO(\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : static
     {
         $this->DCO = $DCO;
         return $this;

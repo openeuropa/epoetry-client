@@ -10,7 +10,7 @@ class LinguisticRequest
     private $requestReference;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Notification\Type\RequestStatus
      */
     private $status;
 
@@ -18,7 +18,7 @@ class LinguisticRequest
      * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -41,19 +41,19 @@ class LinguisticRequest
     }
 
     /**
-     * @param string $status
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestStatus $status
      * @return $this
      */
-    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function setStatus(\OpenEuropa\EPoetry\Notification\Type\RequestStatus $status) : static
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestStatus|null
      */
-    public function getStatus() : ?string
+    public function getStatus() : ?\OpenEuropa\EPoetry\Notification\Type\RequestStatus
     {
         return $this->status;
     }

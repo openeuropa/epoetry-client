@@ -13,7 +13,7 @@ class ReferenceDocuments
      * @param DocumentIn[] $document
      * @return $this
      */
-    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+    public function setDocument(array $document) : static
     {
         $this->document = $document;
         return $this;

@@ -20,7 +20,7 @@ class CreateNewVersion implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    public function setLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : static
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
@@ -46,7 +46,7 @@ class CreateNewVersion implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;

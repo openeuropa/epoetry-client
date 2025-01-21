@@ -10,7 +10,7 @@ class OriginalDocumentOut
     private $trackChanges;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
      */
     private $format;
 
@@ -38,7 +38,7 @@ class OriginalDocumentOut
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setTrackChanges(bool $trackChanges) : static
     {
         $this->trackChanges = $trackChanges;
         return $this;
@@ -61,19 +61,19 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param string $format
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
      */
-    public function getFormat() : ?string
+    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
     {
         return $this->format;
     }
@@ -90,7 +90,7 @@ class OriginalDocumentOut
      * @param string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setFileName(string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
@@ -116,7 +116,7 @@ class OriginalDocumentOut
      * @param float $pages
      * @return $this
      */
-    public function setPages(float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setPages(float $pages) : static
     {
         $this->pages = $pages;
         return $this;
@@ -142,7 +142,7 @@ class OriginalDocumentOut
      * @param string $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setComment(string $comment) : static
     {
         $this->comment = $comment;
         return $this;
@@ -168,7 +168,7 @@ class OriginalDocumentOut
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
     {
         $this->linguisticSections = $linguisticSections;
         return $this;

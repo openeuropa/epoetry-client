@@ -38,7 +38,7 @@ class RequestReference
      * @param string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setRequesterCode(string $requesterCode) : static
     {
         $this->requesterCode = $requesterCode;
         return $this;
@@ -64,7 +64,7 @@ class RequestReference
      * @param int $year
      * @return $this
      */
-    public function setYear(int $year) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setYear(int $year) : static
     {
         $this->year = $year;
         return $this;
@@ -90,7 +90,7 @@ class RequestReference
      * @param int $number
      * @return $this
      */
-    public function setNumber(int $number) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setNumber(int $number) : static
     {
         $this->number = $number;
         return $this;
@@ -116,7 +116,7 @@ class RequestReference
      * @param int $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setPart(int $part) : static
     {
         $this->part = $part;
         return $this;
@@ -142,7 +142,7 @@ class RequestReference
      * @param int $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setVersion(int $version) : static
     {
         $this->version = $version;
         return $this;
@@ -168,7 +168,7 @@ class RequestReference
      * @param string $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function setProductType(string $productType) : static
     {
         $this->productType = $productType;
         return $this;
@@ -188,27 +188,6 @@ class RequestReference
     public function hasProductType() : bool
     {
         return !empty($this->productType);
-    }
-
-    /**
-     * Format request reference.
-     *
-     * @return string
-     */
-    public function getReference(): string
-    {
-        $parts = [
-            $this->getRequesterCode(),
-            $this->getYear(),
-            $this->getNumber(),
-            '('.$this->getVersion().')',
-            $this->getPart(),
-            $this->getProductType(),
-        ];
-        $parts = array_filter($parts, function ($part) {
-            return $part !== null;
-        });
-        return implode('-', $parts);
     }
 }
 

@@ -20,7 +20,7 @@ class UpdateCallbackUrl implements RequestInterface
      * @param string $callbackUrl
      * @return $this
      */
-    public function setCallbackUrl(string $callbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    public function setCallbackUrl(string $callbackUrl) : static
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
@@ -46,7 +46,7 @@ class UpdateCallbackUrl implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;

@@ -23,7 +23,7 @@ class RequestReferenceIn
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
     {
         $this->dossier = $dossier;
         return $this;
@@ -49,7 +49,7 @@ class RequestReferenceIn
      * @param string $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function setProductType(string $productType) : static
     {
         $this->productType = $productType;
         return $this;
@@ -75,7 +75,7 @@ class RequestReferenceIn
      * @param int $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function setPart(int $part) : static
     {
         $this->part = $part;
         return $this;

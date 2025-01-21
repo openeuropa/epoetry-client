@@ -10,7 +10,7 @@ class RequestReferenceOut
     private $dossier;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\ProductServiceType
      */
     private $productType;
 
@@ -28,7 +28,7 @@ class RequestReferenceOut
      * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
     {
         $this->dossier = $dossier;
         return $this;
@@ -51,19 +51,19 @@ class RequestReferenceOut
     }
 
     /**
-     * @param string $productType
+     * @param \OpenEuropa\EPoetry\Request\Type\ProductServiceType $productType
      * @return $this
      */
-    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setProductType(\OpenEuropa\EPoetry\Request\Type\ProductServiceType $productType) : static
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ProductServiceType|null
      */
-    public function getProductType() : ?string
+    public function getProductType() : ?\OpenEuropa\EPoetry\Request\Type\ProductServiceType
     {
         return $this->productType;
     }
@@ -80,7 +80,7 @@ class RequestReferenceOut
      * @param int $part
      * @return $this
      */
-    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setPart(int $part) : static
     {
         $this->part = $part;
         return $this;
@@ -106,7 +106,7 @@ class RequestReferenceOut
      * @param int $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function setVersion(int $version) : static
     {
         $this->version = $version;
         return $this;

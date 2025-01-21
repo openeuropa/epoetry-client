@@ -25,7 +25,7 @@ class ResubmitRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : static
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;
@@ -51,7 +51,7 @@ class ResubmitRequest implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -77,7 +77,7 @@ class ResubmitRequest implements RequestInterface
      * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
+    public function setTemplateName(string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;

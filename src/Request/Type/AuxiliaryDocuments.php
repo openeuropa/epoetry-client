@@ -13,7 +13,7 @@ class AuxiliaryDocuments
      * @param AuxiliaryDocumentOut[] $document
      * @return $this
      */
-    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function setDocument(array $document) : static
     {
         $this->document = $document;
         return $this;

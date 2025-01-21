@@ -15,7 +15,7 @@ class UpdateCallbackUrlResponse implements ResultInterface
      * @param \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
+    public function setReturn(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : static
     {
         $this->return = $return;
         return $this;

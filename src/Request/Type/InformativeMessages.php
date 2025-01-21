@@ -13,7 +13,7 @@ class InformativeMessages
      * @param string[] $message
      * @return $this
      */
-    public function setMessage(array $message) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function setMessage(array $message) : static
     {
         $this->message = $message;
         return $this;

@@ -15,17 +15,17 @@ class CorrectionDetailsIn
     private $fileName;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
      */
     private $content;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
      */
     private $format;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Language
      */
     private $language;
 
@@ -38,7 +38,7 @@ class CorrectionDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -64,7 +64,7 @@ class CorrectionDetailsIn
      * @param string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFileName(string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
@@ -87,19 +87,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $content
+     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
      * @return $this
      */
-    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
      */
-    public function getContent() : ?string
+    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
     {
         return $this->content;
     }
@@ -113,19 +113,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $format
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
      */
-    public function getFormat() : ?string
+    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
     {
         return $this->format;
     }
@@ -139,19 +139,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
     {
         return $this->language;
     }
@@ -168,7 +168,7 @@ class CorrectionDetailsIn
      * @param string $remark
      * @return $this
      */
-    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+    public function setRemark(string $remark) : static
     {
         $this->remark = $remark;
         return $this;

@@ -10,17 +10,17 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\ContactRole
      */
     private $contactRole;
 
     /**
      * Constructor
      *
-     * @var string $userId
-     * @var string $contactRole
+     * @param string $userId
+     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole
      */
-    public function __construct(string $userId, string $contactRole)
+    public function __construct(string $userId, \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole)
     {
         $this->userId = $userId;
         $this->contactRole = $contactRole;
@@ -30,7 +30,7 @@ class ContactPersonIn
      * @param string $userId
      * @return $this
      */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setUserId(string $userId) : static
     {
         $this->userId = $userId;
         return $this;
@@ -53,19 +53,19 @@ class ContactPersonIn
     }
 
     /**
-     * @param string $contactRole
+     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole
      * @return $this
      */
-    public function setContactRole(string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setContactRole(\OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole) : static
     {
         $this->contactRole = $contactRole;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactRole|null
      */
-    public function getContactRole() : ?string
+    public function getContactRole() : ?\OpenEuropa\EPoetry\Request\Type\ContactRole
     {
         return $this->contactRole;
     }

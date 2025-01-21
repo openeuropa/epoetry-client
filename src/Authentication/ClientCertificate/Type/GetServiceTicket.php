@@ -7,33 +7,33 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetServiceTicket implements RequestInterface
 {
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI
      */
-    private $service;
+    private \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI $service;
 
     /**
      * Constructor
      *
-     * @var string $service
+     * @param \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI $service
      */
-    public function __construct($service)
+    public function __construct(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI $service)
     {
         $this->service = $service;
     }
 
     /**
-     * @return string
+     * @return \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI
      */
-    public function getService()
+    public function getService() : \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI
     {
         return $this->service;
     }
 
     /**
-     * @param string $service
-     * @return GetServiceTicket
+     * @param \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI $service
+     * @return static
      */
-    public function withService($service)
+    public function withService(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\AnyURI $service) : static
     {
         $new = clone $this;
         $new->service = $service;
@@ -41,3 +41,4 @@ class GetServiceTicket implements RequestInterface
         return $new;
     }
 }
+

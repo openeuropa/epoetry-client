@@ -10,12 +10,12 @@ class AuxiliaryDocumentOut
     private $fileName;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\Language
      */
     private $language;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentType
      */
     private $documentType;
 
@@ -25,7 +25,7 @@ class AuxiliaryDocumentOut
     private $comment;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
      */
     private $format;
 
@@ -33,7 +33,7 @@ class AuxiliaryDocumentOut
      * @param string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setFileName(string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
@@ -56,19 +56,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string $language
+     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
      * @return $this
      */
-    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
     {
         return $this->language;
     }
@@ -82,19 +82,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string $documentType
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentType $documentType
      * @return $this
      */
-    public function setDocumentType(string $documentType) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setDocumentType(\OpenEuropa\EPoetry\Request\Type\DocumentType $documentType) : static
     {
         $this->documentType = $documentType;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentType|null
      */
-    public function getDocumentType() : ?string
+    public function getDocumentType() : ?\OpenEuropa\EPoetry\Request\Type\DocumentType
     {
         return $this->documentType;
     }
@@ -111,7 +111,7 @@ class AuxiliaryDocumentOut
      * @param string $comment
      * @return $this
      */
-    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setComment(string $comment) : static
     {
         $this->comment = $comment;
         return $this;
@@ -134,19 +134,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string $format
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut
+    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
      */
-    public function getFormat() : ?string
+    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
     {
         return $this->format;
     }

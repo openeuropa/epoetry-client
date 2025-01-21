@@ -10,7 +10,7 @@ class Product
     private $productReference;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Notification\Type\ProductStatus
      */
     private $status;
 
@@ -20,7 +20,7 @@ class Product
     private $acceptedDeadline;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Notification\Type\Base64Binary
      */
     private $file;
 
@@ -30,7 +30,7 @@ class Product
     private $name;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Notification\Type\DocumentFormat
      */
     private $format;
 
@@ -38,7 +38,7 @@ class Product
      * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */
-    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : static
     {
         $this->productReference = $productReference;
         return $this;
@@ -61,19 +61,19 @@ class Product
     }
 
     /**
-     * @param string $status
+     * @param \OpenEuropa\EPoetry\Notification\Type\ProductStatus $status
      * @return $this
      */
-    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setStatus(\OpenEuropa\EPoetry\Notification\Type\ProductStatus $status) : static
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductStatus|null
      */
-    public function getStatus() : ?string
+    public function getStatus() : ?\OpenEuropa\EPoetry\Notification\Type\ProductStatus
     {
         return $this->status;
     }
@@ -90,7 +90,7 @@ class Product
      * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : static
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -113,19 +113,19 @@ class Product
     }
 
     /**
-     * @param string $file
+     * @param \OpenEuropa\EPoetry\Notification\Type\Base64Binary $file
      * @return $this
      */
-    public function setFile(string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFile(\OpenEuropa\EPoetry\Notification\Type\Base64Binary $file) : static
     {
         $this->file = $file;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\Base64Binary|null
      */
-    public function getFile() : ?string
+    public function getFile() : ?\OpenEuropa\EPoetry\Notification\Type\Base64Binary
     {
         return $this->file;
     }
@@ -142,7 +142,7 @@ class Product
      * @param string $name
      * @return $this
      */
-    public function setName(string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setName(string $name) : static
     {
         $this->name = $name;
         return $this;
@@ -165,19 +165,19 @@ class Product
     }
 
     /**
-     * @param string $format
+     * @param \OpenEuropa\EPoetry\Notification\Type\DocumentFormat $format
      * @return $this
      */
-    public function setFormat(string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
+    public function setFormat(\OpenEuropa\EPoetry\Notification\Type\DocumentFormat $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\DocumentFormat|null
      */
-    public function getFormat() : ?string
+    public function getFormat() : ?\OpenEuropa\EPoetry\Notification\Type\DocumentFormat
     {
         return $this->format;
     }

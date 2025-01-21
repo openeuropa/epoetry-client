@@ -13,7 +13,7 @@ class Products
      * @param ModifyProductRequestIn[] $product
      * @return $this
      */
-    public function setProduct(array $product) : \OpenEuropa\EPoetry\Request\Type\Products
+    public function setProduct(array $product) : static
     {
         $this->product = $product;
         return $this;

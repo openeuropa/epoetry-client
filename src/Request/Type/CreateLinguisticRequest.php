@@ -25,7 +25,7 @@ class CreateLinguisticRequest implements RequestInterface
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -51,7 +51,7 @@ class CreateLinguisticRequest implements RequestInterface
      * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setApplicationName(string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -77,7 +77,7 @@ class CreateLinguisticRequest implements RequestInterface
      * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setTemplateName(string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;

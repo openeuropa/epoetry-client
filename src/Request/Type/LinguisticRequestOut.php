@@ -23,7 +23,7 @@ class LinguisticRequestOut
      * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -49,7 +49,7 @@ class LinguisticRequestOut
      * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -75,7 +75,7 @@ class LinguisticRequestOut
      * @param \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
      * @return $this
      */
-    public function setInformativeMessages(\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function setInformativeMessages(\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : static
     {
         $this->informativeMessages = $informativeMessages;
         return $this;

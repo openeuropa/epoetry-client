@@ -25,20 +25,20 @@ class ContactPersonOut
     private $userId;
 
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Request\Type\ContactRole
      */
     private $roleCode;
 
     /**
      * Constructor
      *
-     * @var string $firstName
-     * @var string $lastName
-     * @var string $email
-     * @var string $userId
-     * @var string $roleCode
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
+     * @param string $userId
+     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $roleCode
      */
-    public function __construct(string $firstName, string $lastName, string $email, string $userId, string $roleCode)
+    public function __construct(string $firstName, string $lastName, string $email, string $userId, \OpenEuropa\EPoetry\Request\Type\ContactRole $roleCode)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -51,7 +51,7 @@ class ContactPersonOut
      * @param string $firstName
      * @return $this
      */
-    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setFirstName(string $firstName) : static
     {
         $this->firstName = $firstName;
         return $this;
@@ -77,7 +77,7 @@ class ContactPersonOut
      * @param string $lastName
      * @return $this
      */
-    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setLastName(string $lastName) : static
     {
         $this->lastName = $lastName;
         return $this;
@@ -103,7 +103,7 @@ class ContactPersonOut
      * @param string $email
      * @return $this
      */
-    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setEmail(string $email) : static
     {
         $this->email = $email;
         return $this;
@@ -129,7 +129,7 @@ class ContactPersonOut
      * @param string $userId
      * @return $this
      */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setUserId(string $userId) : static
     {
         $this->userId = $userId;
         return $this;
@@ -152,19 +152,19 @@ class ContactPersonOut
     }
 
     /**
-     * @param string $roleCode
+     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $roleCode
      * @return $this
      */
-    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
+    public function setRoleCode(\OpenEuropa\EPoetry\Request\Type\ContactRole $roleCode) : static
     {
         $this->roleCode = $roleCode;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactRole|null
      */
-    public function getRoleCode() : ?string
+    public function getRoleCode() : ?\OpenEuropa\EPoetry\Request\Type\ContactRole
     {
         return $this->roleCode;
     }

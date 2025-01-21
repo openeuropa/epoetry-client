@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotification
 {
     /**
-     * @var string
+     * @var \OpenEuropa\EPoetry\Notification\Type\NotificationType
      */
     private $notificationType;
 
@@ -35,19 +35,19 @@ class DgtNotification
     private $planningSector;
 
     /**
-     * @param string $notificationType
+     * @param \OpenEuropa\EPoetry\Notification\Type\NotificationType $notificationType
      * @return $this
      */
-    public function setNotificationType(string $notificationType) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setNotificationType(\OpenEuropa\EPoetry\Notification\Type\NotificationType $notificationType) : static
     {
         $this->notificationType = $notificationType;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return \OpenEuropa\EPoetry\Notification\Type\NotificationType|null
      */
-    public function getNotificationType() : ?string
+    public function getNotificationType() : ?\OpenEuropa\EPoetry\Notification\Type\NotificationType
     {
         return $this->notificationType;
     }
@@ -64,7 +64,7 @@ class DgtNotification
      * @param \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setLinguisticRequest(\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : static
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
@@ -90,7 +90,7 @@ class DgtNotification
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @return $this
      */
-    public function setProduct(\OpenEuropa\EPoetry\Notification\Type\Product $product) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setProduct(\OpenEuropa\EPoetry\Notification\Type\Product $product) : static
     {
         $this->product = $product;
         return $this;
@@ -116,7 +116,7 @@ class DgtNotification
      * @param string $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setMessage(string $message) : static
     {
         $this->message = $message;
         return $this;
@@ -142,7 +142,7 @@ class DgtNotification
      * @param string $planningAgent
      * @return $this
      */
-    public function setPlanningAgent(string $planningAgent) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setPlanningAgent(string $planningAgent) : static
     {
         $this->planningAgent = $planningAgent;
         return $this;
@@ -168,7 +168,7 @@ class DgtNotification
      * @param string $planningSector
      * @return $this
      */
-    public function setPlanningSector(string $planningSector) : \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function setPlanningSector(string $planningSector) : static
     {
         $this->planningSector = $planningSector;
         return $this;

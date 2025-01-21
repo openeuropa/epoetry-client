@@ -23,7 +23,7 @@ class DossierReference
      * @param string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setRequesterCode(string $requesterCode) : static
     {
         $this->requesterCode = $requesterCode;
         return $this;
@@ -49,7 +49,7 @@ class DossierReference
      * @param int $number
      * @return $this
      */
-    public function setNumber(int $number) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setNumber(int $number) : static
     {
         $this->number = $number;
         return $this;
@@ -75,7 +75,7 @@ class DossierReference
      * @param int $year
      * @return $this
      */
-    public function setYear(int $year) : \OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function setYear(int $year) : static
     {
         $this->year = $year;
         return $this;

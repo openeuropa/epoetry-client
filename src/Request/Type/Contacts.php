@@ -13,7 +13,7 @@ class Contacts
      * @param ContactPersonIn[] $contact
      * @return $this
      */
-    public function setContact(array $contact) : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function setContact(array $contact) : static
     {
         $this->contact = $contact;
         return $this;
