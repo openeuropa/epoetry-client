@@ -2,14 +2,11 @@
 
 use OpenEuropa\EPoetry\CodeGenerator\ConfigProcessor;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
 
+$engine = CodeGeneratorEngineFactory::create('./resources/request.wsdl');
 $config = Config::create()
-    ->setEngine($engine = DefaultEngineFactory::create(
-        ExtSoapOptions::defaults('./resources/request.wsdl', [])
-            ->disableWsdlCache()
-    ))
+    ->setEngine($engine)
     ->setTypeDestination('src/Request/Type')
     ->setTypeNamespace('OpenEuropa\EPoetry\Request\Type')
     ->setClientDestination('src/Request/')

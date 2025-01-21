@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class LinguisticRequest
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    private $requestReference;
+    private $requestReference = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestStatus
+     * @var null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
      */
-    private $status;
+    private $status = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @param null | \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     * @return null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
@@ -41,19 +41,19 @@ class LinguisticRequest
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestStatus $status
+     * @param null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated' $status
      * @return $this
      */
-    public function setStatus(\OpenEuropa\EPoetry\Notification\Type\RequestStatus $status) : static
+    public function setStatus(?string $status) : static
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestStatus|null
+     * @return null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
      */
-    public function getStatus() : ?\OpenEuropa\EPoetry\Notification\Type\RequestStatus
+    public function getStatus() : ?string
     {
         return $this->status;
     }

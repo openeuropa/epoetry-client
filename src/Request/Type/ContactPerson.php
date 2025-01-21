@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class ContactPersonOut
+class ContactPerson
 {
     /**
      * @var null | string
@@ -28,24 +28,6 @@ class ContactPersonOut
      * @var null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $roleCode = null;
-
-    /**
-     * Constructor
-     *
-     * @param null | string $firstName
-     * @param null | string $lastName
-     * @param null | string $email
-     * @param null | string $userId
-     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
-     */
-    public function __construct(?string $firstName, ?string $lastName, ?string $email, ?string $userId, ?string $roleCode)
-    {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->userId = $userId;
-        $this->roleCode = $roleCode;
-    }
 
     /**
      * @param null | string $firstName

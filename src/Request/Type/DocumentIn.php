@@ -5,37 +5,37 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DocumentIn
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $fileName;
+    private $fileName = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Language
+     * @var 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
     private $language;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $comment;
+    private $comment = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
+     * @var null | mixed
      */
-    private $content;
+    private $content = null;
 
     /**
-     * @param string $fileName
+     * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : static
+    public function setFileName(?string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getFileName() : ?string
     {
@@ -51,19 +51,19 @@ class DocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
+     * @param 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
      * @return $this
      */
-    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
+    public function setLanguage(string $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
+     * @return 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage() : string
     {
         return $this->language;
     }
@@ -77,17 +77,17 @@ class DocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param null | string $comment
      * @return $this
      */
-    public function setComment(string $comment) : static
+    public function setComment(?string $comment) : static
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getComment() : ?string
     {
@@ -103,19 +103,19 @@ class DocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
+     * @param null | mixed $content
      * @return $this
      */
-    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
+    public function setContent(mixed $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
+     * @return null | mixed
      */
-    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
+    public function getContent() : mixed
     {
         return $this->content;
     }

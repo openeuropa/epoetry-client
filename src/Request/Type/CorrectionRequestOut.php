@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionRequestOut
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
-    private $requestReference;
+    private $requestReference = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @var null | \OpenEuropa\EPoetry\Request\Type\DcoOut
      */
-    private $DCO;
+    private $DCO = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @param null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
@@ -41,17 +41,17 @@ class CorrectionRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
+     * @param null | \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
      * @return $this
      */
-    public function setDCO(\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : static
+    public function setDCO(?\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : static
     {
         $this->DCO = $DCO;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\DcoOut
      */
     public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
     {

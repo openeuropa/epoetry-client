@@ -10,9 +10,9 @@ class DgtNotificationResult
     private $success;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $message;
+    private $message = null;
 
     /**
      * @param bool $success
@@ -25,9 +25,9 @@ class DgtNotificationResult
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isSuccess() : ?bool
+    public function isSuccess() : bool
     {
         return $this->success;
     }
@@ -41,17 +41,17 @@ class DgtNotificationResult
     }
 
     /**
-     * @param string $message
+     * @param null | string $message
      * @return $this
      */
-    public function setMessage(string $message) : static
+    public function setMessage(?string $message) : static
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getMessage() : ?string
     {

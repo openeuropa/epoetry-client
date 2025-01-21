@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\ResultInterface;
 class CreateCorrectionRequestResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+     * @var null | \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
      */
-    private $return;
+    private $return = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
+     * @param null | \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return) : static
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
      */
     public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {

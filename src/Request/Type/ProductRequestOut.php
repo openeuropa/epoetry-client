@@ -5,19 +5,19 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ProductRequestOut
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Language
+     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    private $language;
+    private $language = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var null | \DateTimeInterface
      */
-    private $requestedDeadline;
+    private $requestedDeadline = null;
 
     /**
-     * @var \DateTimeInterface
+     * @var null | \DateTimeInterface
      */
-    private $acceptedDeadline;
+    private $acceptedDeadline = null;
 
     /**
      * @var bool
@@ -25,29 +25,29 @@ class ProductRequestOut
     private $trackChanges;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ProductStatus
+     * @var null | 'Accepted' | 'SenttoDGT' | 'Ongoing' | 'Received' | 'Rejected' | 'Requested' | 'Executed' | 'Sent' | 'ToBeValidated'
      */
-    private $status;
+    private $status = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
+     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    private $format;
+    private $format = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
+     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
      * @return $this
      */
-    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
+    public function setLanguage(?string $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
+     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -61,17 +61,17 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface $requestedDeadline
+     * @param null | \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : static
+    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : static
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return null | \DateTimeInterface
      */
     public function getRequestedDeadline() : ?\DateTimeInterface
     {
@@ -87,17 +87,17 @@ class ProductRequestOut
     }
 
     /**
-     * @param \DateTimeInterface $acceptedDeadline
+     * @param null | \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : static
+    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : static
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return null | \DateTimeInterface
      */
     public function getAcceptedDeadline() : ?\DateTimeInterface
     {
@@ -123,9 +123,9 @@ class ProductRequestOut
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isTrackChanges() : ?bool
+    public function isTrackChanges() : bool
     {
         return $this->trackChanges;
     }
@@ -139,19 +139,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ProductStatus $status
+     * @param null | 'Accepted' | 'SenttoDGT' | 'Ongoing' | 'Received' | 'Rejected' | 'Requested' | 'Executed' | 'Sent' | 'ToBeValidated' $status
      * @return $this
      */
-    public function setStatus(\OpenEuropa\EPoetry\Request\Type\ProductStatus $status) : static
+    public function setStatus(?string $status) : static
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ProductStatus|null
+     * @return null | 'Accepted' | 'SenttoDGT' | 'Ongoing' | 'Received' | 'Rejected' | 'Requested' | 'Executed' | 'Sent' | 'ToBeValidated'
      */
-    public function getStatus() : ?\OpenEuropa\EPoetry\Request\Type\ProductStatus
+    public function getStatus() : ?string
     {
         return $this->status;
     }
@@ -165,19 +165,19 @@ class ProductRequestOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
+     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
-    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
+    public function setFormat(?string $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
+     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
+    public function getFormat() : ?string
     {
         return $this->format;
     }

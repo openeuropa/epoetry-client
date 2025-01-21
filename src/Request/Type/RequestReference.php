@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class RequestReferenceOut
+class RequestReference
 {
     /**
      * @var null | \OpenEuropa\EPoetry\Request\Type\DossierReference
@@ -10,7 +10,7 @@ class RequestReferenceOut
     private $dossier = null;
 
     /**
-     * @var null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO'
+     * @var null | string
      */
     private $productType = null;
 
@@ -18,11 +18,6 @@ class RequestReferenceOut
      * @var null | int
      */
     private $part = null;
-
-    /**
-     * @var null | int
-     */
-    private $version = null;
 
     /**
      * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
@@ -51,7 +46,7 @@ class RequestReferenceOut
     }
 
     /**
-     * @param null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO' $productType
+     * @param null | string $productType
      * @return $this
      */
     public function setProductType(?string $productType) : static
@@ -61,7 +56,7 @@ class RequestReferenceOut
     }
 
     /**
-     * @return null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO'
+     * @return null | string
      */
     public function getProductType() : ?string
     {
@@ -100,32 +95,6 @@ class RequestReferenceOut
     public function hasPart() : bool
     {
         return !empty($this->part);
-    }
-
-    /**
-     * @param null | int $version
-     * @return $this
-     */
-    public function setVersion(?int $version) : static
-    {
-        $this->version = $version;
-        return $this;
-    }
-
-    /**
-     * @return null | int
-     */
-    public function getVersion() : ?int
-    {
-        return $this->version;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasVersion() : bool
-    {
-        return !empty($this->version);
     }
 }
 

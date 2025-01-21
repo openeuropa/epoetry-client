@@ -5,12 +5,13 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Products
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array
+     * @var array<int<0,max>,
+     * \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array>
      */
     private $product = [];
 
     /**
-     * @param ModifyProductRequestIn[] $product
+     * @param array<int<0,max>, ModifyProductRequestIn[]> $product
      * @return $this
      */
     public function setProduct(array $product) : static
@@ -20,7 +21,8 @@ class Products
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array|null
+     * @return array<int<0,max>,
+     * \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn[]|array>
      */
     public function getProduct() : ?array
     {

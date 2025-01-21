@@ -59,11 +59,10 @@ class ConfigProcessor
                 ->whitelist($specialClassesAndProperties)
         );
 
-        $defaultGetterAssembler = new OpenEuropa\Assembler\NullableGetterAssembler(
-            OpenEuropa\Assembler\NullableGetterAssemblerOptions::create()
+        $defaultGetterAssembler = new Assembler\GetterAssembler(
+            Assembler\GetterAssemblerOptions::create()
                 ->withReturnType()
                 ->withBoolGetters()
-                ->withReturnNull()
         );
 
         $arrayGetterAssembler = new OpenEuropa\Assembler\ArrayGetterAssembler(

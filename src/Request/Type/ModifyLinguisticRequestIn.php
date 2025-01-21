@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyLinguisticRequestIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
      */
-    private $requestReference;
+    private $requestReference = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
      */
-    private $requestDetails;
+    private $requestDetails = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
+     * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
@@ -41,17 +41,17 @@ class ModifyLinguisticRequestIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
+     * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails) : static
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
      */
     public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {

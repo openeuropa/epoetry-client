@@ -7,32 +7,32 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ResubmitRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
-    private $resubmitRequest;
+    private $resubmitRequest = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $applicationName;
+    private $applicationName = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $templateName;
+    private $templateName = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
+     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : static
+    public function setResubmitRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : static
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
     public function getResubmitRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
@@ -48,17 +48,17 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : static
+    public function setApplicationName(?string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getApplicationName() : ?string
     {
@@ -74,17 +74,17 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param string $templateName
+     * @param null | string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : static
+    public function setTemplateName(?string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getTemplateName() : ?string
     {

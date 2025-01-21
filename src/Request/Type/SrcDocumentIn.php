@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class SrcDocumentIn
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $fileName;
+    private $fileName = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $comment;
+    private $comment = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
+     * @var null | mixed
      */
-    private $content;
+    private $content = null;
 
     /**
-     * @param string $fileName
+     * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : static
+    public function setFileName(?string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getFileName() : ?string
     {
@@ -46,17 +46,17 @@ class SrcDocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param null | string $comment
      * @return $this
      */
-    public function setComment(string $comment) : static
+    public function setComment(?string $comment) : static
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getComment() : ?string
     {
@@ -72,19 +72,19 @@ class SrcDocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
+     * @param null | mixed $content
      * @return $this
      */
-    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
+    public function setContent(mixed $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
+     * @return null | mixed
      */
-    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
+    public function getContent() : mixed
     {
         return $this->content;
     }

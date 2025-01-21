@@ -5,9 +5,9 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class RequestReference
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $requesterCode;
+    private $requesterCode = null;
 
     /**
      * @var int
@@ -30,22 +30,22 @@ class RequestReference
     private $version;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $productType;
+    private $productType = null;
 
     /**
-     * @param string $requesterCode
+     * @param null | string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(string $requesterCode) : static
+    public function setRequesterCode(?string $requesterCode) : static
     {
         $this->requesterCode = $requesterCode;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getRequesterCode() : ?string
     {
@@ -71,9 +71,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getYear() : ?int
+    public function getYear() : int
     {
         return $this->year;
     }
@@ -97,9 +97,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getNumber() : ?int
+    public function getNumber() : int
     {
         return $this->number;
     }
@@ -123,9 +123,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getPart() : ?int
+    public function getPart() : int
     {
         return $this->part;
     }
@@ -149,9 +149,9 @@ class RequestReference
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getVersion() : ?int
+    public function getVersion() : int
     {
         return $this->version;
     }
@@ -165,17 +165,17 @@ class RequestReference
     }
 
     /**
-     * @param string $productType
+     * @param null | string $productType
      * @return $this
      */
-    public function setProductType(string $productType) : static
+    public function setProductType(?string $productType) : static
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getProductType() : ?string
     {

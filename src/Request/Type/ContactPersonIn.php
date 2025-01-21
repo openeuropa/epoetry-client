@@ -10,7 +10,7 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ContactRole
+     * @var 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $contactRole;
 
@@ -18,9 +18,9 @@ class ContactPersonIn
      * Constructor
      *
      * @param string $userId
-     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      */
-    public function __construct(string $userId, \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole)
+    public function __construct(string $userId, string $contactRole)
     {
         $this->userId = $userId;
         $this->contactRole = $contactRole;
@@ -37,9 +37,9 @@ class ContactPersonIn
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUserId() : ?string
+    public function getUserId() : string
     {
         return $this->userId;
     }
@@ -53,19 +53,19 @@ class ContactPersonIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      * @return $this
      */
-    public function setContactRole(\OpenEuropa\EPoetry\Request\Type\ContactRole $contactRole) : static
+    public function setContactRole(string $contactRole) : static
     {
         $this->contactRole = $contactRole;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ContactRole|null
+     * @return 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
-    public function getContactRole() : ?\OpenEuropa\EPoetry\Request\Type\ContactRole
+    public function getContactRole() : string
     {
         return $this->contactRole;
     }

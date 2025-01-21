@@ -7,6 +7,9 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetServiceTicket implements RequestInterface
 {
     /**
+     * The target service for which you want to obtain a service ticket.
+     *  This must be a valid URL.
+     *
      * @var string
      */
     private string $service;

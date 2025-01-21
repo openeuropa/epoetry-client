@@ -66,6 +66,15 @@ class RequestClassmap
             new ClassMap('modifyProductRequestIn', Type\ModifyProductRequestIn::class),
             new ClassMap('modifyAuxiliaryDocumentsIn', Type\ModifyAuxiliaryDocumentsIn::class),
             new ClassMap('updateCallbackUrlOut', Type\UpdateCallbackUrlOut::class),
+            new ClassMap('dossier', Type\Dossier::class),
+            new ClassMap('requestDetails', Type\RequestDetails::class),
+            new ClassMap('originalDocument', Type\OriginalDocument::class),
+            new ClassMap('linguisticSection', Type\LinguisticSection::class),
+            new ClassMap('product', Type\Product::class),
+            new ClassMap('linquisticRequest', Type\LinquisticRequest::class),
+            new ClassMap('requestReference', Type\RequestReference::class),
+            new ClassMap('contactPerson', Type\ContactPerson::class),
+            new ClassMap('DCO', Type\DCO::class),
         );
     }
 }

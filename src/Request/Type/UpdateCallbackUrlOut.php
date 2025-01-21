@@ -10,24 +10,24 @@ class UpdateCallbackUrlOut
     private $success;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $oldCallbackUrl;
+    private $oldCallbackUrl = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $newCallbackUrl;
+    private $newCallbackUrl = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $application;
+    private $application = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $message;
+    private $message = null;
 
     /**
      * @param bool $success
@@ -40,9 +40,9 @@ class UpdateCallbackUrlOut
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isSuccess() : ?bool
+    public function isSuccess() : bool
     {
         return $this->success;
     }
@@ -56,17 +56,17 @@ class UpdateCallbackUrlOut
     }
 
     /**
-     * @param string $oldCallbackUrl
+     * @param null | string $oldCallbackUrl
      * @return $this
      */
-    public function setOldCallbackUrl(string $oldCallbackUrl) : static
+    public function setOldCallbackUrl(?string $oldCallbackUrl) : static
     {
         $this->oldCallbackUrl = $oldCallbackUrl;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getOldCallbackUrl() : ?string
     {
@@ -82,17 +82,17 @@ class UpdateCallbackUrlOut
     }
 
     /**
-     * @param string $newCallbackUrl
+     * @param null | string $newCallbackUrl
      * @return $this
      */
-    public function setNewCallbackUrl(string $newCallbackUrl) : static
+    public function setNewCallbackUrl(?string $newCallbackUrl) : static
     {
         $this->newCallbackUrl = $newCallbackUrl;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getNewCallbackUrl() : ?string
     {
@@ -108,17 +108,17 @@ class UpdateCallbackUrlOut
     }
 
     /**
-     * @param string $application
+     * @param null | string $application
      * @return $this
      */
-    public function setApplication(string $application) : static
+    public function setApplication(?string $application) : static
     {
         $this->application = $application;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getApplication() : ?string
     {
@@ -134,17 +134,17 @@ class UpdateCallbackUrlOut
     }
 
     /**
-     * @param string $message
+     * @param null | string $message
      * @return $this
      */
-    public function setMessage(string $message) : static
+    public function setMessage(?string $message) : static
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getMessage() : ?string
     {

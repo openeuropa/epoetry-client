@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class TraxDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array
+     * @var array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array>
      */
     private $document = [];
 
     /**
-     * @param DocumentIn[] $document
+     * @param array<int<0,max>, DocumentIn[]> $document
      * @return $this
      */
     public function setDocument(array $document) : static
@@ -20,7 +20,7 @@ class TraxDocuments
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array|null
+     * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array>
      */
     public function getDocument() : ?array
     {

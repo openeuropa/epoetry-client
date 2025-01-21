@@ -5,12 +5,13 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class LinguisticSections
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array
+     * @var array<int<0,max>,
+     * \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array>
      */
     private $linguisticSection = [];
 
     /**
-     * @param LinguisticSectionOut[] $linguisticSection
+     * @param array<int<0,max>, LinguisticSectionOut[]> $linguisticSection
      * @return $this
      */
     public function setLinguisticSection(array $linguisticSection) : static
@@ -20,7 +21,8 @@ class LinguisticSections
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array|null
+     * @return array<int<0,max>,
+     * \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut[]|array>
      */
     public function getLinguisticSection() : ?array
     {

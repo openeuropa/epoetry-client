@@ -5,42 +5,42 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocumentOut
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $fileName;
+    private $fileName = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Language
+     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    private $language;
+    private $language = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentType
+     * @var null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT'
      */
-    private $documentType;
+    private $documentType = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $comment;
+    private $comment = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
+     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    private $format;
+    private $format = null;
 
     /**
-     * @param string $fileName
+     * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : static
+    public function setFileName(?string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getFileName() : ?string
     {
@@ -56,19 +56,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
+     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
      * @return $this
      */
-    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
+    public function setLanguage(?string $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
+     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -82,19 +82,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentType $documentType
+     * @param null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT' $documentType
      * @return $this
      */
-    public function setDocumentType(\OpenEuropa\EPoetry\Request\Type\DocumentType $documentType) : static
+    public function setDocumentType(?string $documentType) : static
     {
         $this->documentType = $documentType;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentType|null
+     * @return null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT'
      */
-    public function getDocumentType() : ?\OpenEuropa\EPoetry\Request\Type\DocumentType
+    public function getDocumentType() : ?string
     {
         return $this->documentType;
     }
@@ -108,17 +108,17 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param string $comment
+     * @param null | string $comment
      * @return $this
      */
-    public function setComment(string $comment) : static
+    public function setComment(?string $comment) : static
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getComment() : ?string
     {
@@ -134,19 +134,19 @@ class AuxiliaryDocumentOut
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
+     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
-    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
+    public function setFormat(?string $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
+     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
+    public function getFormat() : ?string
     {
         return $this->format;
     }

@@ -5,47 +5,47 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionDetailsIn
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
-    private $requestReference;
+    private $requestReference = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $fileName;
+    private $fileName = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
+     * @var null | mixed
      */
-    private $content;
+    private $content = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DocumentFormat
+     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    private $format;
+    private $format = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Language
+     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    private $language;
+    private $language = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $remark;
+    private $remark = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
+     * @param null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
@@ -61,17 +61,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $fileName
+     * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : static
+    public function setFileName(?string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getFileName() : ?string
     {
@@ -87,19 +87,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
+     * @param null | mixed $content
      * @return $this
      */
-    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
+    public function setContent(mixed $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
+     * @return null | mixed
      */
-    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
+    public function getContent() : mixed
     {
         return $this->content;
     }
@@ -113,19 +113,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DocumentFormat $format
+     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
-    public function setFormat(\OpenEuropa\EPoetry\Request\Type\DocumentFormat $format) : static
+    public function setFormat(?string $format) : static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DocumentFormat|null
+     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    public function getFormat() : ?\OpenEuropa\EPoetry\Request\Type\DocumentFormat
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -139,19 +139,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Language $language
+     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
      * @return $this
      */
-    public function setLanguage(\OpenEuropa\EPoetry\Request\Type\Language $language) : static
+    public function setLanguage(?string $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Language|null
+     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    public function getLanguage() : ?\OpenEuropa\EPoetry\Request\Type\Language
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
@@ -165,17 +165,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param string $remark
+     * @param null | string $remark
      * @return $this
      */
-    public function setRemark(string $remark) : static
+    public function setRemark(?string $remark) : static
     {
         $this->remark = $remark;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getRemark() : ?string
     {

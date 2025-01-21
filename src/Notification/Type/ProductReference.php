@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class ProductReference
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    private $requestReference;
+    private $requestReference = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $language;
+    private $language = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @param null | \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
+     * @return null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
@@ -41,17 +41,17 @@ class ProductReference
     }
 
     /**
-     * @param string $language
+     * @param null | string $language
      * @return $this
      */
-    public function setLanguage(string $language) : static
+    public function setLanguage(?string $language) : static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getLanguage() : ?string
     {

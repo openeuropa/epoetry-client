@@ -7,6 +7,8 @@ use Phpro\SoapClient\Type\ResultInterface;
 class GetServiceTicketResponse implements ResultInterface
 {
     /**
+     * Service ticket for the specified service.
+     *
      * @var string
      */
     private string $serviceTicket;

@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class LinguisticRequestOut
+class LinquisticRequest
 {
     /**
      * @var null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut

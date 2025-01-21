@@ -5,12 +5,12 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class InformativeMessages
 {
     /**
-     * @var string[]|array
+     * @var array<int<0,max>, string[]|array>
      */
     private $message = [];
 
     /**
-     * @param string[] $message
+     * @param array<int<0,max>, string[]> $message
      * @return $this
      */
     public function setMessage(array $message) : static
@@ -20,7 +20,7 @@ class InformativeMessages
     }
 
     /**
-     * @return string[]|array|null
+     * @return array<int<0,max>, string[]|array>
      */
     public function getMessage() : ?array
     {

@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\ResultInterface;
 class CreateLinguisticRequestResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
      */
-    private $return;
+    private $return = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
+     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : static
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
      */
     public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {

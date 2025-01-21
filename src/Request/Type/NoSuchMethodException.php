@@ -5,22 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class NoSuchMethodException
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $message;
+    private $message = null;
 
     /**
-     * @param string $message
+     * @param null | string $message
      * @return $this
      */
-    public function setMessage(string $message) : static
+    public function setMessage(?string $message) : static
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getMessage() : ?string
     {

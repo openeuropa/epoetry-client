@@ -5,19 +5,19 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class OriginalDocumentIn
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $fileName;
+    private $fileName = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $comment;
+    private $comment = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\Base64Binary
+     * @var null | mixed
      */
-    private $content;
+    private $content = null;
 
     /**
      * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections
@@ -30,17 +30,17 @@ class OriginalDocumentIn
     private $trackChanges;
 
     /**
-     * @param string $fileName
+     * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(string $fileName) : static
+    public function setFileName(?string $fileName) : static
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getFileName() : ?string
     {
@@ -56,17 +56,17 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param string $comment
+     * @param null | string $comment
      * @return $this
      */
-    public function setComment(string $comment) : static
+    public function setComment(?string $comment) : static
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getComment() : ?string
     {
@@ -82,19 +82,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\Base64Binary $content
+     * @param null | mixed $content
      * @return $this
      */
-    public function setContent(\OpenEuropa\EPoetry\Request\Type\Base64Binary $content) : static
+    public function setContent(mixed $content) : static
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\Base64Binary|null
+     * @return null | mixed
      */
-    public function getContent() : ?\OpenEuropa\EPoetry\Request\Type\Base64Binary
+    public function getContent() : mixed
     {
         return $this->content;
     }
@@ -118,9 +118,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -144,9 +144,9 @@ class OriginalDocumentIn
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isTrackChanges() : ?bool
+    public function isTrackChanges() : bool
     {
         return $this->trackChanges;
     }
