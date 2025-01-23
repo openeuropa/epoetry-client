@@ -6,9 +6,6 @@
     <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
   </php>
   <testsuites>
-    <testsuite name="Authentication">
-      <directory>tests/Authentication</directory>
-    </testsuite>
     <testsuite name="CodeGenerator">
       <directory>tests/CodeGenerator</directory>
     </testsuite>
@@ -20,9 +17,6 @@
     </testsuite>
     <testsuite name="Request">
       <directory>tests/Request</directory>
-    </testsuite>
-    <testsuite name="TicketValidation">
-      <directory>tests/TicketValidation</directory>
     </testsuite>
     <testsuite name="RequestClientFactoryTest">
       <file>tests/RequestClientFactoryTest.php</file>

@@ -7,16 +7,19 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetServiceTicket implements RequestInterface
 {
     /**
+     * The target service for which you want to obtain a service ticket.
+     *  This must be a valid URL.
+     *
      * @var string
      */
-    private $service;
+    private string $service;
 
     /**
      * Constructor
      *
-     * @var string $service
+     * @param string $service
      */
-    public function __construct($service)
+    public function __construct(string $service)
     {
         $this->service = $service;
     }
@@ -24,16 +27,16 @@ class GetServiceTicket implements RequestInterface
     /**
      * @return string
      */
-    public function getService()
+    public function getService() : string
     {
         return $this->service;
     }
 
     /**
      * @param string $service
-     * @return GetServiceTicket
+     * @return static
      */
-    public function withService($service)
+    public function withService(string $service) : static
     {
         $new = clone $this;
         $new->service = $service;
@@ -41,3 +44,4 @@ class GetServiceTicket implements RequestInterface
         return $new;
     }
 }
+

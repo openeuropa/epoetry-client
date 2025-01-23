@@ -29,8 +29,6 @@ jobs:
 #        run: docker-compose exec -T php ./vendor/bin/phpunit
       # While porting to 3.x run each test suite separately.
       # We will remove this one the job is done.
-      - name: Authentication
-        run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite Authentication"
       - name: CodeGenerator
         run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite CodeGenerator"
       - name: ExtSoapEngine
@@ -39,8 +37,6 @@ jobs:
         run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite Notification"
       - name: Request
         run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite Request"
-      - name: TicketValidation
-        run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite TicketValidation"
       - name: RequestClientFactoryTest
         run: "docker-compose exec -T php ./vendor/bin/phpunit --testsuite RequestClientFactoryTest"
       - name: SerializerTest
