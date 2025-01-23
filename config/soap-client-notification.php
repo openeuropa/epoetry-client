@@ -19,4 +19,5 @@ $config = Config::create()
     ->setClassMapNamespace('OpenEuropa\EPoetry\Notification')
 ;
 
-return ConfigProcessor::addRules($config);
+ConfigProcessor::addRules($config);
+return $config;

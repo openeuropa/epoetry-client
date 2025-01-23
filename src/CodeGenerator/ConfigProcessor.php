@@ -24,10 +24,9 @@ class ConfigProcessor
      * @param array $overridePropertyTypes
      *   Override specific property types when generating classes.
      *
-     * @return \Phpro\SoapClient\CodeGenerator\Config\Config
-     *   Configuration object instance.
+     * @return void
      */
-    public static function addRules(Config $config, array $specialClassesAndProperties = [], array $overridePropertyTypes = []): Config
+    public static function addRules(Config $config, array $specialClassesAndProperties = [], array $overridePropertyTypes = [])
     {
         // Set all property visibility to "protected".
         // We have to do this as the SOAP handler will erroneously create duplicate
@@ -77,7 +76,7 @@ class ConfigProcessor
 
         $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
 
-        return $config
+        $config
         //            // Add the ResultInterface to classes that match given regex.
         //            ->addRule(
         //                new Rules\TypenameMatchesRule(
@@ -88,7 +87,7 @@ class ConfigProcessor
         // Set the default property assembler and generate all properties.
             ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
         // Update properties and set them as 'nullable'
-            ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
+//            ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
         // Update properties and update only some of them.
             ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
         // Update setters and update only some of them.
@@ -141,12 +140,11 @@ class ConfigProcessor
      * @param array $classes
      *      Array of class names, without their namespace.
      *
-     * @return \Phpro\SoapClient\CodeGenerator\Config\Config
-     *      Configuration object.
+     * @return void
      */
     public static function addConstructorRule(Config $config, array $classes)
     {
-        return $config
+        $config
             ->addRule(new Rules\TypenameMatchesRule(
                 new Rules\AssembleRule(
                     new Assembler\ConstructorAssembler(
