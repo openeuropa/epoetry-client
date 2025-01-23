@@ -5,22 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ReferenceDocuments
 {
     /**
-     * @var array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array>
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array
      */
     private $document = [];
 
     /**
-     * @param array<int<0,max>, DocumentIn[]> $document
+     * @param DocumentIn[] $document
      * @return $this
      */
-    public function setDocument(array $document) : static
+    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
         $this->document = $document;
         return $this;
     }
 
     /**
-     * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array>
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn[]|array|null
      */
     public function getDocument() : ?array
     {

@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyRequestReferenceIn
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    private $dossier = null;
+    private $dossier;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $productType = null;
+    private $productType;
 
     /**
-     * @var null | int
+     * @var int
      */
-    private $part = null;
+    private $part;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
+    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->dossier = $dossier;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
      */
     public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
@@ -46,17 +46,17 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param null | string $productType
+     * @param string $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : static
+    public function setProductType(string $productType) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->productType = $productType;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getProductType() : ?string
     {
@@ -72,17 +72,17 @@ class ModifyRequestReferenceIn
     }
 
     /**
-     * @param null | int $part
+     * @param int $part
      * @return $this
      */
-    public function setPart(?int $part) : static
+    public function setPart(int $part) : \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         $this->part = $part;
         return $this;
     }
 
     /**
-     * @return null | int
+     * @return int|null
      */
     public function getPart() : ?int
     {

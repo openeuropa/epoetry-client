@@ -21,18 +21,12 @@ class ClientCertificateClient
     }
 
     /**
-     * @param RequestInterface & Type\GetServiceTicket $getServiceTicketPart
-     * @return ResultInterface & Type\GetServiceTicketResponse
+     * @param RequestInterface|Type\GetServiceTicket $getServiceTicketPart
+     * @return ResultInterface|Type\GetServiceTicketResponse
      * @throws SoapException
      */
     public function getServiceTicket(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket $getServiceTicketPart) : \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicketResponse
     {
-        $response = ($this->caller)('getServiceTicket', $getServiceTicketPart);
-
-        \Psl\Type\instance_of(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicketResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return ($this->caller)('getServiceTicket', $getServiceTicketPart);
     }
 }
-

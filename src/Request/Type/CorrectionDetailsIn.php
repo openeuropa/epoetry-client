@@ -5,47 +5,47 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionDetailsIn
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
      */
-    private $requestReference = null;
+    private $requestReference;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $fileName = null;
+    private $fileName;
 
     /**
-     * @var null | mixed
+     * @var string
      */
-    private $content = null;
+    private $content;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var string
      */
-    private $format = null;
+    private $format;
 
     /**
-     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @var string
      */
-    private $language = null;
+    private $language;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $remark = null;
+    private $remark;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : static
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn|null
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
     {
@@ -61,17 +61,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param null | string $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFileName() : ?string
     {
@@ -87,19 +87,19 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param null | mixed $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(mixed $content) : static
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return null | mixed
+     * @return string|null
      */
-    public function getContent() : mixed
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -113,17 +113,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return string|null
      */
     public function getFormat() : ?string
     {
@@ -139,17 +139,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : static
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @return string|null
      */
     public function getLanguage() : ?string
     {
@@ -165,17 +165,17 @@ class CorrectionDetailsIn
     }
 
     /**
-     * @param null | string $remark
+     * @param string $remark
      * @return $this
      */
-    public function setRemark(?string $remark) : static
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
         $this->remark = $remark;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getRemark() : ?string
     {

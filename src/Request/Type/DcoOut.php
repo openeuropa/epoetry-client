@@ -5,52 +5,52 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DcoOut
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @var null | \DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $deadline = null;
+    private $deadline;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $fileName = null;
+    private $fileName;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var string
      */
-    private $format = null;
+    private $format;
 
     /**
-     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @var string
      */
-    private $language = null;
+    private $language;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $remark = null;
+    private $remark;
 
     /**
-     * @var null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @var string
      */
-    private $status = null;
+    private $status;
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {
@@ -66,17 +66,17 @@ class DcoOut
     }
 
     /**
-     * @param null | \DateTimeInterface $deadline
+     * @param \DateTimeInterface $deadline
      * @return $this
      */
-    public function setDeadline(?\DateTimeInterface $deadline) : static
+    public function setDeadline(\DateTimeInterface $deadline) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->deadline = $deadline;
         return $this;
     }
 
     /**
-     * @return null | \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
     public function getDeadline() : ?\DateTimeInterface
     {
@@ -92,17 +92,17 @@ class DcoOut
     }
 
     /**
-     * @param null | string $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFileName() : ?string
     {
@@ -118,17 +118,17 @@ class DcoOut
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return string|null
      */
     public function getFormat() : ?string
     {
@@ -144,17 +144,17 @@ class DcoOut
     }
 
     /**
-     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
+     * @param string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : static
+    public function setLanguage(string $language) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @return string|null
      */
     public function getLanguage() : ?string
     {
@@ -170,17 +170,17 @@ class DcoOut
     }
 
     /**
-     * @param null | string $remark
+     * @param string $remark
      * @return $this
      */
-    public function setRemark(?string $remark) : static
+    public function setRemark(string $remark) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->remark = $remark;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getRemark() : ?string
     {
@@ -196,17 +196,17 @@ class DcoOut
     }
 
     /**
-     * @param null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated' $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\DcoOut
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @return string|null
      */
     public function getStatus() : ?string
     {

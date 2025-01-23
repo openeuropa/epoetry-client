@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class DossierReference
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $requesterCode = null;
+    private $requesterCode;
 
     /**
-     * @var null | int
+     * @var int
      */
-    private $number = null;
+    private $number;
 
     /**
-     * @var null | int
+     * @var int
      */
-    private $year = null;
+    private $year;
 
     /**
-     * @param null | string $requesterCode
+     * @param string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(?string $requesterCode) : static
+    public function setRequesterCode(string $requesterCode) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->requesterCode = $requesterCode;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getRequesterCode() : ?string
     {
@@ -46,17 +46,17 @@ class DossierReference
     }
 
     /**
-     * @param null | int $number
+     * @param int $number
      * @return $this
      */
-    public function setNumber(?int $number) : static
+    public function setNumber(int $number) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->number = $number;
         return $this;
     }
 
     /**
-     * @return null | int
+     * @return int|null
      */
     public function getNumber() : ?int
     {
@@ -72,17 +72,17 @@ class DossierReference
     }
 
     /**
-     * @param null | int $year
+     * @param int $year
      * @return $this
      */
-    public function setYear(?int $year) : static
+    public function setYear(int $year) : \OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         $this->year = $year;
         return $this;
     }
 
     /**
-     * @return null | int
+     * @return int|null
      */
     public function getYear() : ?int
     {

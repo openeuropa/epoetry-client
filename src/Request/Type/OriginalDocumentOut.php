@@ -10,44 +10,44 @@ class OriginalDocumentOut
     private $trackChanges;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var string
      */
-    private $format = null;
+    private $format;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $fileName = null;
+    private $fileName;
 
     /**
-     * @var null | float
+     * @var float
      */
-    private $pages = null;
+    private $pages;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $comment = null;
+    private $comment;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    private $linguisticSections = null;
+    private $linguisticSections;
 
     /**
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : static
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }
@@ -61,17 +61,17 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return string|null
      */
     public function getFormat() : ?string
     {
@@ -87,17 +87,17 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param null | string $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFileName() : ?string
     {
@@ -113,17 +113,17 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param null | float $pages
+     * @param float $pages
      * @return $this
      */
-    public function setPages(?float $pages) : static
+    public function setPages(float $pages) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->pages = $pages;
         return $this;
     }
 
     /**
-     * @return null | float
+     * @return float|null
      */
     public function getPages() : ?float
     {
@@ -139,17 +139,17 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param null | string $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getComment() : ?string
     {
@@ -165,17 +165,17 @@ class OriginalDocumentOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
      */
     public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {

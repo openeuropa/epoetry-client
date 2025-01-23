@@ -5,24 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class Contacts
 {
     /**
-     * @var non-empty-array<int<0,max>,
-     * \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array>
+     * @var \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array
      */
     private $contact = [];
 
     /**
-     * @param non-empty-array<int<0,max>, ContactPersonIn[]> $contact
+     * @param ContactPersonIn[] $contact
      * @return $this
      */
-    public function setContact(array $contact) : static
+    public function setContact(array $contact) : \OpenEuropa\EPoetry\Request\Type\Contacts
     {
         $this->contact = $contact;
         return $this;
     }
 
     /**
-     * @return non-empty-array<int<0,max>,
-     * \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array>
+     * @return \OpenEuropa\EPoetry\Request\Type\ContactPersonIn[]|array|null
      */
     public function getContact() : ?array
     {

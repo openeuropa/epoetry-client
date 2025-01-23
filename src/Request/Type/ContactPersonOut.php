@@ -5,40 +5,40 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ContactPersonOut
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $firstName = null;
+    private $firstName;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $lastName = null;
+    private $lastName;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $email = null;
+    private $email;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $userId = null;
+    private $userId;
 
     /**
-     * @var null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
+     * @var string
      */
-    private $roleCode = null;
+    private $roleCode;
 
     /**
      * Constructor
      *
-     * @param null | string $firstName
-     * @param null | string $lastName
-     * @param null | string $email
-     * @param null | string $userId
-     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
+     * @var string $firstName
+     * @var string $lastName
+     * @var string $email
+     * @var string $userId
+     * @var string $roleCode
      */
-    public function __construct(?string $firstName, ?string $lastName, ?string $email, ?string $userId, ?string $roleCode)
+    public function __construct(string $firstName, string $lastName, string $email, string $userId, string $roleCode)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -48,17 +48,17 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | string $firstName
+     * @param string $firstName
      * @return $this
      */
-    public function setFirstName(?string $firstName) : static
+    public function setFirstName(string $firstName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFirstName() : ?string
     {
@@ -74,17 +74,17 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | string $lastName
+     * @param string $lastName
      * @return $this
      */
-    public function setLastName(?string $lastName) : static
+    public function setLastName(string $lastName) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getLastName() : ?string
     {
@@ -100,17 +100,17 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | string $email
+     * @param string $email
      * @return $this
      */
-    public function setEmail(?string $email) : static
+    public function setEmail(string $email) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getEmail() : ?string
     {
@@ -126,17 +126,17 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | string $userId
+     * @param string $userId
      * @return $this
      */
-    public function setUserId(?string $userId) : static
+    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->userId = $userId;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getUserId() : ?string
     {
@@ -152,17 +152,17 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
+     * @param string $roleCode
      * @return $this
      */
-    public function setRoleCode(?string $roleCode) : static
+    public function setRoleCode(string $roleCode) : \OpenEuropa\EPoetry\Request\Type\ContactPersonOut
     {
         $this->roleCode = $roleCode;
         return $this;
     }
 
     /**
-     * @return null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
+     * @return string|null
      */
     public function getRoleCode() : ?string
     {

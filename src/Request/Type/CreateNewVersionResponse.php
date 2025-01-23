@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\ResultInterface;
 class CreateNewVersionResponse implements ResultInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
      */
-    private $return = null;
+    private $return;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : static
+    public function setReturn(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut|null
      */
     public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {

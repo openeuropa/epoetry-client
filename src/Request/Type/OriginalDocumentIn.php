@@ -5,19 +5,19 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class OriginalDocumentIn
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $fileName = null;
+    private $fileName;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $comment = null;
+    private $comment;
 
     /**
-     * @var null | mixed
+     * @var string
      */
-    private $content = null;
+    private $content;
 
     /**
      * @var \OpenEuropa\EPoetry\Request\Type\LinguisticSections
@@ -30,17 +30,17 @@ class OriginalDocumentIn
     private $trackChanges;
 
     /**
-     * @param null | string $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFileName() : ?string
     {
@@ -56,17 +56,17 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param null | string $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getComment() : ?string
     {
@@ -82,19 +82,19 @@ class OriginalDocumentIn
     }
 
     /**
-     * @param null | mixed $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(mixed $content) : static
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return null | mixed
+     * @return string|null
      */
-    public function getContent() : mixed
+    public function getContent() : ?string
     {
         return $this->content;
     }
@@ -111,16 +111,16 @@ class OriginalDocumentIn
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections|null
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -137,16 +137,16 @@ class OriginalDocumentIn
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : static
+    public function setTrackChanges(bool $trackChanges) : \OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn
     {
         $this->trackChanges = $trackChanges;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges() : ?bool
     {
         return $this->trackChanges;
     }

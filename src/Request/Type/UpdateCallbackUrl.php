@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class UpdateCallbackUrl implements RequestInterface
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $callbackUrl = null;
+    private $callbackUrl;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @param null | string $callbackUrl
+     * @param string $callbackUrl
      * @return $this
      */
-    public function setCallbackUrl(?string $callbackUrl) : static
+    public function setCallbackUrl(string $callbackUrl) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getCallbackUrl() : ?string
     {
@@ -43,17 +43,17 @@ class UpdateCallbackUrl implements RequestInterface
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {

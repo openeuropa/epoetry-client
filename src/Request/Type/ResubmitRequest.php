@@ -7,32 +7,32 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ResubmitRequest implements RequestInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
-    private $resubmitRequest = null;
+    private $resubmitRequest;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $templateName = null;
+    private $templateName;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest
      * @return $this
      */
-    public function setResubmitRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : static
+    public function setResubmitRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $resubmitRequest) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->resubmitRequest = $resubmitRequest;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
      */
     public function getResubmitRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
@@ -48,17 +48,17 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {
@@ -74,17 +74,17 @@ class ResubmitRequest implements RequestInterface
     }
 
     /**
-     * @param null | string $templateName
+     * @param string $templateName
      * @return $this
      */
-    public function setTemplateName(?string $templateName) : static
+    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequest
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getTemplateName() : ?string
     {

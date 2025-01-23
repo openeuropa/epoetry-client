@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionRequestOut
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
-    private $requestReference = null;
+    private $requestReference;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @var \OpenEuropa\EPoetry\Request\Type\DcoOut
      */
-    private $DCO = null;
+    private $DCO;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut|null
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
@@ -41,17 +41,17 @@ class CorrectionRequestOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
+     * @param \OpenEuropa\EPoetry\Request\Type\DcoOut $DCO
      * @return $this
      */
-    public function setDCO(?\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : static
+    public function setDCO(\OpenEuropa\EPoetry\Request\Type\DcoOut $DCO) : \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         $this->DCO = $DCO;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\DcoOut
+     * @return \OpenEuropa\EPoetry\Request\Type\DcoOut|null
      */
     public function getDCO() : ?\OpenEuropa\EPoetry\Request\Type\DcoOut
     {

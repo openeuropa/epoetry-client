@@ -7,25 +7,23 @@ use Phpro\SoapClient\Type\ResultInterface;
 class GetServiceTicketResponse implements ResultInterface
 {
     /**
-     * Service ticket for the specified service.
-     *
      * @var string
      */
-    private string $serviceTicket;
+    private $serviceTicket;
 
     /**
      * @return string
      */
-    public function getServiceTicket() : string
+    public function getServiceTicket()
     {
         return $this->serviceTicket;
     }
 
     /**
      * @param string $serviceTicket
-     * @return static
+     * @return GetServiceTicketResponse
      */
-    public function withServiceTicket(string $serviceTicket) : static
+    public function withServiceTicket($serviceTicket)
     {
         $new = clone $this;
         $new->serviceTicket = $serviceTicket;
@@ -33,4 +31,3 @@ class GetServiceTicketResponse implements ResultInterface
         return $new;
     }
 }
-

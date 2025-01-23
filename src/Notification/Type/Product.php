@@ -5,47 +5,47 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class Product
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @var \OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
-    private $productReference = null;
+    private $productReference;
 
     /**
-     * @var null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid'
+     * @var string
      */
-    private $status = null;
+    private $status;
 
     /**
-     * @var null | \DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $acceptedDeadline = null;
+    private $acceptedDeadline;
 
     /**
-     * @var null | mixed
+     * @var string
      */
-    private $file = null;
+    private $file;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $name = null;
+    private $name;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var string
      */
-    private $format = null;
+    private $format;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */
-    public function setProductReference(?\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : static
+    public function setProductReference(\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->productReference = $productReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Notification\Type\ProductReference
+     * @return \OpenEuropa\EPoetry\Notification\Type\ProductReference|null
      */
     public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
@@ -61,17 +61,17 @@ class Product
     }
 
     /**
-     * @param null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid' $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid'
+     * @return string|null
      */
     public function getStatus() : ?string
     {
@@ -87,17 +87,17 @@ class Product
     }
 
     /**
-     * @param null | \DateTimeInterface $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : static
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
     }
 
     /**
-     * @return null | \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
     public function getAcceptedDeadline() : ?\DateTimeInterface
     {
@@ -113,19 +113,19 @@ class Product
     }
 
     /**
-     * @param null | mixed $file
+     * @param string $file
      * @return $this
      */
-    public function setFile(mixed $file) : static
+    public function setFile(string $file) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->file = $file;
         return $this;
     }
 
     /**
-     * @return null | mixed
+     * @return string|null
      */
-    public function getFile() : mixed
+    public function getFile() : ?string
     {
         return $this->file;
     }
@@ -139,17 +139,17 @@ class Product
     }
 
     /**
-     * @param null | string $name
+     * @param string $name
      * @return $this
      */
-    public function setName(?string $name) : static
+    public function setName(string $name) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getName() : ?string
     {
@@ -165,17 +165,17 @@ class Product
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(string $format) : \OpenEuropa\EPoetry\Notification\Type\Product
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return string|null
      */
     public function getFormat() : ?string
     {

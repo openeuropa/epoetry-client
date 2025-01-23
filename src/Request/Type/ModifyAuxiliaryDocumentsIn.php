@@ -5,37 +5,37 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyAuxiliaryDocumentsIn
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
      */
-    private $referenceDocuments = null;
+    private $referenceDocuments;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\TraxDocuments
      */
-    private $traxDocuments = null;
+    private $traxDocuments;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @var \OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
-    private $spotDocument = null;
+    private $spotDocument;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\PrtDocuments
      */
-    private $prtDocuments = null;
+    private $prtDocuments;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */
-    public function setReferenceDocuments(?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : static
+    public function setReferenceDocuments(\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->referenceDocuments = $referenceDocuments;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments|null
      */
     public function getReferenceDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
@@ -51,17 +51,17 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
      * @return $this
      */
-    public function setTraxDocuments(?\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : static
+    public function setTraxDocuments(\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->traxDocuments = $traxDocuments;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\TraxDocuments|null
      */
     public function getTraxDocuments() : ?\OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
@@ -77,17 +77,17 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
+     * @param \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
      * @return $this
      */
-    public function setSpotDocument(?\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : static
+    public function setSpotDocument(\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->spotDocument = $spotDocument;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\DocumentIn
+     * @return \OpenEuropa\EPoetry\Request\Type\DocumentIn|null
      */
     public function getSpotDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
@@ -103,17 +103,17 @@ class ModifyAuxiliaryDocumentsIn
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
      * @return $this
      */
-    public function setPrtDocuments(?\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : static
+    public function setPrtDocuments(\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         $this->prtDocuments = $prtDocuments;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\PrtDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\PrtDocuments|null
      */
     public function getPrtDocuments() : ?\OpenEuropa\EPoetry\Request\Type\PrtDocuments
     {

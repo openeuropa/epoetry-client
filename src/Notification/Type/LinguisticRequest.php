@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class LinguisticRequest
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @var \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    private $requestReference = null;
+    private $requestReference;
 
     /**
-     * @var null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
+     * @var string
      */
-    private $status = null;
+    private $status;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
+     * @param \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
+    public function setRequestReference(\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
+     * @return \OpenEuropa\EPoetry\Notification\Type\RequestReference|null
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
@@ -41,17 +41,17 @@ class LinguisticRequest
     }
 
     /**
-     * @param null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated' $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
+     * @return string|null
      */
     public function getStatus() : ?string
     {

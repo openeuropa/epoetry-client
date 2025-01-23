@@ -5,29 +5,29 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class RequestDetailsOut
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $title = null;
+    private $title;
 
     /**
-     * @var null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
+     * @var string
      */
-    private $workflowCode = null;
+    private $workflowCode;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $internalReference = null;
+    private $internalReference;
 
     /**
-     * @var null | \DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $requestedDeadline = null;
+    private $requestedDeadline;
 
     /**
-     * @var null | \DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $acceptedDeadline = null;
+    private $acceptedDeadline;
 
     /**
      * @var bool
@@ -45,107 +45,107 @@ class RequestDetailsOut
     private $documentToAdopt;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $decideReference = null;
+    private $decideReference;
 
     /**
-     * @var null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
+     * @var string
      */
-    private $destination = null;
+    private $destination;
 
     /**
-     * @var null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
+     * @var string
      */
-    private $procedure = null;
+    private $procedure;
 
     /**
-     * @var null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
+     * @var string
      */
-    private $slaAnnex = null;
+    private $slaAnnex;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $slaCommitment = null;
+    private $slaCommitment;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $comment = null;
+    private $comment;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $onBehalfOf = null;
+    private $onBehalfOf;
 
     /**
-     * @var null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
+     * @var string
      */
-    private $accessibleTo = null;
+    private $accessibleTo;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $keyword1 = null;
+    private $keyword1;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $keyword2 = null;
+    private $keyword2;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $keyword3 = null;
+    private $keyword3;
 
     /**
-     * @var null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @var string
      */
-    private $status = null;
+    private $status;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $rejectMessage = null;
+    private $rejectMessage;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @var \OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    private $contacts = null;
+    private $contacts;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+     * @var \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
      */
-    private $originalDocument = null;
+    private $originalDocument;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\Products
+     * @var \OpenEuropa\EPoetry\Request\Type\Products
      */
-    private $products = null;
+    private $products;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
      */
-    private $auxiliaryDocuments = null;
+    private $auxiliaryDocuments;
 
     /**
-     * @param null | string $title
+     * @param string $title
      * @return $this
      */
-    public function setTitle(?string $title) : static
+    public function setTitle(string $title) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->title = $title;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getTitle() : ?string
     {
@@ -161,17 +161,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE' $workflowCode
+     * @param string $workflowCode
      * @return $this
      */
-    public function setWorkflowCode(?string $workflowCode) : static
+    public function setWorkflowCode(string $workflowCode) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->workflowCode = $workflowCode;
         return $this;
     }
 
     /**
-     * @return null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
+     * @return string|null
      */
     public function getWorkflowCode() : ?string
     {
@@ -187,17 +187,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $internalReference
+     * @param string $internalReference
      * @return $this
      */
-    public function setInternalReference(?string $internalReference) : static
+    public function setInternalReference(string $internalReference) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->internalReference = $internalReference;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getInternalReference() : ?string
     {
@@ -213,17 +213,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \DateTimeInterface $requestedDeadline
+     * @param \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : static
+    public function setRequestedDeadline(\DateTimeInterface $requestedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
     }
 
     /**
-     * @return null | \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
     public function getRequestedDeadline() : ?\DateTimeInterface
     {
@@ -239,17 +239,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \DateTimeInterface $acceptedDeadline
+     * @param \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : static
+    public function setAcceptedDeadline(\DateTimeInterface $acceptedDeadline) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
     }
 
     /**
-     * @return null | \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
     public function getAcceptedDeadline() : ?\DateTimeInterface
     {
@@ -268,16 +268,16 @@ class RequestDetailsOut
      * @param bool $sensitive
      * @return $this
      */
-    public function setSensitive(bool $sensitive) : static
+    public function setSensitive(bool $sensitive) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->sensitive = $sensitive;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSensitive() : bool
+    public function isSensitive() : ?bool
     {
         return $this->sensitive;
     }
@@ -294,16 +294,16 @@ class RequestDetailsOut
      * @param bool $sentViaRue
      * @return $this
      */
-    public function setSentViaRue(bool $sentViaRue) : static
+    public function setSentViaRue(bool $sentViaRue) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->sentViaRue = $sentViaRue;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSentViaRue() : bool
+    public function isSentViaRue() : ?bool
     {
         return $this->sentViaRue;
     }
@@ -320,16 +320,16 @@ class RequestDetailsOut
      * @param bool $documentToAdopt
      * @return $this
      */
-    public function setDocumentToAdopt(bool $documentToAdopt) : static
+    public function setDocumentToAdopt(bool $documentToAdopt) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->documentToAdopt = $documentToAdopt;
         return $this;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isDocumentToAdopt() : bool
+    public function isDocumentToAdopt() : ?bool
     {
         return $this->documentToAdopt;
     }
@@ -343,17 +343,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $decideReference
+     * @param string $decideReference
      * @return $this
      */
-    public function setDecideReference(?string $decideReference) : static
+    public function setDecideReference(string $decideReference) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->decideReference = $decideReference;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getDecideReference() : ?string
     {
@@ -369,17 +369,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC' $destination
+     * @param string $destination
      * @return $this
      */
-    public function setDestination(?string $destination) : static
+    public function setDestination(string $destination) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->destination = $destination;
         return $this;
     }
 
     /**
-     * @return null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
+     * @return string|null
      */
     public function getDestination() : ?string
     {
@@ -395,17 +395,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS' $procedure
+     * @param string $procedure
      * @return $this
      */
-    public function setProcedure(?string $procedure) : static
+    public function setProcedure(string $procedure) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->procedure = $procedure;
         return $this;
     }
 
     /**
-     * @return null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
+     * @return string|null
      */
     public function getProcedure() : ?string
     {
@@ -421,17 +421,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'ANNEX8A' | 'ANNEX8B' | 'NO' $slaAnnex
+     * @param string $slaAnnex
      * @return $this
      */
-    public function setSlaAnnex(?string $slaAnnex) : static
+    public function setSlaAnnex(string $slaAnnex) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->slaAnnex = $slaAnnex;
         return $this;
     }
 
     /**
-     * @return null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
+     * @return string|null
      */
     public function getSlaAnnex() : ?string
     {
@@ -447,17 +447,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $slaCommitment
+     * @param string $slaCommitment
      * @return $this
      */
-    public function setSlaCommitment(?string $slaCommitment) : static
+    public function setSlaCommitment(string $slaCommitment) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->slaCommitment = $slaCommitment;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getSlaCommitment() : ?string
     {
@@ -473,17 +473,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getComment() : ?string
     {
@@ -499,17 +499,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $onBehalfOf
+     * @param string $onBehalfOf
      * @return $this
      */
-    public function setOnBehalfOf(?string $onBehalfOf) : static
+    public function setOnBehalfOf(string $onBehalfOf) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->onBehalfOf = $onBehalfOf;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getOnBehalfOf() : ?string
     {
@@ -525,17 +525,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG' $accessibleTo
+     * @param string $accessibleTo
      * @return $this
      */
-    public function setAccessibleTo(?string $accessibleTo) : static
+    public function setAccessibleTo(string $accessibleTo) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->accessibleTo = $accessibleTo;
         return $this;
     }
 
     /**
-     * @return null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
+     * @return string|null
      */
     public function getAccessibleTo() : ?string
     {
@@ -551,17 +551,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $keyword1
+     * @param string $keyword1
      * @return $this
      */
-    public function setKeyword1(?string $keyword1) : static
+    public function setKeyword1(string $keyword1) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->keyword1 = $keyword1;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getKeyword1() : ?string
     {
@@ -577,17 +577,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $keyword2
+     * @param string $keyword2
      * @return $this
      */
-    public function setKeyword2(?string $keyword2) : static
+    public function setKeyword2(string $keyword2) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->keyword2 = $keyword2;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getKeyword2() : ?string
     {
@@ -603,17 +603,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $keyword3
+     * @param string $keyword3
      * @return $this
      */
-    public function setKeyword3(?string $keyword3) : static
+    public function setKeyword3(string $keyword3) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->keyword3 = $keyword3;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getKeyword3() : ?string
     {
@@ -629,17 +629,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated' $status
+     * @param string $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(string $status) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @return string|null
      */
     public function getStatus() : ?string
     {
@@ -655,17 +655,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $rejectMessage
+     * @param string $rejectMessage
      * @return $this
      */
-    public function setRejectMessage(?string $rejectMessage) : static
+    public function setRejectMessage(string $rejectMessage) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->rejectMessage = $rejectMessage;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getRejectMessage() : ?string
     {
@@ -681,17 +681,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {
@@ -707,17 +707,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
+     * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts(?\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : static
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->contacts = $contacts;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\Contacts
+     * @return \OpenEuropa\EPoetry\Request\Type\Contacts|null
      */
     public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
@@ -733,17 +733,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument
+     * @param \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument
      * @return $this
      */
-    public function setOriginalDocument(?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument) : static
+    public function setOriginalDocument(\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->originalDocument = $originalDocument;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+     * @return \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut|null
      */
     public function getOriginalDocument() : ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
@@ -759,17 +759,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\Products $products
+     * @param \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products) : static
+    public function setProducts(\OpenEuropa\EPoetry\Request\Type\Products $products) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->products = $products;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\Products
+     * @return \OpenEuropa\EPoetry\Request\Type\Products|null
      */
     public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
     {
@@ -785,17 +785,17 @@ class RequestDetailsOut
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments
+     * @param \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments) : static
+    public function setAuxiliaryDocuments(\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments) : \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments|null
      */
     public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
     {

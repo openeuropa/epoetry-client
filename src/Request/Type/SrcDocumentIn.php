@@ -5,32 +5,32 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class SrcDocumentIn
 {
     /**
-     * @var null | string
+     * @var string
      */
-    private $fileName = null;
+    private $fileName;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $comment = null;
+    private $comment;
 
     /**
-     * @var null | mixed
+     * @var string
      */
-    private $content = null;
+    private $content;
 
     /**
-     * @param null | string $fileName
+     * @param string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(string $fileName) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->fileName = $fileName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getFileName() : ?string
     {
@@ -46,17 +46,17 @@ class SrcDocumentIn
     }
 
     /**
-     * @param null | string $comment
+     * @param string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(string $comment) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->comment = $comment;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getComment() : ?string
     {
@@ -72,19 +72,19 @@ class SrcDocumentIn
     }
 
     /**
-     * @param null | mixed $content
+     * @param string $content
      * @return $this
      */
-    public function setContent(mixed $content) : static
+    public function setContent(string $content) : \OpenEuropa\EPoetry\Request\Type\SrcDocumentIn
     {
         $this->content = $content;
         return $this;
     }
 
     /**
-     * @return null | mixed
+     * @return string|null
      */
-    public function getContent() : mixed
+    public function getContent() : ?string
     {
         return $this->content;
     }

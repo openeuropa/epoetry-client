@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateNewVersion implements RequestInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @var \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
      */
-    private $linguisticRequest = null;
+    private $linguisticRequest;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
+     * @param \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : static
+    public function setLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn $linguisticRequest) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
+     * @return \OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn|null
      */
     public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestIn
     {
@@ -43,17 +43,17 @@ class CreateNewVersion implements RequestInterface
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersion
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {

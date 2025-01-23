@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateCorrectionRequest implements RequestInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
      */
-    private $correctionDetails = null;
+    private $correctionDetails;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails
      * @return $this
      */
-    public function setCorrectionDetails(?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : static
+    public function setCorrectionDetails(\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn $correctionDetails) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
     {
         $this->correctionDetails = $correctionDetails;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn|null
      */
     public function getCorrectionDetails() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionDetailsIn
     {
@@ -43,17 +43,17 @@ class CreateCorrectionRequest implements RequestInterface
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {

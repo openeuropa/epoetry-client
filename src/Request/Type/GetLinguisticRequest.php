@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class GetLinguisticRequest implements RequestInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
-    private $requestReference = null;
+    private $requestReference;
 
     /**
-     * @var null | string
+     * @var string
      */
-    private $applicationName = null;
+    private $applicationName;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : static
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn|null
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
@@ -43,17 +43,17 @@ class GetLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param null | string $applicationName
+     * @param string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return null | string
+     * @return string|null
      */
     public function getApplicationName() : ?string
     {

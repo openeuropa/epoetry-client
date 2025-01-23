@@ -5,27 +5,27 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class ModifyLinguisticRequestIn
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
      */
-    private $requestReference = null;
+    private $requestReference;
 
     /**
-     * @var null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+     * @var \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
      */
-    private $requestDetails = null;
+    private $requestDetails;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference) : static
+    public function setRequestReference(\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         $this->requestReference = $requestReference;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn|null
      */
     public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
@@ -41,17 +41,17 @@ class ModifyLinguisticRequestIn
     }
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
+     * @param \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails) : static
+    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+     * @return \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn|null
      */
     public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {

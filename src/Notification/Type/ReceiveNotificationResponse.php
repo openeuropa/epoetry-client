@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\ResultInterface;
 class ReceiveNotificationResponse implements ResultInterface
 {
     /**
-     * @var null | \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+     * @var \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
      */
-    private $return = null;
+    private $return;
 
     /**
-     * @param null | \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
+     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return) : static
+    public function setReturn(\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotificationResponse
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return null | \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult|null
      */
     public function getReturn() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
     {
