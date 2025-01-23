@@ -24,63 +24,16 @@ class ConfigProcessor
      * @param array $overridePropertyTypes
      *   Override specific property types when generating classes.
      *
-     * @return void
+     * @return \Phpro\SoapClient\CodeGenerator\Config\Config
+     *   Configuration object instance.
      */
-    public static function addRules(Config $config, array $specialClassesAndProperties = [], array $overridePropertyTypes = [])
+    public static function addRules(Config $config, array $specialClassesAndProperties = [], array $overridePropertyTypes = []): Config
     {
-        $rules = [
-            new Rules\AssembleRule(new Assembler\PropertyAssembler(
-                Assembler\PropertyAssemblerOptions::create()
-                    ->withTypeHints(false)
-                )
-            ),
-            new Rules\AssembleRule(new Assembler\FluentSetterAssembler(
-                Assembler\FluentSetterAssemblerOptions::create()
-                    ->withTypeHints()
-                )
-            ),
-            new Rules\AssembleRule(new Assembler\GetterAssembler(
-                    Assembler\GetterAssemblerOptions::create()
-                        ->withReturnType()
-                        ->withBoolGetters()
-                )
-            ),
-            new Rules\AssembleRule(
-                new OpenEuropa\Assembler\FluentAdderAssembler(
-                    (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
-                        ->whitelist($specialClassesAndProperties)
-                )
-            ),
-            new Rules\AssembleRule(new OpenEuropa\Assembler\HasPropertyAssembler()),
-            // Add "implements RequestInterface" to request classes.
-            new Rules\IsRequestRule($config->getEngine()->getMetadata(),
-                new Rules\MultiRule([
-                    new Rules\AssembleRule(new Assembler\RequestAssembler()),
-                ])
-            ),
-            // Add "implements ResultInterface" to result classes.
-            new Rules\IsResultRule($config->getEngine()->getMetadata(),
-                new Rules\MultiRule([
-                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
-                ])
-            ),
-            new Rules\AssembleRule(new Assembler\ClassMapAssembler()),
-            new Rules\AssembleRule(new Assembler\ClientConstructorAssembler()),
-            new Rules\AssembleRule(new Assembler\ClientMethodAssembler()),
-        ];
-
-        $config->setRuleSet(new Rules\RuleSet($rules));
-
-        return;
-
         // Set all property visibility to "protected".
         // We have to do this as the SOAP handler will erroneously create duplicate
         // public properties when a value object extends another one with those
         // same properties marked as "private".
-        $defaultPropertyAssemblerOptions = (new Assembler\PropertyAssemblerOptions())
-            ->withVisibility(PropertyGenerator::VISIBILITY_PRIVATE)
-            ->withTypeHints(false);
-        $defaultPropertyAssembler = new Assembler\PropertyAssembler($defaultPropertyAssemblerOptions);
+        $defaultPropertyAssembler = new Assembler\PropertyAssembler(PropertyGenerator::VISIBILITY_PROTECTED);
 
         $arrayPropertyAssembler = new OpenEuropa\Assembler\ArrayPropertyAssembler(
             (new OpenEuropa\Assembler\ArrayPropertyAssemblerOptions())
@@ -104,9 +57,10 @@ class ConfigProcessor
         );
 
         $defaultGetterAssembler = new Assembler\GetterAssembler(
-            Assembler\GetterAssemblerOptions::create()
+            (new Assembler\GetterAssemblerOptions())
                 ->withReturnType()
                 ->withBoolGetters()
+                ->withReturnNull()
         );
 
         $arrayGetterAssembler = new OpenEuropa\Assembler\ArrayGetterAssembler(
@@ -121,38 +75,38 @@ class ConfigProcessor
 
         $hasPropertyAssembler = new OpenEuropa\Assembler\HasPropertyAssembler();
 
-        $config
-        //            // Add the ResultInterface to classes that match given regex.
-        //            ->addRule(
-        //                new Rules\TypenameMatchesRule(
-        //                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
-        //                    '/Response$/'
-        //                )
-        //            )
-        // Set the default property assembler and generate all properties.
+        return $config
+            //            // Add the ResultInterface to classes that match given regex.
+            //            ->addRule(
+            //                new Rules\TypenameMatchesRule(
+            //                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
+            //                    '/Response$/'
+            //                )
+            //            )
+            // Set the default property assembler and generate all properties.
             ->addRule(new Rules\AssembleRule($defaultPropertyAssembler))
-        // Update properties and set them as 'nullable'
-//            ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
-        // Update properties and update only some of them.
+            // Update properties and set them as 'nullable'
+            ->addRule(new Rules\AssembleRule($arrayPropertyAssembler))
+            // Update properties and update only some of them.
             ->addRule(new Rules\AssembleRule($defaultSetterAssembler))
-        // Update setters and update only some of them.
+            // Update setters and update only some of them.
             ->addRule(new Rules\AssembleRule($arraySetterAssembler))
-        // Set the default getter assembler and generate all getters methods.
+            // Set the default getter assembler and generate all getters methods.
             ->addRule(new Rules\AssembleRule($defaultGetterAssembler))
-        // Update getters and update only some of them.
+            // Update getters and update only some of them.
             ->addRule(new Rules\AssembleRule($arrayGetterAssembler))
-        // Add adders only on some classes only.
+            // Add adders only on some classes only.
             ->addRule(new Rules\AssembleRule($fluentAdderAssembler))
-        // Override property and method types.
+            // Override property and method types.
             ->addRule(new Rules\AssembleRule(
                 new OpenEuropa\Assembler\OverridePropertyTypeAssembler(
                     (new OpenEuropa\Assembler\OverridePropertyTypeAssemblerOptions())
                         ->setPropertyTypeMapping($overridePropertyTypes)
                 )
             ))
-        //        // Set the default setter assembler and generate all setters methods.
-        //            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
-        // Add has[Properties] only on some classes only.
+            //        // Set the default setter assembler and generate all setters methods.
+            //            ->addRule(new Rules\AssembleRule($nullablePropertyAssembler))
+            // Add has[Properties] only on some classes only.
             ->addRule(new Rules\AssembleRule($hasPropertyAssembler))
             ->addRule(
                 new Rules\IsRequestRule(
@@ -185,11 +139,12 @@ class ConfigProcessor
      * @param array $classes
      *      Array of class names, without their namespace.
      *
-     * @return void
+     * @return \Phpro\SoapClient\CodeGenerator\Config\Config
+     *      Configuration object.
      */
     public static function addConstructorRule(Config $config, array $classes)
     {
-        $config
+        return $config
             ->addRule(new Rules\TypenameMatchesRule(
                 new Rules\AssembleRule(
                     new Assembler\ConstructorAssembler(
