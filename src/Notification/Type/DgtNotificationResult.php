@@ -10,24 +10,24 @@ class DgtNotificationResult
     private $success;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $message;
+    private $message = null;
 
     /**
      * @param bool $success
      * @return $this
      */
-    public function setSuccess(bool $success) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function setSuccess(bool $success) : static
     {
         $this->success = $success;
         return $this;
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isSuccess() : ?bool
+    public function isSuccess() : bool
     {
         return $this->success;
     }
@@ -41,17 +41,17 @@ class DgtNotificationResult
     }
 
     /**
-     * @param string $message
+     * @param null | string $message
      * @return $this
      */
-    public function setMessage(string $message) : \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function setMessage(?string $message) : static
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getMessage() : ?string
     {

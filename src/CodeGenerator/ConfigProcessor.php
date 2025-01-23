@@ -28,6 +28,33 @@ class ConfigProcessor
      */
     public static function addRules(Config $config, array $specialClassesAndProperties = [], array $overridePropertyTypes = [])
     {
+        $rules = [
+            new Rules\AssembleRule(new Assembler\PropertyAssembler(
+                Assembler\PropertyAssemblerOptions::create()
+                    ->withTypeHints(false)
+                )
+            ),
+            new Rules\AssembleRule(new Assembler\FluentSetterAssembler(
+                Assembler\FluentSetterAssemblerOptions::create()
+                    ->withTypeHints()
+                )
+            ),
+            new Rules\AssembleRule(new Assembler\GetterAssembler(
+                    Assembler\GetterAssemblerOptions::create()
+                        ->withReturnType()
+                        ->withBoolGetters()
+                )
+            ),
+            new Rules\AssembleRule(new OpenEuropa\Assembler\HasPropertyAssembler()),
+            new Rules\AssembleRule(new Assembler\ClassMapAssembler()),
+            new Rules\AssembleRule(new Assembler\ClientConstructorAssembler()),
+            new Rules\AssembleRule(new Assembler\ClientMethodAssembler()),
+        ];
+
+        $config->setRuleSet(new Rules\RuleSet($rules));
+
+        return;
+
         // Set all property visibility to "protected".
         // We have to do this as the SOAP handler will erroneously create duplicate
         // public properties when a value object extends another one with those
