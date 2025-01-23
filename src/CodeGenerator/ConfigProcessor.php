@@ -45,7 +45,25 @@ class ConfigProcessor
                         ->withBoolGetters()
                 )
             ),
+            new Rules\AssembleRule(
+                new OpenEuropa\Assembler\FluentAdderAssembler(
+                    (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
+                        ->whitelist($specialClassesAndProperties)
+                )
+            ),
             new Rules\AssembleRule(new OpenEuropa\Assembler\HasPropertyAssembler()),
+            // Add "implements RequestInterface" to request classes.
+            new Rules\IsRequestRule($config->getEngine()->getMetadata(),
+                new Rules\MultiRule([
+                    new Rules\AssembleRule(new Assembler\RequestAssembler()),
+                ])
+            ),
+            // Add "implements ResultInterface" to result classes.
+            new Rules\IsResultRule($config->getEngine()->getMetadata(),
+                new Rules\MultiRule([
+                    new Rules\AssembleRule(new Assembler\ResultAssembler()),
+                ])
+            ),
             new Rules\AssembleRule(new Assembler\ClassMapAssembler()),
             new Rules\AssembleRule(new Assembler\ClientConstructorAssembler()),
             new Rules\AssembleRule(new Assembler\ClientMethodAssembler()),
