@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\CodeGenerator\Assembler;
 
-use Phpro\SoapClient\CodeGenerator\Assembler\FluentSetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
 use Phpro\SoapClient\CodeGenerator\Util\Normalizer;
 use Laminas\Code\Generator\DocBlockGenerator;
@@ -26,7 +25,7 @@ class FluentAdderAssembler extends AbstractAssembler
      */
     public function __construct(FluentAdderAssemblerOptions $options = null)
     {
-        $this->options = $options ?? new FluentSetterAssemblerOptions();
+        $this->options = $options ?? new FluentAdderAssemblerOptions();
     }
 
     /**
