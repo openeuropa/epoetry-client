@@ -7,32 +7,32 @@ use Phpro\SoapClient\Type\RequestInterface;
 class CreateLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
-    private $requestDetails;
+    private $requestDetails = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $applicationName;
+    private $applicationName = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $templateName;
+    private $templateName = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @param null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
@@ -48,17 +48,17 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setApplicationName(?string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getApplicationName() : ?string
     {
@@ -74,17 +74,17 @@ class CreateLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $templateName
+     * @param null | string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest
+    public function setTemplateName(?string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getTemplateName() : ?string
     {

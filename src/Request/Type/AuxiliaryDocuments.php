@@ -5,24 +5,24 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class AuxiliaryDocuments
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut[]|array
+     * @var array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut>
      */
     private $document = [];
 
     /**
-     * @param AuxiliaryDocumentOut[] $document
+     * @param array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut> $document
      * @return $this
      */
-    public function setDocument(array $document) : \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function setDocument(array $document) : static
     {
         $this->document = $document;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut[]|array|null
+     * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocumentOut>
      */
-    public function getDocument() : ?array
+    public function getDocument() : array
     {
         return $this->document;
     }

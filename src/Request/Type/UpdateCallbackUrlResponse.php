@@ -7,22 +7,22 @@ use Phpro\SoapClient\Type\ResultInterface;
 class UpdateCallbackUrlResponse implements ResultInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+     * @var null | \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
      */
-    private $return;
+    private $return = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
+     * @param null | \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
      * @return $this
      */
-    public function setReturn(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : static
     {
         $this->return = $return;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
      */
     public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {

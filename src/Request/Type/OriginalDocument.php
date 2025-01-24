@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class OriginalDocumentOut
+class OriginalDocument
 {
     /**
      * @var bool

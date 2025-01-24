@@ -5,24 +5,24 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class InformativeMessages
 {
     /**
-     * @var string[]|array
+     * @var array<int<0,max>, string>
      */
     private $message = [];
 
     /**
-     * @param string[] $message
+     * @param array<int<0,max>, string> $message
      * @return $this
      */
-    public function setMessage(array $message) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function setMessage(array $message) : static
     {
         $this->message = $message;
         return $this;
     }
 
     /**
-     * @return string[]|array|null
+     * @return array<int<0,max>, string>
      */
-    public function getMessage() : ?array
+    public function getMessage() : array
     {
         return $this->message;
     }
