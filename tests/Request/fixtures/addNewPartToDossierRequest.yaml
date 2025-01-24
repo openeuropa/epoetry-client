@@ -651,6 +651,8 @@ tests:
                 <<: *default-request-details
                 auxiliaryDocuments:
                     srcDocument:
+                      fileName: ""
+                      content: ""
         expectations:
             assertions:
                 - count(violations) === 2
