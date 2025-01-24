@@ -10,15 +10,15 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var string
+     * @var 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $contactRole;
 
     /**
      * Constructor
      *
-     * @var string $userId
-     * @var string $contactRole
+     * @param string $userId
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      */
     public function __construct(string $userId, string $contactRole)
     {
@@ -30,16 +30,16 @@ class ContactPersonIn
      * @param string $userId
      * @return $this
      */
-    public function setUserId(string $userId) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setUserId(string $userId) : static
     {
         $this->userId = $userId;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUserId() : ?string
+    public function getUserId() : string
     {
         return $this->userId;
     }
@@ -53,19 +53,19 @@ class ContactPersonIn
     }
 
     /**
-     * @param string $contactRole
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      * @return $this
      */
-    public function setContactRole(string $contactRole) : \OpenEuropa\EPoetry\Request\Type\ContactPersonIn
+    public function setContactRole(string $contactRole) : static
     {
         $this->contactRole = $contactRole;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
-    public function getContactRole() : ?string
+    public function getContactRole() : string
     {
         return $this->contactRole;
     }

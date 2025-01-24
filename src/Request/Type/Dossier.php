@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class DossierReference
+class Dossier
 {
     /**
      * @var null | string

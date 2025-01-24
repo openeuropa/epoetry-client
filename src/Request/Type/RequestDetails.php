@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class ModifyRequestDetailsIn
+class RequestDetails
 {
     /**
      * @var \OpenEuropa\EPoetry\Request\Type\Contacts

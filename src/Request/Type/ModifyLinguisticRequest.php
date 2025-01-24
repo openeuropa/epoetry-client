@@ -7,27 +7,27 @@ use Phpro\SoapClient\Type\RequestInterface;
 class ModifyLinguisticRequest implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
      */
-    private $modifyLinguisticRequest;
+    private $modifyLinguisticRequest = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $applicationName;
+    private $applicationName = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
+     * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
      * @return $this
      */
-    public function setModifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setModifyLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : static
     {
         $this->modifyLinguisticRequest = $modifyLinguisticRequest;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
      */
     public function getModifyLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
@@ -43,17 +43,17 @@ class ModifyLinguisticRequest implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest
+    public function setApplicationName(?string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getApplicationName() : ?string
     {
