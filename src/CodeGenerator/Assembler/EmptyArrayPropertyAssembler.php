@@ -34,8 +34,7 @@ class EmptyArrayPropertyAssembler implements AssemblerInterface
             $property = $context->getProperty();
 
             // Only apply array default value to list properties.
-            $meta = $property->getMeta()->isList();
-            if ($meta->isNone() || $meta->unwrap() === false) {
+            if (!$property->getMeta()->isList()->unwrapOr(false)) {
                 return;
             }
 
