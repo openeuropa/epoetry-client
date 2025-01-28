@@ -18,29 +18,29 @@
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
         "psr/log": "^2 || ^3",
-        "symfony/http-client": "~5.4 || ~6",
-        "symfony/serializer": "~5.4 || ~6",
-        "symfony/validator": "~5.4 || ~6",
+        "symfony/http-client": "~7",
+        "symfony/serializer": "~7",
+        "symfony/validator": "~7",
         "veewee/xml": "^3.0"
     },
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
         "doctrine/annotations": "^1.13",
-        "monolog/monolog": "^2.8",
+        "monolog/monolog": "~3",
         "nyholm/psr7": "^1.4",
-        "openeuropa/code-review": "^2.0",
+        "openeuropa/code-review-library": "^1.0@alpha",
         "openeuropa/task-runner": "^2",
         "php-http/guzzle7-adapter": "~1",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
-        "symfony/dotenv": "~5.4 || ~6",
-        "symfony/expression-language": "~5.4 || ~6",
-        "symfony/http-kernel": "~5.4 || ~6",
-        "symfony/monolog-bridge": "~5.4 || ~6",
-        "symfony/property-access": "~5.4 || ~6",
-        "symfony/property-info": "~5.4 || ~6"
+        "symfony/dotenv": "~7",
+        "symfony/expression-language": "~7",
+        "symfony/http-kernel": "~7",
+        "symfony/monolog-bridge": "~7",
+        "symfony/property-access": "~7",
+        "symfony/property-info": "~7"
     },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
@@ -51,10 +51,11 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpro/grumphp": true,
             "cweagans/composer-patches": true,
-            "php-http/discovery": false
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": false,
+            "phpro/grumphp": true,
+            "phpro/grumphp-shim": true
         }
     },
     "autoload": {
