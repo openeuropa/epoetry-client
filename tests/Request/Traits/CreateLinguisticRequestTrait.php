@@ -9,7 +9,6 @@ use OpenEuropa\EPoetry\Request\Type\ContactPersonIn;
 use OpenEuropa\EPoetry\Request\Type\Contacts;
 use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest;
 use OpenEuropa\EPoetry\Request\Type\DocumentIn;
-use OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
 use OpenEuropa\EPoetry\Request\Type\OriginalDocumentIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
@@ -72,6 +71,7 @@ trait CreateLinguisticRequestTrait
             ->setFileName('TEST_FILE_ORIGINALP.docx')
             ->setContent('cid:267736828531')
             ->setComment('');
+        $originalDocument->setLinguisticSections((new LinguisticSections()));
         $requestDetails->setOriginalDocument($originalDocument);
 
         $productRequestIn = (new ProductRequestIn())
