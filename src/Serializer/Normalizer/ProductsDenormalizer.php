@@ -81,8 +81,16 @@ class ProductsDenormalizer implements DenormalizerInterface, SerializerAwareInte
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === Products::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['object' => true];
     }
 }

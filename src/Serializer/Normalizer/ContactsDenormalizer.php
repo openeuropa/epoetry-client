@@ -71,8 +71,16 @@ class ContactsDenormalizer implements DenormalizerInterface, SerializerAwareInte
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === Contacts::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['object' => true];
     }
 }

@@ -17,7 +17,12 @@ use OpenEuropa\EPoetry\Request\Type\ProductRequestIn;
 use OpenEuropa\EPoetry\Request\Type\ProductRequestOut;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsIn;
 use OpenEuropa\EPoetry\Request\Type\RequestDetailsOut;
+use OpenEuropa\EPoetry\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer as SymfonyDateTimeNormalizer;
 
 /**
  * Test Serializer.
@@ -581,4 +586,9 @@ YAML;
             'templateName' => 'DEFAULT',
         ];
     }
+}
+
+class MyDTO
+{
+    public \DateTime $date;
 }
