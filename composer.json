@@ -51,10 +51,11 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpro/grumphp": true,
             "cweagans/composer-patches": true,
-            "php-http/discovery": false
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": false,
+            "phpro/grumphp": true,
+            "phpro/grumphp-shim": true
         }
     },
     "autoload": {
@@ -73,7 +74,7 @@
     "extra": {
         "patches": {
             "phpro/soap-client" : {
-                "add-anyuri-to-normalizer.patch": "./patches/add-anyuri-to-normalizer.patch"
+                "Add AnyURI to normalizer: https://github.com/phpro/soap-client/pull/566": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/566.patch"
             }
         }
     }
