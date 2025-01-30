@@ -2,27 +2,25 @@
 
 namespace OpenEuropa\EPoetry\Notification\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ReceiveNotification implements RequestInterface
+class ReceiveNotification
 {
     /**
-     * @var \OpenEuropa\EPoetry\Notification\Type\DgtNotification
+     * @var null | \OpenEuropa\EPoetry\Notification\Type\DgtNotification
      */
-    private $notification;
+    private $notification = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
+     * @param null | \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
      * @return $this
      */
-    public function setNotification(\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : \OpenEuropa\EPoetry\Notification\Type\ReceiveNotification
+    public function setNotification(?\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : static
     {
         $this->notification = $notification;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Notification\Type\DgtNotification|null
+     * @return null | \OpenEuropa\EPoetry\Notification\Type\DgtNotification
      */
     public function getNotification() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {

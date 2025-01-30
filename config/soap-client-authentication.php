@@ -3,19 +3,16 @@
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
 
 // Generate SOAP client library to perform ECAS client certificate login.
 // @link https://citnet.tech.ec.europa.eu/CITnet/confluence/display/IAM/ECAS+Certificate+Login
 // WSDL used for generating the SOAP codebase can be found here:
 // @link https://webgate.ec.europa.eu/cas/ws/CertLoginService.wsdl
 // The content returned by the URL above is stored locally in resources/authentication.wsdl.
+$engine = CodeGeneratorEngineFactory::create('./resources/authentication.wsdl');
 return Config::create()
-    ->setEngine($engine = DefaultEngineFactory::create(
-        ExtSoapOptions::defaults(__DIR__.'/../resources/authentication.wsdl', [])
-            ->disableWsdlCache()
-    ))
+    ->setEngine($engine)
     ->setTypeDestination('src/Authentication/ClientCertificate/Type')
     ->setTypeNamespace('OpenEuropa\EPoetry\Authentication\ClientCertificate\Type')
     ->setClientDestination('src/Authentication/ClientCertificate')

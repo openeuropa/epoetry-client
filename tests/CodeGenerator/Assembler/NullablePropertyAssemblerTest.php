@@ -55,7 +55,7 @@ class MyType
     /**
      * @var null|string
      */
-    private $prop1;
+    private string $prop1;
 }
 
 CODE;

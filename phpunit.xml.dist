@@ -6,8 +6,23 @@
     <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
   </php>
   <testsuites>
-    <testsuite name="unit">
-      <directory>./tests/</directory>
+    <testsuite name="CodeGenerator">
+      <directory>tests/CodeGenerator</directory>
+    </testsuite>
+    <testsuite name="ExtSoapEngine">
+      <directory>tests/ExtSoapEngine</directory>
+    </testsuite>
+    <testsuite name="Notification">
+      <directory>tests/Notification</directory>
+    </testsuite>
+    <testsuite name="Request">
+      <directory>tests/Request</directory>
+    </testsuite>
+    <testsuite name="RequestClientFactoryTest">
+      <file>tests/RequestClientFactoryTest.php</file>
+    </testsuite>
+    <testsuite name="SerializerTest">
+      <file>tests/SerializerTest.php</file>
     </testsuite>
   </testsuites>
 </phpunit>

@@ -50,7 +50,7 @@ class MyType
     /**
      * @param string[] $prop1
      */
-    public function setProp1(array $prop1)
+    public function setProp1(array $prop1) : void
     {
         $this->prop1 = $prop1;
     }
