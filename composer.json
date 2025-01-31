@@ -35,6 +35,8 @@
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
+        "symfony/config": "~6",
+        "symfony/dependency-injection": "~6",
         "symfony/dotenv": "~6",
         "symfony/expression-language": "~6",
         "symfony/http-kernel": "~6",

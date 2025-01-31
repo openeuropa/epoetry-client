@@ -11,6 +11,7 @@ use OpenEuropa\EPoetry\NotificationServerFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use React\EventLoop\Loop;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,10 +29,9 @@ use React\Socket\SocketServer;
 /**
  * Start a notification listener service.
  */
+#[AsCommand(name: 'notification:start-listener')]
 class StartNotificationListenerCommand extends Command implements EventSubscriberInterface
 {
-    protected static $defaultName = 'notification:start-listener';
-
     protected LoggerInterface $logger;
 
     protected Filesystem $fs;
@@ -116,7 +116,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$output instanceof StreamOutput) {
             $this->logger->alert('This command requires an output object of type \Symfony\Component\Console\Output\StreamOutput');
