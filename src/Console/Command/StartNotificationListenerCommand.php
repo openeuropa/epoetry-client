@@ -161,6 +161,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
         $uri = '0.0.0.0:'.$input->getOption('port');
         $this->logger->notice('Listening on {uri}', ['uri' => $uri]);
         $http->listen(new SocketServer($uri));
+        return 0;
     }
 
     /**
