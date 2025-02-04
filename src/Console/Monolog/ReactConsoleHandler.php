@@ -8,6 +8,7 @@ use React\Stream\WritableResourceStream;
 use React\Stream\WritableStreamInterface;
 use Symfony\Bridge\Monolog\Handler\ConsoleHandler;
 use Symfony\Component\Console\Output\StreamOutput;
+use Monolog\LogRecord;
 
 /**
  * Bridge Monolog console handler with ReactPHP loop system.
@@ -39,7 +40,7 @@ class ReactConsoleHandler extends ConsoleHandler implements HandlerInterface
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record): void
+    protected function write(array|LogRecord $record): void
     {
         if ($this->verbosity >= $this->getLevel()) {
             $this->stream->write((string) $record['formatted']);

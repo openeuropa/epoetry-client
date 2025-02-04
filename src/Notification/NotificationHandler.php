@@ -118,7 +118,7 @@ class NotificationHandler
                         $event = new Product\StatusChangeReadyToBeSentEvent($product, $product->getAcceptedDeadline());
                         break;
                     case self::PRODUCT_STATUS_CHANGE_REJECTED:
-                        $event = new Product\StatusChangeRejectedEvent($product, $product->getAcceptedDeadline());
+                        $event = new Product\StatusChangeRejectedEvent($product);
                         break;
                     case self::PRODUCT_STATUS_CHANGE_SUSPENDED:
                         $event = new Product\StatusChangeSuspendedEvent($product, $product->getAcceptedDeadline());

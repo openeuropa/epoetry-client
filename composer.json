@@ -17,7 +17,7 @@
         "psr/http-client-implementation": "*",
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
-        "psr/log": "^2 || ^3",
+        "psr/log": "^3",
         "symfony/http-client": "~6",
         "symfony/serializer": "~6",
         "symfony/validator": "~6",
