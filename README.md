@@ -7,7 +7,7 @@ section of the official [ePoetry documentation](https://citnet.tech.ec.europa.eu
 
 A bird's-eye overview of a typical translation request workflow can be outlined as follows:
 
-- The web application (e.g. a Drupal site) creates a translation request onto the ePoetry service, by performing a SOAP method call
+- The web application (e.g. a Drupal site) creates a translation request onto the ePoetry service, by making a SOAP method call
 - The ePoetry service synchronously answers such a call with either a response object, or an error
 - The translation request is manually processed by DGT backoffice, this can take several days
 - Once completed, the ePoetry service sends a notification to the web application, via a SOAP method call, which contains the requested translations
@@ -16,7 +16,8 @@ This project provides the necessary code (SOAP objects, middleware, etc.) to req
 notifications from the ePoetry service.
 
 ## Versions
-- 2.x should be used with PHP > 8.1.26 and Symfony >= 5.x
+- 3.x should be used with PHP > 8.3 and Symfony 6.x
+- 2.x should be used with PHP > 8.1.26 and Symfony 5.x, or 6.x
 - 1.x should be used with PHP 8.0 and Symfony 4.x
 
 ## Project overview
@@ -33,7 +34,7 @@ notifications from the ePoetry service.
 - [`./src/CodeGenerator`](./src/CodeGenerator): set of assembler classes, used to generated client's code
 - [`./src/Console`](./src/Console): Symfony Console command classes
 - [`./src/ExtSoapEngine`](./src/ExtSoapEngine): custom SOAP engine classes, such as a WSDL provider to process locally stored WSDL files
-- [`./src/Console`](./src/Notification): automatically generated classes for the "Notification" service
+- [`./src/Notification`](./src/Notification): automatically generated classes for the "Notification" service
 - [`./src/Request`](./src/Request):  automatically generated classes for the "Request" service
 - [`./src/Authentication`](./src/Authentication):  authentication services
 - [`./src/TicketValidation`](./src/TicketValidation):  ticket validation services
@@ -296,7 +297,7 @@ The `EuLoginTicketValidation` service requires the following dependencies:
 
 - `$callbackUrl`: the site's URL where the `NotificationServerFactory` is handling requests.
 - `$euLoginBasePath`: the EU Login public base URL. For both ePoetry production and acceptance, this should be set to `https://ecas.ec.europa.eu`.
-- `$jobAccount`: The ePoetry job account. This should be set to `j97brfy`. Please not this might change in the future,
+- `$jobAccount`: The ePoetry job account. This should be set to `j97brfy`. Please note this might change in the future,
   make sure you consult the following [documentation page](https://citnet.tech.ec.europa.eu/CITnet/confluence/pages/viewpage.action?pageId=973319436).
 - `$requestFactory`: a PSR compatible HTTP request factory, check [this list](https://packagist.org/providers/psr/http-factory-implementation) for possible candidates.
 - `$httpClient`: a PSR compatible HTTP client, check [this list](https://packagist.org/providers/psr/http-client-implementation) for possible candidates.
@@ -505,7 +506,7 @@ When using the console commands on a Cloud9 environment, add a `docker-compose.o
 version: "2"
 services:
   php:
-    image: registry.fpfis.eu/fpfis/httpd-php:8.1-dev
+    image: registry.fpfis.eu/fpfis/httpd-php:8.3-dev
     working_dir: /var/www/html
 ```
 

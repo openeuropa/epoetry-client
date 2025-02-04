@@ -193,6 +193,9 @@ class RequestReference
     /**
      * Format request reference.
      *
+     * Note that this method has been added manually and it won't be automatically generated.
+     * Make sure you restore it using your local Git history.
+     *
      * @return string
      */
     public function getReference(): string
