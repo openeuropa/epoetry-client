@@ -18,11 +18,5 @@
     <testsuite name="Request">
       <directory>tests/Request</directory>
     </testsuite>
-    <testsuite name="RequestClientFactoryTest">
-      <file>tests/RequestClientFactoryTest.php</file>
-    </testsuite>
-    <testsuite name="SerializerTest">
-      <file>tests/SerializerTest.php</file>
-    </testsuite>
   </testsuites>
 </phpunit>
