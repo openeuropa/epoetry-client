@@ -8,7 +8,10 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer as SymfonyDateTim
 
 /**
  * Extension of Symfony's DateTimeNormalize class.
+ *
+ * @todo remove phpstan ignore in 4.x.
  */
+/** @phpstan-ignore-next-line */
 class DateTimeNormalizer extends SymfonyDateTimeNormalizer
 {
     /**
