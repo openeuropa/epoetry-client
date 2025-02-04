@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
@@ -38,7 +38,7 @@ final class AddNewPartToDossierResponseTest extends BaseRequestTest
      */
     public function testRequestResponseError(): void
     {
-        $xml = file_get_contents(__DIR__.'/fixtures/addNewPartToDossierResponseError.xml');
+        $xml = file_get_contents(__DIR__ . '/fixtures/addNewPartToDossierResponseError.xml');
         $this->expectException(\SoapFault::class);
         $this->expectExceptionMessage('Error finding the dossier The dossier does not exist in ePoetry system!');
         $this->driver->decode('createLinguisticRequest', new SoapResponse($xml));

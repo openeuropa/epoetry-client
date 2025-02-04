@@ -26,6 +26,7 @@
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
         "doctrine/annotations": "^1.13",
+        "facile-it/php-openid-client": "^0.3.5",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
         "openeuropa/code-review-library": "^1.0@alpha",
@@ -42,7 +43,8 @@
         "symfony/http-kernel": "~6",
         "symfony/monolog-bridge": "~6",
         "symfony/property-access": "~6",
-        "symfony/property-info": "~6"
+        "symfony/property-info": "~6",
+        "web-token/jwt-signature-algorithm-hmac": "^4.0"
     },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",

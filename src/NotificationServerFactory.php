@@ -19,12 +19,12 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Soap\ExtSoapEngine\Configuration\TypeConverter;
 use VeeWee\Xml\Dom\Traverser\Visitor\RemoveNamespaces;
+
 use function VeeWee\Xml\Dom\Configurator\traverse;
 use function VeeWee\Xml\Encoding\xml_decode;
 
 class NotificationServerFactory
 {
-
     /**
      * Callback URL, where notifications are supposed to be sent by ePoetry.
      *
@@ -167,6 +167,6 @@ class NotificationServerFactory
     {
         $provider = new LocalWsdlProvider();
         $provider->withPortLocation('DgtClientNotificationReceiverWSPort', $this->callback);
-        return $provider(__DIR__. '/../resources/notification.wsdl');
+        return $provider(__DIR__ . '/../resources/notification.wsdl');
     }
 }

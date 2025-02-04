@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests\Request\Traits;
 
@@ -22,7 +22,6 @@ use OpenEuropa\EPoetry\Request\Type\SrcDocumentIn;
  */
 trait CreateLinguisticRequestTrait
 {
-
     /**
      * Gets test CreateLinguisticRequest object.
      */

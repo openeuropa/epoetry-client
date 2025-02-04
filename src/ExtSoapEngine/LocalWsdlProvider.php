@@ -48,7 +48,7 @@ class LocalWsdlProvider implements WsdlProvider
         if ($schema_import->count()) {
             // Assume that the XSD file sits right next to its WSDL counterpart.
             $schema_location = $schema_import->first()->getAttribute('schemaLocation');
-            $schema = Document::fromXmlFile(dirname($location).DIRECTORY_SEPARATOR.$schema_location);
+            $schema = Document::fromXmlFile(dirname($location) . DIRECTORY_SEPARATOR . $schema_location);
 
             // Sent encoded XSD back into the WSDL file.
             $wsdl->xpath()->querySingle("//*/xsd:schema/xsd:import")

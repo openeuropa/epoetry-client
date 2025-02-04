@@ -15,7 +15,6 @@ use Monolog\LogRecord;
  */
 class ReactConsoleHandler extends ConsoleHandler implements HandlerInterface
 {
-
     /**
      * @var WritableStreamInterface
      */

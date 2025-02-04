@@ -64,7 +64,7 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
         }
     }
 
-    protected function getProductCode($templateName) : string
+    protected function getProductCode($templateName): string
     {
         $mapping = [
             'DEFAULT' => 'TRA',
@@ -156,8 +156,10 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
      */
     protected function validateSlaAnnex($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
-            && !in_array($requestDetails->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])) {
+        if (
+            !in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
+            && !in_array($requestDetails->getSlaAnnex(), ['NO', 'ANNEX8A', 'ANNEX8B'])
+        ) {
             // SlaAnnex is required, only specific options are possible.
             $this->context->buildViolation($constraint->slaAnnexRequiredMessage)
                 ->atPath($atPathPrefix . 'requestDetails.slaAnnex')
@@ -171,10 +173,12 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     protected function validateSlaCommitment($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
         // Current validation does not enforce the slaCommitent value to be a correct slaCommitent value defined if ABAC.
-        if (!in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
+        if (
+            !in_array($templateName, ['RSE', 'RSO', 'HOTL', 'EDT', 'WEBEDT'])
             && $requestDetails->hasSlaAnnex()
             && $requestDetails->getSlaAnnex() === 'ANNEX8B'
-            && !$requestDetails->hasSlaCommitment()) {
+            && !$requestDetails->hasSlaCommitment()
+        ) {
             $this->context->buildViolation($constraint->slaCommitmentRequiredMessage)
                 ->atPath($atPathPrefix . 'requestDetails.slaCommitment')
                 ->addViolation();
@@ -211,8 +215,10 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
      */
     protected function validateDestination($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
-            && !in_array($requestDetails->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])) {
+        if (
+            !in_array($templateName, ['HOTL', 'RSE', 'RSO'])
+            && !in_array($requestDetails->getDestination(), ['EM', 'EXT', 'IE', 'INTERNE', 'JO', 'PUBLIC'])
+        ) {
             $this->context->buildViolation($constraint->destinationRequiredMessage)
                 ->atPath($atPathPrefix . 'requestDetails.destination')
                 ->addViolation();
@@ -224,8 +230,10 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
      */
     protected function validateProcedure($templateName, $requestDetails, Constraint $constraint, $atPathPrefix = ''): void
     {
-        if (!in_array($templateName, ['HOTL', 'RSE', 'RSO'])
-            && !in_array($requestDetails->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])) {
+        if (
+            !in_array($templateName, ['HOTL', 'RSE', 'RSO'])
+            && !in_array($requestDetails->getProcedure(), ['DEGHP', 'NEANT', 'PROAC', 'PROCD', 'PROCE', 'PROCH', 'PROCO', 'REUNAU', 'REUNCS'])
+        ) {
             $this->context->buildViolation($constraint->procedureRequiredMessage)
                 ->atPath($atPathPrefix . 'requestDetails.procedure')
                 ->addViolation();

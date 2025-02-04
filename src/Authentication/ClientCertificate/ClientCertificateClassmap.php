@@ -8,7 +8,7 @@ use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 
 class ClientCertificateClassmap
 {
-    public static function getCollection() : \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
+    public static function getCollection(): \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection(
             new ClassMap('getServiceTicket', Type\GetServiceTicket::class),
@@ -16,4 +16,3 @@ class ClientCertificateClassmap
         );
     }
 }
-

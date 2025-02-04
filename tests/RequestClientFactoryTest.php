@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests;
 
@@ -70,7 +70,7 @@ final class RequestClientFactoryTest extends BaseTest
         $this->assertInstanceOf(Psr18Transport::class, $clientFactory->getTransport());
 
         $authentication = new MockAuthentication('[proxy ticket]');
-        $clientFactory = new RequestClientFactory('http://foo.bar', $authentication, new EventDispatcher(), new Logger(new BufferedOutput()), new MockClient(), new TraceableTransport(new AbusedClient(__DIR__.'/../resources/request.wsdl'), Psr18Transport::createWithDefaultClient()));
+        $clientFactory = new RequestClientFactory('http://foo.bar', $authentication, new EventDispatcher(), new Logger(new BufferedOutput()), new MockClient(), new TraceableTransport(new AbusedClient(__DIR__ . '/../resources/request.wsdl'), Psr18Transport::createWithDefaultClient()));
         $this->assertInstanceOf(EventDispatcher::class, $clientFactory->getEventDispatcher());
         $this->assertInstanceOf(Logger::class, $clientFactory->getLogger());
         $this->assertInstanceOf(MockClient::class, $clientFactory->getHttpClient());

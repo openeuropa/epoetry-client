@@ -31,21 +31,18 @@ $specialClassesAndProperties = [
 
 $rules = [
     new Rules\AssembleRule(new Assembler\PropertyAssembler(
-            Assembler\PropertyAssemblerOptions::create()
+        Assembler\PropertyAssemblerOptions::create()
                 ->withTypeHints(false)
-        )
-    ),
+    )),
     new Rules\AssembleRule(new Assembler\FluentSetterAssembler(
-            Assembler\FluentSetterAssemblerOptions::create()
+        Assembler\FluentSetterAssemblerOptions::create()
                 ->withTypeHints()
-        )
-    ),
+    )),
     new Rules\AssembleRule(new Assembler\GetterAssembler(
-            Assembler\GetterAssemblerOptions::create()
-                ->withReturnType()
-                ->withBoolGetters()
-        )
-    ),
+        Assembler\GetterAssemblerOptions::create()
+            ->withReturnType()
+            ->withBoolGetters()
+    )),
     new Rules\AssembleRule(
         new OpenEuropa\Assembler\FluentAdderAssembler(
             (new OpenEuropa\Assembler\FluentAdderAssemblerOptions())
@@ -56,13 +53,15 @@ $rules = [
     new Rules\AssembleRule(new OpenEuropa\Assembler\EmptyArrayPropertyAssembler()),
 
     // Add "implements RequestInterface" to request classes.
-    new Rules\IsRequestRule($config->getEngine()->getMetadata(),
+    new Rules\IsRequestRule(
+        $config->getEngine()->getMetadata(),
         new Rules\MultiRule([
             new Rules\AssembleRule(new Assembler\RequestAssembler()),
         ])
     ),
     // Add "implements ResultInterface" to result classes.
-    new Rules\IsResultRule($config->getEngine()->getMetadata(),
+    new Rules\IsResultRule(
+        $config->getEngine()->getMetadata(),
         new Rules\MultiRule([
             new Rules\AssembleRule(new Assembler\ResultAssembler()),
         ])
@@ -88,7 +87,7 @@ $config->addRule(new Rules\TypenameMatchesRule(
                 ->withTypeHints()
         )
     ),
-    '/^('.implode('|', $classes).')$/'
+    '/^(' . implode('|', $classes) . ')$/'
 ));
 
 return $config;
