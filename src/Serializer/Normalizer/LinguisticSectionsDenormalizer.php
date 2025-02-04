@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace OpenEuropa\EPoetry\Serializer\Normalizer;
 
+use OpenEuropa\EPoetry\Request\Type\LinguisticSection;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSections;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut;
 use OpenEuropa\EPoetry\Request\Type\LinguisticSectionIn;
@@ -28,7 +29,7 @@ class LinguisticSectionsDenormalizer implements DenormalizerInterface, Serialize
     public function denormalize($data, $type, $format = null, array $context = []): ?object
     {
         if (empty($data['linguisticSection'])) {
-            return null;
+            return new LinguisticSections();
         }
 
         // Parent types in $context['parent_types'] are set in ObjectNormalizer.

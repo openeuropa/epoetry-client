@@ -7,37 +7,37 @@ use Phpro\SoapClient\Type\RequestInterface;
 class AddNewPartToDossier implements RequestInterface
 {
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\DossierReference
+     * @var null | \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    private $dossier;
+    private $dossier = null;
 
     /**
-     * @var \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+     * @var null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
-    private $requestDetails;
+    private $requestDetails = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $applicationName;
+    private $applicationName = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $templateName;
+    private $templateName = null;
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
+     * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
     {
         $this->dossier = $dossier;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\DossierReference|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
     public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
@@ -53,17 +53,17 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
+     * @param null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : static
     {
         $this->requestDetails = $requestDetails;
         return $this;
     }
 
     /**
-     * @return \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn|null
+     * @return null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
     public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
@@ -79,17 +79,17 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param string $applicationName
+     * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(string $applicationName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setApplicationName(?string $applicationName) : static
     {
         $this->applicationName = $applicationName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getApplicationName() : ?string
     {
@@ -105,17 +105,17 @@ class AddNewPartToDossier implements RequestInterface
     }
 
     /**
-     * @param string $templateName
+     * @param null | string $templateName
      * @return $this
      */
-    public function setTemplateName(string $templateName) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier
+    public function setTemplateName(?string $templateName) : static
     {
         $this->templateName = $templateName;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null | string
      */
     public function getTemplateName() : ?string
     {

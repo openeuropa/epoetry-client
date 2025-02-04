@@ -5,22 +5,22 @@ namespace OpenEuropa\EPoetry\Request\Type;
 class CorrectionReferenceIn
 {
     /**
-     * @var int
+     * @var null | int
      */
-    private $version;
+    private $version = null;
 
     /**
-     * @param int $version
+     * @param null | int $version
      * @return $this
      */
-    public function setVersion(int $version) : \OpenEuropa\EPoetry\Request\Type\CorrectionReferenceIn
+    public function setVersion(?int $version) : static
     {
         $this->version = $version;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return null | int
      */
     public function getVersion() : ?int
     {

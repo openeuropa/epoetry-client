@@ -4,7 +4,7 @@
     "description": "PHP client for the ePoetry service.",
     "license": "EUPL-1.2",
     "require": {
-        "php": ">=8.1.21",
+        "php": ">=8.3",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-soap": "*",
@@ -12,15 +12,15 @@
         "cweagans/composer-patches": "^1 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
-        "phpro/soap-client": "~3.4",
+        "phpro/soap-client": "^3.4.1",
         "psr/http-client": "^1",
         "psr/http-client-implementation": "*",
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
         "psr/log": "^2 || ^3",
-        "symfony/http-client": "~5.4 || ~6",
-        "symfony/serializer": "~5.4 || ~6",
-        "symfony/validator": "~5.4 || ~6",
+        "symfony/http-client": "~6",
+        "symfony/serializer": "~6",
+        "symfony/validator": "~6",
         "veewee/xml": "^3.0"
     },
     "require-dev": {
@@ -28,19 +28,19 @@
         "doctrine/annotations": "^1.13",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
-        "openeuropa/code-review": "^2.0",
+        "openeuropa/code-review-library": "^1.0@alpha",
         "openeuropa/task-runner": "^2",
         "php-http/guzzle7-adapter": "~1",
         "php-http/mock-client": "^1.5",
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
-        "symfony/dotenv": "~5.4 || ~6",
-        "symfony/expression-language": "~5.4 || ~6",
-        "symfony/http-kernel": "~5.4 || ~6",
-        "symfony/monolog-bridge": "~5.4 || ~6",
-        "symfony/property-access": "~5.4 || ~6",
-        "symfony/property-info": "~5.4 || ~6"
+        "symfony/dotenv": "~6",
+        "symfony/expression-language": "~6",
+        "symfony/http-kernel": "~6",
+        "symfony/monolog-bridge": "~6",
+        "symfony/property-access": "~6",
+        "symfony/property-info": "~6"
     },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
@@ -51,10 +51,11 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpro/grumphp": true,
             "cweagans/composer-patches": true,
-            "php-http/discovery": false
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": false,
+            "phpro/grumphp": true,
+            "phpro/grumphp-shim": true
         }
     },
     "autoload": {
@@ -69,12 +70,5 @@
     },
     "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "patches": {
-            "phpro/soap-client" : {
-                "add-anyuri-to-normalizer.patch": "./patches/add-anyuri-to-normalizer.patch"
-            }
-        }
-    }
+    "prefer-stable": true
 }

@@ -2,7 +2,7 @@
 
 namespace OpenEuropa\EPoetry\Request\Type;
 
-class DcoOut
+class DCO
 {
     /**
      * @var null | string
