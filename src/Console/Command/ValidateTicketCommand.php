@@ -6,6 +6,7 @@ namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\TicketValidation\TicketValidationInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,18 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Validate given ticket.
  */
+#[AsCommand(name: 'authentication:validate-ticket')]
 class ValidateTicketCommand extends Command
 {
-    protected static $defaultName = 'authentication:validate-ticket';
-
-    private LoggerInterface $logger;
-
     private TicketValidationInterface $validation;
 
-    public function __construct(LoggerInterface $logger, TicketValidationInterface $validation)
+    public function __construct(TicketValidationInterface $validation)
     {
         parent::__construct(null);
-        $this->logger = $logger;
         $this->validation = $validation;
     }
 
@@ -41,7 +38,7 @@ class ValidateTicketCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $success = $this->validation->validate($input->getArgument('ticket'));
         if ($success) {

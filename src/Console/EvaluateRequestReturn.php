@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\EPoetry\Console\Command;
+namespace OpenEuropa\EPoetry\Console;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
