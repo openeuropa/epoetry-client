@@ -4,7 +4,7 @@
     "description": "PHP client for the ePoetry service.",
     "license": "EUPL-1.2",
     "require": {
-        "php": ">=8.1.21",
+        "php": ">=8.3",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-soap": "*",
@@ -12,12 +12,12 @@
         "cweagans/composer-patches": "^1 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
-        "phpro/soap-client": "~3.4",
+        "phpro/soap-client": "^3.4.1",
         "psr/http-client": "^1",
         "psr/http-client-implementation": "*",
         "psr/http-factory": "^1",
         "psr/http-factory-implementation": "*",
-        "psr/log": "^2 || ^3",
+        "psr/log": "^3",
         "symfony/http-client": "~7",
         "symfony/serializer": "~7",
         "symfony/validator": "~7",
@@ -26,6 +26,7 @@
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
         "doctrine/annotations": "^1.13",
+        "facile-it/php-openid-client": "^0.3.5",
         "monolog/monolog": "~3",
         "nyholm/psr7": "^1.4",
         "openeuropa/code-review-library": "^1.0@alpha",
@@ -35,26 +36,27 @@
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
+        "symfony/config": "~7",
+        "symfony/dependency-injection": "~7",
         "symfony/dotenv": "~7",
         "symfony/expression-language": "~7",
         "symfony/http-kernel": "~7",
         "symfony/monolog-bridge": "~7",
         "symfony/property-access": "~7",
-        "symfony/property-info": "~7"
+        "symfony/property-info": "~7",
+        "web-token/jwt-framework": "^4.0"
     },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
         "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
-        "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin. It requres php >=8.1.",
+        "web-token/jwt-framework": "Require this in your project if you use the OpenID Connect authentication plugin.",
         "symfony/http-client": "Require this in your project if you use the client certificate authentication plugin."
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
             "cweagans/composer-patches": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": false,
-            "phpro/grumphp": true,
+            "php-http/discovery": true,
             "phpro/grumphp-shim": true
         }
     },
@@ -70,12 +72,5 @@
     },
     "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "patches": {
-            "phpro/soap-client" : {
-                "add-anyuri-to-normalizer.patch": "./patches/add-anyuri-to-normalizer.patch"
-            }
-        }
-    }
+    "prefer-stable": true
 }

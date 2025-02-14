@@ -4,6 +4,8 @@ namespace OpenEuropa\EPoetry\Validation\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+
 use function PHPUnit\Framework\isNull;
 
 /**

@@ -1,12 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
+use OpenEuropa\EPoetry\Console\EvaluateRequestReturn;
 use OpenEuropa\EPoetry\RequestClientFactory;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,13 +17,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[AsCommand(name: 'request:evaluate')]
 class EvaluateRequestCommand extends Command
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected static $defaultName = 'request:evaluate';
-
     protected string $endpoint;
 
     protected LoggerInterface $logger;

@@ -4,6 +4,7 @@ namespace OpenEuropa\EPoetry\Validation\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Validates RequestDetailsIn class.
@@ -27,10 +28,12 @@ class RequestDetailsInConstraintValidator extends ConstraintValidator
      */
     protected function validateProducts($requestDetailsIn, Constraint $constraint): void
     {
-        if ($requestDetailsIn->hasOriginalDocument()
+        if (
+            $requestDetailsIn->hasOriginalDocument()
             && $requestDetailsIn->hasProducts()
             && $requestDetailsIn->getOriginalDocument()->hasLinguisticSections()
-            && $requestDetailsIn->getOriginalDocument()->getLinguisticSections()->hasLinguisticSection()) {
+            && $requestDetailsIn->getOriginalDocument()->getLinguisticSections()->hasLinguisticSection()
+        ) {
             // If only one source language is defined in "linguisticSections", then the product list should not include that language;
             $linguisticSections = $requestDetailsIn->getOriginalDocument()->getLinguisticSections()->getLinguisticSection();
 

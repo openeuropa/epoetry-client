@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
@@ -20,7 +20,7 @@ final class ResubmitRequestTest extends BaseRequestTest
     {
         $request = $this->getResubmitRequest();
 
-        $expected = file_get_contents(__DIR__.'/fixtures/resubmitRequest.xml');
+        $expected = file_get_contents(__DIR__ . '/fixtures/resubmitRequest.xml');
         $request = $this->driver->encode('resubmitRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }

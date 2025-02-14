@@ -1,7 +1,6 @@
 <?php
 
 namespace Notification;
-
 namespace OpenEuropa\EPoetry\Tests\Notification;
 
 use GuzzleHttp\Psr7\Request;
@@ -23,7 +22,6 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 class NotificationHandlerTest extends BaseNotificationTest
 {
-
     /**
      * Test product status changes notification events.
      *
@@ -72,17 +70,19 @@ RESPONSE, trim($response->getBody()->getContents()));
     public function productStatusChangeEventsDataProvider(): array
     {
         $data = [];
-        foreach ([
-            'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
-            'Cancelled' => Notification\Product\StatusChangeCancelledEvent::class,
-            'Closed' => Notification\Product\StatusChangeClosedEvent::class,
-            'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
-            'Rejected' => Notification\Product\StatusChangeRejectedEvent::class,
-            'Requested' => Notification\Product\StatusChangeRequestedEvent::class,
-            'Sent' => Notification\Product\StatusChangeSentEvent::class,
-            'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
-            'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
-        ] as $status => $class) {
+        foreach (
+            [
+                'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
+                'Cancelled' => Notification\Product\StatusChangeCancelledEvent::class,
+                'Closed' => Notification\Product\StatusChangeClosedEvent::class,
+                'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
+                'Rejected' => Notification\Product\StatusChangeRejectedEvent::class,
+                'Requested' => Notification\Product\StatusChangeRequestedEvent::class,
+                'Sent' => Notification\Product\StatusChangeSentEvent::class,
+                'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
+                'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
+            ] as $status => $class
+        ) {
             $data[] = [
                 'class' => $class,
                 'status' => $status,
@@ -166,12 +166,14 @@ RESPONSE, trim($response->getBody()->getContents()));
     public function productStatusChangeEventsWithDeadlineDataProvider(): array
     {
         $data = [];
-        foreach ([
-            'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
-            'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
-            'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
-            'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
-        ] as $status => $class) {
+        foreach (
+            [
+                'Accepted' => Notification\Product\StatusChangeAcceptedEvent::class,
+                'ReadyToBeSent' => Notification\Product\StatusChangeReadyToBeSentEvent::class,
+                'Suspended' => Notification\Product\StatusChangeSuspendedEvent::class,
+                'Ongoing' => Notification\Product\StatusChangeOngoingEvent::class,
+            ] as $status => $class
+        ) {
             $data[] = [
                 'class' => $class,
                 'status' => $status,
@@ -284,13 +286,15 @@ RESPONSE, trim($response->getBody()->getContents()));
     public function requestStatusChangeEventsDataProvider(): array
     {
         $data = [];
-        foreach ([
-            'Accepted' => Notification\Request\StatusChangeAcceptedEvent::class,
-            'Cancelled' => Notification\Request\StatusChangeCancelledEvent::class,
-            'Executed' => Notification\Request\StatusChangeExecutedEvent::class,
-            'Rejected' => Notification\Request\StatusChangeRejectedEvent::class,
-            'Suspended' => Notification\Request\StatusChangeSuspendedEvent::class,
-        ] as $status => $class) {
+        foreach (
+            [
+                'Accepted' => Notification\Request\StatusChangeAcceptedEvent::class,
+                'Cancelled' => Notification\Request\StatusChangeCancelledEvent::class,
+                'Executed' => Notification\Request\StatusChangeExecutedEvent::class,
+                'Rejected' => Notification\Request\StatusChangeRejectedEvent::class,
+                'Suspended' => Notification\Request\StatusChangeSuspendedEvent::class,
+            ] as $status => $class
+        ) {
             $data[] = [
                 'class' => $class,
                 'status' => $status,
@@ -513,8 +517,7 @@ content-type: text/xml
      */
     private function getSubscriber(callable $assert): EventSubscriberInterface
     {
-        return new class($assert) implements EventSubscriberInterface {
-
+        return new class ($assert) implements EventSubscriberInterface {
             private $assert;
 
             /**

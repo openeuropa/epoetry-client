@@ -5,6 +5,7 @@ namespace OpenEuropa\EPoetry\Validation\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use OpenEuropa\EPoetry\Notification\Type\DgtNotification;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Validates DgtNotification class.

@@ -8,13 +8,12 @@ use VeeWee\Xml\Dom\Document;
 
 class LocalWsdlProviderTest extends TestCase
 {
-
     public function testProvider(): void
     {
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('TestPort1', 'http://overridden.address1')
             ->withPortLocation('TestPort2', 'http://overridden.address2');
-        $wsdl = __DIR__.'/../fixtures/test.wsdl';
+        $wsdl = __DIR__ . '/../fixtures/test.wsdl';
         $wsdl_location = $wsdlProvider($wsdl);
 
         $xml = file_get_contents($wsdl_location);

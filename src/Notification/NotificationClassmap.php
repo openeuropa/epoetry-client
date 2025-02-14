@@ -8,7 +8,7 @@ use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 
 class NotificationClassmap
 {
-    public static function getCollection() : \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
+    public static function getCollection(): \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection(
             new ClassMap('receiveNotification', Type\ReceiveNotification::class),
@@ -22,4 +22,3 @@ class NotificationClassmap
         );
     }
 }
-

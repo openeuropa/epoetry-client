@@ -106,7 +106,7 @@ class ClientCertificateAuthentication implements AuthenticationInterface
             ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
         $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__.'/../../../resources/authentication.wsdl', [])
+            ExtSoapOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl', [])
                 ->withClassMap(ClientCertificateClassmap::getCollection())
                 ->withWsdlProvider($wsdlProvider)
                 ->disableWsdlCache(),

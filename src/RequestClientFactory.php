@@ -32,7 +32,6 @@ use Symfony\Component\Validator\ValidatorBuilder;
  */
 class RequestClientFactory
 {
-
     /**
      * Event dispatcher service.
      *
@@ -230,7 +229,7 @@ class RequestClientFactory
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('DGTServiceWSPort', $this->endpoint);
         return DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__.'/../resources/request.wsdl', [])
+            ExtSoapOptions::defaults(__DIR__ . '/../resources/request.wsdl', [])
                 ->withClassMap(RequestClassmap::getCollection())
                 ->withWsdlProvider($wsdlProvider)
                 ->disableWsdlCache(),

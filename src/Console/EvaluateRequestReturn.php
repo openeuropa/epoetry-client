@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace OpenEuropa\EPoetry\Console\Command;
+namespace OpenEuropa\EPoetry\Console;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
@@ -11,7 +11,6 @@ use Phpro\SoapClient\Type\RequestInterface;
  */
 final class EvaluateRequestReturn
 {
-
     private RequestInterface $request;
 
     private string $method;

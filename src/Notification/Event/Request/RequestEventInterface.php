@@ -6,7 +6,6 @@ use OpenEuropa\EPoetry\Notification\Type\LinguisticRequest;
 
 interface RequestEventInterface
 {
-
     /**
      * Get linguistic request object.
      *
