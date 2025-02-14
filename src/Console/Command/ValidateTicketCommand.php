@@ -18,14 +18,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'authentication:validate-ticket')]
 class ValidateTicketCommand extends Command
 {
-    private LoggerInterface $logger;
-
     private TicketValidationInterface $validation;
 
-    public function __construct(LoggerInterface $logger, TicketValidationInterface $validation)
+    public function __construct(TicketValidationInterface $validation)
     {
         parent::__construct(null);
-        $this->logger = $logger;
         $this->validation = $validation;
     }
 

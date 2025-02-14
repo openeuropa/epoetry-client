@@ -17,14 +17,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'authentication:get-ticket')]
 class GetTicketAuthenticationCommand extends Command
 {
-    private LoggerInterface $logger;
-
     private AuthenticationInterface $authentication;
 
-    public function __construct(LoggerInterface $logger, AuthenticationInterface $validation)
+    public function __construct(AuthenticationInterface $validation)
     {
         parent::__construct(null);
-        $this->logger = $logger;
         $this->authentication = $validation;
     }
 
