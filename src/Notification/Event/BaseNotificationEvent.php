@@ -8,7 +8,6 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 abstract class BaseNotificationEvent extends Event
 {
-
     /**
      * Event response.
      *

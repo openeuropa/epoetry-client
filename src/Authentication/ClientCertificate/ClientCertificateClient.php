@@ -25,7 +25,7 @@ class ClientCertificateClient
      * @return ResultInterface & Type\GetServiceTicketResponse
      * @throws SoapException
      */
-    public function getServiceTicket(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket $getServiceTicketPart) : \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicketResponse
+    public function getServiceTicket(\OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket $getServiceTicketPart): \OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicketResponse
     {
         $response = ($this->caller)('getServiceTicket', $getServiceTicketPart);
 
@@ -35,4 +35,3 @@ class ClientCertificateClient
         return $response;
     }
 }
-

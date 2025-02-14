@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Console\Command;
 
@@ -158,7 +158,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
                 'exception' => $e,
             ]);
         });
-        $uri = '0.0.0.0:'.$input->getOption('port');
+        $uri = '0.0.0.0:' . $input->getOption('port');
         $this->logger->notice('Listening on {uri}', ['uri' => $uri]);
         $http->listen(new SocketServer($uri));
         return 0;
@@ -191,7 +191,7 @@ class StartNotificationListenerCommand extends Command implements EventSubscribe
     private function getLogFilepath(string $folder): string
     {
         $name = (new \DateTimeImmutable())->format('Y-m-d\THis.u');
-        return $folder.DIRECTORY_SEPARATOR.$name.'.txt';
+        return $folder . DIRECTORY_SEPARATOR . $name . '.txt';
     }
 
     /**

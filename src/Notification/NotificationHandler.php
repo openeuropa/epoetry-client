@@ -16,7 +16,6 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class NotificationHandler
 {
-
     const NOTIFICATION_PRODUCT_DELIVERY = 'ProductDelivery';
     const NOTIFICATION_PRODUCT_STATUS_CHANGE = 'ProductStatusChange';
     const PRODUCT_STATUS_CHANGE_REQUESTED = 'Requested';

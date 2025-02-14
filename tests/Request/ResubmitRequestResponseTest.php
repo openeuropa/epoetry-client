@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
@@ -38,7 +38,7 @@ final class ResubmitRequestResponseTest extends BaseRequestTest
      */
     public function testRequestResponseError(): void
     {
-        $xml = file_get_contents(__DIR__.'/fixtures/resubmitRequestResponseError.xml');
+        $xml = file_get_contents(__DIR__ . '/fixtures/resubmitRequestResponseError.xml');
         $this->expectException(\SoapFault::class);
         $this->expectExceptionMessage('Error 1: Incorrect on behalf DG!');
         $this->driver->decode('resubmitRequest', new SoapResponse($xml));

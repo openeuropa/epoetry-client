@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Serializer\Normalizer;
 
@@ -8,7 +8,10 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer as SymfonyObjectNor
 
 /**
  * Extension of Symfony's ObjectNormalize class.
+ *
+ * @todo remove phpstan ignore in 4.x.
  */
+/** @phpstan-ignore-next-line */
 class ObjectNormalizer extends SymfonyObjectNormalizer
 {
     /**

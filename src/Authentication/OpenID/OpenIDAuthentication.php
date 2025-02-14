@@ -16,7 +16,6 @@ use Psr\Log\LoggerInterface;
  */
 class OpenIDAuthentication implements AuthenticationInterface
 {
-
     /**
      * OpenID Connect ".well-known" endpoint URL.
      *

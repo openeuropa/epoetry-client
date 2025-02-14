@@ -18,21 +18,18 @@ return Config::create()
     ->setClassMapNamespace('OpenEuropa\EPoetry\Notification')
     ->setRuleSet(new Rules\RuleSet([
         new Rules\AssembleRule(new Assembler\PropertyAssembler(
-                Assembler\PropertyAssemblerOptions::create()
+            Assembler\PropertyAssemblerOptions::create()
                     ->withTypeHints(false)
-            )
-        ),
+        )),
         new Rules\AssembleRule(new Assembler\FluentSetterAssembler(
-                Assembler\FluentSetterAssemblerOptions::create()
+            Assembler\FluentSetterAssemblerOptions::create()
                     ->withTypeHints()
-            )
-        ),
+        )),
         new Rules\AssembleRule(new Assembler\GetterAssembler(
-                Assembler\GetterAssemblerOptions::create()
-                    ->withReturnType()
-                    ->withBoolGetters()
-            )
-        ),
+            Assembler\GetterAssemblerOptions::create()
+                ->withReturnType()
+                ->withBoolGetters()
+        )),
         new Rules\AssembleRule(new OpenEuropa\Assembler\HasPropertyAssembler()),
         new Rules\AssembleRule(new Assembler\ClassMapAssembler()),
         new Rules\AssembleRule(new Assembler\ClientConstructorAssembler()),

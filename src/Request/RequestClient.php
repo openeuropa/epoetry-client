@@ -25,7 +25,7 @@ class RequestClient
      * @return ResultInterface & Type\ResubmitRequestResponse
      * @throws SoapException
      */
-    public function resubmitRequest(\OpenEuropa\EPoetry\Request\Type\ResubmitRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\ResubmitRequestResponse
+    public function resubmitRequest(\OpenEuropa\EPoetry\Request\Type\ResubmitRequest $parameters): \OpenEuropa\EPoetry\Request\Type\ResubmitRequestResponse
     {
         $response = ($this->caller)('resubmitRequest', $parameters);
 
@@ -40,7 +40,7 @@ class RequestClient
      * @return ResultInterface & Type\UpdateCallbackUrlResponse
      * @throws SoapException
      */
-    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters) : \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
+    public function updateCallbackUrl(\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrl $parameters): \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlResponse
     {
         $response = ($this->caller)('updateCallbackUrl', $parameters);
 
@@ -55,7 +55,7 @@ class RequestClient
      * @return ResultInterface & Type\ModifyLinguisticRequestResponse
      * @throws SoapException
      */
-    public function modifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestResponse
+    public function modifyLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequest $parameters): \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestResponse
     {
         $response = ($this->caller)('modifyLinguisticRequest', $parameters);
 
@@ -70,7 +70,7 @@ class RequestClient
      * @return ResultInterface & Type\AddNewPartToDossierResponse
      * @throws SoapException
      */
-    public function addNewPartToDossier(\OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier $parameters) : \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossierResponse
+    public function addNewPartToDossier(\OpenEuropa\EPoetry\Request\Type\AddNewPartToDossier $parameters): \OpenEuropa\EPoetry\Request\Type\AddNewPartToDossierResponse
     {
         $response = ($this->caller)('addNewPartToDossier', $parameters);
 
@@ -85,7 +85,7 @@ class RequestClient
      * @return ResultInterface & Type\CreateNewVersionResponse
      * @throws SoapException
      */
-    public function createNewVersion(\OpenEuropa\EPoetry\Request\Type\CreateNewVersion $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
+    public function createNewVersion(\OpenEuropa\EPoetry\Request\Type\CreateNewVersion $parameters): \OpenEuropa\EPoetry\Request\Type\CreateNewVersionResponse
     {
         $response = ($this->caller)('createNewVersion', $parameters);
 
@@ -100,7 +100,7 @@ class RequestClient
      * @return ResultInterface & Type\GetLinguisticRequestResponse
      * @throws SoapException
      */
-    public function getLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequestResponse
+    public function getLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\GetLinguisticRequest $parameters): \OpenEuropa\EPoetry\Request\Type\GetLinguisticRequestResponse
     {
         $response = ($this->caller)('getLinguisticRequest', $parameters);
 
@@ -115,7 +115,7 @@ class RequestClient
      * @return ResultInterface & Type\CreateLinguisticRequestResponse
      * @throws SoapException
      */
-    public function createLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse
+    public function createLinguisticRequest(\OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequest $parameters): \OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse
     {
         $response = ($this->caller)('createLinguisticRequest', $parameters);
 
@@ -130,7 +130,7 @@ class RequestClient
      * @return ResultInterface & Type\CreateCorrectionRequestResponse
      * @throws SoapException
      */
-    public function createCorrectionRequest(\OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest $parameters) : \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
+    public function createCorrectionRequest(\OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequest $parameters): \OpenEuropa\EPoetry\Request\Type\CreateCorrectionRequestResponse
     {
         $response = ($this->caller)('createCorrectionRequest', $parameters);
 
@@ -140,4 +140,3 @@ class RequestClient
         return $response;
     }
 }
-

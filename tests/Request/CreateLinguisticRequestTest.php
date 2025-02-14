@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Tests\Request;
 
@@ -20,7 +20,7 @@ final class CreateLinguisticRequestTest extends BaseRequestTest
     {
         $request = $this->getCreateLinguisticRequest();
 
-        $expected = file_get_contents(__DIR__.'/fixtures/createLinguisticRequest.xml');
+        $expected = file_get_contents(__DIR__ . '/fixtures/createLinguisticRequest.xml');
         $request = $this->driver->encode('createLinguisticRequest', [$request]);
         $this->assertXmlStringEqualsXmlString($expected, $request->getRequest());
     }

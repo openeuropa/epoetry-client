@@ -12,10 +12,12 @@ use Monolog\LogRecord;
 
 /**
  * Bridge Monolog console handler with ReactPHP loop system.
+ *
+ * @todo remove phpstan ignore in 4.x.
  */
+/** @phpstan-ignore-next-line */
 class ReactConsoleHandler extends ConsoleHandler implements HandlerInterface
 {
-
     /**
      * @var WritableStreamInterface
      */
