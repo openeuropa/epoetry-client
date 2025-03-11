@@ -1,4 +1,14 @@
-# Changelog
+# Change Log
+
+## [3.0.0-alpha1](https://github.com/openeuropa/epoetry-client/tree/3.0.0-alpha1) (2025-03-11)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-beta2...3.0.0-alpha1)
+
+**Merged pull requests:**
+
+- EWPP-5182: Cleanup [\#91](https://github.com/openeuropa/epoetry-client/pull/91) ([ademarco](https://github.com/ademarco))
+- EWPP-5197: Port commands to Symfony 6. [\#90](https://github.com/openeuropa/epoetry-client/pull/90) ([ademarco](https://github.com/ademarco))
+- EWPP-5163: Regenerate Requests and fix tests [\#88](https://github.com/openeuropa/epoetry-client/pull/88) ([ademarco](https://github.com/ademarco))
+- EWPP-5162: Setup project for PHP 8.3 and port Notifications and Authentication classes [\#87](https://github.com/openeuropa/epoetry-client/pull/87) ([ademarco](https://github.com/ademarco))
 
 ## [2.0.0-beta2](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta2) (2024-02-15)
 
