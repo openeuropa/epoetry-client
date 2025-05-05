@@ -73,8 +73,8 @@
     "extra": {
         "patches": {
             "phpro/soap-client" : {
-                "https://github.com/phpro/soap-client/issues/446": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/448.diff",
-                "https://github.com/phpro/soap-client/issues/444": "https://patch-diff.githubusercontent.com/raw/phpro/soap-client/pull/445.diff"
+                "https://github.com/phpro/soap-client/issues/446": "https://github.com/phpro/soap-client/commit/a07a2c48ceabe54f66a740a8269f028840eaa2a2.patch",
+                "https://github.com/phpro/soap-client/issues/444": "https://github.com/phpro/soap-client/commit/70060d486daf24b4ee4fd8d9e4123e78aad473ef.patch"
             }
         }
     }
