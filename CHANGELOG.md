@@ -1,4 +1,11 @@
-# Changelog
+# Change Log
+
+## [2.0.0-beta3](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta3) (2025-05-07)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-beta2...2.0.0-beta3)
+
+**Merged pull requests:**
+
+- Fix github patching request error. [\#93](https://github.com/openeuropa/epoetry-client/pull/93) ([nagyad](https://github.com/nagyad))
 
 ## [2.0.0-beta2](https://github.com/openeuropa/epoetry-client/tree/2.0.0-beta2) (2024-02-15)
 
