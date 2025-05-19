@@ -16,6 +16,7 @@ This project provides the necessary code (SOAP objects, middleware, etc.) to req
 notifications from the ePoetry service.
 
 ## Versions
+- 4.x should be used with PHP > 8.3 and Symfony 7.x
 - 3.x should be used with PHP > 8.3 and Symfony 6.x
 - 2.x should be used with PHP > 8.1.26 and Symfony 5.x, or 6.x
 - 1.x should be used with PHP 8.0 and Symfony 4.x
