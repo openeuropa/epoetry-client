@@ -26,6 +26,7 @@
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
         "doctrine/annotations": "^1.13",
+        "ecphp/ecas": "^4",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
         "openeuropa/code-review": "^2.0",
@@ -35,6 +36,7 @@
         "phpdocumentor/reflection-docblock": "^5",
         "phpunit/phpunit": "~9.6",
         "react/http": "^1.8",
+        "symfony/cache": "^5.4",
         "symfony/dotenv": "~5.4 || ~6",
         "symfony/expression-language": "~5.4 || ~6",
         "symfony/http-kernel": "~5.4 || ~6",
@@ -43,6 +45,7 @@
         "symfony/property-info": "~5.4 || ~6"
     },
     "suggest": {
+        "ecphp/ecas": "Require this library in your project if you use the ECAS authentication",
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
         "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
         "web-token/jwt-signature-algorithm-hmac": "Require this in your project if you use the OpenID Connect authentication plugin. It requres php >=8.1.",
