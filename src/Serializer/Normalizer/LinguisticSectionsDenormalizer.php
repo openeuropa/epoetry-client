@@ -65,8 +65,16 @@ class LinguisticSectionsDenormalizer implements DenormalizerInterface, Serialize
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return $type === LinguisticSections::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['object' => true];
     }
 }

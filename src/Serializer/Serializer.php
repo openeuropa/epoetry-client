@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace OpenEuropa\EPoetry\Serializer;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ContactsDenormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\DateTimeNormalizer;
 use OpenEuropa\EPoetry\Serializer\Normalizer\ObjectNormalizer;
@@ -15,11 +14,13 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Serializer as SymfonySerializer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer as SymfonyObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer as SymfonyDateTimeNormalizer;
 
 /**
  * Class Serializer.
@@ -125,26 +126,29 @@ class Serializer implements SerializerInterface
         }
 
         // Setup serializer service.
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
+        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
         $context = [
             AbstractObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true, // Allow to set integer values from strings.
             AbstractObjectNormalizer::SKIP_NULL_VALUES => true, // Null values won't be generated.
         ];
+
+        $symfonyObjectNormalizer = new SymfonyObjectNormalizer(
+            $classMetadataFactory,
+            null,
+            null,
+            new PhpDocExtractor(),
+            null,
+            null,
+            $context
+        );
+
         return new SymfonySerializer([
-            new DateTimeNormalizer(),
+            new DateTimeNormalizer(new SymfonyDateTimeNormalizer()),
             new ArrayDenormalizer(),
             new ProductsDenormalizer(),
             new LinguisticSectionsDenormalizer(),
             new ContactsDenormalizer(),
-            new ObjectNormalizer(
-                $classMetadataFactory,
-                null,
-                null,
-                new PhpDocExtractor(),
-                null,
-                null,
-                $context
-            )
+            new ObjectNormalizer($symfonyObjectNormalizer)
         ], $encoders);
     }
 }

@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace OpenEuropa\EPoetry\Serializer\Normalizer;
 
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer as SymfonyObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerAwareInterface;
 
 /**
  * Extension of Symfony's ObjectNormalize class.
- *
- * @todo remove phpstan ignore in 4.x.
  */
-/** @phpstan-ignore-next-line */
-class ObjectNormalizer extends SymfonyObjectNormalizer
+class ObjectNormalizer implements NormalizerInterface, DenormalizerInterface, SerializerAwareInterface
 {
+    public function __construct(private readonly SymfonyObjectNormalizer $objectNormalizer)
+    {
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -40,6 +44,46 @@ class ObjectNormalizer extends SymfonyObjectNormalizer
         // Cast empty string to null to ensure $data is denormalized correctly.
         $data = ($data === '') ? null : $data;
 
-        return parent::denormalize($data, $type, $format, $context);
+        return $this->objectNormalizer->denormalize($data, $type, $format, $context);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(...$args): array
+    {
+        return $this->objectNormalizer->getSupportedTypes(...$args);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsDenormalization(...$args): bool
+    {
+        return $this->objectNormalizer->supportsDenormalization(...$args);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function normalize(...$args): array|string|int|float|bool|\ArrayObject|null
+    {
+        return $this->objectNormalizer->normalize(...$args);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsNormalization(...$args): bool
+    {
+        return $this->objectNormalizer->supportsNormalization(...$args);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSerializer(...$args): void
+    {
+        $this->objectNormalizer->setSerializer(...$args);
     }
 }
