@@ -21,9 +21,9 @@ class FluentAdderAssembler extends AbstractAssembler
     /**
      * FluentAdderAssembler constructor.
      *
-     * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\FluentAdderAssemblerOptions $options
+     * @param \OpenEuropa\EPoetry\CodeGenerator\Assembler\FluentAdderAssemblerOptions|null $options
      */
-    public function __construct(FluentAdderAssemblerOptions $options = null)
+    public function __construct(?FluentAdderAssemblerOptions $options = null)
     {
         $this->options = $options ?? new FluentAdderAssemblerOptions();
     }

@@ -31,7 +31,7 @@ class ReactConsoleHandler implements HandlerInterface
      */
     protected int $verbosity;
 
-    public function __construct(LoopInterface $loop, StreamOutput $output = null, bool $bubble = true, array $verbosityLevelMap = [], array $consoleFormatterOptions = [])
+    public function __construct(LoopInterface $loop, ?StreamOutput $output = null, bool $bubble = true, array $verbosityLevelMap = [], array $consoleFormatterOptions = [])
     {
         $this->consoleHandler = new ConsoleHandler($output, $bubble, $verbosityLevelMap, [
             'format' => "%datetime% %level_name% [%channel%] %message%%context%%extra%\n",

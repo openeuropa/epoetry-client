@@ -93,7 +93,7 @@ class RequestClientFactory
      * @param ClientInterface|null $httpClient
      * @param Transport|null $transport
      */
-    public function __construct(string $endpoint, AuthenticationInterface $authentication, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, ClientInterface $httpClient = null, Transport $transport = null)
+    public function __construct(string $endpoint, AuthenticationInterface $authentication, ?EventDispatcherInterface $eventDispatcher = null, ?LoggerInterface $logger = null, ?ClientInterface $httpClient = null, ?Transport $transport = null)
     {
         $this->endpoint = $endpoint;
         $this->eventDispatcher = $eventDispatcher ?? new EventDispatcher();

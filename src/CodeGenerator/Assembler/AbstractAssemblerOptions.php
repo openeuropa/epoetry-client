@@ -38,7 +38,7 @@ abstract class AbstractAssemblerOptions
      *
      * @return bool
      */
-    public function isBlacklisted(string $className, string $propertyName = null): bool
+    public function isBlacklisted(string $className, ?string $propertyName = null): bool
     {
         if ($this->blacklist === null) {
             return false;
@@ -57,7 +57,7 @@ abstract class AbstractAssemblerOptions
      *
      * @return bool
      */
-    public function isWhitelisted(string $className, string $propertyName = null): bool
+    public function isWhitelisted(string $className, ?string $propertyName = null): bool
     {
         if ($this->whitelist === null) {
             return true;
