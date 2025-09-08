@@ -1,12 +1,17 @@
 name: ci
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - 4.x
 
 jobs:
   automated-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: ["8.3"]
+        php_version: ["8.3", "8.4"]
         composer_command: ["composer install"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
@@ -25,30 +30,8 @@ jobs:
       - name: Build dependencies
         run: docker-compose exec -T php ${{ matrix.composer_command }}
 
-      - name: Run tests
-        run: docker-compose exec -T php ./vendor/bin/phpunit
-
-  code-sniffer:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php_version: ["8.3"]
-    env:
-      PHP_VERSION: ${{ matrix.php_version }}
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v2
-
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Start services with Docker Compose
-        run: docker-compose up -d
-
-      - name: Install dependencies
-        run: docker-compose exec -T php composer install
-
       - name: Run code sniffer
         run: docker-compose exec -T php ./vendor/bin/grumphp run
+
+      - name: Run tests
+        run: docker-compose exec -T php ./vendor/bin/phpunit
