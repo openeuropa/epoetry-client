@@ -1,10 +1,18 @@
 # Change Log
 
-## [4.0.0-beta1](https://github.com/openeuropa/epoetry-client/tree/4.0.0-beta1) (2025-08-28)
-[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/3.0.0-alpha1...4.0.0-beta1)
+## [4.0.0-beta2](https://github.com/openeuropa/epoetry-client/tree/4.0.0-beta2) (2025-09-24)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/4.0.0-beta1...4.0.0-beta2)
 
 **Merged pull requests:**
 
+- EWPP-5982: Add PHP8.4 to pipeline build and support. [\#99](https://github.com/openeuropa/epoetry-client/pull/99) ([nagyad](https://github.com/nagyad))
+
+## [4.0.0-beta1](https://github.com/openeuropa/epoetry-client/tree/4.0.0-beta1) (2025-08-28)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-beta3...4.0.0-beta1)
+
+**Merged pull requests:**
+
+- Release-4.0.0-beta1: Update changelog. [\#98](https://github.com/openeuropa/epoetry-client/pull/98) ([nagyad](https://github.com/nagyad))
 - EWPP-5164: Update Symfony dependencies. [\#89](https://github.com/openeuropa/epoetry-client/pull/89) ([ademarco](https://github.com/ademarco))
 
 ## [3.0.0-alpha1](https://github.com/openeuropa/epoetry-client/tree/3.0.0-alpha1) (2025-03-11)
