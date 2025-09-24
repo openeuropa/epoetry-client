@@ -20,7 +20,7 @@ class DateTimeNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): \DateTimeInterface
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): \DateTimeInterface
     {
         if ($type === \DateTimeInterface::class) {
             // Force to build \DateTime objects instead of \DateTimeImmutable.

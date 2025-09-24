@@ -12,7 +12,7 @@ abstract class BaseEventWithDeadline extends BaseEvent implements ProductEventWi
      * @param \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @param \DateTimeInterface|null $acceptedDeadline
      */
-    public function __construct(Product $product, \DateTimeInterface $acceptedDeadline = null)
+    public function __construct(Product $product, ?\DateTimeInterface $acceptedDeadline = null)
     {
         parent::__construct($product);
         $this->acceptedDeadline = $acceptedDeadline;

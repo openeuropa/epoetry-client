@@ -79,7 +79,7 @@ abstract class AbstractAssembler implements AssemblerInterface
      * @return string
      *   The FQCN shortened
      */
-    protected function shortenNamespace(string $type, string $namespace = null)
+    protected function shortenNamespace(string $type, ?string $namespace = null)
     {
         $namespace = '\\' . trim($namespace, '\\') . '\\';
 
