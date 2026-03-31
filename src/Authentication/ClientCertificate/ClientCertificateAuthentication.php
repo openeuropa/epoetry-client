@@ -6,6 +6,7 @@ use Http\Client\Common\PluginClient;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
 use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type\GetServiceTicket;
 use OpenEuropa\EPoetry\Authentication\Exception\AuthenticationException;
+use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
@@ -99,6 +100,15 @@ class ClientCertificateAuthentication implements AuthenticationInterface
         // Add HTTP logging middleware.
         $plugins[] = new LoggerPlugin($this->logger);
 
+        // Override the WSDL port locations with the configured EU Login
+        // base path. The v4 engine uses the WSDL port address as the SOAP
+        // request target, so we must override it to match the desired
+        // environment (acceptance vs production).
+        $wsdlLoader = (new LocalWsdlProvider())
+            ->withPortLocation('CertLoginSoap11Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.1")
+            ->withPortLocation('CertLoginSoap12Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.2")
+            ->withPortLocation('CertLoginHttpGetPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http")
+            ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
         $engine = DefaultEngineFactory::create(
             EngineOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl')
@@ -106,6 +116,7 @@ class ClientCertificateAuthentication implements AuthenticationInterface
                     EncoderRegistry::default()
                         ->addClassMapCollection(ClientCertificateClassmap::types())
                 )
+                ->withWsdlLoader(new \Soap\Wsdl\Loader\FlatteningLoader($wsdlLoader))
                 ->withTransport(Psr18Transport::createForClient($pluginClient))
         );
 

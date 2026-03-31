@@ -172,6 +172,6 @@ class NotificationServerFactory
     {
         $provider = new LocalWsdlProvider();
         $provider->withPortLocation('DgtClientNotificationReceiverWSPort', $this->callback);
-        return $provider(__DIR__ . '/../resources/notification.wsdl');
+        return $provider->toDataUri(__DIR__ . '/../resources/notification.wsdl');
     }
 }

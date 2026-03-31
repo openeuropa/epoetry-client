@@ -8,47 +8,57 @@ use VeeWee\Xml\Dom\Document;
 
 class LocalWsdlProviderTest extends TestCase
 {
-    public function testProvider(): void
+    /**
+     * Tests that __invoke() returns raw XML with port overrides
+     * and schema imports left as-is (for v4 WsdlLoader).
+     */
+    public function testInvokeReturnsRawXmlWithPortOverrides(): void
     {
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('TestPort1', 'http://overridden.address1')
             ->withPortLocation('TestPort2', 'http://overridden.address2');
         $wsdl = __DIR__ . '/../fixtures/test.wsdl';
-        $wsdl_location = $wsdlProvider($wsdl);
 
-        $xml = file_get_contents($wsdl_location);
+        // __invoke() returns raw XML, not a data URI.
+        $xml = $wsdlProvider($wsdl);
 
-        $expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Not an actual, working WSDL file, this is just for testing purposes. -->
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HelloService">
-    <types>
-        <xsd:schema>
-            <xsd:import schemaLocation="data://text/plain;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBOb3QgYW4gYWN0dWFsLCB3b3JraW5nIFhTRCBmaWxlLCB0aGlzIGlzIGp1c3QgZm9yIHRlc3RpbmcgcHVycG9zZXMuIC0tPgo8eHNkOnNjaGVtYSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIi8+Cg=="/>
-        </xsd:schema>
-    </types>
-    <service name="TestService">
-        <port binding="tns:TestBinding" name="TestPort1">
-            <soap:address location="http://overridden.address1"/>
-        </port>
-        <port binding="tns:TestBinding" name="TestPort2">
-            <soap:address location="http://overridden.address2"/>
-        </port>
-    </service>
-</definitions>
-XML;
-        $this->assertEquals($expected, trim($xml));
+        // Verify port locations are overridden.
+        $this->assertStringContainsString('http://overridden.address1', $xml);
+        $this->assertStringContainsString('http://overridden.address2', $xml);
 
-        // Fetch schema and assert its validity.
-        $wsdl = Document::fromXmlString($xml);
-        $schema_location = $wsdl->xpath()->querySingle("//*/xsd:schema/xsd:import")->getAttribute('schemaLocation');
-        $xml = file_get_contents($schema_location);
+        // Verify schema import is left as the original file reference,
+        // not embedded as a data URI.
+        $wsdlDoc = Document::fromXmlString($xml);
+        $schemaLocation = $wsdlDoc->xpath()->querySingle("//*/xsd:schema/xsd:import")->getAttribute('schemaLocation');
+        $this->assertEquals('test.xsd', $schemaLocation);
+    }
 
-        $expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Not an actual, working XSD file, this is just for testing purposes. -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-XML;
-        $this->assertEquals($expected, trim($xml));
+    /**
+     * Tests that toDataUri() returns a self-contained data URI with
+     * embedded XSD (for PHP's native SoapServer).
+     */
+    public function testToDataUriReturnsSelfContainedWsdl(): void
+    {
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('TestPort1', 'http://overridden.address1')
+            ->withPortLocation('TestPort2', 'http://overridden.address2');
+        $wsdl = __DIR__ . '/../fixtures/test.wsdl';
+
+        $dataUri = $wsdlProvider->toDataUri($wsdl);
+        $this->assertStringStartsWith('data://text/plain;base64,', $dataUri);
+
+        // Decode and verify content.
+        $xml = file_get_contents($dataUri);
+        $this->assertStringContainsString('http://overridden.address1', $xml);
+        $this->assertStringContainsString('http://overridden.address2', $xml);
+
+        // Verify schema is embedded as a data URI (self-contained).
+        $wsdlDoc = Document::fromXmlString($xml);
+        $schemaLocation = $wsdlDoc->xpath()->querySingle("//*/xsd:schema/xsd:import")->getAttribute('schemaLocation');
+        $this->assertStringStartsWith('data://text/plain;base64,', $schemaLocation);
+
+        // Verify the embedded schema is valid XML.
+        $schemaXml = file_get_contents($schemaLocation);
+        $this->assertStringContainsString('xsd:schema', $schemaXml);
     }
 }

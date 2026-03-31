@@ -34,12 +34,13 @@ abstract class BaseRequestTest extends BaseTest
         }
         $classMapCollection = new ClassMapCollection(...$classMaps);
 
-        // Setup SOAP driver.
+        // Setup SOAP driver for tests. Use toDataUri() to produce a
+        // self-contained WSDL data URI that ext-soap's SoapClient can parse.
+        $wsdlUri = (new LocalWsdlProvider())->toDataUri(__DIR__ . '/../../resources/request.wsdl');
         $this->driver = ExtSoapDriver::createFromClient(
             AbusedClient::createFromOptions(
-                ExtSoapOptions::defaults(__DIR__ . '/../../resources/request.wsdl')
+                ExtSoapOptions::defaults($wsdlUri)
                     ->withClassMap($classMapCollection)
-                    ->withWsdlProvider(new LocalWsdlProvider())
                     ->disableWsdlCache()
             )
         );
