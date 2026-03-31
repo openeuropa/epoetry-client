@@ -27,19 +27,22 @@ use Soap\Engine\Metadata\Model\TypeMeta;
  */
 class SuppressEnumGenerationManipulator implements TypesManipulatorInterface
 {
+    /**
+     * Strip enum metadata from types and mark enum properties as local.
+     */
     public function __invoke(TypeCollection $types): TypeCollection
     {
         return new TypeCollection(
             ...array_map(
                 fn (Type $type): Type => new Type(
-                    // Strip enum metadata at the TYPE level to prevent
-                    // the code generator from creating PHP enum classes.
+                    // Remove enum info from the type itself so no
+                    // PHP enum class gets generated.
                     $type->getXsdType()->withMeta(
                         static fn (TypeMeta $meta): TypeMeta => $meta->withEnums(null)
                     ),
-                    // Mark enum properties as "local" so the code generator:
-                    // - Uses string type hints (not enum class references)
-                    // - Preserves PHPDoc enum value hints ('XLS' | 'DOCX' | ...)
+                    // Mark enum properties as local so the generator
+                    // uses string type hints but keeps the allowed
+                    // values in PHPDoc (e.g. 'XLS' | 'DOCX' | ...).
                     $this->markEnumPropertiesAsLocal($type->getProperties())
                 ),
                 iterator_to_array($types)
@@ -48,14 +51,11 @@ class SuppressEnumGenerationManipulator implements TypesManipulatorInterface
     }
 
     /**
-     * Mark properties that reference enum types as "local" enums.
+     * Set isLocal=true on properties that reference enum types.
      *
-     * The v4 code generator treats local and global enums differently:
-     * - Global enum: type hint = enum class, PHPDoc = class name
-     * - Local enum: type hint = string, PHPDoc = enum values
-     *
-     * By marking enum properties as local, we get string type hints
-     * while preserving the allowed values in PHPDoc documentation.
+     * v4 treats local enums as strings with value hints in PHPDoc,
+     * while global enums become PHP enum class references. Marking
+     * them as local gives us the best of both.
      */
     private function markEnumPropertiesAsLocal(PropertyCollection $properties): PropertyCollection
     {

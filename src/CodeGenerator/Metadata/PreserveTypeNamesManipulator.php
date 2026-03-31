@@ -25,10 +25,6 @@ use Soap\Engine\Metadata\Model\Type;
  * shared v3 names. After renaming, the IntersectDuplicateTypesStrategy
  * (applied later in the chain) merges the resulting duplicate types.
  *
- * The WSDL/XSD files in resources/ are third-party artifacts that we
- * store as-is, so we solve the naming mismatch here rather than
- * modifying the schema.
- *
  * @see https://github.com/phpro/soap-client/blob/v4.x/UPGRADING.md
  */
 class PreserveTypeNamesManipulator implements TypesManipulatorInterface
@@ -91,6 +87,9 @@ class PreserveTypeNamesManipulator implements TypesManipulatorInterface
         'modifyAuxiliaryDocumentsInPrtDocuments' => 'prtDocuments',
     ];
 
+    /**
+     * Rename all types and their property type references.
+     */
     public function __invoke(TypeCollection $types): TypeCollection
     {
         return new TypeCollection(
@@ -101,6 +100,10 @@ class PreserveTypeNamesManipulator implements TypesManipulatorInterface
         );
     }
 
+    /**
+     * Rename a type if it matches the map, and update its property
+     * type references accordingly.
+     */
     private function renameType(Type $type): Type
     {
         $originalName = $type->getName();
@@ -111,11 +114,13 @@ class PreserveTypeNamesManipulator implements TypesManipulatorInterface
             $xsdType = $xsdType->copy($newName);
         }
 
-        // Also rename property type references so that properties
-        // pointing to renamed types get the correct class name.
         return new Type($xsdType, $this->renamePropertyTypes($type->getProperties()));
     }
 
+    /**
+     * Rename property type references that point to renamed types,
+     * so generated code uses the correct class names.
+     */
     private function renamePropertyTypes(PropertyCollection $properties): PropertyCollection
     {
         return new PropertyCollection(
