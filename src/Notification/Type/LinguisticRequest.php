@@ -10,7 +10,7 @@ class LinguisticRequest
     private $requestReference = null;
 
     /**
-     * @var null | string
+     * @var null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
      */
     private $status = null;
 
@@ -41,7 +41,7 @@ class LinguisticRequest
     }
 
     /**
-     * @param null | string $status
+     * @param null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated' $status
      * @return $this
      */
     public function setStatus(?string $status): static
@@ -51,7 +51,7 @@ class LinguisticRequest
     }
 
     /**
-     * @return null | string
+     * @return null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
      */
     public function getStatus(): ?string
     {

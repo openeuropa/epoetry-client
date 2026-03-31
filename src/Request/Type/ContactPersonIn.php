@@ -10,7 +10,7 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var string
+     * @var 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $contactRole;
 
@@ -18,7 +18,7 @@ class ContactPersonIn
      * Constructor
      *
      * @param string $userId
-     * @param string $contactRole
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      */
     public function __construct(string $userId, string $contactRole)
     {
@@ -53,7 +53,7 @@ class ContactPersonIn
     }
 
     /**
-     * @param string $contactRole
+     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      * @return $this
      */
     public function setContactRole(string $contactRole): static
@@ -63,7 +63,7 @@ class ContactPersonIn
     }
 
     /**
-     * @return string
+     * @return 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     public function getContactRole(): string
     {

@@ -5,7 +5,7 @@ namespace OpenEuropa\EPoetry\Notification\Type;
 class DgtNotification
 {
     /**
-     * @var null | string
+     * @var null | 'RequestStatusChange' | 'ProductStatusChange' | 'ProductDelivery' | 'CorrectionStatusChange'
      */
     private $notificationType = null;
 
@@ -35,7 +35,7 @@ class DgtNotification
     private $planningSector = null;
 
     /**
-     * @param null | string $notificationType
+     * @param null | 'RequestStatusChange' | 'ProductStatusChange' | 'ProductDelivery' | 'CorrectionStatusChange' $notificationType
      * @return $this
      */
     public function setNotificationType(?string $notificationType): static
@@ -45,7 +45,7 @@ class DgtNotification
     }
 
     /**
-     * @return null | string
+     * @return null | 'RequestStatusChange' | 'ProductStatusChange' | 'ProductDelivery' | 'CorrectionStatusChange'
      */
     public function getNotificationType(): ?string
     {

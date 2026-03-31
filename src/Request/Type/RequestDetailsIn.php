@@ -10,7 +10,7 @@ class RequestDetailsIn
     private $title;
 
     /**
-     * @var null | string
+     * @var null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
      */
     private $workflowCode = null;
 
@@ -45,17 +45,17 @@ class RequestDetailsIn
     private $decideReference = null;
 
     /**
-     * @var null | string
+     * @var null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
      */
     private $destination = null;
 
     /**
-     * @var null | string
+     * @var null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
      */
     private $procedure = null;
 
     /**
-     * @var null | string
+     * @var null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
      */
     private $slaAnnex = null;
 
@@ -75,7 +75,7 @@ class RequestDetailsIn
     private $onBehalfOf = null;
 
     /**
-     * @var null | string
+     * @var null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
      */
     private $accessibleTo = null;
 
@@ -141,7 +141,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @param null | string $workflowCode
+     * @param null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE' $workflowCode
      * @return $this
      */
     public function setWorkflowCode(?string $workflowCode): static
@@ -151,7 +151,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @return null | string
+     * @return null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
      */
     public function getWorkflowCode(): ?string
     {
@@ -323,7 +323,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @param null | string $destination
+     * @param null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC' $destination
      * @return $this
      */
     public function setDestination(?string $destination): static
@@ -333,7 +333,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @return null | string
+     * @return null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
      */
     public function getDestination(): ?string
     {
@@ -349,7 +349,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @param null | string $procedure
+     * @param null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS' $procedure
      * @return $this
      */
     public function setProcedure(?string $procedure): static
@@ -359,7 +359,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @return null | string
+     * @return null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
      */
     public function getProcedure(): ?string
     {
@@ -375,7 +375,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @param null | string $slaAnnex
+     * @param null | 'ANNEX8A' | 'ANNEX8B' | 'NO' $slaAnnex
      * @return $this
      */
     public function setSlaAnnex(?string $slaAnnex): static
@@ -385,7 +385,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @return null | string
+     * @return null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
      */
     public function getSlaAnnex(): ?string
     {
@@ -479,7 +479,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @param null | string $accessibleTo
+     * @param null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG' $accessibleTo
      * @return $this
      */
     public function setAccessibleTo(?string $accessibleTo): static
@@ -489,7 +489,7 @@ class RequestDetailsIn
     }
 
     /**
-     * @return null | string
+     * @return null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
      */
     public function getAccessibleTo(): ?string
     {

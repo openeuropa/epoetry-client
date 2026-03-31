@@ -25,7 +25,7 @@ class ContactPersonOut
     private $userId = null;
 
     /**
-     * @var null | string
+     * @var null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $roleCode = null;
 
@@ -36,7 +36,7 @@ class ContactPersonOut
      * @param null | string $lastName
      * @param null | string $email
      * @param null | string $userId
-     * @param null | string $roleCode
+     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
      */
     public function __construct(?string $firstName, ?string $lastName, ?string $email, ?string $userId, ?string $roleCode)
     {
@@ -152,7 +152,7 @@ class ContactPersonOut
     }
 
     /**
-     * @param null | string $roleCode
+     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
      * @return $this
      */
     public function setRoleCode(?string $roleCode): static
@@ -162,7 +162,7 @@ class ContactPersonOut
     }
 
     /**
-     * @return null | string
+     * @return null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     public function getRoleCode(): ?string
     {

@@ -10,7 +10,7 @@ class Product
     private $productReference = null;
 
     /**
-     * @var null | string
+     * @var null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid'
      */
     private $status = null;
 
@@ -30,7 +30,7 @@ class Product
     private $name = null;
 
     /**
-     * @var null | string
+     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
     private $format = null;
 
@@ -61,7 +61,7 @@ class Product
     }
 
     /**
-     * @param null | string $status
+     * @param null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid' $status
      * @return $this
      */
     public function setStatus(?string $status): static
@@ -71,7 +71,7 @@ class Product
     }
 
     /**
-     * @return null | string
+     * @return null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid'
      */
     public function getStatus(): ?string
     {
@@ -165,7 +165,7 @@ class Product
     }
 
     /**
-     * @param null | string $format
+     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
     public function setFormat(?string $format): static
@@ -175,7 +175,7 @@ class Product
     }
 
     /**
-     * @return null | string
+     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
     public function getFormat(): ?string
     {

@@ -10,7 +10,7 @@ class RequestReferenceOut
     private $dossier = null;
 
     /**
-     * @var null | string
+     * @var null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO'
      */
     private $productType = null;
 
@@ -51,7 +51,7 @@ class RequestReferenceOut
     }
 
     /**
-     * @param null | string $productType
+     * @param null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO' $productType
      * @return $this
      */
     public function setProductType(?string $productType): static
@@ -61,7 +61,7 @@ class RequestReferenceOut
     }
 
     /**
-     * @return null | string
+     * @return null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO'
      */
     public function getProductType(): ?string
     {

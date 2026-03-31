@@ -25,7 +25,7 @@ class ContactPerson
     private $userId = null;
 
     /**
-     * @var null | string
+     * @var null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     private $roleCode = null;
 
@@ -134,7 +134,7 @@ class ContactPerson
     }
 
     /**
-     * @param null | string $roleCode
+     * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
      * @return $this
      */
     public function setRoleCode(?string $roleCode): static
@@ -144,7 +144,7 @@ class ContactPerson
     }
 
     /**
-     * @return null | string
+     * @return null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
     public function getRoleCode(): ?string
     {

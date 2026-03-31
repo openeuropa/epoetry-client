@@ -32,8 +32,15 @@ class SuppressEnumGenerationManipulator implements TypesManipulatorInterface
         return new TypeCollection(
             ...array_map(
                 fn (Type $type): Type => new Type(
-                    $this->stripEnumMeta($type->getXsdType()),
-                    $this->stripEnumMetaFromProperties($type->getProperties())
+                    // Strip enum metadata at the TYPE level to prevent
+                    // the code generator from creating PHP enum classes.
+                    $type->getXsdType()->withMeta(
+                        static fn (TypeMeta $meta): TypeMeta => $meta->withEnums(null)
+                    ),
+                    // Mark enum properties as "local" so the code generator:
+                    // - Uses string type hints (not enum class references)
+                    // - Preserves PHPDoc enum value hints ('XLS' | 'DOCX' | ...)
+                    $this->markEnumPropertiesAsLocal($type->getProperties())
                 ),
                 iterator_to_array($types)
             )
@@ -41,34 +48,26 @@ class SuppressEnumGenerationManipulator implements TypesManipulatorInterface
     }
 
     /**
-     * Remove enum metadata from an XSD type so the code generator
-     * treats it as a regular class instead of a PHP enum.
-     */
-    private function stripEnumMeta(\Soap\Engine\Metadata\Model\XsdType $xsdType): \Soap\Engine\Metadata\Model\XsdType
-    {
-        return $xsdType->withMeta(
-            static fn (TypeMeta $meta): TypeMeta => $meta->withEnums(null)
-        );
-    }
-
-    /**
-     * Remove enum metadata from property types so that properties
-     * referencing enum types use string signatures instead of enum
-     * class type hints.
+     * Mark properties that reference enum types as "local" enums.
      *
-     * Note: this also removes the PHPDoc enum value hints (e.g.
-     * 'XLS' | 'DOCX' | ...) since they share the same metadata.
-     * The trade-off is acceptable: string signatures preserve the
-     * public API, while enum value documentation can be found in
-     * the WSDL/XSD schema.
+     * The v4 code generator treats local and global enums differently:
+     * - Global enum: type hint = enum class, PHPDoc = class name
+     * - Local enum: type hint = string, PHPDoc = enum values
+     *
+     * By marking enum properties as local, we get string type hints
+     * while preserving the allowed values in PHPDoc documentation.
      */
-    private function stripEnumMetaFromProperties(PropertyCollection $properties): PropertyCollection
+    private function markEnumPropertiesAsLocal(PropertyCollection $properties): PropertyCollection
     {
         return new PropertyCollection(
             ...array_map(
-                fn (Property $prop): Property => new Property(
+                static fn (Property $prop): Property => new Property(
                     $prop->getName(),
-                    $this->stripEnumMeta($prop->getType())
+                    $prop->getType()->withMeta(
+                        static fn (TypeMeta $meta): TypeMeta => $meta->enums()->isSome()
+                            ? $meta->withIsLocal(true)
+                            : $meta
+                    )
                 ),
                 iterator_to_array($properties)
             )
