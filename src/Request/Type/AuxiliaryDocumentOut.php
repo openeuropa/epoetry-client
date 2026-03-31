@@ -10,12 +10,12 @@ class AuxiliaryDocumentOut
     private $fileName = null;
 
     /**
-     * @var null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @var null | string
      */
     private $language = null;
 
     /**
-     * @var null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT'
+     * @var null | string
      */
     private $documentType = null;
 
@@ -25,7 +25,7 @@ class AuxiliaryDocumentOut
     private $comment = null;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var null | string
      */
     private $format = null;
 
@@ -33,7 +33,7 @@ class AuxiliaryDocumentOut
      * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(?string $fileName): static
     {
         $this->fileName = $fileName;
         return $this;
@@ -42,7 +42,7 @@ class AuxiliaryDocumentOut
     /**
      * @return null | string
      */
-    public function getFileName() : ?string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -50,25 +50,25 @@ class AuxiliaryDocumentOut
     /**
      * @return bool
      */
-    public function hasFileName() : bool
+    public function hasFileName(): bool
     {
         return !empty($this->fileName);
     }
 
     /**
-     * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
+     * @param null | string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : static
+    public function setLanguage(?string $language): static
     {
         $this->language = $language;
         return $this;
     }
 
     /**
-     * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
+     * @return null | string
      */
-    public function getLanguage() : ?string
+    public function getLanguage(): ?string
     {
         return $this->language;
     }
@@ -76,25 +76,25 @@ class AuxiliaryDocumentOut
     /**
      * @return bool
      */
-    public function hasLanguage() : bool
+    public function hasLanguage(): bool
     {
         return !empty($this->language);
     }
 
     /**
-     * @param null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT' $documentType
+     * @param null | string $documentType
      * @return $this
      */
-    public function setDocumentType(?string $documentType) : static
+    public function setDocumentType(?string $documentType): static
     {
         $this->documentType = $documentType;
         return $this;
     }
 
     /**
-     * @return null | 'ORI' | 'REF' | 'SRC' | 'TRAX' | 'SPOT' | 'DCO' | 'PRT'
+     * @return null | string
      */
-    public function getDocumentType() : ?string
+    public function getDocumentType(): ?string
     {
         return $this->documentType;
     }
@@ -102,7 +102,7 @@ class AuxiliaryDocumentOut
     /**
      * @return bool
      */
-    public function hasDocumentType() : bool
+    public function hasDocumentType(): bool
     {
         return !empty($this->documentType);
     }
@@ -111,7 +111,7 @@ class AuxiliaryDocumentOut
      * @param null | string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(?string $comment): static
     {
         $this->comment = $comment;
         return $this;
@@ -120,7 +120,7 @@ class AuxiliaryDocumentOut
     /**
      * @return null | string
      */
-    public function getComment() : ?string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -128,25 +128,25 @@ class AuxiliaryDocumentOut
     /**
      * @return bool
      */
-    public function hasComment() : bool
+    public function hasComment(): bool
     {
         return !empty($this->comment);
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param null | string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return null | string
      */
-    public function getFormat() : ?string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -154,7 +154,7 @@ class AuxiliaryDocumentOut
     /**
      * @return bool
      */
-    public function hasFormat() : bool
+    public function hasFormat(): bool
     {
         return !empty($this->format);
     }

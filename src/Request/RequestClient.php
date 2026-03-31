@@ -2,7 +2,6 @@
 
 namespace OpenEuropa\EPoetry\Request;
 
-use Phpro\SoapClient\Caller\Caller;
 use OpenEuropa\EPoetry\Request\Type;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
@@ -10,10 +9,7 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class RequestClient
 {
-    /**
-     * @var Caller
-     */
-    private $caller;
+    private \Phpro\SoapClient\Caller\Caller $caller;
 
     public function __construct(\Phpro\SoapClient\Caller\Caller $caller)
     {
@@ -140,3 +136,4 @@ class RequestClient
         return $response;
     }
 }
+

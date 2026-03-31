@@ -30,7 +30,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier): static
     {
         $this->dossier = $dossier;
         return $this;
@@ -39,7 +39,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier(): ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -47,7 +47,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return bool
      */
-    public function hasDossier() : bool
+    public function hasDossier(): bool
     {
         return !empty($this->dossier);
     }
@@ -56,7 +56,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails) : static
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn $requestDetails): static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -65,7 +65,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
+    public function getRequestDetails(): ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -73,7 +73,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return bool
      */
-    public function hasRequestDetails() : bool
+    public function hasRequestDetails(): bool
     {
         return !empty($this->requestDetails);
     }
@@ -82,7 +82,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -91,7 +91,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -99,7 +99,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }
@@ -108,7 +108,7 @@ class AddNewPartToDossier implements RequestInterface
      * @param null | string $templateName
      * @return $this
      */
-    public function setTemplateName(?string $templateName) : static
+    public function setTemplateName(?string $templateName): static
     {
         $this->templateName = $templateName;
         return $this;
@@ -117,7 +117,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return null | string
      */
-    public function getTemplateName() : ?string
+    public function getTemplateName(): ?string
     {
         return $this->templateName;
     }
@@ -125,7 +125,7 @@ class AddNewPartToDossier implements RequestInterface
     /**
      * @return bool
      */
-    public function hasTemplateName() : bool
+    public function hasTemplateName(): bool
     {
         return !empty($this->templateName);
     }

@@ -10,7 +10,7 @@ class RequestDetailsOut
     private $title = null;
 
     /**
-     * @var null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
+     * @var null | string
      */
     private $workflowCode = null;
 
@@ -50,17 +50,17 @@ class RequestDetailsOut
     private $decideReference = null;
 
     /**
-     * @var null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
+     * @var null | string
      */
     private $destination = null;
 
     /**
-     * @var null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
+     * @var null | string
      */
     private $procedure = null;
 
     /**
-     * @var null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
+     * @var null | string
      */
     private $slaAnnex = null;
 
@@ -80,7 +80,7 @@ class RequestDetailsOut
     private $onBehalfOf = null;
 
     /**
-     * @var null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
+     * @var null | string
      */
     private $accessibleTo = null;
 
@@ -100,7 +100,7 @@ class RequestDetailsOut
     private $keyword3 = null;
 
     /**
-     * @var null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @var null | string
      */
     private $status = null;
 
@@ -138,7 +138,7 @@ class RequestDetailsOut
      * @param null | string $title
      * @return $this
      */
-    public function setTitle(?string $title) : static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
         return $this;
@@ -147,7 +147,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getTitle() : ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -155,25 +155,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasTitle() : bool
+    public function hasTitle(): bool
     {
         return !empty($this->title);
     }
 
     /**
-     * @param null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE' $workflowCode
+     * @param null | string $workflowCode
      * @return $this
      */
-    public function setWorkflowCode(?string $workflowCode) : static
+    public function setWorkflowCode(?string $workflowCode): static
     {
         $this->workflowCode = $workflowCode;
         return $this;
     }
 
     /**
-     * @return null | 'WEB' | 'HOTL' | 'STS' | 'PP' | 'QE'
+     * @return null | string
      */
-    public function getWorkflowCode() : ?string
+    public function getWorkflowCode(): ?string
     {
         return $this->workflowCode;
     }
@@ -181,7 +181,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasWorkflowCode() : bool
+    public function hasWorkflowCode(): bool
     {
         return !empty($this->workflowCode);
     }
@@ -190,7 +190,7 @@ class RequestDetailsOut
      * @param null | string $internalReference
      * @return $this
      */
-    public function setInternalReference(?string $internalReference) : static
+    public function setInternalReference(?string $internalReference): static
     {
         $this->internalReference = $internalReference;
         return $this;
@@ -199,7 +199,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getInternalReference() : ?string
+    public function getInternalReference(): ?string
     {
         return $this->internalReference;
     }
@@ -207,7 +207,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasInternalReference() : bool
+    public function hasInternalReference(): bool
     {
         return !empty($this->internalReference);
     }
@@ -216,7 +216,7 @@ class RequestDetailsOut
      * @param null | \DateTimeInterface $requestedDeadline
      * @return $this
      */
-    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline) : static
+    public function setRequestedDeadline(?\DateTimeInterface $requestedDeadline): static
     {
         $this->requestedDeadline = $requestedDeadline;
         return $this;
@@ -225,7 +225,7 @@ class RequestDetailsOut
     /**
      * @return null | \DateTimeInterface
      */
-    public function getRequestedDeadline() : ?\DateTimeInterface
+    public function getRequestedDeadline(): ?\DateTimeInterface
     {
         return $this->requestedDeadline;
     }
@@ -233,7 +233,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasRequestedDeadline() : bool
+    public function hasRequestedDeadline(): bool
     {
         return !empty($this->requestedDeadline);
     }
@@ -242,7 +242,7 @@ class RequestDetailsOut
      * @param null | \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : static
+    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline): static
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -251,7 +251,7 @@ class RequestDetailsOut
     /**
      * @return null | \DateTimeInterface
      */
-    public function getAcceptedDeadline() : ?\DateTimeInterface
+    public function getAcceptedDeadline(): ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -259,7 +259,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasAcceptedDeadline() : bool
+    public function hasAcceptedDeadline(): bool
     {
         return !empty($this->acceptedDeadline);
     }
@@ -268,7 +268,7 @@ class RequestDetailsOut
      * @param bool $sensitive
      * @return $this
      */
-    public function setSensitive(bool $sensitive) : static
+    public function setSensitive(bool $sensitive): static
     {
         $this->sensitive = $sensitive;
         return $this;
@@ -277,7 +277,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function isSensitive() : bool
+    public function isSensitive(): bool
     {
         return $this->sensitive;
     }
@@ -285,7 +285,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasSensitive() : bool
+    public function hasSensitive(): bool
     {
         return !empty($this->sensitive);
     }
@@ -294,7 +294,7 @@ class RequestDetailsOut
      * @param bool $sentViaRue
      * @return $this
      */
-    public function setSentViaRue(bool $sentViaRue) : static
+    public function setSentViaRue(bool $sentViaRue): static
     {
         $this->sentViaRue = $sentViaRue;
         return $this;
@@ -303,7 +303,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function isSentViaRue() : bool
+    public function isSentViaRue(): bool
     {
         return $this->sentViaRue;
     }
@@ -311,7 +311,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasSentViaRue() : bool
+    public function hasSentViaRue(): bool
     {
         return !empty($this->sentViaRue);
     }
@@ -320,7 +320,7 @@ class RequestDetailsOut
      * @param bool $documentToAdopt
      * @return $this
      */
-    public function setDocumentToAdopt(bool $documentToAdopt) : static
+    public function setDocumentToAdopt(bool $documentToAdopt): static
     {
         $this->documentToAdopt = $documentToAdopt;
         return $this;
@@ -329,7 +329,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function isDocumentToAdopt() : bool
+    public function isDocumentToAdopt(): bool
     {
         return $this->documentToAdopt;
     }
@@ -337,7 +337,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasDocumentToAdopt() : bool
+    public function hasDocumentToAdopt(): bool
     {
         return !empty($this->documentToAdopt);
     }
@@ -346,7 +346,7 @@ class RequestDetailsOut
      * @param null | string $decideReference
      * @return $this
      */
-    public function setDecideReference(?string $decideReference) : static
+    public function setDecideReference(?string $decideReference): static
     {
         $this->decideReference = $decideReference;
         return $this;
@@ -355,7 +355,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getDecideReference() : ?string
+    public function getDecideReference(): ?string
     {
         return $this->decideReference;
     }
@@ -363,25 +363,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasDecideReference() : bool
+    public function hasDecideReference(): bool
     {
         return !empty($this->decideReference);
     }
 
     /**
-     * @param null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC' $destination
+     * @param null | string $destination
      * @return $this
      */
-    public function setDestination(?string $destination) : static
+    public function setDestination(?string $destination): static
     {
         $this->destination = $destination;
         return $this;
     }
 
     /**
-     * @return null | 'EM' | 'EXT' | 'IE' | 'INTERNE' | 'JO' | 'PUBLIC'
+     * @return null | string
      */
-    public function getDestination() : ?string
+    public function getDestination(): ?string
     {
         return $this->destination;
     }
@@ -389,25 +389,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasDestination() : bool
+    public function hasDestination(): bool
     {
         return !empty($this->destination);
     }
 
     /**
-     * @param null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS' $procedure
+     * @param null | string $procedure
      * @return $this
      */
-    public function setProcedure(?string $procedure) : static
+    public function setProcedure(?string $procedure): static
     {
         $this->procedure = $procedure;
         return $this;
     }
 
     /**
-     * @return null | 'DEGHP' | 'NEANT' | 'PROAC' | 'PROCD' | 'PROCE' | 'PROCH' | 'PROCO' | 'REUNAU' | 'REUNCS'
+     * @return null | string
      */
-    public function getProcedure() : ?string
+    public function getProcedure(): ?string
     {
         return $this->procedure;
     }
@@ -415,25 +415,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasProcedure() : bool
+    public function hasProcedure(): bool
     {
         return !empty($this->procedure);
     }
 
     /**
-     * @param null | 'ANNEX8A' | 'ANNEX8B' | 'NO' $slaAnnex
+     * @param null | string $slaAnnex
      * @return $this
      */
-    public function setSlaAnnex(?string $slaAnnex) : static
+    public function setSlaAnnex(?string $slaAnnex): static
     {
         $this->slaAnnex = $slaAnnex;
         return $this;
     }
 
     /**
-     * @return null | 'ANNEX8A' | 'ANNEX8B' | 'NO'
+     * @return null | string
      */
-    public function getSlaAnnex() : ?string
+    public function getSlaAnnex(): ?string
     {
         return $this->slaAnnex;
     }
@@ -441,7 +441,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasSlaAnnex() : bool
+    public function hasSlaAnnex(): bool
     {
         return !empty($this->slaAnnex);
     }
@@ -450,7 +450,7 @@ class RequestDetailsOut
      * @param null | string $slaCommitment
      * @return $this
      */
-    public function setSlaCommitment(?string $slaCommitment) : static
+    public function setSlaCommitment(?string $slaCommitment): static
     {
         $this->slaCommitment = $slaCommitment;
         return $this;
@@ -459,7 +459,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getSlaCommitment() : ?string
+    public function getSlaCommitment(): ?string
     {
         return $this->slaCommitment;
     }
@@ -467,7 +467,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasSlaCommitment() : bool
+    public function hasSlaCommitment(): bool
     {
         return !empty($this->slaCommitment);
     }
@@ -476,7 +476,7 @@ class RequestDetailsOut
      * @param null | string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(?string $comment): static
     {
         $this->comment = $comment;
         return $this;
@@ -485,7 +485,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getComment() : ?string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -493,7 +493,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasComment() : bool
+    public function hasComment(): bool
     {
         return !empty($this->comment);
     }
@@ -502,7 +502,7 @@ class RequestDetailsOut
      * @param null | string $onBehalfOf
      * @return $this
      */
-    public function setOnBehalfOf(?string $onBehalfOf) : static
+    public function setOnBehalfOf(?string $onBehalfOf): static
     {
         $this->onBehalfOf = $onBehalfOf;
         return $this;
@@ -511,7 +511,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getOnBehalfOf() : ?string
+    public function getOnBehalfOf(): ?string
     {
         return $this->onBehalfOf;
     }
@@ -519,25 +519,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasOnBehalfOf() : bool
+    public function hasOnBehalfOf(): bool
     {
         return !empty($this->onBehalfOf);
     }
 
     /**
-     * @param null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG' $accessibleTo
+     * @param null | string $accessibleTo
      * @return $this
      */
-    public function setAccessibleTo(?string $accessibleTo) : static
+    public function setAccessibleTo(?string $accessibleTo): static
     {
         $this->accessibleTo = $accessibleTo;
         return $this;
     }
 
     /**
-     * @return null | 'CONTACTS' | 'UNIT' | 'DIR' | 'DG' | 'ON_BEHALF_DG'
+     * @return null | string
      */
-    public function getAccessibleTo() : ?string
+    public function getAccessibleTo(): ?string
     {
         return $this->accessibleTo;
     }
@@ -545,7 +545,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasAccessibleTo() : bool
+    public function hasAccessibleTo(): bool
     {
         return !empty($this->accessibleTo);
     }
@@ -554,7 +554,7 @@ class RequestDetailsOut
      * @param null | string $keyword1
      * @return $this
      */
-    public function setKeyword1(?string $keyword1) : static
+    public function setKeyword1(?string $keyword1): static
     {
         $this->keyword1 = $keyword1;
         return $this;
@@ -563,7 +563,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getKeyword1() : ?string
+    public function getKeyword1(): ?string
     {
         return $this->keyword1;
     }
@@ -571,7 +571,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasKeyword1() : bool
+    public function hasKeyword1(): bool
     {
         return !empty($this->keyword1);
     }
@@ -580,7 +580,7 @@ class RequestDetailsOut
      * @param null | string $keyword2
      * @return $this
      */
-    public function setKeyword2(?string $keyword2) : static
+    public function setKeyword2(?string $keyword2): static
     {
         $this->keyword2 = $keyword2;
         return $this;
@@ -589,7 +589,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getKeyword2() : ?string
+    public function getKeyword2(): ?string
     {
         return $this->keyword2;
     }
@@ -597,7 +597,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasKeyword2() : bool
+    public function hasKeyword2(): bool
     {
         return !empty($this->keyword2);
     }
@@ -606,7 +606,7 @@ class RequestDetailsOut
      * @param null | string $keyword3
      * @return $this
      */
-    public function setKeyword3(?string $keyword3) : static
+    public function setKeyword3(?string $keyword3): static
     {
         $this->keyword3 = $keyword3;
         return $this;
@@ -615,7 +615,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getKeyword3() : ?string
+    public function getKeyword3(): ?string
     {
         return $this->keyword3;
     }
@@ -623,25 +623,25 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasKeyword3() : bool
+    public function hasKeyword3(): bool
     {
         return !empty($this->keyword3);
     }
 
     /**
-     * @param null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated' $status
+     * @param null | string $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
+     * @return null | string
      */
-    public function getStatus() : ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -649,7 +649,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasStatus() : bool
+    public function hasStatus(): bool
     {
         return !empty($this->status);
     }
@@ -658,7 +658,7 @@ class RequestDetailsOut
      * @param null | string $rejectMessage
      * @return $this
      */
-    public function setRejectMessage(?string $rejectMessage) : static
+    public function setRejectMessage(?string $rejectMessage): static
     {
         $this->rejectMessage = $rejectMessage;
         return $this;
@@ -667,7 +667,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getRejectMessage() : ?string
+    public function getRejectMessage(): ?string
     {
         return $this->rejectMessage;
     }
@@ -675,7 +675,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasRejectMessage() : bool
+    public function hasRejectMessage(): bool
     {
         return !empty($this->rejectMessage);
     }
@@ -684,7 +684,7 @@ class RequestDetailsOut
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -693,7 +693,7 @@ class RequestDetailsOut
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -701,7 +701,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }
@@ -710,7 +710,7 @@ class RequestDetailsOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts(?\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : static
+    public function setContacts(?\OpenEuropa\EPoetry\Request\Type\Contacts $contacts): static
     {
         $this->contacts = $contacts;
         return $this;
@@ -719,7 +719,7 @@ class RequestDetailsOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    public function getContacts() : ?\OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts(): ?\OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -727,7 +727,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasContacts() : bool
+    public function hasContacts(): bool
     {
         return !empty($this->contacts);
     }
@@ -736,7 +736,7 @@ class RequestDetailsOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument
      * @return $this
      */
-    public function setOriginalDocument(?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument) : static
+    public function setOriginalDocument(?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut $originalDocument): static
     {
         $this->originalDocument = $originalDocument;
         return $this;
@@ -745,7 +745,7 @@ class RequestDetailsOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
      */
-    public function getOriginalDocument() : ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
+    public function getOriginalDocument(): ?\OpenEuropa\EPoetry\Request\Type\OriginalDocumentOut
     {
         return $this->originalDocument;
     }
@@ -753,7 +753,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasOriginalDocument() : bool
+    public function hasOriginalDocument(): bool
     {
         return !empty($this->originalDocument);
     }
@@ -762,7 +762,7 @@ class RequestDetailsOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products) : static
+    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products): static
     {
         $this->products = $products;
         return $this;
@@ -771,7 +771,7 @@ class RequestDetailsOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\Products
      */
-    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts(): ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -779,7 +779,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasProducts() : bool
+    public function hasProducts(): bool
     {
         return !empty($this->products);
     }
@@ -788,7 +788,7 @@ class RequestDetailsOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments) : static
+    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments $auxiliaryDocuments): static
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
@@ -797,7 +797,7 @@ class RequestDetailsOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
      */
-    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
+    public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Request\Type\AuxiliaryDocuments
     {
         return $this->auxiliaryDocuments;
     }
@@ -805,7 +805,7 @@ class RequestDetailsOut
     /**
      * @return bool
      */
-    public function hasAuxiliaryDocuments() : bool
+    public function hasAuxiliaryDocuments(): bool
     {
         return !empty($this->auxiliaryDocuments);
     }

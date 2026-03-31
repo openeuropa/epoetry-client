@@ -20,7 +20,7 @@ class ModifyLinguisticRequest implements RequestInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest
      * @return $this
      */
-    public function setModifyLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest) : static
+    public function setModifyLinguisticRequest(?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn $modifyLinguisticRequest): static
     {
         $this->modifyLinguisticRequest = $modifyLinguisticRequest;
         return $this;
@@ -29,7 +29,7 @@ class ModifyLinguisticRequest implements RequestInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
      */
-    public function getModifyLinguisticRequest() : ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
+    public function getModifyLinguisticRequest(): ?\OpenEuropa\EPoetry\Request\Type\ModifyLinguisticRequestIn
     {
         return $this->modifyLinguisticRequest;
     }
@@ -37,7 +37,7 @@ class ModifyLinguisticRequest implements RequestInterface
     /**
      * @return bool
      */
-    public function hasModifyLinguisticRequest() : bool
+    public function hasModifyLinguisticRequest(): bool
     {
         return !empty($this->modifyLinguisticRequest);
     }
@@ -46,7 +46,7 @@ class ModifyLinguisticRequest implements RequestInterface
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -55,7 +55,7 @@ class ModifyLinguisticRequest implements RequestInterface
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -63,7 +63,7 @@ class ModifyLinguisticRequest implements RequestInterface
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }

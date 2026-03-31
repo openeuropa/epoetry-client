@@ -40,51 +40,55 @@ class PreserveTypeNamesManipulator implements TypesManipulatorInterface
      * complex types. This map restores the original shared names
      * so that the generated PHP classes match the v3 public API.
      *
-     * Format: 'V4ContextSpecificName' => 'V3SharedName'
+     * Keys and values use camelCase to match XSD element names as they
+     * appear in the WSDL reader metadata. The code generator normalizes
+     * these to PascalCase when generating PHP class names.
+     *
+     * Format: 'v4CamelCaseName' => 'v3CamelCaseName'
      */
     private const TYPE_NAME_MAP = [
-        // Contacts: shared by RequestDetailsIn, RequestDetailsOut,
-        // ModifyRequestDetailsIn, and RequestDetails.
-        'RequestDetailsInContacts' => 'Contacts',
-        'RequestDetailsOutContacts' => 'Contacts',
-        'ModifyRequestDetailsInContacts' => 'Contacts',
-        'RequestDetailsContacts' => 'Contacts',
+        // Contacts: shared by requestDetailsIn, requestDetailsOut,
+        // modifyRequestDetailsIn, and requestDetails.
+        'requestDetailsInContacts' => 'contacts',
+        'requestDetailsOutContacts' => 'contacts',
+        'modifyRequestDetailsInContacts' => 'contacts',
+        'requestDetailsContacts' => 'contacts',
 
-        // Products: shared by RequestDetailsIn, RequestDetailsOut,
-        // ModifyRequestDetailsIn, and RequestDetails.
-        'RequestDetailsInProducts' => 'Products',
-        'RequestDetailsOutProducts' => 'Products',
-        'ModifyRequestDetailsInProducts' => 'Products',
-        'RequestDetailsProducts' => 'Products',
+        // Products: shared by requestDetailsIn, requestDetailsOut,
+        // modifyRequestDetailsIn, and requestDetails.
+        'requestDetailsInProducts' => 'products',
+        'requestDetailsOutProducts' => 'products',
+        'modifyRequestDetailsInProducts' => 'products',
+        'requestDetailsProducts' => 'products',
 
-        // LinguisticSections: shared by OriginalDocumentIn,
-        // OriginalDocumentOut, and OriginalDocument.
-        'OriginalDocumentInLinguisticSections' => 'LinguisticSections',
-        'OriginalDocumentOutLinguisticSections' => 'LinguisticSections',
-        'OriginalDocumentLinguisticSections' => 'LinguisticSections',
+        // LinguisticSections: shared by originalDocumentIn,
+        // originalDocumentOut, and originalDocument.
+        'originalDocumentInLinguisticSections' => 'linguisticSections',
+        'originalDocumentOutLinguisticSections' => 'linguisticSections',
+        'originalDocumentLinguisticSections' => 'linguisticSections',
 
-        // InformativeMessages: shared by LinguisticRequestOut
-        // and LinquisticRequest (note: "Linquistic" is a typo in the WSDL).
-        'LinguisticRequestOutInformativeMessages' => 'InformativeMessages',
-        'LinquisticRequestInformativeMessages' => 'InformativeMessages',
+        // InformativeMessages: shared by linguisticRequestOut
+        // and linquisticRequest (note: "linquistic" is a typo in the WSDL).
+        'linguisticRequestOutInformativeMessages' => 'informativeMessages',
+        'linquisticRequestInformativeMessages' => 'informativeMessages',
 
-        // AuxiliaryDocuments: used by RequestDetailsOut.
-        'RequestDetailsOutAuxiliaryDocuments' => 'AuxiliaryDocuments',
+        // AuxiliaryDocuments: used by requestDetailsOut.
+        'requestDetailsOutAuxiliaryDocuments' => 'auxiliaryDocuments',
 
-        // ReferenceDocuments: shared by AuxiliaryDocumentsIn
-        // and ModifyAuxiliaryDocumentsIn.
-        'AuxiliaryDocumentsInReferenceDocuments' => 'ReferenceDocuments',
-        'ModifyAuxiliaryDocumentsInReferenceDocuments' => 'ReferenceDocuments',
+        // ReferenceDocuments: shared by auxiliaryDocumentsIn
+        // and modifyAuxiliaryDocumentsIn.
+        'auxiliaryDocumentsInReferenceDocuments' => 'referenceDocuments',
+        'modifyAuxiliaryDocumentsInReferenceDocuments' => 'referenceDocuments',
 
-        // TraxDocuments: shared by AuxiliaryDocumentsIn
-        // and ModifyAuxiliaryDocumentsIn.
-        'AuxiliaryDocumentsInTraxDocuments' => 'TraxDocuments',
-        'ModifyAuxiliaryDocumentsInTraxDocuments' => 'TraxDocuments',
+        // TraxDocuments: shared by auxiliaryDocumentsIn
+        // and modifyAuxiliaryDocumentsIn.
+        'auxiliaryDocumentsInTraxDocuments' => 'traxDocuments',
+        'modifyAuxiliaryDocumentsInTraxDocuments' => 'traxDocuments',
 
-        // PrtDocuments: shared by AuxiliaryDocumentsIn
-        // and ModifyAuxiliaryDocumentsIn.
-        'AuxiliaryDocumentsInPrtDocuments' => 'PrtDocuments',
-        'ModifyAuxiliaryDocumentsInPrtDocuments' => 'PrtDocuments',
+        // PrtDocuments: shared by auxiliaryDocumentsIn
+        // and modifyAuxiliaryDocumentsIn.
+        'auxiliaryDocumentsInPrtDocuments' => 'prtDocuments',
+        'modifyAuxiliaryDocumentsInPrtDocuments' => 'prtDocuments',
     ];
 
     public function __invoke(TypeCollection $types): TypeCollection

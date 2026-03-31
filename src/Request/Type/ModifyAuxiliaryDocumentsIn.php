@@ -28,7 +28,7 @@ class ModifyAuxiliaryDocumentsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments
      * @return $this
      */
-    public function setReferenceDocuments(?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments) : static
+    public function setReferenceDocuments(?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments $referenceDocuments): static
     {
         $this->referenceDocuments = $referenceDocuments;
         return $this;
@@ -37,7 +37,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
      */
-    public function getReferenceDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
+    public function getReferenceDocuments(): ?\OpenEuropa\EPoetry\Request\Type\ReferenceDocuments
     {
         return $this->referenceDocuments;
     }
@@ -45,7 +45,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return bool
      */
-    public function hasReferenceDocuments() : bool
+    public function hasReferenceDocuments(): bool
     {
         return !empty($this->referenceDocuments);
     }
@@ -54,7 +54,7 @@ class ModifyAuxiliaryDocumentsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments
      * @return $this
      */
-    public function setTraxDocuments(?\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments) : static
+    public function setTraxDocuments(?\OpenEuropa\EPoetry\Request\Type\TraxDocuments $traxDocuments): static
     {
         $this->traxDocuments = $traxDocuments;
         return $this;
@@ -63,7 +63,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\TraxDocuments
      */
-    public function getTraxDocuments() : ?\OpenEuropa\EPoetry\Request\Type\TraxDocuments
+    public function getTraxDocuments(): ?\OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
         return $this->traxDocuments;
     }
@@ -71,7 +71,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return bool
      */
-    public function hasTraxDocuments() : bool
+    public function hasTraxDocuments(): bool
     {
         return !empty($this->traxDocuments);
     }
@@ -80,7 +80,7 @@ class ModifyAuxiliaryDocumentsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument
      * @return $this
      */
-    public function setSpotDocument(?\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument) : static
+    public function setSpotDocument(?\OpenEuropa\EPoetry\Request\Type\DocumentIn $spotDocument): static
     {
         $this->spotDocument = $spotDocument;
         return $this;
@@ -89,7 +89,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\DocumentIn
      */
-    public function getSpotDocument() : ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
+    public function getSpotDocument(): ?\OpenEuropa\EPoetry\Request\Type\DocumentIn
     {
         return $this->spotDocument;
     }
@@ -97,7 +97,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return bool
      */
-    public function hasSpotDocument() : bool
+    public function hasSpotDocument(): bool
     {
         return !empty($this->spotDocument);
     }
@@ -106,7 +106,7 @@ class ModifyAuxiliaryDocumentsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments
      * @return $this
      */
-    public function setPrtDocuments(?\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments) : static
+    public function setPrtDocuments(?\OpenEuropa\EPoetry\Request\Type\PrtDocuments $prtDocuments): static
     {
         $this->prtDocuments = $prtDocuments;
         return $this;
@@ -115,7 +115,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\PrtDocuments
      */
-    public function getPrtDocuments() : ?\OpenEuropa\EPoetry\Request\Type\PrtDocuments
+    public function getPrtDocuments(): ?\OpenEuropa\EPoetry\Request\Type\PrtDocuments
     {
         return $this->prtDocuments;
     }
@@ -123,7 +123,7 @@ class ModifyAuxiliaryDocumentsIn
     /**
      * @return bool
      */
-    public function hasPrtDocuments() : bool
+    public function hasPrtDocuments(): bool
     {
         return !empty($this->prtDocuments);
     }

@@ -20,7 +20,7 @@ class GetLinguisticRequest implements RequestInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn $requestReference): static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -29,7 +29,7 @@ class GetLinguisticRequest implements RequestInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -37,7 +37,7 @@ class GetLinguisticRequest implements RequestInterface
     /**
      * @return bool
      */
-    public function hasRequestReference() : bool
+    public function hasRequestReference(): bool
     {
         return !empty($this->requestReference);
     }
@@ -46,7 +46,7 @@ class GetLinguisticRequest implements RequestInterface
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -55,7 +55,7 @@ class GetLinguisticRequest implements RequestInterface
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -63,7 +63,7 @@ class GetLinguisticRequest implements RequestInterface
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }

@@ -10,7 +10,7 @@ class ContactPersonIn
     private $userId;
 
     /**
-     * @var 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
+     * @var string
      */
     private $contactRole;
 
@@ -18,7 +18,7 @@ class ContactPersonIn
      * Constructor
      *
      * @param string $userId
-     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
+     * @param string $contactRole
      */
     public function __construct(string $userId, string $contactRole)
     {
@@ -30,7 +30,7 @@ class ContactPersonIn
      * @param string $userId
      * @return $this
      */
-    public function setUserId(string $userId) : static
+    public function setUserId(string $userId): static
     {
         $this->userId = $userId;
         return $this;
@@ -39,7 +39,7 @@ class ContactPersonIn
     /**
      * @return string
      */
-    public function getUserId() : string
+    public function getUserId(): string
     {
         return $this->userId;
     }
@@ -47,25 +47,25 @@ class ContactPersonIn
     /**
      * @return bool
      */
-    public function hasUserId() : bool
+    public function hasUserId(): bool
     {
         return !empty($this->userId);
     }
 
     /**
-     * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
+     * @param string $contactRole
      * @return $this
      */
-    public function setContactRole(string $contactRole) : static
+    public function setContactRole(string $contactRole): static
     {
         $this->contactRole = $contactRole;
         return $this;
     }
 
     /**
-     * @return 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
+     * @return string
      */
-    public function getContactRole() : string
+    public function getContactRole(): string
     {
         return $this->contactRole;
     }
@@ -73,7 +73,7 @@ class ContactPersonIn
     /**
      * @return bool
      */
-    public function hasContactRole() : bool
+    public function hasContactRole(): bool
     {
         return !empty($this->contactRole);
     }

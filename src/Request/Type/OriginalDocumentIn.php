@@ -33,7 +33,7 @@ class OriginalDocumentIn
      * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(?string $fileName): static
     {
         $this->fileName = $fileName;
         return $this;
@@ -42,7 +42,7 @@ class OriginalDocumentIn
     /**
      * @return null | string
      */
-    public function getFileName() : ?string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -50,7 +50,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function hasFileName() : bool
+    public function hasFileName(): bool
     {
         return !empty($this->fileName);
     }
@@ -59,7 +59,7 @@ class OriginalDocumentIn
      * @param null | string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(?string $comment): static
     {
         $this->comment = $comment;
         return $this;
@@ -68,7 +68,7 @@ class OriginalDocumentIn
     /**
      * @return null | string
      */
-    public function getComment() : ?string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -76,7 +76,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function hasComment() : bool
+    public function hasComment(): bool
     {
         return !empty($this->comment);
     }
@@ -85,7 +85,7 @@ class OriginalDocumentIn
      * @param null | mixed $content
      * @return $this
      */
-    public function setContent(mixed $content) : static
+    public function setContent(mixed $content): static
     {
         $this->content = $content;
         return $this;
@@ -94,7 +94,7 @@ class OriginalDocumentIn
     /**
      * @return null | mixed
      */
-    public function getContent() : mixed
+    public function getContent(): mixed
     {
         return $this->content;
     }
@@ -102,7 +102,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function hasContent() : bool
+    public function hasContent(): bool
     {
         return !empty($this->content);
     }
@@ -111,7 +111,7 @@ class OriginalDocumentIn
      * @param \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
+    public function setLinguisticSections(\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections): static
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
@@ -120,7 +120,7 @@ class OriginalDocumentIn
     /**
      * @return \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    public function getLinguisticSections() : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections(): \OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -128,7 +128,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function hasLinguisticSections() : bool
+    public function hasLinguisticSections(): bool
     {
         return !empty($this->linguisticSections);
     }
@@ -137,7 +137,7 @@ class OriginalDocumentIn
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : static
+    public function setTrackChanges(bool $trackChanges): static
     {
         $this->trackChanges = $trackChanges;
         return $this;
@@ -146,7 +146,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges(): bool
     {
         return $this->trackChanges;
     }
@@ -154,7 +154,7 @@ class OriginalDocumentIn
     /**
      * @return bool
      */
-    public function hasTrackChanges() : bool
+    public function hasTrackChanges(): bool
     {
         return !empty($this->trackChanges);
     }

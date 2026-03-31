@@ -10,7 +10,7 @@ class OriginalDocumentOut
     private $trackChanges;
 
     /**
-     * @var null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @var null | string
      */
     private $format = null;
 
@@ -38,7 +38,7 @@ class OriginalDocumentOut
      * @param bool $trackChanges
      * @return $this
      */
-    public function setTrackChanges(bool $trackChanges) : static
+    public function setTrackChanges(bool $trackChanges): static
     {
         $this->trackChanges = $trackChanges;
         return $this;
@@ -47,7 +47,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function isTrackChanges() : bool
+    public function isTrackChanges(): bool
     {
         return $this->trackChanges;
     }
@@ -55,25 +55,25 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasTrackChanges() : bool
+    public function hasTrackChanges(): bool
     {
         return !empty($this->trackChanges);
     }
 
     /**
-     * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
+     * @param null | string $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
         return $this;
     }
 
     /**
-     * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
+     * @return null | string
      */
-    public function getFormat() : ?string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -81,7 +81,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasFormat() : bool
+    public function hasFormat(): bool
     {
         return !empty($this->format);
     }
@@ -90,7 +90,7 @@ class OriginalDocumentOut
      * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(?string $fileName): static
     {
         $this->fileName = $fileName;
         return $this;
@@ -99,7 +99,7 @@ class OriginalDocumentOut
     /**
      * @return null | string
      */
-    public function getFileName() : ?string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -107,7 +107,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasFileName() : bool
+    public function hasFileName(): bool
     {
         return !empty($this->fileName);
     }
@@ -116,7 +116,7 @@ class OriginalDocumentOut
      * @param null | float $pages
      * @return $this
      */
-    public function setPages(?float $pages) : static
+    public function setPages(?float $pages): static
     {
         $this->pages = $pages;
         return $this;
@@ -125,7 +125,7 @@ class OriginalDocumentOut
     /**
      * @return null | float
      */
-    public function getPages() : ?float
+    public function getPages(): ?float
     {
         return $this->pages;
     }
@@ -133,7 +133,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasPages() : bool
+    public function hasPages(): bool
     {
         return !empty($this->pages);
     }
@@ -142,7 +142,7 @@ class OriginalDocumentOut
      * @param null | string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(?string $comment): static
     {
         $this->comment = $comment;
         return $this;
@@ -151,7 +151,7 @@ class OriginalDocumentOut
     /**
      * @return null | string
      */
-    public function getComment() : ?string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -159,7 +159,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasComment() : bool
+    public function hasComment(): bool
     {
         return !empty($this->comment);
     }
@@ -168,7 +168,7 @@ class OriginalDocumentOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections
      * @return $this
      */
-    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections) : static
+    public function setLinguisticSections(?\OpenEuropa\EPoetry\Request\Type\LinguisticSections $linguisticSections): static
     {
         $this->linguisticSections = $linguisticSections;
         return $this;
@@ -177,7 +177,7 @@ class OriginalDocumentOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticSections
      */
-    public function getLinguisticSections() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function getLinguisticSections(): ?\OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         return $this->linguisticSections;
     }
@@ -185,7 +185,7 @@ class OriginalDocumentOut
     /**
      * @return bool
      */
-    public function hasLinguisticSections() : bool
+    public function hasLinguisticSections(): bool
     {
         return !empty($this->linguisticSections);
     }
