@@ -1,12 +1,15 @@
 <?php
 
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
 
-$engine = CodeGeneratorEngineFactory::create('./resources/notification.wsdl');
+$engine = DefaultEngineFactory::create(
+    EngineOptions::defaults(__DIR__ . '/../resources/notification.wsdl')
+);
 return Config::create()
     ->setEngine($engine)
     ->setTypeDestination('src/Notification/Type')

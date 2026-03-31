@@ -13,11 +13,13 @@ use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
 use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Soap\Engine\Engine;
+use Soap\Engine\SimpleEngine;
 use Soap\Engine\Transport;
+use Soap\ExtSoapEngine\AbusedClient;
+use Soap\ExtSoapEngine\ExtSoapDriver;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
@@ -228,13 +230,15 @@ class RequestClientFactory
     {
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('DGTServiceWSPort', $this->endpoint);
-        return DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__ . '/../resources/request.wsdl', [])
-                ->withClassMap(RequestClassmap::getCollection())
-                ->withWsdlProvider($wsdlProvider)
-                ->disableWsdlCache(),
-            $this->transport
+        $driver = ExtSoapDriver::createFromClient(
+            AbusedClient::createFromOptions(
+                ExtSoapOptions::defaults(__DIR__ . '/../resources/request.wsdl', [])
+                    ->withClassMap(RequestClassmap::getCollection())
+                    ->withWsdlProvider($wsdlProvider)
+                    ->disableWsdlCache()
+            )
         );
+        return new SimpleEngine($driver, $this->transport);
     }
 
     /**

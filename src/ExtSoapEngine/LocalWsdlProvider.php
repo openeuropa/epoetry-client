@@ -2,12 +2,12 @@
 
 namespace OpenEuropa\EPoetry\ExtSoapEngine;
 
-use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\ExtSoapEngine\Wsdl\WsdlProvider;
+use Soap\Wsdl\Loader\WsdlLoader;
 use VeeWee\Xml\Dom\Document;
 use VeeWee\XML\DOM\Xpath;
 
-class LocalWsdlProvider implements WsdlProvider
+class LocalWsdlProvider implements WsdlProvider, WsdlLoader
 {
     /**
      * Array of port locations, keyed by port name.

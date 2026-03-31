@@ -10,8 +10,10 @@ use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Psr\Log\LoggerInterface;
+use Soap\Engine\SimpleEngine;
+use Soap\ExtSoapEngine\AbusedClient;
+use Soap\ExtSoapEngine\ExtSoapDriver;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\Psr18Transport\Psr18Transport;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -105,13 +107,15 @@ class ClientCertificateAuthentication implements AuthenticationInterface
             ->withPortLocation('CertLoginHttpGetPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http")
             ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
-        $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl', [])
-                ->withClassMap(ClientCertificateClassmap::getCollection())
-                ->withWsdlProvider($wsdlProvider)
-                ->disableWsdlCache(),
-            Psr18Transport::createForClient($pluginClient)
+        $driver = ExtSoapDriver::createFromClient(
+            AbusedClient::createFromOptions(
+                ExtSoapOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl', [])
+                    ->withClassMap(ClientCertificateClassmap::getCollection())
+                    ->withWsdlProvider($wsdlProvider)
+                    ->disableWsdlCache()
+            )
         );
+        $engine = new SimpleEngine($driver, Psr18Transport::createForClient($pluginClient));
 
         $eventDispatcher = new EventDispatcher();
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
