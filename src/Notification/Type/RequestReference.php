@@ -214,4 +214,3 @@ class RequestReference
         return implode('-', $parts);
     }
 }
-

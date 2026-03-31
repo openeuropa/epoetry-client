@@ -52,8 +52,15 @@ class SuppressEnumGenerationManipulator implements TypesManipulatorInterface
     }
 
     /**
-     * Remove enum metadata from all property types within a type,
-     * so properties that reference enum types keep string signatures.
+     * Remove enum metadata from property types so that properties
+     * referencing enum types use string signatures instead of enum
+     * class type hints.
+     *
+     * Note: this also removes the PHPDoc enum value hints (e.g.
+     * 'XLS' | 'DOCX' | ...) since they share the same metadata.
+     * The trade-off is acceptable: string signatures preserve the
+     * public API, while enum value documentation can be found in
+     * the WSDL/XSD schema.
      */
     private function stripEnumMetaFromProperties(PropertyCollection $properties): PropertyCollection
     {
