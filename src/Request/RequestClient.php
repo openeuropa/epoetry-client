@@ -136,4 +136,3 @@ class RequestClient
         return $response;
     }
 }
-

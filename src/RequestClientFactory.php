@@ -5,7 +5,6 @@ namespace OpenEuropa\EPoetry;
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr18ClientDiscovery;
 use OpenEuropa\EPoetry\Authentication\AuthenticationInterface;
-use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
@@ -227,15 +226,16 @@ class RequestClientFactory
      */
     protected function getEngine(): Engine
     {
-        $wsdlProvider = (new LocalWsdlProvider())
-            ->withPortLocation('DGTServiceWSPort', $this->endpoint);
+        // The v4 engine uses its own WSDL reader with FlatteningLoader
+        // which can load local WSDL/XSD files directly. No need for
+        // LocalWsdlProvider here — port locations are handled by the
+        // Transport layer, not the WSDL.
         return DefaultEngineFactory::create(
             EngineOptions::defaults(__DIR__ . '/../resources/request.wsdl')
                 ->withEncoderRegistry(
                     EncoderRegistry::default()
                         ->addClassMapCollection(RequestClassmap::types())
                 )
-                ->withWsdlLoader($wsdlProvider)
                 ->withTransport($this->transport)
         );
     }

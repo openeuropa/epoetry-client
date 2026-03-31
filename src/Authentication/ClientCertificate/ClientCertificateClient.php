@@ -31,4 +31,3 @@ class ClientCertificateClient
         return $response;
     }
 }
-

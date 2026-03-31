@@ -81,8 +81,6 @@ class RequestClassmap
     public static function enums(): \Soap\Encoding\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection(
-
         );
     }
 }
-
