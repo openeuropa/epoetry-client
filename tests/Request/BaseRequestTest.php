@@ -9,6 +9,8 @@ use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Tests\BaseTest;
 use Soap\Engine\Driver;
 use Soap\ExtSoapEngine\AbusedClient;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 use Soap\ExtSoapEngine\ExtSoapDriver;
 use Soap\ExtSoapEngine\ExtSoapOptions;
 use Symfony\Component\Validator\ValidatorBuilder;
@@ -25,11 +27,18 @@ abstract class BaseRequestTest extends BaseTest
      */
     protected function setUp(): void
     {
+        // Build ext-soap-engine classmap from v4 encoding classmap format.
+        $classMaps = [];
+        foreach (RequestClassmap::types() as $map) {
+            $classMaps[] = new ClassMap($map->getXmlType(), $map->getPhpClassName());
+        }
+        $classMapCollection = new ClassMapCollection(...$classMaps);
+
         // Setup SOAP driver.
         $this->driver = ExtSoapDriver::createFromClient(
             AbusedClient::createFromOptions(
                 ExtSoapOptions::defaults(__DIR__ . '/../../resources/request.wsdl')
-                    ->withClassMap(RequestClassmap::getCollection())
+                    ->withClassMap($classMapCollection)
                     ->withWsdlProvider(new LocalWsdlProvider())
                     ->disableWsdlCache()
             )

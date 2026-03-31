@@ -95,8 +95,13 @@ class NotificationServerFactory
 
         $formatter = new FullHttpMessageFormatter(null);
         $handler = new NotificationHandler($this->eventDispatcher, $this->logger, $this->serializer);
+        $classmap = [];
+        foreach (NotificationClassmap::types() as $map) {
+            $classmap[$map->getXmlType()] = $map->getPhpClassName();
+        }
+
         $server = new \SoapServer($this->getEncodedWsdl(), ExtSoapOptionsResolverFactory::create()->resolve([
-            'classmap' => NotificationClassmap::getCollection(),
+            'classmap' => $classmap,
             'typemap' => new TypeConverterCollection([
                 new TypeConverter\DateTimeTypeConverter(),
                 new TypeConverter\DateTypeConverter(),

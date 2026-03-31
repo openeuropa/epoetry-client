@@ -11,10 +11,9 @@ use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Psr\Log\LoggerInterface;
-use Soap\Engine\SimpleEngine;
-use Soap\ExtSoapEngine\AbusedClient;
-use Soap\ExtSoapEngine\ExtSoapDriver;
-use Soap\ExtSoapEngine\ExtSoapOptions;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
+use Soap\Encoding\EncoderRegistry;
 use Soap\Psr18Transport\Psr18Transport;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpClient\CurlHttpClient;
@@ -107,15 +106,15 @@ class ClientCertificateAuthentication implements AuthenticationInterface
             ->withPortLocation('CertLoginHttpGetPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http")
             ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
-        $driver = ExtSoapDriver::createFromClient(
-            AbusedClient::createFromOptions(
-                ExtSoapOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl', [])
-                    ->withClassMap(ClientCertificateClassmap::getCollection())
-                    ->withWsdlProvider($wsdlProvider)
-                    ->disableWsdlCache()
-            )
+        $engine = DefaultEngineFactory::create(
+            EngineOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl')
+                ->withEncoderRegistry(
+                    EncoderRegistry::default()
+                        ->addClassMapCollection(ClientCertificateClassmap::types())
+                )
+                ->withWsdlLoader($wsdlProvider)
+                ->withTransport(Psr18Transport::createForClient($pluginClient))
         );
-        $engine = new SimpleEngine($driver, Psr18Transport::createForClient($pluginClient));
 
         $eventDispatcher = new EventDispatcher();
         $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
