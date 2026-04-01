@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OpenEuropa\EPoetry\Tests\Request;
 
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
+use OpenEuropa\EPoetry\Request\Type;
 use OpenEuropa\EPoetry\Request\Type\CreateLinguisticRequestResponse;
 use OpenEuropa\EPoetry\Request\Type\InformativeMessages;
 use OpenEuropa\EPoetry\RequestClientFactory;
@@ -62,12 +63,18 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
         $this->assertInstanceOf(CreateLinguisticRequestResponse::class, $response);
 
         // Verify trackChanges on product is boolean false, not NULL.
+        // Use reflection to check the actual property value, because
+        // isTrackChanges() silently coerces NULL to false without strict_types.
         $product = $response->getReturn()->getRequestDetails()->getProducts()->getProduct()[0];
-        $this->assertFalse($product->isTrackChanges(), 'Product trackChanges should be false, not NULL');
+        $ref = new \ReflectionProperty($product, 'trackChanges');
+        $ref->setAccessible(true);
+        $this->assertSame(false, $ref->getValue($product), 'Product trackChanges should be boolean false, not NULL');
 
         // Verify trackChanges on originalDocument is boolean false, not NULL.
         $originalDocument = $response->getReturn()->getRequestDetails()->getOriginalDocument();
-        $this->assertFalse($originalDocument->isTrackChanges(), 'OriginalDocument trackChanges should be false, not NULL');
+        $ref = new \ReflectionProperty($originalDocument, 'trackChanges');
+        $ref->setAccessible(true);
+        $this->assertSame(false, $ref->getValue($originalDocument), 'OriginalDocument trackChanges should be boolean false, not NULL');
 
         // Verify informativeMessages is the typed class, not stdClass.
         $informativeMessages = $response->getReturn()->getInformativeMessages();
@@ -76,6 +83,69 @@ final class CreateLinguisticRequestResponseTest extends BaseRequestTest
             ['The decide reference will be ignored because the request is not legislative!'],
             $informativeMessages->getMessage()
         );
+    }
+
+    /**
+     * Tests v4 engine encoding of boolean false as XML attribute.
+     *
+     * Without the php-soap/encoding patch, boolean false attributes (like
+     * trackChanges on productRequestIn) are silently dropped because the
+     * ObjectEncoder uses a truthiness check instead of a null check.
+     */
+    public function testSoapEngineEncodesBooleanAttributes(): void
+    {
+        $wsdlLoader = new FlatteningLoader(new LocalWsdlProvider());
+        $wsdl = (new Wsdl1Reader($wsdlLoader))(__DIR__ . '/../../resources/request.wsdl');
+        $driver = EncodingDriver::createFromWsdl1(
+            $wsdl,
+            null,
+            RequestClientFactory::buildEncoderRegistry()
+        );
+
+        $contact = new Type\ContactPersonIn('test', 'RECIPIENT');
+        $contacts = new Type\Contacts();
+        $contacts->addContact($contact);
+
+        $linguisticSection = new Type\LinguisticSectionIn('EN');
+        $linguisticSections = new Type\LinguisticSections();
+        $linguisticSections->addLinguisticSection($linguisticSection);
+
+        $originalDoc = new Type\OriginalDocumentIn();
+        $originalDoc->setFileName('test.html');
+        $originalDoc->setTrackChanges(false);
+        $originalDoc->setLinguisticSections($linguisticSections);
+
+        $product = new Type\ProductRequestIn();
+        $product->setLanguage('BG');
+        $product->setTrackChanges(false);
+        $product->setRequestedDeadline(new \DateTimeImmutable('2026-04-10T23:59:00+02:00'));
+
+        $products = new Type\Products();
+        $products->addProduct($product);
+
+        $details = new Type\RequestDetailsIn();
+        $details->setTitle('Test');
+        $details->setContacts($contacts);
+        $details->setOriginalDocument($originalDoc);
+        $details->setProducts($products);
+
+        $dossier = new Type\DossierReference();
+        $dossier->setRequesterCode('DIGIT');
+        $dossier->setNumber(1008);
+        $dossier->setYear(2026);
+
+        $request = new Type\AddNewPartToDossier();
+        $request->setDossier($dossier);
+        $request->setRequestDetails($details);
+        $request->setApplicationName('digit');
+
+        $encoded = $driver->encode('addNewPartToDossier', [$request]);
+        $xml = $encoded->getRequest();
+
+        // trackChanges as attribute on <product> must be present.
+        $this->assertStringContainsString('trackChanges="false"', $xml);
+        // trackChanges as element on <originalDocument> must be present.
+        $this->assertStringContainsString('<trackChanges>false</trackChanges>', $xml);
     }
 
     /**
