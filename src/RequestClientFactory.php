@@ -9,6 +9,7 @@ use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
+use OpenEuropa\EPoetry\Request\Type;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
@@ -223,6 +224,45 @@ class RequestClientFactory
     }
 
     /**
+     * Builds the encoder registry with classmaps for the v4 SOAP engine.
+     *
+     * The auto-generated RequestClassmap registers anonymous complex types
+     * (inline types in the XSD) using their element name (e.g.
+     * "informativeMessages"). However, the WSDL reader generates type names
+     * by prefixing the parent type name (e.g.
+     * "linguisticRequestOutInformativeMessages"). This method registers
+     * additional classmaps so both names resolve to the correct PHP class.
+     */
+    public static function buildEncoderRegistry(): EncoderRegistry
+    {
+        $ns = 'http://eu.europa.ec.dgt.epoetry';
+        $registry = EncoderRegistry::default()
+            ->addClassMapCollection(RequestClassmap::types());
+
+        // Map WSDL-reader-generated names for anonymous complex types to
+        // their PHP classes. The WSDL reader names these as
+        // "{parentType}{ucfirst(elementName)}".
+        $anonymousTypeMappings = [
+            'requestDetailsInContacts' => Type\Contacts::class,
+            'requestDetailsInProducts' => Type\Products::class,
+            'originalDocumentInLinguisticSections' => Type\LinguisticSections::class,
+            'auxiliaryDocumentsInReferenceDocuments' => Type\ReferenceDocuments::class,
+            'auxiliaryDocumentsInTraxDocuments' => Type\TraxDocuments::class,
+            'auxiliaryDocumentsInPrtDocuments' => Type\PrtDocuments::class,
+            'linguisticRequestOutInformativeMessages' => Type\InformativeMessages::class,
+            'requestDetailsOutContacts' => Type\Contacts::class,
+            'requestDetailsOutProducts' => Type\Products::class,
+            'requestDetailsOutAuxiliaryDocuments' => Type\AuxiliaryDocuments::class,
+        ];
+
+        foreach ($anonymousTypeMappings as $typeName => $phpClass) {
+            $registry->addClassMap($ns, $typeName, $phpClass);
+        }
+
+        return $registry;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getEngine(): Engine
@@ -235,10 +275,7 @@ class RequestClientFactory
             ->withPortLocation('DGTServiceWSPort', $this->endpoint);
         return DefaultEngineFactory::create(
             EngineOptions::defaults(__DIR__ . '/../resources/request.wsdl')
-                ->withEncoderRegistry(
-                    EncoderRegistry::default()
-                        ->addClassMapCollection(RequestClassmap::types())
-                )
+                ->withEncoderRegistry(self::buildEncoderRegistry())
                 ->withWsdlLoader(new \Soap\Wsdl\Loader\FlatteningLoader($wsdlLoader))
                 ->withTransport($this->transport)
         );
