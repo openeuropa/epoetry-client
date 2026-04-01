@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Response;
 use Http\Message\Formatter\FullHttpMessageFormatter;
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationException;
+use Soap\Wsdl\Loader\FlatteningLoader;
 use OpenEuropa\EPoetry\Notification\Exception\NotificationValidationException;
 use OpenEuropa\EPoetry\Notification\NotificationClassmap;
 use OpenEuropa\EPoetry\Notification\NotificationHandler;
@@ -164,7 +165,11 @@ class NotificationServerFactory
     }
 
     /**
-     * Get WSDL as a base64 encoded file URI.
+     * Get WSDL as a base64-encoded data URI.
+     *
+     * PHP's native SoapServer requires a URI, not raw XML. We use
+     * FlatteningLoader to inline XSD imports and then encode the
+     * result as a data URI.
      *
      * @return string
      */
@@ -172,6 +177,9 @@ class NotificationServerFactory
     {
         $provider = new LocalWsdlProvider();
         $provider->withPortLocation('DgtClientNotificationReceiverWSPort', $this->callback);
-        return $provider->toDataUri(__DIR__ . '/../resources/notification.wsdl');
+        $loader = new FlatteningLoader($provider);
+        $xml = $loader(__DIR__ . '/../resources/notification.wsdl');
+
+        return 'data://text/plain;base64,' . base64_encode($xml);
     }
 }

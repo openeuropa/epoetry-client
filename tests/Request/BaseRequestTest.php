@@ -13,6 +13,7 @@ use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 use Soap\ExtSoapEngine\ExtSoapDriver;
 use Soap\ExtSoapEngine\ExtSoapOptions;
+use Soap\Wsdl\Loader\FlatteningLoader;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 /**
@@ -34,9 +35,10 @@ abstract class BaseRequestTest extends BaseTest
         }
         $classMapCollection = new ClassMapCollection(...$classMaps);
 
-        // Setup SOAP driver for tests. Use toDataUri() to produce a
-        // self-contained WSDL data URI that ext-soap's SoapClient can parse.
-        $wsdlUri = (new LocalWsdlProvider())->toDataUri(__DIR__ . '/../../resources/request.wsdl');
+        // Use FlatteningLoader to inline XSD imports, then encode as
+        // a data URI for ext-soap's SoapClient.
+        $loader = new FlatteningLoader(new LocalWsdlProvider());
+        $wsdlUri = 'data://text/plain;base64,' . base64_encode($loader(__DIR__ . '/../../resources/request.wsdl'));
         $this->driver = ExtSoapDriver::createFromClient(
             AbusedClient::createFromOptions(
                 ExtSoapOptions::defaults($wsdlUri)
