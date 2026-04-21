@@ -74,12 +74,5 @@
     },
     "bin": ["bin/epoetry"],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "patches": {
-            "php-soap/encoding": {
-                "Fix falsy attribute values (e.g. boolean false) being silently dropped during encoding": "patches/php-soap-encoding-fix-falsy-attribute-encoding.patch"
-            }
-        }
-    }
+    "prefer-stable": true
 }
