@@ -10,6 +10,7 @@
         "ext-soap": "*",
         "ext-xsl": "*",
         "cweagans/composer-patches": "^1 || ^2",
+        "doctrine/annotations": "^1.13 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
         "phpro/soap-client": "^3.4.1",
@@ -25,7 +26,6 @@
     },
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
-        "doctrine/annotations": "^1.13",
         "facile-it/php-openid-client": "^0.3.5",
         "monolog/monolog": "^2.8",
         "nyholm/psr7": "^1.4",
