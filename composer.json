@@ -25,7 +25,6 @@
     },
     "require-dev": {
         "colinodell/psr-testlogger": "^1.1",
-        "doctrine/annotations": "^1.13",
         "facile-it/php-openid-client": "^0.3.5",
         "monolog/monolog": "~3",
         "nyholm/psr7": "^1.4",
