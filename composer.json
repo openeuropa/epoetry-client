@@ -46,6 +46,9 @@
         "symfony/property-info": "~7",
         "web-token/jwt-framework": "^4.0"
     },
+    "replace": {
+        "azjezz/psl": "*"
+    },
     "suggest": {
         "symfony/console": "The Symfony Console component eases the creation of command line interfaces. Require this in your project if you wish to use the ePoetry Console.",
         "facile-it/php-openid-client": "Require this in your project if you use the OpenID Connect authentication plugin.",
