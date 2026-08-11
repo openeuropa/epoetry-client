@@ -1,5 +1,12 @@
 # Change Log
 
+## [4.0.0-beta3](https://github.com/openeuropa/epoetry-client/tree/4.0.0-beta3) (2026-08-11)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/4.0.0-beta2...4.0.0-beta3)
+
+**Merged pull requests:**
+
+- EWPP-7028: Remove unused doctrine annotations library. [\#105](https://github.com/openeuropa/epoetry-client/pull/105) ([bircher](https://github.com/bircher))
+
 ## [4.0.0-beta2](https://github.com/openeuropa/epoetry-client/tree/4.0.0-beta2) (2025-09-24)
 [Full Changelog](https://github.com/openeuropa/epoetry-client/compare/4.0.0-beta1...4.0.0-beta2)
 
