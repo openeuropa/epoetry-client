@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.0.0-alpha2](https://github.com/openeuropa/epoetry-client/tree/3.0.0-alpha2) (2026-08-11)
+[Full Changelog](https://github.com/openeuropa/epoetry-client/compare/3.0.0-alpha1...3.0.0-alpha2)
+
+**Merged pull requests:**
+
+- EWPP-7028: Require doctrine annotations library explicitly. [\#106](https://github.com/openeuropa/epoetry-client/pull/106) ([bircher](https://github.com/bircher))
+
 ## [3.0.0-alpha1](https://github.com/openeuropa/epoetry-client/tree/3.0.0-alpha1) (2025-03-11)
 [Full Changelog](https://github.com/openeuropa/epoetry-client/compare/2.0.0-beta2...3.0.0-alpha1)
 
