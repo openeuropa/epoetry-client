@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace OpenEuropa\EPoetry\Tests\CodeGenerator\Assembler;
 
 use OpenEuropa\EPoetry\CodeGenerator\Assembler\AbstractAssembler;
+use Phpro\SoapClient\CodeGenerator\CodingStandards\DefaultCodingStandardsStrategy;
+use Phpro\SoapClient\CodeGenerator\Config\Destination;
+use Phpro\SoapClient\CodeGenerator\Config\TypeNamespaceMap;
+use Phpro\SoapClient\CodeGenerator\Context\CodeGeneratorContext;
 use Phpro\SoapClient\CodeGenerator\Context\ContextInterface;
 use Phpro\SoapClient\CodeGenerator\Context\PropertyContext;
 use Phpro\SoapClient\CodeGenerator\Model\Property;
@@ -12,6 +16,7 @@ use Phpro\SoapClient\CodeGenerator\Model\Type;
 use PHPUnit\Framework\TestCase;
 use Laminas\Code\Generator\ClassGenerator;
 use Soap\Engine\Metadata\Model\XsdType;
+use Soap\Engine\Metadata\Model\Property as MetadataProperty;
 
 abstract class AbstractAssemblerTest extends TestCase
 {
@@ -48,9 +53,11 @@ abstract class AbstractAssemblerTest extends TestCase
         ];
 
         $class = new ClassGenerator('MyType', 'MyNamespace');
-        $type = new Type('MyNamespace', 'MyType', 'MyType', $properties, XsdType::create('MyType'));
-        $property = new Property($propertyName, $properties[$propertyName], 'ns1', XsdType::create($propertyName));
+        $context = new CodeGeneratorContext(TypeNamespaceMap::create(new Destination('', 'MyNamespace')), new DefaultCodingStandardsStrategy());
+        $typed = array_map(fn ($p, $t) => Property::fromMetaData($context, new MetadataProperty($p, XsdType::create($p)->withBaseType($t))), array_keys($properties), $properties);
+        $type = new Type($context, 'MyType', 'MyType', $typed, XsdType::create('MyType'));
+        $property = new Property($propertyName, $properties[$propertyName], $context, 'ns1', XsdType::create($propertyName));
 
-        return new PropertyContext($class, $type, $property);
+        return new PropertyContext($class, $type, $property, $context);
     }
 }

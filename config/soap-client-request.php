@@ -111,7 +111,7 @@ $config->setMetadataOptions(
             new TypesManipulatorChain(
                 new PreserveTypeNamesManipulator(),
                 new SuppressEnumGenerationManipulator(),
-                new IntersectDuplicateTypesStrategy(),
+                new IntersectDuplicateTypesStrategy($config->getCodeGeneratorContext()),
             )
         )
 );

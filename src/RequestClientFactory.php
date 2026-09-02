@@ -26,7 +26,6 @@ use Soap\Psr18Transport\Psr18Transport;
 use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use DOMElement;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 /**
@@ -196,9 +195,16 @@ class RequestClientFactory
     {
         // Wrap ticket in a callable, so the actual authentication request gets
         // fired only when sending a SOAP request.
-        $getTicket = function (DOMElement $node): DOMElement {
+        // The type of the $node depends on the version of the library which
+        // in turn depend on the version of php.
+
+        $getTicket = function (mixed /* \DOMElement|\Dom\Element */ $node): mixed /* \DOMElement|\Dom\Element */ {
             $this->proxyTicket = $this->authentication->getTicket();
-            $node->nodeValue = $this->proxyTicket;
+            if ($node instanceof \DOMElement) {
+                $node->nodeValue = $this->proxyTicket;
+            } else {
+                $node->textContent = $this->proxyTicket;
+            }
             return $node;
         };
 
