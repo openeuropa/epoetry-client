@@ -9,22 +9,23 @@ use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use OpenEuropa\EPoetry\Request\RequestClassmap;
 use OpenEuropa\EPoetry\Request\RequestClient;
+use OpenEuropa\EPoetry\Request\Type;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Event\Subscriber\LogSubscriber;
 use Phpro\SoapClient\Event\Subscriber\ValidatorSubscriber;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Soap\Engine\Engine;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
+use Soap\Encoding\EncoderRegistry;
 use Soap\Engine\Transport;
-use Soap\ExtSoapEngine\ExtSoapOptions;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Psr18Transport\Psr18Transport;
 use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use DOMElement;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 /**
@@ -194,9 +195,16 @@ class RequestClientFactory
     {
         // Wrap ticket in a callable, so the actual authentication request gets
         // fired only when sending a SOAP request.
-        $getTicket = function (DOMElement $node): DOMElement {
+        // The type of the $node depends on the version of the library which
+        // in turn depend on the version of php.
+
+        $getTicket = function (mixed /* \DOMElement|\Dom\Element */ $node): mixed /* \DOMElement|\Dom\Element */ {
             $this->proxyTicket = $this->authentication->getTicket();
-            $node->nodeValue = $this->proxyTicket;
+            if ($node instanceof \DOMElement) {
+                $node->nodeValue = $this->proxyTicket;
+            } else {
+                $node->textContent = $this->proxyTicket;
+            }
             return $node;
         };
 
@@ -222,18 +230,60 @@ class RequestClientFactory
     }
 
     /**
+     * Builds the encoder registry with classmaps for the v4 SOAP engine.
+     *
+     * The auto-generated RequestClassmap registers anonymous complex types
+     * (inline types in the XSD) using their element name (e.g.
+     * "informativeMessages"). However, the WSDL reader generates type names
+     * by prefixing the parent type name (e.g.
+     * "linguisticRequestOutInformativeMessages"). This method registers
+     * additional classmaps so both names resolve to the correct PHP class.
+     */
+    public static function buildEncoderRegistry(): EncoderRegistry
+    {
+        $ns = 'http://eu.europa.ec.dgt.epoetry';
+        $registry = EncoderRegistry::default()
+            ->addClassMapCollection(RequestClassmap::types());
+
+        // Map WSDL-reader-generated names for anonymous complex types to
+        // their PHP classes. The WSDL reader names these as
+        // "{parentType}{ucfirst(elementName)}".
+        $anonymousTypeMappings = [
+            'requestDetailsInContacts' => Type\Contacts::class,
+            'requestDetailsInProducts' => Type\Products::class,
+            'originalDocumentInLinguisticSections' => Type\LinguisticSections::class,
+            'auxiliaryDocumentsInReferenceDocuments' => Type\ReferenceDocuments::class,
+            'auxiliaryDocumentsInTraxDocuments' => Type\TraxDocuments::class,
+            'auxiliaryDocumentsInPrtDocuments' => Type\PrtDocuments::class,
+            'linguisticRequestOutInformativeMessages' => Type\InformativeMessages::class,
+            'requestDetailsOutContacts' => Type\Contacts::class,
+            'requestDetailsOutProducts' => Type\Products::class,
+            'requestDetailsOutAuxiliaryDocuments' => Type\AuxiliaryDocuments::class,
+        ];
+
+        foreach ($anonymousTypeMappings as $typeName => $phpClass) {
+            $registry->addClassMap($ns, $typeName, $phpClass);
+        }
+
+        return $registry;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getEngine(): Engine
     {
-        $wsdlProvider = (new LocalWsdlProvider())
+        // Override the WSDL port location with the configured endpoint.
+        // The v4 engine uses the WSDL port address as the SOAP request
+        // target, so we must override it to match the desired environment
+        // (acceptance, production, etc.).
+        $wsdlLoader = (new LocalWsdlProvider())
             ->withPortLocation('DGTServiceWSPort', $this->endpoint);
         return DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__ . '/../resources/request.wsdl', [])
-                ->withClassMap(RequestClassmap::getCollection())
-                ->withWsdlProvider($wsdlProvider)
-                ->disableWsdlCache(),
-            $this->transport
+            EngineOptions::defaults(__DIR__ . '/../resources/request.wsdl')
+                ->withEncoderRegistry(self::buildEncoderRegistry())
+                ->withWsdlLoader(new \Soap\Wsdl\Loader\FlatteningLoader($wsdlLoader))
+                ->withTransport($this->transport)
         );
     }
 

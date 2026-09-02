@@ -16,7 +16,7 @@ class GetServiceTicketResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getServiceTicket() : string
+    public function getServiceTicket(): string
     {
         return $this->serviceTicket;
     }
@@ -25,7 +25,7 @@ class GetServiceTicketResponse implements ResultInterface
      * @param string $serviceTicket
      * @return static
      */
-    public function withServiceTicket(string $serviceTicket) : static
+    public function withServiceTicket(string $serviceTicket): static
     {
         $new = clone $this;
         $new->serviceTicket = $serviceTicket;

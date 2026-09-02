@@ -30,7 +30,7 @@ class ContactPersonIn
      * @param string $userId
      * @return $this
      */
-    public function setUserId(string $userId) : static
+    public function setUserId(string $userId): static
     {
         $this->userId = $userId;
         return $this;
@@ -39,7 +39,7 @@ class ContactPersonIn
     /**
      * @return string
      */
-    public function getUserId() : string
+    public function getUserId(): string
     {
         return $this->userId;
     }
@@ -47,7 +47,7 @@ class ContactPersonIn
     /**
      * @return bool
      */
-    public function hasUserId() : bool
+    public function hasUserId(): bool
     {
         return !empty($this->userId);
     }
@@ -56,7 +56,7 @@ class ContactPersonIn
      * @param 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $contactRole
      * @return $this
      */
-    public function setContactRole(string $contactRole) : static
+    public function setContactRole(string $contactRole): static
     {
         $this->contactRole = $contactRole;
         return $this;
@@ -65,7 +65,7 @@ class ContactPersonIn
     /**
      * @return 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
-    public function getContactRole() : string
+    public function getContactRole(): string
     {
         return $this->contactRole;
     }
@@ -73,7 +73,7 @@ class ContactPersonIn
     /**
      * @return bool
      */
-    public function hasContactRole() : bool
+    public function hasContactRole(): bool
     {
         return !empty($this->contactRole);
     }

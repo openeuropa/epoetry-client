@@ -13,7 +13,7 @@ class Products
      * @param array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn> $product
      * @return $this
      */
-    public function setProduct(array $product) : static
+    public function setProduct(array $product): static
     {
         $this->product = $product;
         return $this;
@@ -22,7 +22,7 @@ class Products
     /**
      * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\ModifyProductRequestIn>
      */
-    public function getProduct() : array
+    public function getProduct(): array
     {
         return $this->product;
     }
@@ -31,7 +31,7 @@ class Products
      * @param ModifyProductRequestIn ...$products
      * @return $this
      */
-    public function addProduct(... $products) : \OpenEuropa\EPoetry\Request\Type\Products
+    public function addProduct(... $products): \OpenEuropa\EPoetry\Request\Type\Products
     {
         $this->product = array_merge($this->product, $products);return $this;
     }
@@ -39,7 +39,7 @@ class Products
     /**
      * @return bool
      */
-    public function hasProduct() : bool
+    public function hasProduct(): bool
     {
         return !empty($this->product);
     }

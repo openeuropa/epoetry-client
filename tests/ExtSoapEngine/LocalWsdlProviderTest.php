@@ -4,51 +4,70 @@ namespace OpenEuropa\EPoetry\Tests\ExtSoapEngine;
 
 use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use PHPUnit\Framework\TestCase;
+use Soap\Wsdl\Loader\FlatteningLoader;
 use VeeWee\Xml\Dom\Document;
 
 class LocalWsdlProviderTest extends TestCase
 {
-    public function testProvider(): void
+    /**
+     * Tests that __invoke() returns raw XML with port overrides
+     * and schema imports left as-is for FlatteningLoader to resolve.
+     */
+    public function testInvokeReturnsRawXmlWithPortOverrides(): void
     {
         $wsdlProvider = (new LocalWsdlProvider())
             ->withPortLocation('TestPort1', 'http://overridden.address1')
             ->withPortLocation('TestPort2', 'http://overridden.address2');
         $wsdl = __DIR__ . '/../fixtures/test.wsdl';
-        $wsdl_location = $wsdlProvider($wsdl);
 
-        $xml = file_get_contents($wsdl_location);
+        $xml = $wsdlProvider($wsdl);
 
-        $expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Not an actual, working WSDL file, this is just for testing purposes. -->
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HelloService">
-    <types>
-        <xsd:schema>
-            <xsd:import schemaLocation="data://text/plain;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBOb3QgYW4gYWN0dWFsLCB3b3JraW5nIFhTRCBmaWxlLCB0aGlzIGlzIGp1c3QgZm9yIHRlc3RpbmcgcHVycG9zZXMuIC0tPgo8eHNkOnNjaGVtYSB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIi8+Cg=="/>
-        </xsd:schema>
-    </types>
-    <service name="TestService">
-        <port binding="tns:TestBinding" name="TestPort1">
-            <soap:address location="http://overridden.address1"/>
-        </port>
-        <port binding="tns:TestBinding" name="TestPort2">
-            <soap:address location="http://overridden.address2"/>
-        </port>
-    </service>
-</definitions>
-XML;
-        $this->assertEquals($expected, trim($xml));
+        // Port locations are overridden.
+        $this->assertStringContainsString('http://overridden.address1', $xml);
+        $this->assertStringContainsString('http://overridden.address2', $xml);
 
-        // Fetch schema and assert its validity.
-        $wsdl = Document::fromXmlString($xml);
-        $schema_location = $wsdl->xpath()->querySingle("//*/xsd:schema/xsd:import")->getAttribute('schemaLocation');
-        $xml = file_get_contents($schema_location);
+        // Schema import is left as-is (not inlined).
+        $wsdlDoc = Document::fromXmlString($xml);
+        $schemaLocation = $wsdlDoc->xpath()->querySingle("//*/xsd:schema/xsd:import")->getAttribute('schemaLocation');
+        $this->assertEquals('test.xsd', $schemaLocation);
+    }
 
-        $expected = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Not an actual, working XSD file, this is just for testing purposes. -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-XML;
-        $this->assertEquals($expected, trim($xml));
+    /**
+     * Tests that port overrides are skipped for files without ports
+     * (e.g. XSD files loaded by FlatteningLoader).
+     */
+    public function testInvokeSkipsPortOverridesForNonWsdlFiles(): void
+    {
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('TestPort1', 'http://overridden.address1');
+        $xsd = __DIR__ . '/../fixtures/test.xsd';
+
+        // Should not throw, even though the XSD has no port elements.
+        $xml = $wsdlProvider($xsd);
+        $this->assertStringContainsString('testElement', $xml);
+    }
+
+    /**
+     * Tests that FlatteningLoader inlines XSD imports when wrapping
+     * LocalWsdlProvider. This is how the v4 engine resolves schemas.
+     */
+    public function testFlatteningLoaderInlinesXsdImport(): void
+    {
+        $wsdlProvider = (new LocalWsdlProvider())
+            ->withPortLocation('TestPort1', 'http://overridden.address1')
+            ->withPortLocation('TestPort2', 'http://overridden.address2');
+        $wsdl = __DIR__ . '/../fixtures/test.wsdl';
+
+        $flatteningLoader = new FlatteningLoader($wsdlProvider);
+        $xml = $flatteningLoader($wsdl);
+
+        // The XSD content is inlined: testElement appears in the output
+        // and schemaLocation is removed.
+        $this->assertStringContainsString('testElement', $xml);
+        $this->assertStringNotContainsString('schemaLocation', $xml);
+
+        // Port overrides are preserved.
+        $this->assertStringContainsString('http://overridden.address1', $xml);
+        $this->assertStringContainsString('http://overridden.address2', $xml);
     }
 }

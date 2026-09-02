@@ -2,7 +2,6 @@
 
 namespace OpenEuropa\EPoetry\Authentication\ClientCertificate;
 
-use Phpro\SoapClient\Caller\Caller;
 use Phpro\SoapClient\Type\ResultInterface;
 use OpenEuropa\EPoetry\Authentication\ClientCertificate\Type;
 use Phpro\SoapClient\Exception\SoapException;
@@ -10,10 +9,7 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class ClientCertificateClient
 {
-    /**
-     * @var Caller
-     */
-    private $caller;
+    private \Phpro\SoapClient\Caller\Caller $caller;
 
     public function __construct(\Phpro\SoapClient\Caller\Caller $caller)
     {

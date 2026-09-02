@@ -13,7 +13,7 @@ class ReceiveNotificationResponse
      * @param null | \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult $return): static
     {
         $this->return = $return;
         return $this;
@@ -22,7 +22,7 @@ class ReceiveNotificationResponse
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
      */
-    public function getReturn() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
+    public function getReturn(): ?\OpenEuropa\EPoetry\Notification\Type\DgtNotificationResult
     {
         return $this->return;
     }
@@ -30,7 +30,7 @@ class ReceiveNotificationResponse
     /**
      * @return bool
      */
-    public function hasReturn() : bool
+    public function hasReturn(): bool
     {
         return !empty($this->return);
     }

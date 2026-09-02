@@ -23,7 +23,7 @@ class SrcDocumentIn
      * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(?string $fileName): static
     {
         $this->fileName = $fileName;
         return $this;
@@ -32,7 +32,7 @@ class SrcDocumentIn
     /**
      * @return null | string
      */
-    public function getFileName() : ?string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -40,7 +40,7 @@ class SrcDocumentIn
     /**
      * @return bool
      */
-    public function hasFileName() : bool
+    public function hasFileName(): bool
     {
         return !empty($this->fileName);
     }
@@ -49,7 +49,7 @@ class SrcDocumentIn
      * @param null | string $comment
      * @return $this
      */
-    public function setComment(?string $comment) : static
+    public function setComment(?string $comment): static
     {
         $this->comment = $comment;
         return $this;
@@ -58,7 +58,7 @@ class SrcDocumentIn
     /**
      * @return null | string
      */
-    public function getComment() : ?string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -66,7 +66,7 @@ class SrcDocumentIn
     /**
      * @return bool
      */
-    public function hasComment() : bool
+    public function hasComment(): bool
     {
         return !empty($this->comment);
     }
@@ -75,7 +75,7 @@ class SrcDocumentIn
      * @param null | mixed $content
      * @return $this
      */
-    public function setContent(mixed $content) : static
+    public function setContent(mixed $content): static
     {
         $this->content = $content;
         return $this;
@@ -84,7 +84,7 @@ class SrcDocumentIn
     /**
      * @return null | mixed
      */
-    public function getContent() : mixed
+    public function getContent(): mixed
     {
         return $this->content;
     }
@@ -92,7 +92,7 @@ class SrcDocumentIn
     /**
      * @return bool
      */
-    public function hasContent() : bool
+    public function hasContent(): bool
     {
         return !empty($this->content);
     }

@@ -3,22 +3,28 @@
 namespace OpenEuropa\EPoetry\Notification;
 
 use OpenEuropa\EPoetry\Notification\Type;
-use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
-use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
+use Soap\Encoding\ClassMap\ClassMapCollection;
+use Soap\Encoding\ClassMap\ClassMap;
 
 class NotificationClassmap
 {
-    public static function getCollection(): \Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection
+    public static function types(): \Soap\Encoding\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection(
-            new ClassMap('receiveNotification', Type\ReceiveNotification::class),
-            new ClassMap('receiveNotificationResponse', Type\ReceiveNotificationResponse::class),
-            new ClassMap('linguisticRequest', Type\LinguisticRequest::class),
-            new ClassMap('dgtNotificationResult', Type\DgtNotificationResult::class),
-            new ClassMap('dgtNotification', Type\DgtNotification::class),
-            new ClassMap('productReference', Type\ProductReference::class),
-            new ClassMap('requestReference', Type\RequestReference::class),
-            new ClassMap('product', Type\Product::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'receiveNotification', Type\ReceiveNotification::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'receiveNotificationResponse', Type\ReceiveNotificationResponse::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'linguisticRequest', Type\LinguisticRequest::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'dgtNotificationResult', Type\DgtNotificationResult::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'dgtNotification', Type\DgtNotification::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'productReference', Type\ProductReference::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'requestReference', Type\RequestReference::class),
+            new ClassMap('http://eu.europa.ec.dgt.epoetry', 'product', Type\Product::class),
+        );
+    }
+
+    public static function enums(): \Soap\Encoding\ClassMap\ClassMapCollection
+    {
+        return new ClassMapCollection(
         );
     }
 }

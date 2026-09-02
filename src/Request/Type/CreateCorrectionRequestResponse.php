@@ -15,7 +15,7 @@ class CreateCorrectionRequestResponse implements ResultInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut $return): static
     {
         $this->return = $return;
         return $this;
@@ -24,7 +24,7 @@ class CreateCorrectionRequestResponse implements ResultInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
      */
-    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
+    public function getReturn(): ?\OpenEuropa\EPoetry\Request\Type\CorrectionRequestOut
     {
         return $this->return;
     }
@@ -32,7 +32,7 @@ class CreateCorrectionRequestResponse implements ResultInterface
     /**
      * @return bool
      */
-    public function hasReturn() : bool
+    public function hasReturn(): bool
     {
         return !empty($this->return);
     }

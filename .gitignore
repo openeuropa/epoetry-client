@@ -11,3 +11,4 @@ docker-compose.*.yml
 /var
 /.env.*
 *.p12
+patches.lock.json

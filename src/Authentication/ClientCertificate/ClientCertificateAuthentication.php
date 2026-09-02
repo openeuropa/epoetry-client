@@ -10,9 +10,10 @@ use OpenEuropa\EPoetry\ExtSoapEngine\LocalWsdlProvider;
 use OpenEuropa\EPoetry\Logger\LoggerPlugin;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Psr\Log\LoggerInterface;
-use Soap\ExtSoapEngine\ExtSoapOptions;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
+use Soap\Encoding\EncoderRegistry;
 use Soap\Psr18Transport\Psr18Transport;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpClient\CurlHttpClient;
@@ -99,18 +100,24 @@ class ClientCertificateAuthentication implements AuthenticationInterface
         // Add HTTP logging middleware.
         $plugins[] = new LoggerPlugin($this->logger);
 
-        $wsdlProvider = (new LocalWsdlProvider())
+        // Override the WSDL port locations with the configured EU Login
+        // base path. The v4 engine uses the WSDL port address as the SOAP
+        // request target, so we must override it to match the desired
+        // environment (acceptance vs production).
+        $wsdlLoader = (new LocalWsdlProvider())
             ->withPortLocation('CertLoginSoap11Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.1")
             ->withPortLocation('CertLoginSoap12Port', "{$this->euLoginBasePath}/cas/ws/CertLoginService/soap/1.2")
             ->withPortLocation('CertLoginHttpGetPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http")
             ->withPortLocation('CertLoginHttpPostPort', "{$this->euLoginBasePath}/cas/ws/CertLoginService/http");
         $pluginClient = new PluginClient(new Psr18Client($httpClient), $plugins);
         $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl', [])
-                ->withClassMap(ClientCertificateClassmap::getCollection())
-                ->withWsdlProvider($wsdlProvider)
-                ->disableWsdlCache(),
-            Psr18Transport::createForClient($pluginClient)
+            EngineOptions::defaults(__DIR__ . '/../../../resources/authentication.wsdl')
+                ->withEncoderRegistry(
+                    EncoderRegistry::default()
+                        ->addClassMapCollection(ClientCertificateClassmap::types())
+                )
+                ->withWsdlLoader(new \Soap\Wsdl\Loader\FlatteningLoader($wsdlLoader))
+                ->withTransport(Psr18Transport::createForClient($pluginClient))
         );
 
         $eventDispatcher = new EventDispatcher();

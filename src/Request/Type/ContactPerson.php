@@ -33,7 +33,7 @@ class ContactPerson
      * @param null | string $firstName
      * @return $this
      */
-    public function setFirstName(?string $firstName) : static
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
         return $this;
@@ -42,7 +42,7 @@ class ContactPerson
     /**
      * @return null | string
      */
-    public function getFirstName() : ?string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -50,7 +50,7 @@ class ContactPerson
     /**
      * @return bool
      */
-    public function hasFirstName() : bool
+    public function hasFirstName(): bool
     {
         return !empty($this->firstName);
     }
@@ -59,7 +59,7 @@ class ContactPerson
      * @param null | string $lastName
      * @return $this
      */
-    public function setLastName(?string $lastName) : static
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
         return $this;
@@ -68,7 +68,7 @@ class ContactPerson
     /**
      * @return null | string
      */
-    public function getLastName() : ?string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -76,7 +76,7 @@ class ContactPerson
     /**
      * @return bool
      */
-    public function hasLastName() : bool
+    public function hasLastName(): bool
     {
         return !empty($this->lastName);
     }
@@ -85,7 +85,7 @@ class ContactPerson
      * @param null | string $email
      * @return $this
      */
-    public function setEmail(?string $email) : static
+    public function setEmail(?string $email): static
     {
         $this->email = $email;
         return $this;
@@ -94,7 +94,7 @@ class ContactPerson
     /**
      * @return null | string
      */
-    public function getEmail() : ?string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -102,7 +102,7 @@ class ContactPerson
     /**
      * @return bool
      */
-    public function hasEmail() : bool
+    public function hasEmail(): bool
     {
         return !empty($this->email);
     }
@@ -111,7 +111,7 @@ class ContactPerson
      * @param null | string $userId
      * @return $this
      */
-    public function setUserId(?string $userId) : static
+    public function setUserId(?string $userId): static
     {
         $this->userId = $userId;
         return $this;
@@ -120,7 +120,7 @@ class ContactPerson
     /**
      * @return null | string
      */
-    public function getUserId() : ?string
+    public function getUserId(): ?string
     {
         return $this->userId;
     }
@@ -128,7 +128,7 @@ class ContactPerson
     /**
      * @return bool
      */
-    public function hasUserId() : bool
+    public function hasUserId(): bool
     {
         return !empty($this->userId);
     }
@@ -137,7 +137,7 @@ class ContactPerson
      * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
      * @return $this
      */
-    public function setRoleCode(?string $roleCode) : static
+    public function setRoleCode(?string $roleCode): static
     {
         $this->roleCode = $roleCode;
         return $this;
@@ -146,7 +146,7 @@ class ContactPerson
     /**
      * @return null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON'
      */
-    public function getRoleCode() : ?string
+    public function getRoleCode(): ?string
     {
         return $this->roleCode;
     }
@@ -154,7 +154,7 @@ class ContactPerson
     /**
      * @return bool
      */
-    public function hasRoleCode() : bool
+    public function hasRoleCode(): bool
     {
         return !empty($this->roleCode);
     }

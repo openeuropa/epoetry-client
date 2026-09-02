@@ -38,7 +38,7 @@ class RequestReference
      * @param null | string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(?string $requesterCode) : static
+    public function setRequesterCode(?string $requesterCode): static
     {
         $this->requesterCode = $requesterCode;
         return $this;
@@ -47,7 +47,7 @@ class RequestReference
     /**
      * @return null | string
      */
-    public function getRequesterCode() : ?string
+    public function getRequesterCode(): ?string
     {
         return $this->requesterCode;
     }
@@ -55,7 +55,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasRequesterCode() : bool
+    public function hasRequesterCode(): bool
     {
         return !empty($this->requesterCode);
     }
@@ -64,7 +64,7 @@ class RequestReference
      * @param int $year
      * @return $this
      */
-    public function setYear(int $year) : static
+    public function setYear(int $year): static
     {
         $this->year = $year;
         return $this;
@@ -73,7 +73,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getYear() : int
+    public function getYear(): int
     {
         return $this->year;
     }
@@ -81,7 +81,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasYear() : bool
+    public function hasYear(): bool
     {
         return !empty($this->year);
     }
@@ -90,7 +90,7 @@ class RequestReference
      * @param int $number
      * @return $this
      */
-    public function setNumber(int $number) : static
+    public function setNumber(int $number): static
     {
         $this->number = $number;
         return $this;
@@ -99,7 +99,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getNumber() : int
+    public function getNumber(): int
     {
         return $this->number;
     }
@@ -107,7 +107,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasNumber() : bool
+    public function hasNumber(): bool
     {
         return !empty($this->number);
     }
@@ -116,7 +116,7 @@ class RequestReference
      * @param int $part
      * @return $this
      */
-    public function setPart(int $part) : static
+    public function setPart(int $part): static
     {
         $this->part = $part;
         return $this;
@@ -125,7 +125,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getPart() : int
+    public function getPart(): int
     {
         return $this->part;
     }
@@ -133,7 +133,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasPart() : bool
+    public function hasPart(): bool
     {
         return !empty($this->part);
     }
@@ -142,7 +142,7 @@ class RequestReference
      * @param int $version
      * @return $this
      */
-    public function setVersion(int $version) : static
+    public function setVersion(int $version): static
     {
         $this->version = $version;
         return $this;
@@ -151,7 +151,7 @@ class RequestReference
     /**
      * @return int
      */
-    public function getVersion() : int
+    public function getVersion(): int
     {
         return $this->version;
     }
@@ -159,7 +159,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasVersion() : bool
+    public function hasVersion(): bool
     {
         return !empty($this->version);
     }
@@ -168,7 +168,7 @@ class RequestReference
      * @param null | string $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : static
+    public function setProductType(?string $productType): static
     {
         $this->productType = $productType;
         return $this;
@@ -177,7 +177,7 @@ class RequestReference
     /**
      * @return null | string
      */
-    public function getProductType() : ?string
+    public function getProductType(): ?string
     {
         return $this->productType;
     }
@@ -185,7 +185,7 @@ class RequestReference
     /**
      * @return bool
      */
-    public function hasProductType() : bool
+    public function hasProductType(): bool
     {
         return !empty($this->productType);
     }
@@ -214,4 +214,3 @@ class RequestReference
         return implode('-', $parts);
     }
 }
-

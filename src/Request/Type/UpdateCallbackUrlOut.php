@@ -33,7 +33,7 @@ class UpdateCallbackUrlOut
      * @param bool $success
      * @return $this
      */
-    public function setSuccess(bool $success) : static
+    public function setSuccess(bool $success): static
     {
         $this->success = $success;
         return $this;
@@ -42,7 +42,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function isSuccess() : bool
+    public function isSuccess(): bool
     {
         return $this->success;
     }
@@ -50,7 +50,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function hasSuccess() : bool
+    public function hasSuccess(): bool
     {
         return !empty($this->success);
     }
@@ -59,7 +59,7 @@ class UpdateCallbackUrlOut
      * @param null | string $oldCallbackUrl
      * @return $this
      */
-    public function setOldCallbackUrl(?string $oldCallbackUrl) : static
+    public function setOldCallbackUrl(?string $oldCallbackUrl): static
     {
         $this->oldCallbackUrl = $oldCallbackUrl;
         return $this;
@@ -68,7 +68,7 @@ class UpdateCallbackUrlOut
     /**
      * @return null | string
      */
-    public function getOldCallbackUrl() : ?string
+    public function getOldCallbackUrl(): ?string
     {
         return $this->oldCallbackUrl;
     }
@@ -76,7 +76,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function hasOldCallbackUrl() : bool
+    public function hasOldCallbackUrl(): bool
     {
         return !empty($this->oldCallbackUrl);
     }
@@ -85,7 +85,7 @@ class UpdateCallbackUrlOut
      * @param null | string $newCallbackUrl
      * @return $this
      */
-    public function setNewCallbackUrl(?string $newCallbackUrl) : static
+    public function setNewCallbackUrl(?string $newCallbackUrl): static
     {
         $this->newCallbackUrl = $newCallbackUrl;
         return $this;
@@ -94,7 +94,7 @@ class UpdateCallbackUrlOut
     /**
      * @return null | string
      */
-    public function getNewCallbackUrl() : ?string
+    public function getNewCallbackUrl(): ?string
     {
         return $this->newCallbackUrl;
     }
@@ -102,7 +102,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function hasNewCallbackUrl() : bool
+    public function hasNewCallbackUrl(): bool
     {
         return !empty($this->newCallbackUrl);
     }
@@ -111,7 +111,7 @@ class UpdateCallbackUrlOut
      * @param null | string $application
      * @return $this
      */
-    public function setApplication(?string $application) : static
+    public function setApplication(?string $application): static
     {
         $this->application = $application;
         return $this;
@@ -120,7 +120,7 @@ class UpdateCallbackUrlOut
     /**
      * @return null | string
      */
-    public function getApplication() : ?string
+    public function getApplication(): ?string
     {
         return $this->application;
     }
@@ -128,7 +128,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function hasApplication() : bool
+    public function hasApplication(): bool
     {
         return !empty($this->application);
     }
@@ -137,7 +137,7 @@ class UpdateCallbackUrlOut
      * @param null | string $message
      * @return $this
      */
-    public function setMessage(?string $message) : static
+    public function setMessage(?string $message): static
     {
         $this->message = $message;
         return $this;
@@ -146,7 +146,7 @@ class UpdateCallbackUrlOut
     /**
      * @return null | string
      */
-    public function getMessage() : ?string
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -154,7 +154,7 @@ class UpdateCallbackUrlOut
     /**
      * @return bool
      */
-    public function hasMessage() : bool
+    public function hasMessage(): bool
     {
         return !empty($this->message);
     }
