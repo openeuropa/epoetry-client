@@ -12,6 +12,7 @@
         "cweagans/composer-patches": "^1 || ^2",
         "php-http/logger-plugin": "^1",
         "php-http/message": "~1.13",
+        "php-soap/encoding": "~0.31",
         "php-soap/ext-soap-engine": "^1.11",
         "phpro/soap-client": "^5.0 || ^6.0",
         "psr/http-client": "^1",
