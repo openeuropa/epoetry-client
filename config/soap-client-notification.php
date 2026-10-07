@@ -1,6 +1,9 @@
 <?php
 
+use Phpro\SoapClient\CodeGenerator\Config\ClassMapConfig;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
+use Phpro\SoapClient\CodeGenerator\Config\Destination;
+use Phpro\SoapClient\CodeGenerator\Config\TypeNamespaceMap;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Phpro\SoapClient\Soap\EngineOptions;
 use Phpro\SoapClient\CodeGenerator\Rules;
@@ -15,13 +18,10 @@ $engine = DefaultEngineFactory::create(
 );
 $config = Config::create()
     ->setEngine($engine)
-    ->setTypeDestination('src/Notification/Type')
-    ->setTypeNamespace('OpenEuropa\EPoetry\Notification\Type')
-    ->setClientDestination('src/Notification/')
-    ->setClientNamespace('OpenEuropa\EPoetry\Notification')
-    ->setClassMapDestination('src/Notification/')
-    ->setClassMapName('NotificationClassmap')
-    ->setClassMapNamespace('OpenEuropa\EPoetry\Notification')
+    ->setTypeNamespaceMap(
+        TypeNamespaceMap::create(new Destination('src/Notification/Type', 'OpenEuropa\EPoetry\Notification\Type'))
+    )
+    ->setClassMap(new ClassMapConfig('NotificationClassmap', new Destination('src/Notification/', 'OpenEuropa\EPoetry\Notification')))
     ->setRuleSet(new Rules\RuleSet([
         new Rules\AssembleRule(new Assembler\PropertyAssembler(
             Assembler\PropertyAssemblerOptions::create()

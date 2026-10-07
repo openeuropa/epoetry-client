@@ -2,7 +2,11 @@
 
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\CodeGenerator\Config\ClassMapConfig;
+use Phpro\SoapClient\CodeGenerator\Config\ClientConfig;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
+use Phpro\SoapClient\CodeGenerator\Config\Destination;
+use Phpro\SoapClient\CodeGenerator\Config\TypeNamespaceMap;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Phpro\SoapClient\Soap\EngineOptions;
 
@@ -16,14 +20,11 @@ $engine = DefaultEngineFactory::create(
 );
 return Config::create()
     ->setEngine($engine)
-    ->setTypeDestination('src/Authentication/ClientCertificate/Type')
-    ->setTypeNamespace('OpenEuropa\EPoetry\Authentication\ClientCertificate\Type')
-    ->setClientDestination('src/Authentication/ClientCertificate')
-    ->setClientName('ClientCertificateClient')
-    ->setClientNamespace('OpenEuropa\EPoetry\Authentication\ClientCertificate')
-    ->setClassMapDestination('src/Authentication/ClientCertificate')
-    ->setClassMapName('ClientCertificateClassmap')
-    ->setClassMapNamespace('OpenEuropa\EPoetry\Authentication\ClientCertificate')
+    ->setTypeNamespaceMap(
+        TypeNamespaceMap::create(new Destination('src/Authentication/ClientCertificate/Type', 'OpenEuropa\EPoetry\Authentication\ClientCertificate\Type'))
+    )
+    ->setClient(new ClientConfig('ClientCertificateClient', new Destination('src/Authentication/ClientCertificate', 'OpenEuropa\EPoetry\Authentication\ClientCertificate')))
+    ->setClassMap(new ClassMapConfig('ClientCertificateClassmap', new Destination('src/Authentication/ClientCertificate', 'OpenEuropa\EPoetry\Authentication\ClientCertificate')))
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
     ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler(
         new Assembler\ImmutableSetterAssemblerOptions()

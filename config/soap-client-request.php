@@ -1,6 +1,10 @@
 <?php
 
+use Phpro\SoapClient\CodeGenerator\Config\ClassMapConfig;
+use Phpro\SoapClient\CodeGenerator\Config\ClientConfig;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
+use Phpro\SoapClient\CodeGenerator\Config\Destination;
+use Phpro\SoapClient\CodeGenerator\Config\TypeNamespaceMap;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
 use Phpro\SoapClient\Soap\EngineOptions;
 use OpenEuropa\EPoetry\CodeGenerator as OpenEuropa;
@@ -17,14 +21,11 @@ $engine = DefaultEngineFactory::create(
 );
 $config = Config::create()
     ->setEngine($engine)
-    ->setTypeDestination('src/Request/Type')
-    ->setTypeNamespace('OpenEuropa\EPoetry\Request\Type')
-    ->setClientDestination('src/Request/')
-    ->setClientName('RequestClient')
-    ->setClientNamespace('OpenEuropa\EPoetry\Request')
-    ->setClassMapDestination('src/Request')
-    ->setClassMapName('RequestClassmap')
-    ->setClassMapNamespace('OpenEuropa\EPoetry\Request');
+    ->setTypeNamespaceMap(
+        TypeNamespaceMap::create(new Destination('src/Request/Type', 'OpenEuropa\EPoetry\Request\Type'))
+    )
+    ->setClient(new ClientConfig('RequestClient', new Destination('src/Request/', 'OpenEuropa\EPoetry\Request')))
+    ->setClassMap(new ClassMapConfig('RequestClassmap', new Destination('src/Request', 'OpenEuropa\EPoetry\Request')));
 
 $specialClassesAndProperties = [
     'LinguisticSections' => ['linguisticSection'],
