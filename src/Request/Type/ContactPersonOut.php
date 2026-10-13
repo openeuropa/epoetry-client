@@ -38,7 +38,7 @@ class ContactPersonOut
      * @param null | string $userId
      * @param null | 'REQUESTER' | 'AUTHOR' | 'RECIPIENT' | 'WEBMASTER' | 'EDITOR' | 'DOCUMENT_AUTHOR' | 'DOSSIER_AUTHOR' | 'LEGISLATIVE_COORDINATOR' | 'SECRETARY' | 'CONTACT_PERSON' $roleCode
      */
-    public function __construct(?string $firstName, ?string $lastName, ?string $email, ?string $userId, ?string $roleCode)
+    public function __construct(?string $firstName = null, ?string $lastName = null, ?string $email = null, ?string $userId = null, ?string $roleCode = null)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;

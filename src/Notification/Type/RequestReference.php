@@ -189,28 +189,5 @@ class RequestReference
     {
         return !empty($this->productType);
     }
-
-    /**
-     * Format request reference.
-     *
-     * Note that this method has been added manually and it won't be automatically generated.
-     * Make sure you restore it using your local Git history.
-     *
-     * @return string
-     */
-    public function getReference(): string
-    {
-        $parts = [
-            $this->getRequesterCode(),
-            $this->getYear(),
-            $this->getNumber(),
-            '('.$this->getVersion().')',
-            $this->getPart(),
-            $this->getProductType(),
-        ];
-        $parts = array_filter($parts, function ($part) {
-            return $part !== null;
-        });
-        return implode('-', $parts);
-    }
 }
+
