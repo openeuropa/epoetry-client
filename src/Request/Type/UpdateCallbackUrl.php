@@ -20,7 +20,7 @@ class UpdateCallbackUrl implements RequestInterface
      * @param null | string $callbackUrl
      * @return $this
      */
-    public function setCallbackUrl(?string $callbackUrl) : static
+    public function setCallbackUrl(?string $callbackUrl): static
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
@@ -29,7 +29,7 @@ class UpdateCallbackUrl implements RequestInterface
     /**
      * @return null | string
      */
-    public function getCallbackUrl() : ?string
+    public function getCallbackUrl(): ?string
     {
         return $this->callbackUrl;
     }
@@ -37,7 +37,7 @@ class UpdateCallbackUrl implements RequestInterface
     /**
      * @return bool
      */
-    public function hasCallbackUrl() : bool
+    public function hasCallbackUrl(): bool
     {
         return !empty($this->callbackUrl);
     }
@@ -46,7 +46,7 @@ class UpdateCallbackUrl implements RequestInterface
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -55,7 +55,7 @@ class UpdateCallbackUrl implements RequestInterface
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -63,7 +63,7 @@ class UpdateCallbackUrl implements RequestInterface
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }

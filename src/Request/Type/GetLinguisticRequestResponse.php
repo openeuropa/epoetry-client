@@ -15,7 +15,7 @@ class GetLinguisticRequestResponse implements ResultInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut $return): static
     {
         $this->return = $return;
         return $this;
@@ -24,7 +24,7 @@ class GetLinguisticRequestResponse implements ResultInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
      */
-    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
+    public function getReturn(): ?\OpenEuropa\EPoetry\Request\Type\LinguisticRequestOut
     {
         return $this->return;
     }
@@ -32,7 +32,7 @@ class GetLinguisticRequestResponse implements ResultInterface
     /**
      * @return bool
      */
-    public function hasReturn() : bool
+    public function hasReturn(): bool
     {
         return !empty($this->return);
     }

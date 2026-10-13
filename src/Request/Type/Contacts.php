@@ -13,7 +13,7 @@ class Contacts
      * @param non-empty-array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\ContactPersonIn> $contact
      * @return $this
      */
-    public function setContact(array $contact) : static
+    public function setContact(array $contact): static
     {
         $this->contact = $contact;
         return $this;
@@ -22,7 +22,7 @@ class Contacts
     /**
      * @return non-empty-array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\ContactPersonIn>
      */
-    public function getContact() : array
+    public function getContact(): array
     {
         return $this->contact;
     }
@@ -31,7 +31,7 @@ class Contacts
      * @param ContactPersonIn ...$contacts
      * @return $this
      */
-    public function addContact(... $contacts) : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function addContact(... $contacts): \OpenEuropa\EPoetry\Request\Type\Contacts
     {
         $this->contact = array_merge($this->contact, $contacts);return $this;
     }
@@ -39,7 +39,7 @@ class Contacts
     /**
      * @return bool
      */
-    public function hasContact() : bool
+    public function hasContact(): bool
     {
         return !empty($this->contact);
     }

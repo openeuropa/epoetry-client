@@ -23,7 +23,7 @@ class LinguisticRequestOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut $requestReference): static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -32,7 +32,7 @@ class LinguisticRequestOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Request\Type\RequestReferenceOut
     {
         return $this->requestReference;
     }
@@ -40,7 +40,7 @@ class LinguisticRequestOut
     /**
      * @return bool
      */
-    public function hasRequestReference() : bool
+    public function hasRequestReference(): bool
     {
         return !empty($this->requestReference);
     }
@@ -49,7 +49,7 @@ class LinguisticRequestOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails) : static
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut $requestDetails): static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -58,7 +58,7 @@ class LinguisticRequestOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
+    public function getRequestDetails(): ?\OpenEuropa\EPoetry\Request\Type\RequestDetailsOut
     {
         return $this->requestDetails;
     }
@@ -66,7 +66,7 @@ class LinguisticRequestOut
     /**
      * @return bool
      */
-    public function hasRequestDetails() : bool
+    public function hasRequestDetails(): bool
     {
         return !empty($this->requestDetails);
     }
@@ -75,7 +75,7 @@ class LinguisticRequestOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages
      * @return $this
      */
-    public function setInformativeMessages(?\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages) : static
+    public function setInformativeMessages(?\OpenEuropa\EPoetry\Request\Type\InformativeMessages $informativeMessages): static
     {
         $this->informativeMessages = $informativeMessages;
         return $this;
@@ -84,7 +84,7 @@ class LinguisticRequestOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\InformativeMessages
      */
-    public function getInformativeMessages() : ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function getInformativeMessages(): ?\OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         return $this->informativeMessages;
     }
@@ -92,7 +92,7 @@ class LinguisticRequestOut
     /**
      * @return bool
      */
-    public function hasInformativeMessages() : bool
+    public function hasInformativeMessages(): bool
     {
         return !empty($this->informativeMessages);
     }

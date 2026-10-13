@@ -13,7 +13,7 @@ class CorrectionReferenceIn
      * @param null | int $version
      * @return $this
      */
-    public function setVersion(?int $version) : static
+    public function setVersion(?int $version): static
     {
         $this->version = $version;
         return $this;
@@ -22,7 +22,7 @@ class CorrectionReferenceIn
     /**
      * @return null | int
      */
-    public function getVersion() : ?int
+    public function getVersion(): ?int
     {
         return $this->version;
     }
@@ -30,7 +30,7 @@ class CorrectionReferenceIn
     /**
      * @return bool
      */
-    public function hasVersion() : bool
+    public function hasVersion(): bool
     {
         return !empty($this->version);
     }

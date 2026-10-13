@@ -23,7 +23,7 @@ class ModifyRequestDetailsIn
      * @param \OpenEuropa\EPoetry\Request\Type\Contacts $contacts
      * @return $this
      */
-    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts) : static
+    public function setContacts(\OpenEuropa\EPoetry\Request\Type\Contacts $contacts): static
     {
         $this->contacts = $contacts;
         return $this;
@@ -32,7 +32,7 @@ class ModifyRequestDetailsIn
     /**
      * @return \OpenEuropa\EPoetry\Request\Type\Contacts
      */
-    public function getContacts() : \OpenEuropa\EPoetry\Request\Type\Contacts
+    public function getContacts(): \OpenEuropa\EPoetry\Request\Type\Contacts
     {
         return $this->contacts;
     }
@@ -40,7 +40,7 @@ class ModifyRequestDetailsIn
     /**
      * @return bool
      */
-    public function hasContacts() : bool
+    public function hasContacts(): bool
     {
         return !empty($this->contacts);
     }
@@ -49,7 +49,7 @@ class ModifyRequestDetailsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\Products $products
      * @return $this
      */
-    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products) : static
+    public function setProducts(?\OpenEuropa\EPoetry\Request\Type\Products $products): static
     {
         $this->products = $products;
         return $this;
@@ -58,7 +58,7 @@ class ModifyRequestDetailsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\Products
      */
-    public function getProducts() : ?\OpenEuropa\EPoetry\Request\Type\Products
+    public function getProducts(): ?\OpenEuropa\EPoetry\Request\Type\Products
     {
         return $this->products;
     }
@@ -66,7 +66,7 @@ class ModifyRequestDetailsIn
     /**
      * @return bool
      */
-    public function hasProducts() : bool
+    public function hasProducts(): bool
     {
         return !empty($this->products);
     }
@@ -75,7 +75,7 @@ class ModifyRequestDetailsIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments
      * @return $this
      */
-    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments) : static
+    public function setAuxiliaryDocuments(?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn $auxiliaryDocuments): static
     {
         $this->auxiliaryDocuments = $auxiliaryDocuments;
         return $this;
@@ -84,7 +84,7 @@ class ModifyRequestDetailsIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
      */
-    public function getAuxiliaryDocuments() : ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
+    public function getAuxiliaryDocuments(): ?\OpenEuropa\EPoetry\Request\Type\ModifyAuxiliaryDocumentsIn
     {
         return $this->auxiliaryDocuments;
     }
@@ -92,7 +92,7 @@ class ModifyRequestDetailsIn
     /**
      * @return bool
      */
-    public function hasAuxiliaryDocuments() : bool
+    public function hasAuxiliaryDocuments(): bool
     {
         return !empty($this->auxiliaryDocuments);
     }

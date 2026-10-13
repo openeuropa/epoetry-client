@@ -13,7 +13,7 @@ class InformativeMessages
      * @param array<int<0,max>, string> $message
      * @return $this
      */
-    public function setMessage(array $message) : static
+    public function setMessage(array $message): static
     {
         $this->message = $message;
         return $this;
@@ -22,7 +22,7 @@ class InformativeMessages
     /**
      * @return array<int<0,max>, string>
      */
-    public function getMessage() : array
+    public function getMessage(): array
     {
         return $this->message;
     }
@@ -31,7 +31,7 @@ class InformativeMessages
      * @param string ...$messages
      * @return $this
      */
-    public function addMessage(... $messages) : \OpenEuropa\EPoetry\Request\Type\InformativeMessages
+    public function addMessage(... $messages): \OpenEuropa\EPoetry\Request\Type\InformativeMessages
     {
         $this->message = array_merge($this->message, $messages);return $this;
     }
@@ -39,7 +39,7 @@ class InformativeMessages
     /**
      * @return bool
      */
-    public function hasMessage() : bool
+    public function hasMessage(): bool
     {
         return !empty($this->message);
     }

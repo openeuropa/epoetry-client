@@ -16,7 +16,7 @@ class ResubmitRequestConstraintValidator extends CreateLinguisticRequestConstrai
     /**
      * {@inheritdoc}
      */
-    public function validate($resubmitRequest, Constraint $constraint)
+    public function validate($resubmitRequest, Constraint $constraint): void
     {
         if (!$constraint instanceof ResubmitRequestConstraint) {
             throw new UnexpectedTypeException($constraint, ResubmitRequestConstraint::class);

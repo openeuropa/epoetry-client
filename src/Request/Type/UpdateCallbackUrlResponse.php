@@ -15,7 +15,7 @@ class UpdateCallbackUrlResponse implements ResultInterface
      * @param null | \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return
      * @return $this
      */
-    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return) : static
+    public function setReturn(?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut $return): static
     {
         $this->return = $return;
         return $this;
@@ -24,7 +24,7 @@ class UpdateCallbackUrlResponse implements ResultInterface
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
      */
-    public function getReturn() : ?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
+    public function getReturn(): ?\OpenEuropa\EPoetry\Request\Type\UpdateCallbackUrlOut
     {
         return $this->return;
     }
@@ -32,7 +32,7 @@ class UpdateCallbackUrlResponse implements ResultInterface
     /**
      * @return bool
      */
-    public function hasReturn() : bool
+    public function hasReturn(): bool
     {
         return !empty($this->return);
     }

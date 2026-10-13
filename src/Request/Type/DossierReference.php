@@ -23,7 +23,7 @@ class DossierReference
      * @param null | string $requesterCode
      * @return $this
      */
-    public function setRequesterCode(?string $requesterCode) : static
+    public function setRequesterCode(?string $requesterCode): static
     {
         $this->requesterCode = $requesterCode;
         return $this;
@@ -32,7 +32,7 @@ class DossierReference
     /**
      * @return null | string
      */
-    public function getRequesterCode() : ?string
+    public function getRequesterCode(): ?string
     {
         return $this->requesterCode;
     }
@@ -40,7 +40,7 @@ class DossierReference
     /**
      * @return bool
      */
-    public function hasRequesterCode() : bool
+    public function hasRequesterCode(): bool
     {
         return !empty($this->requesterCode);
     }
@@ -49,7 +49,7 @@ class DossierReference
      * @param null | int $number
      * @return $this
      */
-    public function setNumber(?int $number) : static
+    public function setNumber(?int $number): static
     {
         $this->number = $number;
         return $this;
@@ -58,7 +58,7 @@ class DossierReference
     /**
      * @return null | int
      */
-    public function getNumber() : ?int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
@@ -66,7 +66,7 @@ class DossierReference
     /**
      * @return bool
      */
-    public function hasNumber() : bool
+    public function hasNumber(): bool
     {
         return !empty($this->number);
     }
@@ -75,7 +75,7 @@ class DossierReference
      * @param null | int $year
      * @return $this
      */
-    public function setYear(?int $year) : static
+    public function setYear(?int $year): static
     {
         $this->year = $year;
         return $this;
@@ -84,7 +84,7 @@ class DossierReference
     /**
      * @return null | int
      */
-    public function getYear() : ?int
+    public function getYear(): ?int
     {
         return $this->year;
     }
@@ -92,7 +92,7 @@ class DossierReference
     /**
      * @return bool
      */
-    public function hasYear() : bool
+    public function hasYear(): bool
     {
         return !empty($this->year);
     }

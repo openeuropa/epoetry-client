@@ -14,7 +14,7 @@ class CreateLinguisticRequestConstraintValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function validate($linguisticRequest, Constraint $constraint)
+    public function validate($linguisticRequest, Constraint $constraint): void
     {
         if (!$constraint instanceof CreateLinguisticRequestConstraint) {
             throw new UnexpectedTypeException($constraint, CreateLinguisticRequestConstraint::class);

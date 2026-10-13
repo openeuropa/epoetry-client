@@ -38,7 +38,7 @@ class Product
      * @param null | \OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference
      * @return $this
      */
-    public function setProductReference(?\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference) : static
+    public function setProductReference(?\OpenEuropa\EPoetry\Notification\Type\ProductReference $productReference): static
     {
         $this->productReference = $productReference;
         return $this;
@@ -47,7 +47,7 @@ class Product
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\ProductReference
      */
-    public function getProductReference() : ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
+    public function getProductReference(): ?\OpenEuropa\EPoetry\Notification\Type\ProductReference
     {
         return $this->productReference;
     }
@@ -55,7 +55,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasProductReference() : bool
+    public function hasProductReference(): bool
     {
         return !empty($this->productReference);
     }
@@ -64,7 +64,7 @@ class Product
      * @param null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid' $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
         return $this;
@@ -73,7 +73,7 @@ class Product
     /**
      * @return null | 'Accepted' | 'Closed' | 'Ongoing' | 'ReadyToBeSent' | 'Suspended' | 'Cancelled' | 'Sent' | 'Rejected' | 'Requested' | 'Invalid'
      */
-    public function getStatus() : ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -81,7 +81,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasStatus() : bool
+    public function hasStatus(): bool
     {
         return !empty($this->status);
     }
@@ -90,7 +90,7 @@ class Product
      * @param null | \DateTimeInterface $acceptedDeadline
      * @return $this
      */
-    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline) : static
+    public function setAcceptedDeadline(?\DateTimeInterface $acceptedDeadline): static
     {
         $this->acceptedDeadline = $acceptedDeadline;
         return $this;
@@ -99,7 +99,7 @@ class Product
     /**
      * @return null | \DateTimeInterface
      */
-    public function getAcceptedDeadline() : ?\DateTimeInterface
+    public function getAcceptedDeadline(): ?\DateTimeInterface
     {
         return $this->acceptedDeadline;
     }
@@ -107,7 +107,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasAcceptedDeadline() : bool
+    public function hasAcceptedDeadline(): bool
     {
         return !empty($this->acceptedDeadline);
     }
@@ -116,7 +116,7 @@ class Product
      * @param null | mixed $file
      * @return $this
      */
-    public function setFile(mixed $file) : static
+    public function setFile(mixed $file): static
     {
         $this->file = $file;
         return $this;
@@ -125,7 +125,7 @@ class Product
     /**
      * @return null | mixed
      */
-    public function getFile() : mixed
+    public function getFile(): mixed
     {
         return $this->file;
     }
@@ -133,7 +133,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasFile() : bool
+    public function hasFile(): bool
     {
         return !empty($this->file);
     }
@@ -142,7 +142,7 @@ class Product
      * @param null | string $name
      * @return $this
      */
-    public function setName(?string $name) : static
+    public function setName(?string $name): static
     {
         $this->name = $name;
         return $this;
@@ -151,7 +151,7 @@ class Product
     /**
      * @return null | string
      */
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -159,7 +159,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasName() : bool
+    public function hasName(): bool
     {
         return !empty($this->name);
     }
@@ -168,7 +168,7 @@ class Product
      * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
         return $this;
@@ -177,7 +177,7 @@ class Product
     /**
      * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    public function getFormat() : ?string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -185,7 +185,7 @@ class Product
     /**
      * @return bool
      */
-    public function hasFormat() : bool
+    public function hasFormat(): bool
     {
         return !empty($this->format);
     }

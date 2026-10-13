@@ -38,7 +38,7 @@ class DgtNotification
      * @param null | 'RequestStatusChange' | 'ProductStatusChange' | 'ProductDelivery' | 'CorrectionStatusChange' $notificationType
      * @return $this
      */
-    public function setNotificationType(?string $notificationType) : static
+    public function setNotificationType(?string $notificationType): static
     {
         $this->notificationType = $notificationType;
         return $this;
@@ -47,7 +47,7 @@ class DgtNotification
     /**
      * @return null | 'RequestStatusChange' | 'ProductStatusChange' | 'ProductDelivery' | 'CorrectionStatusChange'
      */
-    public function getNotificationType() : ?string
+    public function getNotificationType(): ?string
     {
         return $this->notificationType;
     }
@@ -55,7 +55,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasNotificationType() : bool
+    public function hasNotificationType(): bool
     {
         return !empty($this->notificationType);
     }
@@ -64,7 +64,7 @@ class DgtNotification
      * @param null | \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest
      * @return $this
      */
-    public function setLinguisticRequest(?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest) : static
+    public function setLinguisticRequest(?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest $linguisticRequest): static
     {
         $this->linguisticRequest = $linguisticRequest;
         return $this;
@@ -73,7 +73,7 @@ class DgtNotification
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
      */
-    public function getLinguisticRequest() : ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
+    public function getLinguisticRequest(): ?\OpenEuropa\EPoetry\Notification\Type\LinguisticRequest
     {
         return $this->linguisticRequest;
     }
@@ -81,7 +81,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasLinguisticRequest() : bool
+    public function hasLinguisticRequest(): bool
     {
         return !empty($this->linguisticRequest);
     }
@@ -90,7 +90,7 @@ class DgtNotification
      * @param null | \OpenEuropa\EPoetry\Notification\Type\Product $product
      * @return $this
      */
-    public function setProduct(?\OpenEuropa\EPoetry\Notification\Type\Product $product) : static
+    public function setProduct(?\OpenEuropa\EPoetry\Notification\Type\Product $product): static
     {
         $this->product = $product;
         return $this;
@@ -99,7 +99,7 @@ class DgtNotification
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\Product
      */
-    public function getProduct() : ?\OpenEuropa\EPoetry\Notification\Type\Product
+    public function getProduct(): ?\OpenEuropa\EPoetry\Notification\Type\Product
     {
         return $this->product;
     }
@@ -107,7 +107,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasProduct() : bool
+    public function hasProduct(): bool
     {
         return !empty($this->product);
     }
@@ -116,7 +116,7 @@ class DgtNotification
      * @param null | string $message
      * @return $this
      */
-    public function setMessage(?string $message) : static
+    public function setMessage(?string $message): static
     {
         $this->message = $message;
         return $this;
@@ -125,7 +125,7 @@ class DgtNotification
     /**
      * @return null | string
      */
-    public function getMessage() : ?string
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -133,7 +133,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasMessage() : bool
+    public function hasMessage(): bool
     {
         return !empty($this->message);
     }
@@ -142,7 +142,7 @@ class DgtNotification
      * @param null | string $planningAgent
      * @return $this
      */
-    public function setPlanningAgent(?string $planningAgent) : static
+    public function setPlanningAgent(?string $planningAgent): static
     {
         $this->planningAgent = $planningAgent;
         return $this;
@@ -151,7 +151,7 @@ class DgtNotification
     /**
      * @return null | string
      */
-    public function getPlanningAgent() : ?string
+    public function getPlanningAgent(): ?string
     {
         return $this->planningAgent;
     }
@@ -159,7 +159,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasPlanningAgent() : bool
+    public function hasPlanningAgent(): bool
     {
         return !empty($this->planningAgent);
     }
@@ -168,7 +168,7 @@ class DgtNotification
      * @param null | string $planningSector
      * @return $this
      */
-    public function setPlanningSector(?string $planningSector) : static
+    public function setPlanningSector(?string $planningSector): static
     {
         $this->planningSector = $planningSector;
         return $this;
@@ -177,7 +177,7 @@ class DgtNotification
     /**
      * @return null | string
      */
-    public function getPlanningSector() : ?string
+    public function getPlanningSector(): ?string
     {
         return $this->planningSector;
     }
@@ -185,7 +185,7 @@ class DgtNotification
     /**
      * @return bool
      */
-    public function hasPlanningSector() : bool
+    public function hasPlanningSector(): bool
     {
         return !empty($this->planningSector);
     }

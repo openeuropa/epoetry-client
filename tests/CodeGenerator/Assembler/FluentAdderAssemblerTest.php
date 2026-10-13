@@ -45,7 +45,7 @@ class MyType
      * @param string ...$prop1s
      * @return $this
      */
-    public function addProp1(... $prop1s) : \MyNamespace\MyType
+    public function addProp1(... $prop1s): \MyNamespace\MyType
     {
         $this->prop1 = array_merge($this->prop1, $prop1s);return $this;
     }

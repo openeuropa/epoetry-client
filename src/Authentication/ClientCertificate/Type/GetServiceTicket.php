@@ -27,7 +27,7 @@ class GetServiceTicket implements RequestInterface
     /**
      * @return string
      */
-    public function getService() : string
+    public function getService(): string
     {
         return $this->service;
     }
@@ -36,7 +36,7 @@ class GetServiceTicket implements RequestInterface
      * @param string $service
      * @return static
      */
-    public function withService(string $service) : static
+    public function withService(string $service): static
     {
         $new = clone $this;
         $new->service = $service;

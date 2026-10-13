@@ -12,7 +12,7 @@ class AddNewPartToDossierConstraintValidator extends CreateLinguisticRequestCons
     /**
      * {@inheritdoc}
      */
-    public function validate($linguisticRequest, Constraint $constraint)
+    public function validate($linguisticRequest, Constraint $constraint): void
     {
         // Validation of business rules of CreateLinguisticRequest is based on
         // templateName value. If templateName is empty (because field is

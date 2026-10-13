@@ -18,7 +18,7 @@ class LinguisticRequest
      * @param null | \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference): static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -27,7 +27,7 @@ class LinguisticRequest
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
@@ -35,7 +35,7 @@ class LinguisticRequest
     /**
      * @return bool
      */
-    public function hasRequestReference() : bool
+    public function hasRequestReference(): bool
     {
         return !empty($this->requestReference);
     }
@@ -44,7 +44,7 @@ class LinguisticRequest
      * @param null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated' $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
         return $this;
@@ -53,7 +53,7 @@ class LinguisticRequest
     /**
      * @return null | 'Accepted' | 'Rejected' | 'Executed' | 'Suspended' | 'Cancelled' | 'Validated'
      */
-    public function getStatus() : ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -61,7 +61,7 @@ class LinguisticRequest
     /**
      * @return bool
      */
-    public function hasStatus() : bool
+    public function hasStatus(): bool
     {
         return !empty($this->status);
     }

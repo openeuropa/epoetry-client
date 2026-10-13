@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -64,7 +65,7 @@ abstract class BaseTest extends TestCase
      */
     public function getFixture(string $filename, $dir = ''): array
     {
-        return Yaml::parse(file_get_contents(__DIR__ . $dir .  '/fixtures/' . $filename));
+        return Yaml::parse(file_get_contents(__DIR__ . $dir .  '/fixtures/' . $filename), maxAliasesForCollections: 512);
     }
 
     /**

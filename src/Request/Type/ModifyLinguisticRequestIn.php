@@ -18,7 +18,7 @@ class ModifyLinguisticRequestIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn $requestReference): static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -27,7 +27,7 @@ class ModifyLinguisticRequestIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestReferenceIn
     {
         return $this->requestReference;
     }
@@ -35,7 +35,7 @@ class ModifyLinguisticRequestIn
     /**
      * @return bool
      */
-    public function hasRequestReference() : bool
+    public function hasRequestReference(): bool
     {
         return !empty($this->requestReference);
     }
@@ -44,7 +44,7 @@ class ModifyLinguisticRequestIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails
      * @return $this
      */
-    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails) : static
+    public function setRequestDetails(?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn $requestDetails): static
     {
         $this->requestDetails = $requestDetails;
         return $this;
@@ -53,7 +53,7 @@ class ModifyLinguisticRequestIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
      */
-    public function getRequestDetails() : ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
+    public function getRequestDetails(): ?\OpenEuropa\EPoetry\Request\Type\ModifyRequestDetailsIn
     {
         return $this->requestDetails;
     }
@@ -61,7 +61,7 @@ class ModifyLinguisticRequestIn
     /**
      * @return bool
      */
-    public function hasRequestDetails() : bool
+    public function hasRequestDetails(): bool
     {
         return !empty($this->requestDetails);
     }

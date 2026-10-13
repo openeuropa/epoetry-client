@@ -23,7 +23,7 @@ class ModifyRequestReferenceIn
      * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier): static
     {
         $this->dossier = $dossier;
         return $this;
@@ -32,7 +32,7 @@ class ModifyRequestReferenceIn
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier(): ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -40,7 +40,7 @@ class ModifyRequestReferenceIn
     /**
      * @return bool
      */
-    public function hasDossier() : bool
+    public function hasDossier(): bool
     {
         return !empty($this->dossier);
     }
@@ -49,7 +49,7 @@ class ModifyRequestReferenceIn
      * @param null | string $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : static
+    public function setProductType(?string $productType): static
     {
         $this->productType = $productType;
         return $this;
@@ -58,7 +58,7 @@ class ModifyRequestReferenceIn
     /**
      * @return null | string
      */
-    public function getProductType() : ?string
+    public function getProductType(): ?string
     {
         return $this->productType;
     }
@@ -66,7 +66,7 @@ class ModifyRequestReferenceIn
     /**
      * @return bool
      */
-    public function hasProductType() : bool
+    public function hasProductType(): bool
     {
         return !empty($this->productType);
     }
@@ -75,7 +75,7 @@ class ModifyRequestReferenceIn
      * @param null | int $part
      * @return $this
      */
-    public function setPart(?int $part) : static
+    public function setPart(?int $part): static
     {
         $this->part = $part;
         return $this;
@@ -84,7 +84,7 @@ class ModifyRequestReferenceIn
     /**
      * @return null | int
      */
-    public function getPart() : ?int
+    public function getPart(): ?int
     {
         return $this->part;
     }
@@ -92,7 +92,7 @@ class ModifyRequestReferenceIn
     /**
      * @return bool
      */
-    public function hasPart() : bool
+    public function hasPart(): bool
     {
         return !empty($this->part);
     }

@@ -28,7 +28,7 @@ class RequestReferenceOut
      * @param null | \OpenEuropa\EPoetry\Request\Type\DossierReference $dossier
      * @return $this
      */
-    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier) : static
+    public function setDossier(?\OpenEuropa\EPoetry\Request\Type\DossierReference $dossier): static
     {
         $this->dossier = $dossier;
         return $this;
@@ -37,7 +37,7 @@ class RequestReferenceOut
     /**
      * @return null | \OpenEuropa\EPoetry\Request\Type\DossierReference
      */
-    public function getDossier() : ?\OpenEuropa\EPoetry\Request\Type\DossierReference
+    public function getDossier(): ?\OpenEuropa\EPoetry\Request\Type\DossierReference
     {
         return $this->dossier;
     }
@@ -45,7 +45,7 @@ class RequestReferenceOut
     /**
      * @return bool
      */
-    public function hasDossier() : bool
+    public function hasDossier(): bool
     {
         return !empty($this->dossier);
     }
@@ -54,7 +54,7 @@ class RequestReferenceOut
      * @param null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO' $productType
      * @return $this
      */
-    public function setProductType(?string $productType) : static
+    public function setProductType(?string $productType): static
     {
         $this->productType = $productType;
         return $this;
@@ -63,7 +63,7 @@ class RequestReferenceOut
     /**
      * @return null | 'ERR' | 'EXT' | 'EDT' | 'TRA' | 'RSO' | 'RSE' | 'REV' | 'PER' | 'SPO'
      */
-    public function getProductType() : ?string
+    public function getProductType(): ?string
     {
         return $this->productType;
     }
@@ -71,7 +71,7 @@ class RequestReferenceOut
     /**
      * @return bool
      */
-    public function hasProductType() : bool
+    public function hasProductType(): bool
     {
         return !empty($this->productType);
     }
@@ -80,7 +80,7 @@ class RequestReferenceOut
      * @param null | int $part
      * @return $this
      */
-    public function setPart(?int $part) : static
+    public function setPart(?int $part): static
     {
         $this->part = $part;
         return $this;
@@ -89,7 +89,7 @@ class RequestReferenceOut
     /**
      * @return null | int
      */
-    public function getPart() : ?int
+    public function getPart(): ?int
     {
         return $this->part;
     }
@@ -97,7 +97,7 @@ class RequestReferenceOut
     /**
      * @return bool
      */
-    public function hasPart() : bool
+    public function hasPart(): bool
     {
         return !empty($this->part);
     }
@@ -106,7 +106,7 @@ class RequestReferenceOut
      * @param null | int $version
      * @return $this
      */
-    public function setVersion(?int $version) : static
+    public function setVersion(?int $version): static
     {
         $this->version = $version;
         return $this;
@@ -115,7 +115,7 @@ class RequestReferenceOut
     /**
      * @return null | int
      */
-    public function getVersion() : ?int
+    public function getVersion(): ?int
     {
         return $this->version;
     }
@@ -123,7 +123,7 @@ class RequestReferenceOut
     /**
      * @return bool
      */
-    public function hasVersion() : bool
+    public function hasVersion(): bool
     {
         return !empty($this->version);
     }

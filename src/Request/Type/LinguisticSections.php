@@ -13,7 +13,7 @@ class LinguisticSections
      * @param array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut> $linguisticSection
      * @return $this
      */
-    public function setLinguisticSection(array $linguisticSection) : static
+    public function setLinguisticSection(array $linguisticSection): static
     {
         $this->linguisticSection = $linguisticSection;
         return $this;
@@ -22,7 +22,7 @@ class LinguisticSections
     /**
      * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\LinguisticSectionOut>
      */
-    public function getLinguisticSection() : array
+    public function getLinguisticSection(): array
     {
         return $this->linguisticSection;
     }
@@ -31,7 +31,7 @@ class LinguisticSections
      * @param LinguisticSectionOut ...$linguisticSections
      * @return $this
      */
-    public function addLinguisticSection(... $linguisticSections) : \OpenEuropa\EPoetry\Request\Type\LinguisticSections
+    public function addLinguisticSection(... $linguisticSections): \OpenEuropa\EPoetry\Request\Type\LinguisticSections
     {
         $this->linguisticSection = array_merge($this->linguisticSection, $linguisticSections);return $this;
     }
@@ -39,7 +39,7 @@ class LinguisticSections
     /**
      * @return bool
      */
-    public function hasLinguisticSection() : bool
+    public function hasLinguisticSection(): bool
     {
         return !empty($this->linguisticSection);
     }

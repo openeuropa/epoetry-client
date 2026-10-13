@@ -18,7 +18,7 @@ class ProductReference
      * @param null | \OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference
      * @return $this
      */
-    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference) : static
+    public function setRequestReference(?\OpenEuropa\EPoetry\Notification\Type\RequestReference $requestReference): static
     {
         $this->requestReference = $requestReference;
         return $this;
@@ -27,7 +27,7 @@ class ProductReference
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\RequestReference
      */
-    public function getRequestReference() : ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
+    public function getRequestReference(): ?\OpenEuropa\EPoetry\Notification\Type\RequestReference
     {
         return $this->requestReference;
     }
@@ -35,7 +35,7 @@ class ProductReference
     /**
      * @return bool
      */
-    public function hasRequestReference() : bool
+    public function hasRequestReference(): bool
     {
         return !empty($this->requestReference);
     }
@@ -44,7 +44,7 @@ class ProductReference
      * @param null | string $language
      * @return $this
      */
-    public function setLanguage(?string $language) : static
+    public function setLanguage(?string $language): static
     {
         $this->language = $language;
         return $this;
@@ -53,7 +53,7 @@ class ProductReference
     /**
      * @return null | string
      */
-    public function getLanguage() : ?string
+    public function getLanguage(): ?string
     {
         return $this->language;
     }
@@ -61,7 +61,7 @@ class ProductReference
     /**
      * @return bool
      */
-    public function hasLanguage() : bool
+    public function hasLanguage(): bool
     {
         return !empty($this->language);
     }

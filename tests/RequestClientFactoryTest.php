@@ -45,6 +45,30 @@ final class RequestClientFactoryTest extends BaseTest
     }
 
     /**
+     * Tests that the endpoint passed to RequestClientFactory is actually
+     * used as the SOAP request target, overriding the WSDL's hardcoded
+     * port location.
+     */
+    public function testEndpointOverride(): void
+    {
+        $mockClient = new MockClient();
+        $authentication = new MockAuthentication('ticket');
+        $mockClient->addResponse(new Response(200, [], $this->getCreateLinguisticRequestResponse()));
+
+        $customEndpoint = 'http://custom-endpoint.example.com/soap';
+        $clientFactory = new RequestClientFactory($customEndpoint, $authentication, null, null, $mockClient);
+        $requestClient = $clientFactory->getRequestClient();
+
+        $linguisticRequest = $this->getCreateLinguisticRequest();
+        $requestClient->createLinguisticRequest($linguisticRequest);
+
+        // The request must go to our custom endpoint, not to the WSDL's
+        // hardcoded production URL (https://www.cc.cec/epoetry/...).
+        $actualUri = (string) $mockClient->getLastRequest()->getUri();
+        $this->assertStringContainsString('custom-endpoint.example.com', $actualUri, 'Request should be sent to the custom endpoint, not the WSDL hardcoded URL.');
+    }
+
+    /**
      * Gets XML of createLinguisticRequestResponse.
      *
      * @return string

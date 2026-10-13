@@ -13,7 +13,7 @@ class NoSuchMethodException
      * @param null | string $message
      * @return $this
      */
-    public function setMessage(?string $message) : static
+    public function setMessage(?string $message): static
     {
         $this->message = $message;
         return $this;
@@ -22,7 +22,7 @@ class NoSuchMethodException
     /**
      * @return null | string
      */
-    public function getMessage() : ?string
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -30,7 +30,7 @@ class NoSuchMethodException
     /**
      * @return bool
      */
-    public function hasMessage() : bool
+    public function hasMessage(): bool
     {
         return !empty($this->message);
     }

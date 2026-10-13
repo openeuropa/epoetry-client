@@ -36,7 +36,7 @@ class MyType
     /**
      * @return bool
      */
-    public function hasProp1() : bool
+    public function hasProp1(): bool
     {
         return !empty($this->prop1);
     }

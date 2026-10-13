@@ -13,7 +13,7 @@ class TraxDocuments
      * @param array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn> $document
      * @return $this
      */
-    public function setDocument(array $document) : static
+    public function setDocument(array $document): static
     {
         $this->document = $document;
         return $this;
@@ -22,7 +22,7 @@ class TraxDocuments
     /**
      * @return array<int<0,max>, \OpenEuropa\EPoetry\Request\Type\DocumentIn>
      */
-    public function getDocument() : array
+    public function getDocument(): array
     {
         return $this->document;
     }
@@ -31,7 +31,7 @@ class TraxDocuments
      * @param DocumentIn ...$documents
      * @return $this
      */
-    public function addDocument(... $documents) : \OpenEuropa\EPoetry\Request\Type\TraxDocuments
+    public function addDocument(... $documents): \OpenEuropa\EPoetry\Request\Type\TraxDocuments
     {
         $this->document = array_merge($this->document, $documents);return $this;
     }
@@ -39,7 +39,7 @@ class TraxDocuments
     /**
      * @return bool
      */
-    public function hasDocument() : bool
+    public function hasDocument(): bool
     {
         return !empty($this->document);
     }

@@ -18,7 +18,7 @@ class DgtNotificationResult
      * @param bool $success
      * @return $this
      */
-    public function setSuccess(bool $success) : static
+    public function setSuccess(bool $success): static
     {
         $this->success = $success;
         return $this;
@@ -27,7 +27,7 @@ class DgtNotificationResult
     /**
      * @return bool
      */
-    public function isSuccess() : bool
+    public function isSuccess(): bool
     {
         return $this->success;
     }
@@ -35,7 +35,7 @@ class DgtNotificationResult
     /**
      * @return bool
      */
-    public function hasSuccess() : bool
+    public function hasSuccess(): bool
     {
         return !empty($this->success);
     }
@@ -44,7 +44,7 @@ class DgtNotificationResult
      * @param null | string $message
      * @return $this
      */
-    public function setMessage(?string $message) : static
+    public function setMessage(?string $message): static
     {
         $this->message = $message;
         return $this;
@@ -53,7 +53,7 @@ class DgtNotificationResult
     /**
      * @return null | string
      */
-    public function getMessage() : ?string
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -61,7 +61,7 @@ class DgtNotificationResult
     /**
      * @return bool
      */
-    public function hasMessage() : bool
+    public function hasMessage(): bool
     {
         return !empty($this->message);
     }

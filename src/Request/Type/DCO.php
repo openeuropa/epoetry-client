@@ -43,7 +43,7 @@ class DCO
      * @param null | string $applicationName
      * @return $this
      */
-    public function setApplicationName(?string $applicationName) : static
+    public function setApplicationName(?string $applicationName): static
     {
         $this->applicationName = $applicationName;
         return $this;
@@ -52,7 +52,7 @@ class DCO
     /**
      * @return null | string
      */
-    public function getApplicationName() : ?string
+    public function getApplicationName(): ?string
     {
         return $this->applicationName;
     }
@@ -60,7 +60,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasApplicationName() : bool
+    public function hasApplicationName(): bool
     {
         return !empty($this->applicationName);
     }
@@ -69,7 +69,7 @@ class DCO
      * @param null | \DateTimeInterface $deadline
      * @return $this
      */
-    public function setDeadline(?\DateTimeInterface $deadline) : static
+    public function setDeadline(?\DateTimeInterface $deadline): static
     {
         $this->deadline = $deadline;
         return $this;
@@ -78,7 +78,7 @@ class DCO
     /**
      * @return null | \DateTimeInterface
      */
-    public function getDeadline() : ?\DateTimeInterface
+    public function getDeadline(): ?\DateTimeInterface
     {
         return $this->deadline;
     }
@@ -86,7 +86,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasDeadline() : bool
+    public function hasDeadline(): bool
     {
         return !empty($this->deadline);
     }
@@ -95,7 +95,7 @@ class DCO
      * @param null | string $fileName
      * @return $this
      */
-    public function setFileName(?string $fileName) : static
+    public function setFileName(?string $fileName): static
     {
         $this->fileName = $fileName;
         return $this;
@@ -104,7 +104,7 @@ class DCO
     /**
      * @return null | string
      */
-    public function getFileName() : ?string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -112,7 +112,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasFileName() : bool
+    public function hasFileName(): bool
     {
         return !empty($this->fileName);
     }
@@ -121,7 +121,7 @@ class DCO
      * @param null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW' $format
      * @return $this
      */
-    public function setFormat(?string $format) : static
+    public function setFormat(?string $format): static
     {
         $this->format = $format;
         return $this;
@@ -130,7 +130,7 @@ class DCO
     /**
      * @return null | 'XLS' | 'XLSX' | 'DOC' | 'DOCX' | 'PPTX' | 'PPT' | 'HTM' | 'HTML' | 'RTF' | 'VSD' | 'PDF' | 'TIF' | 'ZIP' | 'TIFF' | 'TXT' | 'XML' | 'XMW'
      */
-    public function getFormat() : ?string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -138,7 +138,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasFormat() : bool
+    public function hasFormat(): bool
     {
         return !empty($this->format);
     }
@@ -147,7 +147,7 @@ class DCO
      * @param null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ' $language
      * @return $this
      */
-    public function setLanguage(?string $language) : static
+    public function setLanguage(?string $language): static
     {
         $this->language = $language;
         return $this;
@@ -156,7 +156,7 @@ class DCO
     /**
      * @return null | 'ML' | 'EN' | 'FR' | 'DE' | 'BG' | 'HR' | 'CS' | 'DA' | 'NL' | 'ET' | 'FI' | 'EL' | 'HU' | 'GA' | 'IT' | 'LV' | 'LT' | 'MT' | 'PL' | 'PT' | 'RO' | 'SK' | 'SL' | 'ES' | 'SV' | 'AF' | 'SQ' | 'AM' | 'AR' | 'HY' | 'AZ' | 'EU' | 'BE' | 'BI' | 'BO' | 'BR' | 'CN' | 'CA' | 'ZH' | 'KW' | 'CO' | 'EG' | 'EO' | 'FO' | 'FY' | 'GD' | 'GL' | 'KA' | 'GU' | 'IW' | 'HI' | 'IS' | 'IN' | 'JA' | 'KL' | 'KK' | 'KY' | 'KO' | 'KU' | 'LA' | 'LN' | 'LU' | 'MK' | 'MG' | 'MS' | 'GV' | 'MR' | 'MO' | 'MN' | 'ME' | 'SE' | 'NO' | 'NB' | 'NN' | 'OC' | 'AU' | 'PS' | 'PA' | 'FA' | 'RM' | 'RU' | 'SC' | 'SR' | 'SH' | 'SW' | 'TG' | 'TH' | 'TI' | 'TR' | 'UK' | 'UR' | 'UZ' | 'VI' | 'WO' | 'CY' | 'JI' | 'YO' | 'ZZ'
      */
-    public function getLanguage() : ?string
+    public function getLanguage(): ?string
     {
         return $this->language;
     }
@@ -164,7 +164,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasLanguage() : bool
+    public function hasLanguage(): bool
     {
         return !empty($this->language);
     }
@@ -173,7 +173,7 @@ class DCO
      * @param null | string $remark
      * @return $this
      */
-    public function setRemark(?string $remark) : static
+    public function setRemark(?string $remark): static
     {
         $this->remark = $remark;
         return $this;
@@ -182,7 +182,7 @@ class DCO
     /**
      * @return null | string
      */
-    public function getRemark() : ?string
+    public function getRemark(): ?string
     {
         return $this->remark;
     }
@@ -190,7 +190,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasRemark() : bool
+    public function hasRemark(): bool
     {
         return !empty($this->remark);
     }
@@ -199,7 +199,7 @@ class DCO
      * @param null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated' $status
      * @return $this
      */
-    public function setStatus(?string $status) : static
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
         return $this;
@@ -208,7 +208,7 @@ class DCO
     /**
      * @return null | 'SenttoDGT' | 'Received' | 'Accepted' | 'Rejected' | 'Cancelled' | 'Suspended' | 'Executed' | 'ToBeValidated'
      */
-    public function getStatus() : ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -216,7 +216,7 @@ class DCO
     /**
      * @return bool
      */
-    public function hasStatus() : bool
+    public function hasStatus(): bool
     {
         return !empty($this->status);
     }

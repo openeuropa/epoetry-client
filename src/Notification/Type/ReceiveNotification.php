@@ -13,7 +13,7 @@ class ReceiveNotification
      * @param null | \OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification
      * @return $this
      */
-    public function setNotification(?\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification) : static
+    public function setNotification(?\OpenEuropa\EPoetry\Notification\Type\DgtNotification $notification): static
     {
         $this->notification = $notification;
         return $this;
@@ -22,7 +22,7 @@ class ReceiveNotification
     /**
      * @return null | \OpenEuropa\EPoetry\Notification\Type\DgtNotification
      */
-    public function getNotification() : ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
+    public function getNotification(): ?\OpenEuropa\EPoetry\Notification\Type\DgtNotification
     {
         return $this->notification;
     }
@@ -30,7 +30,7 @@ class ReceiveNotification
     /**
      * @return bool
      */
-    public function hasNotification() : bool
+    public function hasNotification(): bool
     {
         return !empty($this->notification);
     }
