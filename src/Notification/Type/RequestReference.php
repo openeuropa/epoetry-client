@@ -189,5 +189,26 @@ class RequestReference
     {
         return !empty($this->productType);
     }
+
+    /**
+     * Format request reference.
+     *
+     * @return string
+     */
+    public function getReference(): string
+    {
+        $parts = [
+            $this->getRequesterCode(),
+            $this->getYear(),
+            $this->getNumber(),
+            '('.$this->getVersion().')',
+            $this->getPart(),
+            $this->getProductType(),
+        ];
+        $parts = array_filter($parts, function ($part) {
+            return $part !== null;
+        });
+        return implode('-', $parts);
+    }
 }
 

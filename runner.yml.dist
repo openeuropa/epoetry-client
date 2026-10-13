@@ -14,6 +14,7 @@ commands:
     - { task: "remove", file: "src/Notification/Type" }
     - "./vendor/bin/soap-client generate:types --config=$(pwd)/config/soap-client-notification.php"
     - "./vendor/bin/soap-client generate:classmap --config=$(pwd)/config/soap-client-notification.php"
+    - "git apply resources/RequestReference.php.patch"
 
   generate:authentication:
     - { task: "remove", file: "src/Authentication/ClientCertificate/Type" }
